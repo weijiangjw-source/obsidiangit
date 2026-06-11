@@ -1,0 +1,10 @@
+{
+	"id": "mdfriday",
+	"name": "Friday",
+	"version": "26.5.2",
+	"minAppVersion": "0.15.0",
+	"description": "Write anywhere. Publish everywhere. Sync your notes, publish instantly, turn Markdown into websites.",
+	"author": "sunwei",
+	"authorUrl": "https://mdfriday.com",
+	"isDesktopOnly": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "conv-1778912394140-74tpj3jym",
+  "providerId": "claude",
+  "title": "Generate engaging article headlines for officia...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778912394140,
+  "updatedAt": 1779037354195,
+  "lastResponseAt": 1779087060238,
+  "sessionId": null,
+  "providerState": {
+    "providerSessionId": "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a"
+  },
+  "currentNote": "Eric/My Gmini/让心自然流溢/2026年度/1月/如何用一天时间，彻底重启你的人生.md",
+  "usage": {
+    "model": "opus",
+    "inputTokens": 19981,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 19981,
+    "percentage": 2,
+    "contextWindowIsAuthoritative": true
+  }
+}

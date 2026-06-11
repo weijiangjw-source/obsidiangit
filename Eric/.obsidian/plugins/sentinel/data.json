@@ -1,0 +1,9 @@
+{
+  "actions": [
+    {
+      "where": "",
+      "when": "firstOpen",
+      "what": "property"
+    }
+  ]
+}

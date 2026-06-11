@@ -1,0 +1,30 @@
+# 忽略图片文件
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.webp
+
+# 忽略文档和压缩包
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# 忽略 Obsidian 工作区缓存（可选，不同设备可以保留自己的布局）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+
+# 如果你有专门的附件文件夹，比如 attachments 或 media，请取消下面这行的注释并修改为你的文件夹名
+  attachments/
+  media/

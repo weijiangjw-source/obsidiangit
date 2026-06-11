@@ -1,0 +1,10 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "发布平台": "multitext",
+    "文章类型": "text",
+    "创建时间": "datetime"
+  }
+}

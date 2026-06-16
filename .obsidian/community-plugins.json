@@ -19,5 +19,6 @@
   "terminal",
   "templater-obsidian",
   "obsidian-importer",
-  "obsidian-git"
+  "obsidian-git",
+  "better-word-count"
 ]

@@ -1,7 +1,7 @@
 {
   "userName": "小伟",
   "permissionMode": "normal",
-  "model": "glm-4.7-flash",
+  "model": "glm-4.7",
   "thinkingBudget": "medium",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -11,7 +11,7 @@
   "mediaFolder": "",
   "systemPrompt": "",
   "persistentExternalContextPaths": [],
-  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here\n\n\nANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nAPI_TIMEOUT_MS=3000000\n",
+  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here\n\n\nANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nAPI_TIMEOUT_MS=3000000\n",
   "envSnippets": [],
   "customContextLimits": {},
   "customModelAliases": {},
@@ -37,7 +37,7 @@
       "customModels": "",
       "lastModel": "opus",
       "environmentVariables": "",
-      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash"
+      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
     },
     "codex": {
       "enabled": false,
@@ -80,23 +80,22 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "glm-4.7-flash"
+    "claude": "glm-4.7"
   },
   "savedProviderEffort": {
     "claude": "high"
   },
   "savedProviderServiceTier": {},
-  "savedProviderThinkingBudget": {
-    "claude": "medium"
-  },
+  "savedProviderThinkingBudget": {},
   "savedProviderPermissionMode": {
     "claude": "normal"
   },
-  "lastCustomModel": "",
+  "lastCustomModel": "glm-4.7-flash",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
+  "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "hiddenProviderCommands": {}
 }

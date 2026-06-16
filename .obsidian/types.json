@@ -4,6 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "你们": "multitext",
-    "文章类型": "checkbox"
+    "文章类型": "checkbox",
+    "is_modified": "checkbox"
   }
 }

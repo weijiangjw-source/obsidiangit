@@ -16,6 +16,38 @@
         {
           "type": "note",
           "path": "Eric/常用提示词/镜鉴野望/小绿书描述文提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/让心流溢/长文写作框架生成提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/让心流溢/Claude生成导语和互动提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/公众号爆款标题提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/小红书封面设计.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/微信封面图制作.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/抖音内容帖子分发提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/文章解构提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/通用提示/文章结构化提示词.md"
         }
       ],
       "navRainbow": {
@@ -483,9 +515,6 @@
     "Eric/常用提示词/让心流溢": {
       "mode": "compact"
     },
-    "Eric/练习": {
-      "groupBy": "custom"
-    },
     "Eric/英语学习/词组短语/常用短语": {
       "groupBy": "custom"
     },
@@ -498,6 +527,9 @@
     },
     "Eric": {
       "mode": "compact"
+    },
+    "Eric/常用提示词/通用提示": {
+      "groupBy": "folder"
     }
   },
   "tagIcons": {},

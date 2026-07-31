@@ -18367,6 +18367,375 @@ var init_index_es = __esm({
   }
 });
 
+// node_modules/events/events.js
+var require_events = __commonJS({
+  "node_modules/events/events.js"(exports, module2) {
+    "use strict";
+    var R = typeof Reflect === "object" ? Reflect : null;
+    var ReflectApply = R && typeof R.apply === "function" ? R.apply : function ReflectApply2(target, receiver, args) {
+      return Function.prototype.apply.call(target, receiver, args);
+    };
+    var ReflectOwnKeys;
+    if (R && typeof R.ownKeys === "function") {
+      ReflectOwnKeys = R.ownKeys;
+    } else if (Object.getOwnPropertySymbols) {
+      ReflectOwnKeys = function ReflectOwnKeys2(target) {
+        return Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target));
+      };
+    } else {
+      ReflectOwnKeys = function ReflectOwnKeys2(target) {
+        return Object.getOwnPropertyNames(target);
+      };
+    }
+    function ProcessEmitWarning(warning) {
+      if (console && console.warn) console.warn(warning);
+    }
+    var NumberIsNaN = Number.isNaN || function NumberIsNaN2(value2) {
+      return value2 !== value2;
+    };
+    function EventEmitter3() {
+      EventEmitter3.init.call(this);
+    }
+    module2.exports = EventEmitter3;
+    module2.exports.once = once3;
+    EventEmitter3.EventEmitter = EventEmitter3;
+    EventEmitter3.prototype._events = void 0;
+    EventEmitter3.prototype._eventsCount = 0;
+    EventEmitter3.prototype._maxListeners = void 0;
+    var defaultMaxListeners = 10;
+    function checkListener(listener) {
+      if (typeof listener !== "function") {
+        throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+      }
+    }
+    Object.defineProperty(EventEmitter3, "defaultMaxListeners", {
+      enumerable: true,
+      get: function() {
+        return defaultMaxListeners;
+      },
+      set: function(arg) {
+        if (typeof arg !== "number" || arg < 0 || NumberIsNaN(arg)) {
+          throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + ".");
+        }
+        defaultMaxListeners = arg;
+      }
+    });
+    EventEmitter3.init = function() {
+      if (this._events === void 0 || this._events === Object.getPrototypeOf(this)._events) {
+        this._events = /* @__PURE__ */ Object.create(null);
+        this._eventsCount = 0;
+      }
+      this._maxListeners = this._maxListeners || void 0;
+    };
+    EventEmitter3.prototype.setMaxListeners = function setMaxListeners(n3) {
+      if (typeof n3 !== "number" || n3 < 0 || NumberIsNaN(n3)) {
+        throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n3 + ".");
+      }
+      this._maxListeners = n3;
+      return this;
+    };
+    function _getMaxListeners(that) {
+      if (that._maxListeners === void 0)
+        return EventEmitter3.defaultMaxListeners;
+      return that._maxListeners;
+    }
+    EventEmitter3.prototype.getMaxListeners = function getMaxListeners() {
+      return _getMaxListeners(this);
+    };
+    EventEmitter3.prototype.emit = function emit(type2) {
+      var args = [];
+      for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
+      var doError = type2 === "error";
+      var events = this._events;
+      if (events !== void 0)
+        doError = doError && events.error === void 0;
+      else if (!doError)
+        return false;
+      if (doError) {
+        var er;
+        if (args.length > 0)
+          er = args[0];
+        if (er instanceof Error) {
+          throw er;
+        }
+        var err2 = new Error("Unhandled error." + (er ? " (" + er.message + ")" : ""));
+        err2.context = er;
+        throw err2;
+      }
+      var handler = events[type2];
+      if (handler === void 0)
+        return false;
+      if (typeof handler === "function") {
+        ReflectApply(handler, this, args);
+      } else {
+        var len = handler.length;
+        var listeners2 = arrayClone(handler, len);
+        for (var i = 0; i < len; ++i)
+          ReflectApply(listeners2[i], this, args);
+      }
+      return true;
+    };
+    function _addListener(target, type2, listener, prepend) {
+      var m2;
+      var events;
+      var existing;
+      checkListener(listener);
+      events = target._events;
+      if (events === void 0) {
+        events = target._events = /* @__PURE__ */ Object.create(null);
+        target._eventsCount = 0;
+      } else {
+        if (events.newListener !== void 0) {
+          target.emit(
+            "newListener",
+            type2,
+            listener.listener ? listener.listener : listener
+          );
+          events = target._events;
+        }
+        existing = events[type2];
+      }
+      if (existing === void 0) {
+        existing = events[type2] = listener;
+        ++target._eventsCount;
+      } else {
+        if (typeof existing === "function") {
+          existing = events[type2] = prepend ? [listener, existing] : [existing, listener];
+        } else if (prepend) {
+          existing.unshift(listener);
+        } else {
+          existing.push(listener);
+        }
+        m2 = _getMaxListeners(target);
+        if (m2 > 0 && existing.length > m2 && !existing.warned) {
+          existing.warned = true;
+          var w2 = new Error("Possible EventEmitter memory leak detected. " + existing.length + " " + String(type2) + " listeners added. Use emitter.setMaxListeners() to increase limit");
+          w2.name = "MaxListenersExceededWarning";
+          w2.emitter = target;
+          w2.type = type2;
+          w2.count = existing.length;
+          ProcessEmitWarning(w2);
+        }
+      }
+      return target;
+    }
+    EventEmitter3.prototype.addListener = function addListener(type2, listener) {
+      return _addListener(this, type2, listener, false);
+    };
+    EventEmitter3.prototype.on = EventEmitter3.prototype.addListener;
+    EventEmitter3.prototype.prependListener = function prependListener(type2, listener) {
+      return _addListener(this, type2, listener, true);
+    };
+    function onceWrapper() {
+      if (!this.fired) {
+        this.target.removeListener(this.type, this.wrapFn);
+        this.fired = true;
+        if (arguments.length === 0)
+          return this.listener.call(this.target);
+        return this.listener.apply(this.target, arguments);
+      }
+    }
+    function _onceWrap(target, type2, listener) {
+      var state2 = { fired: false, wrapFn: void 0, target, type: type2, listener };
+      var wrapped = onceWrapper.bind(state2);
+      wrapped.listener = listener;
+      state2.wrapFn = wrapped;
+      return wrapped;
+    }
+    EventEmitter3.prototype.once = function once4(type2, listener) {
+      checkListener(listener);
+      this.on(type2, _onceWrap(this, type2, listener));
+      return this;
+    };
+    EventEmitter3.prototype.prependOnceListener = function prependOnceListener(type2, listener) {
+      checkListener(listener);
+      this.prependListener(type2, _onceWrap(this, type2, listener));
+      return this;
+    };
+    EventEmitter3.prototype.removeListener = function removeListener(type2, listener) {
+      var list2, events, position3, i, originalListener;
+      checkListener(listener);
+      events = this._events;
+      if (events === void 0)
+        return this;
+      list2 = events[type2];
+      if (list2 === void 0)
+        return this;
+      if (list2 === listener || list2.listener === listener) {
+        if (--this._eventsCount === 0)
+          this._events = /* @__PURE__ */ Object.create(null);
+        else {
+          delete events[type2];
+          if (events.removeListener)
+            this.emit("removeListener", type2, list2.listener || listener);
+        }
+      } else if (typeof list2 !== "function") {
+        position3 = -1;
+        for (i = list2.length - 1; i >= 0; i--) {
+          if (list2[i] === listener || list2[i].listener === listener) {
+            originalListener = list2[i].listener;
+            position3 = i;
+            break;
+          }
+        }
+        if (position3 < 0)
+          return this;
+        if (position3 === 0)
+          list2.shift();
+        else {
+          spliceOne(list2, position3);
+        }
+        if (list2.length === 1)
+          events[type2] = list2[0];
+        if (events.removeListener !== void 0)
+          this.emit("removeListener", type2, originalListener || listener);
+      }
+      return this;
+    };
+    EventEmitter3.prototype.off = EventEmitter3.prototype.removeListener;
+    EventEmitter3.prototype.removeAllListeners = function removeAllListeners(type2) {
+      var listeners2, events, i;
+      events = this._events;
+      if (events === void 0)
+        return this;
+      if (events.removeListener === void 0) {
+        if (arguments.length === 0) {
+          this._events = /* @__PURE__ */ Object.create(null);
+          this._eventsCount = 0;
+        } else if (events[type2] !== void 0) {
+          if (--this._eventsCount === 0)
+            this._events = /* @__PURE__ */ Object.create(null);
+          else
+            delete events[type2];
+        }
+        return this;
+      }
+      if (arguments.length === 0) {
+        var keys2 = Object.keys(events);
+        var key5;
+        for (i = 0; i < keys2.length; ++i) {
+          key5 = keys2[i];
+          if (key5 === "removeListener") continue;
+          this.removeAllListeners(key5);
+        }
+        this.removeAllListeners("removeListener");
+        this._events = /* @__PURE__ */ Object.create(null);
+        this._eventsCount = 0;
+        return this;
+      }
+      listeners2 = events[type2];
+      if (typeof listeners2 === "function") {
+        this.removeListener(type2, listeners2);
+      } else if (listeners2 !== void 0) {
+        for (i = listeners2.length - 1; i >= 0; i--) {
+          this.removeListener(type2, listeners2[i]);
+        }
+      }
+      return this;
+    };
+    function _listeners(target, type2, unwrap) {
+      var events = target._events;
+      if (events === void 0)
+        return [];
+      var evlistener = events[type2];
+      if (evlistener === void 0)
+        return [];
+      if (typeof evlistener === "function")
+        return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+      return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+    }
+    EventEmitter3.prototype.listeners = function listeners2(type2) {
+      return _listeners(this, type2, true);
+    };
+    EventEmitter3.prototype.rawListeners = function rawListeners(type2) {
+      return _listeners(this, type2, false);
+    };
+    EventEmitter3.listenerCount = function(emitter, type2) {
+      if (typeof emitter.listenerCount === "function") {
+        return emitter.listenerCount(type2);
+      } else {
+        return listenerCount2.call(emitter, type2);
+      }
+    };
+    EventEmitter3.prototype.listenerCount = listenerCount2;
+    function listenerCount2(type2) {
+      var events = this._events;
+      if (events !== void 0) {
+        var evlistener = events[type2];
+        if (typeof evlistener === "function") {
+          return 1;
+        } else if (evlistener !== void 0) {
+          return evlistener.length;
+        }
+      }
+      return 0;
+    }
+    EventEmitter3.prototype.eventNames = function eventNames() {
+      return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
+    };
+    function arrayClone(arr, n3) {
+      var copy = new Array(n3);
+      for (var i = 0; i < n3; ++i)
+        copy[i] = arr[i];
+      return copy;
+    }
+    function spliceOne(list2, index7) {
+      for (; index7 + 1 < list2.length; index7++)
+        list2[index7] = list2[index7 + 1];
+      list2.pop();
+    }
+    function unwrapListeners(arr) {
+      var ret = new Array(arr.length);
+      for (var i = 0; i < ret.length; ++i) {
+        ret[i] = arr[i].listener || arr[i];
+      }
+      return ret;
+    }
+    function once3(emitter, name) {
+      return new Promise(function(resolve6, reject) {
+        function errorListener(err2) {
+          emitter.removeListener(name, resolver2);
+          reject(err2);
+        }
+        function resolver2() {
+          if (typeof emitter.removeListener === "function") {
+            emitter.removeListener("error", errorListener);
+          }
+          resolve6([].slice.call(arguments));
+        }
+        ;
+        eventTargetAgnosticAddListener(emitter, name, resolver2, { once: true });
+        if (name !== "error") {
+          addErrorHandlerIfEventEmitter(emitter, errorListener, { once: true });
+        }
+      });
+    }
+    function addErrorHandlerIfEventEmitter(emitter, handler, flags2) {
+      if (typeof emitter.on === "function") {
+        eventTargetAgnosticAddListener(emitter, "error", handler, flags2);
+      }
+    }
+    function eventTargetAgnosticAddListener(emitter, name, listener, flags2) {
+      if (typeof emitter.on === "function") {
+        if (flags2.once) {
+          emitter.once(name, listener);
+        } else {
+          emitter.on(name, listener);
+        }
+      } else if (typeof emitter.addEventListener === "function") {
+        emitter.addEventListener(name, function wrapListener(arg) {
+          if (flags2.once) {
+            emitter.removeEventListener(name, wrapListener);
+          }
+          listener(arg);
+        });
+      } else {
+        throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type ' + typeof emitter);
+      }
+    }
+  }
+});
+
 // node_modules/uuid/dist/esm-browser/rng.js
 function rng() {
   if (!getRandomValues) {
@@ -19463,7 +19832,7 @@ var import_events2, funcToString, objectCtorString, MAX_NUM_CONCURRENT_REQUESTS,
 var init_index_browser_es3 = __esm({
   "node_modules/pouchdb-utils/lib/index-browser.es.js"() {
     init_index_es();
-    import_events2 = __toESM(require("events"));
+    import_events2 = __toESM(require_events());
     init_esm_browser();
     init_index_browser_es2();
     funcToString = Function.prototype.toString;
@@ -21211,7 +21580,7 @@ var init_index_es5 = __esm({
     init_index_es2();
     init_index_es();
     init_index_browser_es3();
-    import_events3 = __toESM(require("events"));
+    import_events3 = __toESM(require_events());
     init_index_browser_es4();
     init_esm_browser();
     init_index_browser_es5();
@@ -28767,7 +29136,7 @@ var init_index_es15 = __esm({
     init_index_es13();
     init_index_es14();
     init_index_es();
-    import_events4 = __toESM(require("events"));
+    import_events4 = __toESM(require_events());
     init_index_browser_es3();
     STARTING_BACK_OFF = 0;
     Replication = class extends import_events4.default {
@@ -38960,8 +39329,9 @@ var init_licenseState = __esm({
       /**
        * 初始化/刷新所有状态
        * 插件加载时调用，以及需要刷新时调用
+       * @param forceRefresh - 是否强制从服务器刷新数据（跳过缓存）
        */
-      async initialize() {
+      async initialize(forceRefresh = false) {
         try {
           const authResult = await this.authService.getStatus(this.workspacePath);
           if (!authResult.success) {
@@ -38972,7 +39342,10 @@ var init_licenseState = __esm({
           if (!this.authStatus.isAuthenticated || !this.authStatus.license) {
             return { isActivated: false };
           }
-          const licenseResult = await this.licenseService.getLicenseInfo(this.workspacePath);
+          const licenseResult = await this.licenseService.getLicenseInfo(
+            this.workspacePath,
+            { refresh: forceRefresh }
+          );
           if (licenseResult.success) {
             this.licenseInfo = licenseResult.data;
           } else {
@@ -39125,10 +39498,11 @@ var init_licenseState = __esm({
         return Date.now() - this.lastUpdateTime < this.CACHE_TTL;
       }
       /**
-       * 强制刷新
+       * 强制刷新（从服务器获取最新数据，跳过缓存）
+       * 用于用户手动刷新 license 信息时
        */
       async refresh() {
-        await this.initialize();
+        await this.initialize(true);
       }
       /**
        * 清空状态
@@ -109893,7 +110267,7 @@ var init_esm4 = __esm({
   "node_modules/chokidar/esm/index.js"() {
     import_fs2 = require("fs");
     import_promises16 = require("fs/promises");
-    import_events9 = require("events");
+    import_events9 = __toESM(require_events(), 1);
     sysPath2 = __toESM(require("path"), 1);
     init_esm3();
     init_handler();
@@ -110607,20 +110981,20 @@ function newTaxonomy(e4) {
   const t28 = function(e5) {
     if (e5.taxonomies && "object" == typeof e5.taxonomies) {
       const t29 = {};
-      for (const [i, r] of Object.entries(e5.taxonomies)) "string" == typeof r && (t29[i] = r);
+      for (const [r, i] of Object.entries(e5.taxonomies)) "string" == typeof i && (t29[r] = i);
       return t29;
     }
     return { ...DefaultTaxonomies };
   }(e4);
   return new Taxonomy(t28);
 }
-async function loadConfigWithParams(e4, t28, i, r, s2 = {}) {
-  const n3 = { workingDir: path32.resolve(i), modulesDir: path32.resolve(r), publishDir: path32.resolve(DEFAULT_PUBLISH_DIR), cacheDir: "" };
+async function loadConfigWithParams(e4, t28, r, i, s2 = {}) {
+  const n3 = { workingDir: path32.resolve(r), modulesDir: path32.resolve(i), publishDir: path32.resolve(DEFAULT_PUBLISH_DIR), cacheDir: "" };
   n3.cacheDir = await async function(e5, t29) {
     if ("" !== t29) return t29;
-    const i2 = process.env.HOME || process.env.USERPROFILE || "", r3 = path32.join(i2, ".cache", "mdf");
+    const r3 = process.env.HOME || process.env.USERPROFILE || "", i2 = path32.join(r3, ".cache", "mdf");
     try {
-      return await e5.mkdirAll(r3, 493), r3;
+      return await e5.mkdirAll(i2, 493), i2;
     } catch (e6) {
       return path32.join("/tmp", "hugo-cache");
     }
@@ -110630,18 +111004,18 @@ async function loadConfigWithParams(e4, t28, i, r, s2 = {}) {
   }(e4, t28), n3);
   try {
     const t29 = await a.loadConfigByDefault();
-    for (const [e5, i3] of Object.entries(s2)) t29.set(e5, i3);
-    const i2 = path32.resolve(t29.get("publishDir") || DEFAULT_PUBLISH_DIR);
-    return await e4.mkdirAll(i2, 511), function(e5, t30, i3, r3, s3, n4, a2, o, l, c) {
-      return new Config(e5, t30, i3, r3, s3, n4, a2, o, l, c);
+    for (const [e5, r4] of Object.entries(s2)) t29.set(e5, r4);
+    const r3 = path32.resolve(t29.get("publishDir") || DEFAULT_PUBLISH_DIR);
+    return await e4.mkdirAll(r3, 511), function(e5, t30, r4, i2, s3, n4, a2, o, l, c) {
+      return new Config(e5, t30, r4, i2, s3, n4, a2, o, l, c);
     }(e4, t29, function(e5, t30 = {}) {
-      const i3 = function(e6) {
+      const r4 = function(e6) {
         return { baseURL: e6.baseurl || DefaultRootConfig.baseURL, title: e6.title || DefaultRootConfig.title, theme: e6.theme || DefaultRootConfig.theme, timeout: e6.timeout || DefaultRootConfig.timeout, contentDir: e6.contentDir || DefaultRootConfig.contentDir, dataDir: e6.dataDir || DefaultRootConfig.dataDir, layoutDir: e6.layoutDir || DefaultRootConfig.layoutDir, staticDir: e6.staticDir || DefaultRootConfig.staticDir, archetypeDir: e6.archetypeDir || DefaultRootConfig.archetypeDir, assetDir: e6.assetDir || DefaultRootConfig.assetDir, publishDir: e6.publishDir || DefaultRootConfig.publishDir, buildDrafts: void 0 !== e6.buildDrafts ? e6.buildDrafts : DefaultRootConfig.buildDrafts, buildExpired: void 0 !== e6.buildExpired ? e6.buildExpired : DefaultRootConfig.buildExpired, buildFuture: void 0 !== e6.buildFuture ? e6.buildFuture : DefaultRootConfig.buildFuture, copyright: e6.copyright || DefaultRootConfig.copyright, defaultContentLanguage: e6.defaultContentLanguage || DefaultRootConfig.defaultContentLanguage, defaultContentLanguageInSubdir: void 0 !== e6.defaultContentLanguageInSubdir ? e6.defaultContentLanguageInSubdir : DefaultRootConfig.defaultContentLanguageInSubdir, disableAliases: void 0 !== e6.disableAliases ? e6.disableAliases : DefaultRootConfig.disableAliases, disablePathToLower: void 0 !== e6.disablePathToLower ? e6.disablePathToLower : DefaultRootConfig.disablePathToLower, disableKinds: e6.disableKinds || DefaultRootConfig.disableKinds, disableLanguages: e6.disableLanguages || DefaultRootConfig.disableLanguages, renderSegments: e6.renderSegments || DefaultRootConfig.renderSegments, disableHugoGeneratorInject: void 0 !== e6.disableHugoGeneratorInject ? e6.disableHugoGeneratorInject : DefaultRootConfig.disableHugoGeneratorInject, disableLiveReload: void 0 !== e6.disableLiveReload ? e6.disableLiveReload : DefaultRootConfig.disableLiveReload, enableEmoji: void 0 !== e6.enableEmoji ? e6.enableEmoji : DefaultRootConfig.enableEmoji };
       }(e5);
-      return new Root(i3, t30);
-    }(t29.get(""), t29.getParams("params")), function(e5, t30, i3) {
-      return new Dir(e5, t30, i3);
-    }(n3.workingDir, n3.modulesDir, i2), function(e5) {
+      return new Root(r4, t30);
+    }(t29.get(""), t29.getParams("params")), function(e5, t30, r4) {
+      return new Dir(e5, t30, r4);
+    }(n3.workingDir, n3.modulesDir, r3), function(e5) {
       const t30 = function(e6) {
         const t31 = { mounts: [], imports: [] };
         return e6.mounts && Array.isArray(e6.mounts) && (t31.mounts = e6.mounts.map((e7) => ({ source: e7.source || "", target: e7.target || "", lang: e7.lang }))), e6.imports && Array.isArray(e6.imports) && (t31.imports = e6.imports.map((e7) => ({ path: e7.path || "", url: e7.url, version: e7.version, mounts: e7.mounts || [] }))), t31;
@@ -110657,9 +111031,9 @@ async function loadConfigWithParams(e4, t28, i, r, s2 = {}) {
       const t30 = function(e6) {
         const t31 = { userConfig: {}, platformTemplates: [...DefaultSocialPlatformTemplates] };
         if (e6 && "object" == typeof e6) {
-          for (const [i3, r3] of Object.entries(e6)) if (r3 && "object" == typeof r3) {
-            const e7 = r3;
-            e7.link && (t31.userConfig[i3] = { link: e7.link });
+          for (const [r4, i2] of Object.entries(e6)) if (i2 && "object" == typeof i2) {
+            const e7 = i2;
+            e7.link && (t31.userConfig[r4] = { link: e7.link });
           }
         }
         return t31;
@@ -110669,9 +111043,9 @@ async function loadConfigWithParams(e4, t28, i, r, s2 = {}) {
       const t30 = function(e6) {
         const t31 = {};
         if (!e6 || 0 === Object.keys(e6).length) return t31.en = { ...DefaultLanguageConfig, title: (e6 == null ? void 0 : e6.title) || DefaultLanguageConfig.title, params: (e6 == null ? void 0 : e6.params) || DefaultLanguageConfig.params }, t31;
-        for (const [i3, r3] of Object.entries(e6)) {
-          const s3 = r3, n4 = languages.getNameByCode(i3) || i3;
-          t31[i3] = { languageCode: i3, languageName: n4, title: s3.title || e6.title || "", weight: void 0 !== s3.weight ? s3.weight : 0, contentDir: s3.contentDir || "content", disabled: void 0 !== s3.disabled && s3.disabled, params: s3.params || e6.params || {} };
+        for (const [r4, i2] of Object.entries(e6)) {
+          const s3 = i2, n4 = languages.getNameByCode(r4) || r4;
+          t31[r4] = { languageCode: r4, languageName: n4, title: s3.title || e6.title || "", weight: void 0 !== s3.weight ? s3.weight : 0, contentDir: s3.contentDir || "content", disabled: void 0 !== s3.disabled && s3.disabled, params: s3.params || e6.params || {} };
         }
         return t31;
       }(e5);
@@ -110693,14 +111067,14 @@ function initLogger(e4) {
 function getDomainLogger(e4, t28) {
   return globalLoggerManager.getLogger(e4, t28);
 }
-function getComponentLogger(e4, t28, i) {
-  return globalLoggerManager.getComponentLogger(e4, t28, i);
+function getComponentLogger(e4, t28, r) {
+  return globalLoggerManager.getComponentLogger(e4, t28, r);
 }
 function setGlobalLogLevel(e4) {
   globalLoggerManager.setLogLevel(e4);
 }
-function newHttpClient(e4, t28, i, r) {
-  return r || new NodeHttpClient(e4, t28, i);
+function newHttpClient(e4, t28, r, i) {
+  return i || new NodeHttpClient(e4, t28, r);
 }
 function newZipExtractor(e4, t28 = "node") {
   switch (t28) {
@@ -110715,22 +111089,22 @@ function newZipExtractor(e4, t28 = "node") {
 function newModuleCache(e4, t28) {
   return new FsModuleCache(e4, t28);
 }
-function newModule2(e4, t28, i, r) {
-  return new Module2(e4, t28, i, r || null, false);
+function newModule2(e4, t28, r, i) {
+  return new Module2(e4, t28, r, i || null, false);
 }
-function newModules(e4, t28, i, r) {
-  return new Modules(e4, t28, i, r);
+function newModules(e4, t28, r, i) {
+  return new Modules(e4, t28, r, i);
 }
 function newFileMeta(e4, t28) {
   return new FileMeta(e4, t28);
 }
 function newFileInfo(e4, t28) {
-  const i = newFileMeta(t28), r = new FileInfo(e4, i);
-  return isMetaProvider(e4) && r.meta().merge(e4.meta()), r;
+  const r = newFileMeta(t28), i = new FileInfo(e4, r);
+  return isMetaProvider(e4) && i.meta().merge(e4.meta()), i;
 }
 function newFileInfoWithMeta(e4, t28) {
-  const i = new FileInfo(e4, t28);
-  return isMetaProvider(e4) && i.meta().merge(e4.meta()), i;
+  const r = new FileInfo(e4, t28);
+  return isMetaProvider(e4) && r.meta().merge(e4.meta()), r;
 }
 function isMetaProvider(e4) {
   return e4 && "function" == typeof e4.meta;
@@ -110740,15 +111114,15 @@ function newBaseFs(e4, t28) {
 }
 async function createFileMetaInfo(e4, t28) {
   try {
-    const i = await t28.stat(e4), r = newFileMeta(e4);
-    return r.setOpenFunc(async () => await t28.open(e4)), newFileInfoWithMeta(i, r);
+    const r = await t28.stat(e4), i = newFileMeta(e4);
+    return i.setOpenFunc(async () => await t28.open(e4)), newFileInfoWithMeta(r, i);
   } catch (t29) {
     throw new Error(`Failed to stat file ${e4}: ${t29.message}`);
   }
 }
-function newOverlayOptions(e4, t28 = false, i) {
-  const r = { fss: e4, firstWritable: t28 };
-  return void 0 !== i && (r.dirsMerger = i), new OverlayOptions(r);
+function newOverlayOptions(e4, t28 = false, r) {
+  const i = { fss: e4, firstWritable: t28 };
+  return void 0 !== r && (i.dirsMerger = r), new OverlayOptions(i);
 }
 function createDefaultOverlayOptions(e4) {
   return newOverlayOptions(e4, false, defaultDirMerger);
@@ -110760,15 +111134,15 @@ function createReadOnlyOverlayFs(e4) {
   return new Factory().createReadOnly(e4);
 }
 async function createFs(e4, t28) {
-  const i = function(e5) {
-    const t29 = e5.osFs, i2 = e5.osFs, r3 = newBaseFs(e5.osFs, [e5.publish]);
-    return new OriginFs(t29, i2, r3);
-  }(e4), r = await async function(e5, t29) {
-    const i2 = (r3 = e5.getSource(), new FilesystemsCollector(r3));
-    var r3;
-    return await i2.collect(t29), i2;
-  }(i, t28), s2 = newBaseFs(e4.osFs, [e4.path]);
-  return new Fs2(i, r.overlayMountsPrompt, r.overlayMountsWorkflow, r.overlayMountsContent, r.overlayMountsLayouts, r.overlayMountsStatics, r.overlayMountsAssets, r.overlayMountsI18n, s2);
+  const r = function(e5) {
+    const t29 = e5.osFs, r3 = e5.osFs, i2 = newBaseFs(e5.osFs, [e5.publish]);
+    return new OriginFs(t29, r3, i2);
+  }(e4), i = await async function(e5, t29) {
+    const r3 = (i2 = e5.getSource(), new FilesystemsCollector(i2));
+    var i2;
+    return await r3.collect(t29), r3;
+  }(r, t28), s2 = newBaseFs(e4.osFs, [e4.path]);
+  return new Fs2(r, i.overlayMountsPrompt, i.overlayMountsWorkflow, i.overlayMountsContent, i.overlayMountsLayouts, i.overlayMountsStatics, i.overlayMountsAssets, i.overlayMountsI18n, s2);
 }
 function isSpace3(e4) {
   return 32 === e4 || 9 === e4;
@@ -110784,25 +111158,25 @@ function isAlphaNumeric2(e4) {
 }
 function lexFrontMatterJSON(e4) {
   e4.backup();
-  let t28 = false, i = 0;
+  let t28 = false, r = 0;
   for (; ; ) {
-    const r = e4.next();
+    const i = e4.next();
     switch (true) {
-      case r === eof:
+      case i === eof:
         return e4.errorf("unexpected EOF parsing JSON front matter");
-      case 123 === r:
-        t28 || i++;
+      case 123 === i:
+        t28 || r++;
         break;
-      case 125 === r:
-        t28 || i--;
+      case 125 === i:
+        t28 || r--;
         break;
-      case 34 === r:
+      case 34 === i:
         t28 = !t28;
         break;
-      case 92 === r:
+      case 92 === i:
         e4.next();
     }
-    if (0 === i) break;
+    if (0 === r) break;
   }
   return e4.consumeCRLF(), e4.emit(5), () => e4.lexMainSection();
 }
@@ -110823,12 +111197,12 @@ function lexFrontMatterOrgMode(e4) {
 function lexIntroSection(e4) {
   return e4.lexIntroSection();
 }
-function createShortcodePlaceholder(e4, t28, i) {
-  return `${SHORTCODE_PLACEHOLDER_PREFIX}${e4}${t28}${i}HBHB`;
+function createShortcodePlaceholder(e4, t28, r) {
+  return `${SHORTCODE_PLACEHOLDER_PREFIX}${e4}${t28}${r}HBHB`;
 }
 function indexNonWhiteSpace2(e4, t28) {
-  const i = t28.charCodeAt(0);
-  for (let t29 = 0; t29 < e4.length; t29++) if (!isSpace22(e4[t29]) && e4[t29] === i) return t29;
+  const r = t28.charCodeAt(0);
+  for (let t29 = 0; t29 < e4.length; t29++) if (!isSpace22(e4[t29]) && e4[t29] === r) return t29;
   return -1;
 }
 function isSpace22(e4) {
@@ -110839,28 +111213,28 @@ function slugifyFilePath(e4, t28) {
   e4 = function(e5) {
     return e5.startsWith("/") && (e5 = e5.substring(1)), e5.endsWith("/") && (e5 = e5.slice(0, -1)), e5;
   }(e4);
-  let i = (r = e4, (_a11 = r.match(/\.[A-Za-z0-9]+$/)) == null ? void 0 : _a11[0]);
-  var r;
-  const s2 = e4.replace(new RegExp(i + "$"), "");
-  (t28 || [".md", ".html", void 0].includes(i)) && (i = "");
+  let r = (i = e4, (_a11 = i.match(/\.[A-Za-z0-9]+$/)) == null ? void 0 : _a11[0]);
+  var i;
+  const s2 = e4.replace(new RegExp(r + "$"), "");
+  (t28 || [".md", ".html", void 0].includes(r)) && (r = "");
   let n3 = function(e5) {
     return e5.split("/").map((e6) => e6.replace(/\s/g, "-").replace(/&/g, "-and-").replace(/%/g, "-percent").replace(/\?/g, "").replace(/#/g, "")).join("/").replace(/\/$/, "");
   }(s2);
   return function(e5, t29) {
     return e5 === t29 || e5.endsWith("/" + t29);
-  }(n3, "_index") && (n3 = n3.replace(/_index$/, "index")), n3 + i;
+  }(n3, "_index") && (n3 = n3.replace(/_index$/, "index")), n3 + r;
 }
 function splitAnchor(e4) {
-  let [t28, i] = e4.split("#", 2);
-  return t28.endsWith(".pdf") ? [t28, void 0 === i ? "" : `#${i}`] : (i = void 0 === i ? "" : "#" + i.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\u4e00-\u9fa5\-]+/g, "").replace(/\-+/g, "-").replace(/^-+|-+$/g, ""), [t28, i]);
+  let [t28, r] = e4.split("#", 2);
+  return t28.endsWith(".pdf") ? [t28, void 0 === r ? "" : `#${r}`] : (r = void 0 === r ? "" : "#" + r.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\u4e00-\u9fa5\-]+/g, "").replace(/\-+/g, "-").replace(/^-+|-+$/g, ""), [t28, r]);
 }
 function wikilinkInlineRule(e4, t28) {
-  const i = e4.pos, r = e4.posMax;
-  if (i + 5 > r) return false;
-  const s2 = 33 === e4.src.charCodeAt(i), n3 = s2 ? 1 : 0;
-  if (91 !== e4.src.charCodeAt(i + n3) || 91 !== e4.src.charCodeAt(i + n3 + 1)) return false;
-  let a = i + n3 + 2, o = false;
-  for (; a < r - 1; ) {
+  const r = e4.pos, i = e4.posMax;
+  if (r + 5 > i) return false;
+  const s2 = 33 === e4.src.charCodeAt(r), n3 = s2 ? 1 : 0;
+  if (91 !== e4.src.charCodeAt(r + n3) || 91 !== e4.src.charCodeAt(r + n3 + 1)) return false;
+  let a = r + n3 + 2, o = false;
+  for (; a < i - 1; ) {
     if (93 === e4.src.charCodeAt(a) && 93 === e4.src.charCodeAt(a + 1)) {
       o = true;
       break;
@@ -110868,7 +111242,7 @@ function wikilinkInlineRule(e4, t28) {
     a++;
   }
   if (!o) return false;
-  const l = e4.src.slice(i + n3 + 2, a);
+  const l = e4.src.slice(r + n3 + 2, a);
   if (0 === l.trim().length) return false;
   const c = l.indexOf("|"), h3 = l.indexOf("#");
   let u, g = "", d = "";
@@ -110879,28 +111253,28 @@ function wikilinkInlineRule(e4, t28) {
     -1 !== t29 ? (g = e5.slice(0, t29).trim(), d = e5.slice(t29).trim()) : g = e5.trim();
   } else -1 !== h3 ? (g = l.slice(0, h3).trim(), d = l.slice(h3).trim()) : g = l.trim();
   if (!t28) {
-    const t29 = s2 ? "wikilink_embed" : "wikilink_link", i2 = e4.push(t29, "", 0), r3 = { isEmbed: s2, filepath: g, anchor: d, alias: u, url: g + d };
-    i2.meta = r3, i2.content = u || g;
+    const t29 = s2 ? "wikilink_embed" : "wikilink_link", r3 = e4.push(t29, "", 0), i2 = { isEmbed: s2, filepath: g, anchor: d, alias: u, url: g + d };
+    r3.meta = i2, r3.content = u || g;
   }
   return e4.pos = a + 2, true;
 }
 function renderWikilinkLink(e4, t28) {
   var _a11;
-  const i = e4[t28].meta, [r, s2] = splitAnchor(i.url), n3 = slugifyFilePath(r), a = escapeHtml2((_a11 = i.alias) != null ? _a11 : i.filepath);
-  return `<a class="internal" data-slug="${n3}" data-wikilink="${escapeHtml2(i.url)}">${a}</a>`;
+  const r = e4[t28].meta, [i, s2] = splitAnchor(r.url), n3 = slugifyFilePath(i), a = escapeHtml2((_a11 = r.alias) != null ? _a11 : r.filepath);
+  return `<a class="internal" data-slug="${n3}" data-wikilink="${escapeHtml2(r.url)}">${a}</a>`;
 }
 function renderWikilinkEmbed(e4, t28) {
-  const i = e4[t28].meta, { filepath: r, anchor: s2, alias: n3 } = i, a = slugifyFilePath(r), o = function(e5) {
+  const r = e4[t28].meta, { filepath: i, anchor: s2, alias: n3 } = r, a = slugifyFilePath(i), o = function(e5) {
     const t29 = e5.toLowerCase().match(/\.[a-z0-9]+$/);
     return t29 ? t29[0] : "";
-  }(r);
+  }(i);
   if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(o)) {
-    const { alt: e5, width: t29, height: i2 } = function(e6) {
+    const { alt: e5, width: t29, height: r3 } = function(e6) {
       if (!e6) return { alt: "", width: "auto", height: "auto" };
       const t30 = wikilinkImageEmbedRegex.exec(e6);
       return t30 && t30.groups ? { alt: t30.groups.alt || "", width: t30.groups.width || "auto", height: t30.groups.height || "auto" } : { alt: e6, width: "auto", height: "auto" };
     }(n3);
-    return `<img src="${a}" alt="${escapeHtml2(e5)}" width="${t29}" height="${i2}" />`;
+    return `<img src="${a}" alt="${escapeHtml2(e5)}" width="${t29}" height="${r3}" />`;
   }
   return [".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(o) ? `<video src="${a}" controls></video>` : [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(o) ? `<audio src="${a}" controls></audio>` : [".pdf"].includes(o) ? `<iframe src="${a}" class="pdf"></iframe>` : `<blockquote class="transclude" data-url="${a}" data-block="${s2}"><a href="${a + s2}" class="transclude-inner">Transclude of ${a}</a></blockquote>`;
 }
@@ -110911,42 +111285,42 @@ function wikilinkPlugin(e4, t28) {
   false !== (t28 == null ? void 0 : t28.enable) && (e4.inline.ruler.before("link", "wikilink", wikilinkInlineRule), e4.renderer.rules.wikilink_link = renderWikilinkLink, e4.renderer.rules.wikilink_embed = renderWikilinkEmbed);
 }
 function tagInlineRule(e4, t28) {
-  const i = e4.pos;
-  if (i + 2 > e4.posMax) return false;
-  if (35 !== e4.src.charCodeAt(i)) return false;
-  if (i > 0) {
-    const t29 = e4.src.charCodeAt(i - 1);
+  const r = e4.pos;
+  if (r + 2 > e4.posMax) return false;
+  if (35 !== e4.src.charCodeAt(r)) return false;
+  if (r > 0) {
+    const t29 = e4.src.charCodeAt(r - 1);
     if (32 !== t29 && 10 !== t29 && 9 !== t29) return false;
   }
-  const r = e4.src.slice(i), s2 = /^#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/u.exec(r);
+  const i = e4.src.slice(r), s2 = /^#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/u.exec(i);
   if (!s2) return false;
   const n3 = s2[0], a = s2[1];
   if (/^[\/\d]+$/.test(a)) return false;
   if (!t28) {
-    const t29 = e4.push("tag", "", 0), i2 = a.split("/").map((e5) => e5.trim().toLowerCase().replace(/\s+/g, "-").replace(/[^\p{L}\p{Emoji}\p{M}\d\-_]/gu, "")).join("/"), r3 = e4.md.__tagPluginState, s3 = { rawTag: a, slugTag: i2, url: `${(r3 == null ? void 0 : r3.tagBaseURL) || "tags/"}${i2}` };
-    t29.meta = s3, t29.content = a, (r3 == null ? void 0 : r3.onTagFound) && r3.onTagFound(i2);
+    const t29 = e4.push("tag", "", 0), r3 = a.split("/").map((e5) => e5.trim().toLowerCase().replace(/\s+/g, "-").replace(/[^\p{L}\p{Emoji}\p{M}\d\-_]/gu, "")).join("/"), i2 = e4.md.__tagPluginState, s3 = { rawTag: a, slugTag: r3, url: `${(i2 == null ? void 0 : i2.tagBaseURL) || "tags/"}${r3}` };
+    t29.meta = s3, t29.content = a, (i2 == null ? void 0 : i2.onTagFound) && i2.onTagFound(r3);
   }
-  return e4.pos = i + n3.length, true;
+  return e4.pos = r + n3.length, true;
 }
 function renderTag(e4, t28) {
-  const i = e4[t28].meta, r = i.rawTag.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  return `<a href="${i.url}" class="internal tag-link">${r}</a>`;
+  const r = e4[t28].meta, i = r.rawTag.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  return `<a href="${r.url}" class="internal tag-link">${i}</a>`;
 }
 function tagPlugin(e4, t28) {
-  const i = { enable: true, tagBaseURL: "tags/", ...t28 };
-  false !== i.enable && (e4.__tagPluginState = { tagBaseURL: i.tagBaseURL, onTagFound: i.onTagFound }, e4.inline.ruler.before("emphasis", "tag", tagInlineRule), e4.renderer.rules.tag = renderTag);
+  const r = { enable: true, tagBaseURL: "tags/", ...t28 };
+  false !== r.enable && (e4.__tagPluginState = { tagBaseURL: r.tagBaseURL, onTagFound: r.onTagFound }, e4.inline.ruler.before("emphasis", "tag", tagInlineRule), e4.renderer.rules.tag = renderTag);
 }
 function parseCallout(e4, t28) {
   if ("blockquote_open" !== e4[t28].type) return null;
-  let i = t28 + 1;
-  for (; i < e4.length && "paragraph_open" !== e4[i].type; ) {
-    if ("blockquote_close" === e4[i].type) return null;
-    i++;
+  let r = t28 + 1;
+  for (; r < e4.length && "paragraph_open" !== e4[r].type; ) {
+    if ("blockquote_close" === e4[r].type) return null;
+    r++;
   }
-  if (i >= e4.length) return null;
-  const r = i + 1;
-  if ("inline" !== e4[r].type) return null;
-  const s2 = e4[r].content, n3 = s2.match(calloutRegex);
+  if (r >= e4.length) return null;
+  const i = r + 1;
+  if ("inline" !== e4[i].type) return null;
+  const s2 = e4[i].content, n3 = s2.match(calloutRegex);
   if (!n3) return null;
   const [a, o, l = "", c] = n3;
   var h3;
@@ -110954,23 +111328,23 @@ function parseCallout(e4, t28) {
     var _a11;
     const t29 = e5.toLowerCase();
     return (_a11 = calloutMapping[t29]) != null ? _a11 : e5;
-  }(o.toLowerCase()), title: s2.split("\n")[0].slice(a.length).trim() || (h3 = o.replace(/-/g, " ")).charAt(0).toUpperCase() + h3.slice(1), collapse: c, metadata: l, firstLineIdx: r };
+  }(o.toLowerCase()), title: s2.split("\n")[0].slice(a.length).trim() || (h3 = o.replace(/-/g, " ")).charAt(0).toUpperCase() + h3.slice(1), collapse: c, metadata: l, firstLineIdx: i };
 }
-function transformCalloutTokens(e4, t28, i) {
-  const r = parseCallout(e4, t28);
-  if (!r) return t28;
-  const { type: s2, title: n3, collapse: a, metadata: o, firstLineIdx: l } = r;
+function transformCalloutTokens(e4, t28, r) {
+  const i = parseCallout(e4, t28);
+  if (!i) return t28;
+  const { type: s2, title: n3, collapse: a, metadata: o, firstLineIdx: l } = i;
   let c = t28 + 1, h3 = 1;
   for (; c < e4.length && h3 > 0; ) "blockquote_open" === e4[c].type && h3++, "blockquote_close" === e4[c].type && h3--, c++;
   c--, e4[t28].type = "callout_open", e4[t28].tag = "div", e4[t28].attrSet("class", `callout ${s2}${a ? " is-collapsible" : ""}${"-" === a ? " is-collapsed" : ""}`), e4[t28].attrSet("data-callout", s2), a && e4[t28].attrSet("data-callout-fold", a), o && e4[t28].attrSet("data-callout-metadata", o);
   const u = e4[l], g = u.content.split("\n"), d = g[0], p2 = d.match(calloutRegex);
   if (p2) {
-    const t29 = p2[0], i2 = d.slice(t29.length).trim(), r3 = g.slice(1);
-    if (u.content = i2, r3.length > 0 && r3.join("\n").trim()) {
-      const t30 = l + 1, i3 = new token_default("paragraph_open", "p", 1), s3 = new token_default("inline", "", 0);
-      s3.content = r3.join("\n").trim(), s3.children = [];
+    const t29 = p2[0], r3 = d.slice(t29.length).trim(), i2 = g.slice(1);
+    if (u.content = r3, i2.length > 0 && i2.join("\n").trim()) {
+      const t30 = l + 1, r4 = new token_default("paragraph_open", "p", 1), s3 = new token_default("inline", "", 0);
+      s3.content = i2.join("\n").trim(), s3.children = [];
       const n4 = new token_default("paragraph_close", "p", -1);
-      e4.splice(t30 + 1, 0, i3, s3, n4), c += 3;
+      e4.splice(t30 + 1, 0, r4, s3, n4), c += 3;
     }
   }
   let m2 = t28 + 1;
@@ -110996,21 +111370,21 @@ function transformCalloutTokens(e4, t28, i) {
   if (P < c) {
     const t29 = new token_default("callout_content_open", "div", 1);
     t29.attrSet("class", "callout-content"), e4.splice(P, 0, t29), c++;
-    const i2 = new token_default("callout_content_close", "div", -1);
-    e4.splice(c, 0, i2), c++;
+    const r3 = new token_default("callout_content_close", "div", -1);
+    e4.splice(c, 0, r3), c++;
   }
   return e4[c].type = "callout_close", e4[c].tag = "div", c;
 }
 function calloutRule(e4) {
-  let t28 = 0, i = 0;
-  for (; t28 < e4.tokens.length; ) "blockquote_open" === e4.tokens[t28].type && parseCallout(e4.tokens, t28) ? (transformCalloutTokens(e4.tokens, t28, e4.md), i++, t28++) : t28++;
-  return i > 0;
+  let t28 = 0, r = 0;
+  for (; t28 < e4.tokens.length; ) "blockquote_open" === e4.tokens[t28].type && parseCallout(e4.tokens, t28) ? (transformCalloutTokens(e4.tokens, t28, e4.md), r++, t28++) : t28++;
+  return r > 0;
 }
 function calloutPlugin(e4, t28) {
   false !== { enable: true, ...t28 }.enable && (e4.core.ruler.after("block", "callout", calloutRule), function(e5) {
     e5.renderer.rules.callout_open = (e6, t29) => {
-      const i = e6[t29];
-      return `<div${i.attrs ? i.attrs.map((e7) => {
+      const r = e6[t29];
+      return `<div${r.attrs ? r.attrs.map((e7) => {
         return ` ${e7[0]}="${t30 = e7[1], t30.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")}"`;
         var t30;
       }).join("") : ""}>`;
@@ -111021,12 +111395,12 @@ function escapeHtml4(e4) {
   return e4.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 function mathInlineRule(e4, t28) {
-  const i = e4.pos, r = e4.posMax;
-  if (36 !== e4.src.charCodeAt(i)) return false;
-  if (i > 0 && 92 === e4.src.charCodeAt(i - 1)) return false;
-  if (36 === e4.src.charCodeAt(i + 1)) return false;
-  let s2 = i + 1, n3 = false;
-  for (; s2 < r; ) {
+  const r = e4.pos, i = e4.posMax;
+  if (36 !== e4.src.charCodeAt(r)) return false;
+  if (r > 0 && 92 === e4.src.charCodeAt(r - 1)) return false;
+  if (36 === e4.src.charCodeAt(r + 1)) return false;
+  let s2 = r + 1, n3 = false;
+  for (; s2 < i; ) {
     const t29 = e4.src.charCodeAt(s2);
     if (10 === t29) return false;
     if (36 === t29 && 92 !== e4.src.charCodeAt(s2 - 1)) {
@@ -111036,7 +111410,7 @@ function mathInlineRule(e4, t28) {
     s2++;
   }
   if (!n3) return false;
-  const a = e4.src.slice(i + 1, s2);
+  const a = e4.src.slice(r + 1, s2);
   if (0 === a.trim().length) return false;
   if (!t28) {
     const t29 = e4.push("math_inline", "math", 0);
@@ -111044,13 +111418,13 @@ function mathInlineRule(e4, t28) {
   }
   return e4.pos = s2 + 1, true;
 }
-function mathBlockRule(e4, t28, i, r) {
+function mathBlockRule(e4, t28, r, i) {
   let s2 = e4.bMarks[t28] + e4.tShift[t28], n3 = e4.eMarks[t28];
   if (s2 + 2 > n3) return false;
   if (36 !== e4.src.charCodeAt(s2) || 36 !== e4.src.charCodeAt(s2 + 1)) return false;
   if ("$$" !== e4.src.slice(s2, n3).trim()) return false;
   let a = t28 + 1, o = false;
-  for (; a < i; ) {
+  for (; a < r; ) {
     if (s2 = e4.bMarks[a] + e4.tShift[a], n3 = e4.eMarks[a], "$$" === e4.src.slice(s2, n3).trim()) {
       o = true;
       break;
@@ -111059,14 +111433,14 @@ function mathBlockRule(e4, t28, i, r) {
   }
   if (!o) return false;
   const l = [];
-  for (let i2 = t28 + 1; i2 < a; i2++) {
-    const t29 = e4.bMarks[i2] + e4.tShift[i2], r3 = e4.eMarks[i2];
-    l.push(e4.src.slice(t29, r3));
+  for (let r3 = t28 + 1; r3 < a; r3++) {
+    const t29 = e4.bMarks[r3] + e4.tShift[r3], i2 = e4.eMarks[r3];
+    l.push(e4.src.slice(t29, i2));
   }
   const c = l.join("\n");
-  if (!r) {
-    const i2 = e4.push("math_block", "math", 0);
-    i2.content = c, i2.markup = "$$", i2.block = true, i2.map = [t28, a + 1];
+  if (!i) {
+    const r3 = e4.push("math_block", "math", 0);
+    r3.content = c, r3.markup = "$$", r3.block = true, r3.map = [t28, a + 1];
   }
   return e4.line = a + 1, true;
 }
@@ -111082,24 +111456,24 @@ function latexPlugin(e4, t28) {
 }
 function mermaidPlugin(e4, t28) {
   if (false === (t28 == null ? void 0 : t28.enable)) return;
-  const i = e4.renderer.rules.fence || function(e5, t29, i2, r, s2) {
-    return s2.renderToken(e5, t29, i2);
+  const r = e4.renderer.rules.fence || function(e5, t29, r3, i, s2) {
+    return s2.renderToken(e5, t29, r3);
   };
-  e4.renderer.rules.fence = function(t29, r, s2, n3, a) {
-    const o = t29[r], l = o.info ? e4.utils.unescapeAll(o.info).trim() : "";
+  e4.renderer.rules.fence = function(t29, i, s2, n3, a) {
+    const o = t29[i], l = o.info ? e4.utils.unescapeAll(o.info).trim() : "";
     if ("mermaid" === (l ? l.split(/\s+/g)[0] : "")) {
       const t30 = o.content;
       return `<pre class="mermaid-wrapper"><code class="language-mermaid mermaid">${e4.utils.escapeHtml(t30)}</code><button class="expand-button" aria-label="Expand diagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button><div id="mermaid-container"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
 `;
     }
-    return i(t29, r, s2, n3, a);
+    return r(t29, i, s2, n3, a);
   };
 }
 async function createContent(e4) {
   const t28 = new MDConverter(function(e5, t29) {
-    const i2 = new DefaultHighlighter({ style: "github", lineNos: false, lineNoStart: 1, anchorLineNos: false, lineAnchors: "", lineNumbersInTable: true, noClasses: true, codeFences: true, guessSyntax: false, tabWidth: 4 });
-    return new MarkdownImpl(t29 || !e5 ? new MarkdownItRenderer({ extensions: { typographer: { disable: false, leftSingleQuote: "&lsquo;", rightSingleQuote: "&rsquo;", leftDoubleQuote: "&ldquo;", rightDoubleQuote: "&rdquo;", enDash: "&ndash;", emDash: "&mdash;", ellipsis: "&hellip;", leftAngleQuote: "&laquo;", rightAngleQuote: "&raquo;", apostrophe: "&rsquo;" }, footnote: true, definitionList: true, table: true, strikethrough: true, linkify: true, linkifyProtocol: "https", taskList: true, cjk: { enable: false, eastAsianLineBreaks: false, eastAsianLineBreaksStyle: "simple", escapedSpace: false }, passthrough: { enable: false, delimiters: { inline: [], block: [] } }, highlight: { style: "github", lineNos: false, lineNoStart: 1, anchorLineNos: false, lineAnchors: "", lineNumbersInTable: true, noClasses: true, codeFences: true, guessSyntax: false, tabWidth: 4 }, wikilink: { enable: true, disableBrokenWikilinks: false, markdownLinkResolution: "shortest", prettyLinks: true }, parseTags: true, callouts: true, latex: { enable: true }, mermaid: { enable: true } }, renderer: { unsafe: true }, parser: { autoHeadingID: true, autoHeadingIDType: "github", wrapStandAloneImageWithinParagraph: true, attribute: { title: true, block: false } }, duplicateResourceFiles: false, renderHooks: { image: { enableDefault: true }, link: { enableDefault: true } } }, void 0) : e5, i2);
-  }(e4.markdown(), e4.useInternalRenderer())), i = await async function(e5) {
+    const r3 = new DefaultHighlighter({ style: "github", lineNos: false, lineNoStart: 1, anchorLineNos: false, lineAnchors: "", lineNumbersInTable: true, noClasses: true, codeFences: true, guessSyntax: false, tabWidth: 4 });
+    return new MarkdownImpl(t29 || !e5 ? new MarkdownItRenderer({ extensions: { typographer: { disable: false, leftSingleQuote: "&lsquo;", rightSingleQuote: "&rsquo;", leftDoubleQuote: "&ldquo;", rightDoubleQuote: "&rdquo;", enDash: "&ndash;", emDash: "&mdash;", ellipsis: "&hellip;", leftAngleQuote: "&laquo;", rightAngleQuote: "&raquo;", apostrophe: "&rsquo;" }, footnote: true, definitionList: true, table: true, strikethrough: true, linkify: true, linkifyProtocol: "https", taskList: true, cjk: { enable: false, eastAsianLineBreaks: false, eastAsianLineBreaksStyle: "simple", escapedSpace: false }, passthrough: { enable: false, delimiters: { inline: [], block: [] } }, highlight: { style: "github", lineNos: false, lineNoStart: 1, anchorLineNos: false, lineAnchors: "", lineNumbersInTable: true, noClasses: true, codeFences: true, guessSyntax: false, tabWidth: 4 }, wikilink: { enable: true, disableBrokenWikilinks: false, markdownLinkResolution: "shortest", prettyLinks: true }, parseTags: true, callouts: true, latex: { enable: true }, mermaid: { enable: true } }, renderer: { unsafe: true }, parser: { autoHeadingID: true, autoHeadingIDType: "github", wrapStandAloneImageWithinParagraph: true, attribute: { title: true, block: false } }, duplicateResourceFiles: false, renderHooks: { image: { enableDefault: true }, link: { enableDefault: true } } }, void 0) : e5, r3);
+  }(e4.markdown(), e4.useInternalRenderer())), r = await async function(e5) {
     const t29 = new Translator(e5.defaultLanguage());
     try {
       await t29.setupTranslateFuncs(e5);
@@ -111107,10 +111481,10 @@ async function createContent(e4) {
       log20.warn("Failed to setup translator, continuing without i18n support:", e6);
     }
     return t29;
-  }(e4), r = new PageBuilder(e4, e4, e4, null, null, new Taxonomy2(e4.views(), e4), new Term(e4), new Section(e4), new Standalone(e4), t28, null), s2 = new PageMap(r);
-  r.pageMapper = s2, s2.setupReverseIndex();
-  const n3 = new Content2(e4, t28, s2, i);
-  return r.contentHub = n3, n3;
+  }(e4), i = new PageBuilder(e4, e4, e4, null, null, new Taxonomy2(e4.views(), e4), new Term(e4), new Section(e4), new Standalone(e4), t28, null), s2 = new PageMap(i);
+  i.pageMapper = s2, s2.setupReverseIndex();
+  const n3 = new Content2(e4, t28, s2, r);
+  return i.contentHub = n3, n3;
 }
 function getKindMain(e4) {
   return kindMapMain[e4.toLowerCase()] || "";
@@ -111127,34 +111501,34 @@ function pageBy(e4) {
 function getParamToLower(e4, t28) {
   return getParam(e4, t28, true);
 }
-function getParam(e4, t28, i) {
-  const r = e4[t28.toLowerCase()];
-  if (null == r) return null;
-  switch (typeof r) {
+function getParam(e4, t28, r) {
+  const i = e4[t28.toLowerCase()];
+  if (null == i) return null;
+  switch (typeof i) {
     case "boolean":
-      return r;
+      return i;
     case "string":
-      return i ? r.toLowerCase() : r;
+      return r ? i.toLowerCase() : i;
     case "number":
-      return Number.isInteger(r) ? Cast.toInt(r) : r;
+      return Number.isInteger(i) ? Cast.toInt(i) : i;
     default:
-      return r instanceof Date ? r : Array.isArray(r) && r.every((e5) => "string" == typeof e5) && i ? Strings.sliceToLower(r) : r;
+      return i instanceof Date ? i : Array.isArray(i) && i.every((e5) => "string" == typeof e5) && r ? Strings.sliceToLower(i) : i;
   }
 }
 function longestPrefix(e4, t28) {
-  const i = Math.min(e4.length, t28.length);
-  let r = 0;
-  for (r = 0; r < i && e4[r] === t28[r]; r++) ;
-  return r;
+  const r = Math.min(e4.length, t28.length);
+  let i = 0;
+  for (i = 0; i < r && e4[i] === t28[i]; i++) ;
+  return i;
 }
 async function recursiveWalk(e4, t28) {
   if (null !== e4.leaf && await t28(e4.leaf.key, e4.leaf.val)) return true;
-  let i = 0, r = e4.edges.length;
-  for (; i < r; ) {
-    const s2 = e4.edges[i];
+  let r = 0, i = e4.edges.length;
+  for (; r < i; ) {
+    const s2 = e4.edges[r];
     if (await recursiveWalk(s2.node, t28)) return true;
     if (0 === e4.edges.length) return recursiveWalk(e4, t28);
-    e4.edges.length >= r && i++, r = e4.edges.length;
+    e4.edges.length >= i && r++, i = e4.edges.length;
   }
   return false;
 }
@@ -111187,13 +111561,13 @@ function newContent(e4) {
 function dir(e4) {
   const t28 = e4.lastIndexOf("/");
   if (-1 === t28) return "";
-  let i = e4.slice(0, t28 + 1);
-  return i.length > 1 && i.endsWith("/") && (i = i.slice(0, -1)), i;
+  let r = e4.slice(0, t28 + 1);
+  return r.length > 1 && r.endsWith("/") && (r = r.slice(0, -1)), r;
 }
 function removeLeadingBOM(e4) {
   for (let t28 = 0; t28 < e4.length; t28++) {
-    const i = e4[t28];
-    if (0 === t28 && "\uFEFF" !== i) return e4;
+    const r = e4[t28];
+    if (0 === t28 && "\uFEFF" !== r) return e4;
     if (t28 > 0) return e4.substring(t28);
   }
   return e4;
@@ -111222,12 +111596,12 @@ function newEmptyMenus() {
   return new Menus({});
 }
 function splitAnchor2(e4) {
-  let [t28, i] = e4.split("#", 2);
-  return t28.endsWith(".pdf") ? [t28, void 0 === i ? "" : `#${i}`] : (i = void 0 === i ? "" : "#" + slug(i), [t28, i]);
+  let [t28, r] = e4.split("#", 2);
+  return t28.endsWith(".pdf") ? [t28, void 0 === r ? "" : `#${r}`] : (r = void 0 === r ? "" : "#" + slug(r), [t28, r]);
 }
 function simplifySlug(e4) {
-  const t28 = stripSlashes2((endsWith2(i = e4, "index") && (i = i.slice(0, -5)), i), true);
-  var i;
+  const t28 = stripSlashes2((endsWith2(r = e4, "index") && (r = r.slice(0, -5)), r), true);
+  var r;
   return 0 === t28.length ? "/" : t28;
 }
 function pathToRoot(e4) {
@@ -111239,31 +111613,31 @@ function joinSegments(...e4) {
   let t28 = e4.filter((e5) => "" !== e5 && "/" !== e5).map((e5) => stripSlashes2(e5)).join("/");
   return e4[0].startsWith("/") && (t28 = "/" + t28), e4[e4.length - 1].endsWith("/") && (t28 += "/"), t28;
 }
-function transformLink(e4, t28, i) {
-  let r = function(e5) {
-    let [t29, i2] = splitAnchor2(decodeURI(e5));
-    const r3 = isFolderPath(t29);
+function transformLink(e4, t28, r) {
+  let i = function(e5) {
+    let [t29, r3] = splitAnchor2(decodeURI(e5));
+    const i2 = isFolderPath(t29);
     let s2 = t29.split("/").filter((e6) => e6.length > 0), n3 = s2.filter(isRelativeSegment).join("/");
     const a = simplifySlug(function(e6) {
       var _a11;
-      let t30 = (i3 = e6 = stripSlashes2(e6), (_a11 = i3.match(/\.[A-Za-z0-9]+$/)) == null ? void 0 : _a11[0]);
-      var i3;
-      const r4 = e6.replace(new RegExp(t30 + "$"), "");
+      let t30 = (r4 = e6 = stripSlashes2(e6), (_a11 = r4.match(/\.[A-Za-z0-9]+$/)) == null ? void 0 : _a11[0]);
+      var r4;
+      const i3 = e6.replace(new RegExp(t30 + "$"), "");
       [".md", ".html", void 0].includes(t30) && (t30 = "");
       let s3 = function(e7) {
         return e7.split("/").map((e8) => e8.replace(/\s/g, "-").replace(/&/g, "-and-").replace(/%/g, "-percent").replace(/\?/g, "").replace(/#/g, "")).join("/").replace(/\/$/, "");
-      }(r4);
+      }(i3);
       return endsWith2(s3, "_index") && (s3 = s3.replace(/_index$/, "index")), s3 + t30;
-    }(s2.filter((e6) => !isRelativeSegment(e6) && "" !== e6).join("/"))), o = r3 ? "/" : "";
-    return "" === (l = joinSegments(stripSlashes2(n3), stripSlashes2(a))) && (l = "."), l.startsWith(".") || (l = joinSegments(".", l)), l + o + i2;
+    }(s2.filter((e6) => !isRelativeSegment(e6) && "" !== e6).join("/"))), o = i2 ? "/" : "";
+    return "" === (l = joinSegments(stripSlashes2(n3), stripSlashes2(a))) && (l = "."), l.startsWith(".") || (l = joinSegments(".", l)), l + o + r3;
     var l;
   }(t28);
-  if ("relative" === i.strategy) return r;
+  if ("relative" === r.strategy) return i;
   {
-    const t29 = isFolderPath(r) ? "/" : "", s2 = stripSlashes2(r.slice(1));
+    const t29 = isFolderPath(i) ? "/" : "", s2 = stripSlashes2(i.slice(1));
     let [n3, a] = splitAnchor2(s2);
-    if ("shortest" === i.strategy) {
-      const t30 = i.allSlugs.filter((e5) => {
+    if ("shortest" === r.strategy) {
+      const t30 = r.allSlugs.filter((e5) => {
         const t31 = e5.split("/").at(-1);
         return n3.toLowerCase() === (t31 == null ? void 0 : t31.toLowerCase());
       });
@@ -111290,70 +111664,70 @@ function shouldProcessPage(e4, t28) {
   return pageFilter.shouldProcess(e4, t28);
 }
 async function openFileForWriting(e4, t28) {
-  const i = import_path17.default.normalize(t28);
+  const r = import_path17.default.normalize(t28);
   try {
-    return await e4.create(i);
+    return await e4.create(r);
   } catch (t29) {
     if (!function(e5) {
       var _a11, _b4;
       return e5 && ("ENOENT" === e5.code || "FILE_NOT_FOUND" === e5.code || ((_a11 = e5.message) == null ? void 0 : _a11.includes("not found")) || ((_b4 = e5.message) == null ? void 0 : _b4.includes("no such file")));
     }(t29)) throw t29;
-    const r = import_path17.default.dirname(i);
-    return await e4.mkdirAll(r, 511), await e4.create(i);
+    const i = import_path17.default.dirname(r);
+    return await e4.mkdirAll(i, 511), await e4.create(r);
   }
 }
-function setDomainInstances(e4, t28, i, r, s2, n3, a) {
-  siteCache = e4, contentCache = t28, fsCache = i, configCache = r, modulesCache = s2, resourcesCache = n3;
+function setDomainInstances(e4, t28, r, i, s2, n3, a) {
+  siteCache = e4, contentCache = t28, fsCache = r, configCache = i, modulesCache = s2, resourcesCache = n3;
 }
 async function loadConfiguration(e4, t28) {
-  const i = new OsFs(), r = import_path18.default.join(e4, "config.json");
-  return await loadConfigWithParams(i, r, e4, t28);
+  const r = new OsFs(), i = import_path18.default.join(e4, "config.json");
+  return await loadConfigWithParams(r, i, e4, t28);
 }
 async function createFileSystem(e4, t28) {
-  const i = { path: e4.getDir().getWorkingDir(), publish: e4.getDir().getPublishDir(), osFs: e4.fs() };
-  return await createFs(i, t28);
+  const r = { path: e4.getDir().getWorkingDir(), publish: e4.getDir().getPublishDir(), osFs: e4.fs() };
+  return await createFs(r, t28);
 }
-async function createContentEngine(e4, t28, i, r) {
-  const s2 = { baseUrl: () => t28.getRoot().baseUrl(), markdown: () => r, useInternalRenderer: () => t28.getMarkdown().useInternalRenderer(), isWikilinkEnabled: () => t28.getMarkdown().isWikilinkEnabled(), isTagEnabled: () => t28.getMarkdown().isTagEnabled(), isCalloutEnabled: () => t28.getMarkdown().isCalloutEnabled(), isLatexEnabled: () => t28.getMarkdown().isLatexEnabled(), isMermaidEnabled: () => t28.getMarkdown().isMermaidEnabled(), newFileMetaInfo: (t29) => e4.newFileMetaInfo(t29), newFileMetaInfoWithContent: (t29) => e4.newFileMetaInfoWithContent(t29), contentFs: () => e4.contentFs(), walkContent: (t29, i2, r3, s3) => e4.walkContent(t29, i2, r3, s3), walkI18n: (t29, i2, r3) => e4.walkI18n(t29, i2, r3), isLanguageValid: (e5) => t28.getLanguage().isLanguageValid(e5), getSourceLang: (e5) => i.getSourceLang(e5), getLanguageIndex: (e5) => t28.getLanguage().getLanguageIndex(e5), getLanguageByIndex: (e5) => t28.getLanguage().getLanguageByIndex(e5), defaultLanguage: () => t28.getLanguage().defaultLanguage(), languageIndexes: () => t28.getLanguage().languageIndexes(), views: () => t28.getTaxonomy().getViews().map((e5) => {
-    const t29 = e5.singular, i2 = e5.plural;
-    return { singular: () => t29 || "", plural: () => i2 || "" };
+async function createContentEngine(e4, t28, r, i) {
+  const s2 = { baseUrl: () => t28.getRoot().baseUrl(), markdown: () => i, useInternalRenderer: () => t28.getMarkdown().useInternalRenderer(), isWikilinkEnabled: () => t28.getMarkdown().isWikilinkEnabled(), isTagEnabled: () => t28.getMarkdown().isTagEnabled(), isCalloutEnabled: () => t28.getMarkdown().isCalloutEnabled(), isLatexEnabled: () => t28.getMarkdown().isLatexEnabled(), isMermaidEnabled: () => t28.getMarkdown().isMermaidEnabled(), newFileMetaInfo: (t29) => e4.newFileMetaInfo(t29), newFileMetaInfoWithContent: (t29) => e4.newFileMetaInfoWithContent(t29), contentFs: () => e4.contentFs(), walkContent: (t29, r3, i2, s3) => e4.walkContent(t29, r3, i2, s3), walkI18n: (t29, r3, i2) => e4.walkI18n(t29, r3, i2), isLanguageValid: (e5) => t28.getLanguage().isLanguageValid(e5), getSourceLang: (e5) => r.getSourceLang(e5), getLanguageIndex: (e5) => t28.getLanguage().getLanguageIndex(e5), getLanguageByIndex: (e5) => t28.getLanguage().getLanguageByIndex(e5), defaultLanguage: () => t28.getLanguage().defaultLanguage(), languageIndexes: () => t28.getLanguage().languageIndexes(), views: () => t28.getTaxonomy().getViews().map((e5) => {
+    const t29 = e5.singular, r3 = e5.plural;
+    return { singular: () => t29 || "", plural: () => r3 || "" };
   }) };
   return await createContent(s2);
 }
 function createResourcesEngine(e4, t28) {
-  return new Resources({ assetsFs: () => t28.assetsFs(), publishFs: () => t28.publishFs(), baseUrl: () => e4.getProvider().getString("baseURL") || "http://localhost", executeTemplate: async (e5, t29, i) => {
+  return new Resources({ assetsFs: () => t28.assetsFs(), publishFs: () => t28.publishFs(), baseUrl: () => e4.getProvider().getString("baseURL") || "http://localhost", executeTemplate: async (e5, t29, r) => {
     throw new Error("Template execution not initialized. Please call resources.setTemplateSvc() first.");
   } });
 }
-async function createTemplateEngineFromFs(e4, t28, i, r) {
-  const s2 = function(e5, t29, i2) {
-    const r3 = e5.getProvider().getString("baseURL") || "http://localhost";
-    return { relURL: (e6) => t29.getURL().relURL(e6), absURL: (e6) => t29.getURL().absURL(e6, t29.isMultipleLanguage(), t29.languagePrefix()), urlize: (e6) => t29.getURL().urlize(e6), translate: (e6) => t29.translate(e6), relRefFrom: async (e6, t30) => [e6.path || "", null], title: () => e5.getProvider().getString("title") || "My Site", baseURL: () => r3, params: () => e5.getProvider().getParams("params"), menus: () => ({}), isMultiLanguage: () => e5.getLanguage().languageKeys().length > 1, version: () => "0.1.0", environment: () => "development", generator: () => "AuPro Static Site Generator", defaultLanguage: () => e5.getLanguage().defaultLanguage(), languageKeys: () => e5.getLanguage().languageKeys(), Get: async function(e6) {
+async function createTemplateEngineFromFs(e4, t28, r, i) {
+  const s2 = function(e5, t29, r3) {
+    const i2 = e5.getProvider().getString("baseURL") || "http://localhost";
+    return { relURL: (e6) => t29.getURL().relURL(e6), absURL: (e6) => t29.getURL().absURL(e6, t29.isMultipleLanguage(), t29.languagePrefix()), urlize: (e6) => t29.getURL().urlize(e6), translate: (e6) => t29.translate(e6), relRefFrom: async (e6, t30) => [e6.path || "", null], title: () => e5.getProvider().getString("title") || "My Site", baseURL: () => i2, params: () => e5.getProvider().getParams("params"), menus: () => ({}), isMultiLanguage: () => e5.getLanguage().languageKeys().length > 1, version: () => "0.1.0", environment: () => "development", generator: () => "AuPro Static Site Generator", defaultLanguage: () => e5.getLanguage().defaultLanguage(), languageKeys: () => e5.getLanguage().languageKeys(), Get: async function(e6) {
       try {
-        return await i2.getResource(e6);
+        return await r3.getResource(e6);
       } catch (t30) {
         return log57.warn(`Resource not found: ${e6}`, t30), Promise.resolve(null);
       }
     }, GetRemote: async function(e6) {
-      return await i2.getRemote(e6);
+      return await r3.getRemote(e6);
     }, Minify: async function(e6) {
-      return await i2.minify(e6);
+      return await r3.minify(e6);
     }, Fingerprint: async function(e6) {
-      return await i2.fingerprint(e6);
-    }, ExecuteAsTemplate: async function(e6, t30, r4) {
-      return await i2.executeAsTemplate(r4, e6, t30);
+      return await r3.fingerprint(e6);
+    }, ExecuteAsTemplate: async function(e6, t30, i3) {
+      return await r3.executeAsTemplate(i3, e6, t30);
     } };
-  }(t28, i, r), n3 = { walk: e4.walkLayouts.bind(e4) };
+  }(t28, r, i), n3 = { walk: e4.walkLayouts.bind(e4) };
   return await async function(e5, t29) {
     return new Factory2().createWithServices(e5, t29);
   }(n3, s2);
 }
 async function createTemplateAdapter(e4, t28) {
   return { async lookupLayout(t29) {
-    const [i, r, s2, n3] = await e4.findFirst(t29);
-    return n3 ? { preparer: null, found: false } : s2 && i && r ? { preparer: { name: () => r, execute: async (e5) => {
-      const [t30, r3] = await i.Execute(e5);
-      if (r3) throw log57.errorf("template exec error: %s", r3), r3;
+    const [r, i, s2, n3] = await e4.findFirst(t29);
+    return n3 ? { preparer: null, found: false } : s2 && r && i ? { preparer: { name: () => i, execute: async (e5) => {
+      const [t30, i2] = await r.Execute(e5);
+      if (i2) throw log57.errorf("template exec error: %s", i2), i2;
       return t30;
     } }, found: true } : { preparer: null, found: false };
   }, async executeWithContext(e5, t29) {
@@ -111365,55 +111739,55 @@ async function createTemplateAdapter(e4, t28) {
     }
   } };
 }
-function createSiteForSSG(e4, t28, i) {
+function createSiteForSSG(e4, t28, r) {
   return function(e5) {
-    const t29 = new Publisher(e5.publishFs()), i2 = new URL2(e5.baseUrl(), true), r = new Language2(e5), s2 = new Author2("MDFriday", "support@mdfriday.com"), n3 = new Organization2(), a = new Compiler("0.1.0"), o = new Site(e5, e5, e5, e5, e5, e5, t29, s2, n3, a, i2, null, r, null, e5.siteTitle()), l = function(e6, t30, i3) {
-      return new NavigationFactory(e6, t30, i3);
+    const t29 = new Publisher(e5.publishFs()), r3 = new URL2(e5.baseUrl(), true), i = new Language2(e5), s2 = new Author2("MDFriday", "support@mdfriday.com"), n3 = new Organization2(), a = new Compiler("0.1.0"), o = new Site(e5, e5, e5, e5, e5, e5, t29, s2, n3, a, r3, null, i, null, e5.siteTitle()), l = function(e6, t30, r4) {
+      return new NavigationFactory(e6, t30, r4);
     }(e5, e5, o);
     return o.navigation = l.createNavigation(), o.ref = new Ref({ home: { page: null }, sitePage: async (e6) => {
       const t30 = await o.sitePage(e6);
       return { relPermalink: () => t30.path ? t30.path() : "", permalink: () => t30.path ? t30.path() : "" };
     } }, e5, "/404.html"), o;
   }({ configParams: () => e4.getProvider().getParams("params"), siteTitle: () => e4.getProvider().getString("title") || "My Site", menus: () => ({}), isGoogleAnalyticsEnabled: () => e4.getService().isGoogleAnalyticsEnabled(), googleAnalyticsID: () => e4.getService().googleAnalyticsID(), isGoogleAnalyticsRespectDoNotTrack: () => e4.getService().isGoogleAnalyticsRespectDoNotTrack(), isDisqusEnabled: () => e4.getService().isDisqusEnabled(), disqusShortname: () => e4.getService().disqusShortname(), isXRespectDoNotTrack: () => e4.getService().isXRespectDoNotTrack(), isXDisableInlineCSS: () => e4.getService().isXDisableInlineCSS(), getConfiguredSocialPlatforms: () => e4.getSocial().getConfiguredPlatforms(), getSocialLink: (t29) => {
-    const i2 = e4.getSocial().getSocialLink(t29);
-    return i2 ? i2.url : "";
+    const r3 = e4.getSocial().getSocialLink(t29);
+    return r3 ? r3.url : "";
   }, getSocialTitle: (t29) => {
-    const i2 = e4.getSocial().getSocialLink(t29);
-    return i2 ? i2.title : "";
-  }, globalPages: async (e5) => await i.globalPages(e5), globalRegularPages: async () => await i.globalRegularPages(), walkPages: async (e5, t29) => {
-    await i.walkPages(e5, t29);
-  }, getPageSources: async (e5) => i.getPageSources(e5), walkTaxonomies: async (e5, t29) => {
-    await i.walkTaxonomies(e5, t29);
+    const r3 = e4.getSocial().getSocialLink(t29);
+    return r3 ? r3.title : "";
+  }, globalPages: async (e5) => await r.globalPages(e5), globalRegularPages: async () => await r.globalRegularPages(), walkPages: async (e5, t29) => {
+    await r.walkPages(e5, t29);
+  }, getPageSources: async (e5) => r.getPageSources(e5), walkTaxonomies: async (e5, t29) => {
+    await r.walkTaxonomies(e5, t29);
   }, searchPage: async (e5, t29) => [], getPageFromPath: async (e5, t29) => {
     try {
-      const r = i.getPageFromPath(e5, t29);
-      return r || log57.error(`\u26A0\uFE0F  Application.getPageFromPath: content domain returned null for path: "${t29}"`), r;
+      const i = r.getPageFromPath(e5, t29);
+      return i || log57.error(`\u26A0\uFE0F  Application.getPageFromPath: content domain returned null for path: "${t29}"`), i;
     } catch (e6) {
       return log57.error("\u274C Application.getPageFromPath error delegating to content domain:", e6), null;
     }
   }, getPageFromPathSync: (e5, t29) => {
     try {
-      const r = i.getPageFromPath(e5, t29);
-      return r || log57.warn(`\u26A0\uFE0F  Application.getPageFromPathSync: content domain returned null for path: ${t29}`), r;
+      const i = r.getPageFromPath(e5, t29);
+      return i || log57.warn(`\u26A0\uFE0F  Application.getPageFromPathSync: content domain returned null for path: ${t29}`), i;
     } catch (e6) {
       return log57.error("\u274C Application.getPageFromPathSync error delegating to content domain:", e6), null;
     }
-  }, getPageRef: async (e5, t29, i2) => null, translate: (e5, t29) => i.translate(e5, t29), defaultLanguage: () => e4.getLanguage().defaultLanguage(), languageKeys: () => e4.getLanguage().languageKeys(), getLanguageIndex: (t29) => e4.getLanguage().getLanguageIndex(t29), getLanguageName: (t29) => e4.getLanguage().getLanguageName(t29), changeFreq: () => "weekly", priority: () => 0.5, generateSitemap: async () => ({ urls: [] }), publishFs: () => t28.publishFs(), staticFs: () => t28.staticFs(), copyStaticFiles: (e5, i2) => t28.copyStatic([e5], i2), workingDir: () => e4.getProvider().getString("workingDir") || process.cwd(), getResource: async (e5) => null, getResourceWithOpener: async (e5, t29) => ({ name: () => e5, readSeekCloser: t29, targetPath: () => e5 }), baseUrl: () => e4.getProvider().getString("baseURL") || "http://localhost" });
+  }, getPageRef: async (e5, t29, r3) => null, translate: (e5, t29) => r.translate(e5, t29), defaultLanguage: () => e4.getLanguage().defaultLanguage(), languageKeys: () => e4.getLanguage().languageKeys(), getLanguageIndex: (t29) => e4.getLanguage().getLanguageIndex(t29), getLanguageName: (t29) => e4.getLanguage().getLanguageName(t29), changeFreq: () => "weekly", priority: () => 0.5, generateSitemap: async () => ({ urls: [] }), publishFs: () => t28.publishFs(), staticFs: () => t28.staticFs(), copyStaticFiles: (e5, r3) => t28.copyStatic([e5], r3), workingDir: () => e4.getProvider().getString("workingDir") || process.cwd(), getResource: async (e5) => null, getResourceWithOpener: async (e5, t29) => ({ name: () => e5, readSeekCloser: t29, targetPath: () => e5 }), baseUrl: () => e4.getProvider().getString("baseURL") || "http://localhost" });
 }
-async function generateStaticSite(e4, t28, i) {
+async function generateStaticSite(e4, t28, r) {
   try {
-    let r = performance.now();
+    let i = performance.now();
     const s2 = await loadConfiguration(e4, t28);
     let n3 = performance.now();
-    log57.info(`\u2705 Configuration loaded in ${(n3 - r).toFixed(2)} ms`);
-    const a = i;
-    r = performance.now();
+    log57.info(`\u2705 Configuration loaded in ${(n3 - i).toFixed(2)} ms`);
+    const a = r;
+    i = performance.now();
     const o = await async function(e5) {
-      const t29 = { osFs: () => e5.fs(), projDir: () => e5.getDir().getWorkingDir(), moduleDir: () => e5.getDir().getThemesDir(), moduleCacheDir: () => e5.getDir().getThemesCacheDir(), importPaths: () => e5.getModule().importPaths(), defaultLanguageKey: () => e5.getLanguage().defaultLanguage(), otherLanguageKeys: () => e5.getLanguage().otherLanguageKeys(), getRelDir: (t30, i2) => e5.getLanguage().getRelDir(t30, i2) };
+      const t29 = { osFs: () => e5.fs(), projDir: () => e5.getDir().getWorkingDir(), moduleDir: () => e5.getDir().getThemesDir(), moduleCacheDir: () => e5.getDir().getThemesCacheDir(), importPaths: () => e5.getModule().importPaths(), defaultLanguageKey: () => e5.getLanguage().defaultLanguage(), otherLanguageKeys: () => e5.getLanguage().otherLanguageKeys(), getRelDir: (t30, r3) => e5.getLanguage().getRelDir(t30, r3) };
       return await async function(e6) {
         var _a11;
         try {
-          const t30 = (_a11 = e6.httpClient) == null ? void 0 : _a11.call(e6), i2 = newHttpClient(e6.osFs(), void 0, void 0, t30), r3 = newZipExtractor(e6.osFs()), s3 = newModuleCache(e6.osFs(), e6.moduleCacheDir()), n4 = newModules(e6, i2, r3, s3);
+          const t30 = (_a11 = e6.httpClient) == null ? void 0 : _a11.call(e6), r3 = newHttpClient(e6.osFs(), void 0, void 0, t30), i2 = newZipExtractor(e6.osFs()), s3 = newModuleCache(e6.osFs(), e6.moduleCacheDir()), n4 = newModules(e6, r3, i2, s3);
           return await n4.load(), n4;
         } catch (e7) {
           const t30 = e7 instanceof Error ? e7.message : String(e7);
@@ -111421,84 +111795,84 @@ async function generateStaticSite(e4, t28, i) {
         }
       }(t29);
     }(s2);
-    n3 = performance.now(), log57.info(`\u2705 Modules created in ${(n3 - r).toFixed(2)} ms`), r = performance.now();
+    n3 = performance.now(), log57.info(`\u2705 Modules created in ${(n3 - i).toFixed(2)} ms`), i = performance.now();
     const l = await createFileSystem(s2, o);
-    n3 = performance.now(), log57.info(`\u2705 Filesystem created in ${(n3 - r).toFixed(2)} ms`);
+    n3 = performance.now(), log57.info(`\u2705 Filesystem created in ${(n3 - i).toFixed(2)} ms`);
     const c = await createContentEngine(l, s2, o, a), h3 = createSiteForSSG(s2, l, c), u = createResourcesEngine(s2, l), g = await createTemplateEngineFromFs(l, s2, h3, u);
-    u.setTemplateSvc({ executeTemplate: async (e5, t29, i2) => await g.executeRaw(e5, t29, i2) }), c.setTemplateSvc({ execute: async (e5, t29) => await g.executeShortcode(e5, t29) }), r = performance.now(), await c.collectPages(), n3 = performance.now(), log57.info(`\u2705 Pages collected in ${(n3 - r).toFixed(2)} ms`);
+    u.setTemplateSvc({ executeTemplate: async (e5, t29, r3) => await g.executeRaw(e5, t29, r3) }), c.setTemplateSvc({ execute: async (e5, t29) => await g.executeShortcode(e5, t29) }), i = performance.now(), await c.collectPages(), n3 = performance.now(), log57.info(`\u2705 Pages collected in ${(n3 - i).toFixed(2)} ms`);
     const d = await createTemplateAdapter(g);
-    r = performance.now(), await h3.build(d), n3 = performance.now(), setDomainInstances(h3, c, l, s2, o, u), log57.info(`\u2705 Site built in ${(n3 - r).toFixed(2)} ms`);
+    i = performance.now(), await h3.build(d), n3 = performance.now(), setDomainInstances(h3, c, l, s2, o, u), log57.info(`\u2705 Site built in ${(n3 - i).toFixed(2)} ms`);
   } catch (e5) {
     const t29 = e5 instanceof Error ? e5.message : String(e5);
     throw log57.error(`\u274C Static site generation failed: ${t29}`), new Error(`Failed to generate static site: ${t29}`);
   }
 }
-async function processSSG(e4, t28, i) {
+async function processSSG(e4, t28, r) {
   try {
-    const r = process.cwd();
+    const i = process.cwd();
     process.chdir(e4);
     try {
-      await generateStaticSite(e4, t28, i);
+      await generateStaticSite(e4, t28, r);
     } finally {
-      process.chdir(r);
+      process.chdir(i);
     }
   } catch (e5) {
     const t29 = e5 instanceof Error ? e5.message : String(e5);
     throw log57.error(`\u274C SSG processing failed: ${t29}`), new Error(`Failed to process SSG: ${t29}`);
   }
 }
-async function generateStaticSiteWithProgress(e4, t28, i, r, s2) {
+async function generateStaticSiteWithProgress(e4, t28, r, i, s2) {
   try {
-    r == null ? void 0 : r({ stage: "config", message: "Loading configuration...", percentage: 5 });
-    const n3 = await loadConfiguration(e4, t28), a = i;
-    r == null ? void 0 : r({ stage: "modules", message: "Creating and downloading modules...", percentage: 10 });
-    const o = await createModuleWithProgress(n3, r, s2);
-    r == null ? void 0 : r({ stage: "filesystem", message: "Creating filesystem...", percentage: 30 });
+    i == null ? void 0 : i({ stage: "config", message: "Loading configuration...", percentage: 5 });
+    const n3 = await loadConfiguration(e4, t28), a = r;
+    i == null ? void 0 : i({ stage: "modules", message: "Creating and downloading modules...", percentage: 10 });
+    const o = await createModuleWithProgress(n3, i, s2);
+    i == null ? void 0 : i({ stage: "filesystem", message: "Creating filesystem...", percentage: 30 });
     const l = await createFileSystem(n3, o);
-    r == null ? void 0 : r({ stage: "content", message: "Creating content engine...", percentage: 40 });
+    i == null ? void 0 : i({ stage: "content", message: "Creating content engine...", percentage: 40 });
     const c = await createContentEngine(l, n3, o, a);
-    r == null ? void 0 : r({ stage: "site", message: "Creating site...", percentage: 50 });
+    i == null ? void 0 : i({ stage: "site", message: "Creating site...", percentage: 50 });
     const h3 = createSiteForSSG(n3, l, c), u = createResourcesEngine(n3, l);
-    r == null ? void 0 : r({ stage: "template", message: "Creating template engine...", percentage: 60 });
+    i == null ? void 0 : i({ stage: "template", message: "Creating template engine...", percentage: 60 });
     const g = await createTemplateEngineFromFs(l, n3, h3, u);
-    u.setTemplateSvc({ executeTemplate: async (e5, t29, i2) => await g.executeRaw(e5, t29, i2) }), c.setTemplateSvc({ execute: async (e5, t29) => await g.executeShortcode(e5, t29) }), r == null ? void 0 : r({ stage: "pages", message: "Collecting pages...", percentage: 65 }), await c.collectPages(), r == null ? void 0 : r({ stage: "build", message: "Building site...", percentage: 70 });
+    u.setTemplateSvc({ executeTemplate: async (e5, t29, r3) => await g.executeRaw(e5, t29, r3) }), c.setTemplateSvc({ execute: async (e5, t29) => await g.executeShortcode(e5, t29) }), i == null ? void 0 : i({ stage: "pages", message: "Collecting pages...", percentage: 65 }), await c.collectPages(), i == null ? void 0 : i({ stage: "build", message: "Building site...", percentage: 70 });
     const d = await createTemplateAdapter(g);
-    return await async function(e5, t29, i2) {
-      const r3 = i2 ? (e6) => {
+    return await async function(e5, t29, r3) {
+      const i2 = r3 ? (e6) => {
         const t30 = 70 + Math.floor(e6.currentPage / e6.totalPages * 29);
-        i2({ stage: "build", message: `Rendering pages (${e6.currentPage}/${e6.totalPages})...`, percentage: t30, pageRender: e6 });
+        r3({ stage: "build", message: `Rendering pages (${e6.currentPage}/${e6.totalPages})...`, percentage: t30, pageRender: e6 });
       } : void 0;
-      await e5.buildWithProgress(t29, r3);
-    }(h3, d, r), r == null ? void 0 : r({ stage: "completion", message: "SSG generation completed", percentage: 100 }), setDomainInstances(h3, c, l, n3, o, u), createDomainInstances(siteCache, contentCache, fsCache, configCache, modulesCache, resourcesCache);
+      await e5.buildWithProgress(t29, i2);
+    }(h3, d, i), i == null ? void 0 : i({ stage: "completion", message: "SSG generation completed", percentage: 100 }), setDomainInstances(h3, c, l, n3, o, u), createDomainInstances(siteCache, contentCache, fsCache, configCache, modulesCache, resourcesCache);
   } catch (e5) {
     const t29 = e5 instanceof Error ? e5.message : String(e5);
     throw log57.error(`\u274C Static site generation failed: ${t29}`), new Error(`Failed to generate static site: ${t29}`);
   }
 }
-async function createModuleWithProgress(e4, t28, i) {
-  const r = { osFs: () => e4.fs(), projDir: () => e4.getDir().getWorkingDir(), moduleDir: () => e4.getDir().getThemesDir(), moduleCacheDir: () => e4.getDir().getThemesCacheDir(), importPaths: () => e4.getModule().importPaths(), defaultLanguageKey: () => e4.getLanguage().defaultLanguage(), otherLanguageKeys: () => e4.getLanguage().otherLanguageKeys(), getRelDir: (t29, i2) => e4.getLanguage().getRelDir(t29, i2), httpClient: i ? () => i : void 0 };
+async function createModuleWithProgress(e4, t28, r) {
+  const i = { osFs: () => e4.fs(), projDir: () => e4.getDir().getWorkingDir(), moduleDir: () => e4.getDir().getThemesDir(), moduleCacheDir: () => e4.getDir().getThemesCacheDir(), importPaths: () => e4.getModule().importPaths(), defaultLanguageKey: () => e4.getLanguage().defaultLanguage(), otherLanguageKeys: () => e4.getLanguage().otherLanguageKeys(), getRelDir: (t29, r3) => e4.getLanguage().getRelDir(t29, r3), httpClient: r ? () => r : void 0 };
   return await async function(e5, t29) {
-    const i2 = t29 ? (e6) => {
+    const r3 = t29 ? (e6) => {
       t29({ stage: "modules", message: `Downloading module: ${e6.modulePath}`, percentage: 10 + Math.floor(0.2 * e6.downloadPercentage), moduleDownload: { modulePath: e6.modulePath, downloadPercentage: e6.downloadPercentage } });
     } : void 0;
     return await async function(e6, t30) {
       var _a11;
       try {
-        const i3 = (_a11 = e6.httpClient) == null ? void 0 : _a11.call(e6), r3 = newHttpClient(e6.osFs(), void 0, void 0, i3), s2 = newZipExtractor(e6.osFs()), n3 = newModuleCache(e6.osFs(), e6.moduleCacheDir()), a = newModules(e6, r3, s2, n3);
+        const r4 = (_a11 = e6.httpClient) == null ? void 0 : _a11.call(e6), i2 = newHttpClient(e6.osFs(), void 0, void 0, r4), s2 = newZipExtractor(e6.osFs()), n3 = newModuleCache(e6.osFs(), e6.moduleCacheDir()), a = newModules(e6, i2, s2, n3);
         return await a.load(t30), a;
       } catch (e7) {
         const t31 = e7 instanceof Error ? e7.message : String(e7);
         throw log5.error(`Failed to create modules: ${t31}`), new ModuleError(`Failed to create modules: ${t31}`, "FACTORY_FAILED");
       }
-    }(e5, i2);
-  }(r, t28);
+    }(e5, r3);
+  }(i, t28);
 }
-async function processSSGWithProgress(e4, t28, i, r, s2) {
+async function processSSGWithProgress(e4, t28, r, i, s2) {
   try {
     const n3 = process.cwd();
     process.chdir(e4);
     try {
-      await generateStaticSiteWithProgress(e4, t28, i, r, s2);
+      await generateStaticSiteWithProgress(e4, t28, r, i, s2);
     } finally {
       process.chdir(n3);
     }
@@ -111507,35 +111881,35 @@ async function processSSGWithProgress(e4, t28, i, r, s2) {
     throw log57.error(`\u274C SSG processing failed: ${t29}`), new Error(`Failed to process SSG: ${t29}`);
   }
 }
-async function serveSSG(e4, t28, i, r, s2) {
+async function serveSSG(e4, t28, r, i, s2) {
   try {
-    return process.chdir(e4), await generateStaticSiteWithProgress(e4, t28, i, r, s2);
+    return process.chdir(e4), await generateStaticSiteWithProgress(e4, t28, r, i, s2);
   } catch (e5) {
     const t29 = e5 instanceof Error ? e5.message : String(e5);
     throw log57.error(`\u274C SSG processing failed: ${t29}`), new Error(`Failed to process SSG: ${t29}`);
   }
 }
-async function collectAllPageTasks(e4, t28, i, r, s2) {
+async function collectAllPageTasks(e4, t28, r, i, s2) {
   if (tasks3.length > 0) return log57.info("Page tasks already collected, returning cached tasks"), tasks3;
   try {
     let n3 = performance.now();
     const a = await loadConfiguration(e4, t28);
     let o = performance.now();
     log57.info(`\u2705 Configuration loaded in ${(o - n3).toFixed(2)} ms`);
-    const l = i;
+    const l = r;
     n3 = performance.now();
-    const c = await createModuleWithProgress(a, r, s2);
+    const c = await createModuleWithProgress(a, i, s2);
     o = performance.now(), log57.info(`\u2705 Modules created in ${(o - n3).toFixed(2)} ms`), n3 = performance.now();
     const h3 = await createFileSystem(a, c);
     o = performance.now(), log57.info(`\u2705 Filesystem created in ${(o - n3).toFixed(2)} ms`);
     const u = await createContentEngine(h3, a, c, l), g = createSiteForSSG(a, h3, u), d = createResourcesEngine(a, h3), p2 = await createTemplateEngineFromFs(h3, a, g, d);
-    d.setTemplateSvc({ executeTemplate: async (e5, t29, i2) => await p2.executeRaw(e5, t29, i2) }), u.setTemplateSvc({ execute: async (e5, t29) => await p2.executeShortcode(e5, t29) }), n3 = performance.now(), await u.collectPages(), o = performance.now(), log57.info(`\u2705 Pages collected in ${(o - n3).toFixed(2)} ms`), n3 = performance.now();
+    d.setTemplateSvc({ executeTemplate: async (e5, t29, r3) => await p2.executeRaw(e5, t29, r3) }), u.setTemplateSvc({ execute: async (e5, t29) => await p2.executeShortcode(e5, t29) }), n3 = performance.now(), await u.collectPages(), o = performance.now(), log57.info(`\u2705 Pages collected in ${(o - n3).toFixed(2)} ms`), n3 = performance.now();
     const m2 = a.getLanguage().languageKeys();
     for (const e5 of m2) {
       const t29 = a.getLanguage().getLanguageIndex(e5);
       await u.walkPages(t29, async (t30) => {
-        const i2 = t30.file().paths().base();
-        tasks3.push({ language: e5, pagePath: i2 }), t30 && t30.pageIdentity && t30.pageIdentity().clearStale();
+        const r3 = t30.file().paths().base();
+        tasks3.push({ language: e5, pagePath: r3 }), t30 && t30.pageIdentity && t30.pageIdentity().clearStale();
       }), log57.debug(`Collected pages for language: ${e5}`);
     }
     o = performance.now(), log57.info(`\u2705 Page tasks collected in ${(o - n3).toFixed(2)} ms`);
@@ -111575,15 +111949,15 @@ function createWikiConfig(e4) {
   return { kbPath: WIKI_KB_FILENAME, embeddingsPath: WIKI_EMBEDDINGS_FILENAME, wikiDir: e4, entitiesDir: `${e4}/entities`, conceptsDir: `${e4}/concepts`, sourcesDir: `${e4}/sources`, conversationsDir: `${e4}/conversations`, indexFile: `${e4}/index.md`, glossaryFile: `${e4}/GLOSSARY.md`, logFile: `${e4}/log.md` };
 }
 function findPricing(e4, t28) {
-  const i = e4.toLowerCase(), r = t28.toLowerCase();
-  return MODEL_PRICING.find((e5) => e5.provider.toLowerCase() === i && e5.model.toLowerCase() === r) || MODEL_PRICING.find((e5) => e5.provider.toLowerCase() === i && "*" === e5.model);
+  const r = e4.toLowerCase(), i = t28.toLowerCase();
+  return MODEL_PRICING.find((e5) => e5.provider.toLowerCase() === r && e5.model.toLowerCase() === i) || MODEL_PRICING.find((e5) => e5.provider.toLowerCase() === r && "*" === e5.model);
 }
-function estimateCost(e4, t28, i, r) {
+function estimateCost(e4, t28, r, i) {
   var _a11;
   const s2 = findPricing(e4, t28);
   if (!s2) return;
-  const n3 = i / 1e6 * s2.inputPer1M, a = r / 1e6 * s2.outputPer1M, o = s2.model.toLowerCase() === t28.toLowerCase();
-  return { provider: s2.provider, model: "*" === s2.model ? t28 : s2.model, inputTokens: i, outputTokens: r, inputCost: n3, outputCost: a, totalCost: n3 + a, currency: "USD", isLocal: (_a11 = s2.isLocal) != null ? _a11 : false, isExact: o };
+  const n3 = r / 1e6 * s2.inputPer1M, a = i / 1e6 * s2.outputPer1M, o = s2.model.toLowerCase() === t28.toLowerCase();
+  return { provider: s2.provider, model: "*" === s2.model ? t28 : s2.model, inputTokens: r, outputTokens: i, inputCost: n3, outputCost: a, totalCost: n3 + a, currency: "USD", isLocal: (_a11 = s2.isLocal) != null ? _a11 : false, isExact: o };
 }
 function createWorkspaceFactory(e4) {
   var _a11, _b4, _c2, _d;
@@ -111595,16 +111969,16 @@ function createWorkspaceAppService(e4) {
   return new WorkspaceAppService({ workspaceFactory: t28 });
 }
 async function createIdentityService(e4) {
-  const t28 = new NodeHttpClient2(), i = createWorkspaceAppService(), r = await i.loadWorkspace(e4), s2 = i.createIdentityStorage(r), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 });
+  const t28 = new NodeHttpClient2(), r = createWorkspaceAppService(), i = await r.loadWorkspace(e4), s2 = r.createIdentityStorage(i), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 });
   return new IdentityAppService({ userFactory: n3 });
 }
 async function createIdentityServiceForObsidian(e4, t28) {
-  const i = createWorkspaceAppService(), r = await i.loadWorkspace(e4), s2 = i.createIdentityStorage(r), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 });
+  const r = createWorkspaceAppService(), i = await r.loadWorkspace(e4), s2 = r.createIdentityStorage(i), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 });
   return new IdentityAppService({ userFactory: n3 });
 }
 function createPublishAppService() {
-  const e4 = new NodeManifestRepository(), t28 = new NetlifyHttpClient(), i = new PublisherFactory(e4, t28), r = createWorkspaceAppService();
-  return new PublishAppService(i, r);
+  const e4 = new NodeManifestRepository(), t28 = new NetlifyHttpClient(), r = new PublisherFactory(e4, t28), i = createWorkspaceAppService();
+  return new PublishAppService(r, i);
 }
 async function handleWorkerTask(e4) {
   try {
@@ -111636,61 +112010,61 @@ async function handleWorkerTask(e4) {
     return log59.error(`Worker task failed: ${t28}`), { success: false, error: t28 };
   }
 }
-async function runWorkerLoop(e4, t28, i, r, s2, n3) {
+async function runWorkerLoop(e4, t28, r, i, s2, n3) {
   const a = [];
   for (; ; ) {
     const o = t28.nextBatch();
     if (!o) {
-      log62.debug(`Worker ${i} finished - no more tasks`);
+      log62.debug(`Worker ${r} finished - no more tasks`);
       break;
     }
     const l = t28.getProgress();
-    log62.info(`\u{1F504} Worker ${i} processing batch ${l.completed}/${l.total} (${o.length} tasks)`);
+    log62.info(`\u{1F504} Worker ${r} processing batch ${l.completed}/${l.total} (${o.length} tasks)`);
     const c = { type: "process-batch", pageTasks: o }, h3 = await e4.exec(c);
     if (h3.success && h3.data) {
       const e5 = h3.data;
       a.push(e5), s2.count += e5.processedCount;
-      const t29 = 70 + Math.floor(s2.count / r * 29);
-      n3 == null ? void 0 : n3({ stage: "build", message: `Rendering pages (${s2.count}/${r})...`, percentage: t29, pageRender: { currentPage: s2.count, totalPages: r } }), log62.info(`\u2705 Worker ${i} completed batch: ${e5.processedCount} tasks in ${e5.duration.toFixed(2)}ms`);
-    } else log62.error(`\u274C Worker ${i} failed: ${h3.error}`), a.push({ success: false, processedCount: 0, totalCount: o.length, duration: 0, errors: [h3.error || "Unknown error"] });
+      const t29 = 70 + Math.floor(s2.count / i * 29);
+      n3 == null ? void 0 : n3({ stage: "build", message: `Rendering pages (${s2.count}/${i})...`, percentage: t29, pageRender: { currentPage: s2.count, totalPages: i } }), log62.info(`\u2705 Worker ${r} completed batch: ${e5.processedCount} tasks in ${e5.duration.toFixed(2)}ms`);
+    } else log62.error(`\u274C Worker ${r} failed: ${h3.error}`), a.push({ success: false, processedCount: 0, totalCount: o.length, duration: 0, errors: [h3.error || "Unknown error"] });
   }
   return a;
 }
-async function processSSGParallel(e4, t28, i, r, s2) {
+async function processSSGParallel(e4, t28, r, i, s2) {
   const n3 = performance.now(), a = process.cwd();
   process.chdir(e4);
   try {
-    r == null ? void 0 : r({ stage: "config", message: "Initializing parallel SSG...", percentage: 5 }), r == null ? void 0 : r({ stage: "pages", message: "Collecting all page tasks...", percentage: 10 });
-    const i2 = await collectAllPageTasks(e4, t28);
-    if (0 === i2.length) return log62.warn("\u26A0\uFE0F  No page tasks found to process"), r == null ? void 0 : r({ stage: "completion", message: "No pages to process", percentage: 100 }), { totalPages: 0, totalBatches: 0, workerCount: 0, batchSize: 0, totalDuration: 0, parallelSpeedup: 0, pagesPerSecond: 0 };
-    r == null ? void 0 : r({ stage: "config", message: `Found ${i2.length} pages, calculating optimal worker configuration...`, percentage: 20 });
+    i == null ? void 0 : i({ stage: "config", message: "Initializing parallel SSG...", percentage: 5 }), i == null ? void 0 : i({ stage: "pages", message: "Collecting all page tasks...", percentage: 10 });
+    const r3 = await collectAllPageTasks(e4, t28);
+    if (0 === r3.length) return log62.warn("\u26A0\uFE0F  No page tasks found to process"), i == null ? void 0 : i({ stage: "completion", message: "No pages to process", percentage: 100 }), { totalPages: 0, totalBatches: 0, workerCount: 0, batchSize: 0, totalDuration: 0, parallelSpeedup: 0, pagesPerSecond: 0 };
+    i == null ? void 0 : i({ stage: "config", message: `Found ${r3.length} pages, calculating optimal worker configuration...`, percentage: 20 });
     const s3 = os2.cpus().length, a2 = Math.max(2, Math.floor(0.6 * s3)), o = function(e5, t29) {
-      const i3 = 4 * t29, r3 = Math.ceil(e5 / i3);
-      return Math.max(5, Math.min(50, r3));
-    }(i2.length, a2);
-    log62.info(`\u2699\uFE0F  Using ${a2} workers with batch size ${o}`), r == null ? void 0 : r({ stage: "config", message: `Creating worker pool with ${a2} workers...`, percentage: 30 });
+      const r4 = 4 * t29, i2 = Math.ceil(e5 / r4);
+      return Math.max(5, Math.min(50, i2));
+    }(r3.length, a2);
+    log62.info(`\u2699\uFE0F  Using ${a2} workers with batch size ${o}`), i == null ? void 0 : i({ stage: "config", message: `Creating worker pool with ${a2} workers...`, percentage: 30 });
     const l = new WorkerPoolManager({ workerCount: a2 });
-    await l.initialize(), r == null ? void 0 : r({ stage: "config", message: "Initializing workers...", percentage: 50 }), log62.info("\u{1F527} Initializing workers...");
+    await l.initialize(), i == null ? void 0 : i({ stage: "config", message: "Initializing workers...", percentage: 50 }), log62.info("\u{1F527} Initializing workers...");
     const c = performance.now(), h3 = [];
-    for (let i3 = 0; i3 < a2; i3++) {
-      const i4 = { type: "init", projDir: e4, moduleDir: t28 };
-      h3.push(l.exec(i4));
+    for (let r4 = 0; r4 < a2; r4++) {
+      const r5 = { type: "init", projDir: e4, moduleDir: t28 };
+      h3.push(l.exec(r5));
     }
     await Promise.all(h3);
     const u = performance.now() - c;
-    log62.info(`\u2705 All workers initialized in ${u.toFixed(2)}ms`), r == null ? void 0 : r({ stage: "build", message: `Creating ${Math.ceil(i2.length / o)} task batches...`, percentage: 65 });
+    log62.info(`\u2705 All workers initialized in ${u.toFixed(2)}ms`), i == null ? void 0 : i({ stage: "build", message: `Creating ${Math.ceil(r3.length / o)} task batches...`, percentage: 65 });
     const g = function(e5, t29) {
-      const i3 = [];
-      for (let r3 = 0; r3 < e5.length; r3 += t29) i3.push(e5.slice(r3, r3 + t29));
-      return log62.info(`\u{1F4E6} Created ${i3.length} batches (${t29} tasks per batch)`), i3;
-    }(i2, o), d = new BatchTaskQueue(g);
-    r == null ? void 0 : r({ stage: "build", message: "Starting parallel page rendering...", percentage: 70 }), log62.info("\u{1F3C3} Starting worker loops...");
+      const r4 = [];
+      for (let i2 = 0; i2 < e5.length; i2 += t29) r4.push(e5.slice(i2, i2 + t29));
+      return log62.info(`\u{1F4E6} Created ${r4.length} batches (${t29} tasks per batch)`), r4;
+    }(r3, o), d = new BatchTaskQueue(g);
+    i == null ? void 0 : i({ stage: "build", message: "Starting parallel page rendering...", percentage: 70 }), log62.info("\u{1F3C3} Starting worker loops...");
     const p2 = performance.now(), m2 = { count: 0 }, f3 = [];
-    for (let e5 = 0; e5 < a2; e5++) f3.push(runWorkerLoop(l, d, e5, i2.length, m2, r));
+    for (let e5 = 0; e5 < a2; e5++) f3.push(runWorkerLoop(l, d, e5, r3.length, m2, i));
     const y = await Promise.all(f3), w2 = performance.now() - p2, S = y.flat(), b = S.filter((e5) => e5.success).length, _ = S.reduce((e5, t29) => e5 + t29.processedCount, 0), k = S.reduce((e5, t29) => e5 + t29.errors.length, 0);
     await l.terminate();
     const v = performance.now() - n3, P = _ / v * 1e3, C = w2 / _ * _ / w2;
-    return r == null ? void 0 : r({ stage: "completion", message: `Parallel SSG completed! Processed ${_} pages with ${a2} workers`, percentage: 100 }), log62.info("\u2728 Parallel SSG completed!"), log62.info("\u{1F4CA} Statistics:", { totalTasks: i2.length, processedTasks: _, successfulBatches: b, failedBatches: S.length - b, totalErrors: k, totalDuration: `${v.toFixed(2)}ms`, processingDuration: `${w2.toFixed(2)}ms`, pagesPerSecond: P.toFixed(2), parallelSpeedup: `${C.toFixed(2)}x` }), { totalPages: i2.length, totalBatches: g.length, workerCount: a2, batchSize: o, totalDuration: v, parallelSpeedup: C, pagesPerSecond: P };
+    return i == null ? void 0 : i({ stage: "completion", message: `Parallel SSG completed! Processed ${_} pages with ${a2} workers`, percentage: 100 }), log62.info("\u2728 Parallel SSG completed!"), log62.info("\u{1F4CA} Statistics:", { totalTasks: r3.length, processedTasks: _, successfulBatches: b, failedBatches: S.length - b, totalErrors: k, totalDuration: `${v.toFixed(2)}ms`, processingDuration: `${w2.toFixed(2)}ms`, pagesPerSecond: P.toFixed(2), parallelSpeedup: `${C.toFixed(2)}x` }), { totalPages: r3.length, totalBatches: g.length, workerCount: a2, batchSize: o, totalDuration: v, parallelSpeedup: C, pagesPerSecond: P };
   } catch (e5) {
     const t29 = e5 instanceof Error ? e5.message : String(e5);
     throw log62.error(`\u274C Parallel SSG failed: ${t29}`), e5;
@@ -111702,8 +112076,8 @@ async function startIncrementalBuild(e4) {
   const t28 = new IncrementalBuildCoordinator(e4);
   return await t28.initialize(), e4.enableWatching && await t28.startWatching(), t28;
 }
-function createProgressEvent(e4, t28, i) {
-  return { type: e4, message: t28, progress: i == null ? void 0 : i.progress, metadata: i == null ? void 0 : i.metadata, timestamp: Date.now() };
+function createProgressEvent(e4, t28, r) {
+  return { type: e4, message: t28, progress: r == null ? void 0 : r.progress, metadata: r == null ? void 0 : r.metadata, timestamp: Date.now() };
 }
 function calculateProgress(e4, t28) {
   return { current: e4, total: t28, percentage: t28 > 0 ? Math.round(e4 / t28 * 100) : 0 };
@@ -111712,7 +112086,7 @@ function createObsidianWorkspaceAppService() {
   return createWorkspaceAppService();
 }
 async function createObsidianIdentityService(e4, t28) {
-  const i = createWorkspaceAppService(), r = await i.loadWorkspace(e4), s2 = i.createIdentityStorage(r), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 }), a = new IdentityAppService({ userFactory: n3 });
+  const r = createWorkspaceAppService(), i = await r.loadWorkspace(e4), s2 = r.createIdentityStorage(i), n3 = new UserFactory({ httpClient: t28, storageProvider: s2 }), a = new IdentityAppService({ userFactory: n3 });
   return await a.initialize(), a;
 }
 async function getIdentityService(e4, t28) {
@@ -111748,15 +112122,15 @@ function createObsidianBuildService() {
 }
 function createObsidianServeService(e4) {
   const t28 = new DesktopWorkspaceAdapter();
-  let i;
+  let r;
   if (e4) {
-    const r = new NodeManifestRepository(), s2 = new PublisherFactory(r, e4), n3 = t28.getWorkspaceAppService();
-    i = new PublishAppService(s2, n3);
+    const i = new NodeManifestRepository(), s2 = new PublisherFactory(i, e4), n3 = t28.getWorkspaceAppService();
+    r = new PublishAppService(s2, n3);
   }
-  return new ObsidianServeService(t28, i);
+  return new ObsidianServeService(t28, r);
 }
 function createObsidianPublishService(e4) {
-  const t28 = new DesktopWorkspaceAdapter(), i = new NodeManifestRepository(), r = new PublisherFactory(i, e4), s2 = t28.getWorkspaceAppService(), n3 = new PublishAppService(r, s2);
+  const t28 = new DesktopWorkspaceAdapter(), r = new NodeManifestRepository(), i = new PublisherFactory(r, e4), s2 = t28.getWorkspaceAppService(), n3 = new PublishAppService(i, s2);
   return new ObsidianPublishService(n3, t28);
 }
 function createObsidianDomainService(e4) {
@@ -111764,10 +112138,10 @@ function createObsidianDomainService(e4) {
   return new ObsidianDomainService(e4, t28);
 }
 function createObsidianWikiService(e4) {
-  const t28 = new DesktopWorkspaceAdapter(), i = new DesktopWikiAdapter(t28, e4);
-  return new ObsidianWikiService(i);
+  const t28 = new DesktopWorkspaceAdapter(), r = new DesktopWikiAdapter(t28, e4);
+  return new ObsidianWikiService(r);
 }
-var import_path10, path22, path32, path4, util, path5, http, https, import_jszip, path6, path7, path8, import_path11, path10, path11, path12, path13, path14, fs2, path15, import_path12, crypto2, path16, import_path13, import_path14, path19, crypto22, path20, filepath, import_path15, import_path16, import_path17, import_crypto, import_stream, import_promises17, import_stream2, import_crypto2, path24, import_stream3, http2, https2, path25, import_crypto3, import_stream4, path26, import_crypto4, import_path18, ftp, import_path19, import_fs3, import_path20, import_fs4, import_path21, import_fs5, import_jszip2, import_fs6, import_path22, import_fs7, import_path23, import_fs8, import_path24, import_path25, import_fs9, import_fs10, import_crypto5, fs12, fsSync, path39, crypto4, workerpool, os, path28, os2, path29, fs22, http3, path30, fs3, import_ws, http4, path31, fs4, import_path26, import_fs11, ConfigError, Config, DefaultRootConfig, Root, __defProp3, __getOwnPropNames2, __require, __esm2, __export2, init_type, init_config, init_root2, Module, init_root22, init_module, DefaultServiceConfig, Service, init_module2, init_service2, LTR_LANGUAGES, RTL_LANGUAGES, ALL_LANGUAGES, LANGUAGE_MAP, CODE_NAME_MAP, DefaultLanguageService, serviceInstance, lang, languages, DefaultLanguageConfig, Language, init_service22, init_data, init_service3, init_lang, init_language, DefaultTaxonomies, init_language2, Taxonomy, init_taxonomy, DefaultSocialPlatformTemplates, Social, init_taxonomy2, init_social, DefaultMarkdownPlugins, DefaultMarkdownConfig, Markdown, init_social2, init_markdown, DEFAULT_PUBLISH_DIR, Dir, init_markdown2, DefaultConfigProvider, ConfigLoader, init_dir, init_provider, ConfigSourceDescriptor, init_loader, init_sourcedescriptor, ComponentFolderContent, ComponentFolders, ModuleError, Mount, init_config2, init_config3, init_type2, LogLevel, Logger2, init_mount, init_types4, globalLoggerManager, init_logger3, init_http2, log2, NodeHttpClient, init_manager, init_log, log22, JsZipExtractor, WebZipExtractor, init_httpclient, log3, FsModuleCache, init_zipextractor, Module2, ProjectModule, init_cache2, Lang, init_module3, Themes, log4, Modules, init_lang2, init_themes, log5, FsError, ErrFileClosed, ErrFileNotFound, ErrSkipDir, OverlayFsError, ErrNoFilesystems, OriginFs, FileMeta, init_module4, init_module5, init_module6, init_type3, init_originfs, FileInfo, init_filemeta, File, init_fileinfo, DirFile, BaseFs, init_file, init_dir2, log8, Walkway, init_basefs, log9, StaticCopier, log10, init_walkway, init_static_copier, Fs2, defaultDirMerger, OverlayOptions, init_incremental_file_collector, init_fs, OverlayDir, dirPool, init_overlayoptions, OverlayFs, init_overlaydir, VirtualFileInfo, VirtualFile, globalVirtualFile, init_overlayfs, Service3, Factory, init_filevitural, init_service4, RootMapping, FilesystemsCollector, init_overlayfs_factory, log13, OsFileInfo, OsFile, OsFs, init_filesystemscollector, init_osfs, init_overlay_factory, PageKind, BufWriter, TableOfContentsImpl, HeaderImpl, TOCBuilder, AutoIDGenerator, HighlightResultImpl, DefaultHighlighter, Item, boolRe, intRe, floatRe, _ItemType_name, _ItemType_index, eof, summaryDivider, summaryDividerOrg, delimTOML, delimYAML, delimOrg, leftDelimSc, leftDelimScNoMarkup, rightDelimScNoMarkup, leftDelimScWithMarkup, rightDelimScWithMarkup, leftComment2, rightComment2, inlineIdentifier, sectionHandlers, sectionHandler, Iterator, pageLexer, init_fs2, init_fs3, init_type4, init_type5, init_config4, init_context2, init_tableofcontents, init_highlight, init_item, init_pagelexer, log14, init_pageparser, log15, SourceParseInfo, log16, ShortcodeImpl, ShortcodeParser, SHORTCODE_PLACEHOLDER_PREFIX, init_pageparser2, init_parseinfo, MediaType, INTERNAL_SUMMARY_DIVIDER_PRE, Content, RenderingResultImpl, ResultImpl, log18, MarkdownImpl, init_shortcode, init_type6, init_content, init_parserresult, ParserResult, init_markdown3, init_parserresult2, init_slugger_fallback, externalLinkRegex, wikilinkRegex, tableRegex, tableWikilinkRegex, wikilinkImageEmbedRegex, init_path3, init_wikilink, init_wikilink_plugin, calloutMapping, calloutRegex, init_tag_plugin, init_callout_plugin, init_latex_plugin, MarkdownItRenderer, init_mermaid_plugin, init_config5, init_tableofcontents2, init_it, PathType, PATH_CONSTANTS, init_markdown4, init_markdown5, PathComponentsImpl, PathPositionsImpl, LowHighImpl, PathComponentsFactory, Path, PathUtils, PathProcessorImpl, PathParsingNormalizer, BasicPathNormalizer, DefaultFileExtensionChecker, PathParserUtils, PathFactoryImpl, DefaultPathFactory, SimplePathPool, PathBuilder, PathFactoryUtils, PathDomain, log19, Translator, init_type7, init_pathcomponents, init_path22, init_pathparser, init_pathfactory, init_paths, log20, init_translator, kindMapMain, init_hub2, Identity, contentFileExtensionsSet, FileInfo7, init_kind, init_identity, PageByWrapper, lessPageTitle, language, weight, collatorStringCompare, PageSorterImpl, init_fileinfo2, Cast, Strings, Types, FrontMatterParserImpl, init_sort, init_cast, init_cast2, init_string2, init_string22, init_types22, init_types32, dimensionFlag, LeafNode, Edge, Node2, Tree, init_frontmatter, init_classifier, init_dimensions, WalkableTrees, MutableTrees, init_radix, init_radix2, SimpleTree, init_support, TreeShiftTree, NodeShiftTree, NodeShiftTreeWalker, Shifter2, PageShifter, SourceShifter, WeightedTermTreeNode, PageTreesNode, PageTrees, init_simpletree, init_treeshifttree, init_nodeshifttree, init_doctree, init_shifter, init_shifterpage, init_shifterpagesource, pageIDCounter, log23, Source, init_pagetrees, log24, ambiguousContentNode, ContentTreeReverseIndexMap, ContentTreeReverseIndex, pagePredicates, PageMapQueryPagesBelowPathImpl, PageMapQueryPagesInSectionImpl, PageMap, init_pagesource, log25, PagesCollector, log26, Content2, MDConverter, Content3, init_pagemap, init_pagecollector, init_entity2, init_content2, init_converter, log27, PAGE_HOME_BASE, Section, STANDALONE_PAGE_404_BASE, STANDALONE_PAGE_SITEMAP_BASE, Standalone, Output, PaginatorImpl, PagerImpl, PaginatorManagerImpl, Scratch, init_pagecontent, init_section, init_standalone, init_pageoutput, init_paginator, init_scratch, PageImpl, TaxonomyPageImpl, TermPageImpl, init_paths2, Meta, Layout, ShortcodeWithPage, BASE_FILE_BASE, BASE_DEFAULT, PARTIALS_PREFIX, TemplateError, BaseOf, init_page, init_pagemeta, init_pagelayout, init_shortcode2, init_type8, TemplateInfo2, init_baseof, BaseNamespace, RegularTemplateNamespace, PartialTemplateNamespace, ShortcodeTemplateNamespace, Executor, log31, ConcurrentCache, log32, Parser2, init_info2, init_namespace, init_executor, init_cache22, Lookup, log33, TemplateEngine, log34, engineDependentFunctions, PartialFunction, DefaultTemplateRegistry, init_parser2, init_lookup, init_template2, Factory2, Builder, init_registry, log35, PageBuilder, Taxonomy2, init_template22, init_template3, init_pagebuilder, log36, Term, init_taxonomy3, SitePager, log38, Page2, init_term, init_content3, init_pager, BaseURL, URL2, log39, WeightedPage, WeightedPages, Taxonomy3, OrderedTaxonomyEntry, OrderedTaxonomy, TaxonomyList, TaxonomiesBuilder, init_page2, init_baseurl, init_text3, init_url, taxonomies_builder_exports, Menu2, Menus, init_taxonomies_builder, init_menu, log41, PageGraph, log42, defaultOptions3, HtmlLinkProcessor, init_path32, init_pagegraph, log43, pageFilter, init_html_link_processor, log44, Site, Publisher, MultiWriter, init_page_filter, init_site, log46, Ref, CollatorWrapper, Language2, Author2, Organization2, Compiler, log49, Navigation, log50, MenuBuilder, log51, NavigationFactory, init_publisher, init_ref, init_language3, init_author, init_organization, init_version2, init_navigation, init_menu_builder, init_navigation_factory, log53, ResourceHash, PublishOnce, ResourceImpl, init_site2, init_type9, MinifierClient, MinifyTransformation, init_resource, IntegrityClient, FingerprintTransformation, init_minifier, ExecuteAsTemplateTransform, TemplateClient, log54, Publisher2, FileWritable, init_integrity, init_template4, log55, HttpClient4, init_publisher2, log56, Resources, init_http22, ResourcePaths, init_resources, ResourceTransformationKey, init_resourcepaths, ResourceMetadataImpl, log57, configCache, modulesCache, fsCache, contentCache, resourcesCache, siteCache, createDomainInstances, tasks3, init_transformation, init_resourcemetadata, init_resource2, init_resources2, ssg_exports, WorkspaceMetadata, ProjectMetadata, init_ssg, init_type10, init_workspace_metadata, project_metadata_exports, FolderStructure, log68, Workspace, log69, Project, Authentication, Email, Token2, ServerConfig, License, SyncConfig, Device, User, log71, UserFactory, init_project_metadata, init_folder_structure, init_file_system, init_repository, init_workspace, init_project2, init_authentication, init_email, init_token3, init_server_config, init_license3, init_sync_config, init_device, init_user, init_user_factory, init_type11, identity_exports, log72, WorkspaceFactory, init_identity2, log73, WorkspaceAppService, log74, PublisherAggregator, PublishManifest, WorkspacePublishConfig, log75, FtpPublisher, init_workspace_factory, init_workspace2, init_workspace3, init_type12, init_publisher3, init_publish_manifest, init_publish_config, log76, NetlifyPublisher, init_ftp_publisher, log77, MDFridayPublisher, init_netlify_publisher, log78, PublisherFactory, log79, PublishAppService, NodeWorkspaceRepository, NodeProjectRepository, init_mdfriday_publisher, init_publisher_factory, init_manifest_repository, init_http_client, init_publish2, init_publish22, NodeSnapshotRepository, init_node_workspace_repository, log80, LANGUAGE_CODE_MAP, NodeFileSystemRepository, init_node_snapshot_repository, log81, NodeManifestRepository, init_node_file_system, log82, NodeHttpClient2, log83, NetlifyHttpClient, LLMError, LLMConnectError, LLMHttpError, LLMAbortError, FetchHttpClient, init_node_manifest_repository, init_node_http_client, init_netlify_http_client, init_provider2, OpenAICompatibleEmbeddingProvider, OllamaProvider, OllamaEmbeddingProvider, NodeFileSystem, init_fetch_http_client, init_lmstudio_provider, init_ollama_provider, init_llm, init_embedding_provider_interface, init_ollama_embedding_provider, init_embedding, NodePathService, init_node_file_system2, NodeCryptoService, init_node_path_service, NodeConversationRepository, EntityId, EntityType, ConnectionType, SourceRecord, ExtractionResult, init_node_crypto_service, init_node_conversation_repository, init_entity_id, init_entity_type, init_connection_type, init_source_record, init_extraction_result, WIKI_KB_FILENAME, WIKI_EMBEDDINGS_FILENAME, init_extraction_parser, Retrieval, ContentAnnotator, MODEL_PRICING, init_wiki_config, init_retrieval, init_content_annotator, init_wiki_page_renderer, init_wiki_index_generator, init_token_usage, Entity, Concept, Connection, OperationLog, EmbeddingIndex, KnowledgeBase, Conversation, WikiFactory, NodeKBRepository, NodeWikiPageRepository, log84, IdentityAppService, init_pricing, init_entity22, init_concept, init_connection, init_operation_log, init_embedding_index, init_knowledge_base, init_conversation, init_wiki_factory, init_kb_repository_interface, init_wiki_page_repository_interface, init_conversation_repository_interface, init_llm_provider, init_llm_http_client, init_embedding_provider, init_file_system2, init_path_service, init_crypto_service, init_repository2, init_wiki, init_node_kb_repository, init_node_wiki_page_repository, init_node, init_infrastructure, init_identity3, container_exports, init_container, log58, WorkerState, log59, workerState, log60, WorkerPoolManager, log61, BatchTaskQueue, log62, log63, ContentFileWatcher, log64, FoundryLiveReloadServer, log65, ElectronLiveReloadServer, log66, IncrementalBuildCoordinator, ObsidianAuthService, log85, ObsidianLicenseService, log86, ObsidianWorkspaceService, log87, ObsidianGlobalConfigService, ObsidianProjectConfigService, log88, ObsidianProjectService, log89, ObsidianBuildService, log90, ObsidianServeService, log91, ObsidianPublishService, ObsidianDomainService, log92, ObsidianWikiService, DesktopIdentityAdapter, DesktopWorkspaceAdapter, DEFAULT_WIKI_SERVICE_CONFIG, WikiService, OpenAICompatibleProvider, log93, DesktopWikiAdapter;
+var import_path10, path22, path32, path4, util, path5, http, https, import_jszip, path6, path7, path8, import_path11, path10, path11, path12, path13, path14, fs2, path15, import_path12, crypto2, path16, import_path13, import_path14, path19, crypto22, path20, filepath, import_path15, import_path16, import_path17, import_crypto, import_stream, import_promises17, import_stream2, import_crypto2, path24, import_stream3, http2, https2, path25, import_crypto3, import_stream4, path26, import_crypto4, import_path18, ftp, import_path19, import_fs3, import_path20, import_fs4, import_path21, import_fs5, import_jszip2, import_fs6, import_path22, import_fs7, import_path23, import_fs8, import_path24, import_path25, import_fs9, import_fs10, import_crypto5, fs12, fsSync, path39, crypto4, workerpool, os, path28, os2, path29, fs22, http3, path30, fs3, import_ws, http4, path31, fs4, import_path26, import_fs11, ConfigError, Config, DefaultRootConfig, Root, __defProp3, __getOwnPropNames2, __require, __esm2, __export2, init_type, init_config, init_root2, Module, init_root22, init_module, DefaultServiceConfig, Service, init_module2, init_service2, LTR_LANGUAGES, RTL_LANGUAGES, ALL_LANGUAGES, LANGUAGE_MAP, CODE_NAME_MAP, DefaultLanguageService, serviceInstance, lang, languages, DefaultLanguageConfig, Language, init_service22, init_data, init_service3, init_lang, init_language, DefaultTaxonomies, init_language2, Taxonomy, init_taxonomy, DefaultSocialPlatformTemplates, Social, init_taxonomy2, init_social, DefaultMarkdownPlugins, DefaultMarkdownConfig, Markdown, init_social2, init_markdown, DEFAULT_PUBLISH_DIR, Dir, init_markdown2, DefaultConfigProvider, ConfigLoader, init_dir, init_provider, ConfigSourceDescriptor, init_loader, init_sourcedescriptor, ComponentFolderContent, ComponentFolders, ModuleError, Mount, init_config2, init_config3, init_type2, LogLevel, Logger2, init_mount, init_types4, globalLoggerManager, init_logger3, init_http2, log2, NodeHttpClient, init_manager, init_log, log22, JsZipExtractor, WebZipExtractor, init_httpclient, log3, FsModuleCache, init_zipextractor, Module2, ProjectModule, init_cache2, Lang, init_module3, Themes, log4, Modules, init_lang2, init_themes, log5, FsError, ErrFileClosed, ErrFileNotFound, ErrSkipDir, OverlayFsError, ErrNoFilesystems, OriginFs, FileMeta, init_module4, init_module5, init_module6, init_type3, init_originfs, FileInfo, init_filemeta, File, init_fileinfo, DirFile, BaseFs, init_file, init_dir2, log8, Walkway, init_basefs, log9, StaticCopier, log10, init_walkway, init_static_copier, Fs2, defaultDirMerger, OverlayOptions, init_incremental_file_collector, init_fs, OverlayDir, dirPool, init_overlayoptions, OverlayFs, init_overlaydir, VirtualFileInfo, VirtualFile, globalVirtualFile, init_overlayfs, Service3, Factory, init_filevitural, init_service4, RootMapping, FilesystemsCollector, init_overlayfs_factory, log13, OsFileInfo, OsFile, OsFs, init_filesystemscollector, init_osfs, init_overlay_factory, PageKind, BufWriter, TableOfContentsImpl, HeaderImpl, TOCBuilder, AutoIDGenerator, HighlightResultImpl, DefaultHighlighter, Item, boolRe, intRe, floatRe, _ItemType_name, _ItemType_index, eof, summaryDivider, summaryDividerOrg, delimTOML, delimYAML, delimOrg, leftDelimSc, leftDelimScNoMarkup, rightDelimScNoMarkup, leftDelimScWithMarkup, rightDelimScWithMarkup, leftComment2, rightComment2, inlineIdentifier, sectionHandlers, sectionHandler, Iterator, pageLexer, init_fs2, init_fs3, init_type4, init_type5, init_config4, init_context2, init_tableofcontents, init_highlight, init_item, init_pagelexer, log14, init_pageparser, log15, SourceParseInfo, log16, ShortcodeImpl, ShortcodeParser, SHORTCODE_PLACEHOLDER_PREFIX, init_pageparser2, init_parseinfo, MediaType, INTERNAL_SUMMARY_DIVIDER_PRE, Content, RenderingResultImpl, ResultImpl, log18, MarkdownImpl, init_shortcode, init_type6, init_content, init_parserresult, ParserResult, init_markdown3, init_parserresult2, init_slugger_fallback, externalLinkRegex, wikilinkRegex, tableRegex, tableWikilinkRegex, wikilinkImageEmbedRegex, init_path3, init_wikilink, init_wikilink_plugin, calloutMapping, calloutRegex, init_tag_plugin, init_callout_plugin, init_latex_plugin, MarkdownItRenderer, init_mermaid_plugin, init_config5, init_tableofcontents2, init_it, PathType, PATH_CONSTANTS, init_markdown4, init_markdown5, PathComponentsImpl, PathPositionsImpl, LowHighImpl, PathComponentsFactory, Path, PathUtils, PathProcessorImpl, PathParsingNormalizer, BasicPathNormalizer, DefaultFileExtensionChecker, PathParserUtils, PathFactoryImpl, DefaultPathFactory, SimplePathPool, PathBuilder, PathFactoryUtils, PathDomain, log19, Translator, init_type7, init_pathcomponents, init_path22, init_pathparser, init_pathfactory, init_paths, log20, init_translator, kindMapMain, init_hub2, Identity, contentFileExtensionsSet, FileInfo7, init_kind, init_identity, PageByWrapper, lessPageTitle, language, weight, collatorStringCompare, PageSorterImpl, init_fileinfo2, Cast, Strings, Types, FrontMatterParserImpl, init_sort, init_cast, init_cast2, init_string2, init_string22, init_types22, init_types32, dimensionFlag, LeafNode, Edge, Node2, Tree, init_frontmatter, init_classifier, init_dimensions, WalkableTrees, MutableTrees, init_radix, init_radix2, SimpleTree, init_support, TreeShiftTree, NodeShiftTree, NodeShiftTreeWalker, Shifter2, PageShifter, SourceShifter, WeightedTermTreeNode, PageTreesNode, PageTrees, init_simpletree, init_treeshifttree, init_nodeshifttree, init_doctree, init_shifter, init_shifterpage, init_shifterpagesource, pageIDCounter, log23, Source, init_pagetrees, log24, ambiguousContentNode, ContentTreeReverseIndexMap, ContentTreeReverseIndex, pagePredicates, PageMapQueryPagesBelowPathImpl, PageMapQueryPagesInSectionImpl, PageMap, init_pagesource, log25, PagesCollector, log26, Content2, MDConverter, Content3, init_pagemap, init_pagecollector, init_entity2, init_content2, init_converter, log27, PAGE_HOME_BASE, Section, STANDALONE_PAGE_404_BASE, STANDALONE_PAGE_SITEMAP_BASE, Standalone, Output, PaginatorImpl, PagerImpl, PaginatorManagerImpl, Scratch, init_pagecontent, init_section, init_standalone, init_pageoutput, init_paginator, init_scratch, PageImpl, TaxonomyPageImpl, TermPageImpl, init_paths2, Meta, Layout, ShortcodeWithPage, BASE_FILE_BASE, BASE_DEFAULT, PARTIALS_PREFIX, TemplateError, BaseOf, init_page, init_pagemeta, init_pagelayout, init_shortcode2, init_type8, TemplateInfo2, init_baseof, BaseNamespace, RegularTemplateNamespace, PartialTemplateNamespace, ShortcodeTemplateNamespace, Executor, log31, ConcurrentCache, log32, Parser2, init_info2, init_namespace, init_executor, init_cache22, Lookup, log33, TemplateEngine, log34, engineDependentFunctions, PartialFunction, DefaultTemplateRegistry, init_parser2, init_lookup, init_template2, Factory2, Builder, init_registry, log35, PageBuilder, Taxonomy2, init_template22, init_template3, init_pagebuilder, log36, Term, init_taxonomy3, SitePager, log38, Page2, init_term, init_content3, init_pager, BaseURL, URL2, log39, WeightedPage, WeightedPages, Taxonomy3, OrderedTaxonomyEntry, OrderedTaxonomy, TaxonomyList, TaxonomiesBuilder, init_page2, init_baseurl, init_text3, init_url, taxonomies_builder_exports, Menu2, Menus, init_taxonomies_builder, init_menu, log41, PageGraph, log42, defaultOptions3, HtmlLinkProcessor, init_path32, init_pagegraph, log43, pageFilter, init_html_link_processor, log44, Site, Publisher, MultiWriter, init_page_filter, init_site, log46, Ref, CollatorWrapper, Language2, Author2, Organization2, Compiler, log49, Navigation, log50, MenuBuilder, log51, NavigationFactory, init_publisher, init_ref, init_language3, init_author, init_organization, init_version2, init_navigation, init_menu_builder, init_navigation_factory, log53, ResourceHash, PublishOnce, ResourceImpl, init_site2, init_type9, MinifierClient, MinifyTransformation, init_resource, IntegrityClient, FingerprintTransformation, init_minifier, ExecuteAsTemplateTransform, TemplateClient, log54, Publisher2, FileWritable, init_integrity, init_template4, log55, HttpClient4, init_publisher2, log56, Resources, init_http22, ResourcePaths, init_resources, ResourceTransformationKey, init_resourcepaths, ResourceMetadataImpl, log57, configCache, modulesCache, fsCache, contentCache, resourcesCache, siteCache, createDomainInstances, tasks3, init_transformation, init_resourcemetadata, init_resource2, init_resources2, ssg_exports, WorkspaceMetadata, ProjectMetadata, init_ssg, init_type10, init_workspace_metadata, project_metadata_exports, FolderStructure, log68, Workspace, log69, Project, Authentication, Email, Token2, ServerConfig, License, init_project_metadata, init_folder_structure, init_file_system, init_repository, init_workspace, init_project2, init_authentication, init_email, init_token3, init_server_config, license_exports, SyncConfig, Device, User, log71, UserFactory, init_license3, init_sync_config, init_device, init_user, init_user_factory, init_type11, identity_exports, log72, WorkspaceFactory, init_identity2, log73, WorkspaceAppService, log74, PublisherAggregator, PublishManifest, WorkspacePublishConfig, log75, FtpPublisher, init_workspace_factory, init_workspace2, init_workspace3, init_type12, init_publisher3, init_publish_manifest, init_publish_config, log76, NetlifyPublisher, init_ftp_publisher, log77, MDFridayPublisher, init_netlify_publisher, log78, PublisherFactory, log79, PublishAppService, NodeWorkspaceRepository, NodeProjectRepository, init_mdfriday_publisher, init_publisher_factory, init_manifest_repository, init_http_client, init_publish2, init_publish22, NodeSnapshotRepository, init_node_workspace_repository, log80, LANGUAGE_CODE_MAP, NodeFileSystemRepository, init_node_snapshot_repository, log81, NodeManifestRepository, init_node_file_system, log82, NodeHttpClient2, log83, NetlifyHttpClient, LLMError, LLMConnectError, LLMHttpError, LLMAbortError, FetchHttpClient, init_node_manifest_repository, init_node_http_client, init_netlify_http_client, init_provider2, OpenAICompatibleEmbeddingProvider, OllamaProvider, OllamaEmbeddingProvider, NodeFileSystem, init_fetch_http_client, init_lmstudio_provider, init_ollama_provider, init_llm, init_embedding_provider_interface, init_ollama_embedding_provider, init_embedding, NodePathService, init_node_file_system2, NodeCryptoService, init_node_path_service, NodeConversationRepository, EntityId, EntityType, ConnectionType, SourceRecord, ExtractionResult, init_node_crypto_service, init_node_conversation_repository, init_entity_id, init_entity_type, init_connection_type, init_source_record, init_extraction_result, WIKI_KB_FILENAME, WIKI_EMBEDDINGS_FILENAME, init_extraction_parser, Retrieval, ContentAnnotator, MODEL_PRICING, init_wiki_config, init_retrieval, init_content_annotator, init_wiki_page_renderer, init_wiki_index_generator, init_token_usage, Entity, Concept, Connection, OperationLog, EmbeddingIndex, KnowledgeBase, Conversation, WikiFactory, NodeKBRepository, NodeWikiPageRepository, log84, IdentityAppService, init_pricing, init_entity22, init_concept, init_connection, init_operation_log, init_embedding_index, init_knowledge_base, init_conversation, init_wiki_factory, init_kb_repository_interface, init_wiki_page_repository_interface, init_conversation_repository_interface, init_llm_provider, init_llm_http_client, init_embedding_provider, init_file_system2, init_path_service, init_crypto_service, init_repository2, init_wiki, init_node_kb_repository, init_node_wiki_page_repository, init_node, init_infrastructure, init_identity3, container_exports, init_container, log58, WorkerState, log59, workerState, log60, WorkerPoolManager, log61, BatchTaskQueue, log62, log63, ContentFileWatcher, log64, FoundryLiveReloadServer, log65, ElectronLiveReloadServer, log66, IncrementalBuildCoordinator, ObsidianAuthService, log85, ObsidianLicenseService, log86, ObsidianWorkspaceService, log87, ObsidianGlobalConfigService, ObsidianProjectConfigService, log88, ObsidianProjectService, log89, ObsidianBuildService, log90, ObsidianServeService, log91, ObsidianPublishService, ObsidianDomainService, log92, ObsidianWikiService, DesktopIdentityAdapter, DesktopWorkspaceAdapter, DEFAULT_WIKI_SERVICE_CONFIG, WikiService, OpenAICompatibleProvider, log93, DesktopWikiAdapter;
 var init_esm5 = __esm({
   "node_modules/@mdfriday/foundry/dist/esm/index.js"() {
     import_path10 = __toESM(require("path"));
@@ -111880,7 +112254,7 @@ var init_esm5 = __esm({
       return e4 && (t28 = (0, e4[__getOwnPropNames2(e4)[0]])(e4 = 0)), t28;
     };
     __export2 = (e4, t28) => {
-      for (var i in t28) __defProp3(e4, i, { get: t28[i], enumerable: true });
+      for (var r in t28) __defProp3(e4, r, { get: t28[r], enumerable: true });
     };
     init_type = __esm2({ "internal/domain/config/type.ts"() {
       new (ConfigError = class extends Error {
@@ -111891,7 +112265,7 @@ var init_esm5 = __esm({
     } });
     init_config = __esm2({ "internal/domain/config/entity/config.ts"() {
       Config = class {
-        constructor(e4, t28, i, r, s2, n3, a, o, l, c) {
+        constructor(e4, t28, r, i, s2, n3, a, o, l, c) {
           __publicField(this, "configSourceFs");
           __publicField(this, "provider");
           __publicField(this, "root");
@@ -111902,7 +112276,7 @@ var init_esm5 = __esm({
           __publicField(this, "language");
           __publicField(this, "taxonomy");
           __publicField(this, "markdown");
-          this.configSourceFs = e4, this.provider = t28, this.root = i, this.dir = r, this.module = s2, this.service = n3, this.social = a, this.language = o, this.taxonomy = l, this.markdown = c;
+          this.configSourceFs = e4, this.provider = t28, this.root = r, this.dir = i, this.module = s2, this.service = n3, this.social = a, this.language = o, this.taxonomy = l, this.markdown = c;
         }
         fs() {
           return this.configSourceFs;
@@ -112166,7 +112540,7 @@ var init_esm5 = __esm({
         calculateDefaultLanguage() {
           if (0 === Object.keys(this.configs).length) return "en";
           let e4 = "", t28 = Number.MAX_SAFE_INTEGER;
-          for (const [i, r] of Object.entries(this.configs)) r.weight < t28 && (t28 = r.weight, e4 = i);
+          for (const [r, i] of Object.entries(this.configs)) i.weight < t28 && (t28 = i.weight, e4 = r);
           return e4 || Object.keys(this.configs)[0];
         }
         languages() {
@@ -112182,9 +112556,9 @@ var init_esm5 = __esm({
           return Object.keys(this.configs).filter((e4) => e4 !== this.defaultLang);
         }
         getRelDir(e4, t28) {
-          const i = this.configs[t28];
-          if (!i) throw new Error(`Language "${t28}" not found`);
-          return i.contentDir || "content";
+          const r = this.configs[t28];
+          if (!r) throw new Error(`Language "${t28}" not found`);
+          return r.contentDir || "content";
         }
         validate() {
           return e4 = this.configs, t28 = this.defaultLang, Object.prototype.hasOwnProperty.call(e4, t28);
@@ -112250,7 +112624,7 @@ var init_esm5 = __esm({
           return this.taxonomies[e4];
         }
         getSingularForm(e4) {
-          for (const [t28, i] of Object.entries(this.taxonomies)) if (i === e4) return t28;
+          for (const [t28, r] of Object.entries(this.taxonomies)) if (r === e4) return t28;
         }
         getSingularForms() {
           return Object.keys(this.taxonomies);
@@ -112261,7 +112635,7 @@ var init_esm5 = __esm({
         setupViews() {
           this.views = function(e4) {
             const t28 = [];
-            for (const [i, r] of Object.entries(e4)) t28.push({ singular: i, plural: r, pluralTreeKey: cleanTreeKey(r) });
+            for (const [r, i] of Object.entries(e4)) t28.push({ singular: r, plural: i, pluralTreeKey: cleanTreeKey(i) });
             return t28.sort((e5, t29) => e5.plural.localeCompare(t29.plural)), t28;
           }(this.taxonomies), this.viewsByTreeKey = {};
           for (const e4 of this.views) this.viewsByTreeKey[e4.pluralTreeKey] = e4;
@@ -112301,17 +112675,17 @@ var init_esm5 = __esm({
         }
         getProcessedSocialLinks() {
           const e4 = [];
-          for (const [t28, i] of Object.entries(this.socialConfig.userConfig)) {
-            const r = this.getPlatformTemplate(t28);
-            r ? e4.push({ id: t28, title: r.title, url: i.link }) : e4.push({ id: t28, title: t28.charAt(0).toUpperCase() + t28.slice(1), url: i.link });
+          for (const [t28, r] of Object.entries(this.socialConfig.userConfig)) {
+            const i = this.getPlatformTemplate(t28);
+            i ? e4.push({ id: t28, title: i.title, url: r.link }) : e4.push({ id: t28, title: t28.charAt(0).toUpperCase() + t28.slice(1), url: r.link });
           }
           return e4;
         }
         getSocialLink(e4) {
           const t28 = this.socialConfig.userConfig[e4];
           if (!t28) return;
-          const i = this.getPlatformTemplate(e4);
-          return i ? { id: e4, title: i.title, url: t28.link } : { id: e4, title: e4.charAt(0).toUpperCase() + e4.slice(1), url: t28.link };
+          const r = this.getPlatformTemplate(e4);
+          return r ? { id: e4, title: r.title, url: t28.link } : { id: e4, title: e4.charAt(0).toUpperCase() + e4.slice(1), url: t28.link };
         }
         hasSocialLinks() {
           return Object.keys(this.socialConfig.userConfig).length > 0;
@@ -112371,11 +112745,11 @@ var init_esm5 = __esm({
     } });
     init_dir = __esm2({ "internal/domain/config/entity/dir.ts"() {
       DEFAULT_PUBLISH_DIR = "public", Dir = class {
-        constructor(e4, t28, i = DEFAULT_PUBLISH_DIR) {
+        constructor(e4, t28, r = DEFAULT_PUBLISH_DIR) {
           __publicField(this, "workingDir");
           __publicField(this, "themesDir");
           __publicField(this, "publishDir");
-          this.workingDir = e4, this.themesDir = t28, this.publishDir = i;
+          this.workingDir = e4, this.themesDir = t28, this.publishDir = r;
         }
         getWorkingDir() {
           return import_path10.default.resolve(this.workingDir);
@@ -112400,32 +112774,32 @@ var init_esm5 = __esm({
         }
         prepareParams(e4) {
           const t28 = {};
-          for (const [i, r] of Object.entries(e4)) t28[i.toLowerCase()] = r;
+          for (const [r, i] of Object.entries(e4)) t28[r.toLowerCase()] = i;
           return t28;
         }
         getNestedKeyAndMap(e4, t28) {
-          let i;
-          this.keyCache.has(e4) ? i = this.keyCache.get(e4) : (i = e4.split("."), this.keyCache.set(e4, i));
-          let r = this.root;
-          for (let e5 = 0; e5 < i.length - 1; e5++) {
-            const s2 = i[e5];
-            if (!(s2 in r)) {
+          let r;
+          this.keyCache.has(e4) ? r = this.keyCache.get(e4) : (r = e4.split("."), this.keyCache.set(e4, r));
+          let i = this.root;
+          for (let e5 = 0; e5 < r.length - 1; e5++) {
+            const s2 = r[e5];
+            if (!(s2 in i)) {
               if (!t28) return ["", null];
-              r[s2] = {};
+              i[s2] = {};
             }
-            const n3 = r[s2];
+            const n3 = i[s2];
             if ("object" != typeof n3 || null === n3) return ["", null];
-            r = n3;
+            i = n3;
           }
-          return [i[i.length - 1], r];
+          return [r[r.length - 1], i];
         }
         getString(e4) {
           const t28 = this.get(e4);
           return String(t28 || "");
         }
         getInt(e4) {
-          const t28 = this.get(e4), i = Number(t28);
-          return isNaN(i) ? 0 : Math.floor(i);
+          const t28 = this.get(e4), r = Number(t28);
+          return isNaN(r) ? 0 : Math.floor(r);
         }
         getBool(e4) {
           const t28 = this.get(e4);
@@ -112443,7 +112817,7 @@ var init_esm5 = __esm({
           const t28 = this.get(e4);
           if (t28 && "object" == typeof t28) {
             const e5 = {};
-            for (const [i, r] of Object.entries(t28)) e5[i] = String(r);
+            for (const [r, i] of Object.entries(t28)) e5[r] = String(i);
             return e5;
           }
           return {};
@@ -112454,43 +112828,43 @@ var init_esm5 = __esm({
         }
         get(e4) {
           if ("" === e4) return this.root;
-          const [t28, i] = this.getNestedKeyAndMap(e4.toLowerCase(), false);
-          return null !== i ? i[t28] : void 0;
+          const [t28, r] = this.getNestedKeyAndMap(e4.toLowerCase(), false);
+          return null !== r ? r[t28] : void 0;
         }
         set(e4, t28) {
-          const i = e4.toLowerCase();
-          if ("" === i) return void (t28 && "object" == typeof t28 ? Object.assign(this.root, this.prepareParams(t28)) : this.root[i] = t28);
-          const [r, s2] = this.getNestedKeyAndMap(i, true);
-          null !== s2 && (r in s2 && "object" == typeof s2[r] && "object" == typeof t28 && null !== t28 ? Object.assign(s2[r], t28) : s2[r] = t28);
+          const r = e4.toLowerCase();
+          if ("" === r) return void (t28 && "object" == typeof t28 ? Object.assign(this.root, this.prepareParams(t28)) : this.root[r] = t28);
+          const [i, s2] = this.getNestedKeyAndMap(r, true);
+          null !== s2 && (i in s2 && "object" == typeof s2[i] && "object" == typeof t28 && null !== t28 ? Object.assign(s2[i], t28) : s2[i] = t28);
         }
         keys() {
           return Object.keys(this.root);
         }
         merge(e4, t28) {
-          const i = e4.toLowerCase();
-          if ("" === i) return void (t28 && "object" == typeof t28 && Object.assign(this.root, this.prepareParams(t28)));
-          const [r, s2] = this.getNestedKeyAndMap(i, true);
-          null !== s2 && (r in s2 && "object" == typeof s2[r] && "object" == typeof t28 && null !== t28 ? Object.assign(s2[r], t28) : s2[r] = t28);
+          const r = e4.toLowerCase();
+          if ("" === r) return void (t28 && "object" == typeof t28 && Object.assign(this.root, this.prepareParams(t28)));
+          const [i, s2] = this.getNestedKeyAndMap(r, true);
+          null !== s2 && (i in s2 && "object" == typeof s2[i] && "object" == typeof t28 && null !== t28 ? Object.assign(s2[i], t28) : s2[i] = t28);
         }
         setDefaults(e4) {
           const t28 = this.prepareParams(e4);
-          for (const [e5, i] of Object.entries(t28)) e5 in this.root || (this.root[e5] = i);
+          for (const [e5, r] of Object.entries(t28)) e5 in this.root || (this.root[e5] = r);
         }
         setDefaultMergeStrategy() {
         }
         walkParams(e4) {
-          const t28 = (i) => {
-            if (i && "object" == typeof i && !Array.isArray(i)) {
-              if (e4(i)) return true;
-              for (const e5 of Object.values(i)) if (t28(e5)) return true;
+          const t28 = (r) => {
+            if (r && "object" == typeof r && !Array.isArray(r)) {
+              if (e4(r)) return true;
+              for (const e5 of Object.values(r)) if (t28(e5)) return true;
             }
             return false;
           };
           t28(this.root);
         }
         isSet(e4) {
-          const [t28, i] = this.getNestedKeyAndMap(e4.toLowerCase(), false);
-          return null !== i && t28 in i;
+          const [t28, r] = this.getNestedKeyAndMap(e4.toLowerCase(), false);
+          return null !== r && t28 in r;
         }
       };
     } });
@@ -112515,11 +112889,11 @@ var init_esm5 = __esm({
         }
         async loadProvider(e4) {
           const t28 = this.baseDirs.workingDir;
-          let i;
-          i = path22.isAbsolute(e4) ? e4 : path22.join(t28, e4);
-          let r = "";
-          if ("" !== path22.extname(e4) && await this.fileExists(i) && (r = i), "" === r) throw new Error("Unable to locate config file or config directory.");
-          const s2 = await this.loadConfigFromFile(r);
+          let r;
+          r = path22.isAbsolute(e4) ? e4 : path22.join(t28, e4);
+          let i = "";
+          if ("" !== path22.extname(e4) && await this.fileExists(r) && (i = r), "" === i) throw new Error("Unable to locate config file or config directory.");
+          const s2 = await this.loadConfigFromFile(i);
           this.cfg.set("", s2);
         }
         applyDefaultConfig() {
@@ -112534,16 +112908,16 @@ var init_esm5 = __esm({
           }
         }
         async loadConfigFromFile(e4) {
-          const t28 = this.sourceDescriptor.fs(), i = await t28.open(e4);
+          const t28 = this.sourceDescriptor.fs(), r = await t28.open(e4);
           try {
-            const e5 = new Uint8Array(1048576), { bytesRead: t29 } = await i.read(e5), r = new TextDecoder().decode(e5.slice(0, t29));
+            const e5 = new Uint8Array(1048576), { bytesRead: t29 } = await r.read(e5), i = new TextDecoder().decode(e5.slice(0, t29));
             try {
-              return JSON.parse(r);
+              return JSON.parse(i);
             } catch (e6) {
               return {};
             }
           } finally {
-            await i.close();
+            await r.close();
           }
         }
       };
@@ -112578,8 +112952,8 @@ var init_esm5 = __esm({
     } });
     init_mount = __esm2({ "internal/domain/module/vo/mount.ts"() {
       Mount = class e4 {
-        constructor(e5, t28, i = "") {
-          this.sourcePath = e5, this.targetPath = t28, this.language = i;
+        constructor(e5, t28, r = "") {
+          this.sourcePath = e5, this.targetPath = t28, this.language = r;
         }
         source() {
           return this.sourcePath;
@@ -112626,8 +113000,8 @@ var init_esm5 = __esm({
           this.config = { enableCaller: true, jsonFormat: true, ...e5 }, this.fields = {};
         }
         shouldLog(e5) {
-          const t28 = ["debug", "info", "warn", "error", "fatal"], i = t28.indexOf(this.config.level);
-          return t28.indexOf(e5) >= i;
+          const t28 = ["debug", "info", "warn", "error", "fatal"], r = t28.indexOf(this.config.level);
+          return t28.indexOf(e5) >= r;
         }
         getCaller() {
           if (!this.config.enableCaller) return;
@@ -112635,14 +113009,14 @@ var init_esm5 = __esm({
           if (!e5) return;
           const t28 = e5.split("\n")[4];
           if (!t28) return;
-          const i = t28.match(/at .* \((.+):(\d+):(\d+)\)/);
-          if (i) {
-            const [, e6, t29] = i;
-            return `${e6.split("/").pop()}:${t29}`;
-          }
-          const r = t28.match(/at (.+):(\d+):(\d+)/);
+          const r = t28.match(/at .* \((.+):(\d+):(\d+)\)/);
           if (r) {
             const [, e6, t29] = r;
+            return `${e6.split("/").pop()}:${t29}`;
+          }
+          const i = t28.match(/at (.+):(\d+):(\d+)/);
+          if (i) {
+            const [, e6, t29] = i;
             return `${e6.split("/").pop()}:${t29}`;
           }
         }
@@ -112651,16 +113025,16 @@ var init_esm5 = __esm({
         }
         writeLog(e5, t28) {
           if (!this.shouldLog(e5)) return;
-          const i = { level: e5, timestamp: (/* @__PURE__ */ new Date()).toISOString(), message: t28, ...this.fields }, r = this.getCaller();
-          r && (i.caller = r);
-          const s2 = this.config.jsonFormat ? JSON.stringify(i) : this.formatPlainText(i);
+          const r = { level: e5, timestamp: (/* @__PURE__ */ new Date()).toISOString(), message: t28, ...this.fields }, i = this.getCaller();
+          i && (r.caller = i);
+          const s2 = this.config.jsonFormat ? JSON.stringify(r) : this.formatPlainText(r);
           "error" === e5 || "fatal" === e5 ? process.stderr.write(s2 + "\n") : process.stdout.write(s2 + "\n"), "fatal" === e5 && process.exit(1);
         }
         formatPlainText(e5) {
           const t28 = [e5.timestamp, e5.level.toUpperCase()];
           e5.caller && t28.push(`[${e5.caller}]`), t28.push(e5.message);
-          const i = Object.keys(e5).filter((e6) => !["level", "timestamp", "message", "caller"].includes(e6)).map((t29) => `${t29}=${JSON.stringify(e5[t29])}`).join(" ");
-          return i && t28.push(i), t28.join(" ");
+          const r = Object.keys(e5).filter((e6) => !["level", "timestamp", "message", "caller"].includes(e6)).map((t29) => `${t29}=${JSON.stringify(e5[t29])}`).join(" ");
+          return r && t28.push(r), t28.join(" ");
         }
         debug(e5, ...t28) {
           this.writeLog("debug", this.formatMessage(e5, t28));
@@ -112693,8 +113067,8 @@ var init_esm5 = __esm({
           this.writeLog("fatal", this.formatMessage(e5, t28));
         }
         with(t28) {
-          const i = new e4(this.config);
-          return i.fields = { ...this.fields, ...t28 }, i;
+          const r = new e4(this.config);
+          return r.fields = { ...this.fields, ...t28 }, r;
         }
       };
     } });
@@ -112718,17 +113092,17 @@ var init_esm5 = __esm({
           return { ...this.globalConfig };
         }
         getLogger(e4, t28) {
-          const i = e4 + (t28 ? JSON.stringify(t28) : "");
-          if (!this.loggers.has(i)) {
-            const s2 = (r = this.globalConfig, new Logger2(r)), n3 = { domain: e4, ...t28 }, a = s2.with(n3);
-            this.loggers.set(i, a);
+          const r = e4 + (t28 ? JSON.stringify(t28) : "");
+          if (!this.loggers.has(r)) {
+            const s2 = (i = this.globalConfig, new Logger2(i)), n3 = { domain: e4, ...t28 }, a = s2.with(n3);
+            this.loggers.set(r, a);
           }
-          var r;
-          return this.loggers.get(i);
+          var i;
+          return this.loggers.get(r);
         }
-        getComponentLogger(e4, t28, i) {
-          const r = { component: t28, ...i };
-          return this.getLogger(e4, r);
+        getComponentLogger(e4, t28, r) {
+          const i = { component: t28, ...r };
+          return this.getLogger(e4, i);
         }
         clearCache() {
           this.loggers.clear();
@@ -112754,15 +113128,15 @@ var init_esm5 = __esm({
     } });
     init_httpclient = __esm2({ "internal/domain/module/vo/httpclient.ts"() {
       init_type2(), init_log(), log2 = getDomainLogger("module", { component: "httpclient" }), NodeHttpClient = class {
-        constructor(e4, t28 = 3e4, i = {}) {
+        constructor(e4, t28 = 3e4, r = {}) {
           __publicField(this, "defaultTimeout", 3e4);
           __publicField(this, "defaultHeaders", { "User-Agent": "MDFriday-CLI/1.0.0" });
-          this.fs = e4, this.timeout = t28, this.headers = i;
+          this.fs = e4, this.timeout = t28, this.headers = r;
         }
-        async download(e4, t28, i) {
-          return new Promise((r, s2) => {
+        async download(e4, t28, r) {
+          return new Promise((i, s2) => {
             try {
-              const n3 = new URL(e4), a = "https:" === n3.protocol, o = a ? https : http, l = { ...this.defaultHeaders, ...this.headers, ...i == null ? void 0 : i.headers }, c = { hostname: n3.hostname, port: n3.port || (a ? 443 : 80), path: n3.pathname + n3.search, method: "GET", headers: l, timeout: (i == null ? void 0 : i.timeout) || this.timeout }, h3 = o.request(c, async (e5) => {
+              const n3 = new URL(e4), a = "https:" === n3.protocol, o = a ? https : http, l = { ...this.defaultHeaders, ...this.headers, ...r == null ? void 0 : r.headers }, c = { hostname: n3.hostname, port: n3.port || (a ? 443 : 80), path: n3.pathname + n3.search, method: "GET", headers: l, timeout: (r == null ? void 0 : r.timeout) || this.timeout }, h3 = o.request(c, async (e5) => {
                 if (!e5.statusCode || e5.statusCode < 200 || e5.statusCode >= 300) return void s2(new ModuleError(`HTTP ${e5.statusCode}: ${e5.statusMessage}`, "HTTP_ERROR"));
                 const n4 = parseInt(e5.headers["content-length"] || "0", 10);
                 let a2 = 0, o2 = Date.now(), l2 = -1;
@@ -112771,12 +113145,12 @@ var init_esm5 = __esm({
                   await this.fs.mkdirAll(c3, 493);
                   const h4 = await this.fs.create(t28), u = [];
                   e5.on("data", (e6) => {
-                    if (u.push(e6), a2 += e6.length, (i == null ? void 0 : i.onProgress) && n4 > 0) {
+                    if (u.push(e6), a2 += e6.length, (r == null ? void 0 : r.onProgress) && n4 > 0) {
                       const e7 = Date.now(), t29 = Math.round(a2 / n4 * 100);
                       if (e7 - o2 >= 100 && t29 !== l2 || t29 - l2 >= 5) {
-                        const r3 = { loaded: a2, total: n4, percentage: t29 };
+                        const i2 = { loaded: a2, total: n4, percentage: t29 };
                         try {
-                          i.onProgress(r3), l2 = t29;
+                          r.onProgress(i2), l2 = t29;
                         } catch (e8) {
                           log2.error(`Progress callback error: ${e8}`);
                         }
@@ -112786,15 +113160,15 @@ var init_esm5 = __esm({
                   }), e5.on("end", async () => {
                     try {
                       const e6 = Buffer.concat(u), t29 = new Uint8Array(e6);
-                      if (await h4.write(t29), await h4.sync(), await h4.close(), (i == null ? void 0 : i.onProgress) && n4 > 0) {
+                      if (await h4.write(t29), await h4.sync(), await h4.close(), (r == null ? void 0 : r.onProgress) && n4 > 0) {
                         const e7 = { loaded: n4, total: n4, percentage: 100 };
                         try {
-                          i.onProgress(e7);
+                          r.onProgress(e7);
                         } catch (e8) {
                           log2.warn(`Progress callback error: ${e8}`);
                         }
                       }
-                      r();
+                      i();
                     } catch (e6) {
                       const t29 = e6 instanceof Error ? e6.message : String(e6);
                       s2(new ModuleError(`File write failed: ${t29}`, "WRITE_FAILED"));
@@ -112819,7 +113193,7 @@ var init_esm5 = __esm({
           });
         }
         async get(e4, t28) {
-          return new Promise((i, r) => {
+          return new Promise((r, i) => {
             try {
               const s2 = new URL(e4), n3 = "https:" === s2.protocol, a = n3 ? https : http, o = { ...this.defaultHeaders, ...this.headers, ...t28 == null ? void 0 : t28.headers }, l = { hostname: s2.hostname, port: s2.port || (n3 ? 443 : 80), path: s2.pathname + s2.search, method: "GET", headers: o, timeout: (t28 == null ? void 0 : t28.timeout) || this.timeout }, c = a.request(l, (e5) => {
                 const t29 = [], s3 = {};
@@ -112828,20 +113202,20 @@ var init_esm5 = __esm({
                 }), e5.on("data", (e6) => {
                   t29.push(e6);
                 }), e5.on("end", () => {
-                  const r3 = Buffer.concat(t29), n4 = r3.buffer.slice(r3.byteOffset, r3.byteOffset + r3.byteLength);
-                  i({ data: n4, headers: s3, status: e5.statusCode || 0 });
+                  const i2 = Buffer.concat(t29), n4 = i2.buffer.slice(i2.byteOffset, i2.byteOffset + i2.byteLength);
+                  r({ data: n4, headers: s3, status: e5.statusCode || 0 });
                 }), e5.on("error", (e6) => {
-                  r(new ModuleError(`Response error: ${e6.message}`, "RESPONSE_ERROR"));
+                  i(new ModuleError(`Response error: ${e6.message}`, "RESPONSE_ERROR"));
                 });
               });
               c.on("error", (e5) => {
-                r(new ModuleError(`GET request failed: ${e5.message}`, "REQUEST_FAILED"));
+                i(new ModuleError(`GET request failed: ${e5.message}`, "REQUEST_FAILED"));
               }), c.on("timeout", () => {
-                c.destroy(), r(new ModuleError("GET request timeout", "TIMEOUT"));
+                c.destroy(), i(new ModuleError("GET request timeout", "TIMEOUT"));
               }), c.end();
             } catch (e5) {
               const t29 = e5 instanceof Error ? e5.message : String(e5);
-              r(new ModuleError(`GET request failed: ${t29}`, "REQUEST_FAILED"));
+              i(new ModuleError(`GET request failed: ${t29}`, "REQUEST_FAILED"));
             }
           });
         }
@@ -112854,16 +113228,16 @@ var init_esm5 = __esm({
         }
         async extract(e4, t28) {
           try {
-            const i = await this.fs.open(e4), r = (await i.stat()).size(), s2 = new Uint8Array(r), n3 = await i.read(s2);
-            await i.close(), await this.extractZipData(n3.buffer, t28);
+            const r = await this.fs.open(e4), i = (await r.stat()).size(), s2 = new Uint8Array(i), n3 = await r.read(s2);
+            await r.close(), await this.extractZipData(n3.buffer, t28);
           } catch (t29) {
-            const i = t29 instanceof Error ? t29.message : String(t29);
-            throw log22.error(`ZIP extraction failed for ${e4}: ${i}`), new ModuleError(`ZIP extraction failed: ${i}`, "EXTRACTION_FAILED");
+            const r = t29 instanceof Error ? t29.message : String(t29);
+            throw log22.error(`ZIP extraction failed for ${e4}: ${r}`), new ModuleError(`ZIP extraction failed: ${r}`, "EXTRACTION_FAILED");
           }
         }
         async list(e4) {
           try {
-            const t28 = await this.fs.open(e4), i = await t28.stat(), r = new Uint8Array(i.size()), s2 = await t28.read(r);
+            const t28 = await this.fs.open(e4), r = await t28.stat(), i = new Uint8Array(r.size()), s2 = await t28.read(i);
             return await t28.close(), await this.listZipContents(s2.buffer);
           } catch (e5) {
             const t28 = e5 instanceof Error ? e5.message : String(e5);
@@ -112873,14 +113247,14 @@ var init_esm5 = __esm({
         async extractZipData(e4, t28) {
           try {
             await this.fs.mkdirAll(t28, 493);
-            const i = new import_jszip.default(), r = await i.loadAsync(e4), s2 = [];
-            r.forEach((e5, t29) => {
+            const r = new import_jszip.default(), i = await r.loadAsync(e4), s2 = [];
+            i.forEach((e5, t29) => {
               t29.dir || s2.push(e5);
             });
             const n3 = [];
             let a = 0;
-            r.forEach((e5, i2) => {
-              n3.push(this.extractSingleEntry(e5, i2, t28).then(() => {
+            i.forEach((e5, r3) => {
+              n3.push(this.extractSingleEntry(e5, r3, t28).then(() => {
                 a++;
               }));
             }), await Promise.all(n3);
@@ -112889,22 +113263,22 @@ var init_esm5 = __esm({
             throw log22.error(`Failed to extract ZIP data: ${t29}`), new ModuleError(`Failed to extract ZIP data: ${t29}`, "EXTRACTION_FAILED");
           }
         }
-        async extractSingleEntry(e4, t28, i) {
-          const r = path6.join(i, e4);
-          if (t28.dir) await this.fs.mkdirAll(r, 493);
+        async extractSingleEntry(e4, t28, r) {
+          const i = path6.join(r, e4);
+          if (t28.dir) await this.fs.mkdirAll(i, 493);
           else {
-            const e5 = path6.dirname(r);
-            e5 !== i && await this.fs.mkdirAll(e5, 493);
-            const s2 = await t28.async("uint8array"), n3 = await this.fs.create(r);
+            const e5 = path6.dirname(i);
+            e5 !== r && await this.fs.mkdirAll(e5, 493);
+            const s2 = await t28.async("uint8array"), n3 = await this.fs.create(i);
             await n3.write(s2), await n3.close();
           }
         }
         async listZipContents(e4) {
           try {
-            const t28 = new import_jszip.default(), i = await t28.loadAsync(e4), r = [];
-            return i.forEach((e5) => {
-              r.push(e5);
-            }), r;
+            const t28 = new import_jszip.default(), r = await t28.loadAsync(e4), i = [];
+            return r.forEach((e5) => {
+              i.push(e5);
+            }), i;
           } catch (e5) {
             const t28 = e5 instanceof Error ? e5.message : String(e5);
             throw new ModuleError(`Failed to list ZIP contents: ${t28}`, "LIST_FAILED");
@@ -112941,24 +113315,24 @@ var init_esm5 = __esm({
         async get(e4) {
           var _a11, _b4;
           try {
-            const t28 = this.getCacheFilePath(e4), i = await this.fs.open(t28), r = await i.stat(), s2 = new Uint8Array(r.size());
-            await i.read(s2), await i.close();
+            const t28 = this.getCacheFilePath(e4), r = await this.fs.open(t28), i = await r.stat(), s2 = new Uint8Array(i.size());
+            await r.read(s2), await r.close();
             const n3 = new TextDecoder().decode(s2);
             return JSON.parse(n3);
           } catch (t28) {
             if (((_a11 = t28.message) == null ? void 0 : _a11.includes("ENOENT")) || ((_b4 = t28.message) == null ? void 0 : _b4.includes("no such file"))) return log3.info(`Cache miss: ${e4}`, t28), null;
-            const i = t28 instanceof Error ? t28.message : String(t28);
-            throw log3.error(`Cache read error for ${e4}: ${i}`), new ModuleError(`Failed to read cache: ${i}`, "CACHE_READ_FAILED");
+            const r = t28 instanceof Error ? t28.message : String(t28);
+            throw log3.error(`Cache read error for ${e4}: ${r}`), new ModuleError(`Failed to read cache: ${r}`, "CACHE_READ_FAILED");
           }
         }
         async set(e4, t28) {
           try {
             await this.fs.mkdirAll(this.cacheDir, 493);
-            const i = this.getCacheFilePath(e4), r = JSON.stringify(t28, null, 2), s2 = new TextEncoder().encode(r), n3 = await this.fs.create(i);
+            const r = this.getCacheFilePath(e4), i = JSON.stringify(t28, null, 2), s2 = new TextEncoder().encode(i), n3 = await this.fs.create(r);
             await n3.write(s2), await n3.sync(), await n3.close();
           } catch (t29) {
-            const i = t29 instanceof Error ? t29.message : String(t29);
-            throw log3.error(`Cache write error for ${e4}: ${i}`), new ModuleError(`Failed to write cache: ${i}`, "CACHE_WRITE_FAILED");
+            const r = t29 instanceof Error ? t29.message : String(t29);
+            throw log3.error(`Cache write error for ${e4}: ${r}`), new ModuleError(`Failed to write cache: ${r}`, "CACHE_WRITE_FAILED");
           }
         }
         async has(e4) {
@@ -112976,8 +113350,8 @@ var init_esm5 = __esm({
             await this.fs.remove(t28);
           } catch (t28) {
             if (!((_a11 = t28.message) == null ? void 0 : _a11.includes("ENOENT")) && !((_b4 = t28.message) == null ? void 0 : _b4.includes("no such file"))) {
-              const i = t28 instanceof Error ? t28.message : String(t28);
-              throw log3.error(`Cache delete error for ${e4}: ${i}`), new ModuleError(`Failed to delete cache: ${i}`, "CACHE_DELETE_FAILED");
+              const r = t28 instanceof Error ? t28.message : String(t28);
+              throw log3.error(`Cache delete error for ${e4}: ${r}`), new ModuleError(`Failed to delete cache: ${r}`, "CACHE_DELETE_FAILED");
             }
           }
         }
@@ -113003,8 +113377,8 @@ var init_esm5 = __esm({
           try {
             const e4 = await this.listCacheFiles();
             let t28 = 0;
-            for (const i of e4) try {
-              const e5 = path7.join(this.cacheDir, i);
+            for (const r of e4) try {
+              const e5 = path7.join(this.cacheDir, r);
               t28 += (await this.fs.stat(e5)).size();
             } catch (e5) {
             }
@@ -113032,14 +113406,14 @@ var init_esm5 = __esm({
     } });
     init_module3 = __esm2({ "internal/domain/module/vo/module.ts"() {
       init_type2(), init_mount(), Module2 = class e4 {
-        constructor(e5, t28, i, r = null, s2 = false) {
+        constructor(e5, t28, r, i = null, s2 = false) {
           __publicField(this, "absoluteDir");
           __publicField(this, "modulePath");
           __publicField(this, "parentModule");
           __publicField(this, "mountDirs");
           __publicField(this, "metadata");
           __publicField(this, "isProject", false);
-          this.fs = e5, this.absoluteDir = t28, this.modulePath = i, this.parentModule = r, this.mountDirs = [], this.metadata = null, this.isProject = s2;
+          this.fs = e5, this.absoluteDir = t28, this.modulePath = r, this.parentModule = i, this.mountDirs = [], this.metadata = null, this.isProject = s2;
         }
         isProjectModule() {
           return this.isProject;
@@ -113066,15 +113440,15 @@ var init_esm5 = __esm({
           try {
             let t28 = e5.mounts || [];
             if (0 === t28.length) for (const e6 of ComponentFolders) {
-              const i = path8.join(this.absoluteDir, e6);
+              const r = path8.join(this.absoluteDir, e6);
               try {
-                (await this.fs.stat(i)).isDir() && t28.push({ sourcePath: e6, targetPath: e6 });
+                (await this.fs.stat(r)).isDir() && t28.push({ sourcePath: e6, targetPath: e6 });
               } catch (e7) {
               }
             }
             this.mountDirs = t28.map((e6) => {
-              return t29 = e6.sourcePath, i = e6.targetPath, new Mount(t29, i);
-              var t29, i;
+              return t29 = e6.sourcePath, r = e6.targetPath, new Mount(t29, r);
+              var t29, r;
             });
           } catch (e6) {
             const t28 = e6 instanceof Error ? e6.message : String(e6);
@@ -113132,7 +113506,7 @@ var init_esm5 = __esm({
         }
         setDefaultLanguage(e4) {
           const t28 = this.module.mounts();
-          for (const i of t28) i instanceof Mount && i.setLanguage(e4);
+          for (const r of t28) r instanceof Mount && r.setLanguage(e4);
         }
         applyDefaultMounts() {
           const e4 = ComponentFolders.map((e5) => new Mount(e5, e5));
@@ -113188,12 +113562,12 @@ var init_esm5 = __esm({
             const t28 = new URL(e5);
             return t28.searchParams.delete("version"), t28.toString();
           } catch (t28) {
-            const i = e5.indexOf("?");
-            if (-1 === i) return e5;
-            const r = e5.substring(0, i), s2 = new URLSearchParams(e5.substring(i + 1));
+            const r = e5.indexOf("?");
+            if (-1 === r) return e5;
+            const i = e5.substring(0, r), s2 = new URLSearchParams(e5.substring(r + 1));
             s2.delete("version");
             const n3 = s2.toString();
-            return n3 ? `${r}?${n3}` : r;
+            return n3 ? `${i}?${n3}` : i;
           }
         }
         getAllThemes() {
@@ -113209,21 +113583,21 @@ var init_esm5 = __esm({
     } });
     init_module4 = __esm2({ "internal/domain/module/entity/module.ts"() {
       init_type2(), init_module3(), init_lang2(), init_themes(), init_log(), log4 = getDomainLogger("module", { component: "modules" }), Modules = class {
-        constructor(e4, t28, i, r) {
+        constructor(e4, t28, r, i) {
           __publicField(this, "projectModule");
           __publicField(this, "modules", []);
           __publicField(this, "downloadedModules", /* @__PURE__ */ new Set());
           __publicField(this, "lang");
           __publicField(this, "themesCache", /* @__PURE__ */ new Map());
           var s2;
-          this.info = e4, this.httpClient = t28, this.zipExtractor = i, this.moduleCache = r, this.projectModule = function(e5) {
-            const t29 = e5.osFs(), i2 = e5.projDir(), r3 = e5.defaultLanguageKey(), s3 = new Module2(t29, i2, "project-root", null, true), n3 = new ProjectModule(s3);
-            n3.applyDefaultMounts(), r3 && n3.setDefaultLanguage(r3);
+          this.info = e4, this.httpClient = t28, this.zipExtractor = r, this.moduleCache = i, this.projectModule = function(e5) {
+            const t29 = e5.osFs(), r3 = e5.projDir(), i2 = e5.defaultLanguageKey(), s3 = new Module2(t29, r3, "project-root", null, true), n3 = new ProjectModule(s3);
+            n3.applyDefaultMounts(), i2 && n3.setDefaultLanguage(i2);
             const a = e5.otherLanguageKeys();
             for (const t30 of a) try {
-              const i3 = e5.getRelDir(ComponentFolderContent, t30);
-              if (i3 && "" !== i3) {
-                const e6 = new Mount(i3, ComponentFolderContent, t30);
+              const r4 = e5.getRelDir(ComponentFolderContent, t30);
+              if (r4 && "" !== r4) {
+                const e6 = new Mount(r4, ComponentFolderContent, t30);
                 n3.appendMount(e6);
               }
             } catch (e6) {
@@ -113244,10 +113618,10 @@ var init_esm5 = __esm({
         }
         async load(e4) {
           const t28 = this.info.importPaths();
-          if (0 !== t28.length) for (let i = 0; i < t28.length; i++) {
-            const r = t28[i], { cleanUrl: s2, version: n3 } = this.parseVersionFromImportPath(r);
-            let a = r;
-            "latest" === n3 && (a = await this.resolveLatestVersion(r)), this.downloadedModules.has(a) ? log4.info(`Module already downloaded: ${a}`) : await this.addModule(this.projectModule.getModule(), a, (t29) => {
+          if (0 !== t28.length) for (let r = 0; r < t28.length; r++) {
+            const i = t28[r], { cleanUrl: s2, version: n3 } = this.parseVersionFromImportPath(i);
+            let a = i;
+            "latest" === n3 && (a = await this.resolveLatestVersion(i)), this.downloadedModules.has(a) ? log4.info(`Module already downloaded: ${a}`) : await this.addModule(this.projectModule.getModule(), a, (t29) => {
               e4 == null ? void 0 : e4({ modulePath: a, downloadPercentage: t29.percentage });
             });
           }
@@ -113255,8 +113629,8 @@ var init_esm5 = __esm({
         }
         parseVersionFromImportPath(e4) {
           try {
-            const t28 = new URL(e4), i = t28.searchParams.get("version") || "latest";
-            return t28.searchParams.delete("version"), { cleanUrl: t28.toString(), version: i };
+            const t28 = new URL(e4), r = t28.searchParams.get("version") || "latest";
+            return t28.searchParams.delete("version"), { cleanUrl: t28.toString(), version: r };
           } catch (t28) {
             return log4.warn(`Failed to parse import path ${e4}:`, t28), { cleanUrl: e4, version: "latest" };
           }
@@ -113275,35 +113649,35 @@ var init_esm5 = __esm({
           try {
             const t29 = this.getThemeRegistryUrl(e4);
             log4.info(`Fetching latest theme versions from ${t29}...`);
-            let i = this.themesCache.get(t29);
-            if (!i) {
-              const e5 = await this.httpClient.get(t29), r3 = new TextDecoder().decode(e5.data), s2 = JSON.parse(r3);
-              i = Themes.fromJson(s2), this.themesCache.set(t29, i);
+            let r = this.themesCache.get(t29);
+            if (!r) {
+              const e5 = await this.httpClient.get(t29), i2 = new TextDecoder().decode(e5.data), s2 = JSON.parse(i2);
+              r = Themes.fromJson(s2), this.themesCache.set(t29, r);
             }
-            const r = i.resolveLatestVersion(e4);
-            return r !== e4 ? log4.info(`Resolved latest version: ${e4} -> ${r}`) : log4.warn(`Could not resolve latest version for ${e4}, using original path`), r;
+            const i = r.resolveLatestVersion(e4);
+            return i !== e4 ? log4.info(`Resolved latest version: ${e4} -> ${i}`) : log4.warn(`Could not resolve latest version for ${e4}, using original path`), i;
           } catch (t29) {
             return log4.error(`Failed to resolve latest version for ${e4}:`, t29), e4;
           }
         }
         async downloadModule(e4, t28) {
           try {
-            let i = e4.version;
+            let r = e4.version;
             if ("latest" === e4.version) {
-              const t29 = await this.resolveLatestVersion(e4.path), { version: r3 } = this.parseVersionFromImportPath(t29);
-              i = r3;
+              const t29 = await this.resolveLatestVersion(e4.path), { version: i2 } = this.parseVersionFromImportPath(t29);
+              r = i2;
             }
-            const r = await this.moduleCache.get(e4.path);
-            if (r && "completed" === r.downloadStatus && this.isCacheValidForVersion(r.version, i)) {
-              const t29 = await this.createModuleFromCache(e4, r);
-              if (await t29.exists()) return log4.info(`Using cached module ${e4.path} version ${r.version}`), t29;
+            const i = await this.moduleCache.get(e4.path);
+            if (i && "completed" === i.downloadStatus && this.isCacheValidForVersion(i.version, r)) {
+              const t29 = await this.createModuleFromCache(e4, i);
+              if (await t29.exists()) return log4.info(`Using cached module ${e4.path} version ${i.version}`), t29;
             }
-            r && "completed" === r.downloadStatus && !this.isCacheValidForVersion(r.version, i) && log4.info(`Cache version mismatch for ${e4.path}: cached=${r.version}, requested=${i || "latest"}`);
+            i && "completed" === i.downloadStatus && !this.isCacheValidForVersion(i.version, r) && log4.info(`Cache version mismatch for ${e4.path}: cached=${i.version}, requested=${r || "latest"}`);
             const s2 = this.getModuleDir(e4.path), n3 = path10.join(s2, "module.zip"), a = { path: e4.path, version: e4.version || "latest", url: e4.url, dir: s2, downloadStatus: "downloading", downloadedAt: /* @__PURE__ */ new Date() };
             await this.moduleCache.set(e4.path, a);
             try {
-              const i2 = this.addTimestampToUrl(e4.url);
-              await this.httpClient.download(i2, n3, { onProgress: (e5) => {
+              const r3 = this.addTimestampToUrl(e4.url);
+              await this.httpClient.download(r3, n3, { onProgress: (e5) => {
                 t28 == null ? void 0 : t28({ percentage: e5.percentage });
               } }), await this.zipExtractor.extract(n3, s2), a.downloadStatus = "completed", a.downloadedAt = /* @__PURE__ */ new Date();
               try {
@@ -113316,12 +113690,12 @@ var init_esm5 = __esm({
               } catch (e5) {
               }
               await this.moduleCache.set(e4.path, a);
-              const r3 = newModule2(this.info.osFs(), s2, e4.path);
-              return r3.setMetadata(a), await r3.applyMounts(e4), r3;
+              const i2 = newModule2(this.info.osFs(), s2, e4.path);
+              return i2.setMetadata(a), await i2.applyMounts(e4), i2;
             } catch (t29) {
               a.downloadStatus = "failed", await this.moduleCache.set(e4.path, a);
-              const i2 = t29 instanceof Error ? t29.message : String(t29);
-              throw new ModuleError(`Failed to download module ${e4.path}: ${i2}`, "DOWNLOAD_FAILED");
+              const r3 = t29 instanceof Error ? t29.message : String(t29);
+              throw new ModuleError(`Failed to download module ${e4.path}: ${r3}`, "DOWNLOAD_FAILED");
             }
           } catch (e5) {
             if (e5 instanceof ModuleError) throw e5;
@@ -113329,10 +113703,10 @@ var init_esm5 = __esm({
             throw new ModuleError(`Module download failed: ${t29}`, "DOWNLOAD_FAILED");
           }
         }
-        async addModule(e4, t28, i) {
+        async addModule(e4, t28, r) {
           try {
             if (this.downloadedModules.has(t28)) return;
-            const { cleanUrl: e5, version: r } = this.parseVersionFromImportPath(t28), s2 = { path: t28, url: this.getDownloadUrl(e5), ...r && { version: r } }, n3 = await this.downloadModule(s2, i);
+            const { cleanUrl: e5, version: i } = this.parseVersionFromImportPath(t28), s2 = { path: t28, url: this.getDownloadUrl(e5), ...i && { version: i } }, n3 = await this.downloadModule(s2, r);
             this.modules.push(n3), this.downloadedModules.add(t28);
             try {
               const e6 = await this.parseThemeToml(n3);
@@ -113342,24 +113716,24 @@ var init_esm5 = __esm({
                   continue;
                 }
                 log4.info(`Recursively downloading module dependency: ${t29}`);
-                const e7 = t29, { cleanUrl: r3, version: s3 } = this.parseVersionFromImportPath(e7);
+                const e7 = t29, { cleanUrl: i2, version: s3 } = this.parseVersionFromImportPath(e7);
                 let a = e7;
                 "latest" === s3 && (a = await this.resolveLatestVersion(e7)), await this.addModule(n3, a, (e8) => {
-                  i == null ? void 0 : i({ percentage: 0.5 * e8.percentage });
+                  r == null ? void 0 : r({ percentage: 0.5 * e8.percentage });
                 });
               }
             } catch (e6) {
-              const i2 = e6 instanceof Error ? e6.message : String(e6);
-              log4.warn(`Failed to process recursive imports for module ${t28}: ${i2}`);
+              const r3 = e6 instanceof Error ? e6.message : String(e6);
+              log4.warn(`Failed to process recursive imports for module ${t28}: ${r3}`);
             }
           } catch (e5) {
-            const i2 = e5 instanceof Error ? e5.message : String(e5);
-            throw new ModuleError(`Failed to add module ${t28}: ${i2}`, "ADD_MODULE_FAILED");
+            const r3 = e5 instanceof Error ? e5.message : String(e5);
+            throw new ModuleError(`Failed to add module ${t28}: ${r3}`, "ADD_MODULE_FAILED");
           }
         }
         async createModuleFromCache(e4, t28) {
-          const i = newModule2(this.info.osFs(), t28.dir, e4.path);
-          return i.setMetadata(t28), await i.applyMounts(e4), i;
+          const r = newModule2(this.info.osFs(), t28.dir, e4.path);
+          return r.setMetadata(t28), await r.applyMounts(e4), r;
         }
         getModuleDir(e4) {
           const t28 = e4.replace(/[/\\:*?"<>|]/g, "_").replace(/^_+|_+$/g, "");
@@ -113373,11 +113747,11 @@ var init_esm5 = __esm({
         }
         addTimestampToUrl(e4) {
           try {
-            const t28 = new URL(e4), i = Date.now().toString();
-            return t28.searchParams.set("_t", i), t28.toString();
+            const t28 = new URL(e4), r = Date.now().toString();
+            return t28.searchParams.set("_t", r), t28.toString();
           } catch (t28) {
-            const i = e4.includes("?") ? "&" : "?";
-            return `${e4}${i}_t=${Date.now()}`;
+            const r = e4.includes("?") ? "&" : "?";
+            return `${e4}${r}_t=${Date.now()}`;
           }
         }
         getModuleByPath(e4) {
@@ -113394,16 +113768,16 @@ var init_esm5 = __esm({
           try {
             const t28 = this.modules.findIndex((t29) => t29.path() === e4);
             if (t28 >= 0) {
-              const i = this.modules[t28];
+              const r = this.modules[t28];
               try {
-                await this.info.osFs().removeAll(i.dir());
+                await this.info.osFs().removeAll(r.dir());
               } catch (e5) {
               }
               this.modules.splice(t28, 1), this.downloadedModules.delete(e4), await this.moduleCache.delete(e4);
             }
           } catch (t28) {
-            const i = t28 instanceof Error ? t28.message : String(t28);
-            throw new ModuleError(`Failed to remove module ${e4}: ${i}`, "REMOVE_MODULE_FAILED");
+            const r = t28 instanceof Error ? t28.message : String(t28);
+            throw new ModuleError(`Failed to remove module ${e4}: ${r}`, "REMOVE_MODULE_FAILED");
           }
         }
         async clearAll() {
@@ -113430,32 +113804,32 @@ var init_esm5 = __esm({
             } catch (e5) {
               return [];
             }
-            let i;
+            let r;
             try {
               const e5 = await this.info.osFs().open(t28);
               try {
-                const t29 = [], r3 = new Uint8Array(4096);
+                const t29 = [], i2 = new Uint8Array(4096);
                 for (; ; ) {
-                  const i2 = await e5.read(r3);
-                  if (0 === i2.bytesRead) break;
-                  t29.push(r3.slice(0, i2.bytesRead));
+                  const r3 = await e5.read(i2);
+                  if (0 === r3.bytesRead) break;
+                  t29.push(i2.slice(0, r3.bytesRead));
                 }
                 const s2 = t29.reduce((e6, t30) => e6 + t30.length, 0), n3 = new Uint8Array(s2);
                 let a = 0;
                 for (const e6 of t29) n3.set(e6, a), a += e6.length;
-                i = new TextDecoder("utf-8").decode(n3);
+                r = new TextDecoder("utf-8").decode(n3);
               } finally {
                 await e5.close();
               }
             } catch (t29) {
-              const i2 = t29 instanceof Error ? t29.message : String(t29);
-              return log4.warn(`Failed to read theme.toml for module ${e4.path()}: ${i2}`), [];
+              const r3 = t29 instanceof Error ? t29.message : String(t29);
+              return log4.warn(`Failed to read theme.toml for module ${e4.path()}: ${r3}`), [];
             }
-            const r = parse(i);
-            return ((_a11 = r.module) == null ? void 0 : _a11.imports) ? (log4.info(`Found ${r.module.imports.length} module imports in ${e4.path()}/theme.toml`), r.module.imports.map((e5) => e5.path)) : [];
+            const i = parse(r);
+            return ((_a11 = i.module) == null ? void 0 : _a11.imports) ? (log4.info(`Found ${i.module.imports.length} module imports in ${e4.path()}/theme.toml`), i.module.imports.map((e5) => e5.path)) : [];
           } catch (t28) {
-            const i = t28 instanceof Error ? t28.message : String(t28);
-            return log4.warn(`Failed to parse theme.toml for module ${e4.path()}: ${i}`), [];
+            const r = t28 instanceof Error ? t28.message : String(t28);
+            return log4.warn(`Failed to parse theme.toml for module ${e4.path()}: ${r}`), [];
           }
         }
       };
@@ -113479,11 +113853,11 @@ var init_esm5 = __esm({
     } });
     init_originfs = __esm2({ "internal/domain/fs/entity/originfs.ts"() {
       OriginFs = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "source");
           __publicField(this, "origin");
           __publicField(this, "publishDir");
-          this.source = e4, this.origin = t28, this.publishDir = i;
+          this.source = e4, this.origin = t28, this.publishDir = r;
         }
         getSource() {
           return this.source;
@@ -113598,12 +113972,12 @@ var init_esm5 = __esm({
     } });
     init_file = __esm2({ "internal/domain/fs/vo/file.ts"() {
       init_filemeta(), init_fileinfo(), File = class {
-        constructor(e4, t28, i, r = false) {
+        constructor(e4, t28, r, i = false) {
           __publicField(this, "file");
           __publicField(this, "fileMeta");
           __publicField(this, "fs");
           __publicField(this, "_isDir");
-          this.file = e4, this.fileMeta = t28, this.fs = i, this._isDir = r;
+          this.file = e4, this.fileMeta = t28, this.fs = r, this._isDir = i;
         }
         isNop() {
           return null === this.file;
@@ -113614,12 +113988,12 @@ var init_esm5 = __esm({
         async readDir(e4) {
           const t28 = [];
           if (this._isDir && this.file) {
-            const i = await this.file.readdir(e4);
-            for (const e5 of i) {
-              const i2 = this.joinPath(this.fileMeta.fileName(), e5.name()), r = newFileMeta(i2, async () => await this.fs.open(i2));
-              r.merge(this.fileMeta);
-              const s2 = newFileInfo(e5, i2);
-              s2.setMeta(r), t28.push(s2);
+            const r = await this.file.readdir(e4);
+            for (const e5 of r) {
+              const r3 = this.joinPath(this.fileMeta.fileName(), e5.name()), i = newFileMeta(r3, async () => await this.fs.open(r3));
+              i.merge(this.fileMeta);
+              const s2 = newFileInfo(e5, r3);
+              s2.setMeta(i), t28.push(s2);
             }
           }
           return t28;
@@ -113680,11 +114054,11 @@ var init_esm5 = __esm({
     } });
     init_dir2 = __esm2({ "internal/domain/fs/vo/dir.ts"() {
       init_file(), DirFile = class extends File {
-        constructor(e4, t28 = null, i = null) {
+        constructor(e4, t28 = null, r = null) {
           super(e4.isNop() ? null : e4, e4.meta(), e4.fs, true);
           __publicField(this, "virtualOpener");
           __publicField(this, "filter");
-          this.virtualOpener = t28, this.filter = i;
+          this.virtualOpener = t28, this.filter = r;
         }
         async readDir(e4) {
           if (!this.isNop()) {
@@ -113731,13 +114105,13 @@ var init_esm5 = __esm({
           const t28 = this.toAbsolutePath(e4);
           if (!this.isSameRootedPath(t28)) throw new Error(`path ${e4} is outside of the BaseFs root`);
           try {
-            const i = await this.fs.stat(t28);
-            if (i.isDir()) {
-              const r3 = newFileInfo(i, t28);
-              return r3.meta().setOpenFunc(async () => await this.openDir(e4)), r3;
+            const r = await this.fs.stat(t28);
+            if (r.isDir()) {
+              const i2 = newFileInfo(r, t28);
+              return i2.meta().setOpenFunc(async () => await this.openDir(e4)), i2;
             }
-            const r = newFileInfo(i, t28), s2 = this.getRoot(t28);
-            return r.meta().setComponentRoot(s2), r.meta().setOpenFunc(async () => await this.openInternal(e4)), r;
+            const i = newFileInfo(r, t28), s2 = this.getRoot(t28);
+            return i.meta().setComponentRoot(s2), i.meta().setOpenFunc(async () => await this.openInternal(e4)), i;
           } catch (e5) {
             throw e5;
           }
@@ -113747,22 +114121,22 @@ var init_esm5 = __esm({
           return (await this.fs.stat(t28)).isDir() ? await this.openDir(e4) : await this.openInternal(e4);
         }
         async openInternal(e4, t28 = false) {
-          const i = this.toAbsolutePath(e4), r = await this.fs.open(i), s2 = this.getRoot(i), n3 = newFileMeta(i);
-          return n3.setComponentRoot(s2), t28 ? function(e5, t29, i2) {
-            return new File(e5, t29, i2, true);
-          }(r, n3, this.fs) : function(e5, t29, i2) {
-            return new File(e5, t29, i2);
-          }(r, n3, this.fs);
+          const r = this.toAbsolutePath(e4), i = await this.fs.open(r), s2 = this.getRoot(r), n3 = newFileMeta(r);
+          return n3.setComponentRoot(s2), t28 ? function(e5, t29, r3) {
+            return new File(e5, t29, r3, true);
+          }(i, n3, this.fs) : function(e5, t29, r3) {
+            return new File(e5, t29, r3);
+          }(i, n3, this.fs);
         }
         getRoot(e4) {
           for (const t28 of this.roots) if (e4.startsWith(t28)) return t28;
           return "";
         }
         async openDir(e4) {
-          const t28 = await this.openInternal(e4, true), i = this.toAbsolutePath(e4), r = this.getRoot(i), s2 = newFileMeta(i);
-          return s2.setComponentRoot(r), function(e5, t29, i2) {
-            const r3 = new File(e5, t29, i2, true);
-            return new DirFile(r3);
+          const t28 = await this.openInternal(e4, true), r = this.toAbsolutePath(e4), i = this.getRoot(r), s2 = newFileMeta(r);
+          return s2.setComponentRoot(i), function(e5, t29, r3) {
+            const i2 = new File(e5, t29, r3, true);
+            return new DirFile(i2);
           }(t28, s2, this.fs);
         }
         async create(e4) {
@@ -113770,16 +114144,16 @@ var init_esm5 = __esm({
           return await this.fs.create(t28);
         }
         async mkdir(e4, t28) {
-          const i = this.toAbsolutePath(e4);
-          return await this.fs.mkdir(i, t28);
+          const r = this.toAbsolutePath(e4);
+          return await this.fs.mkdir(r, t28);
         }
         async mkdirAll(e4, t28) {
-          const i = this.toAbsolutePath(e4);
-          return await this.fs.mkdirAll(i, t28);
-        }
-        async openFile(e4, t28, i) {
           const r = this.toAbsolutePath(e4);
-          return await this.fs.openFile(r, t28, i);
+          return await this.fs.mkdirAll(r, t28);
+        }
+        async openFile(e4, t28, r) {
+          const i = this.toAbsolutePath(e4);
+          return await this.fs.openFile(i, t28, r);
         }
         async remove(e4) {
           const t28 = this.toAbsolutePath(e4);
@@ -113790,23 +114164,23 @@ var init_esm5 = __esm({
           return await this.fs.removeAll(t28);
         }
         async rename(e4, t28) {
-          const i = this.toAbsolutePath(e4), r = this.toAbsolutePath(t28);
-          return await this.fs.rename(i, r);
+          const r = this.toAbsolutePath(e4), i = this.toAbsolutePath(t28);
+          return await this.fs.rename(r, i);
         }
         name() {
           return `BaseFs(${this.fs.name()})`;
         }
         async chmod(e4, t28) {
+          const r = this.toAbsolutePath(e4);
+          return await this.fs.chmod(r, t28);
+        }
+        async chown(e4, t28, r) {
           const i = this.toAbsolutePath(e4);
-          return await this.fs.chmod(i, t28);
+          return await this.fs.chown(i, t28, r);
         }
-        async chown(e4, t28, i) {
-          const r = this.toAbsolutePath(e4);
-          return await this.fs.chown(r, t28, i);
-        }
-        async chtimes(e4, t28, i) {
-          const r = this.toAbsolutePath(e4);
-          return await this.fs.chtimes(r, t28, i);
+        async chtimes(e4, t28, r) {
+          const i = this.toAbsolutePath(e4);
+          return await this.fs.chtimes(i, t28, r);
         }
       };
     } });
@@ -113835,10 +114209,10 @@ var init_esm5 = __esm({
         isNotExistError(e4) {
           return e4.message.includes("ENOENT") || e4.message.includes("no such file") || "ENOENT" === e4.code;
         }
-        async walkRecursive(e4, t28, i) {
+        async walkRecursive(e4, t28, r) {
           if (!t28) try {
-            const i2 = await this.fs.stat(e4), r = newFileMeta(e4);
-            r.setOpenFunc(async () => await this.fs.open(e4)), t28 = newFileInfoWithMeta(i2, r);
+            const r3 = await this.fs.stat(e4), i = newFileMeta(e4);
+            i.setOpenFunc(async () => await this.fs.open(e4)), t28 = newFileInfoWithMeta(r3, i);
           } catch (t29) {
             if (e4 === this.root && this.isNotExistError(t29)) {
               if (this.cfg.failOnNotExist) throw new FsError(`walk: root not found: ${t29.message}`, "WALK_ROOT_NOT_FOUND");
@@ -113848,36 +114222,36 @@ var init_esm5 = __esm({
             throw new FsError(`walk: stat: ${t29.message}`, "WALK_STAT_FAILED");
           }
           try {
-            const i2 = await this.cb.walkFn(e4, t28);
-            if (i2 instanceof Error) throw i2;
+            const r3 = await this.cb.walkFn(e4, t28);
+            if (r3 instanceof Error) throw r3;
           } catch (e5) {
             if (t28.isDir() && e5 === ErrSkipDir) return;
             throw e5;
           }
           if (t28.isDir()) {
-            if (!i) try {
-              const t29 = await this.fs.open(e4), r = await t29.readdir(-1);
-              await t29.close(), i = r.map((e5) => e5), this.cfg.sortDirEntries && i.sort((e5, t30) => e5.name().localeCompare(t30.name()));
+            if (!r) try {
+              const t29 = await this.fs.open(e4), i = await t29.readdir(-1);
+              await t29.close(), r = i.map((e5) => e5), this.cfg.sortDirEntries && r.sort((e5, t30) => e5.name().localeCompare(t30.name()));
             } catch (t29) {
               if (this.checkErr(e4, t29)) return;
               throw new FsError(`walk: readdir: ${t29.message}`, "WALK_READDIR_FAILED");
             }
-            if (this.cfg.ignoreFile && (i = i.filter((e5) => !this.cfg.ignoreFile(e5.fileName()))), this.cb.hookPre) try {
-              i = await this.cb.hookPre(t28, e4, i);
+            if (this.cfg.ignoreFile && (r = r.filter((e5) => !this.cfg.ignoreFile(e5.fileName()))), this.cb.hookPre) try {
+              r = await this.cb.hookPre(t28, e4, r);
             } catch (e5) {
               if (e5 === ErrSkipDir) return;
               throw e5;
             }
-            for (const t29 of i) {
-              const i2 = path13.join(e4, t29.name());
+            for (const t29 of r) {
+              const r3 = path13.join(e4, t29.name());
               try {
-                await this.walkRecursive(i2, t29);
+                await this.walkRecursive(r3, t29);
               } catch (e5) {
                 if (!t29.isDir() || e5 !== ErrSkipDir) throw e5;
               }
             }
             if (this.cb.hookPost) try {
-              await this.cb.hookPost(t28, e4, i);
+              await this.cb.hookPost(t28, e4, r);
             } catch (e5) {
               if (e5 === ErrSkipDir) return;
               throw e5;
@@ -113913,37 +114287,37 @@ var init_esm5 = __esm({
           }
         }
         async walkSourceFiles(e4, t28) {
-          let i = 0;
+          let r = 0;
           try {
-            await this.walkFileSystem(e4, "/", async (r, s2) => {
-              s2 || (await this.copyFile(e4, r, this.toFs, t28), i++);
+            await this.walkFileSystem(e4, "/", async (i, s2) => {
+              s2 || (await this.copyFile(e4, i, this.toFs, t28), r++);
             });
           } catch (e5) {
             throw log9.error("Error walking source files:", e5), e5;
           }
-          return i;
+          return r;
         }
-        async walkFileSystem(e4, t28, i) {
+        async walkFileSystem(e4, t28, r) {
           try {
-            const r = await e4.open(t28);
-            if (!(await r.stat()).isDir()) return await r.close(), void await i(t28, false);
-            const s2 = await r.readdir(-1);
-            await r.close();
-            for (const r3 of s2) {
-              const s3 = this.joinPath(t28, r3.name());
-              r3.isDir() ? (await i(s3, true), await this.walkFileSystem(e4, s3, i)) : await i(s3, false);
+            const i = await e4.open(t28);
+            if (!(await i.stat()).isDir()) return await i.close(), void await r(t28, false);
+            const s2 = await i.readdir(-1);
+            await i.close();
+            for (const i2 of s2) {
+              const s3 = this.joinPath(t28, i2.name());
+              i2.isDir() ? (await r(s3, true), await this.walkFileSystem(e4, s3, r)) : await r(s3, false);
             }
           } catch (e5) {
             log9.error(`Could not read directory ${t28}:`, e5);
           }
         }
-        async copyFile(e4, t28, i, r) {
+        async copyFile(e4, t28, r, i) {
           let s2 = null, n3 = null;
           try {
-            const a = t28.startsWith("/") ? t28.slice(1) : t28, o = this.joinPath(r, a), l = this.dirname(o);
-            "/" !== l && await i.mkdirAll(l, 493), s2 = await e4.open(t28);
+            const a = t28.startsWith("/") ? t28.slice(1) : t28, o = this.joinPath(i, a), l = this.dirname(o);
+            "/" !== l && await r.mkdirAll(l, 493), s2 = await e4.open(t28);
             const c = await s2.stat(), h3 = new Uint8Array(c.size());
-            await s2.read(h3), n3 = await i.create(o), await n3.write(h3);
+            await s2.read(h3), n3 = await r.create(o), await n3.write(h3);
           } catch (e5) {
             log9.warn(`Failed to copy static file ${t28}:`, e5);
           } finally {
@@ -113973,7 +114347,7 @@ var init_esm5 = __esm({
     } });
     init_fs = __esm2({ "internal/domain/fs/entity/fs.ts"() {
       init_basefs(), init_walkway(), init_static_copier(), init_incremental_file_collector(), init_fs3(), Fs2 = class {
-        constructor(e4, t28, i, r, s2, n3, a, o, l) {
+        constructor(e4, t28, r, i, s2, n3, a, o, l) {
           __publicField(this, "originFs");
           __publicField(this, "prompts");
           __publicField(this, "workflows");
@@ -113984,7 +114358,7 @@ var init_esm5 = __esm({
           __publicField(this, "i18n");
           __publicField(this, "work");
           __publicField(this, "service");
-          this.originFs = e4, this.prompts = t28, this.workflows = i, this.content = r, this.layouts = s2, this.statics = n3, this.assets = a, this.i18n = o, this.work = l, this.service = new Service3();
+          this.originFs = e4, this.prompts = t28, this.workflows = r, this.content = i, this.layouts = s2, this.statics = n3, this.assets = a, this.i18n = o, this.work = l, this.service = new Service3();
         }
         os() {
           return this.originFs.getOrigin();
@@ -114024,58 +114398,58 @@ var init_esm5 = __esm({
         }
         async getFileMetaInfos(e4) {
           return async function(e5, t28) {
-            const i = /* @__PURE__ */ new Map();
-            let r = false;
+            const r = /* @__PURE__ */ new Map();
+            let i = false;
             for (const s2 of e5) for (const e6 of t28) try {
               const t29 = await createFileMetaInfo(s2, e6);
-              if (i.set(s2, t29), r = true, r) break;
+              if (r.set(s2, t29), i = true, i) break;
             } catch (t29) {
               log10.error(`Failed to create FileMetaInfo for ${s2} with fs=${e6}:`, t29);
             }
-            return i;
+            return r;
           }(e4, this.content);
         }
         newBasePathFs(e4, t28) {
           return newBaseFs(e4, [t28]);
         }
-        async walkPrompts(e4, t28, i) {
-          return await this.walk(this.prompts, e4, t28, i);
+        async walkPrompts(e4, t28, r) {
+          return await this.walk(this.prompts, e4, t28, r);
         }
-        async walkWorkflows(e4, t28, i) {
-          return await this.walk(this.workflows, e4, t28, i);
+        async walkWorkflows(e4, t28, r) {
+          return await this.walk(this.workflows, e4, t28, r);
         }
-        async walkLayouts(e4, t28, i) {
-          return await this.walk(this.layouts, e4, t28, i);
+        async walkLayouts(e4, t28, r) {
+          return await this.walk(this.layouts, e4, t28, r);
         }
-        async walkContent(e4, t28, i, r) {
-          await this.walk(e4, t28, i, r);
+        async walkContent(e4, t28, r, i) {
+          await this.walk(e4, t28, r, i);
         }
-        async walkStatics(e4, t28, i) {
-          return await this.walk(this.statics, e4, t28, i);
+        async walkStatics(e4, t28, r) {
+          return await this.walk(this.statics, e4, t28, r);
         }
-        async walkI18n(e4, t28, i) {
-          return await this.walk(this.i18n, e4, t28, i);
+        async walkI18n(e4, t28, r) {
+          return await this.walk(this.i18n, e4, t28, r);
         }
-        async walk(e4, t28, i, r) {
+        async walk(e4, t28, r, i) {
           const s2 = function(e5, t29) {
             return new Walkway(e5, t29);
-          }(e4, i);
-          return "" === t28 && (t28 = "/"), await s2.walkWith(t28, r);
+          }(e4, r);
+          return "" === t28 && (t28 = "/"), await s2.walkWith(t28, i);
         }
       };
     } });
     init_overlayoptions = __esm2({ "internal/domain/fs/vo/overlayoptions.ts"() {
       defaultDirMerger = (e4, t28) => {
-        const i = [...e4];
-        for (const r of t28) {
+        const r = [...e4];
+        for (const i of t28) {
           let t29 = false;
-          for (const i2 of e4) if (r.name() === i2.name()) {
+          for (const r3 of e4) if (i.name() === r3.name()) {
             t29 = true;
             break;
           }
-          t29 || i.push(r);
+          t29 || r.push(i);
         }
-        return i;
+        return r;
       }, OverlayOptions = class e4 {
         constructor(e5) {
           __publicField(this, "fss");
@@ -114143,8 +114517,8 @@ var init_esm5 = __esm({
             return [...t28];
           }
           if (0 === t28.length) throw this.err = new Error("EOF"), this.err;
-          const i = t28.slice(0, e4);
-          return this.offset += i.length, i;
+          const r = t28.slice(0, e4);
+          return this.offset += r.length, r;
         }
         async readdirnames(e4) {
           if (this.isClosed()) throw ErrFileClosed;
@@ -114161,18 +114535,18 @@ var init_esm5 = __esm({
           }
         }
         async readFromFilesystem(e4, t28) {
-          let i = t28;
+          let r = t28;
           try {
-            if (!i && e4) {
+            if (!r && e4) {
               const t30 = "/" === this._name ? "" : this._name;
-              i = await e4.open(t30);
+              r = await e4.open(t30);
             }
-            if (!i) return;
-            const t29 = await i.readdir(-1);
+            if (!r) return;
+            const t29 = await r.readdir(-1);
             this.fis = this.merge(this.fis, t29);
           } catch (e5) {
           } finally {
-            i && !t28 && await i.close();
+            r && !t28 && await r.close();
           }
         }
         async stat() {
@@ -114241,51 +114615,51 @@ var init_esm5 = __esm({
           return this.fss.length;
         }
         append(...t28) {
-          const i = new OverlayOptions({ fss: [...this.fss, ...t28], firstWritable: this.firstWritable, dirsMerger: this.mergeDirs });
-          return new e4(i);
+          const r = new OverlayOptions({ fss: [...this.fss, ...t28], firstWritable: this.firstWritable, dirsMerger: this.mergeDirs });
+          return new e4(r);
         }
         withDirsMerger(t28) {
-          const i = new OverlayOptions({ fss: this.fss, firstWritable: this.firstWritable, dirsMerger: t28 });
-          return new e4(i);
+          const r = new OverlayOptions({ fss: this.fss, firstWritable: this.firstWritable, dirsMerger: t28 });
+          return new e4(r);
         }
         writeFs() {
           if (0 === this.fss.length) throw ErrNoFilesystems;
           return this.fss[0];
         }
         async collectDirs(e5, t28) {
-          for (const i of this.fss) await this.collectDirsRecursive(i, e5, t28);
+          for (const r of this.fss) await this.collectDirsRecursive(r, e5, t28);
         }
-        async collectDirsRecursive(e5, t28, i) {
+        async collectDirsRecursive(e5, t28, r) {
           try {
-            (await e5.stat(t28)).isDir() && i(e5);
+            (await e5.stat(t28)).isDir() && r(e5);
           } catch (e6) {
           }
-          const r = e5;
-          if (r.filesystem && r.numFilesystems) for (let e6 = 0; e6 < r.numFilesystems(); e6++) {
-            const s2 = r.filesystem(e6);
-            s2 && await this.collectDirsRecursive(s2, t28, i);
+          const i = e5;
+          if (i.filesystem && i.numFilesystems) for (let e6 = 0; e6 < i.numFilesystems(); e6++) {
+            const s2 = i.filesystem(e6);
+            s2 && await this.collectDirsRecursive(s2, t28, r);
           }
         }
         async statInternal(e5, t28) {
-          for (let i = 0; i < this.fss.length; i++) {
-            const r = this.fss[i], [s2, n3, a, o] = await this.statRecursive(r, e5, t28);
+          for (let r = 0; r < this.fss.length; r++) {
+            const i = this.fss[r], [s2, n3, a, o] = await this.statRecursive(i, e5, t28);
             if (null === o || !this.isNotExistError(o)) return [s2, n3, a, o];
           }
           return [null, null, false, ErrFileNotFound];
         }
-        async statRecursive(e5, t28, i) {
+        async statRecursive(e5, t28, r) {
           try {
-            const i2 = await e5.stat(t28);
-            return [e5, i2, false, null];
+            const r3 = await e5.stat(t28);
+            return [e5, r3, false, null];
           } catch (t29) {
             if (!this.isNotExistError(t29)) return [e5, null, false, t29];
           }
-          const r = e5;
-          if (r.filesystem && r.numFilesystems) for (let e6 = 0; e6 < r.numFilesystems(); e6++) {
-            const s2 = r.filesystem(e6);
+          const i = e5;
+          if (i.filesystem && i.numFilesystems) for (let e6 = 0; e6 < i.numFilesystems(); e6++) {
+            const s2 = i.filesystem(e6);
             if (s2) {
-              const [e7, r3, n3, a] = await this.statRecursive(s2, t28, i);
-              if (null === a || !this.isNotExistError(a)) return [e7, r3, n3, a];
+              const [e7, i2, n3, a] = await this.statRecursive(s2, t28, r);
+              if (null === a || !this.isNotExistError(a)) return [e7, i2, n3, a];
             }
           }
           return [null, null, false, ErrFileNotFound];
@@ -114307,25 +114681,25 @@ var init_esm5 = __esm({
         }
         async open(e5) {
           if (0 === this.fss.length) throw ErrFileNotFound;
-          const [t28, i, , r] = await this.statInternal(e5, false);
-          if (r) throw r;
-          if (i.isDir()) {
+          const [t28, r, , i] = await this.statInternal(e5, false);
+          if (i) throw i;
+          if (r.isDir()) {
             const t29 = [];
             if (await this.collectDirs(e5, (e6) => {
               t29.push(e6);
             }), 0 === t29.length) throw ErrFileNotFound;
-            return 1 === t29.length ? await t29[0].open(e5) : await async function(e6, t30, i2, r3) {
-              if (!i2) throw new OverlayFsError("info function must not be null", "INFO_REQUIRED");
-              const s2 = dirPool.get(), n3 = { name: e6, fss: [...r3], info: i2, merge: t30 || defaultDirMerger };
+            return 1 === t29.length ? await t29[0].open(e5) : await async function(e6, t30, r3, i2) {
+              if (!r3) throw new OverlayFsError("info function must not be null", "INFO_REQUIRED");
+              const s2 = dirPool.get(), n3 = { name: e6, fss: [...i2], info: r3, merge: t30 || defaultDirMerger };
               return Object.assign(s2, new OverlayDir(n3)), s2;
-            }(e5, this.mergeDirs, async () => i, t29);
+            }(e5, this.mergeDirs, async () => r, t29);
           }
           return await t28.open(e5);
         }
-        async openFile(e5, t28, i) {
-          const r = !!(1 & t28) || !!(2 & t28);
-          if (r && !this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
-          return r ? await this.writeFs().openFile(e5, t28, i) : await this.open(e5);
+        async openFile(e5, t28, r) {
+          const i = !!(1 & t28) || !!(2 & t28);
+          if (i && !this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
+          return i ? await this.writeFs().openFile(e5, t28, r) : await this.open(e5);
         }
         async remove(e5) {
           if (!this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
@@ -114340,21 +114714,21 @@ var init_esm5 = __esm({
           return await this.writeFs().rename(e5, t28);
         }
         async stat(e5) {
-          const t28 = "/" === e5 ? "" : e5, [, i, , r] = await this.statInternal(t28, false);
-          if (r) throw r;
-          return i;
+          const t28 = "/" === e5 ? "" : e5, [, r, , i] = await this.statInternal(t28, false);
+          if (i) throw i;
+          return r;
         }
         async chmod(e5, t28) {
           if (!this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
           return await this.writeFs().chmod(e5, t28);
         }
-        async chown(e5, t28, i) {
+        async chown(e5, t28, r) {
           if (!this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
-          return await this.writeFs().chown(e5, t28, i);
+          return await this.writeFs().chown(e5, t28, r);
         }
-        async chtimes(e5, t28, i) {
+        async chtimes(e5, t28, r) {
           if (!this.firstWritable) throw new OverlayFsError("filesystem is read-only", "READ_ONLY");
-          return await this.writeFs().chtimes(e5, t28, i);
+          return await this.writeFs().chtimes(e5, t28, r);
         }
       };
     } });
@@ -114400,11 +114774,11 @@ var init_esm5 = __esm({
         async open() {
           return { name: () => this._fileName, close: async () => {
           }, read: async (e4) => {
-            const t28 = Buffer.from(this._fileContent, "utf8"), i = Math.min(e4.length, t28.length);
-            return t28.copy(e4, 0, 0, i), { bytesRead: i, buffer: e4 };
+            const t28 = Buffer.from(this._fileContent, "utf8"), r = Math.min(e4.length, t28.length);
+            return t28.copy(e4, 0, 0, r), { bytesRead: r, buffer: e4 };
           }, readAt: async (e4, t28) => {
-            const i = Buffer.from(this._fileContent, "utf8"), r = Math.min(t28, i.length), s2 = Math.min(e4.length, i.length - r);
-            return s2 > 0 && i.copy(e4, 0, r, r + s2), { bytesRead: s2, buffer: e4 };
+            const r = Buffer.from(this._fileContent, "utf8"), i = Math.min(t28, r.length), s2 = Math.min(e4.length, r.length - i);
+            return s2 > 0 && r.copy(e4, 0, i, i + s2), { bytesRead: s2, buffer: e4 };
           }, seek: async (e4, t28) => e4, write: async (e4) => ({ bytesWritten: e4.length, buffer: e4 }), writeAt: async (e4, t28) => ({ bytesWritten: e4.length, buffer: e4 }), readdir: async (e4) => [], readdirnames: async (e4) => [], stat: async () => this.getFileInfo(), sync: async () => {
           }, truncate: async (e4) => {
           }, writeString: async (e4) => ({ bytesWritten: Buffer.byteLength(e4, "utf8") }) };
@@ -114418,8 +114792,8 @@ var init_esm5 = __esm({
       init_filevitural(), Service3 = class {
         newFileMetaInfo(e4) {
           return function(e5) {
-            const t28 = (globalVirtualFile || (globalVirtualFile = new VirtualFile("/content/file.txt", "This is a virtual file.")), globalVirtualFile.getFileInfo()), i = newFileMeta(e5);
-            return new FileInfo(t28, i);
+            const t28 = (globalVirtualFile || (globalVirtualFile = new VirtualFile("/content/file.txt", "This is a virtual file.")), globalVirtualFile.getFileInfo()), r = newFileMeta(e5);
+            return new FileInfo(t28, r);
           }(e4);
         }
         newFileMetaInfoWithContent(e4) {
@@ -114427,8 +114801,8 @@ var init_esm5 = __esm({
             const t28 = function(e6) {
               const t29 = Math.floor(1e6 * Math.random()).toString().padStart(6, "0");
               return new VirtualFile(`/content/file_${t29}.md`, e6);
-            }(e5), i = t28.getFileInfo(), r = newFileMeta(t28.fullName(), () => t28.open());
-            return r.setComponentRoot("content"), r.setComponentDir("content"), new FileInfo(i, r);
+            }(e5), r = t28.getFileInfo(), i = newFileMeta(t28.fullName(), () => t28.open());
+            return i.setComponentRoot("content"), i.setComponentDir("content"), new FileInfo(r, i);
           }(e4);
         }
       };
@@ -114460,11 +114834,11 @@ var init_esm5 = __esm({
     } });
     init_filesystemscollector = __esm2({ "internal/domain/fs/vo/filesystemscollector.ts"() {
       init_overlayfs_factory(), init_basefs(), init_log(), getDomainLogger("fs", { component: "filesystemscollector" }), RootMapping = class {
-        constructor(e4, t28, i = "") {
+        constructor(e4, t28, r = "") {
           __publicField(this, "from");
           __publicField(this, "to");
           __publicField(this, "toBase");
-          this.from = e4, this.to = t28, this.toBase = i;
+          this.from = e4, this.to = t28, this.toBase = r;
         }
         fs(e4) {
           return newBaseFs(e4, [this.to]);
@@ -114484,12 +114858,12 @@ var init_esm5 = __esm({
         async collect(e4) {
           const t28 = e4.all();
           for (const e5 of t28) {
-            const t29 = [], i = [], r = [], s2 = [], n3 = [], a = [], o = [], l = (t30) => path14.isAbsolute(t30) ? ["", t30] : [e5.dir(), this.absPathify(e5.dir(), t30)], c = e5.mounts();
+            const t29 = [], r = [], i = [], s2 = [], n3 = [], a = [], o = [], l = (t30) => path14.isAbsolute(t30) ? ["", t30] : [e5.dir(), this.absPathify(e5.dir(), t30)], c = e5.mounts();
             for (const e6 of c) {
               const [c3, h3] = l(e6.source()), u = new RootMapping(e6.target(), h3, c3).fs(this.sourceProject);
-              this.isPrompts(e6.target()) ? i.push(u) : this.isWorkflows(e6.target()) ? t29.push(u) : this.isContent(e6.target()) ? r.push(u) : this.isLayouts(e6.target()) ? s2.push(u) : this.isStatics(e6.target()) ? n3.push(u) : this.isAssets(e6.target()) ? a.push(u) : this.isI18n(e6.target()) && o.push(u);
+              this.isPrompts(e6.target()) ? r.push(u) : this.isWorkflows(e6.target()) ? t29.push(u) : this.isContent(e6.target()) ? i.push(u) : this.isLayouts(e6.target()) ? s2.push(u) : this.isStatics(e6.target()) ? n3.push(u) : this.isAssets(e6.target()) ? a.push(u) : this.isI18n(e6.target()) && o.push(u);
             }
-            if (t29.length > 0 && (this.overlayMountsWorkflow = this.overlayMountsWorkflow.append(...t29)), i.length > 0 && (this.overlayMountsPrompt = this.overlayMountsPrompt.append(...i)), e5.isProjectModule()) for (const e6 of r) {
+            if (t29.length > 0 && (this.overlayMountsWorkflow = this.overlayMountsWorkflow.append(...t29)), r.length > 0 && (this.overlayMountsPrompt = this.overlayMountsPrompt.append(...r)), e5.isProjectModule()) for (const e6 of i) {
               let t30 = createReadOnlyOverlayFs([]);
               t30 = t30.append(e6), this.overlayMountsContent.push(t30);
             }
@@ -114611,12 +114985,12 @@ var init_esm5 = __esm({
         }
         async readdir(e4) {
           if (this.closed) throw new Error("File is closed");
-          const t28 = await fs2.readdir(this.filePath, { withFileTypes: true }), i = [], r = e4 > 0 ? Math.min(e4, t28.length) : t28.length;
-          for (let e5 = 0; e5 < r; e5++) {
-            const r3 = t28[e5], s2 = path15.join(this.filePath, r3.name), n3 = await fs2.stat(s2);
-            i.push(new OsFileInfo(n3, r3.name));
+          const t28 = await fs2.readdir(this.filePath, { withFileTypes: true }), r = [], i = e4 > 0 ? Math.min(e4, t28.length) : t28.length;
+          for (let e5 = 0; e5 < i; e5++) {
+            const i2 = t28[e5], s2 = path15.join(this.filePath, i2.name), n3 = await fs2.stat(s2);
+            r.push(new OsFileInfo(n3, i2.name));
           }
-          return i;
+          return r;
         }
         async readdirnames(e4) {
           if (this.closed) throw new Error("File is closed");
@@ -114653,9 +115027,9 @@ var init_esm5 = __esm({
         async open(e4) {
           return await fs2.access(e4), (await fs2.stat(e4)).isDirectory(), new OsFile(e4, "r");
         }
-        async openFile(e4, t28, i) {
-          let r = "r";
-          return 1 & t28 && (r = "w"), 2 & t28 && (r = "r+"), 64 & t28 && (r = "w"), 512 & t28 && (r = "w"), 1024 & t28 && (r = "a"), new OsFile(e4, r);
+        async openFile(e4, t28, r) {
+          let i = "r";
+          return 1 & t28 && (i = "w"), 2 & t28 && (i = "r+"), 64 & t28 && (i = "w"), 512 & t28 && (i = "w"), 1024 & t28 && (i = "a"), new OsFile(e4, i);
         }
         async remove(e4) {
           (await fs2.stat(e4)).isDirectory() ? await fs2.rmdir(e4) : await fs2.unlink(e4);
@@ -114676,11 +115050,11 @@ var init_esm5 = __esm({
         async chmod(e4, t28) {
           await fs2.chmod(e4, t28);
         }
-        async chown(e4, t28, i) {
-          await fs2.chown(e4, t28, i);
+        async chown(e4, t28, r) {
+          await fs2.chown(e4, t28, r);
         }
-        async chtimes(e4, t28, i) {
-          await fs2.utimes(e4, t28, i);
+        async chtimes(e4, t28, r) {
+          await fs2.utimes(e4, t28, r);
         }
       };
     } });
@@ -114731,8 +115105,8 @@ var init_esm5 = __esm({
         ensureCapacity(e4) {
           const t28 = this.position + e4;
           if (t28 <= this.capacity) return;
-          const i = Math.max(2 * this.capacity, t28), r = new Uint8Array(i);
-          r.set(this.buffer), this.buffer = r, this.capacity = i;
+          const r = Math.max(2 * this.capacity, t28), i = new Uint8Array(r);
+          i.set(this.buffer), this.buffer = i, this.capacity = r;
         }
       };
     } });
@@ -114741,28 +115115,28 @@ var init_esm5 = __esm({
         constructor(e4 = []) {
           this.fragments = e4;
         }
-        toHTML(e4, t28, i) {
+        toHTML(e4, t28, r) {
           if (0 === this.fragments.length) return "";
-          const r = this.filterByLevel(this.fragments, e4, t28);
-          if (0 === r.length) return "";
-          const s2 = i ? "ol" : "ul";
+          const i = this.filterByLevel(this.fragments, e4, t28);
+          if (0 === i.length) return "";
+          const s2 = r ? "ol" : "ul";
           return `<${s2}>
-${this.renderFragments(r, i)}</${s2}>
+${this.renderFragments(i, r)}</${s2}>
 `;
         }
-        filterByLevel(e4, t28, i) {
-          return e4.filter((e5) => e5.level >= t28 && e5.level <= i).map((e5) => {
-            const r = { id: e5.id, text: e5.text, level: e5.level };
-            return e5.children && (r.children = this.filterByLevel(e5.children, t28, i)), r;
+        filterByLevel(e4, t28, r) {
+          return e4.filter((e5) => e5.level >= t28 && e5.level <= r).map((e5) => {
+            const i = { id: e5.id, text: e5.text, level: e5.level };
+            return e5.children && (i.children = this.filterByLevel(e5.children, t28, r)), i;
           });
         }
         renderFragments(e4, t28) {
-          const i = t28 ? "ol" : "ul";
+          const r = t28 ? "ol" : "ul";
           return e4.map((e5) => {
-            let r = `  <li><a href="#${e5.id}">${this.escapeHTML(e5.text)}</a>`;
-            return e5.children && e5.children.length > 0 && (r += `
-    <${i}>
-${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
+            let i = `  <li><a href="#${e5.id}">${this.escapeHTML(e5.text)}</a>`;
+            return e5.children && e5.children.length > 0 && (i += `
+    <${r}>
+${this.renderFragments(e5.children, t28)}    </${r}>`), i += "</li>", i;
           }).join("\n");
         }
         escapeHTML(e4) {
@@ -114775,8 +115149,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return [...this.fragments];
         }
       }, HeaderImpl = class {
-        constructor(e4, t28, i = [], r = [], s2 = []) {
-          this._name = e4, this._level = t28, this._links = i, this._paragraphs = r, this._listParagraphs = s2;
+        constructor(e4, t28, r = [], i = [], s2 = []) {
+          this._name = e4, this._level = t28, this._links = r, this._paragraphs = i, this._listParagraphs = s2;
         }
         name() {
           return this._name;
@@ -114807,15 +115181,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "fragments", []);
           __publicField(this, "stack", []);
         }
-        addHeading(e4, t28, i) {
+        addHeading(e4, t28, r) {
           for (; this.stack.length > 0 && this.stack[this.stack.length - 1].level >= t28; ) this.stack.pop();
-          const r = { id: i, text: e4, level: t28, children: [] };
-          if (0 === this.stack.length) this.fragments.push(r);
+          const i = { id: r, text: e4, level: t28, children: [] };
+          if (0 === this.stack.length) this.fragments.push(i);
           else {
             const e5 = this.stack[this.stack.length - 1];
-            e5.children || (e5.children = []), e5.children.push(r);
+            e5.children || (e5.children = []), e5.children.push(i);
           }
-          this.stack.push(r);
+          this.stack.push(i);
         }
         build() {
           return new TableOfContentsImpl(this.fragments);
@@ -114828,24 +115202,24 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "usedIds", /* @__PURE__ */ new Set());
         }
         generateID(e4, t28 = "github") {
-          let i;
+          let r;
           switch (t28) {
             case "github":
             default:
-              i = this.githubStyle(e4);
+              r = this.githubStyle(e4);
               break;
             case "github-ascii":
-              i = this.githubAsciiStyle(e4);
+              r = this.githubAsciiStyle(e4);
               break;
             case "blackfriday":
-              i = this.blackfridayStyle(e4);
+              r = this.blackfridayStyle(e4);
           }
-          if (this.usedIds.has(i)) {
-            let e5 = 1, t29 = `${i}-${e5}`;
-            for (; this.usedIds.has(t29); ) e5++, t29 = `${i}-${e5}`;
-            i = t29;
+          if (this.usedIds.has(r)) {
+            let e5 = 1, t29 = `${r}-${e5}`;
+            for (; this.usedIds.has(t29); ) e5++, t29 = `${r}-${e5}`;
+            r = t29;
           }
-          return this.usedIds.add(i), i;
+          return this.usedIds.add(r), r;
         }
         githubStyle(e4) {
           return e4.toLowerCase().replace(/[^\w\u4e00-\u9fff\s-]/g, "").replace(/\s+/g, "-").replace(/^-+|-+$/g, "");
@@ -114876,18 +115250,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         constructor(e4) {
           this.config = e4;
         }
-        async highlight(e4, t28, i) {
+        async highlight(e4, t28, r) {
           if (!t28 || "text" === t28 || "plain" === t28) return this.escapeHTML(e4);
-          const r = this.escapeHTML(e4), s2 = `language-${t28}`;
-          return this.config.lineNos ? this.addLineNumbers(r, s2) : `<code class="${s2}">${r}</code>`;
+          const i = this.escapeHTML(e4), s2 = `language-${t28}`;
+          return this.config.lineNos ? this.addLineNumbers(i, s2) : `<code class="${s2}">${i}</code>`;
         }
         async highlightCodeBlock(e4, t28) {
-          const i = e4.type(), r = e4.inner(), s2 = await this.highlight(r, i, t28);
+          const r = e4.type(), i = e4.inner(), s2 = await this.highlight(i, r, t28);
           return new HighlightResultImpl(`<pre>${s2}</pre>`, s2);
         }
-        async renderCodeblock(e4, t28, i) {
-          const r = await this.highlightCodeBlock(i);
-          await t28.writeString(r.wrapped());
+        async renderCodeblock(e4, t28, r) {
+          const i = await this.highlightCodeBlock(r);
+          await t28.writeString(i.wrapped());
         }
         isDefaultCodeBlockRenderer() {
           return true;
@@ -114896,11 +115270,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return e4.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
         }
         addLineNumbers(e4, t28) {
-          const i = e4.split("\n").map((e5, i2) => {
-            const r = i2 + this.config.lineNoStart;
-            return this.config.lineNumbersInTable ? `<tr><td class="line-number">${r}</td><td class="line-code"><code class="${t28}">${e5}</code></td></tr>` : `<span class="line-number">${r}</span><code class="${t28}">${e5}</code>`;
+          const r = e4.split("\n").map((e5, r3) => {
+            const i = r3 + this.config.lineNoStart;
+            return this.config.lineNumbersInTable ? `<tr><td class="line-number">${i}</td><td class="line-code"><code class="${t28}">${e5}</code></td></tr>` : `<span class="line-number">${i}</span><code class="${t28}">${e5}</code>`;
           });
-          return this.config.lineNumbersInTable ? `<table class="code-table"><tbody>${i.join("")}</tbody></table>` : i.join("\n");
+          return this.config.lineNumbersInTable ? `<table class="code-table"><tbody>${r.join("")}</tbody></table>` : r.join("\n");
         }
       };
     } });
@@ -114925,11 +115299,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (0 === this.segments.length) return e4.slice(this.low, this.high);
           if (1 === this.segments.length) return e4.slice(this.segments[0].Low, this.segments[0].High);
           const t28 = [];
-          for (const i2 of this.segments) t28.push(e4.slice(i2.Low, i2.High));
-          const i = t28.reduce((e5, t29) => e5 + t29.length, 0), r = new Uint8Array(i);
+          for (const r3 of this.segments) t28.push(e4.slice(r3.Low, r3.High));
+          const r = t28.reduce((e5, t29) => e5 + t29.length, 0), i = new Uint8Array(r);
           let s2 = 0;
-          for (const e5 of t28) r.set(e5, s2), s2 += e5.length;
-          return r;
+          for (const e5 of t28) i.set(e5, s2), s2 += e5.length;
+          return i;
         }
         ValStr(e4) {
           return new TextDecoder().decode(this.Val(e4));
@@ -114994,7 +115368,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return 0 === this.Type;
         }
         ToString(e4) {
-          const t28 = this.Val(e4), i = this.ValStr(e4), r = function(e5) {
+          const t28 = this.Val(e4), r = this.ValStr(e4), i = function(e5) {
             const t29 = e5;
             return t29 < 0 || t29 >= _ItemType_index.length - 1 ? `ItemType(${t29})` : _ItemType_name.slice(_ItemType_index[t29], _ItemType_index[t29 + 1]);
           }(this.Type);
@@ -115002,15 +115376,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             case 1 === this.Type:
               return "EOF";
             case 0 === this.Type:
-              return i;
+              return r;
             case 17 === this.Type:
-              return `${r}:[${s2 = i, s2.replace(/ /g, "\u2423").replace(/\t/g, "\u2192")}]`;
+              return `${i}:[${s2 = r, s2.replace(/ /g, "\u2423").replace(/\t/g, "\u2192")}]`;
             case this.Type > 19:
-              return `<${i}>`;
+              return `<${r}>`;
             case t28.length > 50:
-              return `${r}:${i.substring(0, 20)}...`;
+              return `${i}:${r.substring(0, 20)}...`;
             default:
-              return `${r}:[${i}]`;
+              return `${i}:[${r}]`;
           }
           var s2;
         }
@@ -115031,12 +115405,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           let e4 = false;
           for (const t28 of this.handlers) {
             if (t28.skipAll) continue;
-            const i = t28.skip();
-            -1 !== i && (e4 = true, this.skipIndexes.push(i));
+            const r = t28.skip();
+            -1 !== r && (e4 = true, this.skipIndexes.push(r));
           }
           return e4 ? function(...e5) {
             let t28 = -1;
-            for (const i of e5) i < 0 || (-1 === t28 || i < t28) && (t28 = i);
+            for (const r of e5) r < 0 || (-1 === t28 || r < t28) && (t28 = r);
             return t28;
           }(...this.skipIndexes) : (this.skipAll = true, -1);
         }
@@ -115045,18 +115419,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.l.pos > this.l.start && this.l.emit(18);
           for (const t28 of this.handlers) {
             if (t28.skipAll) continue;
-            const [i, r] = t28.lexFunc(e4, t28.l);
-            if (null === i || r) return i;
+            const [r, i] = t28.lexFunc(e4, t28.l);
+            if (null === r || i) return r;
           }
           return this.l.pos++, e4;
         }
       }, sectionHandler = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "l");
           __publicField(this, "skipAll");
           __publicField(this, "skipFunc");
           __publicField(this, "lexFunc");
-          this.l = e4, this.skipAll = false, this.skipFunc = t28, this.lexFunc = i;
+          this.l = e4, this.skipAll = false, this.skipFunc = t28, this.lexFunc = r;
         }
         skip() {
           if (this.skipAll) return -1;
@@ -115106,13 +115480,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         LineNumber(e4) {
-          const t28 = new Uint8Array([10]), i = e4.slice(0, this.Current().low);
-          let r = 0;
-          for (let e5 = 0; e5 < i.length; e5++) i[e5] === t28[0] && r++;
-          return r + 1;
+          const t28 = new Uint8Array([10]), r = e4.slice(0, this.Current().low);
+          let i = 0;
+          for (let e5 = 0; e5 < r.length; e5++) r[e5] === t28[0] && i++;
+          return i + 1;
         }
       }, pageLexer = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "input");
           __publicField(this, "stateStart");
           __publicField(this, "state");
@@ -115128,25 +115502,25 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "err");
           __publicField(this, "inFrontMatter");
           __publicField(this, "parenDepth");
-          this.input = e4, this.stateStart = t28, this.state = null, this.pos = 0, this.start = 0, this.width = 0, this.cfg = i, this.summaryDivider = null, this.summaryDividerChecked = false, this.err = null, this.items = [], this.inFrontMatter = false, this.parenDepth = 0, this.lexerShortcodeState = { currLeftDelimItem: 8, currRightDelimItem: 9, isInline: false, currShortcodeName: "", closingState: 0, elementStepNum: 0, paramElements: 0, paramState: 0, openShortcodes: {} }, this.lexSummaryDivider = this.lexSummaryDivider.bind(this), this.lexMainSection = this.lexMainSection.bind(this), this.lexIdentifierInShortcode = this.lexIdentifierInShortcode.bind(this), this.lexEndOfShortcode = this.lexEndOfShortcode.bind(this), this.lexShortcodeLeftDelim = this.lexShortcodeLeftDelim.bind(this), this.lexShortcodeRightDelim = this.lexShortcodeRightDelim.bind(this), this.lexShortcodeParam = this.lexShortcodeParam.bind(this), this.lexShortcodeValue = this.lexShortcodeValue.bind(this), this.lexShortcodeValueQuoted = this.lexShortcodeValueQuoted.bind(this), this.lexShortcodeValueUnquoted = this.lexShortcodeValueUnquoted.bind(this), this.lexInsideShortcode = this.lexInsideShortcode.bind(this), this.lexDone = this.lexDone.bind(this), this.sectionHandlers = function(e5) {
-            const t29 = new sectionHandlers(e5), i2 = new sectionHandler(e5, (e6) => e6.index(leftDelimSc), (e6, t30) => {
+          this.input = e4, this.stateStart = t28, this.state = null, this.pos = 0, this.start = 0, this.width = 0, this.cfg = r, this.summaryDivider = null, this.summaryDividerChecked = false, this.err = null, this.items = [], this.inFrontMatter = false, this.parenDepth = 0, this.lexerShortcodeState = { currLeftDelimItem: 8, currRightDelimItem: 9, isInline: false, currShortcodeName: "", closingState: 0, elementStepNum: 0, paramElements: 0, paramState: 0, openShortcodes: {} }, this.lexSummaryDivider = this.lexSummaryDivider.bind(this), this.lexMainSection = this.lexMainSection.bind(this), this.lexIdentifierInShortcode = this.lexIdentifierInShortcode.bind(this), this.lexEndOfShortcode = this.lexEndOfShortcode.bind(this), this.lexShortcodeLeftDelim = this.lexShortcodeLeftDelim.bind(this), this.lexShortcodeRightDelim = this.lexShortcodeRightDelim.bind(this), this.lexShortcodeParam = this.lexShortcodeParam.bind(this), this.lexShortcodeValue = this.lexShortcodeValue.bind(this), this.lexShortcodeValueQuoted = this.lexShortcodeValueQuoted.bind(this), this.lexShortcodeValueUnquoted = this.lexShortcodeValueUnquoted.bind(this), this.lexInsideShortcode = this.lexInsideShortcode.bind(this), this.lexDone = this.lexDone.bind(this), this.sectionHandlers = function(e5) {
+            const t29 = new sectionHandlers(e5), r3 = new sectionHandler(e5, (e6) => e6.index(leftDelimSc), (e6, t30) => {
               if (!t30.isShortCodeStart()) return [e6, false];
               if (t30.lexerShortcodeState.isInline) {
-                const e7 = t30.input.slice(t30.pos + 3), i3 = function(e8) {
+                const e7 = t30.input.slice(t30.pos + 3), r4 = function(e8) {
                   for (let t31 = 0; t31 < e8.length; t31++) if (!isSpace3(e8[t31])) {
                     if (47 === e8[t31]) return t31;
                     break;
                   }
                   return -1;
                 }(e7);
-                if (i3 !== t30.input.length - 1) {
-                  const r3 = new TextDecoder().decode(e7.slice(i3 + 1)).trim();
-                  if (-1 === i3 || !r3.startsWith(t30.lexerShortcodeState.currShortcodeName + " ")) return [t30.errorf("inline shortcodes do not support nesting"), true];
+                if (r4 !== t30.input.length - 1) {
+                  const i2 = new TextDecoder().decode(e7.slice(r4 + 1)).trim();
+                  if (-1 === r4 || !i2.startsWith(t30.lexerShortcodeState.currShortcodeName + " ")) return [t30.errorf("inline shortcodes do not support nesting"), true];
                 }
               }
               return t30.hasPrefix(leftDelimScWithMarkup) ? (t30.lexerShortcodeState.currLeftDelimItem = 10, t30.lexerShortcodeState.currRightDelimItem = 11) : (t30.lexerShortcodeState.currLeftDelimItem = 8, t30.lexerShortcodeState.currRightDelimItem = 9), [t30.lexShortcodeLeftDelim, true];
-            }), r = new sectionHandler(e5, (e6) => e6.summaryDividerChecked || !e6.summaryDivider ? -1 : e6.index(e6.summaryDivider), (e6, t30) => t30.summaryDivider && t30.hasPrefix(t30.summaryDivider) ? (t30.summaryDividerChecked = true, t30.pos += t30.summaryDivider.length, t30.consumeSpace(), t30.emit(2), [e6, true]) : [e6, false]);
-            return t29.handlers = [i2, r], t29.skipIndexes = new Array(t29.handlers.length), t29;
+            }), i = new sectionHandler(e5, (e6) => e6.summaryDividerChecked || !e6.summaryDivider ? -1 : e6.index(e6.summaryDivider), (e6, t30) => t30.summaryDivider && t30.hasPrefix(t30.summaryDivider) ? (t30.summaryDividerChecked = true, t30.pos += t30.summaryDivider.length, t30.consumeSpace(), t30.emit(2), [e6, true]) : [e6, false]);
+            return t29.handlers = [r3, i], t29.skipIndexes = new Array(t29.handlers.length), t29;
           }(this);
         }
         Iterator() {
@@ -115179,23 +115553,23 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const t28 = () => {
             this.start = this.pos;
           };
-          if (18 === e4) for (let i2 = this.pos - 1; i2 >= this.start; i2--) {
-            const r = this.input[i2];
-            if (32 !== r && 9 !== r && 13 !== r && 10 !== r) break;
-            if (i2 === this.start && 10 !== r) {
+          if (18 === e4) for (let r3 = this.pos - 1; r3 >= this.start; r3--) {
+            const i = this.input[r3];
+            if (32 !== i && 9 !== i && 13 !== i && 10 !== i) break;
+            if (r3 === this.start && 10 !== i) {
               const e5 = new Item();
               return e5.Type = 17, e5.low = this.start, e5.high = this.pos, this.append(e5), void t28();
             }
-            if (10 === r && i2 < this.pos - 1) {
-              const r3 = new Item();
-              r3.Type = e4, r3.low = this.start, r3.high = i2 + 1, this.append(r3);
+            if (10 === i && r3 < this.pos - 1) {
+              const i2 = new Item();
+              i2.Type = e4, i2.low = this.start, i2.high = r3 + 1, this.append(i2);
               const s2 = new Item();
-              return s2.Type = 17, s2.low = i2 + 1, s2.high = this.pos, this.append(s2), void t28();
+              return s2.Type = 17, s2.low = r3 + 1, s2.high = this.pos, this.append(s2), void t28();
             }
-            if (10 === r && i2 === this.pos - 1) break;
+            if (10 === i && r3 === this.pos - 1) break;
           }
-          const i = new Item();
-          i.Type = e4, i.low = this.start, i.high = this.pos, i.low < this.input.length && (7 === e4 && 239 === this.input[i.low] ? i.firstByte = 239 : i.firstByte = this.input[i.low]), this.append(i), t28();
+          const r = new Item();
+          r.Type = e4, r.low = this.start, r.high = this.pos, r.low < this.input.length && (7 === e4 && 239 === this.input[r.low] ? r.firstByte = 239 : r.firstByte = this.input[r.low]), this.append(r), t28();
         }
         emitString(e4) {
           const t28 = new Item();
@@ -115205,13 +115579,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.pos >= this.input.length;
         }
         ignoreEscapesAndEmit(e4, t28) {
-          let i = this.start, r = i;
+          let r = this.start, i = r;
           const s2 = [];
-          for (; i < this.pos; ) {
+          for (; r < this.pos; ) {
             const e5 = 1;
-            92 === this.input[i] && (i > r && s2.push({ Low: r, High: i }), r = i + e5), i += e5;
+            92 === this.input[r] && (r > i && s2.push({ Low: i, High: r }), i = r + e5), r += e5;
           }
-          if (r < this.pos && s2.push({ Low: r, High: this.pos }), s2.length > 0) {
+          if (i < this.pos && s2.push({ Low: i, High: this.pos }), s2.length > 0) {
             const t29 = new Item();
             t29.Type = e4, t29.segments = s2, s2[0].High > s2[0].Low && (t29.firstByte = this.input[s2[0].Low]), this.items.push(t29), this.start = this.pos;
           }
@@ -115224,8 +115598,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.start = this.pos;
         }
         errorf(e4, ...t28) {
-          const i = new Error(e4.replace(/%[a-z]/g, () => String(t28.shift()))), r = new Item();
-          return r.Type = 0, r.Err = i, r.low = this.start, r.high = this.pos, this.append(r), null;
+          const r = new Error(e4.replace(/%[a-z]/g, () => String(t28.shift()))), i = new Item();
+          return i.Type = 0, i.Err = r, i.low = this.start, i.high = this.pos, this.append(i), null;
         }
         consumeCRLF() {
           let e4 = false;
@@ -115248,10 +115622,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return 32 === e4 || 9 === e4 || 10 === e4 || 12 === e4 || 13 === e4 || 133 === e4 || 160 === e4 || 8192 === e4 || 8193 === e4 || 8194 === e4 || 8195 === e4 || 8196 === e4 || 8197 === e4 || 8198 === e4 || 8199 === e4 || 8200 === e4 || 8201 === e4 || 8202 === e4 || 8232 === e4 || 8233 === e4 || 8239 === e4 || 8287 === e4 || 12288 === e4;
         }
         index(e4) {
-          const t28 = this.input.slice(this.pos), i = e4.length, r = t28.length;
-          if (i > r) return -1;
-          e: for (let s2 = 0; s2 <= r - i; s2++) {
-            for (let r3 = 0; r3 < i; r3++) if (t28[s2 + r3] !== e4[r3]) continue e;
+          const t28 = this.input.slice(this.pos), r = e4.length, i = t28.length;
+          if (r > i) return -1;
+          e: for (let s2 = 0; s2 <= i - r; s2++) {
+            for (let i2 = 0; i2 < r; i2++) if (t28[s2 + i2] !== e4[i2]) continue e;
             return s2;
           }
           return -1;
@@ -115264,12 +115638,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         isShortCodeStart() {
           return this.hasPrefix(leftDelimScWithMarkup) || this.hasPrefix(leftDelimScNoMarkup);
         }
-        lexFrontMatterSection(e4, t28, i, r) {
-          for (let e5 = 0; e5 < 2; e5++) if (this.next() !== t28) return this.errorf(`invalid ${i} delimiter`);
+        lexFrontMatterSection(e4, t28, r, i) {
+          for (let e5 = 0; e5 < 2; e5++) if (this.next() !== t28) return this.errorf(`invalid ${r} delimiter`);
           let s2, n3 = this.consumeCRLF();
           for (this.ignore(); ; ) {
-            if (!n3 && (s2 = this.next(), s2 === eof)) return this.errorf(`EOF looking for end ${i} front matter delimiter`);
-            if ((n3 || isEndOfLine(s2)) && this.hasPrefix(r)) {
+            if (!n3 && (s2 = this.next(), s2 === eof)) return this.errorf(`EOF looking for end ${r} front matter delimiter`);
+            if ((n3 || isEndOfLine(s2)) && this.hasPrefix(i)) {
               this.emit(e4), this.pos += 3, this.consumeCRLF(), this.ignore();
               break;
             }
@@ -115321,8 +115695,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 break;
               default:
                 this.backup();
-                const i = new TextDecoder().decode(this.input.slice(this.start, this.pos));
-                return this.lexerShortcodeState.closingState > 0 && !this.lexerShortcodeState.openShortcodes[i] ? this.errorf(`closing tag for shortcode '${i}' does not match start tag`) : (this.lexerShortcodeState.closingState > 0 && (this.lexerShortcodeState.openShortcodes[i] = false, e4 = true), this.lexerShortcodeState.closingState = 0, this.lexerShortcodeState.currShortcodeName = i, this.lexerShortcodeState.openShortcodes[i] = true, this.lexerShortcodeState.elementStepNum++, this.lexerShortcodeState.isInline ? this.emit(14) : this.emit(13), e4 ? () => this.lexEndOfShortcode() : this.lexInsideShortcode);
+                const r = new TextDecoder().decode(this.input.slice(this.start, this.pos));
+                return this.lexerShortcodeState.closingState > 0 && !this.lexerShortcodeState.openShortcodes[r] ? this.errorf(`closing tag for shortcode '${r}' does not match start tag`) : (this.lexerShortcodeState.closingState > 0 && (this.lexerShortcodeState.openShortcodes[r] = false, e4 = true), this.lexerShortcodeState.closingState = 0, this.lexerShortcodeState.currShortcodeName = r, this.lexerShortcodeState.openShortcodes[r] = true, this.lexerShortcodeState.elementStepNum++, this.lexerShortcodeState.isInline ? this.emit(14) : this.emit(13), e4 ? () => this.lexEndOfShortcode() : this.lexInsideShortcode);
             }
           }
         }
@@ -115335,13 +115709,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         peekString(e4) {
           const t28 = (Uint8Array, e4.length);
           if (this.pos + t28 > this.input.length) return null;
-          const i = this.input.slice(this.pos, this.pos + t28);
+          const r = this.input.slice(this.pos, this.pos + t28);
           if (e4 instanceof Uint8Array) {
-            for (let r = 0; r < t28; r++) if (i[r] !== e4[r]) return null;
-            return new TextDecoder().decode(i);
+            for (let i = 0; i < t28; i++) if (r[i] !== e4[i]) return null;
+            return new TextDecoder().decode(r);
           }
           {
-            const t29 = new TextDecoder().decode(i);
+            const t29 = new TextDecoder().decode(r);
             return t29 === e4 ? t29 : null;
           }
         }
@@ -115413,14 +115787,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.lexInsideShortcode;
         }
         lexShortcodeParam(e4) {
-          let t28, i = true, r = false;
+          let t28, r = true, i = false;
           for (; ; ) {
-            if (t28 = this.next(), i) {
+            if (t28 = this.next(), r) {
               if (34 === t28 || 96 === t28 && !e4) return 2 === this.lexerShortcodeState.paramElements ? this.errorf("got quoted positional parameter. Cannot mix named and positional parameters") : (this.lexerShortcodeState.paramElements = 1, this.backup(), 34 === t28 ? () => this.lexShortcodeQuotedParamVal(!e4, 15) : () => this.lexShortCodeParamRawStringVal(15));
               if (96 === t28 && e4) return this.errorf("unrecognized escape character");
-              i = false;
+              r = false;
             } else if (61 === t28) {
-              this.backup(), r = true;
+              this.backup(), i = true;
               break;
             }
             if (!isAlphaNumericOrHyphen(t28) && 46 !== t28) {
@@ -115428,10 +115802,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               break;
             }
           }
-          if (0 === this.lexerShortcodeState.paramElements) this.lexerShortcodeState.paramElements++, r && this.lexerShortcodeState.paramElements++;
+          if (0 === this.lexerShortcodeState.paramElements) this.lexerShortcodeState.paramElements++, i && this.lexerShortcodeState.paramElements++;
           else {
-            if (r && 1 === this.lexerShortcodeState.paramElements) return this.errorf(`got named parameter '${new TextDecoder().decode(this.current())}'. Cannot mix named and positional parameters`);
-            if (!r && 2 === this.lexerShortcodeState.paramElements) return this.errorf(`got positional parameter '${new TextDecoder().decode(this.current())}'. Cannot mix named and positional parameters`);
+            if (i && 1 === this.lexerShortcodeState.paramElements) return this.errorf(`got named parameter '${new TextDecoder().decode(this.current())}'. Cannot mix named and positional parameters`);
+            if (!i && 2 === this.lexerShortcodeState.paramElements) return this.errorf(`got positional parameter '${new TextDecoder().decode(this.current())}'. Cannot mix named and positional parameters`);
           }
           return this.emit(15), this.lexInsideShortcode;
         }
@@ -115454,17 +115828,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         lexShortcodeQuotedParamVal(e4, t28) {
-          let i = false, r = false, s2 = 0;
+          let r = false, i = false, s2 = 0;
           e: for (; ; ) {
             const t29 = this.next();
             switch (true) {
               case 92 === t29:
                 if (34 === this.peek()) {
-                  if (i && !e4) {
+                  if (r && !e4) {
                     this.backup();
                     break e;
                   }
-                  i && (r = true, s2 = 1);
+                  r && (i = true, s2 = 1);
                 } else if (96 === this.peek()) return this.errorf("unrecognized escape character");
                 break;
               case t29 === eof:
@@ -115472,15 +115846,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 return this.errorf(`unterminated quoted string in shortcode parameter-argument: '${new TextDecoder().decode(this.current())}'`);
               case 34 === t29:
                 if (0 === s2) {
-                  if (i) {
+                  if (r) {
                     this.backup();
                     break e;
                   }
-                  i = true, this.ignore();
+                  r = true, this.ignore();
                 } else s2 = 0;
             }
           }
-          r ? this.ignoreEscapesAndEmit(t28, true) : this.emitString(t28);
+          i ? this.ignoreEscapesAndEmit(t28, true) : this.emitString(t28);
           const n3 = this.next();
           return 92 === n3 ? 34 === this.peek() && (this.ignore(), this.next(), this.ignore()) : 34 === n3 ? this.ignore() : this.backup(), this.lexInsideShortcode;
         }
@@ -115567,17 +115941,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async parse() {
           const e4 = function(e5, t28 = {}) {
-            const [i, r] = function(e6, t29) {
-              const [i2, r3] = function(e7, t30) {
-                const i3 = function(e8, t31, i4) {
-                  return new pageLexer(e8, lexIntroSection, i4);
+            const [r, i] = function(e6, t29) {
+              const [r3, i2] = function(e7, t30) {
+                const r4 = function(e8, t31, r5) {
+                  return new pageLexer(e8, lexIntroSection, r5);
                 }(e7, 0, t30);
-                return i3.run(), [i3, null];
+                return r4.run(), [r4, null];
               }(e6, t29);
-              return r3 ? [[], r3] : [i2.items, i2.err];
+              return i2 ? [[], i2] : [r3.items, r3.err];
             }(e5, t28);
-            if (r) throw log14.error("Error parsing bytes:", r), r;
-            return i;
+            if (i) throw log14.error("Error parsing bytes:", i), i;
+            return r;
           }(this.source, {});
           this.itemsStep1 = e4;
         }
@@ -115590,8 +115964,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               if (7 === t28.Type) log15.info(`Ignoring item at position ${t28.Pos()}: ${t28.ValStr(this.source)}`);
               else if (t28.IsFrontMatter()) {
                 await this.handlers.frontMatterHandler()(t28);
-                const i = e4.Peek();
-                i.IsDone() || (this.posMainContent = i.Pos());
+                const r = e4.Peek();
+                r.IsDone() || (this.posMainContent = r.Pos());
               } else if (2 === t28.Type) await this.handlers.summaryHandler()(t28, e4);
               else if (t28.IsLeftShortcodeDelim()) {
                 e4.Backup();
@@ -115617,21 +115991,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.source;
         }
         createError(e4, t28) {
-          const i = function(e5, t29, i2) {
-            const r3 = "string" == typeof t29 ? (s2 = t29, new TextEncoder().encode(s2)) : t29;
+          const r = function(e5, t29, r3) {
+            const i2 = "string" == typeof t29 ? (s2 = t29, new TextEncoder().encode(s2)) : t29;
             var s2;
-            if (i2 < 0) return { filename: e5, line: 1, column: 1, offset: 0 };
+            if (r3 < 0) return { filename: e5, line: 1, column: 1, offset: 0 };
             let n3 = 1, a = 1;
-            for (let e6 = 0; e6 < Math.min(i2, r3.length); e6++) 10 === r3[e6] ? (n3++, a = 1) : a++;
-            return { filename: e5, line: n3, column: a, offset: i2 };
-          }("", this.source, t28.Pos()), r = new Error(`${e4.message} at line ${i.line}, column ${i.column}`);
-          return r.position = i, r;
+            for (let e6 = 0; e6 < Math.min(r3, i2.length); e6++) 10 === i2[e6] ? (n3++, a = 1) : a++;
+            return { filename: e5, line: n3, column: a, offset: r3 };
+          }("", this.source, t28.Pos()), i = new Error(`${e4.message} at line ${r.line}, column ${r.column}`);
+          return i.position = r, i;
         }
       };
     } });
     init_shortcode = __esm2({ "internal/domain/markdown/vo/shortcode.ts"() {
       init_log(), log16 = getDomainLogger("markdown", { component: "vo/shortcode" }), ShortcodeImpl = class {
-        constructor(e4 = 0, t28 = "", i = null, r = 0, s2 = 0, n3 = false, a = false) {
+        constructor(e4 = 0, t28 = "", r = null, i = 0, s2 = 0, n3 = false, a = false) {
           __publicField(this, "name");
           __publicField(this, "params");
           __publicField(this, "pos");
@@ -115647,7 +116021,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "isClosing");
           __publicField(this, "info");
           __publicField(this, "templs");
-          this.ordinal = e4, this.name = t28, this.params = i, this.pos = r, this.length = s2, this.rawContent = "", this.inline = n3, this.closed = a, this.doMarkup = false, this.isClosing = false, this.placeholder = "", this.inner = [];
+          this.ordinal = e4, this.name = t28, this.params = r, this.pos = i, this.length = s2, this.rawContent = "", this.inline = n3, this.closed = a, this.doMarkup = false, this.isClosing = false, this.placeholder = "", this.inner = [];
         }
         needsInner() {
           return !this.inline;
@@ -115665,18 +116039,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         parseItem(e4, t28) {
           var _a11;
-          const i = this.extractShortcode(this.ordinal, 0, t28);
-          if (!i) throw new Error("Failed to extract shortcode");
-          i.pos = e4.Pos() + e4.ValStr(this.source).length, i.length = t28.Current().Pos() + t28.Current().ValStr(this.source).length - i.pos;
-          const r = this.source.slice(i.pos, i.pos + i.length);
-          return i.rawContent = new TextDecoder().decode(r), i.name && this.nameSet.add(i.name), (_a11 = i.params) != null ? _a11 : i.params = [], i.placeholder = createShortcodePlaceholder("s", this.pid, this.ordinal), this.ordinal++, this.shortcodes.push(i), i;
+          const r = this.extractShortcode(this.ordinal, 0, t28);
+          if (!r) throw new Error("Failed to extract shortcode");
+          r.pos = e4.Pos() + e4.ValStr(this.source).length, r.length = t28.Current().Pos() + t28.Current().ValStr(this.source).length - r.pos;
+          const i = this.source.slice(r.pos, r.pos + r.length);
+          return r.rawContent = new TextDecoder().decode(i), r.name && this.nameSet.add(r.name), (_a11 = r.params) != null ? _a11 : r.params = [], r.placeholder = createShortcodePlaceholder("s", this.pid, this.ordinal), this.ordinal++, this.shortcodes.push(r), r;
         }
-        extractShortcode(e4, t28, i) {
-          const r = new ShortcodeImpl(e4);
-          if (i.Pos() > 0) {
-            i.Backup();
-            const e5 = i.Next();
-            e5.IsIndentation() && (r.indentation = e5.ValStr(this.source));
+        extractShortcode(e4, t28, r) {
+          const i = new ShortcodeImpl(e4);
+          if (r.Pos() > 0) {
+            r.Backup();
+            const e5 = r.Next();
+            e5.IsIndentation() && (i.indentation = e5.ValStr(this.source));
           }
           let s2 = 0, n3 = 0;
           const a = t28 + 1;
@@ -115684,78 +116058,78 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const l = "failed to extract shortcode";
           let c = 0;
           for (; ; ) {
-            const e5 = i.Next();
+            const e5 = r.Next();
             if (e5.IsLeftShortcodeDelim()) {
-              const t29 = i.Peek();
+              const t29 = r.Peek();
               if (t29.IsRightShortcodeDelim()) throw new Error("shortcode has no name");
               if (t29.IsShortcodeClose()) continue;
               if (s2 > 0) {
-                i.Backup();
-                const e6 = this.extractShortcode(n3, a, i);
-                n3++, e6 && e6.name && (this.nameSet.add(e6.name), Array.isArray(r.inner) || (r.inner = []), r.inner.push(e6));
-              } else r.doMarkup = e5.IsShortcodeMarkupDelimiter();
+                r.Backup();
+                const e6 = this.extractShortcode(n3, a, r);
+                n3++, e6 && e6.name && (this.nameSet.add(e6.name), Array.isArray(i.inner) || (i.inner = []), i.inner.push(e6));
+              } else i.doMarkup = e5.IsShortcodeMarkupDelimiter();
               s2++;
             } else if (e5.IsRightShortcodeDelim()) {
-              if (!r.inline && !r.needsInner()) return this.openShortcodes.set(r.name, false), r;
+              if (!i.inline && !i.needsInner()) return this.openShortcodes.set(i.name, false), i;
             } else {
               if (e5.IsShortcodeClose()) {
                 o = true;
-                const e6 = i.Peek();
-                if (!r.inline && !r.needsInner()) {
+                const e6 = r.Peek();
+                if (!i.inline && !i.needsInner()) {
                   if (e6.IsError()) continue;
-                  throw new Error(`${l}: shortcode "${r.name}" does not evaluate .Inner or .InnerDeindent, yet a closing tag was provided`);
+                  throw new Error(`${l}: shortcode "${i.name}" does not evaluate .Inner or .InnerDeindent, yet a closing tag was provided`);
                 }
-                return e6.IsRightShortcodeDelim() ? i.Consume(1) : (r.isClosing = true, i.Consume(2)), r.inline || this.openShortcodes.set(r.name, false), r;
+                return e6.IsRightShortcodeDelim() ? r.Consume(1) : (i.isClosing = true, r.Consume(2)), i.inline || this.openShortcodes.set(i.name, false), i;
               }
               if (e5.IsText()) {
-                Array.isArray(r.inner) || (r.inner = []);
+                Array.isArray(i.inner) || (i.inner = []);
                 const t29 = e5.ValStr(this.source);
-                r.inner.push(t29);
+                i.inner.push(t29);
               } else if (e5.IsShortcodeName() || e5.IsInlineShortcodeName()) {
-                if (r.name = e5.ValStr(this.source).trim(), r.inline = e5.IsInlineShortcodeName(), this.openShortcodes.has(r.name) && this.openShortcodes.get(r.name)) throw new Error(`shortcode ${r.name} nested in itself`);
-                if (r.inline || this.openShortcodes.set(r.name, true), r.inline) {
-                  const e6 = this.source.slice(i.Pos() + 3), t29 = indexNonWhiteSpace2(e6, "/");
+                if (i.name = e5.ValStr(this.source).trim(), i.inline = e5.IsInlineShortcodeName(), this.openShortcodes.has(i.name) && this.openShortcodes.get(i.name)) throw new Error(`shortcode ${i.name} nested in itself`);
+                if (i.inline || this.openShortcodes.set(i.name, true), i.inline) {
+                  const e6 = this.source.slice(r.Pos() + 3), t29 = indexNonWhiteSpace2(e6, "/");
                   if (t29 !== this.source.length - 1) {
-                    const i2 = new TextDecoder().decode(e6.slice(t29 + 1));
-                    if (-1 === t29 || !i2.startsWith(r.name + " ")) throw new Error("inline shortcodes do not support nesting");
+                    const r3 = new TextDecoder().decode(e6.slice(t29 + 1));
+                    if (-1 === t29 || !r3.startsWith(i.name + " ")) throw new Error("inline shortcodes do not support nesting");
                   }
                 }
               } else if (e5.IsShortcodeParam()) {
-                if (!i.IsValueNext()) {
-                  log16.warn(`${l}: shortcode "${r.name}" has a parameter without a value`);
+                if (!r.IsValueNext()) {
+                  log16.warn(`${l}: shortcode "${i.name}" has a parameter without a value`);
                   continue;
                 }
-                if (i.Peek().IsShortcodeParamVal()) if (null === r.params || void 0 === r.params) {
+                if (r.Peek().IsShortcodeParamVal()) if (null === i.params || void 0 === i.params) {
                   const t29 = {}, s3 = e5.ValStr(this.source);
-                  i.Next(), t29[s3] = i.Current().ValTyped(this.source), r.params = t29;
+                  r.Next(), t29[s3] = r.Current().ValTyped(this.source), i.params = t29;
                 } else {
-                  if (Array.isArray(r.params)) throw new Error(`${l}: invalid state: invalid param type Array for shortcode "${r.name}", expected a map`);
+                  if (Array.isArray(i.params)) throw new Error(`${l}: invalid state: invalid param type Array for shortcode "${i.name}", expected a map`);
                   {
                     const t29 = e5.ValStr(this.source);
-                    i.Next(), r.params[t29] = i.Current().ValTyped(this.source);
+                    r.Next(), i.params[t29] = r.Current().ValTyped(this.source);
                   }
                 }
-                else if (null === r.params || void 0 === r.params) {
+                else if (null === i.params || void 0 === i.params) {
                   const t29 = [];
-                  t29.push(e5.ValTyped(this.source)), r.params = t29;
+                  t29.push(e5.ValTyped(this.source)), i.params = t29;
                 } else {
-                  if (!Array.isArray(r.params)) throw new Error(`${l}: invalid state: invalid param type Object for shortcode "${r.name}", expected an array`);
-                  r.params.push(e5.ValTyped(this.source));
+                  if (!Array.isArray(i.params)) throw new Error(`${l}: invalid state: invalid param type Object for shortcode "${i.name}", expected an array`);
+                  i.params.push(e5.ValTyped(this.source));
                 }
               } else if (e5.IsShortcodeParamVal()) {
-                if (0 === c && (c = 1), Array.isArray(r.params)) r.params.push(e5.ValTyped(this.source));
-                else if (null === r.params || void 0 === r.params) {
+                if (0 === c && (c = 1), Array.isArray(i.params)) i.params.push(e5.ValTyped(this.source));
+                else if (null === i.params || void 0 === i.params) {
                   const t29 = [];
-                  t29.push(e5.ValTyped(this.source)), r.params = t29;
+                  t29.push(e5.ValTyped(this.source)), i.params = t29;
                 }
               } else if (e5.IsDone()) {
-                if (!e5.IsError() && !o && r.needsInner()) throw new Error(`${l}: shortcode "${r.name}" must be closed or self-closed`);
-                i.Backup();
+                if (!e5.IsError() && !o && i.needsInner()) throw new Error(`${l}: shortcode "${i.name}" must be closed or self-closed`);
+                r.Backup();
                 break;
               }
             }
           }
-          return r.inline || this.openShortcodes.set(r.name, false), r;
+          return i.inline || this.openShortcodes.set(i.name, false), i;
         }
         getShortcodes() {
           return this.shortcodes;
@@ -115818,8 +116192,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.summaryTruncated;
         }
         addReplacement(e4, t28) {
-          const i = { val: e4, source: t28 };
-          this.items.push(i);
+          const r = { val: e4, source: t28 };
+          this.items.push(r);
         }
         addShortcode(e4) {
           this.items.push(e4);
@@ -115834,12 +116208,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return new TextDecoder().decode(this.rawSource);
         }
         pureContent() {
-          const e4 = [], t28 = new TextDecoder(), i = new TextEncoder();
+          const e4 = [], t28 = new TextDecoder(), r = new TextEncoder();
           for (const t29 of this.items) if (this.isItem(t29)) {
-            const i2 = this.rawSource.slice(t29.Pos(), t29.Pos() + t29.Val(this.rawSource).length);
-            e4.push(i2);
-          } else this.isContentReplacement(t29) ? e4.push(t29.val) : this.isShortcode(t29) && e4.push(i.encode(t29.placeholder));
-          const r = e4.reduce((e5, t29) => e5 + t29.length, 0), s2 = new Uint8Array(r);
+            const r3 = this.rawSource.slice(t29.Pos(), t29.Pos() + t29.Val(this.rawSource).length);
+            e4.push(r3);
+          } else this.isContentReplacement(t29) ? e4.push(t29.val) : this.isShortcode(t29) && e4.push(r.encode(t29.placeholder));
+          const i = e4.reduce((e5, t29) => e5 + t29.length, 0), s2 = new Uint8Array(i);
           let n3 = 0;
           for (const t29 of e4) s2.set(t29, n3), n3 += t29.length;
           return t28.decode(s2);
@@ -115847,20 +116221,20 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         pureContentWithoutPlaceholder() {
           const e4 = [], t28 = new TextDecoder();
           for (const t29 of this.items) if (this.isItem(t29)) {
-            const i2 = this.rawSource.slice(t29.Pos(), t29.Pos() + t29.Val(this.rawSource).length);
-            e4.push(i2);
+            const r3 = this.rawSource.slice(t29.Pos(), t29.Pos() + t29.Val(this.rawSource).length);
+            e4.push(r3);
           } else this.isContentReplacement(t29) ? e4.push(t29.val) : this.isShortcode(t29);
-          const i = e4.reduce((e5, t29) => e5 + t29.length, 0), r = new Uint8Array(i);
+          const r = e4.reduce((e5, t29) => e5 + t29.length, 0), i = new Uint8Array(r);
           let s2 = 0;
-          for (const t29 of e4) r.set(t29, s2), s2 += t29.length;
-          return t28.decode(r);
+          for (const t29 of e4) i.set(t29, s2), s2 += t29.length;
+          return t28.decode(i);
         }
         renderedContent(e4) {
           let t28 = this.pureContent();
           if (e4) {
-            for (const i of this.items) if (this.isShortcode(i)) {
-              const r = e4(i);
-              t28 = t28.replace(i.placeholder, r);
+            for (const r of this.items) if (this.isShortcode(r)) {
+              const i = e4(r);
+              t28 = t28.replace(r.placeholder, i);
             }
           }
           return t28;
@@ -115868,9 +116242,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async renderedContentAsync(e4) {
           let t28 = await this.renderer.render(this.pureContent());
           if (e4) {
-            for (const i of this.items) if (this.isShortcode(i)) try {
-              const r = await e4(i);
-              t28 = t28.replace(i.placeholder, r);
+            for (const r of this.items) if (this.isShortcode(r)) try {
+              const i = await e4(r);
+              t28 = t28.replace(r.placeholder, i);
             } catch (e5) {
             }
           }
@@ -115889,26 +116263,26 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.items.filter(this.isContentReplacement);
         }
         extractSummary(e4, t28) {
-          const i = new TextDecoder().decode(e4), r = this.extractSummaryFromHTML(t28, i, 70, this.containsCJK(i)), s2 = r.summaryLowHigh.high > r.summaryLowHigh.low ? i.substring(r.summaryLowHigh.low, r.summaryLowHigh.high).trim() : "";
-          if (s2) return this.summaryTruncated = r.truncated, { summary: s2, truncated: r.truncated };
+          const r = new TextDecoder().decode(e4), i = this.extractSummaryFromHTML(t28, r, 70, this.containsCJK(r)), s2 = i.summaryLowHigh.high > i.summaryLowHigh.low ? r.substring(i.summaryLowHigh.low, i.summaryLowHigh.high).trim() : "";
+          if (s2) return this.summaryTruncated = i.truncated, { summary: s2, truncated: i.truncated };
           const n3 = this.trimShortHTML(e4);
           return this.summaryTruncated = n3.length < e4.length, { summary: new TextDecoder().decode(e4), truncated: this.summaryTruncated };
         }
-        extractSummaryFromHTML(e4, t28, i, r) {
+        extractSummaryFromHTML(e4, t28, r, i) {
           const s2 = { source: t28, summaryLowHigh: { low: 0, high: t28.length }, truncated: false };
-          if (i <= 0) return s2;
+          if (r <= 0) return s2;
           let n3 = 0;
           const a = t28.split(/\s+/);
-          for (let e5 = 0; e5 < a.length && n3 < i; e5++) {
+          for (let e5 = 0; e5 < a.length && n3 < r; e5++) {
             const o = a[e5].trim();
             if (0 !== o.length && !this.isProbablyHTMLToken(o)) {
-              if (r) {
+              if (i) {
                 const e6 = this.stripHTML(o), t29 = [...e6].length;
                 n3 += e6.length === e6.replace(/[^\u0000-\u007F]/g, "").length ? 1 : t29;
               } else n3 += 1;
-              if (n3 >= i) {
-                const i2 = a.slice(0, e5 + 1).join(" "), r3 = t28.indexOf(i2) + i2.length;
-                s2.summaryLowHigh = { low: 0, high: Math.min(r3, t28.length) }, s2.truncated = true;
+              if (n3 >= r) {
+                const r3 = a.slice(0, e5 + 1).join(" "), i2 = t28.indexOf(r3) + r3.length;
+                s2.summaryLowHigh = { low: 0, high: Math.min(i2, t28.length) }, s2.truncated = true;
                 break;
               }
             }
@@ -115925,9 +116299,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return e4.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
         }
         trimShortHTML(e4) {
-          const t28 = new TextDecoder(), i = new TextEncoder();
-          let r = t28.decode(e4);
-          return 1 === (r.match(/<p>/g) || []).length && (r = r.trim(), r.startsWith("<p>") && r.endsWith("</p>") && (r = r.slice(3, -4).trim())), i.encode(r);
+          const t28 = new TextDecoder(), r = new TextEncoder();
+          let i = t28.decode(e4);
+          return 1 === (i.match(/<p>/g) || []).length && (i = i.trim(), i.startsWith("<p>") && i.endsWith("</p>") && (i = i.slice(3, -4).trim())), r.encode(i);
         }
         cleanDividerPlaceholders(e4) {
           return this.hasSummaryDivider ? e4.replace(new RegExp("HUGOMORE42", "g"), "") : e4;
@@ -115942,7 +116316,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async getRenderedSummary(e4, t28) {
           if (this.hasSummaryDivider && e4) return this.getDividedSummary(e4);
-          const i = this.pureContentWithoutPlaceholder(), r = new TextEncoder().encode(i), s2 = new MediaType({ type: "text/html", mainType: "text", subType: "html", delimiter: ".", firstSuffix: { suffix: "html", fullSuffix: ".html" }, mimeSuffix: "", suffixesCSV: "html" }), n3 = this.extractSummary(r, s2);
+          const r = this.pureContentWithoutPlaceholder(), i = new TextEncoder().encode(r), s2 = new MediaType({ type: "text/html", mainType: "text", subType: "html", delimiter: ".", firstSuffix: { suffix: "html", fullSuffix: ".html" }, mimeSuffix: "", suffixesCSV: "html" }), n3 = this.extractSummary(i, s2);
           let a = n3.summary;
           return n3.truncated && (a += "..."), t28 && a.length > t28 && (a = a.substring(0, t28).trim() + "..."), await this.renderer.render(a);
         }
@@ -115996,44 +116370,44 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.renderer = e4, this.highlighter = t28;
         }
         async render(e4, t28) {
-          const i = await this.parse(e4), r = await this.renderToBytes(e4, t28, i);
-          return new ResultImpl(i, r);
+          const r = await this.parse(e4), i = await this.renderToBytes(e4, t28, r);
+          return new ResultImpl(r, i);
         }
-        async highlight(e4, t28, i) {
-          return this.highlighter.highlight(e4, t28, i);
+        async highlight(e4, t28, r) {
+          return this.highlighter.highlight(e4, t28, r);
         }
         async highlightCodeBlock(e4, t28) {
           return this.highlighter.highlightCodeBlock(e4, t28);
         }
-        async renderCodeblock(e4, t28, i) {
-          return this.highlighter.renderCodeblock(e4, t28, i);
+        async renderCodeblock(e4, t28, r) {
+          return this.highlighter.renderCodeblock(e4, t28, r);
         }
         isDefaultCodeBlockRenderer() {
           return this.highlighter.isDefaultCodeBlockRenderer();
         }
         async prepareRender(e4) {
           var _a11;
-          const t28 = await this.parseContent(e4), i = (_a11 = t28.frontMatter) == null ? void 0 : _a11.params, r = await this.renderer.parse(t28.content.pureContent());
-          return { frontMatter: () => i || {}, toc: () => r.tableOfContents(), render: async (e5) => {
-            const r3 = await t28.content.renderedContentAsync(e5.shortcodeRenderer), s2 = await t28.content.getRenderedSummary(r3, e5.maxSummaryLength), n3 = t28.content.getWordCount(), a = t28.content.getReadingTime(e5.wordsPerMinute), o = { renderedContent: t28.content.cleanDividerPlaceholders(r3), wordCount: n3, readingTime: a };
-            return i && (o.frontMatter = i), s2 && (o.summary = s2), o;
+          const t28 = await this.parseContent(e4), r = (_a11 = t28.frontMatter) == null ? void 0 : _a11.params, i = await this.renderer.parse(t28.content.pureContent());
+          return { frontMatter: () => r || {}, toc: () => i.tableOfContents(), render: async (e5) => {
+            const i2 = await t28.content.renderedContentAsync(e5.shortcodeRenderer), s2 = await t28.content.getRenderedSummary(i2, e5.maxSummaryLength), n3 = t28.content.getWordCount(), a = t28.content.getReadingTime(e5.wordsPerMinute), o = { renderedContent: t28.content.cleanDividerPlaceholders(i2), wordCount: n3, readingTime: a };
+            return r && (o.frontMatter = r), s2 && (o.summary = s2), o;
           } };
         }
         async parseAndRenderContent(e4, t28 = {}) {
           var _a11;
-          const i = await this.parseContent(e4), r = (_a11 = i.frontMatter) == null ? void 0 : _a11.params;
+          const r = await this.parseContent(e4), i = (_a11 = r.frontMatter) == null ? void 0 : _a11.params;
           let s2;
-          s2 = t28.shortcodeRenderer && i.shortcodes.length > 0 ? await i.content.renderedContentAsync(t28.shortcodeRenderer) : i.content.pureContent();
+          s2 = t28.shortcodeRenderer && r.shortcodes.length > 0 ? await r.content.renderedContentAsync(t28.shortcodeRenderer) : r.content.pureContent();
           const n3 = await this.renderer.render(s2);
           if (this.hasCollectedTagsSupport()) {
             const e5 = this.getCollectedTags();
             if (e5.length > 0) {
-              const t29 = r || {}, s3 = Array.isArray(t29.tags) ? t29.tags : t29.tags ? [t29.tags] : [], n4 = [.../* @__PURE__ */ new Set([...s3, ...e5])];
-              t29.tags = n4, i.frontMatter && (i.frontMatter.params = t29), log18.debug(`Merged tags: YAML [${s3.join(", ")}] + inline [${e5.join(", ")}] = [${n4.join(", ")}]`);
+              const t29 = i || {}, s3 = Array.isArray(t29.tags) ? t29.tags : t29.tags ? [t29.tags] : [], n4 = [.../* @__PURE__ */ new Set([...s3, ...e5])];
+              t29.tags = n4, r.frontMatter && (r.frontMatter.params = t29), log18.debug(`Merged tags: YAML [${s3.join(", ")}] + inline [${e5.join(", ")}] = [${n4.join(", ")}]`);
             }
           }
-          const a = i.content.getDividedSummary(n3), o = { renderedContent: n3, wordCount: i.content.getWordCount(), readingTime: i.content.getReadingTime(t28.wordsPerMinute) };
-          return r && (o.frontMatter = r), a && (o.summary = a), o;
+          const a = r.content.getDividedSummary(n3), o = { renderedContent: n3, wordCount: r.content.getWordCount(), readingTime: r.content.getReadingTime(t28.wordsPerMinute) };
+          return i && (o.frontMatter = i), a && (o.summary = a), o;
         }
         hasCollectedTagsSupport() {
           return "function" == typeof this.renderer.getCollectedTags;
@@ -116043,41 +116417,41 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async parseContent(e4) {
           let t28;
-          const i = new Content(e4, this.renderer), r = new ShortcodeParser(e4), s2 = [], n3 = function(e5, t29) {
+          const r = new Content(e4, this.renderer), i = new ShortcodeParser(e4), s2 = [], n3 = function(e5, t29) {
             return new SourceParseInfo(e5, t29);
-          }(e4, { frontMatterHandler: () => (i2) => {
-            t28 = this.parseFrontMatter(i2, e4);
-          }, summaryHandler: () => (t29, r3) => {
+          }(e4, { frontMatterHandler: () => (r3) => {
+            t28 = this.parseFrontMatter(r3, e4);
+          }, summaryHandler: () => (t29, i2) => {
             let s3 = -1;
-            r3.PeekWalk((t30) => (-1 !== s3 || t30.IsDone() || (s3 = t30.Pos()), !t30.IsNonWhitespace(e4) || (i.setSummaryTruncated(), false))), i.setSummaryDivider(), i.addReplacement(INTERNAL_SUMMARY_DIVIDER_PRE, t29);
+            i2.PeekWalk((t30) => (-1 !== s3 || t30.IsDone() || (s3 = t30.Pos()), !t30.IsNonWhitespace(e4) || (r.setSummaryTruncated(), false))), r.setSummaryDivider(), r.addReplacement(INTERNAL_SUMMARY_DIVIDER_PRE, t29);
           }, shortcodeHandler: () => (e5, t29) => {
-            const n4 = r.parseItem(e5, t29);
-            s2.push(n4), i.addShortcode(n4);
+            const n4 = i.parseItem(e5, t29);
+            s2.push(n4), r.addShortcode(n4);
           }, bytesHandler: () => (e5) => {
-            i.addItem(e5);
+            r.addItem(e5);
           } });
-          return await n3.parse(), await n3.handle(), { frontMatter: t28, content: i, shortcodes: s2, summary: await i.getRenderedSummary(), wordCount: i.getWordCount(), readingTime: i.getReadingTime() };
+          return await n3.parse(), await n3.handle(), { frontMatter: t28, content: r, shortcodes: s2, summary: await r.getRenderedSummary(), wordCount: r.getWordCount(), readingTime: r.getReadingTime() };
         }
         parseFrontMatter(e4, t28) {
-          const i = e4.ValStr(t28);
-          let r, s2 = {};
+          const r = e4.ValStr(t28);
+          let i, s2 = {};
           switch (e4.Type) {
             case 3:
-              r = "yaml", s2 = this.parseYAML(i);
+              i = "yaml", s2 = this.parseYAML(r);
               break;
             case 4:
-              r = "toml", s2 = this.parseTOML(i);
+              i = "toml", s2 = this.parseTOML(r);
               break;
             case 5:
-              r = "json", s2 = this.parseJSON(i);
+              i = "json", s2 = this.parseJSON(r);
               break;
             case 6:
-              r = "org", s2 = this.parseOrg(i);
+              i = "org", s2 = this.parseOrg(r);
               break;
             default:
-              r = "yaml";
+              i = "yaml";
           }
-          return { params: s2, format: r };
+          return { params: s2, format: i };
         }
         parseYAML(e4) {
           try {
@@ -116103,14 +116477,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         parseOrg(e4) {
-          const t28 = {}, i = e4.split("\n");
-          for (const e5 of i) {
-            const i2 = e5.trim();
-            if (!i2.startsWith("#+")) continue;
-            const r = i2.match(/^#\+([^:]+):\s*(.*)$/);
-            if (r) {
-              const e6 = r[1].trim().toLowerCase(), i3 = r[2].trim();
-              t28[e6] = this.parseValue(i3);
+          const t28 = {}, r = e4.split("\n");
+          for (const e5 of r) {
+            const r3 = e5.trim();
+            if (!r3.startsWith("#+")) continue;
+            const i = r3.match(/^#\+([^:]+):\s*(.*)$/);
+            if (i) {
+              const e6 = i[1].trim().toLowerCase(), r4 = i[2].trim();
+              t28[e6] = this.parseValue(r4);
             }
           }
           return t28;
@@ -116131,21 +116505,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const t28 = new TextDecoder().decode(e4.src);
           return await this.renderer.parse(t28);
         }
-        async renderToBytes(e4, t28, i) {
-          const r = new TextDecoder().decode(e4.src), s2 = await this.renderer.render(r), n3 = new BufWriter();
+        async renderToBytes(e4, t28, r) {
+          const i = new TextDecoder().decode(e4.src), s2 = await this.renderer.render(i), n3 = new BufWriter();
           return await n3.writeString(s2), new RenderingResultImpl(n3);
         }
       };
     } });
     init_parserresult2 = __esm2({ "internal/domain/markdown/factory/it/parserresult.ts"() {
       init_tableofcontents(), ParserResult = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "_headers", []);
           __publicField(this, "_toc");
           __publicField(this, "tokens");
           __publicField(this, "source");
           __publicField(this, "idGenerator");
-          this.tokens = e4, this.source = t28, this.idGenerator = i || new AutoIDGenerator(), this._toc = this.buildTableOfContents(), this._headers = this.extractHeaders();
+          this.tokens = e4, this.source = t28, this.idGenerator = r || new AutoIDGenerator(), this._toc = this.buildTableOfContents(), this._headers = this.extractHeaders();
         }
         headers() {
           return [...this._headers];
@@ -116162,10 +116536,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         buildTableOfContents() {
           const e4 = new TOCBuilder();
           for (const t28 of this.tokens) if ("heading_open" === t28.type) {
-            const i = parseInt(t28.tag.substring(1)), r = this.findNextTextToken(t28);
-            if (r) {
-              const t29 = r.content, s2 = this.idGenerator.generateID(t29);
-              e4.addHeading(t29, i, s2);
+            const r = parseInt(t28.tag.substring(1)), i = this.findNextTextToken(t28);
+            if (i) {
+              const t29 = i.content, s2 = this.idGenerator.generateID(t29);
+              e4.addHeading(t29, r, s2);
             }
           }
           return e4.build();
@@ -116173,11 +116547,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         extractHeaders() {
           const e4 = [];
           for (let t28 = 0; t28 < this.tokens.length; t28++) {
-            const i = this.tokens[t28];
-            if ("heading_open" === i.type) {
-              const r = parseInt(i.tag.substring(1)), s2 = this.findNextTextToken(i, t28);
+            const r = this.tokens[t28];
+            if ("heading_open" === r.type) {
+              const i = parseInt(r.tag.substring(1)), s2 = this.findNextTextToken(r, t28);
               if (s2) {
-                const t29 = new HeaderImpl(s2.content, r);
+                const t29 = new HeaderImpl(s2.content, i);
                 e4.push(t29);
               }
             }
@@ -116185,8 +116559,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return e4;
         }
         findNextTextToken(e4, t28) {
-          for (let i = void 0 !== t28 ? t28 + 1 : this.tokens.indexOf(e4) + 1; i < this.tokens.length; i++) {
-            const e5 = this.tokens[i];
+          for (let r = void 0 !== t28 ? t28 + 1 : this.tokens.indexOf(e4) + 1; r < this.tokens.length; r++) {
+            const e5 = this.tokens[r];
             if ("inline" === e5.type) return e5;
             if ("heading_close" === e5.type) break;
           }
@@ -116231,20 +116605,20 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         setupRendererRules() {
           const e4 = this.idGenerator;
-          this.md.renderer.rules.heading_open = function(t28, i) {
-            const r = t28[i + 1].content, s2 = e4.generateID(r);
-            return t28[i].attrPush(["id", s2]), `<${t28[i].tag} id="${s2}">`;
+          this.md.renderer.rules.heading_open = function(t28, r) {
+            const i = t28[r + 1].content, s2 = e4.generateID(i);
+            return t28[r].attrPush(["id", s2]), `<${t28[r].tag} id="${s2}">`;
           };
         }
         async render(e4) {
           var _a11;
           return this.idGenerator.reset(), this.collectedTags.clear(), ((_a11 = this.config.extensions.wikilink) == null ? void 0 : _a11.enable) && (e4 = e4.replace(tableRegex, (e5) => e5.replace(tableWikilinkRegex, (e6, t28) => {
-            let i = t28 != null ? t28 : "";
-            return i = i.replace("#", "\\#"), i = i.replace(/((^|[^\\])(\\\\)*)\|/g, "$1\\|"), i;
+            let r = t28 != null ? t28 : "";
+            return r = r.replace("#", "\\#"), r = r.replace(/((^|[^\\])(\\\\)*)\|/g, "$1\\|"), r;
           })).replace(wikilinkRegex, (e5, ...t28) => {
             var _a12;
-            const [i, r, s2] = t28, [n3, a] = splitAnchor(`${i != null ? i : ""}${r != null ? r : ""}`), o = Boolean(r == null ? void 0 : r.startsWith("#^")) ? "^" : "", l = a ? `#${o}${a.trim().replace(/^#+/, "")}` : "", c = (_a12 = s2 != null ? s2 : r == null ? void 0 : r.replace("#", "|")) != null ? _a12 : "", h3 = e5.startsWith("!") ? "!" : "";
-            return (i == null ? void 0 : i.match(externalLinkRegex)) ? `${h3}[${c.replace(/^\|/, "")}](${i})` : `${h3}[[${n3}${l}${c}]]`;
+            const [r, i, s2] = t28, [n3, a] = splitAnchor(`${r != null ? r : ""}${i != null ? i : ""}`), o = Boolean(i == null ? void 0 : i.startsWith("#^")) ? "^" : "", l = a ? `#${o}${a.trim().replace(/^#+/, "")}` : "", c = (_a12 = s2 != null ? s2 : i == null ? void 0 : i.replace("#", "|")) != null ? _a12 : "", h3 = e5.startsWith("!") ? "!" : "";
+            return (r == null ? void 0 : r.match(externalLinkRegex)) ? `${h3}[${c.replace(/^\|/, "")}](${r})` : `${h3}[[${n3}${l}${c}]]`;
           })), this.md.render(e4);
         }
         getCollectedTags() {
@@ -116288,8 +116662,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_pathcomponents = __esm2({ "internal/domain/paths/vo/pathcomponents.ts"() {
       init_type7(), PathComponentsImpl = class e4 {
-        constructor(e5, t28, i, r, s2, n3 = false, a) {
-          this.original = e5, this.normalized = t28, this.positions = i, this.identifiers = r, this.bundleType = s2, this.disabled = n3, this.component = a;
+        constructor(e5, t28, r, i, s2, n3 = false, a) {
+          this.original = e5, this.normalized = t28, this.positions = r, this.identifiers = i, this.bundleType = s2, this.disabled = n3, this.component = a;
         }
         withBundleType(t28) {
           return new e4(this.original, this.normalized, this.positions, this.identifiers, t28, this.disabled);
@@ -116319,8 +116693,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return `PathComponents{original="${this.original}", normalized="${this.normalized}", bundleType=${PathType[this.bundleType]}, identifiers=${this.identifiers.length}}`;
         }
       }, PathPositionsImpl = class e4 {
-        constructor(e5 = -1, t28 = -1, i = -1, r = -1) {
-          this.containerLow = e5, this.containerHigh = t28, this.sectionHigh = i, this.identifierLanguage = r;
+        constructor(e5 = -1, t28 = -1, r = -1, i = -1) {
+          this.containerLow = e5, this.containerHigh = t28, this.sectionHigh = r, this.identifierLanguage = i;
         }
         reset() {
           this.containerLow = -1, this.containerHigh = -1, this.sectionHigh = -1, this.identifierLanguage = -1;
@@ -116360,11 +116734,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         static createEmpty(e4 = "", t28 = 0) {
           return new PathComponentsImpl(e4, e4, new PathPositionsImpl(), [], t28, false);
         }
-        static create(e4, t28, i = 0) {
-          return new PathComponentsImpl(e4, t28 || e4, new PathPositionsImpl(), [], i, false);
+        static create(e4, t28, r = 0) {
+          return new PathComponentsImpl(e4, t28 || e4, new PathPositionsImpl(), [], r, false);
         }
-        static createFull(e4, t28, i, r, s2, n3 = false) {
-          return new PathComponentsImpl(e4, t28, i, r, s2, n3);
+        static createFull(e4, t28, r, i, s2, n3 = false) {
+          return new PathComponentsImpl(e4, t28, r, i, s2, n3);
         }
       };
     } });
@@ -116417,9 +116791,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         sections() {
           const e5 = this.dir();
           if ("/" === e5 || "" === e5) return [];
-          const t28 = [], i = (e5.startsWith("/") ? e5.substring(1) : e5).split("/").filter((e6) => e6.length > 0);
-          let r = "";
-          for (const e6 of i) "" === r ? r = e6 : r += "/" + e6, t28.push(this.norm(r));
+          const t28 = [], r = (e5.startsWith("/") ? e5.substring(1) : e5).split("/").filter((e6) => e6.length > 0);
+          let i = "";
+          for (const e6 of r) "" === i ? i = e6 : i += "/" + e6, t28.push(this.norm(i));
           return t28;
         }
         container() {
@@ -116459,21 +116833,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return "/" === t28 && (t28 = ""), this.base().substring(t28.length + 1);
         }
         trimLeadingSlash() {
-          const t28 = this.components.clone(), i = new e4(t28);
-          return i.setShouldTrimLeadingSlash(true), i;
+          const t28 = this.components.clone(), r = new e4(t28);
+          return r.setShouldTrimLeadingSlash(true), r;
         }
         identifier(e5) {
           const t28 = this.components.identifiers.length;
           if (0 === t28 || e5 < 0 || e5 >= t28) return "";
-          let i;
-          i = 1 === t28 ? 0 : 0 === e5 ? t28 - 1 : t28 - 1 - e5;
-          const r = this.identifierAsString(i);
-          return r ? "." + r : "";
+          let r;
+          r = 1 === t28 ? 0 : 0 === e5 ? t28 - 1 : t28 - 1 - e5;
+          const i = this.identifierAsString(r);
+          return i ? "." + i : "";
         }
         identifiers() {
           const e5 = [], t28 = this.components.identifiers.length;
-          for (let i = 0; i < t28; i++) {
-            const t29 = this.identifier(i);
+          for (let r = 0; r < t28; r++) {
+            const t29 = this.identifier(r);
             t29 && e5.push(t29);
           }
           return e5;
@@ -116501,8 +116875,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.components.disabled;
         }
         forBundleType(t28) {
-          const i = this.components.withBundleType(t28);
-          return new e4(i);
+          const r = this.components.withBundleType(t28);
+          return new e4(r);
         }
         unnormalized() {
           if (!this._unnormalized) if (this.components.original === this.components.normalized) this._unnormalized = this;
@@ -116524,16 +116898,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         baseInternal(e5, t28) {
           if (0 === this.components.identifiers.length) return this.norm(this.components.normalized);
           if (e5 && 1 === this.components.identifiers.length) return this.norm(this.components.normalized);
-          let i = this.components.identifiers[this.components.identifiers.length - 1].low - 1;
-          if (t28 && (i = this.components.positions.containerHigh - 1), 0 === i && i++, !e5) return this.norm(this.components.normalized.substring(0, i));
-          const r = this.components.identifiers[0];
-          return this.norm(this.components.normalized.substring(0, i) + this.components.normalized.substring(r.low - 1, r.high));
+          let r = this.components.identifiers[this.components.identifiers.length - 1].low - 1;
+          if (t28 && (r = this.components.positions.containerHigh - 1), 0 === r && r++, !e5) return this.norm(this.components.normalized.substring(0, r));
+          const i = this.components.identifiers[0];
+          return this.norm(this.components.normalized.substring(0, r) + this.components.normalized.substring(i.low - 1, i.high));
         }
         identifierAsString(e5) {
           const t28 = this.identifierIndex(e5);
           if (-1 === t28) return "";
-          const i = this.components.identifiers[t28];
-          return this.components.normalized.substring(i.low, i.high);
+          const r = this.components.identifiers[t28];
+          return this.components.normalized.substring(r.low, r.high);
         }
         identifierIndex(e5) {
           return e5 < 0 || e5 >= this.components.identifiers.length ? -1 : e5;
@@ -116552,28 +116926,28 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
       }, PathUtils = class {
         static fromString(e4, t28) {
-          const i = new PathComponentsImpl(t28, t28, { containerLow: -1, containerHigh: -1, sectionHigh: -1, identifierLanguage: -1 }, [], 0, false);
-          return new Path(i);
+          const r = new PathComponentsImpl(t28, t28, { containerLow: -1, containerHigh: -1, sectionHigh: -1, identifierLanguage: -1 }, [], 0, false);
+          return new Path(r);
         }
         static hasExtension(e4, t28) {
-          const i = e4.ext(), r = t28.startsWith(".") ? t28 : "." + t28;
-          return i.toLowerCase() === r.toLowerCase();
+          const r = e4.ext(), i = t28.startsWith(".") ? t28 : "." + t28;
+          return r.toLowerCase() === i.toLowerCase();
         }
         static isUnder(e4, t28) {
-          const i = e4.path();
-          let r;
-          r = t28.isBranchBundle() ? t28.dir() : t28.path();
-          const s2 = "/" === r ? "/" : r + "/";
-          return i !== r && i.startsWith(s2);
+          const r = e4.path();
+          let i;
+          i = t28.isBranchBundle() ? t28.dir() : t28.path();
+          const s2 = "/" === i ? "/" : i + "/";
+          return r !== i && r.startsWith(s2);
         }
         static relativeTo(e4, t28) {
           return t28.pathRel(e4);
         }
         static compare(e4, t28) {
-          const i = e4.path().localeCompare(t28.path());
-          if (0 !== i) return i;
-          const r = e4.component().localeCompare(t28.component());
-          return 0 !== r ? r : e4.bundleType() - t28.bundleType();
+          const r = e4.path().localeCompare(t28.path());
+          if (0 !== r) return r;
+          const i = e4.component().localeCompare(t28.component());
+          return 0 !== i ? i : e4.bundleType() - t28.bundleType();
         }
       };
     } });
@@ -116585,38 +116959,38 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.normalizer = e4 || new PathParsingNormalizer(), this.extChecker = t28 || new DefaultFileExtensionChecker();
         }
         parse(e4, t28) {
-          let i = t28;
-          i && "" !== i || (i = "/");
-          const r = this.normalizer.normalize(i), s2 = this.createPathComponents(e4, r, t28);
+          let r = t28;
+          r && "" !== r || (r = "/");
+          const i = this.normalizer.normalize(r), s2 = this.createPathComponents(e4, i, t28);
           return new Path(s2);
         }
         parseIdentity(e4, t28) {
-          const i = this.parse(e4, t28);
-          return { identifierBase: () => i.base() };
+          const r = this.parse(e4, t28);
+          return { identifierBase: () => r.base() };
         }
         parseBaseAndBaseNameNoIdentifier(e4, t28) {
-          const i = this.parse(e4, t28);
-          return [i.base(), i.baseNameNoIdentifier()];
+          const r = this.parse(e4, t28);
+          return [r.base(), r.baseNameNoIdentifier()];
         }
-        createPathComponents(e4, t28, i) {
-          let r = e4, s2 = t28;
+        createPathComponents(e4, t28, r) {
+          let i = e4, s2 = t28;
           if (t28.startsWith("/")) {
-            const i2 = t28.split("/").filter((e5) => e5.length > 0);
-            if (i2.length > 0) {
-              const t29 = i2[0];
-              ["static", "layouts", "themes", "archetypes", "data", "i18n", "assets"].includes(t29) && "content" === e4 && (r = t29), ["images", "assets", "static", "css", "js", "fonts"].includes(t29) && "content" === e4 && (r = "static");
+            const r3 = t28.split("/").filter((e5) => e5.length > 0);
+            if (r3.length > 0) {
+              const t29 = r3[0];
+              ["static", "layouts", "themes", "archetypes", "data", "i18n", "assets"].includes(t29) && "content" === e4 && (i = t29), ["images", "assets", "static", "css", "js", "fonts"].includes(t29) && "content" === e4 && (i = "static");
             }
           }
           const n3 = s2.lastIndexOf("/"), a = n3 >= 0 ? s2.substring(n3 + 1) : s2;
           n3 >= 0 && s2.substring(0, n3);
-          let o = this.detectBundleType(a, r);
+          let o = this.detectBundleType(a, i);
           const l = this.calculatePathPositions(s2), c = this.extractIdentifiers(s2, a);
-          return new PathComponentsImpl(i, s2, l, c, o, false, r);
+          return new PathComponentsImpl(r, s2, l, c, o, false, i);
         }
         detectBundleType(e4, t28) {
           if ("content" !== t28 && "archetypes" !== t28) return 0;
-          let i = e4.split(".")[0];
-          return "index" === i && this.isContentFile(e4) ? 3 : "_index" === i && this.isContentFile(e4) ? 4 : this.isContentFile(e4) ? 2 : 0;
+          let r = e4.split(".")[0];
+          return "index" === r && this.isContentFile(e4) ? 3 : "_index" === r && this.isContentFile(e4) ? 4 : this.isContentFile(e4) ? 2 : 0;
         }
         isContentFile(e4) {
           const t28 = this.getFileExtension(e4);
@@ -116627,17 +117001,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return t28 > 0 && t28 < e4.length - 1 ? e4.substring(t28 + 1) : "";
         }
         calculatePathPositions(e4) {
-          let t28 = -1, i = -1, r = -1;
-          for (let s2 = e4.length - 1; s2 >= 0; s2--) "/" === e4[s2] && (-1 === r ? r = s2 + 1 : -1 === i && (i = s2 + 1), s2 > 0 && (t28 = s2));
-          return new PathPositionsImpl(i, r, t28, -1);
+          let t28 = -1, r = -1, i = -1;
+          for (let s2 = e4.length - 1; s2 >= 0; s2--) "/" === e4[s2] && (-1 === i ? i = s2 + 1 : -1 === r && (r = s2 + 1), s2 > 0 && (t28 = s2));
+          return new PathPositionsImpl(r, i, t28, -1);
         }
         extractIdentifiers(e4, t28) {
-          const i = [], r = e4.substring(0, e4.length - t28.length).length, s2 = t28.split(".");
-          if (s2.length <= 1) return i;
-          let n3 = r;
+          const r = [], i = e4.substring(0, e4.length - t28.length).length, s2 = t28.split(".");
+          if (s2.length <= 1) return r;
+          let n3 = i;
           for (let e5 = 0; e5 < s2.length - 1; e5++) n3 += s2[e5].length + 1;
           const a = n3, o = a + s2[s2.length - 1].length;
-          return i.push(new LowHighImpl(a, o)), i;
+          return r.push(new LowHighImpl(a, o)), r;
         }
       }, PathParsingNormalizer = class {
         constructor(e4 = true, t28 = true) {
@@ -116671,8 +117045,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
       }, PathParserUtils = class e4 {
         static parseBasic(e5) {
-          const t28 = e5.lastIndexOf("/"), i = t28 >= 0 ? e5.substring(0, t28) : "", r = t28 >= 0 ? e5.substring(t28 + 1) : e5, s2 = r.lastIndexOf("."), n3 = s2 >= 0 ? r.substring(s2) : "", a = s2 >= 0 ? r.substring(0, s2) : r;
-          return { dir: i, name: r, ext: n3, nameWithoutExt: a };
+          const t28 = e5.lastIndexOf("/"), r = t28 >= 0 ? e5.substring(0, t28) : "", i = t28 >= 0 ? e5.substring(t28 + 1) : e5, s2 = i.lastIndexOf("."), n3 = s2 >= 0 ? i.substring(s2) : "", a = s2 >= 0 ? i.substring(0, s2) : i;
+          return { dir: r, name: i, ext: n3, nameWithoutExt: a };
         }
         static join(...e5) {
           return e5.filter((e6) => e6.length > 0).map((e6) => e6.replace(/^\/+|\/+$/g, "")).join("/").replace(/\/+/g, "/");
@@ -116681,12 +117055,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return new BasicPathNormalizer().normalize(e5);
         }
         static isBundle(t28) {
-          const i = e4.parseBasic(t28);
-          return PATH_CONSTANTS.INDEX_NAMES.includes(i.nameWithoutExt);
+          const r = e4.parseBasic(t28);
+          return PATH_CONSTANTS.INDEX_NAMES.includes(r.nameWithoutExt);
         }
         static extractSection(e5) {
-          const t28 = e5.startsWith("/") ? e5.substring(1) : e5, i = t28.indexOf("/");
-          return i >= 0 ? t28.substring(0, i) : t28;
+          const t28 = e5.startsWith("/") ? e5.substring(1) : e5, r = t28.indexOf("/");
+          return r >= 0 ? t28.substring(0, r) : t28;
         }
         static removeExtension(e5) {
           const t28 = e5.lastIndexOf(".");
@@ -116703,21 +117077,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         constructor(e4, t28) {
           __publicField(this, "processor");
           __publicField(this, "pool");
-          const i = (e4 == null ? void 0 : e4.normalizer) ? { normalize: e4.normalizer } : new BasicPathNormalizer(false !== (e4 == null ? void 0 : e4.normalize), false !== (e4 == null ? void 0 : e4.replaceSpaces)), r = new DefaultFileExtensionChecker();
-          this.processor = new PathProcessorImpl(i, r), t28 && (this.pool = t28);
+          const r = (e4 == null ? void 0 : e4.normalizer) ? { normalize: e4.normalizer } : new BasicPathNormalizer(false !== (e4 == null ? void 0 : e4.normalize), false !== (e4 == null ? void 0 : e4.replaceSpaces)), i = new DefaultFileExtensionChecker();
+          this.processor = new PathProcessorImpl(r, i), t28 && (this.pool = t28);
         }
-        create(e4, t28, i) {
+        create(e4, t28, r) {
           return this.pool && this.pool.get(), this.processor.parse(e4, t28);
         }
         createFromComponents(e4) {
           return new Path(e4);
         }
-        createMany(e4, t28, i) {
-          return t28.map((t29) => this.create(e4, t29, i));
+        createMany(e4, t28, r) {
+          return t28.map((t29) => this.create(e4, t29, r));
         }
-        createWithConfig(e4, t28, i) {
-          const r = {};
-          return void 0 !== (i == null ? void 0 : i.toLowerCase) && (r.normalize = i.toLowerCase), void 0 !== (i == null ? void 0 : i.replaceSpaces) && (r.replaceSpaces = i.replaceSpaces), void 0 !== (i == null ? void 0 : i.customNormalizer) && (r.normalizer = i.customNormalizer), this.create(e4, t28, r);
+        createWithConfig(e4, t28, r) {
+          const i = {};
+          return void 0 !== (r == null ? void 0 : r.toLowerCase) && (i.normalize = r.toLowerCase), void 0 !== (r == null ? void 0 : r.replaceSpaces) && (i.replaceSpaces = r.replaceSpaces), void 0 !== (r == null ? void 0 : r.customNormalizer) && (i.normalizer = r.customNormalizer), this.create(e4, t28, i);
         }
       }, DefaultPathFactory = class extends PathFactoryImpl {
         constructor() {
@@ -116795,14 +117169,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         static createFromConfig(e4) {
           const t28 = {};
           void 0 !== e4.normalize && (t28.normalize = e4.normalize), void 0 !== e4.replaceSpaces && (t28.replaceSpaces = e4.replaceSpaces);
-          const i = new PathFactoryImpl(t28);
-          return e4.paths.map((t29) => i.create(e4.component, t29));
+          const r = new PathFactoryImpl(t28);
+          return e4.paths.map((t29) => r.create(e4.component, t29));
         }
         static builder() {
           return new PathBuilder();
         }
-        static createWithPool(e4, t28, i) {
-          return new PathFactoryImpl(void 0, i).create(e4, t28);
+        static createWithPool(e4, t28, r) {
+          return new PathFactoryImpl(void 0, r).create(e4, t28);
         }
       }, __publicField(_a11, "defaultFactory", new DefaultPathFactory()), _a11);
     } });
@@ -116817,9 +117191,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.contentLanguage = e4;
         }
         translate(e4, t28) {
-          const i = e4.toLowerCase(), r = this.translateFuncs.get(i);
-          if (r) {
-            const e5 = r(t28);
+          const r = e4.toLowerCase(), i = this.translateFuncs.get(r);
+          if (i) {
+            const e5 = i(t28);
             if (e5) return e5;
           }
           log19.info(`Translation func for language ${e4} not found, use default.`);
@@ -116834,12 +117208,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           try {
             await e4.walkI18n("", { walkFn: async (e5, t28) => {
               if (e5.endsWith(".yaml") || e5.endsWith(".yml")) try {
-                const i = (PATH_CONSTANTS.normalizePath(e5).split("/").pop() || "").replace(/\.(yaml|yml)$/, "").toLowerCase(), r = await this.readI18nFile(t28), s2 = this.parseI18nContent(r), n3 = /* @__PURE__ */ new Map();
+                const r = (PATH_CONSTANTS.normalizePath(e5).split("/").pop() || "").replace(/\.(yaml|yml)$/, "").toLowerCase(), i = await this.readI18nFile(t28), s2 = this.parseI18nContent(i), n3 = /* @__PURE__ */ new Map();
                 s2.forEach((e6) => {
                   n3.set(e6.id, e6.translation);
                 });
-                const a = (e6) => n3.get(e6) || (log19.warn(`i18n|MISSING_TRANSLATION|${i}|${e6}`), "");
-                this.translateFuncs.set(i, a), log19.info(`\u2705 Loaded i18n translations for language: ${i} (${s2.length} items)`);
+                const a = (e6) => n3.get(e6) || (log19.warn(`i18n|MISSING_TRANSLATION|${r}|${e6}`), "");
+                this.translateFuncs.set(r, a), log19.info(`\u2705 Loaded i18n translations for language: ${r} (${s2.length} items)`);
               } catch (t29) {
                 log19.error(`\u274C Failed to load i18n file ${e5}:`, t29);
               }
@@ -116852,7 +117226,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           let t28 = null;
           try {
             t28 = await e4.open();
-            const i = await t28.stat(), r = new Uint8Array(i.size()), s2 = await t28.read(r), n3 = new TextDecoder("utf-8").decode(s2.buffer);
+            const r = await t28.stat(), i = new Uint8Array(r.size()), s2 = await t28.read(i), n3 = new TextDecoder("utf-8").decode(s2.buffer);
             return 65279 === n3.charCodeAt(0) ? n3.slice(1) : n3;
           } catch (e5) {
             throw log19.error("\u274C Failed to read i18n file:", e5), e5;
@@ -116888,12 +117262,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_identity = __esm2({ "internal/domain/content/vo/identity.ts"() {
       init_log(), getDomainLogger("content", { component: "identity" }), Identity = class {
-        constructor(e4, t28 = "", i = 0) {
+        constructor(e4, t28 = "", r = 0) {
           __publicField(this, "id");
           __publicField(this, "lang");
           __publicField(this, "langIdx");
           __publicField(this, "stale", true);
-          this.id = e4, this.lang = t28, this.langIdx = i;
+          this.id = e4, this.lang = t28, this.langIdx = r;
         }
         ID() {
           return this.id;
@@ -116930,12 +117304,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "uniqueIDCache");
           __publicField(this, "lazyInitDone", false);
           this.fileMetaInfo = e5;
-          const i = PathDomain.createProcessor();
-          this.pathInfo = i.parse(PATH_CONSTANTS.COMPONENT_FOLDER_CONTENT, t28), this.bundleType = 0, this.determineBundleType();
+          const r = PathDomain.createProcessor();
+          this.pathInfo = r.parse(PATH_CONSTANTS.COMPONENT_FOLDER_CONTENT, t28), this.bundleType = 0, this.determineBundleType();
         }
         static newFileInfo(t28) {
-          const i = PATH_CONSTANTS.normalizePath(t28.relativeFilename());
-          return new e4(t28, i);
+          const r = PATH_CONSTANTS.normalizePath(t28.relativeFilename());
+          return new e4(t28, r);
         }
         pageFile() {
           return this;
@@ -117055,15 +117429,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         sort(e4) {
           !function(e5, t28) {
-            const i = Array.from({ length: t28.len() }, (e6, t29) => t29);
-            i.sort((e6, i2) => t28.less(e6, i2) ? -1 : t28.less(i2, e6) ? 1 : e6 - i2);
-            const r = [...e5];
-            for (let t29 = 0; t29 < i.length; t29++) e5[t29] = r[i[t29]];
+            const r = Array.from({ length: t28.len() }, (e6, t29) => t29);
+            r.sort((e6, r3) => t28.less(e6, r3) ? -1 : t28.less(r3, e6) ? 1 : e6 - r3);
+            const i = [...e5];
+            for (let t29 = 0; t29 < r.length; t29++) e5[t29] = i[r[t29]];
           }(e4, new PageSorterImpl(e4, this.by));
         }
-      }, lessPageTitle = (e4, t28) => collatorStringCompare((e5) => e5.title(), e4, t28) < 0, language = (e4, t28) => collatorStringCompare((e5) => e5.pageIdentity().pageLanguage(), e4, t28) < 0, weight = (e4, t28) => e4.pageWeight() < t28.pageWeight(), collatorStringCompare = (e4, t28, i) => {
-        const r = e4(t28), s2 = e4(i);
-        return r < s2 ? -1 : r > s2 ? 1 : 0;
+      }, lessPageTitle = (e4, t28) => collatorStringCompare((e5) => e5.title(), e4, t28) < 0, language = (e4, t28) => collatorStringCompare((e5) => e5.pageIdentity().pageLanguage(), e4, t28) < 0, weight = (e4, t28) => e4.pageWeight() < t28.pageWeight(), collatorStringCompare = (e4, t28, r) => {
+        const i = e4(t28), s2 = e4(r);
+        return i < s2 ? -1 : i > s2 ? 1 : 0;
       }, PageSorterImpl = class {
         constructor(e4, t28) {
           this.pages = e4, this.by = t28;
@@ -117129,11 +117503,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_frontmatter = __esm2({ "internal/domain/content/vo/frontmatter.ts"() {
       init_kind(), init_cast2(), init_string22(), init_types32(), FrontMatterParserImpl = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "params");
           __publicField(this, "langSvc");
           __publicField(this, "taxonomySvc");
-          this.params = e4, this.langSvc = t28, this.taxonomySvc = i;
+          this.params = e4, this.langSvc = t28, this.taxonomySvc = r;
         }
         async parse(e4) {
           const t28 = { terms: {}, params: this.params, path: "", lang: "", kind: "", title: "", description: "", weight: 999 };
@@ -117212,72 +117586,72 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (!this.params) return;
           const t28 = this.params.path;
           null != t28 && (e4.path = this.toSlashPreserveLeading(Cast.toString(t28)));
-          const i = this.params.lang;
-          if (null != i) {
-            const t29 = Cast.toString(i).toLowerCase();
+          const r = this.params.lang;
+          if (null != r) {
+            const t29 = Cast.toString(r).toLowerCase();
             this.langSvc.isLanguageValid(t29) && (e4.lang = t29);
           }
-          const r = this.params.kind;
-          if (null != r) {
-            const t29 = Cast.toString(r);
+          const i = this.params.kind;
+          if (null != i) {
+            const t29 = Cast.toString(i);
             if ("" !== t29) {
-              const i2 = getKindMain(t29);
-              if ("" === i2) throw new Error(`unknown kind "${t29}" in front matter`);
-              e4.kind = i2;
+              const r3 = getKindMain(t29);
+              if ("" === r3) throw new Error(`unknown kind "${t29}" in front matter`);
+              e4.kind = r3;
             }
           }
         }
         async parseTerms(e4) {
           const t28 = this.taxonomySvc.views();
-          for (const i of t28) {
-            const t29 = Types.toStringSlicePreserveString(getParam(this.params || {}, i.plural(), false));
-            null !== t29 && (e4.terms[i.plural()] = t29);
+          for (const r of t28) {
+            const t29 = Types.toStringSlicePreserveString(getParam(this.params || {}, r.plural(), false));
+            null !== t29 && (e4.terms[r.plural()] = t29);
           }
         }
         async parseOrganization(e4, t28) {
           if (!this.params) return;
-          const i = this.params.organization;
-          if (!i || "object" != typeof i) return;
-          const r = {};
-          void 0 !== i.name && null !== i.name && (r.name = Cast.toString(i.name)), void 0 !== i.description && null !== i.description && (r.description = Cast.toString(i.description)), void 0 !== i.vision && null !== i.vision && (r.vision = Cast.toString(i.vision)), void 0 !== i.website && null !== i.website && (r.website = Cast.toString(i.website)), void 0 !== i.logo && null !== i.logo && (r.logo = import_path13.default.join(t28, Cast.toString(i.logo)));
-          const s2 = this.parseContact(i.contact);
-          s2 && (r.contact = s2);
-          const n3 = this.parseSocial(i.social);
-          n3 && (r.social = n3), Object.keys(r).length > 0 && (e4.organization = r);
+          const r = this.params.organization;
+          if (!r || "object" != typeof r) return;
+          const i = {};
+          void 0 !== r.name && null !== r.name && (i.name = Cast.toString(r.name)), void 0 !== r.description && null !== r.description && (i.description = Cast.toString(r.description)), void 0 !== r.vision && null !== r.vision && (i.vision = Cast.toString(r.vision)), void 0 !== r.website && null !== r.website && (i.website = Cast.toString(r.website)), void 0 !== r.logo && null !== r.logo && (i.logo = import_path13.default.join(t28, Cast.toString(r.logo)));
+          const s2 = this.parseContact(r.contact);
+          s2 && (i.contact = s2);
+          const n3 = this.parseSocial(r.social);
+          n3 && (i.social = n3), Object.keys(i).length > 0 && (e4.organization = i);
         }
         async parseMenu(e4) {
           if (!this.params) return;
           const t28 = this.params.menu;
           if (!t28 || "object" != typeof t28) return;
-          const i = {};
-          for (const [e5, r] of Object.entries(t28)) if (false !== r) {
-            if (Array.isArray(r)) {
-              const t29 = this.parseMenuItems(r);
-              t29.length > 0 && (i[e5] = t29);
-            } else if (r && "object" == typeof r) {
+          const r = {};
+          for (const [e5, i] of Object.entries(t28)) if (false !== i) {
+            if (Array.isArray(i)) {
+              const t29 = this.parseMenuItems(i);
+              t29.length > 0 && (r[e5] = t29);
+            } else if (i && "object" == typeof i) {
               const t29 = {};
-              for (const [e6, i2] of Object.entries(r)) if (false === i2) t29[e6] = false;
-              else if (Array.isArray(i2)) {
-                const r3 = this.parseMenuItems(i2);
-                r3.length > 0 && (t29[e6] = r3);
+              for (const [e6, r3] of Object.entries(i)) if (false === r3) t29[e6] = false;
+              else if (Array.isArray(r3)) {
+                const i2 = this.parseMenuItems(r3);
+                i2.length > 0 && (t29[e6] = i2);
               }
-              Object.keys(t29).length > 0 && (i[e5] = t29);
+              Object.keys(t29).length > 0 && (r[e5] = t29);
             }
-          } else i[e5] = false;
-          Object.keys(i).length > 0 && (e4.menu = i);
+          } else r[e5] = false;
+          Object.keys(r).length > 0 && (e4.menu = r);
         }
         parseMenuItems(e4) {
           const t28 = [];
-          for (const i of e4) {
-            if (!i || "object" != typeof i) continue;
+          for (const r of e4) {
+            if (!r || "object" != typeof r) continue;
             const e5 = { title: "", url: "" };
-            if (void 0 !== i.title && null !== i.title && (e5.title = Cast.toString(i.title), void 0 !== i.url && null !== i.url)) {
+            if (void 0 !== r.title && null !== r.title && (e5.title = Cast.toString(r.title), void 0 !== r.url && null !== r.url)) {
               {
-                const t29 = Cast.toString(i.url);
+                const t29 = Cast.toString(r.url);
                 e5.url = "" === t29 ? "" : t29;
               }
-              if (void 0 !== i.weight && null !== i.weight && (e5.weight = Cast.toInt(i.weight)), Array.isArray(i.children)) {
-                const t29 = this.parseMenuItems(i.children);
+              if (void 0 !== r.weight && null !== r.weight && (e5.weight = Cast.toInt(r.weight)), Array.isArray(r.children)) {
+                const t29 = this.parseMenuItems(r.children);
                 t29.length > 0 && (e5.children = t29);
               }
               t28.push(e5);
@@ -117287,14 +117661,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async parseAuthor(e4, t28) {
           if (!this.params) return;
-          const i = this.params.author;
-          if (!i || "object" != typeof i) return;
-          const r = {};
-          void 0 !== i.name && null !== i.name && (r.name = Cast.toString(i.name)), void 0 !== i.description && null !== i.description && (r.description = Cast.toString(i.description)), void 0 !== i.website && null !== i.website && (r.website = Cast.toString(i.website)), void 0 !== i.avatar && null !== i.avatar && (r.avatar = import_path13.default.join(t28, Cast.toString(i.avatar)));
-          const s2 = this.parseContact(i.contact);
-          s2 && (r.contact = s2);
-          const n3 = this.parseSocial(i.social);
-          n3 && (r.social = n3), Object.keys(r).length > 0 && (e4.author = r);
+          const r = this.params.author;
+          if (!r || "object" != typeof r) return;
+          const i = {};
+          void 0 !== r.name && null !== r.name && (i.name = Cast.toString(r.name)), void 0 !== r.description && null !== r.description && (i.description = Cast.toString(r.description)), void 0 !== r.website && null !== r.website && (i.website = Cast.toString(r.website)), void 0 !== r.avatar && null !== r.avatar && (i.avatar = import_path13.default.join(t28, Cast.toString(r.avatar)));
+          const s2 = this.parseContact(r.contact);
+          s2 && (i.contact = s2);
+          const n3 = this.parseSocial(r.social);
+          n3 && (i.social = n3), Object.keys(i).length > 0 && (e4.author = i);
         }
         parseContact(e4) {
           if (!e4 || "object" != typeof e4) return null;
@@ -117303,9 +117677,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         parseSocial(e4) {
           if (!e4 || "object" != typeof e4) return null;
-          const t28 = {}, i = ["github", "twitter", "linkedin"];
-          for (const r of i) void 0 !== e4[r] && null !== e4[r] && (t28[r] = Cast.toString(e4[r]));
-          for (const [r, s2] of Object.entries(e4)) i.includes(r) || null == s2 || (t28[r] = Cast.toString(s2));
+          const t28 = {}, r = ["github", "twitter", "linkedin"];
+          for (const i of r) void 0 !== e4[i] && null !== e4[i] && (t28[i] = Cast.toString(e4[i]));
+          for (const [i, s2] of Object.entries(e4)) r.includes(i) || null == s2 || (t28[i] = Cast.toString(s2));
           return Object.keys(t28).length > 0 ? t28 : null;
         }
         toSlashPreserveLeading(e4) {
@@ -117346,28 +117720,28 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         addEdge(e4) {
           const t28 = this.edges.length;
-          let i = 0;
-          for (; i < t28 && this.edges[i].label < e4.label; ) i++;
-          this.edges.splice(i, 0, e4);
+          let r = 0;
+          for (; r < t28 && this.edges[r].label < e4.label; ) r++;
+          this.edges.splice(r, 0, e4);
         }
         updateEdge(e4, t28) {
-          const i = this.edges.length;
-          let r = 0;
-          for (; r < i && this.edges[r].label < e4; ) r++;
-          if (!(r < i && this.edges[r].label === e4)) throw new Error("replacing missing edge");
-          this.edges[r].node = t28;
+          const r = this.edges.length;
+          let i = 0;
+          for (; i < r && this.edges[i].label < e4; ) i++;
+          if (!(i < r && this.edges[i].label === e4)) throw new Error("replacing missing edge");
+          this.edges[i].node = t28;
         }
         getEdge(e4) {
           const t28 = this.edges.length;
-          let i = 0;
-          for (; i < t28 && this.edges[i].label < e4; ) i++;
-          return i < t28 && this.edges[i].label === e4 ? this.edges[i].node : null;
+          let r = 0;
+          for (; r < t28 && this.edges[r].label < e4; ) r++;
+          return r < t28 && this.edges[r].label === e4 ? this.edges[r].node : null;
         }
         delEdge(e4) {
           const t28 = this.edges.length;
-          let i = 0;
-          for (; i < t28 && this.edges[i].label < e4; ) i++;
-          i < t28 && this.edges[i].label === e4 && this.edges.splice(i, 1);
+          let r = 0;
+          for (; r < t28 && this.edges[r].label < e4; ) r++;
+          r < t28 && this.edges[r].label === e4 && this.edges.splice(r, 1);
         }
         mergeChild() {
           const e4 = this.edges[0].node;
@@ -117380,38 +117754,38 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.root = new Node2(), this.size = 0;
         }
         static newFromMap(t28) {
-          const i = new e4();
+          const r = new e4();
           if (t28) if (t28 instanceof Map) t28.forEach((e5, t29) => {
-            i.insert(t29, e5);
+            r.insert(t29, e5);
           });
-          else for (const [e5, r] of Object.entries(t28)) i.insert(e5, r);
-          return i;
+          else for (const [e5, i] of Object.entries(t28)) r.insert(e5, i);
+          return r;
         }
         len() {
           return this.size;
         }
         insert(e5, t28) {
-          let i = null, r = this.root, s2 = e5;
+          let r = null, i = this.root, s2 = e5;
           for (; ; ) {
             if (0 === s2.length) {
-              if (r.isLeaf()) {
-                const e6 = r.leaf.val;
-                return r.leaf.val = t28, [e6, true];
+              if (i.isLeaf()) {
+                const e6 = i.leaf.val;
+                return i.leaf.val = t28, [e6, true];
               }
-              return r.leaf = new LeafNode(e5, t28), this.size++, [void 0, false];
+              return i.leaf = new LeafNode(e5, t28), this.size++, [void 0, false];
             }
-            if (i = r, r = r.getEdge(s2.charCodeAt(0)), null === r) {
-              const r3 = new Edge(s2.charCodeAt(0), new Node2());
-              return r3.node.leaf = new LeafNode(e5, t28), r3.node.prefix = s2, i.addEdge(r3), this.size++, [void 0, false];
+            if (r = i, i = i.getEdge(s2.charCodeAt(0)), null === i) {
+              const i2 = new Edge(s2.charCodeAt(0), new Node2());
+              return i2.node.leaf = new LeafNode(e5, t28), i2.node.prefix = s2, r.addEdge(i2), this.size++, [void 0, false];
             }
-            const n3 = longestPrefix(s2, r.prefix);
-            if (n3 === r.prefix.length) {
+            const n3 = longestPrefix(s2, i.prefix);
+            if (n3 === i.prefix.length) {
               s2 = s2.substring(n3);
               continue;
             }
             this.size++;
             const a = new Node2();
-            a.prefix = s2.substring(0, n3), i.updateEdge(s2.charCodeAt(0), a), a.addEdge(new Edge(r.prefix.charCodeAt(n3), r)), r.prefix = r.prefix.substring(n3);
+            a.prefix = s2.substring(0, n3), r.updateEdge(s2.charCodeAt(0), a), a.addEdge(new Edge(i.prefix.charCodeAt(n3), i)), i.prefix = i.prefix.substring(n3);
             const o = new LeafNode(e5, t28);
             if (s2 = s2.substring(n3), 0 === s2.length) return a.leaf = o, [void 0, false];
             const l = new Node2();
@@ -117419,46 +117793,46 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         delete(e5) {
-          let t28 = null, i = 0, r = this.root, s2 = e5;
+          let t28 = null, r = 0, i = this.root, s2 = e5;
           for (; ; ) {
             if (0 === s2.length) {
-              if (!r.isLeaf()) break;
-              const e6 = r.leaf;
-              return r.leaf = null, this.size--, null !== t28 && 0 === r.edges.length && t28.delEdge(i), r !== this.root && 1 === r.edges.length && r.mergeChild(), null === t28 || t28 === this.root || 1 !== t28.edges.length || t28.isLeaf() || t28.mergeChild(), [e6.val, true];
+              if (!i.isLeaf()) break;
+              const e6 = i.leaf;
+              return i.leaf = null, this.size--, null !== t28 && 0 === i.edges.length && t28.delEdge(r), i !== this.root && 1 === i.edges.length && i.mergeChild(), null === t28 || t28 === this.root || 1 !== t28.edges.length || t28.isLeaf() || t28.mergeChild(), [e6.val, true];
             }
-            if (t28 = r, i = s2.charCodeAt(0), r = r.getEdge(i), null === r) break;
-            if (!s2.startsWith(r.prefix)) break;
-            s2 = s2.substring(r.prefix.length);
+            if (t28 = i, r = s2.charCodeAt(0), i = i.getEdge(r), null === i) break;
+            if (!s2.startsWith(i.prefix)) break;
+            s2 = s2.substring(i.prefix.length);
           }
           return [void 0, false];
         }
         async deletePrefix(e5) {
           return await this._deletePrefix(null, this.root, e5);
         }
-        async _deletePrefix(e5, t28, i) {
-          if (0 === i.length) {
-            let i2 = 0;
-            return await recursiveWalk(t28, (e6, t29) => (i2++, Promise.resolve(false))), t28.isLeaf() && (t28.leaf = null), t28.edges = [], null === e5 || e5 === this.root || 1 !== e5.edges.length || e5.isLeaf() || e5.mergeChild(), this.size -= i2, i2;
+        async _deletePrefix(e5, t28, r) {
+          if (0 === r.length) {
+            let r3 = 0;
+            return await recursiveWalk(t28, (e6, t29) => (r3++, Promise.resolve(false))), t28.isLeaf() && (t28.leaf = null), t28.edges = [], null === e5 || e5 === this.root || 1 !== e5.edges.length || e5.isLeaf() || e5.mergeChild(), this.size -= r3, r3;
           }
-          const r = i.charCodeAt(0), s2 = t28.getEdge(r);
-          return null === s2 || !s2.prefix.startsWith(i) && !i.startsWith(s2.prefix) ? 0 : (i = s2.prefix.length > i.length ? i.substring(i.length) : i.substring(s2.prefix.length), this._deletePrefix(t28, s2, i));
+          const i = r.charCodeAt(0), s2 = t28.getEdge(i);
+          return null === s2 || !s2.prefix.startsWith(r) && !r.startsWith(s2.prefix) ? 0 : (r = s2.prefix.length > r.length ? r.substring(r.length) : r.substring(s2.prefix.length), this._deletePrefix(t28, s2, r));
         }
         get(e5) {
-          let t28 = this.root, i = e5;
+          let t28 = this.root, r = e5;
           for (; ; ) {
-            if (0 === i.length) {
+            if (0 === r.length) {
               if (t28.isLeaf()) return [t28.leaf.val, true];
               break;
             }
-            if (t28 = t28.getEdge(i.charCodeAt(0)), null === t28) break;
-            if (!i.startsWith(t28.prefix)) break;
-            i = i.substring(t28.prefix.length);
+            if (t28 = t28.getEdge(r.charCodeAt(0)), null === t28) break;
+            if (!r.startsWith(t28.prefix)) break;
+            r = r.substring(t28.prefix.length);
           }
           return [void 0, false];
         }
         longestPrefix(e5) {
-          let t28 = null, i = this.root, r = e5;
-          for (; i.isLeaf() && (t28 = i.leaf), 0 !== r.length && (i = i.getEdge(r.charCodeAt(0)), null !== i) && r.startsWith(i.prefix); ) r = r.substring(i.prefix.length);
+          let t28 = null, r = this.root, i = e5;
+          for (; r.isLeaf() && (t28 = r.leaf), 0 !== i.length && (r = r.getEdge(i.charCodeAt(0)), null !== r) && i.startsWith(r.prefix); ) i = i.substring(r.prefix.length);
           return null !== t28 ? [t28.key, t28.val, true] : ["", void 0, false];
         }
         minimum() {
@@ -117486,27 +117860,27 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           await recursiveWalk(this.root, e5);
         }
         async walkPrefix(e5, t28) {
-          let i = this.root, r = e5;
+          let r = this.root, i = e5;
           for (; ; ) {
-            if (0 === r.length) return void await recursiveWalk(i, t28);
-            if (i = i.getEdge(r.charCodeAt(0)), null === i) return;
-            if (!r.startsWith(i.prefix)) return void (i.prefix.startsWith(r) && await recursiveWalk(i, t28));
-            r = r.substring(i.prefix.length);
+            if (0 === i.length) return void await recursiveWalk(r, t28);
+            if (r = r.getEdge(i.charCodeAt(0)), null === r) return;
+            if (!i.startsWith(r.prefix)) return void (r.prefix.startsWith(i) && await recursiveWalk(r, t28));
+            i = i.substring(r.prefix.length);
           }
         }
         async walkPath(e5, t28) {
-          let i = this.root, r = e5;
+          let r = this.root, i = e5;
           for (; ; ) {
-            if (null !== i.leaf && await t28(i.leaf.key, i.leaf.val)) return;
-            if (0 === r.length) return;
-            if (i = i.getEdge(r.charCodeAt(0)), null === i) return;
-            if (!r.startsWith(i.prefix)) break;
-            r = r.substring(i.prefix.length);
+            if (null !== r.leaf && await t28(r.leaf.key, r.leaf.val)) return;
+            if (0 === i.length) return;
+            if (r = r.getEdge(i.charCodeAt(0)), null === r) return;
+            if (!i.startsWith(r.prefix)) break;
+            i = i.substring(r.prefix.length);
           }
         }
         async toMap() {
           const e5 = {};
-          return await this.walk((t28, i) => (e5[t28] = i, Promise.resolve(false))), e5;
+          return await this.walk((t28, r) => (e5[t28] = r, Promise.resolve(false))), e5;
         }
       };
     } });
@@ -117520,7 +117894,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.trees = e4;
         }
         walkPrefixRaw(e4, t28) {
-          for (const i of this.trees) i.walkPrefixRaw(e4, t28);
+          for (const r of this.trees) r.walkPrefixRaw(e4, t28);
         }
       }, MutableTrees = class {
         constructor(e4) {
@@ -117535,12 +117909,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async deletePrefix(e4) {
           let t28 = 0;
-          for (const i of this.trees) t28 += await i.deletePrefix(e4);
+          for (const r of this.trees) t28 += await r.deletePrefix(e4);
           return Promise.resolve(t28);
         }
         async deletePrefixAll(e4) {
           let t28 = 0;
-          for (const i of this.trees) t28 += await i.deletePrefixAll(e4);
+          for (const r of this.trees) t28 += await r.deletePrefixAll(e4);
           return t28;
         }
         lock(e4) {
@@ -117578,8 +117952,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         get(e4) {
           this.mu.rLock();
           try {
-            const [t28, i] = this.tree.get(e4);
-            return i ? t28 : this.zero;
+            const [t28, r] = this.tree.get(e4);
+            return r ? t28 : this.zero;
           } finally {
             this.mu.rUnlock();
           }
@@ -117587,8 +117961,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         longestPrefix(e4) {
           this.mu.rLock();
           try {
-            const [t28, i, r] = this.tree.longestPrefix(e4);
-            return r ? [t28, i] : ["", this.zero];
+            const [t28, r, i] = this.tree.longestPrefix(e4);
+            return i ? [t28, r] : ["", this.zero];
           } finally {
             this.mu.rUnlock();
           }
@@ -117601,7 +117975,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             this.mu.unlock();
           }
         }
-        async walkPrefix(e4, t28, i) {
+        async walkPrefix(e4, t28, r) {
           switch (e4) {
             case 0:
               break;
@@ -117613,8 +117987,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
           try {
             let e5 = null;
-            return await this.tree.walkPrefix(t28, async (t29, r) => {
-              const [s2, n3] = i(t29, r);
+            return await this.tree.walkPrefix(t28, async (t29, i) => {
+              const [s2, n3] = r(t29, i);
               return n3 ? (e5 = n3, Promise.resolve(true)) : s2;
             }), e5;
           } finally {
@@ -117641,14 +118015,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.d = e5, this.v = 0, this.trees = [];
           for (let e6 = 0; e6 < t28; e6++) this.trees.push(newSimpleTree());
         }
-        static newTreeShiftTree(t28, i) {
-          return new e4(t28, i);
+        static newTreeShiftTree(t28, r) {
+          return new e4(t28, r);
         }
-        shape(t28, i) {
+        shape(t28, r) {
           if (t28 !== this.d) throw new Error("dimension mismatch");
-          if (i >= this.trees.length) throw new Error("value out of range");
-          const r = Object.create(e4.prototype);
-          return Object.assign(r, this), r.v = i, r;
+          if (r >= this.trees.length) throw new Error("value out of range");
+          const i = Object.create(e4.prototype);
+          return Object.assign(i, this), i.v = r, i;
         }
         get(e5) {
           return this.trees[this.v].get(e5);
@@ -117659,15 +118033,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         insert(e5, t28) {
           return this.trees[this.v].insert(e5, t28);
         }
-        async walkPrefix(e5, t28, i) {
-          return await this.trees[this.v].walkPrefix(e5, t28, i);
+        async walkPrefix(e5, t28, r) {
+          return await this.trees[this.v].walkPrefix(e5, t28, r);
         }
         delete(e5) {
           for (const t28 of this.trees) t28.tree.delete(e5);
         }
         async deletePrefix(e5) {
           let t28 = 0;
-          for (const i of this.trees) t28 += await i.tree.deletePrefix(e5);
+          for (const r of this.trees) t28 += await r.tree.deletePrefix(e5);
           return t28;
         }
         lock(e5) {
@@ -117693,18 +118067,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "mu");
           if (!e5.shifter) throw new Error("Shifter is required");
           this.shifter = e5.shifter, this.tree = new Tree(), this.dims = [0];
-          let t28 = false, i = 0;
+          let t28 = false, r = 0;
           this.mu = { lock: () => {
-            for (; t28 || i > 0; ) ;
+            for (; t28 || r > 0; ) ;
             t28 = true;
           }, unlock: () => {
             t28 = false;
           }, rLock: () => {
             for (; t28; ) ;
-            i++;
+            r++;
           }, rUnlock: () => {
-            i--;
-          }, tryLock: () => !(t28 || i > 0 || (t28 = true, 0)) };
+            r--;
+          }, tryLock: () => !(t28 || r > 0 || (t28 = true, 0)) };
         }
         static new(t28) {
           return new e4(t28);
@@ -117714,30 +118088,30 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async deleteAll(e5) {
           await this.tree.walkPrefix(e5, (e6, t28) => {
-            const [i, r] = this.tree.delete(e6);
+            const [r, i] = this.tree.delete(e6);
             return Promise.resolve(false);
           });
         }
         async deletePrefix(e5) {
           let t28 = 0;
-          const i = [];
-          await this.tree.walkPrefix(e5, (e6, t29) => (i.push(e6), Promise.resolve(false)));
-          for (const e6 of i) this.deleteInternal(e6) && t28++;
+          const r = [];
+          await this.tree.walkPrefix(e5, (e6, t29) => (r.push(e6), Promise.resolve(false)));
+          for (const e6 of r) this.deleteInternal(e6) && t28++;
           return t28;
         }
         deleteInternal(e5) {
           let t28 = false;
-          const [i, r] = this.tree.get(e5);
-          if (r) {
-            const [r3, s2] = this.shifter.delete(i, this.dims);
-            t28 = r3, s2 && this.tree.delete(e5);
+          const [r, i] = this.tree.get(e5);
+          if (i) {
+            const [i2, s2] = this.shifter.delete(r, this.dims);
+            t28 = i2, s2 && this.tree.delete(e5);
           }
           return t28;
         }
         async deletePrefixAll(e5) {
           let t28 = 0;
-          return await this.tree.walkPrefix(e5, (e6, i) => {
-            const [r, s2] = this.tree.delete(e6);
+          return await this.tree.walkPrefix(e5, (e6, r) => {
+            const [i, s2] = this.tree.delete(e6);
             return s2 && t28++, Promise.resolve(false);
           }), t28;
         }
@@ -117746,13 +118120,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         insertIntoCurrentDimension(e5, t28) {
           e5 = mustValidateKey(cleanKey(e5));
-          const [i, r] = this.tree.get(e5);
-          return r && (t28 = this.shifter.insertInto(i, t28, this.dims)), this.tree.insert(e5, t28), [t28, true];
+          const [r, i] = this.tree.get(e5);
+          return i && (t28 = this.shifter.insertInto(r, t28, this.dims)), this.tree.insert(e5, t28), [t28, true];
         }
         insertIntoValuesDimension(e5, t28) {
           e5 = mustValidateKey(cleanKey(e5));
-          const [i, r] = this.tree.get(e5);
-          return r && (t28 = this.shifter.insert(i, t28)), this.tree.insert(e5, t28), [t28, true];
+          const [r, i] = this.tree.get(e5);
+          return i && (t28 = this.shifter.insert(r, t28)), this.tree.insert(e5, t28), [t28, true];
         }
         insertRawWithLock(e5, t28) {
           this.mu.lock();
@@ -117782,38 +118156,38 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             e5 ? this.mu.unlock() : this.mu.rUnlock();
           };
         }
-        longestPrefix(e5, t28, i) {
-          let r = e5;
+        longestPrefix(e5, t28, r) {
+          let i = e5;
           for (; ; ) {
-            const [e6, s2, n3] = this.tree.longestPrefix(r);
+            const [e6, s2, n3] = this.tree.longestPrefix(i);
             if (n3) {
-              const [r3, n4] = this.shift(s2, t28);
-              if (n4 && (!i || i(r3))) return [e6, r3];
+              const [i2, n4] = this.shift(s2, t28);
+              if (n4 && (!r || r(i2))) return [e6, i2];
             }
-            if ("" === r || "/" === r) return ["", void 0];
-            const a = r.lastIndexOf("/");
-            if (0 === a) r = "";
+            if ("" === i || "/" === i) return ["", void 0];
+            const a = i.lastIndexOf("/");
+            if (0 === a) i = "";
             else {
               if (!(a > 0)) break;
-              r = r.substring(0, a);
+              i = i.substring(0, a);
             }
           }
           return ["", void 0];
         }
         longestPrefixAll(e5) {
-          const [t28, , i] = this.tree.longestPrefix(e5);
-          return [t28, i];
+          const [t28, , r] = this.tree.longestPrefix(e5);
+          return [t28, r];
         }
         getRaw(e5) {
-          const [t28, i] = this.tree.get(e5);
-          return i ? [t28, true] : [void 0, false];
+          const [t28, r] = this.tree.get(e5);
+          return r ? [t28, true] : [void 0, false];
         }
         async walkPrefixRaw(e5, t28) {
-          await this.tree.walkPrefix(e5, (e6, i) => t28(e6, i));
+          await this.tree.walkPrefix(e5, (e6, r) => t28(e6, r));
         }
         shape(e5, t28) {
-          const i = this.clone();
-          return i.dims[e5] = t28, i;
+          const r = this.clone();
+          return r.dims[e5] = t28, r;
         }
         toString() {
           return `Root{${this.dims}}`;
@@ -117822,10 +118196,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const [t28] = this.getInternal(e5);
           return t28;
         }
-        forEachInDimension(e5, t28, i) {
+        forEachInDimension(e5, t28, r) {
           e5 = cleanKey(e5);
-          const [r, s2] = this.tree.get(e5);
-          s2 && this.shifter.forEachInDimension(r, t28, i);
+          const [i, s2] = this.tree.get(e5);
+          s2 && this.shifter.forEachInDimension(i, t28, r);
         }
         has(e5) {
           const [, t28] = this.getInternal(e5);
@@ -117836,15 +118210,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return Object.assign(t28, this), t28.dims = [...this.dims], t28;
         }
         shift(e5, t28) {
-          const [i, r] = this.shifter.shift(e5, this.dims, t28);
-          return [i, r];
+          const [r, i] = this.shifter.shift(e5, this.dims, t28);
+          return [r, i];
         }
         getInternal(e5) {
           e5 = cleanKey(e5);
-          const [t28, i] = this.tree.get(e5);
-          if (!i) return [void 0, false];
-          const [r, s2] = this.shift(t28, true);
-          return [r, s2];
+          const [t28, r] = this.tree.get(e5);
+          if (!r) return [void 0, false];
+          const [i, s2] = this.shift(t28, true);
+          return [i, s2];
         }
       }, NodeShiftTreeWalker = class e4 {
         constructor(e5) {
@@ -117877,11 +118251,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.lockType > 0 && (e5 = this.tree.lock(2 === this.lockType));
           try {
             let e6 = null;
-            const t28 = async (t29, i) => {
+            const t28 = async (t29, r) => {
               if (this.shouldSkip(t29)) return false;
-              const [r, s2, n3] = this.toT(this.tree, i);
+              const [i, s2, n3] = this.toT(this.tree, r);
               if (!s2) return false;
-              const [a, o] = await this.handle(t29, r, n3);
+              const [a, o] = await this.handle(t29, i, n3);
               return !(!a && !o || (e6 = o, 0));
             };
             return "" !== this.prefix ? await this.tree.tree.walkPrefix(this.prefix, t28) : await this.tree.tree.walk(t28), e6;
@@ -117895,8 +118269,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         toT(e5, t28) {
           if (this.noShift) return [t28, true, 2];
           {
-            const [i, r, s2] = e5.shifter.shift(t28, e5.dims, this.exact);
-            return [i, r, s2];
+            const [r, i, s2] = e5.shifter.shift(t28, e5.dims, this.exact);
+            return [r, i, s2];
           }
         }
       };
@@ -117909,16 +118283,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         delete(e4, t28) {
           return [e4.delete(t28[dimensionFlag.index(1)]), e4.isEmpty()];
         }
-        shift(e4, t28, i) {
-          const [r, s2] = e4.shift(t28[dimensionFlag.index(1)], i);
-          return null !== r ? s2 ? [r, true, 1] : [r, true, 2] : [new PageTreesNode(), false, 2];
+        shift(e4, t28, r) {
+          const [i, s2] = e4.shift(t28[dimensionFlag.index(1)], r);
+          return null !== i ? s2 ? [i, true, 1] : [i, true, 2] : [new PageTreesNode(), false, 2];
         }
-        forEachInDimension(e4, t28, i) {
+        forEachInDimension(e4, t28, r) {
           if (t28 !== dimensionFlag.index(1)) throw new Error("only language dimension supported");
-          i(e4);
+          r(e4);
         }
-        insertInto(e4, t28, i) {
-          return e4.mergeWithLang(t28, i[dimensionFlag.index(1)]);
+        insertInto(e4, t28, r) {
+          return e4.mergeWithLang(t28, r[dimensionFlag.index(1)]);
         }
         insert(e4, t28) {
           return e4.merge(t28);
@@ -117927,17 +118301,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_shifterpage = __esm2({ "internal/domain/content/entity/shifterpage.ts"() {
       init_pagetrees(), init_doctree(), init_shifter(), PageShifter = class extends Shifter2 {
-        shift(e4, t28, i) {
-          const [r, s2] = e4.shift(t28[dimensionFlag.index(1)], i);
-          return null !== r && s2 ? [r, true, 1] : [new PageTreesNode(), false, 2];
+        shift(e4, t28, r) {
+          const [i, s2] = e4.shift(t28[dimensionFlag.index(1)], r);
+          return null !== i && s2 ? [i, true, 1] : [new PageTreesNode(), false, 2];
         }
       };
     } });
     init_shifterpagesource = __esm2({ "internal/domain/content/entity/shifterpagesource.ts"() {
       init_pagetrees(), init_doctree(), init_shifter(), SourceShifter = class extends Shifter2 {
-        shift(e4, t28, i) {
-          const [r, s2] = e4.shift(t28[dimensionFlag.index(1)], i);
-          return null !== r ? s2 ? [r, true, 1] : [r, true, 2] : [new PageTreesNode(), false, 2];
+        shift(e4, t28, r) {
+          const [i, s2] = e4.shift(t28[dimensionFlag.index(1)], r);
+          return null !== i ? s2 ? [i, true, 1] : [i, true, 2] : [new PageTreesNode(), false, 2];
         }
       };
     } });
@@ -117974,22 +118348,22 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         merge(e4) {
           const t28 = /* @__PURE__ */ new Map();
           for (const e5 of this.nodes.keys()) t28.set(e5.pageLanguage(), e5);
-          for (const [i, r] of e4.nodes.entries()) {
-            const e5 = t28.get(i.pageLanguage());
-            e5 ? this.nodes.set(e5, r) : this.nodes.set(i, r);
+          for (const [r, i] of e4.nodes.entries()) {
+            const e5 = t28.get(r.pageLanguage());
+            e5 ? this.nodes.set(e5, i) : this.nodes.set(r, i);
           }
           return this;
         }
         mergeWithLang(e4, t28) {
-          const i = /* @__PURE__ */ new Map();
-          for (const e5 of this.nodes.keys()) i.set(e5.pageLanguage(), e5);
-          for (const [r, s2] of e4.nodes.entries()) {
-            const e5 = i.get(r.pageLanguage());
+          const r = /* @__PURE__ */ new Map();
+          for (const e5 of this.nodes.keys()) r.set(e5.pageLanguage(), e5);
+          for (const [i, s2] of e4.nodes.entries()) {
+            const e5 = r.get(i.pageLanguage());
             if (e5) {
-              const i2 = this.nodes.get(e5);
-              i2 && i2.pageIdentity().pageLanguageIndex() === t28 && this.remove(e5);
+              const r3 = this.nodes.get(e5);
+              r3 && r3.pageIdentity().pageLanguageIndex() === t28 && this.remove(e5);
             }
-            this.nodes.set(r, s2);
+            this.nodes.set(i, s2);
           }
           return this;
         }
@@ -117998,16 +118372,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return !!t28 && (this.markStale(t28), this.nodes.delete(e4), true);
         }
         delete(e4) {
-          for (const [t28, i] of this.nodes.entries()) if (i.pageIdentity().pageLanguageIndex() === e4) return this.remove(t28);
+          for (const [t28, r] of this.nodes.entries()) if (r.pageIdentity().pageLanguageIndex() === e4) return this.remove(t28);
           return false;
         }
         isEmpty() {
           return 0 === this.nodes.size;
         }
         shift(e4, t28) {
-          let i = null;
-          for (const [t29, r] of this.nodes.entries()) if (null === i && (i = r), r.pageIdentity().pageLanguageIndex() === e4) return [newPageTreesNode2(r), true];
-          return null === i || t28 ? [null, false] : [newPageTreesNode2(i), false];
+          let r = null;
+          for (const [t29, i] of this.nodes.entries()) if (null === r && (r = i), i.pageIdentity().pageLanguageIndex() === e4) return [newPageTreesNode2(i), true];
+          return null === r || t28 ? [null, false] : [newPageTreesNode2(r), false];
         }
         getPage() {
           for (const e4 of this.nodes.values()) if (e4 && "function" == typeof e4.kind) return [e4, true];
@@ -118070,8 +118444,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async readSourceAll() {
           try {
-            const e4 = await this.file.open(), t28 = await e4.stat(), i = new Uint8Array(t28.size()), r = await e4.read(i);
-            return await e4.close(), r.buffer;
+            const e4 = await this.file.open(), t28 = await e4.stat(), r = new Uint8Array(t28.size()), i = await e4.read(r);
+            return await e4.close(), i.buffer;
           } catch (e4) {
             const t28 = e4 instanceof Error ? e4.message : String(e4);
             throw new Error(`Failed to read file content: ${t28}`);
@@ -118080,17 +118454,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async posOffset(e4) {
           try {
             const t28 = await this.contentSource();
-            return function(e5, t29, i) {
-              if (i < 0) return { filename: e5, lineNumber: 0, columnNumber: 0, offset: 0 };
-              const r = t29.slice(0, i);
+            return function(e5, t29, r) {
+              if (r < 0) return { filename: e5, lineNumber: 0, columnNumber: 0, offset: 0 };
+              const i = t29.slice(0, r);
               let s2 = 1;
-              for (let e6 = 0; e6 < r.length; e6++) 10 === r[e6] && s2++;
+              for (let e6 = 0; e6 < i.length; e6++) 10 === i[e6] && s2++;
               let n3 = -1;
-              for (let e6 = r.length - 1; e6 >= 0; e6--) if (10 === r[e6]) {
+              for (let e6 = i.length - 1; e6 >= 0; e6--) if (10 === i[e6]) {
                 n3 = e6;
                 break;
               }
-              return { filename: e5, lineNumber: s2, columnNumber: i - n3, offset: i };
+              return { filename: e5, lineNumber: s2, columnNumber: r - n3, offset: r };
             }(this.file.filename(), t28, e4);
           } catch (e5) {
             throw new Error(`failed to read content source for "${this.file.filename()}": ${e5}`);
@@ -118156,22 +118530,22 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.contentTreeReverseIndexMap.initOnce || (this.contentTreeReverseIndexMap.m = /* @__PURE__ */ new Map(), this.initFn(this.contentTreeReverseIndexMap.m), this.contentTreeReverseIndexMap.initOnce = true), this.contentTreeReverseIndexMap.m.get(e4) || null;
         }
       }, pagePredicates = { kindPage: (e4) => "page" === e4.kind(), kindSection: (e4) => "section" === e4.kind(), kindHome: (e4) => "home" === e4.kind(), kindTerm: (e4) => "term" === e4.kind(), shouldListLocal: (e4) => !e4.shouldList || e4.shouldList(false), shouldListGlobal: (e4) => !e4.shouldList || e4.shouldList(true), shouldListAny: (e4) => !e4.shouldListAny || e4.shouldListAny(), shouldLink: (e4) => !e4.noLink || !e4.noLink() }, PageMapQueryPagesBelowPathImpl = class {
-        constructor(e4, t28, i = pagePredicates.shouldListLocal) {
+        constructor(e4, t28, r = pagePredicates.shouldListLocal) {
           __publicField(this, "path");
           __publicField(this, "keyPart");
           __publicField(this, "include");
-          this.path = e4, this.keyPart = t28, this.include = i;
+          this.path = e4, this.keyPart = t28, this.include = r;
         }
         key() {
           return this.path + "/" + this.keyPart;
         }
       }, PageMapQueryPagesInSectionImpl = class extends PageMapQueryPagesBelowPathImpl {
-        constructor(e4, t28, i, r, s2, n3) {
+        constructor(e4, t28, r, i, s2, n3) {
           super(e4, t28, n3);
           __publicField(this, "recursive");
           __publicField(this, "includeSelf");
           __publicField(this, "index");
-          this.recursive = i, this.includeSelf = r, this.index = s2;
+          this.recursive = r, this.includeSelf = i, this.index = s2;
         }
         key() {
           return "gagesInSection/" + super.key() + "/" + this.recursive.toString() + "/" + this.index.toString() + "/" + this.includeSelf.toString();
@@ -118185,14 +118559,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         setupReverseIndex() {
           this.pageReverseIndex = new ContentTreeReverseIndex(async (e4) => {
-            const t28 = new NodeShiftTreeWalker({ tree: this.treePages, lockType: 1, handle: async (t29, i, r) => {
-              if (i) {
-                const [t30, r3] = i.getPage();
-                if (!r3) return [false, null];
-                t30.pageFile && t30.pageFile() && ((t31, i2) => {
-                  const r4 = e4.get(t31);
-                  r4 && r4 !== ambiguousContentNode ? e4.set(t31, ambiguousContentNode) : r4 || e4.set(t31, i2);
-                })(t30.paths().baseNameNoIdentifier(), i);
+            const t28 = new NodeShiftTreeWalker({ tree: this.treePages, lockType: 1, handle: async (t29, r, i) => {
+              if (r) {
+                const [t30, i2] = r.getPage();
+                if (!i2) return [false, null];
+                t30.pageFile && t30.pageFile() && ((t31, r3) => {
+                  const i3 = e4.get(t31);
+                  i3 && i3 !== ambiguousContentNode ? e4.set(t31, ambiguousContentNode) : i3 || e4.set(t31, r3);
+                })(t30.paths().baseNameNoIdentifier(), r);
               }
               return [false, null];
             } });
@@ -118204,28 +118578,28 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         insertResourceNode(e4, t28) {
-          const i = this.treeResources, r = i.lock(true);
+          const r = this.treeResources, i = r.lock(true);
           try {
-            i.insertIntoValuesDimension(e4, t28);
+            r.insertIntoValuesDimension(e4, t28);
           } finally {
-            r();
+            i();
           }
         }
         async addFi(e4) {
           if (e4.fileInfo().isDir()) return;
-          const t28 = newPageSource(e4), i = t28.paths().base();
+          const t28 = newPageSource(e4), r = t28.paths().base();
           switch (t28.file.getBundleType()) {
             case 0:
-              this.insertResourceNode(i, newPageTreesNode2(t28));
+              this.insertResourceNode(r, newPageTreesNode2(t28));
               break;
             case 1:
               const e5 = await this.pageBuilder.withSource(t28).build();
               if (!e5) return;
-              this.insertResourceNode(i, newPageTreesNode2(e5));
+              this.insertResourceNode(r, newPageTreesNode2(e5));
               break;
             default:
-              const r = await this.pageBuilder.withSource(t28).build();
-              this.treePages.insertWithLock(t28.paths().base(), newPageTreesNode2(r));
+              const i = await this.pageBuilder.withSource(t28).build();
+              this.treePages.insertWithLock(t28.paths().base(), newPageTreesNode2(i));
           }
         }
         async assemble() {
@@ -118233,8 +118607,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async assembleTerms() {
           for (const e4 of this.pageBuilder.langSvc.languageIndexes()) {
-            const t28 = this.treePages.shape(0, e4), i = this.treeTaxonomyEntries.shape(0, e4);
-            await this.pageBuilder.term.assemble(t28, i, this.pageBuilder, e4);
+            const t28 = this.treePages.shape(0, e4), r = this.treeTaxonomyEntries.shape(0, e4);
+            await this.pageBuilder.term.assemble(t28, r, this.pageBuilder, e4);
           }
         }
         async cleanPages() {
@@ -118270,20 +118644,20 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async getResourcesForPage(e4) {
           const t28 = [];
-          return await this.forEachResourceInPage(e4, 0, false, (e5, i, r) => {
-            const [s2, n3] = i.getResource();
+          return await this.forEachResourceInPage(e4, 0, false, (e5, r, i) => {
+            const [s2, n3] = r.getResource();
             return n3 && t28.push(s2), [false, null];
           }), t28;
         }
-        async forEachResourceInPage(e4, t28, i, r) {
+        async forEachResourceInPage(e4, t28, r, i) {
           let s2 = e4.paths().base();
           "/" === s2 && (s2 = "");
-          const n3 = addTrailingSlash(s2), a = "page" !== e4.kind(), o = new NodeShiftTreeWalker({ tree: this.treeResources.shape(0, e4.pageIdentity().pageLanguageIndex()), prefix: n3, lockType: t28, exact: i, handle: async (e5, t29, i2) => {
+          const n3 = addTrailingSlash(s2), a = "page" !== e4.kind(), o = new NodeShiftTreeWalker({ tree: this.treeResources.shape(0, e4.pageIdentity().pageLanguageIndex()), prefix: n3, lockType: t28, exact: r, handle: async (e5, t29, r3) => {
             if (a) {
               const [t30] = this.treePages.longestPrefixAll(e5);
               if (t30 !== s2 && this.pathDir(t30) !== this.pathDir(e5)) return o.skipPrefix(t30 + "/"), [false, null];
             }
-            return r(e5, t29, i2);
+            return i(e5, t29, r3);
           } });
           try {
             await o.walk();
@@ -118292,16 +118666,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async getPagesInSection(e4, t28) {
-          const i = t28.key(), r = this.treePages.shape(0, e4);
-          return this.getOrCreatePagesFromCacheSync(null, i, async (e5) => {
-            const i2 = addTrailingSlash(t28.path), s2 = [];
+          const r = t28.key(), i = this.treePages.shape(0, e4);
+          return this.getOrCreatePagesFromCacheSync(null, r, async (e5) => {
+            const r3 = addTrailingSlash(t28.path), s2 = [];
             let n3 = "";
-            const a = t28.include, o = new NodeShiftTreeWalker({ tree: r, prefix: i2, handle: async (e6, i3, r3) => {
+            const a = t28.include, o = new NodeShiftTreeWalker({ tree: i, prefix: r3, handle: async (e6, r4, i2) => {
               if (t28.recursive) {
-                const [e7, t29] = i3.getPage();
+                const [e7, t29] = r4.getPage();
                 return t29 && a(e7) && s2.push(e7), [false, null];
               }
-              const [l, c] = i3.getPage();
+              const [l, c] = r4.getPage();
               if (c && a(l) && s2.push(l), !l.isPage || !l.isPage()) {
                 const t29 = e6 + "/";
                 "" !== n3 && n3 === t29 || o.skipPrefix(t29), n3 = t29;
@@ -118310,10 +118684,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             } });
             try {
               if (await o.walk(), t28.includeSelf) {
-                const e7 = r.get(t28.path);
+                const e7 = i.get(t28.path);
                 if (e7) {
-                  const [t29, i3] = e7.getPage();
-                  i3 && a(t29) && s2.push(t29);
+                  const [t29, r4] = e7.getPage();
+                  r4 && a(t29) && s2.push(t29);
                 }
               }
               const e6 = s2;
@@ -118330,57 +118704,57 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return Promise.resolve(s2);
           });
         }
-        async getOrCreatePagesFromCacheSync(e4, t28, i) {
-          return await i(t28);
+        async getOrCreatePagesFromCacheSync(e4, t28, r) {
+          return await r(t28);
         }
         async getPagesWithTerm(e4, t28) {
-          const i = t28.key(), r = this.treeTaxonomyEntries.shape(0, e4);
-          return await this.getOrCreatePagesFromCacheSync(null, i, async (e5) => {
-            const i2 = [], s2 = t28.include;
+          const r = t28.key(), i = this.treeTaxonomyEntries.shape(0, e4);
+          return await this.getOrCreatePagesFromCacheSync(null, r, async (e5) => {
+            const r3 = [], s2 = t28.include;
             try {
-              await r.walkPrefix(0, addTrailingSlash(t28.path), (e7, t29) => {
-                const [r3, n3] = t29.getPage();
-                return n3 && s2(r3) && i2.push(r3), [false, null];
+              await i.walkPrefix(0, addTrailingSlash(t28.path), (e7, t29) => {
+                const [i2, n3] = t29.getPage();
+                return n3 && s2(i2) && r3.push(i2), [false, null];
               });
-              const e6 = i2;
+              const e6 = r3;
               return sortByTitle(e6), e6;
             } catch (e6) {
               log24.error(`getPagesWithTerm error: ${e6}`);
             }
-            return i2;
+            return r3;
           });
         }
-        getTermsForPageInTaxonomy(e4, t28, i) {
-          const r = ((s2 = i).startsWith("/") || (s2 = "/" + s2), s2);
+        getTermsForPageInTaxonomy(e4, t28, r) {
+          const i = ((s2 = r).startsWith("/") || (s2 = "/" + s2), s2);
           var s2;
           const n3 = this.treeTaxonomyEntries.shape(0, e4);
-          return this.getOrCreatePagesFromCacheSync(null, r + t28, async (e5) => {
-            const i2 = [];
+          return this.getOrCreatePagesFromCacheSync(null, i + t28, async (e5) => {
+            const r3 = [];
             try {
-              await n3.walkPrefix(0, addTrailingSlash(r), (e7, r3) => (e7.endsWith(t28) && i2.push(r3.term.page), [false, null]));
-              const e6 = i2;
+              await n3.walkPrefix(0, addTrailingSlash(i), (e7, i2) => (e7.endsWith(t28) && r3.push(i2.term.page), [false, null]));
+              const e6 = r3;
               return sortByTitle(e6), e6;
             } catch (e6) {
               log24.error(`getTermsForPageInTaxonomy error: ${e6}`);
             }
-            return i2;
+            return r3;
           });
         }
         async getSections(e4, t28) {
-          const i = [];
-          let r = "";
+          const r = [];
+          let i = "";
           const s2 = this.treePages.shape(0, e4), n3 = new NodeShiftTreeWalker({ tree: s2, prefix: t28, handle: async (e5, t29, s3) => {
             const [a, o] = t29.getPage();
-            return o ? (a.isPage && a.isPage() || ("" !== r && e5.startsWith(r) || (a.isSection && a.isSection() && a.shouldList && a.shouldList(false) && a.parent && a.parent() === a ? i.push(a) : n3.skipPrefix(e5 + "/")), r = e5 + "/"), [false, null]) : [false, null];
+            return o ? (a.isPage && a.isPage() || ("" !== i && e5.startsWith(i) || (a.isSection && a.isSection() && a.shouldList && a.shouldList(false) && a.parent && a.parent() === a ? r.push(a) : n3.skipPrefix(e5 + "/")), i = e5 + "/"), [false, null]) : [false, null];
           } });
           try {
             await n3.walk();
-            const e5 = i;
+            const e5 = r;
             return sortByTitle(e5), e5;
           } catch (e5) {
             log24.error(`getSections error: ${e5}`);
           }
-          return i;
+          return r;
         }
         pathDir(e4) {
           const t28 = e4.lastIndexOf("/");
@@ -118399,40 +118773,40 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async collect() {
           try {
             const e4 = "", t28 = this.fs.contentFs();
-            for (const i of t28) {
+            for (const r of t28) {
               this.processedPaths.clear();
-              const t29 = await i.stat(e4);
-              await this.collectDir(i, e4, t29);
+              const t29 = await r.stat(e4);
+              await this.collectDir(r, e4, t29);
             }
           } catch (e4) {
             log25.error(`Failed to collect directory: ${e4}, continuing...`);
           }
         }
-        async collectDir(e4, t28, i) {
+        async collectDir(e4, t28, r) {
           try {
-            await this.fs.walkContent(e4, t28, { hookPre: async (e5, t29, i2) => {
-              const r = t29;
-              if (this.processedPaths.has(r)) return log25.warn("Path already processed!", { path: r, dirName: e5.name(), dirIsDir: e5.isDir(), readdirLength: i2.length }), [];
-              if (this.processedPaths.add(r), 0 === i2.length) return [];
-              for (const e6 of i2) {
+            await this.fs.walkContent(e4, t28, { hookPre: async (e5, t29, r3) => {
+              const i = t29;
+              if (this.processedPaths.has(i)) return log25.warn("Path already processed!", { path: i, dirName: e5.name(), dirIsDir: e5.isDir(), readdirLength: r3.length }), [];
+              if (this.processedPaths.add(i), 0 === r3.length) return [];
+              for (const e6 of r3) {
                 if (e6.isDir && e6.isDir()) continue;
                 const t30 = newFileInfo2(e6);
                 await this.m.addFi(t30);
               }
-              return i2;
+              return r3;
             }, walkFn: async (e5, t29) => {
-            } }, { info: i });
+            } }, { info: r });
           } catch (e5) {
-            throw log25.error(`Failed to collect directory: ${e5}`, { path: t28, rootName: i.name(), rootIsDir: i.isDir(), stack: e5.stack || "No stack trace available" }), new Error(`Failed to collect directory: ${e5}`);
+            throw log25.error(`Failed to collect directory: ${e5}`, { path: t28, rootName: r.name(), rootIsDir: r.isDir(), stack: e5.stack || "No stack trace available" }), new Error(`Failed to collect directory: ${e5}`);
           }
         }
-        async handleBundleLeaf(e4, t28, i, r) {
-          const s2 = t28.paths(), n3 = async (e5, i2) => {
-            if (i2.isDir()) return;
-            const r3 = newFileInfo2(i2);
-            i2 !== t28.fileInfo() && (r3.isLeafBundle() && r3.paths().dir() === s2.dir() || r3.shiftToResource()), await this.m.addFi(r3);
+        async handleBundleLeaf(e4, t28, r, i) {
+          const s2 = t28.paths(), n3 = async (e5, r3) => {
+            if (r3.isDir()) return;
+            const i2 = newFileInfo2(r3);
+            r3 !== t28.fileInfo() && (i2.isLeafBundle() && i2.paths().dir() === s2.dir() || i2.shiftToResource()), await this.m.addFi(i2);
           }, a = this.fs.contentFs();
-          for (const t29 of a) await this.fs.walkContent(t29, i, { walkFn: n3 }, { info: e4, dirEntries: r });
+          for (const t29 of a) await this.fs.walkContent(t29, r, { walkFn: n3 }, { info: e4, dirEntries: i });
         }
       };
     } });
@@ -118441,27 +118815,27 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_content2 = __esm2({ "internal/domain/content/entity/content.ts"() {
       init_entity2(), init_doctree(), init_fileinfo2(), init_log(), init_paths(), log26 = getDomainLogger("content", { component: "content" }), Content2 = class {
-        constructor(e4, t28, i, r) {
+        constructor(e4, t28, r, i) {
           __publicField(this, "fs");
           __publicField(this, "converter");
           __publicField(this, "pageMap");
           __publicField(this, "translator");
           __publicField(this, "pageCollected", false);
-          this.fs = e4, this.converter = t28, this.pageMap = i, this.translator = r;
+          this.fs = e4, this.converter = t28, this.pageMap = r, this.translator = i;
         }
         setTemplateSvc(e4) {
           this.pageMap.pageBuilder.templateSvc = e4;
         }
         async renderString(e4, ...t28) {
           if (t28.length < 1 || t28.length > 2) throw new Error("RenderString want 1 or 2 arguments");
-          let i = 1;
+          let r = 1;
           if (1 !== t28.length) {
             const e5 = t28[0];
             if ("object" != typeof e5 || null === e5) throw new Error("first argument must be a map");
             throw new Error("RenderString not implemented yet");
           }
-          i = 0;
-          const r = t28[0], s2 = String(r);
+          r = 0;
+          const i = t28[0], s2 = String(i);
           return newFileInfo2(this.fs.newFileMetaInfoWithContent(s2)), s2;
         }
         async collectPages() {
@@ -118498,8 +118872,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return await this.pageMap.getPagesInSection(0, new PageMapQueryPagesInSectionImpl("", "global", true, true, 0, (e4) => pagePredicates.shouldListGlobal(e4) && pagePredicates.kindPage(e4)));
         }
         async walkPages(e4, t28) {
-          const i = this.pageMap.treePages.shape(0, e4), r = new NodeShiftTreeWalker({ tree: i, handle: async (e5, i2, r3) => {
-            const [s2, n3] = i2.getPage();
+          const r = this.pageMap.treePages.shape(0, e4), i = new NodeShiftTreeWalker({ tree: r, handle: async (e5, r3, i2) => {
+            const [s2, n3] = r3.getPage();
             if (!n3) return [false, null];
             try {
               await t28(s2);
@@ -118509,27 +118883,27 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return [false, null];
           } });
           try {
-            await r.walk();
+            await i.walk();
           } catch (t29) {
             throw log26.error(`WalkPages failed for langIndex ${e4}:`, t29), t29;
           }
         }
         async walkTaxonomies(e4, t28) {
           try {
-            const i = this.pageMap.treePages.shape(0, e4), r = this.pageMap.pageBuilder.taxonomy;
-            for (const s2 of r.views) {
-              const n3 = r.pluralTreeKey(s2.plural()), a = new NodeShiftTreeWalker({ tree: i, prefix: addTrailingSlash(n3), lockType: 1, handle: async (i2, r3, n4) => {
-                const [a2, o] = r3.getPage();
+            const r = this.pageMap.treePages.shape(0, e4), i = this.pageMap.pageBuilder.taxonomy;
+            for (const s2 of i.views) {
+              const n3 = i.pluralTreeKey(s2.plural()), a = new NodeShiftTreeWalker({ tree: r, prefix: addTrailingSlash(n3), lockType: 1, handle: async (r3, i2, n4) => {
+                const [a2, o] = i2.getPage();
                 if (!o) return [false, null];
                 if ("term" === a2.kind()) {
-                  const r4 = a2;
-                  if (!r4.term) return [true, new Error("term is empty")];
-                  const n5 = r4.term.toLowerCase();
+                  const i3 = a2;
+                  if (!i3.term) return [true, new Error("term is empty")];
+                  const n5 = i3.term.toLowerCase();
                   try {
                     const a3 = this.pageMap.treeTaxonomyEntries.shape(0, e4);
-                    return await a3.walkPrefix(1, addTrailingSlash(i2), (e5, i3) => {
-                      const [a4, o2] = i3.getPage();
-                      return o2 ? (t28(s2.plural(), n5, { weight: () => i3.term.Weight(), ordinal: () => i3.term.Ordinal(), page: () => a4, owner: () => r4 }).catch((e6) => {
+                    return await a3.walkPrefix(1, addTrailingSlash(r3), (e5, r4) => {
+                      const [a4, o2] = r4.getPage();
+                      return o2 ? (t28(s2.plural(), n5, { weight: () => r4.term.Weight(), ordinal: () => r4.term.Ordinal(), page: () => a4, owner: () => i3 }).catch((e6) => {
                         log26.error("Error in taxonomy walker:", e6);
                       }), [false, null]) : [false, null];
                     }), [false, null];
@@ -118547,10 +118921,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         getPageFromPath(e4, t28) {
           try {
-            const i = PathDomain.createProcessor().parse(PATH_CONSTANTS.COMPONENT_FOLDER_CONTENT, t28);
-            let r = this.pageMap.treePages.shape(0, e4).get(i.base());
-            if (r) {
-              const [e5, t29] = r.getPage();
+            const r = PathDomain.createProcessor().parse(PATH_CONSTANTS.COMPONENT_FOLDER_CONTENT, t28);
+            let i = this.pageMap.treePages.shape(0, e4).get(r.base());
+            if (i) {
+              const [e5, t29] = i.getPage();
               if (t29) return e5;
             }
             return null;
@@ -118560,9 +118934,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         getPageFromFile(e4, t28) {
           try {
-            let i = this.pageMap.treePages.shape(0, e4).get(t28.paths().base());
-            if (i) {
-              const [e5, t29] = i.getPage();
+            let r = this.pageMap.treePages.shape(0, e4).get(t28.paths().base());
+            if (r) {
+              const [e5, t29] = r.getPage();
               if (t29) return e5;
             }
             return null;
@@ -118572,18 +118946,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async handleChangeFiles(e4) {
           const t28 = [];
-          for (const [i, r] of e4) try {
-            await this.addOrUpdateFile(r, t28);
+          for (const [r, i] of e4) try {
+            await this.addOrUpdateFile(i, t28);
           } catch (e5) {
-            log26.error(`Failed to process file change for ${i}:`, e5);
+            log26.error(`Failed to process file change for ${r}:`, e5);
           }
           return t28;
         }
         async addOrUpdateFile(e4, t28) {
           if (!e4.isDir()) try {
-            const i = newFileInfo2(e4), r = i.paths().base();
-            r && t28.push(r), await this.pageMap.addFi(i);
-            const s2 = this.getPageFromFile(0, i);
+            const r = newFileInfo2(e4), i = r.paths().base();
+            i && t28.push(i), await this.pageMap.addFi(r);
+            const s2 = this.getPageFromFile(0, r);
             s2 && s2.pageIdentity && s2.pageIdentity().markStale();
           } catch (t29) {
             throw log26.error(`Failed to add/update file in PageMap: ${e4.fileName()}`, t29), t29;
@@ -118674,9 +119048,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         isSectionExist(e4) {
           return !("" !== e4 && !this.seen[e4] && (this.seen[e4] = true, 1));
         }
-        async assemble(e4, t28, i) {
+        async assemble(e4, t28, r) {
           this.seen = {};
-          const r = new NodeShiftTreeWalker({ tree: e4, lockType: 2, handle: async (e5, s2, n3) => {
+          const i = new NodeShiftTreeWalker({ tree: e4, lockType: 2, handle: async (e5, s2, n3) => {
             if (!s2) throw new Error("n is null");
             const [a, o] = s2.getPage();
             if (!o) return [false, null];
@@ -118686,9 +119060,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             const c = a.paths().sections();
             for (const e6 of c) if (!this.isSectionExist(e6)) try {
               const s3 = newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo("/" + e6 + "/_index.md"))), n4 = s3.paths().base();
-              if (!r.tree.get(n4)) {
-                const e7 = await t28.withSource(s3).withLangIdx(i).kindBuild();
-                r.tree.insertIntoValuesDimension(n4, newPageTreesNode2(e7));
+              if (!i.tree.get(n4)) {
+                const e7 = await t28.withSource(s3).withLangIdx(r).kindBuild();
+                i.tree.insertIntoValuesDimension(n4, newPageTreesNode2(e7));
               }
             } catch (e7) {
               return [false, e7];
@@ -118696,7 +119070,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return [false, null];
           } });
           try {
-            await r.walk();
+            await i.walk();
           } catch (e5) {
             throw log27.error("Error walking pages:", e5), e5;
           }
@@ -118706,8 +119080,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async createHome(e4) {
-          const t28 = newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo("/_index.md"))), i = await e4.withSource(t28).kindBuild();
-          this.home = i;
+          const t28 = newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo("/_index.md"))), r = await e4.withSource(t28).kindBuild();
+          this.home = r;
         }
       };
     } });
@@ -118718,14 +119092,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.fsSvc = e4;
         }
         async assemble(e4, t28) {
-          const i = "/" + STANDALONE_PAGE_404_BASE, r = await this.addStandalone(i, t28);
-          e4.insertIntoValuesDimension(i, newPageTreesNode2(r));
+          const r = "/" + STANDALONE_PAGE_404_BASE, i = await this.addStandalone(r, t28);
+          e4.insertIntoValuesDimension(r, newPageTreesNode2(i));
           const s2 = "/" + STANDALONE_PAGE_SITEMAP_BASE, n3 = await this.addStandalone(s2, t28);
           e4.insertIntoValuesDimension(s2, newPageTreesNode2(n3));
         }
         async addStandalone(e4, t28) {
-          const i = newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo(e4 + ".md")));
-          return await t28.withSource(i).kindBuild();
+          const r = newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo(e4 + ".md")));
+          return await t28.withSource(r).kindBuild();
         }
       };
     } });
@@ -118752,20 +119126,20 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         buildTarget() {
           let e4 = "", t28 = "";
-          const i = "index";
+          const r = "index";
           switch (this.pageKind) {
             case getKindMain("home"):
-              e4 = `${i}.html`, t28 = "";
+              e4 = `${r}.html`, t28 = "";
               break;
             case getKindMain("page"):
-              const r = this.source.paths().containerDir();
-              e4 = r && "/" !== r ? `${r}/${this.baseName}.html` : `/${this.baseName}.html`, t28 = r || "";
+              const i = this.source.paths().containerDir();
+              e4 = i && "/" !== i ? `${i}/${this.baseName}.html` : `/${this.baseName}.html`, t28 = i || "";
               break;
             case getKindMain("section"):
             case getKindMain("taxonomy"):
             case getKindMain("term"):
               const s2 = this.source.paths().dir();
-              e4 = s2 ? `${s2}/${i}.html` : `${i}.html`, t28 = s2 || "";
+              e4 = s2 ? `${s2}/${r}.html` : `${r}.html`, t28 = s2 || "";
               break;
             case getKindMain("404"):
               const n3 = this.source.paths().dir();
@@ -118776,12 +119150,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               e4 = a ? `${a}/${this.baseName}.xml` : `${this.baseName}.xml`, t28 = a || "";
               break;
             default:
-              e4 = `${i}.html`, t28 = "";
+              e4 = `${r}.html`, t28 = "";
           }
           this.target = { prefix: this.source.identity.pageLanguage(), filePath: e4, subResourceBaseTarget: t28 };
         }
         createBasicResult() {
-          return { bytes: () => new Uint8Array(), headers: () => [], tableOfContents: () => ({ toHTML: (e4, t28, i) => "" }) };
+          return { bytes: () => new Uint8Array(), headers: () => [], tableOfContents: () => ({ toHTML: (e4, t28, r) => "" }) };
         }
         output(e4) {
           return { targetFileBase: () => {
@@ -118794,13 +119168,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_paginator = __esm2({ "internal/domain/content/entity/paginator.ts"() {
       init_log(), getDomainLogger("content", { component: "paginator" }), PaginatorImpl = class {
-        constructor(e4, t28, i, r) {
+        constructor(e4, t28, r, i) {
           __publicField(this, "paginatedElements");
           __publicField(this, "_pagers");
           __publicField(this, "base");
           __publicField(this, "total");
           __publicField(this, "size");
-          if (this.paginatedElements = e4, this.base = r, this.total = t28, this.size = i, this._pagers = [], e4.length > 0) for (let t29 = 0; t29 < e4.length; t29++) this._pagers.push(new PagerImpl(t29 + 1, this));
+          if (this.paginatedElements = e4, this.base = i, this.total = t28, this.size = r, this._pagers = [], e4.length > 0) for (let t29 = 0; t29 < e4.length; t29++) this._pagers.push(new PagerImpl(t29 + 1, this));
           else this._pagers.push(new PagerImpl(1, this));
         }
         totalPages() {
@@ -118894,8 +119268,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async paginate(e4) {
           if (!this.initialized) {
             const t28 = this.svc.pageSize();
-            let i;
-            i = Array.isArray(e4) && e4.length > 0 && "key" in e4[0] ? this.newPaginatorFromPageGroups(e4, t28, this.page.paths().base()) : this.newPaginatorFromPages(e4, t28, this.page.paths().base()), this.currentPager = i.pagers()[0], this.initialized = true;
+            let r;
+            r = Array.isArray(e4) && e4.length > 0 && "key" in e4[0] ? this.newPaginatorFromPageGroups(e4, t28, this.page.paths().base()) : this.newPaginatorFromPages(e4, t28, this.page.paths().base()), this.currentPager = r.pagers()[0], this.initialized = true;
           }
           return this.currentPager || this.current();
         }
@@ -118913,44 +119287,44 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               case "term":
               case "taxonomy":
                 const e5 = await this.page.pages();
-                t28 = (e5 == null ? void 0 : e5.length) ? Array.from({ length: e5.length }, (t29, i3) => e5[i3]) : [];
+                t28 = (e5 == null ? void 0 : e5.length) ? Array.from({ length: e5.length }, (t29, r4) => e5[r4]) : [];
                 break;
               default:
-                const i2 = await this.page.regularPages();
-                t28 = i2 && i2.length > 0 ? Array.from({ length: i2.length }, (e6, t29) => i2[t29]) : await this.svc.globalRegularPages();
+                const r3 = await this.page.regularPages();
+                t28 = r3 && r3.length > 0 ? Array.from({ length: r3.length }, (e6, t29) => r3[t29]) : await this.svc.globalRegularPages();
             }
-            const i = this.page.paths().base(), r = this.newPaginatorFromPages(t28, e4, i);
-            this.currentPager = r.pagers()[0], this.initialized = true;
-          } catch (e4) {
-            const t28 = this.page.paths().base(), i = new PaginatorImpl([], 0, 10, t28);
+            const r = this.page.paths().base(), i = this.newPaginatorFromPages(t28, e4, r);
             this.currentPager = i.pagers()[0], this.initialized = true;
+          } catch (e4) {
+            const t28 = this.page.paths().base(), r = new PaginatorImpl([], 0, 10, t28);
+            this.currentPager = r.pagers()[0], this.initialized = true;
           }
         }
-        newPaginatorFromPages(e4, t28, i) {
+        newPaginatorFromPages(e4, t28, r) {
           if (t28 <= 0) throw new Error("paginator size must be positive");
-          const r = this.splitPages(e4, t28);
-          return new PaginatorImpl(r, e4.length, t28, i);
+          const i = this.splitPages(e4, t28);
+          return new PaginatorImpl(i, e4.length, t28, r);
         }
-        newPaginatorFromPageGroups(e4, t28, i) {
+        newPaginatorFromPageGroups(e4, t28, r) {
           if (t28 <= 0) throw new Error("paginator size must be positive");
-          const r = [];
+          const i = [];
           if (e4 && e4.length > 0) for (let t29 = 0; t29 < e4.length; t29++) {
-            const i2 = e4[t29];
-            if (i2 && i2.pages) {
-              const e5 = i2.pages();
-              if (e5) for (let t30 = 0; t30 < e5.length; t30++) r.push(e5[t30]);
+            const r3 = e4[t29];
+            if (r3 && r3.pages) {
+              const e5 = r3.pages();
+              if (e5) for (let t30 = 0; t30 < e5.length; t30++) i.push(e5[t30]);
             }
           }
-          const s2 = this.splitPages(r, t28);
-          return new PaginatorImpl(s2, r.length, t28, i);
+          const s2 = this.splitPages(i, t28);
+          return new PaginatorImpl(s2, i.length, t28, r);
         }
         splitPages(e4, t28) {
-          const i = [];
-          for (let r = 0; r < e4.length; r += t28) {
-            const s2 = Math.min(r + t28, e4.length);
-            i.push(e4.slice(r, s2));
+          const r = [];
+          for (let i = 0; i < e4.length; i += t28) {
+            const s2 = Math.min(i + t28, e4.length);
+            r.push(e4.slice(i, s2));
           }
-          return i;
+          return r;
         }
       };
     } });
@@ -118961,9 +119335,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.values = /* @__PURE__ */ new Map();
         }
         add(e4, t28) {
-          const i = this.values.get(e4);
-          let r;
-          return r = void 0 !== i ? Array.isArray(i) ? [...i, t28] : "number" == typeof i && "number" == typeof t28 || "string" == typeof i && "string" == typeof t28 ? i + t28 : t28 : t28, this.values.set(e4, r), "";
+          const r = this.values.get(e4);
+          let i;
+          return i = void 0 !== r ? Array.isArray(r) ? [...r, t28] : "number" == typeof r && "number" == typeof t28 || "string" == typeof r && "string" == typeof t28 ? r + t28 : t28 : t28, this.values.set(e4, i), "";
         }
         Add(e4, t28) {
           return this.add(e4, t28);
@@ -118986,9 +119360,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         getValues() {
           return this.values;
         }
-        setInMap(e4, t28, i) {
-          let r = this.values.get(e4);
-          return r && "object" == typeof r || (r = {}, this.values.set(e4, r)), r[t28] = i, "";
+        setInMap(e4, t28, r) {
+          let i = this.values.get(e4);
+          return i && "object" == typeof i || (i = {}, this.values.set(e4, i)), i[t28] = r, "";
         }
       };
     } });
@@ -118996,7 +119370,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_page = __esm2({ "internal/domain/content/entity/page.ts"() {
       init_content3(), init_pageoutput(), init_paginator(), init_scratch(), init_pagemap(), init_paths2(), init_doctree(), init_sort(), init_log(), getDomainLogger("content", { component: "page" }), PageImpl = class {
-        constructor(e4, t28, i, r, s2 = "", n3 = "page", a = null) {
+        constructor(e4, t28, r, i, s2 = "", n3 = "page", a = null) {
           __publicField(this, "source");
           __publicField(this, "content");
           __publicField(this, "meta");
@@ -119008,7 +119382,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "pageMap");
           __publicField(this, "output_", null);
           __publicField(this, "store_", null);
-          this.source = e4, this.content = t28, this.meta = i, this.layout = r, this.title_ = s2, this.kind_ = n3, this.pageMap = a, this.pagerManager = new PaginatorManagerImpl({ pageSize: () => 10, globalRegularPages: async () => [] }, this);
+          this.source = e4, this.content = t28, this.meta = r, this.layout = i, this.title_ = s2, this.kind_ = n3, this.pageMap = a, this.pagerManager = new PaginatorManagerImpl({ pageSize: () => 10, globalRegularPages: async () => [] }, this);
         }
         rawContent() {
           if (!this.content) return "";
@@ -119188,9 +119562,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           for (; ; ) {
             const t28 = (_a11 = this.pageMap) == null ? void 0 : _a11.treePages.longestPrefix(e4, true);
             if (!t28) return null;
-            const [i, r] = t28;
-            if (!r) return null;
-            const [s2, n3] = r.getPage();
+            const [r, i] = t28;
+            if (!i) return null;
+            const [s2, n3] = i.getPage();
             if (!s2) return null;
             if (this.isBundled()) return n3 ? s2 : null;
             if (!s2.isPage()) return n3 ? s2 : null;
@@ -119253,12 +119627,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (!this.pageMap) return [];
           try {
             return await this.pageMap.getOrCreatePagesFromCacheSync(null, e4, async (e5) => {
-              const t28 = await this.allTranslations(), i = [];
+              const t28 = await this.allTranslations(), r = [];
               for (let e6 = 0; e6 < t28.length; e6++) {
-                const r = t28.at(e6);
-                r && !r.eq(this) && i.push(r);
+                const i = t28.at(e6);
+                i && !i.eq(this) && r.push(i);
               }
-              return i;
+              return r;
             });
           } catch (e5) {
             throw e5;
@@ -119270,14 +119644,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           try {
             return await this.pageMap.getOrCreatePagesFromCacheSync(null, e4, async (e5) => {
               const t28 = [];
-              var i;
+              var r;
               return this.pageMap.treePages.forEachInDimension(this.paths().base(), dimensionFlag.index(1), (e6) => {
                 if (null != e6) {
-                  const i2 = e6.getPages();
-                  t28.push(...i2);
+                  const r3 = e6.getPages();
+                  t28.push(...r3);
                 }
                 return false;
-              }), i = t28, pageBy(language).sort(i), t28;
+              }), r = t28, pageBy(language).sort(r), t28;
             });
           } catch (e5) {
             throw e5;
@@ -119287,8 +119661,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.source.file.isBundle();
         }
       }, TaxonomyPageImpl = class extends PageImpl {
-        constructor(e4, t28, i, r, s2, n3 = "", a = "taxonomy", o = null) {
-          super(e4, t28, i, r, n3, a, o);
+        constructor(e4, t28, r, i, s2, n3 = "", a = "taxonomy", o = null) {
+          super(e4, t28, r, i, n3, a, o);
           __publicField(this, "singular");
           this.singular = s2;
         }
@@ -119297,8 +119671,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return e4.Singular = this.singular, e4;
         }
       }, TermPageImpl = class extends TaxonomyPageImpl {
-        constructor(e4, t28, i, r, s2, n3, a = "", o = "term", l = null) {
-          super(e4, t28, i, r, s2, a, o, l);
+        constructor(e4, t28, r, i, s2, n3, a = "", o = "term", l = null) {
+          super(e4, t28, r, i, s2, a, o, l);
           __publicField(this, "term");
           this.term = n3;
         }
@@ -119310,7 +119684,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_pagemeta = __esm2({ "internal/domain/content/entity/pagemeta.ts"() {
       Meta = class {
-        constructor(e4, t28 = "always", i = {}, r = 999, s2 = /* @__PURE__ */ new Date(), n3, a, o) {
+        constructor(e4, t28 = "always", r = {}, i = 999, s2 = /* @__PURE__ */ new Date(), n3, a, o) {
           __publicField(this, "baseURL");
           __publicField(this, "list");
           __publicField(this, "parameters");
@@ -119319,7 +119693,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "org");
           __publicField(this, "authorInfo");
           __publicField(this, "menuConfig");
-          this.baseURL = e4, this.list = t28, this.parameters = i, this.weight = r, this.date = s2, this.org = n3, this.authorInfo = a, this.menuConfig = o;
+          this.baseURL = e4, this.list = t28, this.parameters = r, this.weight = i, this.date = s2, this.org = n3, this.authorInfo = a, this.menuConfig = o;
         }
         description() {
           return "";
@@ -119382,8 +119756,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return [`${e4}/section.html`, `${e4}/list.html`, "_default/section.html", "_default/list.html", "_default/index.html"];
         }
         page(e4, t28) {
-          const i = e4 ? `${e4}/${t28}` : t28, r = e4 ? `${e4}/single.html` : "single.html", s2 = [];
-          return "index" !== i && s2.push(`${i}.html`), s2.push(r), "index" !== t28 && s2.push(`_default/${t28}.html`), s2.push("_default/single.html"), s2.push("index.html"), s2.push("_default/index.html"), s2;
+          const r = e4 ? `${e4}/${t28}` : t28, i = e4 ? `${e4}/single.html` : "single.html", s2 = [];
+          return "index" !== r && s2.push(`${r}.html`), s2.push(i), "index" !== t28 && s2.push(`_default/${t28}.html`), s2.push("_default/single.html"), s2.push("index.html"), s2.push("_default/index.html"), s2;
         }
         taxonomy() {
           return ["taxonomy/taxonomy.html", "taxonomy/list.html", "_default/list.html", "_default/taxonomy.html"];
@@ -119401,7 +119775,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_shortcode2 = __esm2({ "internal/domain/content/entity/shortcode.ts"() {
       init_scratch(), ShortcodeWithPage = class {
-        constructor(e4, t28, i, r, s2, n3, a, o = "", l = 0) {
+        constructor(e4, t28, r, i, s2, n3, a, o = "", l = 0) {
           __publicField(this, "_params");
           __publicField(this, "_inner");
           __publicField(this, "_page");
@@ -119414,7 +119788,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "_posOffset");
           __publicField(this, "_pos", null);
           __publicField(this, "_scratch", null);
-          this._params = e4, this._inner = t28, this._page = i, this._parent = r, this._name = s2, this._isNamedParams = n3, this._ordinal = a, this._indentation = o, this._posOffset = l;
+          this._params = e4, this._inner = t28, this._page = r, this._parent = i, this._name = s2, this._isNamedParams = n3, this._ordinal = a, this._indentation = o, this._posOffset = l;
         }
         get params() {
           return this._params;
@@ -119519,21 +119893,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return !!e4.startsWith(PARTIALS_PREFIX);
         }
         needsBaseTemplate(e4) {
-          let t28 = -1, i = false;
-          for (let r = 0; r < e4.length; ) if (!i && e4.substring(r).startsWith("{{/*")) i = true, r += 4;
-          else if (!i && e4.substring(r).startsWith("{{- /*")) i = true, r += 6;
-          else if (i && e4.substring(r).startsWith("*/}}")) i = false, r += 4;
-          else if (i && e4.substring(r).startsWith("*/ -}}")) i = false, r += 6;
+          let t28 = -1, r = false;
+          for (let i = 0; i < e4.length; ) if (!r && e4.substring(i).startsWith("{{/*")) r = true, i += 4;
+          else if (!r && e4.substring(i).startsWith("{{- /*")) r = true, i += 6;
+          else if (r && e4.substring(i).startsWith("*/}}")) r = false, i += 4;
+          else if (r && e4.substring(i).startsWith("*/ -}}")) r = false, i += 6;
           else {
-            const s2 = e4[r];
-            if (!i) {
-              if (e4.substring(r).startsWith("{{")) {
-                t28 = r;
+            const s2 = e4[i];
+            if (!r) {
+              if (e4.substring(i).startsWith("{{")) {
+                t28 = i;
                 break;
               }
               if (!/\s/.test(s2)) break;
             }
-            r++;
+            i++;
           }
           return -1 !== t28 && /^{{-?\s*define/.test(e4.substring(t28));
         }
@@ -119553,15 +119927,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_info2 = __esm2({ "internal/domain/template/vo/info.ts"() {
       init_type8(), TemplateInfo2 = class e4 {
-        constructor(e5, t28, i) {
-          this.name = e5, this.template = t28, this.fi = i;
+        constructor(e5, t28, r) {
+          this.name = e5, this.template = t28, this.fi = r;
         }
         identifierBase() {
           return this.name;
         }
         errWithFileContext(e5, t28) {
-          const i = `${e5}: ${t28.message}`, r = new TemplateError(i, "TEMPLATE_FILE_ERROR");
-          return Object.defineProperty(r, "fileName", { value: this.name, enumerable: true }), Object.defineProperty(r, "fileContent", { value: this.template, enumerable: true }), r;
+          const r = `${e5}: ${t28.message}`, i = new TemplateError(r, "TEMPLATE_FILE_ERROR");
+          return Object.defineProperty(i, "fileName", { value: this.name, enumerable: true }), Object.defineProperty(i, "fileContent", { value: this.template, enumerable: true }), i;
         }
         isZero() {
           return "" === this.name;
@@ -119592,7 +119966,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               const t28 = e4 + ".html";
               if (this.templates.has(t28)) return this.templates.get(t28) || null;
             }
-            for (const [t28, i] of this.templates.entries()) if (t28.includes(e4)) return i;
+            for (const [t28, r] of this.templates.entries()) if (t28.includes(e4)) return r;
             return null;
           });
         }
@@ -119619,7 +119993,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         getTemplatesByPattern(e4) {
           return this.withReadLock(() => {
             const t28 = [];
-            for (const [i, r] of this.templates) e4.test(i) && t28.push(r);
+            for (const [r, i] of this.templates) e4.test(r) && t28.push(i);
             return t28;
           });
         }
@@ -119659,8 +120033,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return t28 ? t28.template : null;
         }
         addPartialTemplate(e4, t28) {
-          const i = { ...t28, type: 2 };
-          this.addTemplate(e4, i);
+          const r = { ...t28, type: 2 };
+          this.addTemplate(e4, r);
         }
       }, ShortcodeTemplateNamespace = class extends BaseNamespace {
         lookup(e4) {
@@ -119668,8 +120042,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return t28 ? t28.template : null;
         }
         addShortcodeTemplate(e4, t28) {
-          const i = { ...t28, type: 1 };
-          this.addTemplate(e4, i);
+          const r = { ...t28, type: 1 };
+          this.addTemplate(e4, r);
         }
         getShortcode(e4) {
           return this.lookup("_shortcodes/" + e4);
@@ -119686,22 +120060,22 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
       init_type8(), Executor = class {
         async execute(e4, t28) {
           try {
-            const [i, r] = await e4.Execute(t28);
-            if (r) throw new TemplateError(`Template execution failed: ${r.message}`, "EXECUTION_FAILED");
-            return i;
+            const [r, i] = await e4.Execute(t28);
+            if (i) throw new TemplateError(`Template execution failed: ${i.message}`, "EXECUTION_FAILED");
+            return r;
           } catch (e5) {
             if (e5 instanceof TemplateError) throw e5;
             const t29 = e5 instanceof Error ? e5.message : String(e5);
             throw new TemplateError(`Template execution failed: ${t29}`, "EXECUTION_FAILED");
           }
         }
-        async executeWithTimeout(e4, t28, i) {
-          return new Promise(async (r, s2) => {
+        async executeWithTimeout(e4, t28, r) {
+          return new Promise(async (i, s2) => {
             const n3 = setTimeout(() => {
               s2(new TemplateError("Template execution timeout", "EXECUTION_TIMEOUT"));
-            }, i);
+            }, r);
             await this.execute(e4, t28).then((e5) => {
-              clearTimeout(n3), r(e5);
+              clearTimeout(n3), i(e5);
             }).catch((e5) => {
               clearTimeout(n3), s2(e5);
             });
@@ -119717,29 +120091,29 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async executeBatch(e4) {
-          return (await Promise.allSettled(e4.map(async ({ name: e5, template: t28, data: i }) => {
+          return (await Promise.allSettled(e4.map(async ({ name: e5, template: t28, data: r }) => {
             try {
-              return { name: e5, result: await this.execute(t28, i), error: null };
+              return { name: e5, result: await this.execute(t28, r), error: null };
             } catch (t29) {
               return { name: e5, result: null, error: t29 instanceof TemplateError ? t29 : new TemplateError(`Batch execution failed: ${t29.message}`, "BATCH_EXECUTION_FAILED") };
             }
           }))).map((e5) => "fulfilled" === e5.status ? e5.value : { name: "unknown", result: null, error: new TemplateError(`Batch execution failed: ${e5.reason}`, "BATCH_EXECUTION_FAILED") });
         }
-        async executeWithContext(e4, t28, i) {
+        async executeWithContext(e4, t28, r) {
           var _a11;
-          if ((_a11 = i.signal) == null ? void 0 : _a11.aborted) throw new TemplateError("Template execution was cancelled", "EXECUTION_CANCELLED");
-          const r = new Promise((e5, t29) => {
-            i.signal && i.signal.addEventListener("abort", () => {
+          if ((_a11 = r.signal) == null ? void 0 : _a11.aborted) throw new TemplateError("Template execution was cancelled", "EXECUTION_CANCELLED");
+          const i = new Promise((e5, t29) => {
+            r.signal && r.signal.addEventListener("abort", () => {
               t29(new TemplateError("Template execution was cancelled", "EXECUTION_CANCELLED"));
             });
-          }), s2 = i.timeout ? new Promise((e5, t29) => {
+          }), s2 = r.timeout ? new Promise((e5, t29) => {
             setTimeout(() => {
               t29(new TemplateError("Template execution timeout", "EXECUTION_TIMEOUT"));
-            }, i.timeout);
+            }, r.timeout);
           }) : new Promise(() => {
           });
           try {
-            return await Promise.race([this.execute(e4, t28), r, s2]);
+            return await Promise.race([this.execute(e4, t28), i, s2]);
           } catch (e5) {
             if (e5 instanceof TemplateError) throw e5;
             throw new TemplateError(`Context execution failed: ${e5.message}`, "CONTEXT_EXECUTION_FAILED");
@@ -119779,16 +120153,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.pendingPromises.size;
         }
         async getOrCreate(e4, t28) {
-          const i = this.cache.get(e4);
-          if (void 0 !== i) return i;
-          const r = this.pendingPromises.get(e4);
-          return r ? await r : this.createAndCache(e4, t28);
+          const r = this.cache.get(e4);
+          if (void 0 !== r) return r;
+          const i = this.pendingPromises.get(e4);
+          return i ? await i : this.createAndCache(e4, t28);
         }
         async createAndCache(e4, t28) {
-          const i = this.executeCreate(e4, t28);
-          this.pendingPromises.set(e4, i);
+          const r = this.executeCreate(e4, t28);
+          this.pendingPromises.set(e4, r);
           try {
-            const t29 = await i;
+            const t29 = await r;
             return this.deletedKeys.has(e4) ? (this.deletedKeys.delete(e4), this.pendingPromises.delete(e4), t29) : (this.set(e4, t29), t29);
           } catch (t29) {
             throw this.pendingPromises.delete(e4), log31.error(`Failed to create value for key ${String(e4)} : ${t29}`), t29;
@@ -119798,8 +120172,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           try {
             return await t28(e4);
           } catch (t29) {
-            const i = t29 instanceof Error ? t29.message : String(t29), r = new Error(`Cache creation failed for key ${String(e4)}: ${i}`);
-            throw t29 instanceof Error && t29.stack && (r.stack = t29.stack, r.originalError = t29), r;
+            const r = t29 instanceof Error ? t29.message : String(t29), i = new Error(`Cache creation failed for key ${String(e4)}: ${r}`);
+            throw t29 instanceof Error && t29.stack && (i.stack = t29.stack, i.originalError = t29), i;
           }
         }
         getStats() {
@@ -119828,9 +120202,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           try {
             const t28 = New2(e4.name);
             this.funcMap && this.funcMap.size > 0 && t28.Funcs(this.funcMap);
-            const [i, r] = t28.Parse(e4.template);
-            if (r) throw new TemplateError(`Parse failed: ${r.message}`, "PARSE_FAILED");
-            return { template: i, info: e4, type: resolveTemplateType(e4.name) };
+            const [r, i] = t28.Parse(e4.template);
+            if (i) throw new TemplateError(`Parse failed: ${i.message}`, "PARSE_FAILED");
+            return { template: r, info: e4, type: resolveTemplateType(e4.name) };
           } catch (e5) {
             if (e5 instanceof TemplateError) throw e5;
             const t28 = e5 instanceof Error ? e5.message : String(e5);
@@ -119840,48 +120214,48 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async parseWithLock(e4, t28) {
           try {
             this.prototypeTextClone || await this.markReady();
-            const i = New2(e4);
-            this.funcMap && this.funcMap.size > 0 && i.Funcs(this.funcMap);
-            const [r, s2] = i.Parse(t28);
+            const r = New2(e4);
+            this.funcMap && this.funcMap.size > 0 && r.Funcs(this.funcMap);
+            const [i, s2] = r.Parse(t28);
             if (s2) throw new TemplateError(`Parse with lock failed: ${s2.message}`, "PARSE_LOCK_FAILED");
-            return r;
+            return i;
           } catch (e5) {
             if (e5 instanceof TemplateError) throw e5;
             const t29 = e5 instanceof Error ? e5.message : String(e5);
             throw new TemplateError(`Parse with lock failed: ${t29}`, "PARSE_LOCK_FAILED");
           }
         }
-        async parseOverlap(e4, t28, i) {
-          const r = `${e4.name}::${t28.name || "empty"}`;
-          return this.parseOverlapCache.getOrCreate(r, async () => {
+        async parseOverlap(e4, t28, r) {
+          const i = `${e4.name}::${t28.name || "empty"}`;
+          return this.parseOverlapCache.getOrCreate(i, async () => {
             try {
-              const r3 = { template: await this.applyBaseTemplate(e4, t28, i), info: e4, type: resolveTemplateType(e4.name) };
-              return t28.isZero && !t28.name || (r3.baseInfo = t28), [r3, true, null];
+              const i2 = { template: await this.applyBaseTemplate(e4, t28, r), info: e4, type: resolveTemplateType(e4.name) };
+              return t28.isZero && !t28.name || (i2.baseInfo = t28), [i2, true, null];
             } catch (e5) {
               const t29 = e5 instanceof TemplateError ? e5 : new TemplateError(`Parse overlap failed: ${e5.message}`, "PARSE_OVERLAP_FAILED");
-              return log32.error(`Failed to parse template overlap for key: ${r}: ${t29.message}`), [null, false, t29];
+              return log32.error(`Failed to parse template overlap for key: ${i}: ${t29.message}`), [null, false, t29];
             }
           });
         }
-        async applyBaseTemplate(e4, t28, i) {
+        async applyBaseTemplate(e4, t28, r) {
           try {
-            const r = New2(e4.name);
-            if (this.funcMap && this.funcMap.size > 0 && r.Funcs(this.funcMap), !t28.isZero || t28.name) {
-              const [e5, i2] = r.Parse(t28.template);
-              if (i2) throw new TemplateError(`Base template parse failed: ${i2.message}`, "BASE_PARSE_FAILED");
+            const i = New2(e4.name);
+            if (this.funcMap && this.funcMap.size > 0 && i.Funcs(this.funcMap), !t28.isZero || t28.name) {
+              const [e5, r3] = i.Parse(t28.template);
+              if (r3) throw new TemplateError(`Base template parse failed: ${r3.message}`, "BASE_PARSE_FAILED");
             }
-            const [s2, n3] = r.Clone();
+            const [s2, n3] = i.Clone();
             if (n3) throw new TemplateError(`Template clone failed: ${n3.message}`, "CLONE_FAILED");
             const [a, o] = s2.Parse(e4.template);
             if (o) throw new TemplateError(`Overlay template parse failed: ${o.message}`, "OVERLAY_PARSE_FAILED");
-            const l = await this.getDependencies(a, /* @__PURE__ */ new Map(), i);
-            for (const [t29, i2] of l) if (t29 !== e4.name) try {
-              if (i2.template.Tree) {
-                const [, e5] = a.AddParseTree(t29, i2.template.Tree);
+            const l = await this.getDependencies(a, /* @__PURE__ */ new Map(), r);
+            for (const [t29, r3] of l) if (t29 !== e4.name) try {
+              if (r3.template.Tree) {
+                const [, e5] = a.AddParseTree(t29, r3.template.Tree);
                 if (e5) throw log32.error(`AddParseTree failed: ${e5.message} with name ${t29}`), new TemplateError(`AddParseTree failed: ${e5.message}`, "ADD_PARSE_TREE_FAILED");
               }
-            } catch (i3) {
-              throw log32.error(`Error adding dependency ${t29} to template ${e4.name}:`, i3), new TemplateError(`Failed to add dependency ${t29}: ${i3.message}`, "DEPENDENCY_ADD_FAILED");
+            } catch (r4) {
+              throw log32.error(`Error adding dependency ${t29} to template ${e4.name}:`, r4), new TemplateError(`Failed to add dependency ${t29}: ${r4.message}`, "DEPENDENCY_ADD_FAILED");
             }
             return a;
           } catch (e5) {
@@ -119890,9 +120264,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             throw new TemplateError(`Apply base template failed: ${t29}`, "APPLY_BASE_FAILED");
           }
         }
-        async getDependencies(e4, t28, i) {
-          const r = /* @__PURE__ */ new Map();
-          if (t28.has(e4.Name())) return r;
+        async getDependencies(e4, t28, r) {
+          const i = /* @__PURE__ */ new Map();
+          if (t28.has(e4.Name())) return i;
           t28.set(e4.Name(), e4);
           try {
             const s2 = /* @__PURE__ */ new Set(), n3 = (e5) => {
@@ -119921,16 +120295,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             };
             e4.Tree && e4.Tree.Root && n3(e4.Tree.Root);
             for (const e5 of s2) {
-              const s3 = i(e5);
-              if (s3 && (r.set(e5, s3), !t28.has(s3.template.Name()))) {
-                const e6 = await this.getDependencies(s3.template, t28, i);
-                for (const [t29, i2] of e6) r.has(t29) || r.set(t29, i2);
+              const s3 = r(e5);
+              if (s3 && (i.set(e5, s3), !t28.has(s3.template.Name()))) {
+                const e6 = await this.getDependencies(s3.template, t28, r);
+                for (const [t29, r3] of e6) i.has(t29) || i.set(t29, r3);
               }
             }
           } catch (t29) {
             log32.error(`Error getting dependencies for template ${e4.Name()}:`, t29);
           }
-          return r;
+          return i;
         }
         setFuncMap(e4) {
           this.funcMap = new Map([...this.funcMap, ...e4]), this.funcMap.size > 0 && this.prototypeText.Funcs(this.funcMap);
@@ -119939,10 +120313,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return new Map(this.funcMap);
         }
         async parseMultiple(e4) {
-          const t28 = await Promise.allSettled(e4.map((e5) => this.parse(e5))), i = [], r = [];
-          for (const e5 of t28) "fulfilled" === e5.status ? i.push(e5.value) : r.push(e5.reason);
-          if (r.length > 0) throw new TemplateError(`Failed to parse ${r.length} templates: ${r.map((e5) => e5.message).join(", ")}`, "MULTIPLE_PARSE_FAILED");
-          return i;
+          const t28 = await Promise.allSettled(e4.map((e5) => this.parse(e5))), r = [], i = [];
+          for (const e5 of t28) "fulfilled" === e5.status ? r.push(e5.value) : i.push(e5.reason);
+          if (i.length > 0) throw new TemplateError(`Failed to parse ${i.length} templates: ${i.map((e5) => e5.message).join(", ")}`, "MULTIPLE_PARSE_FAILED");
+          return r;
         }
         clearCache() {
           this.parseOverlapCache.clear();
@@ -119957,38 +120331,38 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         constructor(e4, t28) {
           __publicField(this, "baseOf");
           __publicField(this, "funcsv");
-          if (this.baseOf = e4 || new BaseOf(), this.funcsv = /* @__PURE__ */ new Map(), t28) for (const [e5, i] of t28) this.funcsv.set(e5, i);
+          if (this.baseOf = e4 || new BaseOf(), this.funcsv = /* @__PURE__ */ new Map(), t28) for (const [e5, r] of t28) this.funcsv.set(e5, r);
         }
         findNoDependence(e4, t28) {
           try {
-            const i = t28.lookup(e4);
-            return i ? [i, true, null] : [null, false, null];
+            const r = t28.lookup(e4);
+            return r ? [r, true, null] : [null, false, null];
           } catch (e5) {
             return [null, false, e5];
           }
         }
         findTemplate(e4, t28) {
           try {
-            const i = t28.lookup(e4);
-            if (i) return [i, true, null];
-            const r = t28.findTemplateWithDependencies(e4);
-            return r && r.baseInfo ? [r.template, true, null] : [null, false, null];
+            const r = t28.lookup(e4);
+            if (r) return [r, true, null];
+            const i = t28.findTemplateWithDependencies(e4);
+            return i && i.baseInfo ? [i.template, true, null] : [null, false, null];
           } catch (e5) {
             return [null, false, e5];
           }
         }
         findPartial(e4, t28) {
           try {
-            const i = t28.lookup(e4);
-            return i ? [i, true, null] : [null, false, null];
+            const r = t28.lookup(e4);
+            return r ? [r, true, null] : [null, false, null];
           } catch (e5) {
             return [null, false, e5];
           }
         }
         findShortcode(e4, t28) {
           try {
-            const i = t28.getShortcode(e4);
-            return i ? [i, true, null] : [null, false, null];
+            const r = t28.getShortcode(e4);
+            return r ? [r, true, null] : [null, false, null];
           } catch (e5) {
             return [null, false, e5];
           }
@@ -119996,12 +120370,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         findDependentInfo(e4) {
           const t28 = this.baseOf.getNeedsBaseOf(e4);
           if (!t28) return [null, null, false];
-          let i = null, r = false;
-          for (const t29 of this.baseOf.getTemplateSearchOrder(e4)) if (i = this.baseOf.getBaseOf(t29), i) {
-            r = true;
+          let r = null, i = false;
+          for (const t29 of this.baseOf.getTemplateSearchOrder(e4)) if (r = this.baseOf.getBaseOf(t29), r) {
+            i = true;
             break;
           }
-          return [t28, i, r];
+          return [t28, r, i];
         }
         getFunc(e4) {
           return this.funcsv.get(e4);
@@ -120011,7 +120385,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         setFuncMap(e4) {
           this.funcsv.clear();
-          for (const [t28, i] of e4) this.funcsv.set(t28, i);
+          for (const [t28, r] of e4) this.funcsv.set(t28, r);
         }
         getFuncMap() {
           return new Map(this.funcsv);
@@ -120026,8 +120400,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.baseOf = e4;
         }
         hasDependencies(e4) {
-          const [t28, i, r] = this.findDependentInfo(e4);
-          return r && (null !== t28 || null !== i);
+          const [t28, r, i] = this.findDependentInfo(e4);
+          return i && (null !== t28 || null !== r);
         }
         getAllFunctions() {
           return Array.from(this.funcsv.keys());
@@ -120043,7 +120417,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_template2 = __esm2({ "internal/domain/template/entity/template.ts"() {
       init_type8(), init_info2(), init_info2(), init_log(), init_paths(), log33 = getDomainLogger("template", { component: "template-engine" }), TemplateEngine = class {
-        constructor(e4, t28, i, r, s2, n3, a) {
+        constructor(e4, t28, r, i, s2, n3, a) {
           __publicField(this, "executor");
           __publicField(this, "lookup");
           __publicField(this, "parser");
@@ -120051,7 +120425,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "partialNamespace");
           __publicField(this, "shortcodeNamespace");
           __publicField(this, "fs");
-          this.executor = e4, this.lookup = t28, this.parser = i, this.templateNamespace = r, this.partialNamespace = s2, this.shortcodeNamespace = n3, this.fs = a;
+          this.executor = e4, this.lookup = t28, this.parser = r, this.templateNamespace = i, this.partialNamespace = s2, this.shortcodeNamespace = n3, this.fs = a;
         }
         async markReady() {
           try {
@@ -120061,13 +120435,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async getTemplate(e4) {
-          const [t28, i, r] = this.lookup.findTemplate(e4, this.templateNamespace);
-          if (r) return [null, false, r];
-          if (i && t28) return [t28, true, null];
+          const [t28, r, i] = this.lookup.findTemplate(e4, this.templateNamespace);
+          if (i) return [null, false, i];
+          if (r && t28) return [t28, true, null];
           const [s2, n3, a] = this.lookup.findDependentInfo(e4);
           if (a && s2) try {
-            const [e5, t29, i2] = await this.parser.parseOverlap(s2, n3 || s2, this.lookup.newTemplateLookup(this.templateNamespace));
-            if (i2) return [null, false, i2];
+            const [e5, t29, r3] = await this.parser.parseOverlap(s2, n3 || s2, this.lookup.newTemplateLookup(this.templateNamespace));
+            if (r3) return [null, false, r3];
             if (t29 && e5) return [e5.template, true, null];
           } catch (e5) {
             return [null, false, e5];
@@ -120094,9 +120468,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async findFirst(e4) {
           if (!e4 || 0 === e4.length) return [null, null, false, null];
           for (const t28 of e4) try {
-            const [e5, i, r] = await this.get(t28);
-            if (r) continue;
-            if (i && e5) return [e5, t28, true, null];
+            const [e5, r, i] = await this.get(t28);
+            if (i) continue;
+            if (r && e5) return [e5, t28, true, null];
           } catch (e5) {
             log33.error("Error finding template:", e5);
           }
@@ -120115,11 +120489,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           var _a11, _b4;
           const e4 = async (e5, t28) => {
             if (t28.isDir()) return;
-            const i = e5.startsWith(PATH_CONSTANTS.SYSTEM_PATH_SEPARATOR) ? e5.substring(1) : e5, r = PATH_CONSTANTS.normalizePath(i);
+            const r = e5.startsWith(PATH_CONSTANTS.SYSTEM_PATH_SEPARATOR) ? e5.substring(1) : e5, i = PATH_CONSTANTS.normalizePath(r);
             try {
-              await this.addTemplateFileInfo(r, t28);
+              await this.addTemplateFileInfo(i, t28);
             } catch (e6) {
-              log33.error("Error adding template:", new TemplateError(`Failed to add template ${r}: ${e6.message}`, "LOAD_TEMPLATE_FAILED"));
+              log33.error("Error adding template:", new TemplateError(`Failed to add template ${i}: ${e6.message}`, "LOAD_TEMPLATE_FAILED"));
             }
           };
           try {
@@ -120130,23 +120504,23 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async addTemplateFileInfo(e4, t28) {
           try {
-            const i = await async function(e5, t29) {
-              let i2 = null;
+            const r = await async function(e5, t29) {
+              let r3 = null;
               try {
-                i2 = await t29.open();
-                const r = await i2.stat(), s2 = new Uint8Array(r.size()), n3 = await i2.read(s2), a = removeLeadingBOM(new TextDecoder("utf-8").decode(n3.buffer));
+                r3 = await t29.open();
+                const i = await r3.stat(), s2 = new Uint8Array(i.size()), n3 = await r3.read(s2), a = removeLeadingBOM(new TextDecoder("utf-8").decode(n3.buffer));
                 return new TemplateInfo2(e5, a, t29);
-              } catch (i3) {
-                throw new TemplateInfo2(e5, "", t29).errWithFileContext("failed to load template", i3);
+              } catch (r4) {
+                throw new TemplateInfo2(e5, "", t29).errWithFileContext("failed to load template", r4);
               } finally {
-                if (i2) try {
-                  await i2.close();
+                if (r3) try {
+                  await r3.close();
                 } catch (e6) {
                   console.warn(`Failed to close template file: ${e6}`);
                 }
               }
             }(e4, t28);
-            await this.addTemplate(i.name, i);
+            await this.addTemplate(r.name, r);
           } catch (t29) {
             throw new TemplateError(`Failed to load template info for ${e4}: ${t29.message}`, "LOAD_TEMPLATE_INFO_FAILED");
           }
@@ -120155,37 +120529,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           try {
             if (this.lookup.getBaseOf().isBaseTemplatePath(e4)) return void this.lookup.getBaseOf().addBaseOf(e4, t28);
             if (this.lookup.getBaseOf().needsBaseOf(e4, t28.template)) return void this.lookup.getBaseOf().addNeedsBaseOf(e4, t28);
-            const i = resolveTemplateType(e4), r = await this.parser.parse(t28);
-            switch (i) {
+            const r = resolveTemplateType(e4), i = await this.parser.parse(t28);
+            switch (r) {
               case 1:
-                this.shortcodeNamespace.addShortcodeTemplate(e4, r);
+                this.shortcodeNamespace.addShortcodeTemplate(e4, i);
                 break;
               case 2:
-                this.partialNamespace.addPartialTemplate(e4, r);
+                this.partialNamespace.addPartialTemplate(e4, i);
                 break;
               default:
-                this.templateNamespace.addTemplate(e4, r);
+                this.templateNamespace.addTemplate(e4, i);
             }
           } catch (t29) {
             throw new TemplateError(`Failed to add template ${e4}: ${t29.message}`, "ADD_TEMPLATE_FAILED");
           }
         }
         async execute(e4, t28) {
-          const [i, r, s2] = await this.get(e4);
+          const [r, i, s2] = await this.get(e4);
           if (s2) throw s2;
-          if (!r || !i) throw new TemplateError(`Template not found: ${e4}`, "TEMPLATE_NOT_FOUND");
-          return await this.executor.execute(i, t28);
+          if (!i || !r) throw new TemplateError(`Template not found: ${e4}`, "TEMPLATE_NOT_FOUND");
+          return await this.executor.execute(r, t28);
         }
-        async executeRaw(e4, t28, i) {
-          const r = await this.parser.parseWithLock(e4, t28);
-          if (!r) throw new TemplateError(`Raw Template parse error: ${e4}`, "TEMPLATE_PARSE_ERROR");
-          return await this.executor.execute(r, i);
+        async executeRaw(e4, t28, r) {
+          const i = await this.parser.parseWithLock(e4, t28);
+          if (!i) throw new TemplateError(`Raw Template parse error: ${e4}`, "TEMPLATE_PARSE_ERROR");
+          return await this.executor.execute(i, r);
         }
         async executeShortcode(e4, t28) {
-          const i = this.shortcodeNamespace.getShortcode(e4);
-          if (!i) throw new TemplateError(`Shortcode template '${e4}' not found`, "SHORTCODE_NOT_FOUND");
+          const r = this.shortcodeNamespace.getShortcode(e4);
+          if (!r) throw new TemplateError(`Shortcode template '${e4}' not found`, "SHORTCODE_NOT_FOUND");
           try {
-            return await this.executor.execute(i, t28);
+            return await this.executor.execute(r, t28);
           } catch (t29) {
             throw new TemplateError(`Error executing shortcode template '${e4}': ${t29.message}`, "SHORTCODE_EXECUTION_FAILED");
           }
@@ -120242,10 +120616,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "execute", async (e4, t28) => {
             if (!this.engine) return log34.error(`Partial function called but engine not set: ${e4}`), `<!-- Partial function called but engine not ready: ${e4} -->`;
             try {
-              const i = e4.startsWith("partials/") ? e4 : `partials/${e4}`, r = i.includes("global");
-              if (r && this.globalPartialsCache.has(i)) return this.globalPartialsCache.get(i);
-              const s2 = await this.executePartial(i, t28);
-              return r && this.globalPartialsCache.set(i, s2), s2;
+              const r = e4.startsWith("partials/") ? e4 : `partials/${e4}`, i = r.includes("global");
+              if (i && this.globalPartialsCache.has(r)) return this.globalPartialsCache.get(r);
+              const s2 = await this.executePartial(r, t28);
+              return i && this.globalPartialsCache.set(r, s2), s2;
             } catch (t29) {
               return log34.error(`Partial execution failed for "${e4}":`, t29), `<!-- Partial execution failed: ${e4} - ${t29.message} -->`;
             }
@@ -120260,10 +120634,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async executePartial(e4, t28) {
           if (!this.engine) return `<!-- Template engine not available: ${e4} -->`;
           try {
-            const [i, r, s2] = await this.engine.getPartial(e4);
+            const [r, i, s2] = await this.engine.getPartial(e4);
             if (s2) return log34.error("Error getting partial template:", s2), `<!-- Error getting partial template: ${e4} - ${s2.message} -->`;
-            if (!r || !i) return log34.warn(`Template not found: ${e4}`), `<!-- Template not found: ${e4} -->`;
-            const [n3, a] = await i.Execute(t28);
+            if (!i || !r) return log34.warn(`Template not found: ${e4}`), `<!-- Template not found: ${e4} -->`;
+            const [n3, a] = await r.Execute(t28);
             return a ? (log34.error("Template execution error:", a), `<!-- Template execution error: ${e4} - ${a.message} -->`) : n3;
           } catch (t29) {
             return log34.error("Sync partial execution failed:", t29), `<!-- Partial sync execution failed: ${e4} - ${t29.message} -->`;
@@ -120276,8 +120650,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         registerCryptoFunctions(e4) {
           e4.set("md5", (e5) => e5 ? crypto22.createHash("md5").update(e5).digest("hex") : ""), e4.set("encryptAESGCM", (e5, t28) => {
             if (!e5 || !t28) return "";
-            const i = crypto22.randomBytes(16), r = crypto22.randomBytes(12), s2 = crypto22.pbkdf2Sync(e5, i, 1e5, 32, "sha256"), n3 = crypto22.createCipheriv("aes-256-gcm", s2, r), a = Buffer.concat([n3.update(t28, "utf8"), n3.final()]), o = n3.getAuthTag();
-            return Buffer.concat([i, r, o, a]).toString("base64");
+            const r = crypto22.randomBytes(16), i = crypto22.randomBytes(12), s2 = crypto22.pbkdf2Sync(e5, r, 1e5, 32, "sha256"), n3 = crypto22.createCipheriv("aes-256-gcm", s2, i), a = Buffer.concat([n3.update(t28, "utf8"), n3.final()]), o = n3.getAuthTag();
+            return Buffer.concat([r, i, o, a]).toString("base64");
           });
         }
         registerExtendedFunctions(e4, t28) {
@@ -120321,23 +120695,23 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             } catch (e6) {
               return true;
             }
-          } })), e4.set("absURL", (e5) => t28.absURL(e5)), e4.set("relURL", (e5) => t28.relURL(e5)), e4.set("urlize", (e5) => t28.urlize(e5)), e4.set("relref", (e5, i) => {
-            if (/^https?:\/\//.test(i)) return i;
-            let r = "";
-            const s2 = i.indexOf("#");
-            return -1 !== s2 && (r = i.slice(s2), i = i.slice(0, s2)), (i = i.replace(/^\/+|\/+$/g, "")).startsWith("./") || i.startsWith("../") || i.startsWith("/") ? t28.relURL(i + r) : t28.relURL("/" + i + r);
-          }), e4.set("ref", (e5, i) => {
-            if (/^https?:\/\//.test(i)) return i;
-            let r = "";
-            const s2 = i.indexOf("#");
-            return -1 !== s2 && (r = i.slice(s2), i = i.slice(0, s2)), (i = i.replace(/^\/+|\/+$/g, "")).startsWith("./") || i.startsWith("../") || i.startsWith("/") ? t28.absURL(i + r) : t28.absURL("/" + i + r);
+          } })), e4.set("absURL", (e5) => t28.absURL(e5)), e4.set("relURL", (e5) => t28.relURL(e5)), e4.set("urlize", (e5) => t28.urlize(e5)), e4.set("relref", (e5, r) => {
+            if (/^https?:\/\//.test(r)) return r;
+            let i = "";
+            const s2 = r.indexOf("#");
+            return -1 !== s2 && (i = r.slice(s2), r = r.slice(0, s2)), (r = r.replace(/^\/+|\/+$/g, "")).startsWith("./") || r.startsWith("../") || r.startsWith("/") ? t28.relURL(r + i) : t28.relURL("/" + r + i);
+          }), e4.set("ref", (e5, r) => {
+            if (/^https?:\/\//.test(r)) return r;
+            let i = "";
+            const s2 = r.indexOf("#");
+            return -1 !== s2 && (i = r.slice(s2), r = r.slice(0, s2)), (r = r.replace(/^\/+|\/+$/g, "")).startsWith("./") || r.startsWith("../") || r.startsWith("/") ? t28.absURL(r + i) : t28.absURL("/" + r + i);
           }), e4.set("absLangURL", (e5) => t28.absURL(e5)), e4.set("relLangURL", (e5) => t28.relURL(e5));
         }
         registerSiteFunctions(e4, t28) {
           e4.set("Site", () => ({ Title: t28.title(), BaseURL: t28.baseURL(), Params: t28.params(), Menus: t28.menus(), IsMultiLingual: t28.isMultiLanguage(), LanguageCode: t28.defaultLanguage() }));
         }
         registerResourcesFunctions(e4, t28) {
-          e4.set("resources", () => ({ Get: async (e5) => await t28.Get(e5), GetRemote: async (e5) => await t28.GetRemote(e5), Minify: async (e5) => await t28.Minify(e5), Fingerprint: async (e5) => await t28.Fingerprint(e5), ExecuteAsTemplate: async (e5, i, r) => await t28.ExecuteAsTemplate(e5, i, r) }));
+          e4.set("resources", () => ({ Get: async (e5) => await t28.Get(e5), GetRemote: async (e5) => await t28.GetRemote(e5), Minify: async (e5) => await t28.Minify(e5), Fingerprint: async (e5) => await t28.Fingerprint(e5), ExecuteAsTemplate: async (e5, r, i) => await t28.ExecuteAsTemplate(e5, r, i) }));
         }
         registerHugoFunctions(e4, t28) {
           e4.set("hugo", () => ({ Version: t28.version(), Environment: t28.environment(), Generator: t28.generator() }));
@@ -120348,75 +120722,75 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         registerStringFunctions(e4) {
           e4.set("humanize", (e5) => e5 ? (e5 = (e5 = e5.replace(/([a-z])([A-Z])/g, "$1 $2")).replace(/[_-]+/g, " "), /\.(md|html|htm|markdown|mdown|mkd|mkdn|txt)$/i.test(e5) && (e5 = e5.replace(/\.[^/.]+$/, "")), (e5 = e5.charAt(0).toUpperCase() + e5.slice(1).toLowerCase()).trim()) : ""), e4.set("upper", (e5) => e5.toUpperCase()), e4.set("lower", (e5) => e5.toLowerCase()), e4.set("title", (e5) => e5.replace(/\w\S*/g, (e6) => e6.charAt(0).toUpperCase() + e6.substr(1).toLowerCase())), e4.set("trim", (e5) => e5.trim()), e4.set("replace", (...e5) => {
             if (e5.length < 3) throw new Error("replace requires at least 3 arguments: string, old, new");
-            const t28 = String(e5[0]), i = String(e5[1]), r = String(e5[2]);
+            const t28 = String(e5[0]), r = String(e5[1]), i = String(e5[2]);
             if (e5.length >= 4) {
               const s2 = Number(e5[3]);
               if (isNaN(s2)) throw new Error("replace limit must be a number");
               let n3 = t28, a = 0, o = 0;
               for (; a < s2 && o < n3.length; ) {
-                const e6 = n3.indexOf(i, o);
+                const e6 = n3.indexOf(r, o);
                 if (-1 === e6) break;
-                n3 = n3.substring(0, e6) + r + n3.substring(e6 + i.length), o = e6 + r.length, a++;
+                n3 = n3.substring(0, e6) + i + n3.substring(e6 + r.length), o = e6 + i.length, a++;
               }
               return n3;
             }
-            return t28.split(i).join(r);
+            return t28.split(r).join(i);
           }), e4.set("replaceRE", (...t28) => {
             if (t28.length < 3) throw new Error("replaceRE requires at least 3 arguments: pattern, replacement, string");
-            const i = t28[0], r = t28[1], s2 = t28[2], n3 = t28.length >= 4 ? t28[3] : void 0;
-            return e4.get("strings")().ReplaceRE(i, r, s2, n3);
+            const r = t28[0], i = t28[1], s2 = t28[2], n3 = t28.length >= 4 ? t28[3] : void 0;
+            return e4.get("strings")().ReplaceRE(r, i, s2, n3);
           }), e4.set("split", (e5, t28) => null == e5 ? (log34.warn("split function: first argument is null or undefined"), []) : "string" != typeof e5 ? (log34.warn("split function: first argument must be a string, got:", typeof e5, "value:", e5), Array.isArray(e5) ? e5 : String(e5).split(t28)) : e5.split(t28)), e4.set("splitRegex", (e5, t28) => {
             if (null == e5) return log34.warn("splitRegex function: first argument is null or undefined"), [];
             if ("string" != typeof e5) {
               if (log34.warn("splitRegex function: first argument must be a string, got:", typeof e5, "value:", e5), Array.isArray(e5)) return e5;
-              const i = String(e5);
+              const r = String(e5);
               try {
                 const e6 = new RegExp(t28);
-                return i.split(e6);
+                return r.split(e6);
               } catch (e6) {
-                return log34.warn("splitRegex function: invalid regex pattern:", t28, "error:", e6), [i];
+                return log34.warn("splitRegex function: invalid regex pattern:", t28, "error:", e6), [r];
               }
             }
             try {
-              const i = new RegExp(t28);
-              return e5.split(i);
-            } catch (i) {
-              return log34.warn("splitRegex function: invalid regex pattern:", t28, "error:", i), [e5];
+              const r = new RegExp(t28);
+              return e5.split(r);
+            } catch (r) {
+              return log34.warn("splitRegex function: invalid regex pattern:", t28, "error:", r), [e5];
             }
           }), e4.set("delimit", (e5, t28) => Array.isArray(e5) ? e5.join(t28) : String(e5)), e4.set("in", (e5, t28) => (Array.isArray(e5) || "string" == typeof e5 && "string" == typeof t28) && e5.includes(t28)), e4.set("hasPrefix", (e5, t28) => e5.startsWith(t28)), e4.set("hasSuffix", (e5, t28) => e5.endsWith(t28)), e4.set("strings", () => ({ ToLower: (e5) => String(e5).toLowerCase(), ToUpper: (e5) => String(e5).toUpperCase(), Title: (e5) => String(e5).replace(/\w\S*/g, (e6) => e6.charAt(0).toUpperCase() + e6.substr(1).toLowerCase()), Trim: (e5, t28) => String(e5).split("").filter((e6) => !t28.includes(e6)).join(""), TrimSpace: (e5) => String(e5).trim(), TrimLeft: (e5, t28) => {
-            const i = String(t28);
-            let r = 0;
-            for (; r < i.length && e5.includes(i[r]); ) r++;
-            return i.slice(r);
+            const r = String(t28);
+            let i = 0;
+            for (; i < r.length && e5.includes(r[i]); ) i++;
+            return r.slice(i);
           }, TrimRight: (e5, t28) => {
-            const i = String(t28);
-            let r = i.length - 1;
-            for (; r >= 0 && e5.includes(i[r]); ) r--;
-            return i.slice(0, r + 1);
+            const r = String(t28);
+            let i = r.length - 1;
+            for (; i >= 0 && e5.includes(r[i]); ) i--;
+            return r.slice(0, i + 1);
           }, TrimPrefix: (e5, t28) => {
-            const i = String(t28);
-            return i.startsWith(e5) ? i.slice(e5.length) : i;
+            const r = String(t28);
+            return r.startsWith(e5) ? r.slice(e5.length) : r;
           }, TrimSuffix: (e5, t28) => {
-            const i = String(t28);
-            return i.endsWith(e5) ? i.slice(0, -e5.length) : i;
+            const r = String(t28);
+            return r.endsWith(e5) ? r.slice(0, -e5.length) : r;
           }, Contains: (e5, t28) => String(e5).includes(t28), ContainsAny: (e5, t28) => {
-            const i = String(e5);
-            return t28.split("").some((e6) => i.includes(e6));
-          }, HasPrefix: (e5, t28) => String(e5).startsWith(t28), HasSuffix: (e5, t28) => String(e5).endsWith(t28), Replace: (e5, t28, i, r) => {
+            const r = String(e5);
+            return t28.split("").some((e6) => r.includes(e6));
+          }, HasPrefix: (e5, t28) => String(e5).startsWith(t28), HasSuffix: (e5, t28) => String(e5).endsWith(t28), Replace: (e5, t28, r, i) => {
             const s2 = String(e5);
-            if (void 0 === r) return s2.split(t28).join(i);
+            if (void 0 === i) return s2.split(t28).join(r);
             let n3 = s2, a = 0, o = 0;
-            for (; a < r && o < n3.length; ) {
+            for (; a < i && o < n3.length; ) {
               const e6 = n3.indexOf(t28, o);
               if (-1 === e6) break;
-              n3 = n3.substring(0, e6) + i + n3.substring(e6 + t28.length), o = e6 + i.length, a++;
+              n3 = n3.substring(0, e6) + r + n3.substring(e6 + t28.length), o = e6 + r.length, a++;
             }
             return n3;
-          }, ReplaceRE: (e5, t28, i, r) => {
-            const s2 = String(e5), n3 = String(t28), a = String(i);
+          }, ReplaceRE: (e5, t28, r, i) => {
+            const s2 = String(e5), n3 = String(t28), a = String(r);
             let o, l = -1;
-            if (void 0 !== r) {
-              const e6 = parseInt(String(r), 10);
+            if (void 0 !== i) {
+              const e6 = parseInt(String(i), 10);
               if (isNaN(e6)) throw new Error("limit argument must be integer");
               l = e6;
             }
@@ -120427,15 +120801,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
             let c = 0;
             return a.replace(o, (e6) => l >= 0 && c >= l ? e6 : (c++, n3));
-          }, Split: (e5, t28) => String(e5).split(t28), SliceString: (e5, t28, i) => {
-            const r = String(e5);
-            return void 0 !== i ? r.slice(t28, i) : r.slice(t28);
-          }, Substr: (e5, t28, i) => {
-            const r = String(e5);
-            return t28 < 0 && (t28 = r.length + t28), t28 < 0 && (t28 = 0), t28 >= r.length ? "" : void 0 === i ? r.slice(t28) : i <= 0 ? "" : r.slice(t28, t28 + i);
+          }, Split: (e5, t28) => String(e5).split(t28), SliceString: (e5, t28, r) => {
+            const i = String(e5);
+            return void 0 !== r ? i.slice(t28, r) : i.slice(t28);
+          }, Substr: (e5, t28, r) => {
+            const i = String(e5);
+            return t28 < 0 && (t28 = i.length + t28), t28 < 0 && (t28 = 0), t28 >= i.length ? "" : void 0 === r ? i.slice(t28) : r <= 0 ? "" : i.slice(t28, t28 + r);
           }, Count: (e5, t28) => {
-            const i = String(t28);
-            return e5 ? (i.match(new RegExp(e5.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length : i.length + 1;
+            const r = String(t28);
+            return e5 ? (r.match(new RegExp(e5.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length : r.length + 1;
           }, CountWords: (e5) => {
             const t28 = String(e5).trim();
             return t28 ? t28.split(/\s+/).length : 0;
@@ -120446,7 +120820,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             const t28 = String(e5);
             return t28.charAt(0).toUpperCase() + t28.slice(1);
           } })), e4.set("substr", (e5, ...t28) => {
-            const i = String(e5), r = Array.from(i), s2 = r.length;
+            const r = String(e5), i = Array.from(r), s2 = i.length;
             let n3, a;
             switch (t28.length) {
               case 0:
@@ -120457,10 +120831,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 n3 = e6, a = s2;
                 break;
               case 2:
-                const i2 = Number(t28[0]), r3 = Number(t28[1]);
-                if (isNaN(i2) || !Number.isInteger(i2)) throw new Error("start argument must be an integer");
-                if (isNaN(r3) || !Number.isInteger(r3)) throw new Error("length argument must be an integer");
-                n3 = i2, a = r3;
+                const r3 = Number(t28[0]), i2 = Number(t28[1]);
+                if (isNaN(r3) || !Number.isInteger(r3)) throw new Error("start argument must be an integer");
+                if (isNaN(i2) || !Number.isInteger(i2)) throw new Error("length argument must be an integer");
+                n3 = r3, a = i2;
                 break;
               default:
                 throw new Error("too many arguments");
@@ -120468,53 +120842,53 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             if (0 === s2) return "";
             if (n3 < 0 && (n3 += s2), n3 < 0 && (n3 = 0), n3 > s2 - 1) return "";
             let o = s2;
-            return 0 === a ? "" : (a < 0 ? o += a : a > 0 && (o = n3 + a), n3 >= o || o < 0 ? "" : (o > s2 && (o = s2), r.slice(n3, o).join("")));
+            return 0 === a ? "" : (a < 0 ? o += a : a > 0 && (o = n3 + a), n3 >= o || o < 0 ? "" : (o > s2 && (o = s2), i.slice(n3, o).join("")));
           }), e4.set("truncate", (e5, ...t28) => {
-            const i = Number(e5);
-            if (isNaN(i) || !Number.isInteger(i)) throw new Error("truncate length must be an integer");
-            let r, s2 = " \u2026";
+            const r = Number(e5);
+            if (isNaN(r) || !Number.isInteger(r)) throw new Error("truncate length must be an integer");
+            let i, s2 = " \u2026";
             switch (t28.length) {
               case 0:
                 throw new Error("truncate requires a length and a string");
               case 1:
-                r = t28[0], s2 = " \u2026";
+                i = t28[0], s2 = " \u2026";
                 break;
               case 2:
-                s2 = String(t28[0]), r = t28[1];
+                s2 = String(t28[0]), i = t28[1];
                 break;
               default:
                 throw new Error("too many arguments passed to truncate");
             }
-            const n3 = String(r), a = /<[^>]+>/.test(n3);
-            return Array.from(n3).length <= i ? a ? n3 : this.escapeHTML(n3) : a ? this.truncateHTML(n3, i, s2) : this.truncateText(n3, i, s2);
+            const n3 = String(i), a = /<[^>]+>/.test(n3);
+            return Array.from(n3).length <= r ? a ? n3 : this.escapeHTML(n3) : a ? this.truncateHTML(n3, r, s2) : this.truncateText(n3, r, s2);
           });
         }
         escapeHTML(e4) {
           return e4.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
         }
-        truncateText(e4, t28, i) {
-          const r = Array.from(e4);
-          if (r.length <= t28) return this.escapeHTML(e4);
+        truncateText(e4, t28, r) {
+          const i = Array.from(e4);
+          if (i.length <= t28) return this.escapeHTML(e4);
           let s2 = 0, n3 = 0;
-          for (let e5 = 0; e5 < r.length && n3 < t28; e5++) {
-            const t29 = r[e5];
+          for (let e5 = 0; e5 < i.length && n3 < t28; e5++) {
+            const t29 = i[e5];
             n3++, /\s/.test(t29) && (s2 = e5), /[\u4e00-\u9fff\u3400-\u4dbf\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/.test(t29) && (s2 = e5);
           }
-          let a = n3 >= t28 ? s2 > 0 ? s2 : t28 : r.length;
-          const o = r.slice(0, a).join("");
-          return this.escapeHTML(o) + i;
+          let a = n3 >= t28 ? s2 > 0 ? s2 : t28 : i.length;
+          const o = i.slice(0, a).join("");
+          return this.escapeHTML(o) + r;
         }
-        truncateHTML(e4, t28, i) {
-          const r = /^<(\/)?([^ ]+?)(?:(\s*\/)| .*?)?>/, s2 = /* @__PURE__ */ new Set(["br", "col", "link", "base", "img", "param", "area", "hr", "input"]), n3 = [];
+        truncateHTML(e4, t28, r) {
+          const i = /^<(\/)?([^ ]+?)(?:(\s*\/)| .*?)?>/, s2 = /* @__PURE__ */ new Set(["br", "col", "link", "base", "img", "param", "area", "hr", "input"]), n3 = [];
           let a = 0, o = 0, l = 0, c = 0, h3 = 0;
           const u = Array.from(e4);
           for (; h3 < u.length; ) {
             const e5 = u[h3];
             if ("<" === e5) {
-              const e6 = u.slice(h3).join("").match(r);
+              const e6 = u.slice(h3).join("").match(i);
               if (e6) {
-                const t29 = e6[0], i2 = "/" === e6[1], r3 = e6[2].toLowerCase(), l2 = "/" === e6[3];
-                h3 += t29.length, a = o, s2.has(r3) || l2 || n3.push({ name: r3, pos: h3 - t29.length, openTag: !i2 });
+                const t29 = e6[0], r3 = "/" === e6[1], i2 = e6[2].toLowerCase(), l2 = "/" === e6[3];
+                h3 += t29.length, a = o, s2.has(i2) || l2 || n3.push({ name: i2, pos: h3 - t29.length, openTag: !r3 });
                 continue;
               }
             }
@@ -120525,7 +120899,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             h3++;
           }
           if (l <= t28) return e4;
-          let g = u.slice(0, c).join("") + i, d = null;
+          let g = u.slice(0, c).join("") + r, d = null;
           for (let e5 = n3.length - 1; e5 >= 0; e5--) {
             const t29 = n3[e5];
             t29.pos >= c || null !== d ? null !== d && d.name === t29.name && (d = null) : t29.openTag ? g += `</${t29.name}>` : d = t29;
@@ -120540,9 +120914,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }, Add: (...e5) => {
             if (e5.length < 2) throw new Error("must provide at least two numbers");
             return e5.reduce((e6, t28) => {
-              const i = Number(t28);
-              if (isNaN(i)) throw new Error("Add operator can't be used with non-numeric values");
-              return e6 + i;
+              const r = Number(t28);
+              if (isNaN(r)) throw new Error("Add operator can't be used with non-numeric values");
+              return e6 + r;
             }, 0);
           }, Ceil: (e5) => {
             const t28 = Number(e5);
@@ -120550,12 +120924,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return Math.ceil(t28);
           }, Div: (...e5) => {
             if (e5.length < 2) throw new Error("must provide at least two numbers");
-            return e5.reduce((e6, t28, i) => {
-              const r = Number(t28);
-              if (isNaN(r)) throw new Error("Div operator can't be used with non-numeric values");
-              if (0 === i) return r;
-              if (0 === r) throw new Error("division by zero");
-              return e6 / r;
+            return e5.reduce((e6, t28, r) => {
+              const i = Number(t28);
+              if (isNaN(i)) throw new Error("Div operator can't be used with non-numeric values");
+              if (0 === r) return i;
+              if (0 === i) throw new Error("division by zero");
+              return e6 / i;
             });
           }, Floor: (e5) => {
             const t28 = Number(e5);
@@ -120582,26 +120956,26 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             });
             return Math.min(...t28);
           }, Mod: (e5, t28) => {
-            const i = Number(e5), r = Number(t28);
-            if (isNaN(i) || isNaN(r)) throw new Error("modulo operator can't be used with non-numeric value");
-            if (0 === r) throw new Error("the number can't be divided by zero at modulo operation");
-            return i % r;
+            const r = Number(e5), i = Number(t28);
+            if (isNaN(r) || isNaN(i)) throw new Error("modulo operator can't be used with non-numeric value");
+            if (0 === i) throw new Error("the number can't be divided by zero at modulo operation");
+            return r % i;
           }, ModBool: (e5, t28) => {
-            const i = Number(e5), r = Number(t28);
-            if (isNaN(i) || isNaN(r)) throw new Error("modulo operator can't be used with non-numeric value");
-            if (0 === r) throw new Error("the number can't be divided by zero at modulo operation");
-            return i % r === 0;
+            const r = Number(e5), i = Number(t28);
+            if (isNaN(r) || isNaN(i)) throw new Error("modulo operator can't be used with non-numeric value");
+            if (0 === i) throw new Error("the number can't be divided by zero at modulo operation");
+            return r % i === 0;
           }, Mul: (...e5) => {
             if (e5.length < 2) throw new Error("must provide at least two numbers");
             return e5.reduce((e6, t28) => {
-              const i = Number(t28);
-              if (isNaN(i)) throw new Error("Mul operator can't be used with non-numeric values");
-              return e6 * i;
+              const r = Number(t28);
+              if (isNaN(r)) throw new Error("Mul operator can't be used with non-numeric values");
+              return e6 * r;
             }, 1);
           }, Pow: (e5, t28) => {
-            const i = Number(e5), r = Number(t28);
-            if (isNaN(i) || isNaN(r)) throw new Error("Pow operator can't be used with non-numeric value");
-            return Math.pow(i, r);
+            const r = Number(e5), i = Number(t28);
+            if (isNaN(r) || isNaN(i)) throw new Error("Pow operator can't be used with non-numeric value");
+            return Math.pow(r, i);
           }, Rand: () => Math.random(), Round: (e5) => {
             const t28 = Number(e5);
             if (isNaN(t28)) throw new Error("Round operator can't be used with non-numeric value");
@@ -120612,10 +120986,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return Math.sqrt(t28);
           }, Sub: (...e5) => {
             if (e5.length < 2) throw new Error("must provide at least two numbers");
-            return e5.reduce((e6, t28, i) => {
-              const r = Number(t28);
-              if (isNaN(r)) throw new Error("Sub operator can't be used with non-numeric values");
-              return 0 === i ? r : e6 - r;
+            return e5.reduce((e6, t28, r) => {
+              const i = Number(t28);
+              if (isNaN(i)) throw new Error("Sub operator can't be used with non-numeric values");
+              return 0 === r ? i : e6 - i;
             });
           }, Sum: (...e5) => {
             if (0 === e5.length) throw new Error("must provide at least one number");
@@ -120647,13 +121021,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
             return null;
           }, Format: (e5, t28) => {
-            const i = t28 instanceof Date ? t28 : new Date(t28);
-            if (isNaN(i.getTime())) return "";
-            const r = i.getFullYear(), s2 = i.getMonth() + 1, n3 = i.getDate(), a = i.getHours(), o = i.getMinutes(), l = i.getSeconds(), c = i.toLocaleString("en-US", { weekday: "short" }), h3 = i.toLocaleString("en-US", { month: "short" }), u = [{ pattern: "2006", placeholder: "{{YEAR_FULL}}", value: r.toString() }, { pattern: "January", placeholder: "{{MONTH_FULL}}", value: i.toLocaleString("en-US", { month: "long" }) }, { pattern: "Monday", placeholder: "{{WEEKDAY_FULL}}", value: i.toLocaleString("en-US", { weekday: "long" }) }, { pattern: "MST", placeholder: "{{TIMEZONE}}", value: i.toLocaleString("en-US", { timeZoneName: "short" }) }, { pattern: "Jan", placeholder: "{{MONTH_SHORT}}", value: h3 }, { pattern: "Mon", placeholder: "{{WEEKDAY_SHORT}}", value: c }, { pattern: "06", placeholder: "{{YEAR_SHORT}}", value: r.toString().slice(-2) }, { pattern: "15", placeholder: "{{HOUR_24}}", value: a.toString().padStart(2, "0") }, { pattern: "01", placeholder: "{{MONTH_ZERO}}", value: s2.toString().padStart(2, "0") }, { pattern: "02", placeholder: "{{DAY_ZERO}}", value: n3.toString().padStart(2, "0") }, { pattern: "04", placeholder: "{{MINUTE_ZERO}}", value: o.toString().padStart(2, "0") }, { pattern: "05", placeholder: "{{SECOND_ZERO}}", value: l.toString().padStart(2, "0") }, { pattern: "PM", placeholder: "{{AMPM_UPPER}}", value: a >= 12 ? "PM" : "AM" }, { pattern: "pm", placeholder: "{{AMPM_LOWER}}", value: a >= 12 ? "pm" : "am" }, { pattern: "3", placeholder: "{{HOUR_12}}", value: ((a + 11) % 12 + 1).toString() }, { pattern: "1", placeholder: "{{MONTH_NUM}}", value: s2.toString() }, { pattern: "2", placeholder: "{{DAY_NUM}}", value: n3.toString() }, { pattern: "4", placeholder: "{{MINUTE_NUM}}", value: o.toString() }, { pattern: "5", placeholder: "{{SECOND_NUM}}", value: l.toString() }];
+            const r = t28 instanceof Date ? t28 : new Date(t28);
+            if (isNaN(r.getTime())) return "";
+            const i = r.getFullYear(), s2 = r.getMonth() + 1, n3 = r.getDate(), a = r.getHours(), o = r.getMinutes(), l = r.getSeconds(), c = r.toLocaleString("en-US", { weekday: "short" }), h3 = r.toLocaleString("en-US", { month: "short" }), u = [{ pattern: "2006", placeholder: "{{YEAR_FULL}}", value: i.toString() }, { pattern: "January", placeholder: "{{MONTH_FULL}}", value: r.toLocaleString("en-US", { month: "long" }) }, { pattern: "Monday", placeholder: "{{WEEKDAY_FULL}}", value: r.toLocaleString("en-US", { weekday: "long" }) }, { pattern: "MST", placeholder: "{{TIMEZONE}}", value: r.toLocaleString("en-US", { timeZoneName: "short" }) }, { pattern: "Jan", placeholder: "{{MONTH_SHORT}}", value: h3 }, { pattern: "Mon", placeholder: "{{WEEKDAY_SHORT}}", value: c }, { pattern: "06", placeholder: "{{YEAR_SHORT}}", value: i.toString().slice(-2) }, { pattern: "15", placeholder: "{{HOUR_24}}", value: a.toString().padStart(2, "0") }, { pattern: "01", placeholder: "{{MONTH_ZERO}}", value: s2.toString().padStart(2, "0") }, { pattern: "02", placeholder: "{{DAY_ZERO}}", value: n3.toString().padStart(2, "0") }, { pattern: "04", placeholder: "{{MINUTE_ZERO}}", value: o.toString().padStart(2, "0") }, { pattern: "05", placeholder: "{{SECOND_ZERO}}", value: l.toString().padStart(2, "0") }, { pattern: "PM", placeholder: "{{AMPM_UPPER}}", value: a >= 12 ? "PM" : "AM" }, { pattern: "pm", placeholder: "{{AMPM_LOWER}}", value: a >= 12 ? "pm" : "am" }, { pattern: "3", placeholder: "{{HOUR_12}}", value: ((a + 11) % 12 + 1).toString() }, { pattern: "1", placeholder: "{{MONTH_NUM}}", value: s2.toString() }, { pattern: "2", placeholder: "{{DAY_NUM}}", value: n3.toString() }, { pattern: "4", placeholder: "{{MINUTE_NUM}}", value: o.toString() }, { pattern: "5", placeholder: "{{SECOND_NUM}}", value: l.toString() }];
             let g = e5;
             for (const { pattern: e6, placeholder: t29 } of u) {
-              const i2 = e6.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-              g = g.replace(new RegExp(i2, "g"), t29);
+              const r3 = e6.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+              g = g.replace(new RegExp(r3, "g"), t29);
             }
             for (const { placeholder: e6, value: t29 } of u) g = g.replace(new RegExp(e6.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), t29);
             return g;
@@ -120670,31 +121044,31 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }, UnixNano: (e5) => 1e6 * (e5 instanceof Date ? e5 : new Date(e5)).getTime() })), e4.set("now", () => {
             const e5 = /* @__PURE__ */ new Date();
             return { Format: (t28) => {
-              const i = e5.getFullYear(), r = e5.getMonth() + 1, s2 = e5.getDate(), n3 = e5.getHours(), a = e5.getMinutes(), o = e5.getSeconds(), l = [{ pattern: "2006", value: i.toString() }, { pattern: "06", value: i.toString().slice(-2) }, { pattern: "01", value: r.toString().padStart(2, "0") }, { pattern: "1", value: r.toString() }, { pattern: "02", value: s2.toString().padStart(2, "0") }, { pattern: "2", value: s2.toString() }, { pattern: "15", value: n3.toString().padStart(2, "0") }, { pattern: "3", value: (n3 % 12 || 12).toString() }, { pattern: "04", value: a.toString().padStart(2, "0") }, { pattern: "4", value: a.toString() }, { pattern: "05", value: o.toString().padStart(2, "0") }, { pattern: "5", value: o.toString() }];
+              const r = e5.getFullYear(), i = e5.getMonth() + 1, s2 = e5.getDate(), n3 = e5.getHours(), a = e5.getMinutes(), o = e5.getSeconds(), l = [{ pattern: "2006", value: r.toString() }, { pattern: "06", value: r.toString().slice(-2) }, { pattern: "01", value: i.toString().padStart(2, "0") }, { pattern: "1", value: i.toString() }, { pattern: "02", value: s2.toString().padStart(2, "0") }, { pattern: "2", value: s2.toString() }, { pattern: "15", value: n3.toString().padStart(2, "0") }, { pattern: "3", value: (n3 % 12 || 12).toString() }, { pattern: "04", value: a.toString().padStart(2, "0") }, { pattern: "4", value: a.toString() }, { pattern: "05", value: o.toString().padStart(2, "0") }, { pattern: "5", value: o.toString() }];
               let c = t28;
               for (const { pattern: e6, value: t29 } of l) {
-                const i2 = new RegExp(`\\b${e6}\\b`, "g");
-                c = c.replace(i2, t29);
+                const r3 = new RegExp(`\\b${e6}\\b`, "g");
+                c = c.replace(r3, t29);
               }
-              return "2006" === t28 ? i.toString() : "06" === t28 ? i.toString().slice(-2) : "01" === t28 ? r.toString().padStart(2, "0") : "02" === t28 ? s2.toString().padStart(2, "0") : "15" === t28 ? n3.toString().padStart(2, "0") : "04" === t28 ? a.toString().padStart(2, "0") : "05" === t28 ? o.toString().padStart(2, "0") : c;
+              return "2006" === t28 ? r.toString() : "06" === t28 ? r.toString().slice(-2) : "01" === t28 ? i.toString().padStart(2, "0") : "02" === t28 ? s2.toString().padStart(2, "0") : "15" === t28 ? n3.toString().padStart(2, "0") : "04" === t28 ? a.toString().padStart(2, "0") : "05" === t28 ? o.toString().padStart(2, "0") : c;
             }, getTime: () => e5.getTime(), toString: () => e5.toString(), toISOString: () => e5.toISOString() };
           }), e4.set("dateFormat", (e5, t28) => t28.toLocaleDateString());
         }
         registerCollectionFunctions(e4) {
           e4.set("len", (e5) => Array.isArray(e5) || "string" == typeof e5 ? e5.length : e5 && "object" == typeof e5 ? Object.keys(e5).length : 0), e4.set("first", (e5, t28) => Array.isArray(e5) ? e5.slice(0, 1) : Array.isArray(t28) ? t28.slice(0, e5) : []), e4.set("last", (e5, t28) => Array.isArray(e5) ? e5.slice(-1) : Array.isArray(t28) ? t28.slice(-e5) : []), e4.set("merge", (...e5) => {
             const t28 = {};
-            for (const i of e5) i && "object" == typeof i && !Array.isArray(i) && Object.assign(t28, i);
+            for (const r of e5) r && "object" == typeof r && !Array.isArray(r) && Object.assign(t28, r);
             return t28;
           }), e4.set("index", (e5, ...t28) => {
             try {
               return this.doIndex(e5, t28);
-            } catch (i) {
-              return log34.error(`Index of type ${typeof e5} with args [${t28.join(", ")}] failed:`, i), null;
+            } catch (r) {
+              return log34.error(`Index of type ${typeof e5} with args [${t28.join(", ")}] failed:`, r), null;
             }
           }), e4.set("reverse", (e5) => Array.isArray(e5) ? [...e5].reverse() : e5), e4.set("append", (...e5) => {
             if (e5.length < 2) return e5[0] || [];
             const t28 = Array.isArray(e5[0]) ? [...e5[0]] : [e5[0]];
-            for (let i = 1; i < e5.length; i++) Array.isArray(e5[i]) ? t28.push(...e5[i]) : t28.push(e5[i]);
+            for (let r = 1; r < e5.length; r++) Array.isArray(e5[r]) ? t28.push(...e5[r]) : t28.push(e5[r]);
             return t28;
           }), e4.set("prepend", (e5, ...t28) => Array.isArray(e5) ? [...t28, ...e5] : [...t28, e5]), e4.set("seq", (...e5) => {
             if (e5.length < 1 || e5.length > 3) throw new Error("invalid number of arguments to Seq");
@@ -120703,106 +121077,106 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               if (isNaN(t29)) throw new Error("invalid arguments to Seq");
               return Math.floor(t29);
             });
-            let i, r = 1, s2 = t28[0];
+            let r, i = 1, s2 = t28[0];
             if (1 === t28.length) {
-              if (i = s2, 0 === i) return [];
-              i > 0 ? s2 = 1 : (s2 = -1, r = -1);
-            } else if (2 === t28.length) i = t28[1], i < s2 && (r = -1);
+              if (r = s2, 0 === r) return [];
+              r > 0 ? s2 = 1 : (s2 = -1, i = -1);
+            } else if (2 === t28.length) r = t28[1], r < s2 && (i = -1);
             else {
-              if (r = t28[1], i = t28[2], 0 === r) throw new Error("'increment' must not be 0");
-              if (s2 < i && r < 0) throw new Error("'increment' must be > 0");
-              if (s2 > i && r > 0) throw new Error("'increment' must be < 0");
+              if (i = t28[1], r = t28[2], 0 === i) throw new Error("'increment' must not be 0");
+              if (s2 < r && i < 0) throw new Error("'increment' must be > 0");
+              if (s2 > r && i > 0) throw new Error("'increment' must be < 0");
             }
-            if (i < -1e5) throw new Error("size of result exceeds limit");
-            const n3 = Math.floor((i - s2) / r) + 1;
+            if (r < -1e5) throw new Error("size of result exceeds limit");
+            const n3 = Math.floor((r - s2) / i) + 1;
             if (n3 <= 0 || n3 > 2e3) throw new Error("size of result exceeds limit");
             const a = new Array(n3);
             let o = s2;
-            for (let e6 = 0; e6 < n3 && (a[e6] = o, o += r, !(r < 0 && o < i || r > 0 && o > i)); e6++) ;
+            for (let e6 = 0; e6 < n3 && (a[e6] = o, o += i, !(i < 0 && o < r || i > 0 && o > r)); e6++) ;
             return a;
           }), e4.set("sort", (e5, ...t28) => {
             if (null == e5) throw new Error("sequence must be provided");
-            let i;
-            if (Array.isArray(e5)) i = [...e5];
+            let r;
+            if (Array.isArray(e5)) r = [...e5];
             else {
               if ("object" != typeof e5 || null === e5) throw new Error("can't sort " + typeof e5);
-              i = Object.values(e5);
+              r = Object.values(e5);
             }
-            if (0 === i.length) return i;
-            let r = "", s2 = true;
+            if (0 === r.length) return r;
+            let i = "", s2 = true;
             for (let e6 = 0; e6 < t28.length; e6++) {
-              const i2 = t28[e6];
-              0 === e6 ? "string" == typeof i2 && (r = i2) : 1 === e6 && "string" == typeof i2 && "desc" === i2.toLowerCase() && (s2 = false);
+              const r3 = t28[e6];
+              0 === e6 ? "string" == typeof r3 && (i = r3) : 1 === e6 && "string" == typeof r3 && "desc" === r3.toLowerCase() && (s2 = false);
             }
             const n3 = (e6, t29) => {
               if (!t29 || "value" === t29) return e6;
-              const i2 = t29.split(".");
-              let r3 = e6;
-              for (const e7 of i2) {
-                if (null == r3) return;
-                if ("object" != typeof r3) return;
-                r3 = r3[e7];
+              const r3 = t29.split(".");
+              let i2 = e6;
+              for (const e7 of r3) {
+                if (null == i2) return;
+                if ("object" != typeof i2) return;
+                i2 = i2[e7];
               }
-              return r3;
+              return i2;
             };
-            return i.sort((e6, t29) => {
-              let i2 = r ? n3(e6, r) : e6, a = r ? n3(t29, r) : t29;
-              if (null == i2) return null == a ? 0 : s2 ? -1 : 1;
+            return r.sort((e6, t29) => {
+              let r3 = i ? n3(e6, i) : e6, a = i ? n3(t29, i) : t29;
+              if (null == r3) return null == a ? 0 : s2 ? -1 : 1;
               if (null == a) return s2 ? 1 : -1;
-              if ("string" == typeof i2 && "string" == typeof a) {
-                const e7 = i2.localeCompare(a);
+              if ("string" == typeof r3 && "string" == typeof a) {
+                const e7 = r3.localeCompare(a);
                 return s2 ? e7 : -e7;
               }
-              if ("number" == typeof i2 && "number" == typeof a) {
-                const e7 = i2 - a;
+              if ("number" == typeof r3 && "number" == typeof a) {
+                const e7 = r3 - a;
                 return s2 ? e7 : -e7;
               }
-              const o = String(i2), l = String(a), c = o.localeCompare(l);
+              const o = String(r3), l = String(a), c = o.localeCompare(l);
               return s2 ? c : -c;
             });
-          }), e4.set("where", /* @__PURE__ */ (() => (e5, t28, ...i) => {
+          }), e4.set("where", /* @__PURE__ */ (() => (e5, t28, ...r) => {
             if (!e5) return [];
-            let r, s2 = "==";
-            if (1 === i.length) r = i[0];
+            let i, s2 = "==";
+            if (1 === r.length) i = r[0];
             else {
-              if (2 !== i.length) throw new Error("where function requires 2-4 arguments");
-              s2 = i[0], r = i[1];
+              if (2 !== r.length) throw new Error("where function requires 2-4 arguments");
+              s2 = r[0], i = r[1];
             }
             const n3 = [];
-            if (Array.isArray(e5)) for (let i2 = 0; i2 < e5.length; i2++) {
-              const a = e5[i2], o = this.getNestedValue(a, t28);
-              this.checkCondition(o, r, s2) && n3.push(a);
+            if (Array.isArray(e5)) for (let r3 = 0; r3 < e5.length; r3++) {
+              const a = e5[r3], o = this.getNestedValue(a, t28);
+              this.checkCondition(o, i, s2) && n3.push(a);
             }
             else if ("object" == typeof e5) {
-              for (const [i2, a] of Object.entries(e5)) if (Array.isArray(a)) {
+              for (const [r3, a] of Object.entries(e5)) if (Array.isArray(a)) {
                 const e6 = a.filter((e7) => {
-                  const i3 = this.getNestedValue(e7, t28);
-                  return this.checkCondition(i3, r, s2);
+                  const r4 = this.getNestedValue(e7, t28);
+                  return this.checkCondition(r4, i, s2);
                 });
-                e6.length > 0 && n3.push({ [i2]: e6 });
+                e6.length > 0 && n3.push({ [r3]: e6 });
               }
             }
             return n3;
           })()), e4.set("intersect", (e5, t28) => Array.isArray(e5) && Array.isArray(t28) ? e5.filter((e6) => t28.includes(e6)) : []), e4.set("querify", (...e5) => {
             let t28 = [];
             if (t28 = 1 === e5.length && Array.isArray(e5[0]) ? e5[0] : e5, t28.length % 2 != 0) throw new Error("querify requires an even number of arguments (key-value pairs)");
-            const i = [];
+            const r = [];
             for (let e6 = 0; e6 < t28.length; e6 += 2) {
-              const r = String(t28[e6]), s2 = String(t28[e6 + 1]);
-              i.push([r, s2]);
+              const i = String(t28[e6]), s2 = String(t28[e6 + 1]);
+              r.push([i, s2]);
             }
-            return i.sort((e6, t29) => e6[0].localeCompare(t29[0])), i.map(([e6, t29]) => `${encodeURIComponent(e6).replace(/%20/g, "+")}=${encodeURIComponent(t29).replace(/%20/g, "+")}`).join("&");
+            return r.sort((e6, t29) => e6[0].localeCompare(t29[0])), r.map(([e6, t29]) => `${encodeURIComponent(e6).replace(/%20/g, "+")}=${encodeURIComponent(t29).replace(/%20/g, "+")}`).join("&");
           }), e4.set("isset", (e5, t28) => {
             var _a11;
             if (null == e5) return false;
             if (Array.isArray(e5)) {
-              const i = Number(t28);
-              return isNaN(i) || !Number.isInteger(i) ? (console.warn(`isset unable to use key of type ${typeof t28} as index`), false) : e5.length > i && i >= 0;
+              const r = Number(t28);
+              return isNaN(r) || !Number.isInteger(r) ? (console.warn(`isset unable to use key of type ${typeof t28} as index`), false) : e5.length > r && r >= 0;
             }
             if ("object" == typeof e5) return t28 in e5;
             if ("string" == typeof e5) {
-              const i = Number(t28);
-              return isNaN(i) || !Number.isInteger(i) ? (console.warn(`isset unable to use key of type ${typeof t28} as index`), false) : e5.length > i && i >= 0;
+              const r = Number(t28);
+              return isNaN(r) || !Number.isInteger(r) ? (console.warn(`isset unable to use key of type ${typeof t28} as index`), false) : e5.length > r && r >= 0;
             }
             return console.warn(`calling isset with unsupported type "${typeof e5}" (${((_a11 = e5.constructor) == null ? void 0 : _a11.name) || typeof e5}) will always return false.`), false;
           });
@@ -120810,36 +121184,36 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         doIndex(e4, t28) {
           if (null == e4) return null;
           if (0 === t28.length) return e4;
-          let i = e4;
+          let r = e4;
           for (const e5 of t28) {
-            if (null == i) return null;
-            if (Array.isArray(i)) i = this.indexArray(i, e5);
-            else if ("string" == typeof i) i = this.indexString(i, e5);
+            if (null == r) return null;
+            if (Array.isArray(r)) r = this.indexArray(r, e5);
+            else if ("string" == typeof r) r = this.indexString(r, e5);
             else {
-              if ("object" != typeof i) throw new Error("can't index item of type " + typeof i);
-              i = this.indexObject(i, e5);
+              if ("object" != typeof r) throw new Error("can't index item of type " + typeof r);
+              r = this.indexObject(r, e5);
             }
           }
-          return i;
+          return r;
         }
         indexArray(e4, t28) {
-          const i = this.toInteger(t28);
-          if (null === i) throw new Error("cannot index slice/array with type " + typeof t28);
-          return i < 0 || i >= e4.length ? null : e4[i];
+          const r = this.toInteger(t28);
+          if (null === r) throw new Error("cannot index slice/array with type " + typeof t28);
+          return r < 0 || r >= e4.length ? null : e4[r];
         }
         indexString(e4, t28) {
-          const i = this.toInteger(t28);
-          if (null === i) throw new Error("cannot index string with type " + typeof t28);
-          return i < 0 || i >= e4.length ? null : e4.charAt(i);
+          const r = this.toInteger(t28);
+          if (null === r) throw new Error("cannot index string with type " + typeof t28);
+          return r < 0 || r >= e4.length ? null : e4.charAt(r);
         }
         indexObject(e4, t28) {
-          const i = String(t28);
-          if (e4.hasOwnProperty(i)) return e4[i];
-          const r = Object.keys(e4).find((e5) => e5.toLowerCase() === i.toLowerCase());
-          if (r) return e4[r];
+          const r = String(t28);
+          if (e4.hasOwnProperty(r)) return e4[r];
+          const i = Object.keys(e4).find((e5) => e5.toLowerCase() === r.toLowerCase());
+          if (i) return e4[i];
           if (e4 instanceof Map) {
-            if (e4.has(i)) return e4.get(i);
-            for (const t29 of e4.keys()) if (String(t29).toLowerCase() === i.toLowerCase()) return e4.get(t29);
+            if (e4.has(r)) return e4.get(r);
+            for (const t29 of e4.keys()) if (String(t29).toLowerCase() === r.toLowerCase()) return e4.get(t29);
           }
           return null;
         }
@@ -120851,14 +121225,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
           return null;
         }
-        checkCondition(e4, t28, i) {
-          const r = i.toLowerCase().trim();
-          if (null == e4 && null == t28) return ["==", "=", "eq", ""].includes(r);
-          if (null == e4 || null == t28) return ["!=", "<>", "ne"].includes(r);
-          if ("in" === r) return (Array.isArray(t28) || "string" == typeof t28 && "string" == typeof e4) && t28.includes(e4);
-          if ("intersect" === r) return !(!Array.isArray(e4) || !Array.isArray(t28)) && e4.some((e5) => t28.includes(e5));
+        checkCondition(e4, t28, r) {
+          const i = r.toLowerCase().trim();
+          if (null == e4 && null == t28) return ["==", "=", "eq", ""].includes(i);
+          if (null == e4 || null == t28) return ["!=", "<>", "ne"].includes(i);
+          if ("in" === i) return (Array.isArray(t28) || "string" == typeof t28 && "string" == typeof e4) && t28.includes(e4);
+          if ("intersect" === i) return !(!Array.isArray(e4) || !Array.isArray(t28)) && e4.some((e5) => t28.includes(e5));
           const [s2, n3] = this.normalizeForComparison(e4, t28);
-          switch (r) {
+          switch (i) {
             case "":
             case "=":
             case "==":
@@ -120887,40 +121261,40 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         normalizeForComparison(e4, t28) {
           if ("number" == typeof e4 && "number" == typeof t28) return [e4, t28];
           if ("number" == typeof e4 && "string" == typeof t28) {
-            const i = parseFloat(t28);
-            if (!isNaN(i)) return [e4, i];
+            const r = parseFloat(t28);
+            if (!isNaN(r)) return [e4, r];
           }
           if ("string" == typeof e4 && "number" == typeof t28) {
-            const i = parseFloat(e4);
-            if (!isNaN(i)) return [i, t28];
+            const r = parseFloat(e4);
+            if (!isNaN(r)) return [r, t28];
           }
           return "string" == typeof e4 && "string" == typeof t28 || "boolean" == typeof e4 && "boolean" == typeof t28 ? [e4, t28] : [String(e4), String(t28)];
         }
         registerSafeFunctions(e4) {
           e4.set("return", (...e5) => 0 === e5.length ? "" : 1 === e5.length ? e5[0] : e5), e4.set("cond", (...e5) => {
             if (e5.length < 2) throw new Error("cond requires at least 2 arguments");
-            const t28 = e5[0], i = e5[1], r = e5.length > 2 ? e5[2] : "";
+            const t28 = e5[0], r = e5[1], i = e5.length > 2 ? e5[2] : "";
             let s2 = false;
-            return true === t28 || 1 === t28 ? s2 = true : "string" == typeof t28 ? s2 = t28.length > 0 && "false" !== t28 && "0" !== t28 : "number" == typeof t28 ? s2 = 0 !== t28 : Array.isArray(t28) ? s2 = t28.length > 0 : t28 && "object" == typeof t28 && (s2 = Object.keys(t28).length > 0), s2 ? i : r;
+            return true === t28 || 1 === t28 ? s2 = true : "string" == typeof t28 ? s2 = t28.length > 0 && "false" !== t28 && "0" !== t28 : "number" == typeof t28 ? s2 = 0 !== t28 : Array.isArray(t28) ? s2 = t28.length > 0 : t28 && "object" == typeof t28 && (s2 = Object.keys(t28).length > 0), s2 ? r : i;
           }), e4.set("safeHTML", (e5) => e5), e4.set("safeCSS", (e5) => e5), e4.set("safeJS", (e5) => e5), e4.set("safeURL", (e5) => e5), e4.set("dict", (...e5) => {
             if (e5.length % 2 != 0) throw new Error("dict requires an even number of arguments");
             const t28 = {};
-            for (let i = 0; i < e5.length; i += 2) t28[String(e5[i])] = e5[i + 1];
+            for (let r = 0; r < e5.length; r += 2) t28[String(e5[r])] = e5[r + 1];
             return t28;
           }), e4.set("slice", (...e5) => e5), e4.set("default", (e5, t28) => null != t28 && "" !== t28 && 0 !== t28 ? t28 : e5), e4.set("jsonify", (...e5) => {
             if (0 === e5.length) return "";
-            let t28, i = {};
+            let t28, r = {};
             if (1 === e5.length) t28 = e5[0];
             else {
               if (2 !== e5.length) throw new Error("too many arguments to jsonify");
               {
-                const r = e5[0];
-                t28 = e5[1], r && "object" == typeof r && (i.prefix = r.prefix || "", i.indent = r.indent || "", i.noHTMLEscape = r.noHTMLEscape || false);
+                const i = e5[0];
+                t28 = e5[1], i && "object" == typeof i && (r.prefix = i.prefix || "", r.indent = i.indent || "", r.noHTMLEscape = i.noHTMLEscape || false);
               }
             }
             try {
               let e6;
-              return i.indent ? (e6 = JSON.stringify(t28, null, i.indent), i.prefix && (e6 = e6.split("\n").map((e7) => i.prefix + e7).join("\n"))) : e6 = JSON.stringify(t28), i.noHTMLEscape || (e6 = e6.replace(/&/g, "\\u0026").replace(/</g, "\\u003c").replace(/>/g, "\\u003e")), e6;
+              return r.indent ? (e6 = JSON.stringify(t28, null, r.indent), r.prefix && (e6 = e6.split("\n").map((e7) => r.prefix + e7).join("\n"))) : e6 = JSON.stringify(t28), r.noHTMLEscape || (e6 = e6.replace(/&/g, "\\u0026").replace(/</g, "\\u003c").replace(/>/g, "\\u003e")), e6;
             } catch (e6) {
               throw new Error(`failed to jsonify object: ${e6.message}`);
             }
@@ -120928,52 +121302,52 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         registerFmtFunctions(e4) {
           e4.set("printf", (e5, ...t28) => {
-            let i = e5, r = 0;
-            return i = i.replace(/%[vsdft%]/g, (e6) => {
+            let r = e5, i = 0;
+            return r = r.replace(/%[vsdft%]/g, (e6) => {
               if ("%%" === e6) return "%";
-              if (r >= t28.length) return e6;
-              const i2 = t28[r++];
+              if (i >= t28.length) return e6;
+              const r3 = t28[i++];
               switch (e6) {
                 case "%v":
                 case "%s":
                 default:
-                  return String(i2);
+                  return String(r3);
                 case "%d":
-                  return String(Math.floor(Number(i2) || 0));
+                  return String(Math.floor(Number(r3) || 0));
                 case "%f":
-                  return String(Number(i2) || 0);
+                  return String(Number(r3) || 0);
                 case "%t":
-                  return String(Boolean(i2));
+                  return String(Boolean(r3));
               }
-            }), i;
+            }), r;
           }), e4.set("print", (...e5) => e5.map((e6) => String(e6)).join(" ")), e4.set("println", (...e5) => e5.map((e6) => String(e6)).join(" ") + "\n"), e4.set("errorf", (e5, ...t28) => {
-            let i = e5;
-            for (let e6 = 0; e6 < t28.length; e6++) i = i.replace(/%[sd%]/, String(t28[e6]));
-            return log34.error("Template Error:", i), "";
-          }), e4.set("warnf", (e5, ...t28) => {
-            let i = e5;
-            for (let e6 = 0; e6 < t28.length; e6++) i = i.replace(/%[sd%]/, String(t28[e6]));
-            return log34.warn("Template Warning:", i), "";
-          }), e4.set("fmt", () => ({ Print: (...e5) => e5.map((e6) => String(e6)).join(" "), Printf: (e5, ...t28) => {
-            let i = e5;
-            for (let e6 = 0; e6 < t28.length; e6++) i = i.replace(/%[sd%]/, String(t28[e6]));
-            return i;
-          }, Println: (...e5) => e5.map((e6) => String(e6)).join(" ") + "\n", Errorf: (e5, ...t28) => {
-            let i = e5;
-            for (let e6 = 0; e6 < t28.length; e6++) i = i.replace(/%[sd%]/, String(t28[e6]));
-            return log34.error("Template Error:", i), "";
-          }, Erroridf: (e5, t28, ...i) => {
-            let r = t28;
-            for (let e6 = 0; e6 < i.length; e6++) r = r.replace(/%[sd%]/, String(i[e6]));
+            let r = e5;
+            for (let e6 = 0; e6 < t28.length; e6++) r = r.replace(/%[sd%]/, String(t28[e6]));
             return log34.error("Template Error:", r), "";
+          }), e4.set("warnf", (e5, ...t28) => {
+            let r = e5;
+            for (let e6 = 0; e6 < t28.length; e6++) r = r.replace(/%[sd%]/, String(t28[e6]));
+            return log34.warn("Template Warning:", r), "";
+          }), e4.set("fmt", () => ({ Print: (...e5) => e5.map((e6) => String(e6)).join(" "), Printf: (e5, ...t28) => {
+            let r = e5;
+            for (let e6 = 0; e6 < t28.length; e6++) r = r.replace(/%[sd%]/, String(t28[e6]));
+            return r;
+          }, Println: (...e5) => e5.map((e6) => String(e6)).join(" ") + "\n", Errorf: (e5, ...t28) => {
+            let r = e5;
+            for (let e6 = 0; e6 < t28.length; e6++) r = r.replace(/%[sd%]/, String(t28[e6]));
+            return log34.error("Template Error:", r), "";
+          }, Erroridf: (e5, t28, ...r) => {
+            let i = t28;
+            for (let e6 = 0; e6 < r.length; e6++) i = i.replace(/%[sd%]/, String(r[e6]));
+            return log34.error("Template Error:", i), "";
           }, Warnf: (e5, ...t28) => {
-            let i = e5;
-            for (let e6 = 0; e6 < t28.length; e6++) i = i.replace(/%[sd%]/, String(t28[e6]));
-            return log34.error("Template Warning:", i), "";
-          }, Warnidf: (e5, t28, ...i) => {
-            let r = t28;
-            for (let e6 = 0; e6 < i.length; e6++) r = r.replace(/%[sd%]/, String(i[e6]));
+            let r = e5;
+            for (let e6 = 0; e6 < t28.length; e6++) r = r.replace(/%[sd%]/, String(t28[e6]));
             return log34.error("Template Warning:", r), "";
+          }, Warnidf: (e5, t28, ...r) => {
+            let i = t28;
+            for (let e6 = 0; e6 < r.length; e6++) i = i.replace(/%[sd%]/, String(r[e6]));
+            return log34.error("Template Warning:", i), "";
           } }));
         }
         registerReflectFunctions(e4) {
@@ -120994,17 +121368,17 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return t28[t28.length - 1] || "/";
           }, Clean: (e5) => {
             if (!e5) return ".";
-            const t28 = (e5 = e5.replace(/\\/g, "/")).startsWith("/"), i = e5.split("/").filter((e6) => e6 && "." !== e6), r = [];
-            for (const e6 of i) ".." === e6 ? r.length > 0 && ".." !== r[r.length - 1] ? r.pop() : t28 || r.push("..") : r.push(e6);
-            return e5 = r.join("/"), t28 && (e5 = "/" + e5), e5 || (t28 ? "/" : ".");
+            const t28 = (e5 = e5.replace(/\\/g, "/")).startsWith("/"), r = e5.split("/").filter((e6) => e6 && "." !== e6), i = [];
+            for (const e6 of r) ".." === e6 ? i.length > 0 && ".." !== i[i.length - 1] ? i.pop() : t28 || i.push("..") : i.push(e6);
+            return e5 = i.join("/"), t28 && (e5 = "/" + e5), e5 || (t28 ? "/" : ".");
           }, Dir: (e5) => {
             if (!e5) return ".";
             if (!(e5 = e5.replace(/\/+$/, ""))) return "/";
             const t28 = e5.split("/");
             return t28.pop(), t28.join("/") || ".";
           }, Ext: (e5) => {
-            const t28 = e5.split("/").pop() || "", i = t28.lastIndexOf(".");
-            return -1 === i || 0 === i ? "" : t28.substring(i);
+            const t28 = e5.split("/").pop() || "", r = t28.lastIndexOf(".");
+            return -1 === r || 0 === r ? "" : t28.substring(r);
           }, IsAbs: (e5) => e5.startsWith("/"), Join: (...e5) => {
             if (0 === e5.length) return ".";
             let t28 = e5.filter((e6) => e6).map((e6) => e6.replace(/^\/+|\/+$/g, "")).join("/");
@@ -121018,25 +121392,25 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         registerTransformFunctions(e4) {
           e4.set("transform", () => ({ Unmarshal: (...e5) => {
             if (e5.length < 1 || e5.length > 2) throw new Error("unmarshal takes 1 or 2 arguments");
-            let t28, i, r = {};
+            let t28, r, i = {};
             if (1 === e5.length) t28 = e5[0];
             else {
-              const i2 = e5[0];
-              if (!i2 || "object" != typeof i2) throw new Error("first argument must be a map");
-              r = i2, t28 = e5[1];
+              const r3 = e5[0];
+              if (!r3 || "object" != typeof r3) throw new Error("first argument must be a map");
+              i = r3, t28 = e5[1];
             }
             if (t28 && "object" == typeof t28 && "function" == typeof t28.Content) try {
               const e6 = t28.Content();
-              return this.unmarshalContent(e6, r);
+              return this.unmarshalContent(e6, i);
             } catch (e6) {
               throw new Error(`failed to get content from resource: ${e6.message}`);
             }
-            if ("string" == typeof t28) i = t28;
+            if ("string" == typeof t28) r = t28;
             else {
               if (!t28 || "function" != typeof t28.toString) throw new Error(`type ${typeof t28} not supported`);
-              i = t28.toString();
+              r = t28.toString();
             }
-            return i && "" !== i.trim() ? this.unmarshalContent(i, r) : null;
+            return r && "" !== r.trim() ? this.unmarshalContent(r, i) : null;
           }, Plainify: (e5) => {
             const t28 = String(e5);
             return this.stripHTML(t28);
@@ -121049,30 +121423,30 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (!e4.includes("<") && !e4.includes(">")) return e4;
           let t28 = e4.replace(/\n/g, " ").replace(/<\/p>/gi, "\n").replace(/<br\s*\/?>/gi, "\n").replace(/<\/div>/gi, "\n").replace(/<\/h[1-6]>/gi, "\n").replace(/<\/li>/gi, "\n").replace(/<\/tr>/gi, "\n").replace(/<\/blockquote>/gi, "\n");
           t28 = t28.replace(/<[^>]*>/g, "");
-          const i = t28.split("\n");
-          return t28 = i.map((e5) => e5.trim().replace(/\s+/g, " ")).filter((e5) => e5.length > 0).join("\n").trim(), t28 = t28.replace(/\n\s*\n/g, "\n"), t28;
+          const r = t28.split("\n");
+          return t28 = r.map((e5) => e5.trim().replace(/\s+/g, " ")).filter((e5) => e5.length > 0).join("\n").trim(), t28 = t28.replace(/\n\s*\n/g, "\n"), t28;
         }
         unmarshalContent(e4, t28 = {}) {
-          const i = e4.trim();
-          if (!i) return null;
-          let r = t28.format;
-          r || (r = this.detectFormat(i));
+          const r = e4.trim();
+          if (!r) return null;
+          let i = t28.format;
+          i || (i = this.detectFormat(r));
           try {
-            switch (r.toLowerCase()) {
+            switch (i.toLowerCase()) {
               case "json":
-                return JSON.parse(i);
+                return JSON.parse(r);
               case "yaml":
               case "yml":
-                return this.parseYAML(i);
+                return this.parseYAML(r);
               case "toml":
-                return this.parseTOML(i);
+                return this.parseTOML(r);
               case "csv":
-                return this.parseCSV(i);
+                return this.parseCSV(r);
               default:
-                throw new Error(`format "${r}" not supported`);
+                throw new Error(`format "${i}" not supported`);
             }
           } catch (e5) {
-            throw new Error(`failed to unmarshal ${r}: ${e5.message}`);
+            throw new Error(`failed to unmarshal ${i}: ${e5.message}`);
           }
         }
         detectFormat(e4) {
@@ -121084,81 +121458,81 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return t28.startsWith("---") || /^[a-zA-Z_][a-zA-Z0-9_]*\s*:\s*.+/m.test(t28) ? "yaml" : /^\[.*\]$/m.test(t28) || /^[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*.+/m.test(t28) ? "toml" : /^[^,\n]*,[^,\n]*/.test(t28) ? "csv" : "json";
         }
         parseYAML(e4) {
-          const t28 = e4.split("\n"), i = {};
+          const t28 = e4.split("\n"), r = {};
           for (const e5 of t28) {
             const t29 = e5.trim();
             if (!t29 || t29.startsWith("#") || "---" === t29) continue;
-            const r = t29.indexOf(":");
-            if (r > 0) {
-              const e6 = t29.substring(0, r).trim();
-              let s2 = t29.substring(r + 1).trim();
-              (s2.startsWith('"') && s2.endsWith('"') || s2.startsWith("'") && s2.endsWith("'")) && (s2 = s2.slice(1, -1)), "true" === s2 ? i[e6] = true : "false" === s2 ? i[e6] = false : /^\d+$/.test(s2) ? i[e6] = parseInt(s2, 10) : /^\d*\.\d+$/.test(s2) ? i[e6] = parseFloat(s2) : i[e6] = s2;
+            const i = t29.indexOf(":");
+            if (i > 0) {
+              const e6 = t29.substring(0, i).trim();
+              let s2 = t29.substring(i + 1).trim();
+              (s2.startsWith('"') && s2.endsWith('"') || s2.startsWith("'") && s2.endsWith("'")) && (s2 = s2.slice(1, -1)), "true" === s2 ? r[e6] = true : "false" === s2 ? r[e6] = false : /^\d+$/.test(s2) ? r[e6] = parseInt(s2, 10) : /^\d*\.\d+$/.test(s2) ? r[e6] = parseFloat(s2) : r[e6] = s2;
             }
           }
-          return i;
+          return r;
         }
         parseTOML(e4) {
-          const t28 = e4.split("\n"), i = {};
-          let r = "";
+          const t28 = e4.split("\n"), r = {};
+          let i = "";
           for (const e5 of t28) {
             const t29 = e5.trim();
             if (!t29 || t29.startsWith("#")) continue;
             if (t29.startsWith("[") && t29.endsWith("]")) {
-              r = t29.slice(1, -1), i[r] || (i[r] = {});
+              i = t29.slice(1, -1), r[i] || (r[i] = {});
               continue;
             }
             const s2 = t29.indexOf("=");
             if (s2 > 0) {
               const e6 = t29.substring(0, s2).trim();
               let n3, a = t29.substring(s2 + 1).trim();
-              (a.startsWith('"') && a.endsWith('"') || a.startsWith("'") && a.endsWith("'")) && (a = a.slice(1, -1)), n3 = "true" === a || "false" !== a && (/^\d+$/.test(a) ? parseInt(a, 10) : /^\d*\.\d+$/.test(a) ? parseFloat(a) : a), r ? i[r][e6] = n3 : i[e6] = n3;
+              (a.startsWith('"') && a.endsWith('"') || a.startsWith("'") && a.endsWith("'")) && (a = a.slice(1, -1)), n3 = "true" === a || "false" !== a && (/^\d+$/.test(a) ? parseInt(a, 10) : /^\d*\.\d+$/.test(a) ? parseFloat(a) : a), i ? r[i][e6] = n3 : r[e6] = n3;
             }
           }
-          return i;
+          return r;
         }
         parseCSV(e4) {
           const t28 = e4.trim().split("\n");
           if (0 === t28.length) return [];
-          const i = this.parseCSVLine(t28[0]), r = [];
+          const r = this.parseCSVLine(t28[0]), i = [];
           for (let e5 = 1; e5 < t28.length; e5++) {
             const s2 = this.parseCSVLine(t28[e5]), n3 = {};
-            for (let e6 = 0; e6 < i.length; e6++) {
-              const t29 = i[e6], r3 = e6 < s2.length ? s2[e6] : "";
-              /^\d+$/.test(r3) ? n3[t29] = parseInt(r3, 10) : /^\d*\.\d+$/.test(r3) ? n3[t29] = parseFloat(r3) : n3[t29] = "true" === r3 || "false" !== r3 && r3;
+            for (let e6 = 0; e6 < r.length; e6++) {
+              const t29 = r[e6], i2 = e6 < s2.length ? s2[e6] : "";
+              /^\d+$/.test(i2) ? n3[t29] = parseInt(i2, 10) : /^\d*\.\d+$/.test(i2) ? n3[t29] = parseFloat(i2) : n3[t29] = "true" === i2 || "false" !== i2 && i2;
             }
-            r.push(n3);
+            i.push(n3);
           }
-          return r;
+          return i;
         }
         parseCSVLine(e4) {
           const t28 = [];
-          let i = "", r = false;
+          let r = "", i = false;
           for (let s2 = 0; s2 < e4.length; s2++) {
             const n3 = e4[s2];
-            '"' === n3 ? r && '"' === e4[s2 + 1] ? (i += '"', s2++) : r = !r : "," !== n3 || r ? i += n3 : (t28.push(i.trim()), i = "");
+            '"' === n3 ? i && '"' === e4[s2 + 1] ? (r += '"', s2++) : i = !i : "," !== n3 || i ? r += n3 : (t28.push(r.trim()), r = "");
           }
-          return t28.push(i.trim()), t28;
+          return t28.push(r.trim()), t28;
         }
         getNestedValue(e4, t28) {
           if (!e4 || !t28) return;
-          const i = t28.replace(/^\\.+/, "").split(".");
-          let r = e4;
-          for (let e5 = 0; e5 < i.length; e5++) {
-            const t29 = i[e5];
-            if (null == r) return;
-            if ("object" == typeof r) {
-              if (r.hasOwnProperty(t29)) {
-                r = r[t29];
+          const r = t28.replace(/^\\.+/, "").split(".");
+          let i = e4;
+          for (let e5 = 0; e5 < r.length; e5++) {
+            const t29 = r[e5];
+            if (null == i) return;
+            if ("object" == typeof i) {
+              if (i.hasOwnProperty(t29)) {
+                i = i[t29];
                 continue;
               }
-              const e6 = Object.keys(r).find((e7) => e7.toLowerCase() === t29.toLowerCase());
+              const e6 = Object.keys(i).find((e7) => e7.toLowerCase() === t29.toLowerCase());
               if (e6) {
-                r = r[e6];
+                i = i[e6];
                 continue;
               }
-              const i2 = t29.toLowerCase();
-              if ("function" == typeof r[i2]) try {
-                r = r[i2]();
+              const r3 = t29.toLowerCase();
+              if ("function" == typeof i[r3]) try {
+                i = i[r3]();
                 continue;
               } catch (e7) {
                 return;
@@ -121167,7 +121541,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
             return;
           }
-          return r;
+          return i;
         }
       };
     } });
@@ -121178,13 +121552,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async createWithConfig(e4, t28) {
           try {
-            const i = new Builder().withFs(e4).withNamespaces(new RegularTemplateNamespace(), new PartialTemplateNamespace(), new ShortcodeTemplateNamespace());
-            t28.services ? i.withServices(t28.services) : t28.funcMap ? i.withFuncMap(t28.funcMap) : i.withFuncMap(function() {
+            const r = new Builder().withFs(e4).withNamespaces(new RegularTemplateNamespace(), new PartialTemplateNamespace(), new ShortcodeTemplateNamespace());
+            t28.services ? r.withServices(t28.services) : t28.funcMap ? r.withFuncMap(t28.funcMap) : r.withFuncMap(function() {
               const e5 = /* @__PURE__ */ new Map();
               return newTemplateRegistry().registerCoreFunctions(e5), e5;
             }());
-            const r = await i.buildLookup().buildParser().buildExecutor().build();
-            return await r.markReady(), r;
+            const i = await r.buildLookup().buildParser().buildExecutor().build();
+            return await i.markReady(), i;
           } catch (e5) {
             const t29 = e5 instanceof Error ? e5.message : String(e5);
             throw new TemplateError(`Failed to create template engine: ${t29}`, "FACTORY_CREATE_FAILED");
@@ -121208,8 +121582,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         withFs(e4) {
           return this.fs = e4, this;
         }
-        withNamespaces(e4, t28, i) {
-          return this.templateNamespace = e4, this.partialNamespace = t28, this.shortcodeNamespace = i, this;
+        withNamespaces(e4, t28, r) {
+          return this.templateNamespace = e4, this.partialNamespace = t28, this.shortcodeNamespace = r, this;
         }
         withFuncMap(e4) {
           return this.funcMap = new Map([...this.funcMap, ...e4]), this;
@@ -121242,8 +121616,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (!this.lookup) throw new TemplateError("Lookup is required", "BUILDER_LOOKUP_REQUIRED");
           if (!this.parser) throw new TemplateError("Parser is required", "BUILDER_PARSER_REQUIRED");
           if (!this.executor) throw new TemplateError("Executor is required", "BUILDER_EXECUTOR_REQUIRED");
-          const e4 = (t28 = this.executor, i = this.lookup, r = this.parser, s2 = this.templateNamespace, n3 = this.partialNamespace, a = this.shortcodeNamespace, o = this.fs, new TemplateEngine(t28, i, r, s2, n3, a, o));
-          var t28, i, r, s2, n3, a, o;
+          const e4 = (t28 = this.executor, r = this.lookup, i = this.parser, s2 = this.templateNamespace, n3 = this.partialNamespace, a = this.shortcodeNamespace, o = this.fs, new TemplateEngine(t28, r, i, s2, n3, a, o));
+          var t28, r, i, s2, n3, a, o;
           !function(e5) {
             for (const t29 of engineDependentFunctions) try {
               t29.updateEngine(e5);
@@ -121266,7 +121640,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_pagebuilder = __esm2({ "internal/domain/content/entity/pagebuilder.ts"() {
       init_pagecontent(), init_frontmatter(), init_kind(), init_section(), init_standalone(), init_log(), init_page(), init_pagemeta(), init_pagelayout(), init_paginator(), init_shortcode2(), init_template3(), log35 = getDomainLogger("content", { component: "pagebuilder" }), PageBuilder = class {
-        constructor(e4, t28, i, r, s2, n3, a, o, l, c, h3) {
+        constructor(e4, t28, r, i, s2, n3, a, o, l, c, h3) {
           __publicField(this, "urlSvc");
           __publicField(this, "langSvc");
           __publicField(this, "taxonomySvc");
@@ -121288,7 +121662,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "fmParser");
           __publicField(this, "c");
           __publicField(this, "renderableDocument", null);
-          this.urlSvc = e4, this.langSvc = t28, this.taxonomySvc = i, this.templateSvc = r, this.pageMapper = null, this.taxonomy = n3, this.term = a, this.section = o, this.standalone = l, this.converter = c, this.contentHub = h3, this.source = null, this.sourceByte = new Uint8Array(), this.kind = "", this.singular = "", this.term_ = "", this.langIdx = -1, this.fm = null, this.fmParser = null, this.c = null;
+          this.urlSvc = e4, this.langSvc = t28, this.taxonomySvc = r, this.templateSvc = i, this.pageMapper = null, this.taxonomy = n3, this.term = a, this.section = o, this.standalone = l, this.converter = c, this.contentHub = h3, this.source = null, this.sourceByte = new Uint8Array(), this.kind = "", this.singular = "", this.term_ = "", this.langIdx = -1, this.fm = null, this.fmParser = null, this.c = null;
         }
         withSource(e4) {
           const t28 = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
@@ -121367,11 +121741,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return await this.adaptPagination(e4), e4;
         }
         async buildTaxonomy() {
-          const e4 = this.taxonomy.getTaxonomy(this.source.file.paths().path()), t28 = e4 ? e4.singular() : "", i = await this.newTaxonomy(this.source, this.c, t28);
-          return i.pageMap = this.pageMapper, await this.buildOutput(i), await this.buildPagination(i), i;
+          const e4 = this.taxonomy.getTaxonomy(this.source.file.paths().path()), t28 = e4 ? e4.singular() : "", r = await this.newTaxonomy(this.source, this.c, t28);
+          return r.pageMap = this.pageMapper, await this.buildOutput(r), await this.buildPagination(r), r;
         }
         async buildTerm() {
-          const e4 = this.source.file.paths(), t28 = this.taxonomy.getTaxonomy(e4.path()), i = t28 ? t28.singular() : "", r = e4.unnormalized().baseNameNoIdentifier(), s2 = await this.newTerm(this.source, this.c, i, r);
+          const e4 = this.source.file.paths(), t28 = this.taxonomy.getTaxonomy(e4.path()), r = t28 ? t28.singular() : "", i = e4.unnormalized().baseNameNoIdentifier(), s2 = await this.newTerm(this.source, this.c, r, i);
           return s2.pageMap = this.pageMapper, await this.buildOutput(s2), await this.buildPagination(s2), s2;
         }
         async render(e4) {
@@ -121408,8 +121782,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             default:
               if (this.source.file.isBranchBundle()) {
                 t28 = getKindMain("section");
-                const i = this.taxonomy.getTaxonomy(e4.path());
-                this.taxonomy.isZero(i) || (t28 = this.taxonomy.isTaxonomyPath(e4.path()) ? getKindMain("taxonomy") : getKindMain("term"));
+                const r = this.taxonomy.getTaxonomy(e4.path());
+                this.taxonomy.isZero(r) || (t28 = this.taxonomy.isTaxonomyPath(e4.path()) ? getKindMain("taxonomy") : getKindMain("term"));
               }
           }
           this.kind = t28;
@@ -121443,30 +121817,30 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
           };
         }
-        async doRenderShortcode(e4, t28, i, r) {
+        async doRenderShortcode(e4, t28, r, i) {
           var _a11, _b4;
           if (e4.inline) return log35.warn("Inline shortcodes are not supported yet."), "";
-          let s2 = new ShortcodeWithPage(e4.params || {}, "", r, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
+          let s2 = new ShortcodeWithPage(e4.params || {}, "", i, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
           if (e4.inner && e4.inner.length > 0) {
             let n3 = "";
             for (const t29 of e4.inner) if ("string" == typeof t29) n3 += t29;
             else {
               if ("object" != typeof t29 || !("name" in t29)) return log35.error(`Illegal state on shortcode rendering of "${e4.name}". Illegal type in inner data: ${typeof t29}`), "";
-              n3 += await this.doRenderShortcode(t29, s2, i + 1, r);
+              n3 += await this.doRenderShortcode(t29, s2, r + 1, i);
             }
             if (e4.doMarkup) try {
-              const i2 = await this.renderShortcodeMarkdown(r, n3);
-              s2 = new ShortcodeWithPage(e4.params || {}, i2, r, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
+              const r3 = await this.renderShortcodeMarkdown(i, n3);
+              s2 = new ShortcodeWithPage(e4.params || {}, r3, i, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
             } catch (e5) {
               throw new Error(`Failed to process inner content: ${e5}`);
             }
-            else s2 = new ShortcodeWithPage(e4.params || {}, n3, r, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
+            else s2 = new ShortcodeWithPage(e4.params || {}, n3, i, t28, e4.name, "object" == typeof e4.params && !Array.isArray(e4.params), e4.ordinal || 0, e4.indentation || "", e4.pos || 0);
           }
           try {
             let t29 = await ((_a11 = this.templateSvc) == null ? void 0 : _a11.execute(e4.name, s2));
             if (!((_b4 = e4.inner) == null ? void 0 : _b4.length) && e4.indentation) {
-              const i2 = t29 == null ? void 0 : t29.split("\n");
-              t29 = i2 == null ? void 0 : i2.map((t30, i3) => 0 === i3 ? t30 : e4.indentation + t30).join("\n");
+              const r3 = t29 == null ? void 0 : t29.split("\n");
+              t29 = r3 == null ? void 0 : r3.map((t30, r4) => 0 === r4 ? t30 : e4.indentation + t30).join("\n");
             }
             return t29 || "";
           } catch (t29) {
@@ -121476,7 +121850,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async renderShortcodeMarkdown(e4, t28) {
           try {
-            const i = { document: e4, documentID: e4.path(), documentName: e4.name(), filename: e4.pageFile().filename() }, r = { ctx: {}, src: new TextEncoder().encode(t28), renderTOC: false, getRenderer: () => null }, s2 = await this.converter.convert(i, r);
+            const r = { document: e4, documentID: e4.path(), documentName: e4.name(), filename: e4.pageFile().filename() }, i = { ctx: {}, src: new TextEncoder().encode(t28), renderTOC: false, getRenderer: () => null }, s2 = await this.converter.convert(r, i);
             let n3 = new TextDecoder().decode(s2.bytes());
             return n3.includes("\n") || (n3 = n3.replace(/^<p>(.*)<\/p>\n$/, "$1")), n3;
           } catch (e5) {
@@ -121500,16 +121874,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async buildOutput(e4) {
         }
         async newPage(e4, t28) {
-          const i = new Meta(this.urlSvc.baseUrl(), "always", {}, 999, e4.file.fileInfo().modTime()), r = new Layout();
-          return new PageImpl(e4, t28, i, r, "", getKindMain("page"), this.pageMapper);
+          const r = new Meta(this.urlSvc.baseUrl(), "always", {}, 999, e4.file.fileInfo().modTime()), i = new Layout();
+          return new PageImpl(e4, t28, r, i, "", getKindMain("page"), this.pageMapper);
         }
-        async newTaxonomy(e4, t28, i) {
-          const r = new Meta(this.urlSvc.baseUrl(), "always", {}, 999, e4.file.fileInfo().modTime()), s2 = new Layout();
-          return new TaxonomyPageImpl(e4, t28, r, s2, i, i, getKindMain("taxonomy"), this.pageMapper);
+        async newTaxonomy(e4, t28, r) {
+          const i = new Meta(this.urlSvc.baseUrl(), "always", {}, 999, e4.file.fileInfo().modTime()), s2 = new Layout();
+          return new TaxonomyPageImpl(e4, t28, i, s2, r, r, getKindMain("taxonomy"), this.pageMapper);
         }
-        async newTerm(e4, t28, i, r) {
+        async newTerm(e4, t28, r, i) {
           const s2 = new Meta(this.urlSvc.baseUrl(), "always", {}, 999, e4.file.fileInfo().modTime()), n3 = new Layout();
-          return new TermPageImpl(e4, t28, s2, n3, i, r, r, getKindMain("term"), this.pageMapper);
+          return new TermPageImpl(e4, t28, s2, n3, r, i, i, getKindMain("term"), this.pageMapper);
         }
       };
     } });
@@ -121520,9 +121894,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "fsSvc");
           this.views = e4, this.fsSvc = t28;
         }
-        async assemble(e4, t28, i) {
-          for (const r of this.views) {
-            const s2 = this.pluralTreeKey(r.plural()), n3 = (e4.get(s2), newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo(s2 + "/_index.md")))), a = await t28.withSource(n3).withLangIdx(i).kindBuild();
+        async assemble(e4, t28, r) {
+          for (const i of this.views) {
+            const s2 = this.pluralTreeKey(i.plural()), n3 = (e4.get(s2), newPageSource(newFileInfo2(this.fsSvc.newFileMetaInfo(s2 + "/_index.md")))), a = await t28.withSource(n3).withLangIdx(r).kindBuild();
             e4.insertIntoValuesDimension(s2, newPageTreesNode2(a));
           }
         }
@@ -121552,11 +121926,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "fsSvc");
           this.terms = {}, this.fsSvc = e4;
         }
-        async assemble(e4, t28, i, r) {
+        async assemble(e4, t28, r, i) {
           const s2 = new NodeShiftTreeWalker({ tree: e4, lockType: 2, handle: async (s3, n3, a) => {
             const [o, l] = n3.getPage();
             if (!l) return [false, null];
-            for (const n4 of i.taxonomy.views) {
+            for (const n4 of r.taxonomy.views) {
               const a2 = toStringSlicePreserveString(getParam(o.params(), n4.plural(), false));
               if (!a2) continue;
               const l2 = getParamToLower(o.params(), n4.plural() + "_weight");
@@ -121572,14 +121946,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 if ("" === h3) continue;
                 const u = "/" + n4.plural() + "/" + h3;
                 try {
-                  const a3 = newFileInfo2(this.fsSvc.newFileMetaInfo(u + "/_index.md")), g = a3.paths(), d = newPageSource(a3), p2 = await i.withSource(d).withLangIdx(r).kindBuild();
+                  const a3 = newFileInfo2(this.fsSvc.newFileMetaInfo(u + "/_index.md")), g = a3.paths(), d = newPageSource(a3), p2 = await r.withSource(d).withLangIdx(i).kindBuild();
                   e4.insertIntoValuesDimension(g.base(), newPageTreesNode2(p2));
                   const m2 = e4.get(g.base());
                   if (m2) {
                     const [e5, t29] = m2.getPage();
                     if (!t29) return [false, null];
-                    const i2 = e5;
-                    i2.term = h3, i2.singular = n4.singular();
+                    const r3 = e5;
+                    r3.term = h3, r3.singular = n4.singular();
                   }
                   let f3 = s3;
                   "" === f3 && (f3 = "/");
@@ -121694,7 +122068,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_page2 = __esm2({ "internal/domain/site/entity/page.ts"() {
       init_log(), init_pager(), log38 = getDomainLogger("site", { component: "page" }), Page2 = class e4 {
-        constructor(e5, t28, i, r, s2) {
+        constructor(e5, t28, r, i, s2) {
           __publicField(this, "tmplSvc");
           __publicField(this, "langSvc");
           __publicField(this, "publisher");
@@ -121705,7 +122079,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "_paginator", null);
           __publicField(this, "_processedContent", null);
           __publicField(this, "_precomputedData", { backlinks: null, tableOfContents: null, summary: null });
-          this.tmplSvc = e5, this.langSvc = t28, this.publisher = i, this.contentPage = r, this.site = s2;
+          this.tmplSvc = e5, this.langSvc = t28, this.publisher = r, this.contentPage = i, this.site = s2;
         }
         async precomputeTemplateData() {
           try {
@@ -121749,25 +122123,25 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.pageOutput || (this.pageOutput = this.output()), this.pageOutput;
         }
         async renderPage() {
-          const e5 = this.layouts(), { preparer: t28, found: i } = await this.tmplSvc.lookupLayout(e5);
-          if (!i) return void log38.warn(`Failed to find layout: ${e5.join(",")} for page ${this.paths().path()}`);
-          const r = [];
+          const e5 = this.layouts(), { preparer: t28, found: r } = await this.tmplSvc.lookupLayout(e5);
+          if (!r) return void log38.warn(`Failed to find layout: ${e5.join(",")} for page ${this.paths().path()}`);
+          const i = [];
           let s2 = this.getPageOutput().targetPrefix();
-          s2 = this.site.getLanguage().getCurrentLanguage() === s2 && s2 === this.langSvc.defaultLanguage() ? "" : this.site.getLanguage().getCurrentLanguage(), r.push(import_path15.default.join(s2, this.getPageOutput().targetFilePath())), await this.renderAndWritePage(t28, r);
+          s2 = this.site.getLanguage().getCurrentLanguage() === s2 && s2 === this.langSvc.defaultLanguage() ? "" : this.site.getLanguage().getCurrentLanguage(), i.push(import_path15.default.join(s2, this.getPageOutput().targetFilePath())), await this.renderAndWritePage(t28, i);
           const n3 = await this.current();
           if (n3) {
             let e6 = n3.next();
             for (; e6; ) {
               this.setCurrent(e6);
-              const i2 = [import_path15.default.join(s2, e6.url(), this.getPageOutput().targetFileBase())];
-              await this.renderAndWritePage(t28, i2), e6 = e6.next();
+              const r3 = [import_path15.default.join(s2, e6.url(), this.getPageOutput().targetFileBase())];
+              await this.renderAndWritePage(t28, r3), e6 = e6.next();
             }
           }
         }
         async renderAndWritePage(e5, t28) {
           try {
-            const i = await this.tmplSvc.executeWithContext(e5, this);
-            await this.publisher.publishSource(i, ...t28);
+            const r = await this.tmplSvc.executeWithContext(e5, this);
+            await this.publisher.publishSource(r, ...t28);
           } catch (e6) {
             throw this.errorf(e6, "failed to publish page");
           }
@@ -121775,22 +122149,22 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async renderResources() {
           for (const e5 of this.resources) {
             const t28 = [];
-            let i = this.getPageOutput().targetPrefix();
-            i = this.site.getLanguage().getCurrentLanguage() === i && i === this.langSvc.defaultLanguage() ? "" : this.site.getLanguage().getCurrentLanguage();
-            let r = e5.path();
-            t28.push(import_path15.default.join(i, r));
+            let r = this.getPageOutput().targetPrefix();
+            r = this.site.getLanguage().getCurrentLanguage() === r && r === this.langSvc.defaultLanguage() ? "" : this.site.getLanguage().getCurrentLanguage();
+            let i = e5.path();
+            t28.push(import_path15.default.join(r, i));
             let s2 = null;
             try {
-              const i2 = () => e5.pageFile().open();
-              if (s2 = await i2(), !s2) throw new Error("Failed to open resource stream");
-              let r3;
-              r3 = "function" == typeof s2.read ? new ReadableStream({ async start(e6) {
+              const r3 = () => e5.pageFile().open();
+              if (s2 = await r3(), !s2) throw new Error("Failed to open resource stream");
+              let i2;
+              i2 = "function" == typeof s2.read ? new ReadableStream({ async start(e6) {
                 try {
                   const t29 = new Uint8Array(8192);
                   for (; ; ) {
-                    const i3 = await s2.read(t29);
-                    if (0 === i3.bytesRead) break;
-                    e6.enqueue(t29.slice(0, i3.bytesRead));
+                    const r4 = await s2.read(t29);
+                    if (0 === r4.bytesRead) break;
+                    e6.enqueue(t29.slice(0, r4.bytesRead));
                   }
                   e6.close();
                 } catch (t29) {
@@ -121798,7 +122172,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 }
               } }) : new ReadableStream({ start(e6) {
                 e6.close();
-              } }), await this.publisher.publishFiles(r3, ...t28);
+              } }), await this.publisher.publishFiles(i2, ...t28);
             } catch (e6) {
               throw this.errorf(e6, "failed to publish page resources");
             } finally {
@@ -121810,13 +122184,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
           }
         }
-        errorf(e5, t28, ...i) {
-          const r = [this.pageIdentity().pageLanguage(), this.paths().path(), ...i], s2 = `[%s] page "%s": ${t28}: %s`, n3 = this.sprintf(s2, ...r, e5.message || e5);
+        errorf(e5, t28, ...r) {
+          const i = [this.pageIdentity().pageLanguage(), this.paths().path(), ...r], s2 = `[%s] page "%s": ${t28}: %s`, n3 = this.sprintf(s2, ...i, e5.message || e5);
           return new Error(n3);
         }
         sprintf(e5, ...t28) {
-          let i = 0;
-          return e5.replace(/%s/g, () => t28[i++] || "");
+          let r = 0;
+          return e5.replace(/%s/g, () => t28[r++] || "");
         }
         clone() {
           const t28 = new e4(this.tmplSvc, this.langSvc, this.publisher, this.contentPage, this.site);
@@ -121900,9 +122274,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async Backlinks() {
           if (null !== this._precomputedData.backlinks) return this._precomputedData.backlinks;
-          const e5 = this.site.GetBacklinks(this.slug()), t28 = [], i = await this.site.RegularPages();
-          for (const r of e5) {
-            const e6 = i.find((e7) => e7.slug() === r);
+          const e5 = this.site.GetBacklinks(this.slug()), t28 = [], r = await this.site.RegularPages();
+          for (const i of e5) {
+            const e6 = r.find((e7) => e7.slug() === i);
             e6 && t28.push(e6);
           }
           return this._precomputedData.backlinks = t28, t28;
@@ -121924,8 +122298,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           let e5;
           if (this.pageIdentity().pageLanguage() === this.langSvc.defaultLanguage()) e5 = this.getPageOutput().targetFilePath();
           else {
-            const t28 = this.getPageOutput().targetPrefix(), i = this.getPageOutput().targetFilePath();
-            e5 = this.pathJoin(t28, i);
+            const t28 = this.getPageOutput().targetPrefix(), r = this.getPageOutput().targetFilePath();
+            e5 = this.pathJoin(t28, r);
           }
           return e5.startsWith("/") && (e5 = e5.slice(1)), this.site.getURL().relURL(e5);
         }
@@ -122098,8 +122472,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async Paginate(e5) {
           try {
-            const t28 = e5.map((e6) => e6.contentPage), i = await this.contentPage.paginate(t28);
-            return i && (this._paginator = new SitePager(this, i)), this._paginator;
+            const t28 = e5.map((e6) => e6.contentPage), r = await this.contentPage.paginate(t28);
+            return r && (this._paginator = new SitePager(this, r)), this._paginator;
           } catch (e6) {
             return log38.error("Error during pagination:", e6), null;
           }
@@ -122120,8 +122494,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         sitePages(e5) {
           const t28 = [];
-          for (const i of e5) {
-            const e6 = this.sitePage(i);
+          for (const r of e5) {
+            const e6 = this.sitePage(r);
             e6 && t28.push(e6);
           }
           return t28;
@@ -122193,26 +122567,26 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         static fromString(t28) {
           try {
             t28 && "/" !== t28 || (t28 = "/");
-            const i = t28.trim();
-            if (i.startsWith("/") && !i.startsWith("//")) {
-              const t29 = new URL(i, "http://localhost");
+            const r = t28.trim();
+            if (r.startsWith("/") && !r.startsWith("//")) {
+              const t29 = new URL(r, "http://localhost");
               return t29.pathname.endsWith("/") || (t29.pathname += "/"), new e4(t29, true);
             }
-            if (i.startsWith("//")) {
-              const t29 = new URL("https:" + i);
+            if (r.startsWith("//")) {
+              const t29 = new URL("https:" + r);
               return t29.pathname.endsWith("/") || (t29.pathname += "/"), new e4(t29);
             }
-            if (i.includes("://")) {
-              const t29 = new URL(i);
+            if (r.includes("://")) {
+              const t29 = new URL(r);
               if (!["http:", "https:"].includes(t29.protocol)) throw new Error(`Unsupported protocol: ${t29.protocol}. Only http and https are supported.`);
               return t29.pathname.endsWith("/") || (t29.pathname += "/"), new e4(t29);
             }
-            if (i.includes(":") && !i.includes("/")) {
-              const e5 = i.indexOf(":"), t29 = i.substring(0, e5 + 1);
+            if (r.includes(":") && !r.includes("/")) {
+              const e5 = r.indexOf(":"), t29 = r.substring(0, e5 + 1);
               throw new Error(`Unsupported protocol: ${t29}. Only http and https are supported.`);
             }
-            const r = new URL("https://" + i);
-            return r.pathname.endsWith("/") || (r.pathname += "/"), new e4(r);
+            const i = new URL("https://" + r);
+            return i.pathname.endsWith("/") || (i.pathname += "/"), new e4(i);
           } catch (e5) {
             throw new Error(`Invalid URL: ${(e5 == null ? void 0 : e5.message) || "Unknown error"}`);
           }
@@ -122246,16 +122620,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         withProtocol(t28) {
           if (this.isRelative) throw new Error("Cannot change protocol of relative URL");
-          const i = this.getURL();
-          let r = t28;
-          const s2 = r.endsWith("://"), n3 = r.endsWith(":");
-          if (s2 ? r = r.slice(0, -3) : n3 && (r = r.slice(0, -1)), n3 && !i.pathname) throw new Error(`cannot determine BaseURL for protocol ${t28}`);
-          return i.protocol = r, e4.fromString(i.toString());
+          const r = this.getURL();
+          let i = t28;
+          const s2 = i.endsWith("://"), n3 = i.endsWith(":");
+          if (s2 ? i = i.slice(0, -3) : n3 && (i = i.slice(0, -1)), n3 && !r.pathname) throw new Error(`cannot determine BaseURL for protocol ${t28}`);
+          return r.protocol = i, e4.fromString(r.toString());
         }
         withPort(t28) {
           if (this.isRelative) throw new Error("Cannot set port on relative URL");
-          const i = this.getURL();
-          return i.port = t28.toString(), e4.fromString(i.toString());
+          const r = this.getURL();
+          return r.port = t28.toString(), e4.fromString(r.toString());
         }
         isRelativeURL() {
           return this.isRelative;
@@ -122299,10 +122673,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         addContextRoot(e5) {
           if (!this.baseURL) return e5;
           let t28 = e5;
-          return this.canonical || (i = this.baseURL.getRoot(e5), r = e5, t28 = !i || r.startsWith(i) ? r : function(...e6) {
+          return this.canonical || (r = this.baseURL.getRoot(e5), i = e5, t28 = !r || i.startsWith(r) ? i : function(...e6) {
             return e6.filter(Boolean).join("/").replace(/\/+/g, "/").replace(/\/$/, "");
-          }(i, r)), t28;
-          var i, r;
+          }(r, i)), t28;
+          var r, i;
         }
         handleRootSuffix(e5, t28) {
           return this.baseURL ? ("" === e5 && this.baseURL.getRoot(e5).endsWith("/") && (t28 += "/"), t28) : t28;
@@ -122312,37 +122686,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         relURL(e5) {
           if (!e5) return this.baseURL ? this.baseURL.basePath : "";
-          const [t28, i] = this.isAbsURL(e5);
-          if (i) return e5;
+          const [t28, r] = this.isAbsURL(e5);
+          if (r) return e5;
           if (t28 || this.isProtocolRelPath(e5)) return e5;
           if (!this.baseURL) return e5;
-          let r = e5;
+          let i = e5;
           if (e5.startsWith("/")) return this.baseURL.isRelativeURL() ? e5 : this.baseURL.withoutPath + e5;
-          if (r = this.baseURL.isRelativeURL() ? (this.baseURL.basePath.endsWith("/") ? this.baseURL.basePath : this.baseURL.basePath + "/") + e5 : (this.baseURL.withPath.endsWith("/") ? this.baseURL.withPath : this.baseURL.withPath + "/") + e5, r.includes("://")) {
-            const e6 = r.indexOf("://"), t29 = r.substring(0, e6 + 3), i2 = r.substring(e6 + 3);
-            r = t29 + i2.replace(/\/+/g, "/");
-          } else r = r.replace(/\/+/g, "/");
-          return r;
+          if (i = this.baseURL.isRelativeURL() ? (this.baseURL.basePath.endsWith("/") ? this.baseURL.basePath : this.baseURL.basePath + "/") + e5 : (this.baseURL.withPath.endsWith("/") ? this.baseURL.withPath : this.baseURL.withPath + "/") + e5, i.includes("://")) {
+            const e6 = i.indexOf("://"), t29 = i.substring(0, e6 + 3), r3 = i.substring(e6 + 3);
+            i = t29 + r3.replace(/\/+/g, "/");
+          } else i = i.replace(/\/+/g, "/");
+          return i;
         }
-        absURL(e5, t28 = false, i = "") {
-          const [r, s2] = this.isAbsURL(e5);
+        absURL(e5, t28 = false, r = "") {
+          const [i, s2] = this.isAbsURL(e5);
           if (s2) return e5;
-          if (r || this.isProtocolRelPath(e5)) return e5;
+          if (i || this.isProtocolRelPath(e5)) return e5;
           if (!this.baseURL) return e5;
           const n3 = this.baseURL.getRoot(e5);
-          if (t28 && i) {
-            let t29 = false, r3 = e5;
-            if (e5.startsWith("/") && (r3 = e5.slice(1)), t29 = r3 === i || r3.startsWith(i + "/"), !t29) {
+          if (t28 && r) {
+            let t29 = false, i2 = e5;
+            if (e5.startsWith("/") && (i2 = e5.slice(1)), t29 = i2 === r || i2.startsWith(r + "/"), !t29) {
               const t30 = "" === e5 || e5.endsWith("/");
-              e5 = this.joinPaths(i, e5), t30 && (e5 += "/");
+              e5 = this.joinPaths(r, e5), t30 && (e5 += "/");
             }
           }
           return function(e6, t29) {
-            const i2 = `${e6.replace(/\/$/, "")}/${t29.replace(/^\//, "")}`;
+            const r3 = `${e6.replace(/\/$/, "")}/${t29.replace(/^\//, "")}`;
             try {
-              return new URL(i2);
+              return new URL(r3);
             } catch (e7) {
-              return new URL("http://" + i2);
+              return new URL("http://" + r3);
             }
           }(n3, e5).toString();
         }
@@ -122355,10 +122729,10 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         urlEscape(t28) {
           try {
             if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(t28)) return new e4(t28).toString();
-            const i = t28.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);
-            if (!i) return encodeURI(t28);
-            const [, r = "", s2 = "", n3 = ""] = i;
-            return encodeURI(r) + (s2 || "") + (n3 || "");
+            const r = t28.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);
+            if (!r) return encodeURI(t28);
+            const [, i = "", s2 = "", n3 = ""] = r;
+            return encodeURI(i) + (s2 || "") + (n3 || "");
           } catch (e5) {
             return encodeURI(t28);
           }
@@ -122428,9 +122802,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         stableSort(e4) {
           const t28 = this.map((e5, t29) => ({ item: e5, index: t29 }));
-          t28.sort((t29, i) => {
-            const r = e4(t29.item, i.item);
-            return 0 !== r ? r : t29.index - i.index;
+          t28.sort((t29, r) => {
+            const i = e4(t29.item, r.item);
+            return 0 !== i ? i : t29.index - r.index;
           }), this.splice(0, this.length, ...t28.map((e5) => e5.item));
         }
       }, Taxonomy3 = class {
@@ -122464,13 +122838,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         byCount() {
           const e4 = this.taxonomyArray();
           return e4.sort((e5, t28) => {
-            const i = e5.weightedPages.length, r = t28.weightedPages.length;
-            return i === r ? e5.name.localeCompare(t28.name) : r - i;
+            const r = e5.weightedPages.length, i = t28.weightedPages.length;
+            return r === i ? e5.name.localeCompare(t28.name) : i - r;
           }), new OrderedTaxonomy(e4);
         }
         taxonomyArray() {
           const e4 = [];
-          for (const [t28, i] of this.terms.entries()) e4.push(new OrderedTaxonomyEntry(t28, i));
+          for (const [t28, r] of this.terms.entries()) e4.push(new OrderedTaxonomyEntry(t28, r));
           return e4;
         }
       }, OrderedTaxonomyEntry = class {
@@ -122526,15 +122900,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.contentService = e4;
         }
         async buildTaxonomiesForLanguage(e4, t28) {
-          const i = new TaxonomyList();
+          const r = new TaxonomyList();
           try {
-            return await this.contentService.walkTaxonomies(e4, async (e5, r, s2) => {
-              i.has(e5) || i.set(e5, new Taxonomy3());
-              const n3 = i.get(e5);
-              n3.has(r) || n3.set(r, new WeightedPages());
+            return await this.contentService.walkTaxonomies(e4, async (e5, i, s2) => {
+              r.has(e5) || r.set(e5, new Taxonomy3());
+              const n3 = r.get(e5);
+              n3.has(i) || n3.set(i, new WeightedPages());
               const a = await t28.siteWeightedPage(s2);
-              n3.get(r).push(a);
-            }), i;
+              n3.get(i).push(a);
+            }), r;
           } catch (e5) {
             throw log39.error(`Failed to create taxonomies: ${e5}`), e5;
           }
@@ -122582,8 +122956,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.hasChildren();
         }
         addChild(t28) {
-          const i = [...this._children, t28];
-          return new e4({ title: this._title, url: this._url, children: i, weight: this._weight, identifier: this._identifier });
+          const r = [...this._children, t28];
+          return new e4({ title: this._title, url: this._url, children: r, weight: this._weight, identifier: this._identifier });
         }
         toJSON() {
           return { title: this._title, url: this._url, weight: this._weight, children: this._children.map((e5) => e5.toJSON()) };
@@ -122612,8 +122986,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         sortMenus(e4) {
           return e4.sort((e5, t28) => {
             if (e5.weight() !== t28.weight()) return 0 === t28.weight() ? -1 : 0 === e5.weight() ? 1 : e5.weight() - t28.weight();
-            const i = e5.title().localeCompare(t28.title());
-            return 0 !== i ? i : e5.identifier().localeCompare(t28.identifier());
+            const r = e5.title().localeCompare(t28.title());
+            return 0 !== r ? r : e5.identifier().localeCompare(t28.identifier());
           });
         }
         toJSON() {
@@ -122631,13 +123005,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.allSlugs = [...e4], log41.info(`PageGraph initialized with ${e4.length} items (pages + resources)`);
         }
         registerOutgoingLinks(e4, t28) {
-          const i = simplifySlug(e4);
-          this.outgoingLinks.set(i, t28);
+          const r = simplifySlug(e4);
+          this.outgoingLinks.set(r, t28);
         }
         getBacklinks(e4) {
-          const t28 = simplifySlug(e4), i = [];
-          for (const [e5, r] of this.outgoingLinks.entries()) r.includes(t28) && i.push(e5);
-          return i;
+          const t28 = simplifySlug(e4), r = [];
+          for (const [e5, i] of this.outgoingLinks.entries()) i.includes(t28) && r.push(e5);
+          return r;
         }
         getAllSlugs() {
           return [...this.allSlugs];
@@ -122645,8 +123019,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         hasSlug(e4) {
           return this.allSlugs.includes(e4);
         }
-        resolveLink(e4, t28, i) {
-          return transformLink(e4, t28, { strategy: i, allSlugs: this.allSlugs });
+        resolveLink(e4, t28, r) {
+          return transformLink(e4, t28, { strategy: r, allSlugs: this.allSlugs });
         }
         getOutgoingLinks(e4) {
           const t28 = simplifySlug(e4);
@@ -122668,7 +123042,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async processLinks(e4, t28) {
           if (!t28 || "string" != typeof t28) return log42.error("[HtmlLinkProcessor] Invalid HTML input: " + typeof t28), { html: t28 || "", outgoingLinks: [] };
-          const i = this.options, r = simplifySlug(e4), s2 = /* @__PURE__ */ new Set(), n3 = unified().use(rehypeParse, { fragment: true }).use(() => (t29) => {
+          const r = this.options, i = simplifySlug(e4), s2 = /* @__PURE__ */ new Set(), n3 = unified().use(rehypeParse, { fragment: true }).use(() => (t29) => {
             visit(t29, "element", (t30) => {
               var _a11;
               if ("a" === t30.tagName && t30.properties) {
@@ -122677,29 +123051,29 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
                 let o;
                 o = !a2 && n4 ? t30.properties.dataWikilink || t30.properties.dataSlug : t30.properties.href;
                 const l = (_a11 = t30.properties.className) != null ? _a11 : [], c = isAbsoluteUrl(o, { httpOnly: false });
-                l.includes("external") || l.includes("internal") || l.push(c ? "external" : "internal"), c && i.externalLinkIcon && t30.children.push({ type: "element", tagName: "svg", properties: { "aria-hidden": "true", class: "external-icon", style: "max-width:0.8em;max-height:0.8em", viewBox: "0 0 512 512" }, children: [{ type: "element", tagName: "path", properties: { d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z" }, children: [] }] }), 1 === t30.children.length && "text" === t30.children[0].type && t30.children[0].value !== o && l.push("alias"), t30.properties.className = l, c && i.openLinksInNewTab && (t30.properties.target = "_blank");
+                l.includes("external") || l.includes("internal") || l.push(c ? "external" : "internal"), c && r.externalLinkIcon && t30.children.push({ type: "element", tagName: "svg", properties: { "aria-hidden": "true", class: "external-icon", style: "max-width:0.8em;max-height:0.8em", viewBox: "0 0 512 512" }, children: [{ type: "element", tagName: "path", properties: { d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z" }, children: [] }] }), 1 === t30.children.length && "text" === t30.children[0].type && t30.children[0].value !== o && l.push("alias"), t30.properties.className = l, c && r.openLinksInNewTab && (t30.properties.target = "_blank");
                 const h3 = !(isAbsoluteUrl(o, { httpOnly: false }) || o.startsWith("#"));
                 if (h3) {
-                  const n5 = transformLink(e4, o, { strategy: i.markdownLinkResolution, allSlugs: this.graph.getAllSlugs() }), a3 = new URL(n5, "https://base.com/" + stripSlashes2(r, true)).pathname;
+                  const n5 = transformLink(e4, o, { strategy: r.markdownLinkResolution, allSlugs: this.graph.getAllSlugs() }), a3 = new URL(n5, "https://base.com/" + stripSlashes2(i, true)).pathname;
                   let [l2, c3] = splitAnchor2(a3);
                   l2.endsWith("/") && (l2 += "index");
                   const h4 = decodeURIComponent(stripSlashes2(l2, true)), u = simplifySlug(h4);
                   s2.add(u);
                   let g = n5;
                   if (g.startsWith("./") && (g = g.slice(2)), g.startsWith("../")) {
-                    const t31 = (g.match(/\.\.\//g) || []).length, i2 = e4.split("/").filter((e5) => e5).slice(0, -1), r3 = g.replace(/\.\.\//g, ""), s3 = i2.slice(0, i2.length - t31);
-                    r3 && s3.push(r3), g = s3.join("/");
+                    const t31 = (g.match(/\.\.\//g) || []).length, r3 = e4.split("/").filter((e5) => e5).slice(0, -1), i2 = g.replace(/\.\.\//g, ""), s3 = r3.slice(0, r3.length - t31);
+                    i2 && s3.push(i2), g = s3.join("/");
                   }
-                  g = i.baseURL ? `${i.baseURL}/${g}` : `/${g}`;
+                  g = r.baseURL ? `${r.baseURL}/${g}` : `/${g}`;
                   const [d, p2] = splitAnchor2(g);
                   let m2 = d;
                   m2.endsWith(".html") || m2.endsWith("/") || (m2 += ".html"), g = m2 + p2, o = t30.properties.href = g, t30.properties["data-slug"] = h4;
                 }
-                i.prettyLinks && h3 && 1 === t30.children.length && "text" === t30.children[0].type && !t30.children[0].value.startsWith("#") && (t30.children[0].value = import_path16.default.basename(t30.children[0].value));
+                r.prettyLinks && h3 && 1 === t30.children.length && "text" === t30.children[0].type && !t30.children[0].value.startsWith("#") && (t30.children[0].value = import_path16.default.basename(t30.children[0].value));
               }
-              if (["img", "video", "audio", "iframe"].includes(t30.tagName) && t30.properties && "string" == typeof t30.properties.src && (i.lazyLoad && (t30.properties.loading = "lazy"), !isAbsoluteUrl(t30.properties.src, { httpOnly: false }))) {
-                let r3 = t30.properties.src;
-                r3 = t30.properties.src = transformLink(e4, r3, { strategy: i.markdownLinkResolution, allSlugs: this.graph.getAllSlugs() }), t30.properties.src = r3;
+              if (["img", "video", "audio", "iframe"].includes(t30.tagName) && t30.properties && "string" == typeof t30.properties.src && (r.lazyLoad && (t30.properties.loading = "lazy"), !isAbsoluteUrl(t30.properties.src, { httpOnly: false }))) {
+                let i2 = t30.properties.src;
+                i2 = t30.properties.src = transformLink(e4, i2, { strategy: r.markdownLinkResolution, allSlugs: this.graph.getAllSlugs() }), t30.properties.src = i2;
               }
             });
           }).use(rehypeStringify), a = await n3.process(t28);
@@ -122729,8 +123103,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         shouldProcess(e4, t28) {
           if (!this.filterSet) return true;
-          const i = `${e4}:${t28}`;
-          return this.filterSet.has(i);
+          const r = `${e4}:${t28}`;
+          return this.filterSet.has(r);
         }
         getFilterSize() {
           var _a11, _b4;
@@ -122740,7 +123114,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_site = __esm2({ "internal/domain/site/entity/site.ts"() {
       init_page2(), init_url(), init_log(), init_taxonomies_builder(), init_menu(), init_pagegraph(), init_html_link_processor(), init_page_filter(), log44 = getDomainLogger("site", { component: "site" }), Site = class {
-        constructor(e4, t28, i, r, s2, n3, a, o, l, c, h3, u, g, d, p2) {
+        constructor(e4, t28, r, i, s2, n3, a, o, l, c, h3, u, g, d, p2) {
           __publicField(this, "configSvc");
           __publicField(this, "contentSvc");
           __publicField(this, "translationSvc");
@@ -122760,7 +123134,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "home", null);
           __publicField(this, "pageGraph", null);
           __publicField(this, "backlinksCache", null);
-          this.configSvc = e4, this.contentSvc = t28, this.translationSvc = i, this.languageSvc = r, this.sitemap = s2, this.staticCopySvc = n3, this.publisher = a, this.author = o, this.organization = l, this.compiler = c, this.url = h3, this.ref = u, this.language = g, this.navigation = d, this.title = p2;
+          this.configSvc = e4, this.contentSvc = t28, this.translationSvc = r, this.languageSvc = i, this.sitemap = s2, this.staticCopySvc = n3, this.publisher = a, this.author = o, this.organization = l, this.compiler = c, this.url = h3, this.ref = u, this.language = g, this.navigation = d, this.title = p2;
         }
         get Title() {
           return this.title;
@@ -122827,8 +123201,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async buildWithProgress(e4, t28) {
           try {
             this.template = e4, await this.setup(), await this.copyStaticFiles();
-            const i = this.languageSvc.languageKeys();
-            for (const e5 of i) this.language.setCurrentLanguage(e5), await this.generateNavigations(), await this.renderWithProgress(t28);
+            const r = this.languageSvc.languageKeys();
+            for (const e5 of r) this.language.setCurrentLanguage(e5), await this.generateNavigations(), await this.renderWithProgress(t28);
           } catch (e5) {
             const t29 = e5 instanceof Error ? e5.message : String(e5);
             throw log44.error(`\u274C Site build failed: ${t29}`), e5;
@@ -122857,24 +123231,24 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async renderPages() {
-          const e4 = this.language.getCurrentLanguage(), t28 = this.languageSvc.getLanguageIndex(e4), i = [];
+          const e4 = this.language.getCurrentLanguage(), t28 = this.languageSvc.getLanguageIndex(e4), r = [];
           await this.contentSvc.walkPages(t28, async (e5) => {
             const t29 = await this.sitePage(e5);
-            i.push(t29);
-            const r3 = await this.contentSvc.getPageSources(e5);
-            await t29.processResources(r3), e5.isHome() && (this.home = t29);
-          }), log44.info(`\u{1F4CA} Processing wikilinks for ${i.length} pages...`);
-          for (const e5 of i) try {
+            r.push(t29);
+            const i2 = await this.contentSvc.getPageSources(e5);
+            await t29.processResources(i2), e5.isHome() && (this.home = t29);
+          }), log44.info(`\u{1F4CA} Processing wikilinks for ${r.length} pages...`);
+          for (const e5 of r) try {
             await e5.WikilinkContent();
           } catch (t29) {
-            const i2 = t29 instanceof Error ? t29.message : String(t29);
-            log44.warn(`\u26A0\uFE0F  Failed to process wikilinks for ${e5.slug()}: ${i2}`);
+            const r3 = t29 instanceof Error ? t29.message : String(t29);
+            log44.warn(`\u26A0\uFE0F  Failed to process wikilinks for ${e5.slug()}: ${r3}`);
           }
           log44.info("\u2705 Wikilink processing complete");
-          const r = i.filter((t29) => {
-            const i2 = t29.file().paths().base();
-            return !!shouldProcessPage(e4, i2) && t29.isStale();
-          }), s2 = r.filter((e5) => e5.isHome()), n3 = r.filter((e5) => !e5.isHome());
+          const i = r.filter((t29) => {
+            const r3 = t29.file().paths().base();
+            return !!shouldProcessPage(e4, r3) && t29.isStale();
+          }), s2 = i.filter((e5) => e5.isHome()), n3 = i.filter((e5) => !e5.isHome());
           log44.info(`\u{1F4C4} Rendering ${s2.length} home page(s) first...`);
           for (const e5 of s2) await e5.render(), e5.clearStale();
           log44.info(`\u2705 Home page(s) rendered, now rendering ${n3.length} other pages in parallel...`);
@@ -122884,45 +123258,45 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
               try {
                 await e6.render(), e6.clearStale();
               } catch (t30) {
-                const i2 = t30 instanceof Error ? t30.message : String(t30);
-                log44.error(`\u274C Failed to render page ${e6.slug()}: ${i2}`);
+                const r3 = t30 instanceof Error ? t30.message : String(t30);
+                log44.error(`\u274C Failed to render page ${e6.slug()}: ${r3}`);
               }
             }));
           }
         }
         async renderPagesWithProgress(e4) {
-          const t28 = this.language.getCurrentLanguage(), i = this.languageSvc.getLanguageIndex(t28), r = [];
-          await this.contentSvc.walkPages(i, async (e5) => {
+          const t28 = this.language.getCurrentLanguage(), r = this.languageSvc.getLanguageIndex(t28), i = [];
+          await this.contentSvc.walkPages(r, async (e5) => {
             const t29 = await this.sitePage(e5);
-            r.push(t29);
-            const i2 = await this.contentSvc.getPageSources(e5);
-            await t29.processResources(i2), e5.isHome() && (this.home = t29);
-          }), log44.info(`\u{1F4CA} Processing wikilinks for ${r.length} pages...`);
-          for (const e5 of r) try {
+            i.push(t29);
+            const r3 = await this.contentSvc.getPageSources(e5);
+            await t29.processResources(r3), e5.isHome() && (this.home = t29);
+          }), log44.info(`\u{1F4CA} Processing wikilinks for ${i.length} pages...`);
+          for (const e5 of i) try {
             await e5.WikilinkContent();
           } catch (t29) {
-            const i2 = t29 instanceof Error ? t29.message : String(t29);
-            log44.warn(`\u26A0\uFE0F  Failed to process wikilinks for ${e5.slug()}: ${i2}`);
+            const r3 = t29 instanceof Error ? t29.message : String(t29);
+            log44.warn(`\u26A0\uFE0F  Failed to process wikilinks for ${e5.slug()}: ${r3}`);
           }
           log44.info("\u2705 Wikilink processing complete");
-          const s2 = r.filter((e5) => {
-            const i2 = e5.file().paths().base();
-            return !!shouldProcessPage(t28, i2) && e5.isStale();
-          }), n3 = s2.filter((e5) => e5.isHome()), a = s2.filter((e5) => !e5.isHome()), o = r.length;
+          const s2 = i.filter((e5) => {
+            const r3 = e5.file().paths().base();
+            return !!shouldProcessPage(t28, r3) && e5.isStale();
+          }), n3 = s2.filter((e5) => e5.isHome()), a = s2.filter((e5) => !e5.isHome()), o = i.length;
           let l = 0;
           log44.info(`\u{1F4C4} Rendering ${n3.length} home page(s) first...`);
           for (const t29 of n3) await t29.render(), l++, e4 == null ? void 0 : e4({ currentPage: l, totalPages: o });
           log44.info(`\u2705 Home page(s) rendered, now rendering ${a.length} other pages in parallel...`);
           for (let t29 = 0; t29 < a.length; t29 += 10) {
-            const i2 = a.slice(t29, t29 + 10);
-            await Promise.all(i2.map(async (e5) => {
+            const r3 = a.slice(t29, t29 + 10);
+            await Promise.all(r3.map(async (e5) => {
               try {
                 await e5.render();
               } catch (t30) {
-                const i3 = t30 instanceof Error ? t30.message : String(t30);
-                log44.error(`\u274C Failed to render page ${e5.slug()}: ${i3}`);
+                const r4 = t30 instanceof Error ? t30.message : String(t30);
+                log44.error(`\u274C Failed to render page ${e5.slug()}: ${r4}`);
               }
-            })), l += i2.length, e4 == null ? void 0 : e4({ currentPage: l, totalPages: o });
+            })), l += r3.length, e4 == null ? void 0 : e4({ currentPage: l, totalPages: o });
           }
           log44.info("\u2705 All pages rendered successfully");
         }
@@ -123025,13 +123399,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         sitePages(e4) {
           const t28 = [];
-          for (let i = 0; i < e4.length; i++) {
-            const r = e4[i];
+          for (let r = 0; r < e4.length; r++) {
+            const i = e4[r];
             try {
-              const e5 = this.sitePageSync(r);
+              const e5 = this.sitePageSync(i);
               t28.push(e5);
             } catch (e5) {
-              log44.error(`\u274C [Site.sitePages] Failed to convert page ${i}:`, e5);
+              log44.error(`\u274C [Site.sitePages] Failed to convert page ${r}:`, e5);
             }
           }
           return t28;
@@ -123048,8 +123422,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           let t28 = e4[0];
           t28 = t28.replace(/\\/g, "/"), t28.startsWith("/") || (t28 = "/" + t28);
           try {
-            const e5 = this.languageSvc.getLanguageIndex(this.language.getCurrentLanguage()), i = this.contentSvc.getPageFromPathSync(e5, t28);
-            return i ? this.sitePageSync(i) : (log44.warn(`\u26A0\uFE0F  GetPage: No page found for key "${t28}"`), null);
+            const e5 = this.languageSvc.getLanguageIndex(this.language.getCurrentLanguage()), r = this.contentSvc.getPageFromPathSync(e5, t28);
+            return r ? this.sitePageSync(r) : (log44.warn(`\u26A0\uFE0F  GetPage: No page found for key "${t28}"`), null);
           } catch (e5) {
             return log44.error(`\u274C Error getting page "${t28}": ${e5}`), null;
           }
@@ -123062,41 +123436,41 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async siteWeightedPage(e4) {
-          const t28 = await this.sitePage(e4.page()), { WeightedPage: i } = await Promise.resolve().then(() => (init_taxonomies_builder(), taxonomies_builder_exports));
-          return new i(t28, e4);
+          const t28 = await this.sitePage(e4.page()), { WeightedPage: r } = await Promise.resolve().then(() => (init_taxonomies_builder(), taxonomies_builder_exports));
+          return new r(t28, e4);
         }
         async buildPageGraph() {
           if (!this.pageGraph) try {
             const e4 = [], t28 = this.languageSvc.languageKeys();
-            for (const i2 of t28) {
-              const t29 = this.languageSvc.getLanguageIndex(i2);
+            for (const r3 of t28) {
+              const t29 = this.languageSvc.getLanguageIndex(r3);
               await this.contentSvc.walkPages(t29, async (t30) => {
                 e4.push(t30);
               });
             }
-            const i = e4.map((e5) => e5.slug());
-            log44.info(`\u{1F4C4} Collected ${i.length} page slugs`);
-            const r = await this.collectResourceSlugs(e4);
-            log44.info(`\u{1F5BC}\uFE0F  Collected ${r.length} resource slugs`);
-            const s2 = [...i, ...r];
-            this.pageGraph = new PageGraph(s2), log44.info(`\u2705 PageGraph built: ${i.length} pages + ${r.length} resources = ${s2.length} total`), this.buildBacklinksCache(e4);
+            const r = e4.map((e5) => e5.slug());
+            log44.info(`\u{1F4C4} Collected ${r.length} page slugs`);
+            const i = await this.collectResourceSlugs(e4);
+            log44.info(`\u{1F5BC}\uFE0F  Collected ${i.length} resource slugs`);
+            const s2 = [...r, ...i];
+            this.pageGraph = new PageGraph(s2), log44.info(`\u2705 PageGraph built: ${r.length} pages + ${i.length} resources = ${s2.length} total`), this.buildBacklinksCache(e4);
           } catch (e4) {
             const t28 = e4 instanceof Error ? e4.message : String(e4);
             throw log44.error(`\u274C Failed to build PageGraph: ${t28}`), e4;
           }
         }
         async collectResourceSlugs(e4) {
-          const t28 = [], i = /* @__PURE__ */ new Set();
+          const t28 = [], r = /* @__PURE__ */ new Set();
           try {
-            for (const r of e4) try {
-              const e5 = await this.contentSvc.getPageSources(r);
-              for (const r3 of e5) {
-                const e6 = r3.slug();
-                i.has(e6) || (i.add(e6), t28.push(e6));
+            for (const i of e4) try {
+              const e5 = await this.contentSvc.getPageSources(i);
+              for (const i2 of e5) {
+                const e6 = i2.slug();
+                r.has(e6) || (r.add(e6), t28.push(e6));
               }
             } catch (e5) {
               const t29 = e5 instanceof Error ? e5.message : String(e5);
-              log44.error(`\u26A0\uFE0F  Failed to get resources for page ${r.slug()}: ${t29}`);
+              log44.error(`\u26A0\uFE0F  Failed to get resources for page ${i.slug()}: ${t29}`);
             }
           } catch (e5) {
             const t29 = e5 instanceof Error ? e5.message : String(e5);
@@ -123107,23 +123481,23 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async ProcessWikilinks(e4, t28) {
           if (!this.pageGraph) return log44.warn("\u26A0\uFE0F  PageGraph not built yet, returning original HTML"), t28;
           try {
-            let r = "";
+            let i = "";
             if (this.url && this.url.base) {
-              if (r = this.url.base.replace(/\/$/, ""), r.startsWith("/")) ;
-              else if (r) try {
-                r = new URL2(r).pathname.replace(/\/$/, "");
+              if (i = this.url.base.replace(/\/$/, ""), i.startsWith("/")) ;
+              else if (i) try {
+                i = new URL2(i).pathname.replace(/\/$/, "");
               } catch (e5) {
-                log44.warn(`Failed to parse baseURL as URL: ${r}, treating as path`);
+                log44.warn(`Failed to parse baseURL as URL: ${i}, treating as path`);
               }
-              "/" === r && (r = "");
+              "/" === i && (i = "");
             }
-            const s2 = (i = this.pageGraph, new HtmlLinkProcessor(i, { markdownLinkResolution: "shortest", prettyLinks: true, openLinksInNewTab: false, lazyLoad: true, externalLinkIcon: true, baseURL: r })), n3 = await s2.processLinks(e4, t28);
+            const s2 = (r = this.pageGraph, new HtmlLinkProcessor(r, { markdownLinkResolution: "shortest", prettyLinks: true, openLinksInNewTab: false, lazyLoad: true, externalLinkIcon: true, baseURL: i })), n3 = await s2.processLinks(e4, t28);
             return this.pageGraph.registerOutgoingLinks(e4, n3.outgoingLinks), n3.html;
-          } catch (i2) {
-            const r = i2 instanceof Error ? i2.message : String(i2);
-            return log44.error(`\u274C Failed to process wikilinks for ${e4}: ${r}`), t28;
+          } catch (r3) {
+            const i = r3 instanceof Error ? r3.message : String(r3);
+            return log44.error(`\u274C Failed to process wikilinks for ${e4}: ${i}`), t28;
           }
-          var i;
+          var r;
         }
         getPageGraph() {
           return this.pageGraph;
@@ -123141,9 +123515,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           var _a11;
           if (!this.pageGraph) return log44.warn("\u26A0\uFE0F  PageGraph not built yet, cannot generate content index"), /* @__PURE__ */ new Map();
           const e4 = /* @__PURE__ */ new Map(), t28 = await this.RegularPages();
-          for (const i of t28) {
-            const t29 = i.slug(), r = this.pageGraph.getOutgoingLinks(t29), s2 = (i.Plain || "").substring(0, 1e3);
-            e4.set(t29, { slug: t29, title: i.Title || i.File.OriginalBaseName, links: r, tags: ((_a11 = i.Params) == null ? void 0 : _a11.tags) || [], content: s2 });
+          for (const r of t28) {
+            const t29 = r.slug(), i = this.pageGraph.getOutgoingLinks(t29), s2 = (r.Plain || "").substring(0, 1e3);
+            e4.set(t29, { slug: t29, title: r.Title || r.File.OriginalBaseName, links: i, tags: ((_a11 = r.Params) == null ? void 0 : _a11.tags) || [], content: s2 });
           }
           return e4;
         }
@@ -123156,26 +123530,26 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.fs = e4;
         }
         async publishSource(e4, ...t28) {
-          const i = await this.openFilesForWriting(...t28);
+          const r = await this.openFilesForWriting(...t28);
           try {
             const t29 = "string" == typeof e4 ? new TextEncoder().encode(e4) : e4;
-            await this.copyToWriter(i, t29);
+            await this.copyToWriter(r, t29);
           } finally {
-            await i.close();
+            await r.close();
           }
         }
         async publishFiles(e4, ...t28) {
-          const i = await this.openFilesForWriting(...t28);
+          const r = await this.openFilesForWriting(...t28);
           try {
-            await this.copyStreamToWriter(i, e4);
+            await this.copyStreamToWriter(r, e4);
           } finally {
-            await i.close();
+            await r.close();
           }
         }
         async openFilesForWriting(...e4) {
           const t28 = [];
-          for (const i of e4) {
-            const e5 = await openFileForWriting(this.fs, i);
+          for (const r of e4) {
+            const e5 = await openFileForWriting(this.fs, r);
             t28.push(e5);
           }
           return new MultiWriter(t28);
@@ -123184,15 +123558,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           await e4.write(t28);
         }
         async copyStreamToWriter(e4, t28) {
-          const i = t28.getReader();
+          const r = t28.getReader();
           try {
             for (; ; ) {
-              const { done: t29, value: r } = await i.read();
+              const { done: t29, value: i } = await r.read();
               if (t29) break;
-              await e4.write(r);
+              await e4.write(i);
             }
           } finally {
-            i.releaseLock();
+            r.releaseLock();
           }
         }
       }, MultiWriter = class {
@@ -123212,19 +123586,19 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_ref = __esm2({ "internal/domain/site/entity/ref.ts"() {
       init_log(), log46 = getDomainLogger("site", { component: "ref" }), Ref = class {
-        constructor(e4, t28, i = "#ZgotmplZ") {
+        constructor(e4, t28, r = "#ZgotmplZ") {
           __publicField(this, "site");
           __publicField(this, "contentSvc");
           __publicField(this, "notFoundURL");
-          this.site = e4, this.contentSvc = t28, this.notFoundURL = i;
+          this.site = e4, this.contentSvc = t28, this.notFoundURL = r;
         }
         async relRefFrom(e4, t28) {
           return this.relRef(e4, t28);
         }
         async relRef(e4, t28) {
           try {
-            const i = this.decodeRefArgs(e4);
-            return i.path ? this.refLink(i.path, t28, true, i.outputFormat) : "";
+            const r = this.decodeRefArgs(e4);
+            return r.path ? this.refLink(r.path, t28, true, r.outputFormat) : "";
           } catch (e5) {
             throw new Error(`Invalid arguments to Ref: ${e5}`);
           }
@@ -123232,7 +123606,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         decodeRefArgs(e4) {
           return { path: e4.path || "", outputFormat: e4.outputFormat || "" };
         }
-        async refLink(e4, t28, i, r) {
+        async refLink(e4, t28, r, i) {
           const s2 = t28;
           if (!s2 || "function" != typeof s2.unwrapPage) throw new Error("source is not a PageWrapper");
           const n3 = s2.unwrapPage();
@@ -123248,8 +123622,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             l = await this.contentSvc.getPageRef(n3, a.pathname, this.site.home.page);
             let e5 = null;
             if (l || this.isPositioner(t28) && (e5 = t28.position()), !l) return this.logNotFound(a.pathname, "page not found", n3, e5), this.notFoundURL;
-            const r3 = await this.site.sitePage(l);
-            c = i ? r3.relPermalink() : r3.permalink();
+            const i2 = await this.site.sitePage(l);
+            c = r ? i2.relPermalink() : i2.permalink();
           } catch (t29) {
             return log46.error(`[${n3.pageIdentity().pageLanguage()}] REF_NOT_FOUND: Ref "${e4}": ${t29}`), this.notFoundURL;
           }
@@ -123258,9 +123632,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         isPositioner(e4) {
           return e4 && "function" == typeof e4.position;
         }
-        logNotFound(e4, t28, i, r) {
-          const s2 = i.pageIdentity().pageLanguage();
-          r && r.isValid() ? log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}": ${r.toString()}: ${t28}`) : i ? log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}" from page "${i.path()}": ${t28}`) : log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}": ${t28}`);
+        logNotFound(e4, t28, r, i) {
+          const s2 = r.pageIdentity().pageLanguage();
+          i && i.isValid() ? log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}": ${i.toString()}: ${t28}`) : r ? log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}" from page "${r.path()}": ${t28}`) : log46.error(`[${s2}] REF_NOT_FOUND: Ref "${e4}": ${t28}`);
         }
       };
     } });
@@ -123293,19 +123667,19 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         languages() {
           const t28 = [];
-          for (const i of this.langSvc.languageKeys()) {
-            const r = new e4(this.langSvc);
-            r.currentLocation = this.currentLocation, r.currentLanguage = i, r.collator = this.collator, t28.push(r);
+          for (const r of this.langSvc.languageKeys()) {
+            const i = new e4(this.langSvc);
+            i.currentLocation = this.currentLocation, i.currentLanguage = r, i.collator = this.collator, t28.push(i);
           }
           return t28;
         }
         getCollator() {
           if (!this.collator) try {
             const e5 = new Intl.Collator(this.currentLanguage || "en");
-            this.collator = new CollatorWrapper({ compare: (t28, i) => e5.compare(t28, i) });
+            this.collator = new CollatorWrapper({ compare: (t28, r) => e5.compare(t28, r) });
           } catch (e5) {
             const t28 = new Intl.Collator("en");
-            this.collator = new CollatorWrapper({ compare: (e6, i) => t28.compare(e6, i) });
+            this.collator = new CollatorWrapper({ compare: (e6, r) => t28.compare(e6, r) });
           }
           return this.collator;
         }
@@ -123393,7 +123767,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           var _a11;
           const e4 = [];
           if (!((_a11 = this._homeAuthor) == null ? void 0 : _a11.social)) return e4;
-          for (const [t28, i] of Object.entries(this._homeAuthor.social)) i && e4.push({ ID: t28, Link: i });
+          for (const [t28, r] of Object.entries(this._homeAuthor.social)) r && e4.push({ ID: t28, Link: r });
           return e4;
         }
       };
@@ -123463,7 +123837,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           var _a11;
           const e4 = [];
           if (!((_a11 = this._homeOrganization) == null ? void 0 : _a11.social)) return e4;
-          for (const [t28, i] of Object.entries(this._homeOrganization.social)) i && e4.push({ ID: t28, Link: i });
+          for (const [t28, r] of Object.entries(this._homeOrganization.social)) r && e4.push({ ID: t28, Link: r });
           return e4;
         }
       };
@@ -123503,18 +123877,18 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async generateMenusForLanguage(e4, t28) {
           if (this.menuBuilder) {
             if (true !== this.menuCache.get(e4)) try {
-              const i = await this.menuBuilder.buildMenusForLanguage(t28);
-              this.menus.set(e4, i), this.menuCache.set(e4, true);
+              const r = await this.menuBuilder.buildMenusForLanguage(t28);
+              this.menus.set(e4, r), this.menuCache.set(e4, true);
             } catch (t29) {
               log49.error(`Failed to generate menus for language ${e4}: ${t29}`);
             }
           } else log49.error("Menu builder not set, cannot generate menus");
         }
-        async generateTaxonomiesForLanguage(e4, t28, i) {
+        async generateTaxonomiesForLanguage(e4, t28, r) {
           if (this.taxonomiesBuilder) {
             if (true !== this.taxonomiesCache.get(e4)) try {
-              const r = await this.taxonomiesBuilder.buildTaxonomiesForLanguage(t28, i);
-              this.taxonomies.set(e4, r), this.taxonomiesCache.set(e4, true);
+              const i = await this.taxonomiesBuilder.buildTaxonomiesForLanguage(t28, r);
+              this.taxonomies.set(e4, i), this.taxonomiesCache.set(e4, true);
             } catch (t29) {
               log49.error(`Failed to generate taxonomies for language ${e4}: ${t29}`);
             }
@@ -123544,22 +123918,22 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async processPage(e4, t28) {
           try {
-            const i = e4.menu();
-            if (!i) return;
-            const r = await this.generatePageUrl(e4);
-            for (const [s2, n3] of Object.entries(i)) await this.processMenuSection(s2, n3, r, e4, t28);
+            const r = e4.menu();
+            if (!r) return;
+            const i = await this.generatePageUrl(e4);
+            for (const [s2, n3] of Object.entries(r)) await this.processMenuSection(s2, n3, i, e4, t28);
           } catch (e5) {
             log50.error(`Error processing page for menu: ${e5}`);
           }
         }
-        async processMenuSection(e4, t28, i, r, s2) {
+        async processMenuSection(e4, t28, r, i, s2) {
           if (!(false === t28 || Array.isArray(t28) && 0 === t28.length)) {
-            if (Array.isArray(t28)) await this.processMenuItems(e4, t28, i, r, s2);
+            if (Array.isArray(t28)) await this.processMenuItems(e4, t28, r, i, s2);
             else if (t28 && "object" == typeof t28) {
               let n3 = 0;
               for (const [a, o] of Object.entries(t28)) if (!(false === o || Array.isArray(o) && 0 === o.length) && Array.isArray(o)) {
                 const t29 = `${e4}.${a}`;
-                if (await this.processMenuItems(t29, o, i, r, s2), "footer" === e4) {
+                if (await this.processMenuItems(t29, o, r, i, s2), "footer" === e4) {
                   const e5 = `${t29}::__subsection__`;
                   s2.has(e5) || s2.set(e5, { title: a, url: "", children: /* @__PURE__ */ new Map(), weight: 1e3, level: 0, menuName: t29, order: n3 });
                 }
@@ -123568,27 +123942,27 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             }
           }
         }
-        async processMenuItems(e4, t28, i, r, s2) {
+        async processMenuItems(e4, t28, r, i, s2) {
           for (let n3 = 0; n3 < t28.length; n3++) {
             const a = t28[n3];
             if (!a || "object" != typeof a) continue;
             if (!a.title || "string" != typeof a.title) continue;
             let o = a.url || "";
-            o = "" === o ? i : await this.processMenuItemUrl(o);
+            o = "" === o ? r : await this.processMenuItemUrl(o);
             const l = "number" == typeof a.weight ? a.weight : 1e3, c = `${e4}::${a.title}`;
             let h3 = s2.get(c);
-            h3 ? l < h3.weight && (h3.weight = l, h3.url = o) : (h3 = { title: a.title, url: o, children: /* @__PURE__ */ new Map(), weight: l, level: 0, menuName: e4 || void 0, order: n3 }, s2.set(c, h3)), Array.isArray(a.children) && await this.processChildrenItems(c, a.children, i, r, s2, h3);
+            h3 ? l < h3.weight && (h3.weight = l, h3.url = o) : (h3 = { title: a.title, url: o, children: /* @__PURE__ */ new Map(), weight: l, level: 0, menuName: e4 || void 0, order: n3 }, s2.set(c, h3)), Array.isArray(a.children) && await this.processChildrenItems(c, a.children, r, i, s2, h3);
           }
         }
-        async processChildrenItems(e4, t28, i, r, s2, n3) {
+        async processChildrenItems(e4, t28, r, i, s2, n3) {
           for (let a = 0; a < t28.length; a++) {
             const o = t28[a];
             if (!o || "object" != typeof o) continue;
             if (!o.title || "string" != typeof o.title) continue;
             let l = o.url || "";
-            l = "" === l ? i : await this.processMenuItemUrl(l);
+            l = "" === l ? r : await this.processMenuItemUrl(l);
             const c = "number" == typeof o.weight ? o.weight : 1e3, h3 = `${e4}::${o.title}`, u = { title: o.title, url: l, children: /* @__PURE__ */ new Map(), weight: c, level: n3.level + 1, menuName: n3.menuName || void 0, order: a };
-            s2.set(h3, u), n3.children.set(h3, u), Array.isArray(o.children) && await this.processChildrenItems(h3, o.children, i, r, s2, u);
+            s2.set(h3, u), n3.children.set(h3, u), Array.isArray(o.children) && await this.processChildrenItems(h3, o.children, r, i, s2, u);
           }
         }
         async generatePageUrl(e4) {
@@ -123611,58 +123985,58 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         convertToMenus(e4) {
           const t28 = /* @__PURE__ */ new Map();
-          for (const [i2, r3] of e4.entries()) if (!i2.includes("::__subsection__") && 0 === r3.level) {
-            const e5 = r3.menuName || "main";
-            t28.has(e5) || t28.set(e5, []), t28.get(e5).push(r3);
+          for (const [r3, i2] of e4.entries()) if (!r3.includes("::__subsection__") && 0 === i2.level) {
+            const e5 = i2.menuName || "main";
+            t28.has(e5) || t28.set(e5, []), t28.get(e5).push(i2);
           }
-          const i = this.buildMenuItems(t28.get("nav") || [], e4), r = [], s2 = /* @__PURE__ */ new Map(), n3 = /* @__PURE__ */ new Map();
-          for (const [i2, r3] of t28.entries()) if (i2.startsWith("footer.")) {
-            const t29 = i2.substring(7), a2 = this.buildMenuItems(r3, e4, false);
+          const r = this.buildMenuItems(t28.get("nav") || [], e4), i = [], s2 = /* @__PURE__ */ new Map(), n3 = /* @__PURE__ */ new Map();
+          for (const [r3, i2] of t28.entries()) if (r3.startsWith("footer.")) {
+            const t29 = r3.substring(7), a2 = this.buildMenuItems(i2, e4, false);
             s2.set(t29, a2);
-            const o2 = `${i2}::__subsection__`, l = e4.get(o2);
+            const o2 = `${r3}::__subsection__`, l = e4.get(o2);
             l && n3.set(t29, l.order);
           }
           const a = Array.from(s2.entries()).sort((e5, t29) => (n3.get(e5[0]) || 0) - (n3.get(t29[0]) || 0));
           for (let e5 = 0; e5 < a.length; e5++) {
-            const [t29, i2] = a[e5];
-            if (i2.length > 0) {
-              const s3 = new Menu2({ title: this.capitalizeFirstLetter(t29), url: "", children: i2, weight: e5 + 1, identifier: `footer-${t29}` });
-              r.push(s3);
+            const [t29, r3] = a[e5];
+            if (r3.length > 0) {
+              const s3 = new Menu2({ title: this.capitalizeFirstLetter(t29), url: "", children: r3, weight: e5 + 1, identifier: `footer-${t29}` });
+              i.push(s3);
             }
           }
           const o = {};
-          return i.length > 0 && (o.nav = i), r.length > 0 && (o.footer = r), new Menus(o);
+          return r.length > 0 && (o.nav = r), i.length > 0 && (o.footer = i), new Menus(o);
         }
         capitalizeFirstLetter(e4) {
           return e4.charAt(0).toUpperCase() + e4.slice(1);
         }
-        buildMenuItems(e4, t28, i = true) {
-          const r = [];
+        buildMenuItems(e4, t28, r = true) {
+          const i = [];
           for (const s2 of e4) {
-            const e5 = Array.from(s2.children.values()), n3 = e5.length > 0 ? this.buildMenuItems(e5, t28, i) : [], a = new Menu2({ title: s2.title, url: s2.url, children: n3, weight: s2.weight, identifier: s2.url });
-            r.push(a);
+            const e5 = Array.from(s2.children.values()), n3 = e5.length > 0 ? this.buildMenuItems(e5, t28, r) : [], a = new Menu2({ title: s2.title, url: s2.url, children: n3, weight: s2.weight, identifier: s2.url });
+            i.push(a);
           }
-          return i ? r.sort((e5, t29) => e5.weight() !== t29.weight() ? e5.weight() - t29.weight() : e5.title().localeCompare(t29.title())) : r.sort((t29, i2) => {
-            const r3 = e4.find((e5) => e5.title === t29.title()), s2 = e4.find((e5) => e5.title === i2.title());
-            return ((r3 == null ? void 0 : r3.order) || 0) - ((s2 == null ? void 0 : s2.order) || 0);
+          return r ? i.sort((e5, t29) => e5.weight() !== t29.weight() ? e5.weight() - t29.weight() : e5.title().localeCompare(t29.title())) : i.sort((t29, r3) => {
+            const i2 = e4.find((e5) => e5.title === t29.title()), s2 = e4.find((e5) => e5.title === r3.title());
+            return ((i2 == null ? void 0 : i2.order) || 0) - ((s2 == null ? void 0 : s2.order) || 0);
           });
         }
       };
     } });
     init_navigation_factory = __esm2({ "internal/domain/site/factory/navigation-factory.ts"() {
       init_navigation(), init_menu_builder(), init_taxonomies_builder(), init_log(), log51 = getDomainLogger("site", { component: "navigation-factory" }), NavigationFactory = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "langService");
           __publicField(this, "contentService");
           __publicField(this, "site");
-          this.langService = e4, this.contentService = t28, this.site = i;
+          this.langService = e4, this.contentService = t28, this.site = r;
         }
         createNavigation() {
           try {
-            const t28 = (e4 = this.langService, new Navigation(e4)), i = new MenuBuilder(this.contentService, this.site);
-            t28.setMenuBuilder(i);
-            const r = new TaxonomiesBuilder(this.contentService);
-            return t28.setTaxonomiesBuilder(r), t28;
+            const t28 = (e4 = this.langService, new Navigation(e4)), r = new MenuBuilder(this.contentService, this.site);
+            t28.setMenuBuilder(r);
+            const i = new TaxonomiesBuilder(this.contentService);
+            return t28.setTaxonomiesBuilder(i), t28;
           } catch (e5) {
             throw log51.error(`Failed to create Navigation entity: ${e5}`), e5;
           }
@@ -123685,14 +124059,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async setup(e4) {
           if (this.value) return;
           this.resource = e4;
-          const t28 = await e4.readSeekCloser(), i = (0, import_crypto.createHash)("sha256");
-          let r = 0;
+          const t28 = await e4.readSeekCloser(), r = (0, import_crypto.createHash)("sha256");
+          let i = 0;
           const s2 = [];
           t28.on("data", (e5) => {
-            i.update(e5), r += e5.length, s2.push(e5);
+            r.update(e5), i += e5.length, s2.push(e5);
           }), await new Promise((e5, s3) => {
             t28.on("end", () => {
-              this.value = i.digest("hex"), this.size = r, e5();
+              this.value = r.digest("hex"), this.size = i, e5();
             }), t28.on("error", s3);
           }), await t28.close();
         }
@@ -123707,7 +124081,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           })), this.publishPromise;
         }
       }, ResourceImpl = class e4 {
-        constructor(e5, t28, i, r = {}, s2) {
+        constructor(e5, t28, r, i = {}, s2) {
           __publicField(this, "h");
           __publicField(this, "openReadSeekCloser");
           __publicField(this, "_mediaType");
@@ -123715,7 +124089,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "_data");
           __publicField(this, "publisher");
           __publicField(this, "publishOnce");
-          this.h = new ResourceHash(), this.openReadSeekCloser = e5, this._mediaType = t28, this.paths = i, this._data = r, this.publisher = s2, this.publishOnce = new PublishOnce();
+          this.h = new ResourceHash(), this.openReadSeekCloser = e5, this._mediaType = t28, this.paths = r, this._data = i, this.publisher = s2, this.publishOnce = new PublishOnce();
         }
         name() {
           return this.paths.pathFile();
@@ -123738,14 +124112,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async publish() {
           const e5 = this.targetPath();
           this.publisher ? await this.publishOnce.do(async () => {
-            let t28 = null, i = null;
+            let t28 = null, r = null;
             try {
-              t28 = await this.publisher.openPublishFileForWriting(this.paths.targetPath()), i = await this.readSeekCloser(), await this.copyStreamToFile(i, t28);
+              t28 = await this.publisher.openPublishFileForWriting(this.paths.targetPath()), r = await this.readSeekCloser(), await this.copyStreamToFile(r, t28);
             } catch (t29) {
               throw log53.errorf("\u274C [Resource.publish] Error publishing %s: %s", e5, t29), t29;
             } finally {
-              if (i) try {
-                await i.close();
+              if (r) try {
+                await r.close();
               } catch (t29) {
                 log53.errorf("\u274C [Resource.publish] Failed to close ReadSeekCloser %s: %s", e5, t29);
               }
@@ -123758,11 +124132,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }) : log53.error("\u26A0\uFE0F [Resource.publish] No publisher for: %s", e5);
         }
         async copyStreamToFile(e5, t28) {
-          const i = this.targetPath();
+          const r = this.targetPath();
           try {
             await (0, import_promises17.pipeline)(e5, t28);
           } catch (e6) {
-            throw log53.errorf("\u274C [copyStreamToFile] Error during pipeline for %s: %s", i, e6), e6;
+            throw log53.errorf("\u274C [copyStreamToFile] Error during pipeline for %s: %s", r, e6), e6;
           }
         }
         targetPath() {
@@ -123776,23 +124150,23 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           if (e5 && "function" == typeof e5.read) {
             const t28 = e5.read();
             if (t28) {
-              const i = new import_stream2.Readable();
-              let r;
-              for (i.push(t28); null !== (r = e5.read()); ) r && i.push(r);
-              return i.push(null), Object.assign(i, { seek: async (e6, t29) => 0, close: async () => Promise.resolve() });
+              const r = new import_stream2.Readable();
+              let i;
+              for (r.push(t28); null !== (i = e5.read()); ) i && r.push(i);
+              return r.push(null), Object.assign(r, { seek: async (e6, t29) => 0, close: async () => Promise.resolve() });
             }
           }
           return e5;
         }
         async content(e5) {
           const t28 = await this.readSeekCloser();
-          return new Promise((e6, i) => {
-            let r = "";
+          return new Promise((e6, r) => {
+            let i = "";
             t28.on("data", (e7) => {
-              r += e7.toString();
+              i += e7.toString();
             }), t28.on("end", () => {
-              e6(r);
-            }), t28.on("error", i);
+              e6(i);
+            }), t28.on("error", r);
           });
         }
         async hash() {
@@ -123846,37 +124220,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return new ResourceMetadataImpl(this.paths.targetPath(), this._mediaType.type, this._data);
         }
         mergeData(e5) {
-          if (e5 && 0 !== Object.keys(e5).length) for (const [t28, i] of Object.entries(e5)) t28 in this._data || (this._data[t28] = i);
+          if (e5 && 0 !== Object.keys(e5).length) for (const [t28, r] of Object.entries(e5)) t28 in this._data || (this._data[t28] = r);
         }
         async transform(...e5) {
           let t28 = this;
-          for (let i = 0; i < e5.length; i++) {
-            const r = e5[i];
+          for (let r = 0; r < e5.length; r++) {
+            const i = e5[r];
             try {
-              const e6 = await t28.readSeekCloser(), i2 = new import_stream.PassThrough();
+              const e6 = await t28.readSeekCloser(), r3 = new import_stream.PassThrough();
               let s2 = "";
-              const n3 = [], a = { source: { from: e6, inPath: t28.targetPath(), inMediaType: t28.mediaType() }, target: { to: i2 }, data: { ...t28.data() }, addOutPathIdentifier: (e7) => {
-                const i3 = t28.targetPath(), r3 = PathDomain.parseBasic(i3);
-                let s3 = r3.dir;
+              const n3 = [], a = { source: { from: e6, inPath: t28.targetPath(), inMediaType: t28.mediaType() }, target: { to: r3 }, data: { ...t28.data() }, addOutPathIdentifier: (e7) => {
+                const r4 = t28.targetPath(), i2 = PathDomain.parseBasic(r4);
+                let s3 = i2.dir;
                 s3 = s3.replace(/\/+$/, "");
                 let n4 = "";
-                s3 && (n4 = s3 + "/"), n4 += r3.nameWithoutExt + e7 + r3.ext, a.data.targetPath = n4;
+                s3 && (n4 = s3 + "/"), n4 += i2.nameWithoutExt + e7 + i2.ext, a.data.targetPath = n4;
               }, updateBuffer: () => {
               }, updateSource: () => {
               }, close: () => {
                 e6.close();
               } };
-              i2.on("data", (e7) => {
+              r3.on("data", (e7) => {
                 n3.push(e7);
               });
               const o = new Promise((e7, t29) => {
-                i2.on("end", () => {
+                r3.on("end", () => {
                   s2 = Buffer.concat(n3).toString(), e7();
-                }), i2.on("error", (e8) => {
+                }), r3.on("error", (e8) => {
                   t29(e8);
                 });
               });
-              await r.transform(a), await o;
+              await i.transform(a), await o;
               const l = a.data.targetPath || t28.targetPath(), c = this.createTransformedResource(s2, l, t28.mediaType(), a.data);
               t28 = c, a.close();
             } catch (e6) {
@@ -123885,12 +124259,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
           return t28;
         }
-        createTransformedResource(t28, i, r, s2) {
-          const n3 = this.paths.fromTargetPath(i);
+        createTransformedResource(t28, r, i, s2) {
+          const n3 = this.paths.fromTargetPath(r);
           return new e4(async () => {
             const e5 = new import_stream.PassThrough();
             return e5.end(t28), Object.assign(e5, { seek: async (e6, t29) => 0, close: async () => Promise.resolve() });
-          }, r, n3, s2, this.publisher);
+          }, i, n3, s2, this.publisher);
         }
       };
     } });
@@ -123946,15 +124320,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async transform(e4) {
           e4.addOutPathIdentifier(".min");
-          const t28 = e4.source.inMediaType.type, i = this.minifierClient.getMinifier(t28);
-          if (!i) return void e4.source.from.pipe(e4.target.to);
-          let r = "";
+          const t28 = e4.source.inMediaType.type, r = this.minifierClient.getMinifier(t28);
+          if (!r) return void e4.source.from.pipe(e4.target.to);
+          let i = "";
           e4.source.from.on("data", (e5) => {
-            r += e5.toString();
+            i += e5.toString();
           }), await new Promise((t29, s2) => {
             e4.source.from.on("end", async () => {
               try {
-                const s3 = await i(r);
+                const s3 = await r(i);
                 e4.target.to.write(s3), e4.target.to.end(), t29();
               } catch (e5) {
                 s2(e5);
@@ -123967,8 +124341,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     init_integrity = __esm2({ "internal/domain/resources/entity/integrity.ts"() {
       init_resources2(), IntegrityClient = class {
         async fingerprint(e4, t28 = "sha256") {
-          const i = new FingerprintTransformation(t28);
-          return e4.transform(i);
+          const r = new FingerprintTransformation(t28);
+          return e4.transform(r);
         }
         generateIntegrity(e4) {
           return `sha256-${(0, import_crypto2.createHash)("sha256").update(e4, "utf8").digest("base64")}`;
@@ -123980,9 +124354,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return `sha512-${(0, import_crypto2.createHash)("sha512").update(e4, "utf8").digest("base64")}`;
         }
         verifyIntegrity(e4, t28) {
-          const [i, r] = t28.split("-", 2);
+          const [r, i] = t28.split("-", 2);
           let s2;
-          switch (i) {
+          switch (r) {
             case "sha256":
               s2 = (0, import_crypto2.createHash)("sha256").update(e4, "utf8").digest("base64");
               break;
@@ -123995,7 +124369,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             default:
               return false;
           }
-          return s2 === r;
+          return s2 === i;
         }
       }, FingerprintTransformation = class {
         constructor(e4) {
@@ -124006,19 +124380,19 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async transform(e4) {
           const t28 = this.newHash(this.algo);
-          let i = "";
-          const r = [];
+          let r = "";
+          const i = [];
           e4.source.from.on("data", (e5) => {
-            t28.update(e5), r.push(e5), i += e5.toString();
-          }), await new Promise((i2, s2) => {
+            t28.update(e5), i.push(e5), r += e5.toString();
+          }), await new Promise((r3, s2) => {
             e4.source.from.on("end", () => {
               try {
                 const s3 = t28.digest(), n3 = s3.toString("hex");
                 e4.data.Integrity = this.integrity(this.algo, s3);
                 const a = n3.substring(0, 12);
                 e4.addOutPathIdentifier("." + a);
-                for (const t29 of r) e4.target.to.write(t29);
-                e4.target.to.end(), i2();
+                for (const t29 of i) e4.target.to.write(t29);
+                e4.target.to.end(), r3();
               } catch (e5) {
                 s2(e5);
               }
@@ -124046,11 +124420,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_template4 = __esm2({ "internal/domain/resources/entity/template.ts"() {
       init_resources2(), ExecuteAsTemplateTransform = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "templateExecutor");
           __publicField(this, "_targetPath");
           __publicField(this, "data");
-          this.templateExecutor = e4, this._targetPath = t28, this.data = i;
+          this.templateExecutor = e4, this._targetPath = t28, this.data = r;
         }
         key() {
           return ResourceTransformationKey.newResourceTransformationKey("execute-as-template", this._targetPath);
@@ -124060,29 +124434,29 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             e4.data.targetPath = this._targetPath;
             let t28 = "";
             if ("function" == typeof e4.source.from.read) {
-              let i;
-              const r = [];
-              for (; null !== (i = e4.source.from.read()); ) i && r.push(i);
-              if (r.length > 0) t28 = Buffer.concat(r).toString();
+              let r;
+              const i = [];
+              for (; null !== (r = e4.source.from.read()); ) r && i.push(r);
+              if (i.length > 0) t28 = Buffer.concat(i).toString();
               else if (e4.source.from._readableState && e4.source.from._readableState.buffer) {
-                const i2 = e4.source.from._readableState.buffer, r3 = [];
-                for (const e5 of i2) e5 && e5.chunk && r3.push(e5.chunk);
-                r3.length > 0 && (t28 = Buffer.concat(r3).toString());
+                const r3 = e4.source.from._readableState.buffer, i2 = [];
+                for (const e5 of r3) e5 && e5.chunk && i2.push(e5.chunk);
+                i2.length > 0 && (t28 = Buffer.concat(i2).toString());
               }
             }
-            if (!t28) return new Promise((t29, i) => {
-              const r = [];
+            if (!t28) return new Promise((t29, r) => {
+              const i = [];
               e4.source.from.on("data", (e5) => {
-                r.push(e5);
+                i.push(e5);
               }), e4.source.from.on("end", async () => {
                 try {
-                  const s2 = Buffer.concat(r).toString();
-                  await this.executeTemplate(s2, e4, t29, i);
+                  const s2 = Buffer.concat(i).toString();
+                  await this.executeTemplate(s2, e4, t29, r);
                 } catch (t30) {
-                  i(new Error(`failed to parse Resource "${e4.source.inPath}" as Template: ${t30}`));
+                  r(new Error(`failed to parse Resource "${e4.source.inPath}" as Template: ${t30}`));
                 }
               }), e4.source.from.on("error", (e5) => {
-                i(e5);
+                r(e5);
               }), "function" == typeof e4.source.from.resume && e4.source.from.resume();
             });
             await this.executeTemplateSync(t28, e4);
@@ -124091,14 +124465,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async executeTemplateSync(e4, t28) {
-          const i = await this.templateExecutor.executeTemplate(t28.source.inPath, e4, this.data);
-          t28.target.to.write(i), t28.target.to.end();
+          const r = await this.templateExecutor.executeTemplate(t28.source.inPath, e4, this.data);
+          t28.target.to.write(r), t28.target.to.end();
         }
-        async executeTemplate(e4, t28, i, r) {
+        async executeTemplate(e4, t28, r, i) {
           try {
-            await this.executeTemplateSync(e4, t28), i();
+            await this.executeTemplateSync(e4, t28), r();
           } catch (e5) {
-            r(e5 instanceof Error ? e5 : new Error(String(e5)));
+            i(e5 instanceof Error ? e5 : new Error(String(e5)));
           }
         }
       }, TemplateClient = class {
@@ -124106,12 +124480,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "templateExecutor");
           this.templateExecutor = e4;
         }
-        async executeAsTemplate(e4, t28, i) {
+        async executeAsTemplate(e4, t28, r) {
           try {
             if (!e4) throw new Error("Resource is null or undefined");
             if ("function" != typeof e4.transform) throw new Error("Resource does not implement Transformer interface. Resource type: " + typeof e4);
-            const r = new ExecuteAsTemplateTransform(this.templateExecutor, t28.replace(/\\/g, "/").replace(/^\/+/, ""), i);
-            return await e4.transform(r);
+            const i = new ExecuteAsTemplateTransform(this.templateExecutor, t28.replace(/\\/g, "/").replace(/^\/+/, ""), r);
+            return await e4.transform(i);
           } catch (e5) {
             throw e5;
           }
@@ -124134,14 +124508,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             if ("ENOENT" === e5.code || e5.message.includes("ENOENT")) {
               const e6 = path24.dirname(t28);
               await this.pubFs.mkdirAll(e6, 511);
-              const i = await this.pubFs.create(t28), r = i.close.bind(i);
-              return i.close = async () => {
+              const r = await this.pubFs.create(t28), i = r.close.bind(r);
+              return r.close = async () => {
                 try {
-                  await r();
+                  await i();
                 } catch (e7) {
                   throw log54.errorf("\u274C [Publisher.File.close] Error closing publish file (retry) %s, $s", t28, e7), e7;
                 }
-              }, new FileWritable(i);
+              }, new FileWritable(r);
             }
             throw e5;
           }
@@ -124157,8 +124531,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return await this.pubFs.create(t28);
           } catch (e5) {
             if (!this.isFileNotFoundError(e5)) throw e5;
-            const i = path24.dirname(t28);
-            return await this.pubFs.mkdirAll(i, 511), await this.pubFs.create(t28);
+            const r = path24.dirname(t28);
+            return await this.pubFs.mkdirAll(r, 511), await this.pubFs.create(t28);
           }
         }
         isFileNotFoundError(e4) {
@@ -124171,8 +124545,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "file");
           this.file = e4;
         }
-        _write(e4, t28, i) {
-          this.file.write(e4).then(() => i()).catch(i);
+        _write(e4, t28, r) {
+          this.file.write(e4).then(() => r()).catch(r);
         }
         _final(e4) {
           var _a11, _b4;
@@ -124187,32 +124561,32 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "defaultHeaders", { "User-Agent": "MDFriday-Resources/1.0.0" });
         }
         async fromRemote(e4, t28) {
-          return new Promise((i) => {
+          return new Promise((r) => {
             try {
-              const r = new URL(e4), s2 = "https:" === r.protocol, n3 = s2 ? https2 : http2, a = { ...this.defaultHeaders, ...t28 == null ? void 0 : t28.headers }, o = { hostname: r.hostname, port: r.port || (s2 ? 443 : 80), path: r.pathname + r.search, method: "GET", headers: a, timeout: (t28 == null ? void 0 : t28.timeout) || this.defaultTimeout }, l = n3.request(o, (r3) => {
-                if (r3.statusCode && r3.statusCode >= 300 && r3.statusCode < 400 && r3.headers.location) return log55.infof("\u{1F504} [HttpClient.fromRemote] Redirecting from %s to %s", e4, r3.headers.location), void this.fromRemote(r3.headers.location, t28).then(i);
-                if (!r3.statusCode || r3.statusCode < 200 || r3.statusCode >= 300) return log55.errorf("\u274C [HttpClient.fromRemote] HTTP error %d when fetching %s: %s", r3.statusCode || 0, e4, r3.statusMessage || "Unknown error"), void i(null);
+              const i = new URL(e4), s2 = "https:" === i.protocol, n3 = s2 ? https2 : http2, a = { ...this.defaultHeaders, ...t28 == null ? void 0 : t28.headers }, o = { hostname: i.hostname, port: i.port || (s2 ? 443 : 80), path: i.pathname + i.search, method: "GET", headers: a, timeout: (t28 == null ? void 0 : t28.timeout) || this.defaultTimeout }, l = n3.request(o, (i2) => {
+                if (i2.statusCode && i2.statusCode >= 300 && i2.statusCode < 400 && i2.headers.location) return log55.infof("\u{1F504} [HttpClient.fromRemote] Redirecting from %s to %s", e4, i2.headers.location), void this.fromRemote(i2.headers.location, t28).then(r);
+                if (!i2.statusCode || i2.statusCode < 200 || i2.statusCode >= 300) return log55.errorf("\u274C [HttpClient.fromRemote] HTTP error %d when fetching %s: %s", i2.statusCode || 0, e4, i2.statusMessage || "Unknown error"), void r(null);
                 const s3 = [];
-                r3.on("data", (e5) => {
+                i2.on("data", (e5) => {
                   s3.push(e5);
-                }), r3.on("end", () => {
+                }), i2.on("end", () => {
                   try {
                     const t29 = Buffer.concat(s3).toString("utf8");
-                    log55.infof("\u2705 [HttpClient.fromRemote] Successfully fetched %d bytes from %s", t29.length, e4), i(t29);
+                    log55.infof("\u2705 [HttpClient.fromRemote] Successfully fetched %d bytes from %s", t29.length, e4), r(t29);
                   } catch (t29) {
-                    log55.errorf("\u274C [HttpClient.fromRemote] Error converting response to string from %s: %s", e4, t29), i(null);
+                    log55.errorf("\u274C [HttpClient.fromRemote] Error converting response to string from %s: %s", e4, t29), r(null);
                   }
-                }), r3.on("error", (t29) => {
-                  log55.errorf("\u274C [HttpClient.fromRemote] Response error when fetching %s: %s", e4, t29.message), i(null);
+                }), i2.on("error", (t29) => {
+                  log55.errorf("\u274C [HttpClient.fromRemote] Response error when fetching %s: %s", e4, t29.message), r(null);
                 });
               });
               l.on("error", (t29) => {
-                log55.errorf("\u274C [HttpClient.fromRemote] Request error when fetching %s: %s", e4, t29.message), i(null);
+                log55.errorf("\u274C [HttpClient.fromRemote] Request error when fetching %s: %s", e4, t29.message), r(null);
               }), l.on("timeout", () => {
-                l.destroy(), log55.errorf("\u274C [HttpClient.fromRemote] Request timeout when fetching %s", e4), i(null);
+                l.destroy(), log55.errorf("\u274C [HttpClient.fromRemote] Request timeout when fetching %s", e4), r(null);
               }), l.end();
             } catch (t29) {
-              log55.errorf("\u274C [HttpClient.fromRemote] Error fetching content from %s: %s", e4, t29), i(null);
+              log55.errorf("\u274C [HttpClient.fromRemote] Error fetching content from %s: %s", e4, t29), r(null);
             }
           });
         }
@@ -124237,58 +124611,58 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.templateSvc = e4, this.templateClient = new TemplateClient(e4);
         }
         async getResource(e4) {
-          const t28 = path25.posix.normalize(e4), i = `${t28}__get`;
-          if (this.cache.has(i)) return this.cache.get(i) || null;
+          const t28 = path25.posix.normalize(e4), r = `${t28}__get`;
+          if (this.cache.has(r)) return this.cache.get(r) || null;
           try {
             const e5 = this.workspace.assetsFs();
             if (!await e5.stat(t28)) return null;
-            const r = async () => {
-              const i2 = await e5.open(t28);
-              return await this.createReadSeekCloser(i2);
-            }, s2 = await this.buildResource(t28, r);
-            return s2 && this.cache.set(i, s2), s2;
+            const i = async () => {
+              const r3 = await e5.open(t28);
+              return await this.createReadSeekCloser(r3);
+            }, s2 = await this.buildResource(t28, i);
+            return s2 && this.cache.set(r, s2), s2;
           } catch (e5) {
             return log56.errorf("\u274C [Resources.getResource] Error getting resource %s, %s", t28, e5), null;
           }
         }
         async getResourceWithOpener(e4, t28) {
-          const i = path25.posix.normalize(e4), r = `${i}__get_with_opener`;
-          if (this.cache.has(r)) return this.cache.get(r) || null;
+          const r = path25.posix.normalize(e4), i = `${r}__get_with_opener`;
+          if (this.cache.has(i)) return this.cache.get(i) || null;
           try {
-            const e5 = await this.buildResource(i, t28);
-            return e5 && this.cache.set(r, e5), e5;
+            const e5 = await this.buildResource(r, t28);
+            return e5 && this.cache.set(i, e5), e5;
           } catch (e5) {
-            return log56.errorf("\u274C [Resources.getResourceWithOpener] Error getting resource with opener %s, %s", i, e5), null;
+            return log56.errorf("\u274C [Resources.getResourceWithOpener] Error getting resource with opener %s, %s", r, e5), null;
           }
         }
-        async executeAsTemplate(e4, t28, i) {
+        async executeAsTemplate(e4, t28, r) {
           if (!this.templateClient) throw new Error("Template client not available. Please set template client first.");
-          const r = e4.key() + "-template-" + t28, s2 = this.cacheKey(r);
+          const i = e4.key() + "-template-" + t28, s2 = this.cacheKey(i);
           if (this.cache.has(s2)) return this.cache.get(s2);
           try {
-            const r3 = await this.templateClient.executeAsTemplate(e4, t28, i);
-            return r3 ? this.cache.set(s2, r3) : log56.warnf("\u26A0\uFE0F [Resources.executeAsTemplate] Template execution returned null for resource %s", e4.key()), r3;
+            const i2 = await this.templateClient.executeAsTemplate(e4, t28, r);
+            return i2 ? this.cache.set(s2, i2) : log56.warnf("\u26A0\uFE0F [Resources.executeAsTemplate] Template execution returned null for resource %s", e4.key()), i2;
           } catch (t29) {
             throw log56.errorf("\u274C [Resources.executeAsTemplate] Error executing template %s, %s", e4.key(), t29), t29;
           }
         }
         async minify(e4) {
           if (!this.minifierClient) throw new Error("Minifier client not available. Please set minifier client first.");
-          const t28 = e4.key() + "-minify", i = this.cacheKey(t28);
-          if (this.cache.has(i)) return this.cache.get(i);
+          const t28 = e4.key() + "-minify", r = this.cacheKey(t28);
+          if (this.cache.has(r)) return this.cache.get(r);
           try {
             const t29 = await this.minifierClient.minify(e4);
-            return t29 ? this.cache.set(i, t29) : log56.warnf("\u26A0\uFE0F [Resources.minify] Minification returned null for resource %s", e4.key()), t29;
+            return t29 ? this.cache.set(r, t29) : log56.warnf("\u26A0\uFE0F [Resources.minify] Minification returned null for resource %s", e4.key()), t29;
           } catch (t29) {
             throw log56.errorf("\u274C [Resources.minify] Error minifying resource %s, %s", e4.key(), t29), t29;
           }
         }
         async fingerprint(e4) {
-          const t28 = e4.key() + "-fingerprint", i = this.cacheKey(t28);
-          if (this.cache.has(i)) return this.cache.get(i);
+          const t28 = e4.key() + "-fingerprint", r = this.cacheKey(t28);
+          if (this.cache.has(r)) return this.cache.get(r);
           try {
             const t29 = await this.integrityClient.fingerprint(e4);
-            return t29 ? this.cache.set(i, t29) : log56.warnf("\u26A0\uFE0F [Resources.fingerprint] Fingerprint operation returned null for resource %s", e4.key()), t29;
+            return t29 ? this.cache.set(r, t29) : log56.warnf("\u26A0\uFE0F [Resources.fingerprint] Fingerprint operation returned null for resource %s", e4.key()), t29;
           } catch (t29) {
             throw log56.errorf("\u274C [Resources.fingerprint] Error fingerprinting resource %s, %s", e4.key(), t29), t29;
           }
@@ -124297,9 +124671,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const t28 = `${e4}__remote`;
           if (this.cache.has(t28)) return this.cache.get(t28) || null;
           try {
-            const i = await this.httpClient.fromRemote(e4);
-            if (!i) return null;
-            const r = async () => this.newReadSeekerNoOpCloserFromString(i), s2 = await this.buildResource(e4, r);
+            const r = await this.httpClient.fromRemote(e4);
+            if (!r) return null;
+            const i = async () => this.newReadSeekerNoOpCloserFromString(r), s2 = await this.buildResource(e4, i);
             return s2 && this.cache.set(t28, s2), s2;
           } catch (t29) {
             return log56.errorf("\u274C [Resources.fromRemote] Error getting remote resource %s, %s", e4, t29), null;
@@ -124319,37 +124693,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async buildResource(e4, t28) {
           try {
-            const i = path25.extname(e4), r = this.getMediaTypeFromExtension(i), s2 = ResourcePaths.newResourcePaths(e4, this.workspace);
-            return new ResourceImpl(t28, r, s2, {}, this.publisher);
+            const r = path25.extname(e4), i = this.getMediaTypeFromExtension(r), s2 = ResourcePaths.newResourcePaths(e4, this.workspace);
+            return new ResourceImpl(t28, i, s2, {}, this.publisher);
           } catch (t29) {
             return log56.errorf("\u274C [Resources.buildResource] Error building resource for %s, %s", e4, t29), null;
           }
         }
         getMediaTypeFromExtension(e4) {
-          const t28 = { ".js": { type: "text/javascript", mainType: "text", subType: "javascript" }, ".css": { type: "text/css", mainType: "text", subType: "css" }, ".html": { type: "text/html", mainType: "text", subType: "html" }, ".json": { type: "application/json", mainType: "application", subType: "json" }, ".svg": { type: "image/svg+xml", mainType: "image", subType: "svg+xml" }, ".xml": { type: "application/xml", mainType: "application", subType: "xml" }, ".txt": { type: "text/plain", mainType: "text", subType: "plain" } }, i = e4 ? t28[e4] || t28[".txt"] : t28[".html"], r = e4 ? e4.substring(1) : "html", s2 = e4 || ".html";
-          return new MediaType({ type: i.type, mainType: i.mainType, subType: i.subType, delimiter: ".", firstSuffix: { suffix: r, fullSuffix: s2 }, mimeSuffix: "", suffixesCSV: r });
+          const t28 = { ".js": { type: "text/javascript", mainType: "text", subType: "javascript" }, ".css": { type: "text/css", mainType: "text", subType: "css" }, ".html": { type: "text/html", mainType: "text", subType: "html" }, ".json": { type: "application/json", mainType: "application", subType: "json" }, ".svg": { type: "image/svg+xml", mainType: "image", subType: "svg+xml" }, ".xml": { type: "application/xml", mainType: "application", subType: "xml" }, ".txt": { type: "text/plain", mainType: "text", subType: "plain" } }, r = e4 ? t28[e4] || t28[".txt"] : t28[".html"], i = e4 ? e4.substring(1) : "html", s2 = e4 || ".html";
+          return new MediaType({ type: r.type, mainType: r.mainType, subType: r.subType, delimiter: ".", firstSuffix: { suffix: i, fullSuffix: s2 }, mimeSuffix: "", suffixesCSV: i });
         }
         async createReadSeekCloser(e4) {
           try {
             const t28 = [];
-            let i = 0;
+            let r = 0;
             try {
               for (; ; ) {
-                const r3 = new Uint8Array(8192), s2 = await e4.read(r3);
+                const i2 = new Uint8Array(8192), s2 = await e4.read(i2);
                 if (0 === s2.bytesRead) break;
-                i += s2.bytesRead, t28.push(r3.slice(0, s2.bytesRead));
+                r += s2.bytesRead, t28.push(i2.slice(0, s2.bytesRead));
               }
             } finally {
               await e4.close();
             }
-            let r = "";
+            let i = "";
             if (t28.length > 0) {
-              const e5 = new Uint8Array(i);
+              const e5 = new Uint8Array(r);
               let s2 = 0;
-              for (const i2 of t28) e5.set(i2, s2), s2 += i2.length;
-              r = new TextDecoder().decode(e5);
+              for (const r3 of t28) e5.set(r3, s2), s2 += r3.length;
+              i = new TextDecoder().decode(e5);
             }
-            return this.newReadSeekerNoOpCloserFromString(r);
+            return this.newReadSeekerNoOpCloserFromString(i);
           } catch (t28) {
             try {
               await e4.close();
@@ -124368,28 +124742,28 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_resourcepaths = __esm2({ "internal/domain/resources/valueobject/resourcepaths.ts"() {
       ResourcePaths = class e4 {
-        constructor(e5 = "", t28 = "", i = "", r = "", s2 = [], n3 = "") {
+        constructor(e5 = "", t28 = "", r = "", i = "", s2 = [], n3 = "") {
           __publicField(this, "dir");
           __publicField(this, "baseDirTarget");
           __publicField(this, "baseDirLink");
           __publicField(this, "targetBasePaths");
           __publicField(this, "file");
           __publicField(this, "baseUrl", "");
-          this.dir = e5, this.file = t28, this.baseDirTarget = i, this.baseDirLink = r, this.targetBasePaths = s2, this.baseUrl = n3;
+          this.dir = e5, this.file = t28, this.baseDirTarget = r, this.baseDirLink = i, this.targetBasePaths = s2, this.baseUrl = n3;
         }
-        static newResourcePaths(t28, i) {
-          const r = t28.replace(/\\/g, "/"), s2 = path26.posix.parse(r);
+        static newResourcePaths(t28, r) {
+          const i = t28.replace(/\\/g, "/"), s2 = path26.posix.parse(i);
           let n3 = s2.dir;
-          return "/" === n3 && (n3 = ""), new e4(n3, s2.base, i.baseUrl(), i.baseUrl(), [], i.baseUrl());
+          return "/" === n3 && (n3 = ""), new e4(n3, s2.base, r.baseUrl(), r.baseUrl(), [], r.baseUrl());
         }
         join(...e5) {
           let t28 = "";
-          for (let i = 0; i < e5.length; i++) {
-            const r = e5[i];
-            if (r) if ("" === t28) t28 = r;
+          for (let r = 0; r < e5.length; r++) {
+            const i = e5[r];
+            if (i) if ("" === t28) t28 = i;
             else {
-              const e6 = !t28.endsWith("/") && !r.startsWith("/"), i2 = t28.endsWith("/") && r.startsWith("/");
-              t28 += i2 ? r.substring(1) : e6 ? "/" + r : r;
+              const e6 = !t28.endsWith("/") && !i.startsWith("/"), r3 = t28.endsWith("/") && i.startsWith("/");
+              t28 += r3 ? i.substring(1) : e6 ? "/" + i : i;
             }
           }
           return t28.startsWith("/") && (t28 = t28.substring(1)), t28.endsWith("/") && t28.length > 1 && (t28 = t28.substring(0, t28.length - 1)), t28;
@@ -124402,9 +124776,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.join(this.dir, this.file);
         }
         fromTargetPath(t28) {
-          const i = t28.replace(/\\/g, "/"), r = path26.posix.parse(i);
-          let s2 = r.dir;
-          return "/" === s2 && (s2 = ""), new e4(s2, r.base, this.baseUrl, this.baseUrl, this.targetBasePaths, this.baseUrl);
+          const r = t28.replace(/\\/g, "/"), i = path26.posix.parse(r);
+          let s2 = i.dir;
+          return "/" === s2 && (s2 = ""), new e4(s2, i.base, this.baseUrl, this.baseUrl, this.targetBasePaths, this.baseUrl);
         }
         pathDir() {
           return this.dir;
@@ -124428,8 +124802,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         constructor(e5, t28 = []) {
           this.name = e5, this.elements = t28;
         }
-        static newResourceTransformationKey(t28, ...i) {
-          return new e4(t28, i);
+        static newResourceTransformationKey(t28, ...r) {
+          return new e4(t28, r);
         }
         value() {
           if (0 === this.elements.length) return this.name;
@@ -124444,15 +124818,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_resourcemetadata = __esm2({ "internal/domain/resources/valueobject/resourcemetadata.ts"() {
       ResourceMetadataImpl = class e4 {
-        constructor(e5, t28, i) {
-          this.target = e5, this.mediaType = t28, this.metaData = i;
+        constructor(e5, t28, r) {
+          this.target = e5, this.mediaType = t28, this.metaData = r;
         }
         marshal() {
           return JSON.stringify({ Target: this.target, MediaType: this.mediaType, Data: this.metaData });
         }
         static unmarshal(t28) {
-          const i = JSON.parse(t28);
-          return new e4(i.Target, i.MediaType, i.Data || {});
+          const r = JSON.parse(t28);
+          return new e4(r.Target, r.MediaType, r.Data || {});
         }
       };
     } });
@@ -124465,7 +124839,7 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     ssg_exports = {};
     __export2(ssg_exports, { collectAllPageTasks: () => collectAllPageTasks, generateStaticSite: () => generateStaticSite, generateStaticSiteWithProgress: () => generateStaticSiteWithProgress, processSSG: () => processSSG, processSSGWithProgress: () => processSSGWithProgress, serveSSG: () => serveSSG });
     init_ssg = __esm2({ "internal/application/ssg.ts"() {
-      init_config3(), init_module6(), init_fs3(), init_content3(), init_template3(), init_site2(), init_log(), init_resources2(), log57 = getDomainLogger("ssg", { component: "application" }), createDomainInstances = (e4, t28, i, r, s2, n3) => ({ site: e4, content: t28, fs: i, config: r, modules: s2, resources: n3 }), tasks3 = [];
+      init_config3(), init_module6(), init_fs3(), init_content3(), init_template3(), init_site2(), init_log(), init_resources2(), log57 = getDomainLogger("ssg", { component: "application" }), createDomainInstances = (e4, t28, r, i, s2, n3) => ({ site: e4, content: t28, fs: r, config: i, modules: s2, resources: n3 }), tasks3 = [];
     } });
     init_type10 = __esm2({ "internal/domain/workspace/type.ts"() {
     } });
@@ -124528,12 +124902,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_folder_structure = __esm2({ "internal/domain/workspace/value-object/folder-structure.ts"() {
       FolderStructure = class e4 {
-        constructor(e5, t28, i, r) {
+        constructor(e5, t28, r, i) {
           __publicField(this, "rootPath");
           __publicField(this, "contentFolders");
           __publicField(this, "staticFolder");
           __publicField(this, "isStructured");
-          this.rootPath = e5, this.contentFolders = t28, this.staticFolder = i, this.isStructured = r;
+          this.rootPath = e5, this.contentFolders = t28, this.staticFolder = r, this.isStructured = i;
         }
         static fromScanResult(t28) {
           return new e4(t28.rootPath, t28.contentFolders, t28.staticFolder, t28.isStructured);
@@ -124541,8 +124915,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         static createEmpty(t28) {
           return new e4(t28, [], null, false);
         }
-        static createSingleContent(t28, i, r = "en") {
-          return new e4(t28, [{ path: i, languageCode: r, weight: 0 }], null, true);
+        static createSingleContent(t28, r, i = "en") {
+          return new e4(t28, [{ path: r, languageCode: i, weight: 0 }], null, true);
         }
         getRootPath() {
           return this.rootPath;
@@ -124607,13 +124981,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_workspace = __esm2({ "internal/domain/workspace/entity/workspace.ts"() {
       init_log(), log68 = getDomainLogger("workspace", { component: "domain" }), Workspace = class {
-        constructor(e4, t28, i, r, s2) {
+        constructor(e4, t28, r, i, s2) {
           __publicField(this, "rootPath");
           __publicField(this, "metadata");
           __publicField(this, "projects");
           __publicField(this, "authentication");
           __publicField(this, "fileSystemRepo");
-          if (this.rootPath = e4, this.metadata = t28, this.projects = i, this.authentication = r, this.fileSystemRepo = s2, !this.fileSystemRepo) throw new Error("FileSystemRepository is required for Workspace");
+          if (this.rootPath = e4, this.metadata = t28, this.projects = r, this.authentication = i, this.fileSystemRepo = s2, !this.fileSystemRepo) throw new Error("FileSystemRepository is required for Workspace");
         }
         getPath() {
           return this.rootPath;
@@ -124668,8 +125042,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         getProjectRegistry() {
           const e4 = [];
           for (const t28 of this.projects.values()) {
-            const i = t28.getMetadata(), r = t28.getPath(), s2 = this.fileSystemRepo.relative(this.getProjectsDir(), r);
-            e4.push({ id: i.id, name: i.name, path: s2, absolutePath: r, createdAt: i.createdAt, updatedAt: i.updatedAt, status: "active" });
+            const r = t28.getMetadata(), i = t28.getPath(), s2 = this.fileSystemRepo.relative(this.getProjectsDir(), i);
+            e4.push({ id: r.id, name: r.name, path: s2, absolutePath: i, createdAt: r.createdAt, updatedAt: r.updatedAt, status: "active" });
           }
           return { version: "1.0", projects: e4 };
         }
@@ -124686,8 +125060,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           var _a11;
           const t28 = this.getConfigPath();
           try {
-            const i = await this.fileSystemRepo.readFile(t28, "utf-8"), r = JSON.parse(i);
-            return this.getNestedValue(r, e4);
+            const r = await this.fileSystemRepo.readFile(t28, "utf-8"), i = JSON.parse(r);
+            return this.getNestedValue(i, e4);
           } catch (e5) {
             if ((_a11 = e5.message) == null ? void 0 : _a11.includes("Cannot access path")) return;
             throw e5;
@@ -124706,56 +125080,56 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async setConfig(e4, t28) {
           var _a11;
-          const i = this.getConfigPath(), r = this.fileSystemRepo.dirname(i);
-          await this.fileSystemRepo.createDirectory(r, true);
+          const r = this.getConfigPath(), i = this.fileSystemRepo.dirname(r);
+          await this.fileSystemRepo.createDirectory(i, true);
           let s2 = {};
           try {
-            const e5 = await this.fileSystemRepo.readFile(i, "utf-8");
+            const e5 = await this.fileSystemRepo.readFile(r, "utf-8");
             s2 = JSON.parse(e5);
           } catch (e5) {
             if (!((_a11 = e5.message) == null ? void 0 : _a11.includes("Cannot access path"))) throw e5;
           }
-          this.setNestedValue(s2, e4, t28), await this.fileSystemRepo.writeFile(i, JSON.stringify(s2, null, 2), "utf-8"), log68.debug(`Workspace config updated: ${e4}`, { workspaceId: this.getId() });
+          this.setNestedValue(s2, e4, t28), await this.fileSystemRepo.writeFile(r, JSON.stringify(s2, null, 2), "utf-8"), log68.debug(`Workspace config updated: ${e4}`, { workspaceId: this.getId() });
         }
         async unsetConfig(e4) {
           var _a11;
           const t28 = this.getConfigPath();
           try {
-            const i = await this.fileSystemRepo.readFile(t28, "utf-8"), r = JSON.parse(i), s2 = this.deleteNestedValue(r, e4);
-            return s2 && (await this.fileSystemRepo.writeFile(t28, JSON.stringify(r, null, 2), "utf-8"), log68.debug(`Workspace config deleted: ${e4}`, { workspaceId: this.getId() })), s2;
+            const r = await this.fileSystemRepo.readFile(t28, "utf-8"), i = JSON.parse(r), s2 = this.deleteNestedValue(i, e4);
+            return s2 && (await this.fileSystemRepo.writeFile(t28, JSON.stringify(i, null, 2), "utf-8"), log68.debug(`Workspace config deleted: ${e4}`, { workspaceId: this.getId() })), s2;
           } catch (e5) {
             if ((_a11 = e5.message) == null ? void 0 : _a11.includes("Cannot access path")) return false;
             throw e5;
           }
         }
         getNestedValue(e4, t28) {
-          const i = t28.split(".");
-          let r = e4;
-          for (const e5 of i) {
-            if (null == r || "object" != typeof r) return;
-            r = r[e5];
-          }
-          return r;
-        }
-        setNestedValue(e4, t28, i) {
           const r = t28.split(".");
-          let s2 = e4;
-          for (let e5 = 0; e5 < r.length - 1; e5++) {
-            const t29 = r[e5];
-            t29 in s2 && "object" == typeof s2[t29] || (s2[t29] = {}), s2 = s2[t29];
+          let i = e4;
+          for (const e5 of r) {
+            if (null == i || "object" != typeof i) return;
+            i = i[e5];
           }
-          s2[r[r.length - 1]] = i;
+          return i;
         }
-        deleteNestedValue(e4, t28) {
+        setNestedValue(e4, t28, r) {
           const i = t28.split(".");
-          let r = e4;
+          let s2 = e4;
           for (let e5 = 0; e5 < i.length - 1; e5++) {
             const t29 = i[e5];
-            if (!(t29 in r) || "object" != typeof r[t29]) return false;
-            r = r[t29];
+            t29 in s2 && "object" == typeof s2[t29] || (s2[t29] = {}), s2 = s2[t29];
           }
-          const s2 = i[i.length - 1];
-          return s2 in r && (delete r[s2], true);
+          s2[i[i.length - 1]] = r;
+        }
+        deleteNestedValue(e4, t28) {
+          const r = t28.split(".");
+          let i = e4;
+          for (let e5 = 0; e5 < r.length - 1; e5++) {
+            const t29 = r[e5];
+            if (!(t29 in i) || "object" != typeof i[t29]) return false;
+            i = i[t29];
+          }
+          const s2 = r[r.length - 1];
+          return s2 in i && (delete i[s2], true);
         }
         getInfo() {
           return { id: this.metadata.id, name: this.metadata.name, path: this.rootPath, createdAt: new Date(this.metadata.createdAt), updatedAt: new Date(this.metadata.updatedAt), modulesDir: this.metadata.paths.modules, projectsDir: this.metadata.paths.projects, projectCount: this.projects.size, hasAuth: this.authentication.hasAuth() };
@@ -124764,12 +125138,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_project2 = __esm2({ "internal/domain/workspace/entity/project.ts"() {
       init_log(), log69 = getDomainLogger("project", { component: "domain" }), Project = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "metadata");
           __publicField(this, "projectPath");
           __publicField(this, "config", null);
           __publicField(this, "fileSystemRepo");
-          if (this.projectPath = e4, this.metadata = t28, this.fileSystemRepo = i, !this.fileSystemRepo) throw new Error("FileSystemRepository is required for Project");
+          if (this.projectPath = e4, this.metadata = t28, this.fileSystemRepo = r, !this.fileSystemRepo) throw new Error("FileSystemRepository is required for Project");
         }
         getPath() {
           return this.projectPath;
@@ -124793,8 +125167,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.metadata.buildHistory || [];
         }
         addBuildHistory(e4) {
-          const t28 = [e4, ...this.metadata.buildHistory || []], i = t28.length > 50 ? t28.slice(0, 50) : t28;
-          this.metadata = this.metadata.update({ buildHistory: i }), log69.debug(`Added build history entry for project: ${this.metadata.name}`);
+          const t28 = [e4, ...this.metadata.buildHistory || []], r = t28.length > 50 ? t28.slice(0, 50) : t28;
+          this.metadata = this.metadata.update({ buildHistory: r }), log69.debug(`Added build history entry for project: ${this.metadata.name}`);
         }
         getLastBuildTime() {
           const e4 = this.getBuildHistory();
@@ -124816,8 +125190,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.config;
         }
         async getContentDirs() {
-          const e4 = await this.loadConfig(), t28 = [], i = e4.contentDir || "content";
-          if (t28.push(this.fileSystemRepo.join(this.projectPath, i)), e4.languages) for (const [r, s2] of Object.entries(e4.languages)) s2.contentDir && s2.contentDir !== i && t28.push(this.fileSystemRepo.join(this.projectPath, s2.contentDir));
+          const e4 = await this.loadConfig(), t28 = [], r = e4.contentDir || "content";
+          if (t28.push(this.fileSystemRepo.join(this.projectPath, r)), e4.languages) for (const [i, s2] of Object.entries(e4.languages)) s2.contentDir && s2.contentDir !== r && t28.push(this.fileSystemRepo.join(this.projectPath, s2.contentDir));
           return [...new Set(t28)];
         }
         async getPublishDir() {
@@ -124860,41 +125234,41 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           await this.fileSystemRepo.writeFile(e4, JSON.stringify(this.config, null, 2), "utf-8"), log69.debug(`Project config saved: ${e4}`, { projectName: this.metadata.name });
         }
         getNestedValue(e4, t28) {
-          const i = t28.split(".");
-          let r = e4;
-          for (const e5 of i) {
-            if (null == r || "object" != typeof r) return;
-            r = r[e5];
-          }
-          return r;
-        }
-        setNestedValue(e4, t28, i) {
           const r = t28.split(".");
-          let s2 = e4;
-          for (let e5 = 0; e5 < r.length - 1; e5++) {
-            const t29 = r[e5];
-            t29 in s2 && "object" == typeof s2[t29] && !Array.isArray(s2[t29]) || (s2[t29] = {}), s2 = s2[t29];
+          let i = e4;
+          for (const e5 of r) {
+            if (null == i || "object" != typeof i) return;
+            i = i[e5];
           }
-          s2[r[r.length - 1]] = i;
+          return i;
         }
-        deleteNestedValue(e4, t28) {
+        setNestedValue(e4, t28, r) {
           const i = t28.split(".");
-          let r = e4;
+          let s2 = e4;
           for (let e5 = 0; e5 < i.length - 1; e5++) {
             const t29 = i[e5];
-            if (!(t29 in r) || "object" != typeof r[t29]) return false;
-            r = r[t29];
+            t29 in s2 && "object" == typeof s2[t29] && !Array.isArray(s2[t29]) || (s2[t29] = {}), s2 = s2[t29];
           }
-          const s2 = i[i.length - 1];
-          return s2 in r && (delete r[s2], true);
+          s2[i[i.length - 1]] = r;
+        }
+        deleteNestedValue(e4, t28) {
+          const r = t28.split(".");
+          let i = e4;
+          for (let e5 = 0; e5 < r.length - 1; e5++) {
+            const t29 = r[e5];
+            if (!(t29 in i) || "object" != typeof i[t29]) return false;
+            i = i[t29];
+          }
+          const s2 = r[r.length - 1];
+          return s2 in i && (delete i[s2], true);
         }
         async readFile(e4, t28 = "utf-8") {
-          const i = this.fileSystemRepo.join(this.projectPath, e4);
-          return this.fileSystemRepo.readFile(i, t28);
+          const r = this.fileSystemRepo.join(this.projectPath, e4);
+          return this.fileSystemRepo.readFile(r, t28);
         }
-        async writeFile(e4, t28, i = "utf-8") {
-          const r = this.fileSystemRepo.join(this.projectPath, e4), s2 = this.fileSystemRepo.dirname(r);
-          await this.fileSystemRepo.exists(s2) || await this.fileSystemRepo.createDirectory(s2, true), await this.fileSystemRepo.writeFile(r, t28, i), log69.debug(`Project file written: ${e4}`, { projectName: this.metadata.name, filePath: r });
+        async writeFile(e4, t28, r = "utf-8") {
+          const i = this.fileSystemRepo.join(this.projectPath, e4), s2 = this.fileSystemRepo.dirname(i);
+          await this.fileSystemRepo.exists(s2) || await this.fileSystemRepo.createDirectory(s2, true), await this.fileSystemRepo.writeFile(i, t28, r), log69.debug(`Project file written: ${e4}`, { projectName: this.metadata.name, filePath: i });
         }
         async fileExists(e4) {
           const t28 = this.fileSystemRepo.join(this.projectPath, e4);
@@ -124928,9 +125302,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         setStaticLink(e4) {
           this.metadata = this.metadata.update({ staticLink: e4 }), log69.debug(`Updated static link for project: ${this.metadata.name}`, { hasLink: null !== e4 });
         }
-        addContentLink(e4, t28, i) {
-          const r = [...this.getContentLinks(), { sourcePath: e4, languageCode: t28, weight: i }];
-          this.setContentLinks(r);
+        addContentLink(e4, t28, r) {
+          const i = [...this.getContentLinks(), { sourcePath: e4, languageCode: t28, weight: r }];
+          this.setContentLinks(i);
         }
         getDefaultContentSource() {
           const e4 = this.metadata.contentLinks.find((e5) => 0 === e5.weight);
@@ -124952,8 +125326,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         getLinkDirs() {
           const e4 = [], t28 = this.getFileLink();
           t28 && e4.push(t28.sourcePath);
-          const i = this.getContentLinks();
-          for (const t29 of i) e4.includes(t29.sourcePath) || e4.push(t29.sourcePath);
+          const r = this.getContentLinks();
+          for (const t29 of r) e4.includes(t29.sourcePath) || e4.push(t29.sourcePath);
           return e4;
         }
         async getBaseURL() {
@@ -124962,16 +125336,16 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async setBaseURL(e4) {
           const t28 = await this.loadConfig();
           t28.baseURL = e4;
-          const i = this.fileSystemRepo.join(this.projectPath, "config.json");
-          await this.fileSystemRepo.writeFile(i, JSON.stringify(t28, null, 2), "utf-8"), this.config = t28;
+          const r = this.fileSystemRepo.join(this.projectPath, "config.json");
+          await this.fileSystemRepo.writeFile(r, JSON.stringify(t28, null, 2), "utf-8"), this.config = t28;
         }
         parseBaseURLPath(e4) {
           let t28 = e4.trim();
           if (t28.startsWith("/") && (t28 = t28.slice(1)), t28.endsWith("/") && (t28 = t28.slice(0, -1)), "" === t28) return { isRoot: true, pathParts: [], parentParts: [], finalDirName: "", relativeToPublic: "." };
-          const i = t28.split("/").filter((e5) => "" !== e5);
-          if (0 === i.length) return { isRoot: true, pathParts: [], parentParts: [], finalDirName: "", relativeToPublic: "." };
-          const r = i.length, s2 = 1 === r ? "." : "../".repeat(r - 1).slice(0, -1);
-          return { isRoot: false, pathParts: i, parentParts: i.slice(0, -1), finalDirName: i[i.length - 1], relativeToPublic: s2 };
+          const r = t28.split("/").filter((e5) => "" !== e5);
+          if (0 === r.length) return { isRoot: true, pathParts: [], parentParts: [], finalDirName: "", relativeToPublic: "." };
+          const i = r.length, s2 = 1 === i ? "." : "../".repeat(i - 1).slice(0, -1);
+          return { isRoot: false, pathParts: r, parentParts: r.slice(0, -1), finalDirName: r[r.length - 1], relativeToPublic: s2 };
         }
         getBaseURLStructure() {
           return this.metadata.baseURLStructure || null;
@@ -125048,9 +125422,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "expiresAt");
           this.value = e5, this.expiresAt = t28;
         }
-        static create(t28, i) {
+        static create(t28, r) {
           if (!t28 || "string" != typeof t28 || 0 === t28.trim().length) throw new Error("Token value cannot be empty");
-          return new e4(t28, i);
+          return new e4(t28, r);
         }
         static fromJSON(t28) {
           return e4.create(t28.token, t28.expiresAt);
@@ -125091,11 +125465,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "websiteUrl");
           this.apiUrl = e5, this.websiteUrl = t28;
         }
-        static create(t28, i) {
+        static create(t28, r) {
           if (!t28 || "string" != typeof t28 || 0 === t28.trim().length) throw new Error("API URL cannot be empty");
           if (!e4.isValidUrl(t28)) throw new Error(`Invalid API URL: ${t28}`);
-          if (i && !e4.isValidUrl(i)) throw new Error(`Invalid website URL: ${i}`);
-          return new e4(t28, i);
+          if (r && !e4.isValidUrl(r)) throw new Error(`Invalid website URL: ${r}`);
+          return new e4(t28, r);
         }
         static fromJSON(t28) {
           return e4.create(t28.apiUrl, t28.websiteUrl);
@@ -125131,9 +125505,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
       };
     } });
+    license_exports = {};
+    __export2(license_exports, { License: () => License });
     init_license3 = __esm2({ "internal/domain/identity/value-object/license.ts"() {
       License = class e4 {
-        constructor(e5, t28, i, r, s2, n3 = false, a = false) {
+        constructor(e5, t28, r, i, s2, n3 = false, a = false) {
           __publicField(this, "key");
           __publicField(this, "plan");
           __publicField(this, "expiresAt");
@@ -125141,11 +125517,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           __publicField(this, "activatedAt");
           __publicField(this, "activated");
           __publicField(this, "firstTime");
-          this.key = e5, this.plan = t28, this.expiresAt = i, this.features = r, this.activatedAt = s2, this.activated = n3, this.firstTime = a;
+          this.key = e5, this.plan = t28, this.expiresAt = r, this.features = i, this.activatedAt = s2, this.activated = n3, this.firstTime = a;
         }
-        static create(t28, i, r, s2, n3, a, o) {
+        static create(t28, r, i, s2, n3, a, o) {
           if (!e4.isValidFormat(t28)) throw new Error(`Invalid license key format: ${t28}`);
-          return new e4(t28.toUpperCase(), i, r, s2, n3 || Date.now(), a || false, o || false);
+          return new e4(t28.toUpperCase(), r, i, s2, n3 || Date.now(), a || false, o || false);
         }
         static fromJSON(t28) {
           return e4.create(t28.key, t28.plan, t28.expiresAt, t28.features, t28.activatedAt, t28.activated, t28.firstTime);
@@ -125172,12 +125548,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         manualBase64Encode(e5) {
           const t28 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-          let i = "", r = 0;
-          for (; r < e5.length; ) {
-            const s2 = e5.charCodeAt(r++) << 16 | (r < e5.length ? e5.charCodeAt(r++) : 0) << 8 | (r < e5.length ? e5.charCodeAt(r++) : 0);
-            i += t28.charAt(s2 >> 18 & 63), i += t28.charAt(s2 >> 12 & 63), i += r - 1 < e5.length ? t28.charAt(s2 >> 6 & 63) : "=", i += r < e5.length ? t28.charAt(63 & s2) : "=";
+          let r = "", i = 0;
+          for (; i < e5.length; ) {
+            const s2 = e5.charCodeAt(i++) << 16 | (i < e5.length ? e5.charCodeAt(i++) : 0) << 8 | (i < e5.length ? e5.charCodeAt(i++) : 0);
+            r += t28.charAt(s2 >> 18 & 63), r += t28.charAt(s2 >> 12 & 63), r += i - 1 < e5.length ? t28.charAt(s2 >> 6 & 63) : "=", r += i < e5.length ? t28.charAt(63 & s2) : "=";
           }
-          return i;
+          return r;
         }
         getKey() {
           return this.key;
@@ -125279,26 +125655,26 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_device = __esm2({ "internal/domain/identity/value-object/device.ts"() {
       Device = class e4 {
-        constructor(e5, t28, i) {
+        constructor(e5, t28, r) {
           __publicField(this, "id");
           __publicField(this, "name");
           __publicField(this, "type");
-          this.id = e5, this.name = t28, this.type = i;
+          this.id = e5, this.name = t28, this.type = r;
         }
-        static create(t28, i, r) {
+        static create(t28, r, i) {
           if (!t28 || 0 === t28.trim().length) throw new Error("Device ID cannot be empty");
-          if (!i || 0 === i.trim().length) throw new Error("Device name cannot be empty");
-          return new e4(t28, i, r);
+          if (!r || 0 === r.trim().length) throw new Error("Device name cannot be empty");
+          return new e4(t28, r, i);
         }
         static async createFromEnvironment() {
-          const t28 = await e4.generateFingerprint(), i = e4.getDeviceName(), r = e4.getDeviceType();
-          return e4.create(t28, i, r);
+          const t28 = await e4.generateFingerprint(), r = e4.getDeviceName(), i = e4.getDeviceType();
+          return e4.create(t28, r, i);
         }
         static async generateFingerprint() {
-          const e5 = [], t28 = globalThis, i = t28.screen;
-          i && (e5.push(`${i.width}x${i.height}`), e5.push(`${i.colorDepth}`), e5.push(`${i.pixelDepth || 0}`));
-          const r = t28.navigator;
-          r && (e5.push(r.language || ""), e5.push(r.platform || ""), e5.push(String(r.hardwareConcurrency || 0)), e5.push(String(r.maxTouchPoints || 0)));
+          const e5 = [], t28 = globalThis, r = t28.screen;
+          r && (e5.push(`${r.width}x${r.height}`), e5.push(`${r.colorDepth}`), e5.push(`${r.pixelDepth || 0}`));
+          const i = t28.navigator;
+          i && (e5.push(i.language || ""), e5.push(i.platform || ""), e5.push(String(i.hardwareConcurrency || 0)), e5.push(String(i.maxTouchPoints || 0)));
           const s2 = t28.process;
           s2 && s2.versions && (e5.push(s2.platform), e5.push(s2.arch), e5.push(s2.version));
           try {
@@ -125306,8 +125682,8 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           } catch (e6) {
             e5.push("");
           }
-          if (r) {
-            const t29 = (r.userAgent || "").split(" ").slice(0, 3).join(" ");
+          if (i) {
+            const t29 = (i.userAgent || "").split(" ").slice(0, 3).join(" ");
             e5.push(t29);
           }
           const n3 = e5.join("|"), a = new TextEncoder().encode(n3), o = t28.crypto;
@@ -125324,37 +125700,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const e5 = globalThis, t28 = e5.process;
           if (t28 && t28.versions) {
             const e6 = t28.platform;
-            let i2 = "Unknown OS";
+            let r3 = "Unknown OS";
             switch (e6) {
               case "darwin":
-                i2 = "macOS";
+                r3 = "macOS";
                 break;
               case "win32":
-                i2 = "Windows";
+                r3 = "Windows";
                 break;
               case "linux":
-                i2 = "Linux";
+                r3 = "Linux";
                 break;
               default:
-                i2 = e6;
+                r3 = e6;
             }
-            return `Node.js on ${i2}`;
+            return `Node.js on ${r3}`;
           }
-          const i = e5.navigator;
-          if (!i) return "Unknown Device";
-          const r = i.userAgent || "";
+          const r = e5.navigator;
+          if (!r) return "Unknown Device";
+          const i = r.userAgent || "";
           let s2 = "Unknown OS";
-          r.includes("Mac") ? s2 = "macOS" : r.includes("Windows") ? s2 = "Windows" : r.includes("Linux") ? s2 = "Linux" : r.includes("iPhone") || r.includes("iPad") ? s2 = "iOS" : r.includes("Android") && (s2 = "Android");
+          i.includes("Mac") ? s2 = "macOS" : i.includes("Windows") ? s2 = "Windows" : i.includes("Linux") ? s2 = "Linux" : i.includes("iPhone") || i.includes("iPad") ? s2 = "iOS" : i.includes("Android") && (s2 = "Android");
           let n3 = "Browser";
-          return r.includes("Obsidian") ? n3 = "Obsidian" : r.includes("Electron") && (n3 = "Electron"), `${n3} on ${s2}`;
+          return i.includes("Obsidian") ? n3 = "Obsidian" : i.includes("Electron") && (n3 = "Electron"), `${n3} on ${s2}`;
         }
         static getDeviceType() {
           const e5 = globalThis, t28 = e5.process;
           if (t28 && t28.versions) return "desktop";
-          const i = e5.navigator;
-          if (!i) return "desktop";
-          const r = i.userAgent || "";
-          return r.includes("Mobile") || r.includes("Android") || r.includes("iPhone") ? "mobile" : r.includes("Tablet") || r.includes("iPad") ? "tablet" : "desktop";
+          const r = e5.navigator;
+          if (!r) return "desktop";
+          const i = r.userAgent || "";
+          return i.includes("Mobile") || i.includes("Android") || i.includes("iPhone") ? "mobile" : i.includes("Tablet") || i.includes("iPad") ? "tablet" : "desktop";
         }
         getId() {
           return this.id;
@@ -125375,13 +125751,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
     } });
     init_user = __esm2({ "internal/domain/identity/entity/user.ts"() {
       User = class {
-        constructor(e4, t28, i, r = null, s2 = null) {
+        constructor(e4, t28, r, i = null, s2 = null) {
           __publicField(this, "email");
           __publicField(this, "token");
           __publicField(this, "serverConfig");
           __publicField(this, "license");
           __publicField(this, "syncConfig");
-          this.email = e4, this.token = t28, this.serverConfig = i, this.license = r, this.syncConfig = s2;
+          this.email = e4, this.token = t28, this.serverConfig = r, this.license = i, this.syncConfig = s2;
         }
         getEmail() {
           return this.email;
@@ -125450,27 +125826,27 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           this.httpClient = e4.httpClient, this.storageProvider = e4.storageProvider;
         }
         createAnonymous(e4) {
-          const t28 = e4 || ServerConfig.createDefault(), i = Email.create("anonymous@localhost.local");
-          return new User(i, null, t28);
+          const t28 = e4 || ServerConfig.createDefault(), r = Email.create("anonymous@localhost.local");
+          return new User(r, null, t28);
         }
         async load() {
           try {
             const e4 = await this.storageProvider.loadUserData();
             if (!e4) return log71.debug("No user data found in storage"), null;
-            const t28 = e4.serverConfig || ServerConfig.createDefault(), i = e4.email ? Email.create(e4.email) : Email.create("anonymous@localhost.local"), r = new User(i, e4.token, t28);
-            if (e4.license && r.setLicense(e4.license), e4.syncConfig) {
+            const t28 = e4.serverConfig || ServerConfig.createDefault(), r = e4.email ? Email.create(e4.email) : Email.create("anonymous@localhost.local"), i = new User(r, e4.token, t28);
+            if (e4.license && i.setLicense(e4.license), e4.syncConfig) {
               const t29 = SyncConfig.fromJSON(e4.syncConfig);
-              r.setSyncConfig(t29);
+              i.setSyncConfig(t29);
             }
-            return log71.debug("User loaded from storage", { email: i.getValue(), hasToken: !!e4.token, hasLicense: !!e4.license, hasSyncConfig: !!e4.syncConfig }), r;
+            return log71.debug("User loaded from storage", { email: r.getValue(), hasToken: !!e4.token, hasLicense: !!e4.license, hasSyncConfig: !!e4.syncConfig }), i;
           } catch (e4) {
             return log71.error("Failed to load user from storage", e4), null;
           }
         }
         async save(e4) {
           try {
-            const t28 = await this.storageProvider.loadUserData(), i = e4.getToken(), r = e4.getLicense(), s2 = e4.getSyncConfig(), n3 = e4.getServerConfig(), a = e4.getEmail().getValue(), o = { ...t28 || {}, ...i ? { token: i } : {}, ...r ? { license: r } : {}, ...s2 ? { syncConfig: s2 } : {}, ...n3 ? { serverConfig: n3 } : {}, email: a };
-            !r && (t28 == null ? void 0 : t28.license) && (o.license = t28.license, log71.debug("Preserved existing license data during save")), !s2 && (t28 == null ? void 0 : t28.syncConfig) && (o.syncConfig = t28.syncConfig, log71.debug("Preserved existing syncConfig data during save")), await this.storageProvider.saveUserData(o), log71.debug("User saved to storage (merged)", { email: a, hasToken: !!o.token, hasLicense: !!o.license, hasSyncConfig: !!o.syncConfig, preservedLicense: !r && !!(t28 == null ? void 0 : t28.license), preservedSyncConfig: !s2 && !!(t28 == null ? void 0 : t28.syncConfig) });
+            const t28 = await this.storageProvider.loadUserData(), r = e4.getToken(), i = e4.getLicense(), s2 = e4.getSyncConfig(), n3 = e4.getServerConfig(), a = e4.getEmail().getValue(), o = { ...t28 || {}, ...r ? { token: r } : {}, ...i ? { license: i } : {}, ...s2 ? { syncConfig: s2 } : {}, ...n3 ? { serverConfig: n3 } : {}, email: a };
+            !i && (t28 == null ? void 0 : t28.license) && (o.license = t28.license, log71.debug("Preserved existing license data during save")), !s2 && (t28 == null ? void 0 : t28.syncConfig) && (o.syncConfig = t28.syncConfig, log71.debug("Preserved existing syncConfig data during save")), await this.storageProvider.saveUserData(o), log71.debug("User saved to storage (merged)", { email: a, hasToken: !!o.token, hasLicense: !!o.license, hasSyncConfig: !!o.syncConfig, preservedLicense: !i && !!(t28 == null ? void 0 : t28.license), preservedSyncConfig: !s2 && !!(t28 == null ? void 0 : t28.syncConfig) });
           } catch (e5) {
             throw log71.error("Failed to save user to storage", e5), e5;
           }
@@ -125483,13 +125859,13 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             return log71.debug("No server config found in storage"), null;
           }
         }
-        async login(e4, t28, i) {
-          const r = Email.create(e4), s2 = i || ServerConfig.createDefault();
+        async login(e4, t28, r) {
+          const i = Email.create(e4), s2 = r || ServerConfig.createDefault();
           log71.info("Attempting login", { email: e4 });
           try {
-            const i2 = `${s2.getApiUrl()}/api/login`;
-            log71.info(`Sending login request to: ${i2}`), log71.debug(`Login credentials: email=${e4}, password=***`);
-            const n3 = await this.httpClient.postForm(i2, { email: e4, password: t28 });
+            const r3 = `${s2.getApiUrl()}/api/login`;
+            log71.info(`Sending login request to: ${r3}`), log71.debug(`Login credentials: email=${e4}, password=***`);
+            const n3 = await this.httpClient.postForm(r3, { email: e4, password: t28 });
             if (log71.info(`Login response status: ${n3.status}`), log71.debug("Login response data:", n3.data), 201 !== n3.status) {
               const e5 = await n3.text();
               throw log71.error(`Login failed with status ${n3.status}: ${e5}`), new Error("Invalid credentials");
@@ -125498,21 +125874,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
             const a = n3.data.data[0];
             if (!a) throw log71.error("No token in response data:", n3.data), new Error("No token received from server");
             log71.info(`Token received: ${a.substring(0, 20)}...`);
-            const o = Token2.create(a), l = new User(r, o, s2);
+            const o = Token2.create(a), l = new User(i, o, s2);
             return await this.save(l), log71.info("Login successful", { email: e4 }), l;
           } catch (e5) {
             throw log71.error("Login failed", e5), new Error(`Login failed: ${e5.message}`);
           }
         }
-        async register(e4, t28, i) {
-          const r = Email.create(e4), s2 = i || ServerConfig.createDefault();
+        async register(e4, t28, r) {
+          const i = Email.create(e4), s2 = r || ServerConfig.createDefault();
           log71.info("Attempting registration", { email: e4 });
           try {
-            const i2 = await this.httpClient.postForm(`${s2.getApiUrl()}/api/user`, { email: e4, password: t28 });
-            if (201 !== i2.status) throw new Error("Registration failed");
-            const n3 = i2.data.data[0];
+            const r3 = await this.httpClient.postForm(`${s2.getApiUrl()}/api/user`, { email: e4, password: t28 });
+            if (201 !== r3.status) throw new Error("Registration failed");
+            const n3 = r3.data.data[0];
             if (!n3) throw new Error("No token received from server");
-            const a = Token2.create(n3), o = new User(r, a, s2);
+            const a = Token2.create(n3), o = new User(i, a, s2);
             return await this.save(o), log71.info("Registration successful", { email: e4 }), o;
           } catch (e5) {
             throw log71.error("Registration failed", e5), new Error(`Registration failed: ${e5.message}`);
@@ -125527,21 +125903,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async updateServerConfig(e4, t28) {
           try {
-            let i = e4.getServerConfig();
-            t28.apiUrl && (i = i.withApiUrl(t28.apiUrl)), void 0 !== t28.websiteUrl && (i = i.withWebsiteUrl(t28.websiteUrl)), e4.updateServerConfig(i), await this.save(e4), log71.info("Server config updated");
+            let r = e4.getServerConfig();
+            t28.apiUrl && (r = r.withApiUrl(t28.apiUrl)), void 0 !== t28.websiteUrl && (r = r.withWebsiteUrl(t28.websiteUrl)), e4.updateServerConfig(r), await this.save(e4), log71.info("Server config updated");
           } catch (e5) {
             throw log71.error("Failed to update server config", e5), new Error(`Failed to update server config: ${e5.message}`);
           }
         }
         async requestTrialLicense(e4, t28) {
-          const i = t28 || ServerConfig.createDefault();
+          const r = t28 || ServerConfig.createDefault();
           Email.create(e4), log71.info("Requesting trial license", { email: e4 });
           try {
-            const t29 = await this.httpClient.postMultipart(`${i.getApiUrl()}/api/license/trial`, { email: e4 });
+            const t29 = await this.httpClient.postMultipart(`${r.getApiUrl()}/api/license/trial`, { email: e4 });
             if (200 !== t29.status && 201 !== t29.status) throw new Error("Trial license request failed");
-            const r = t29.data;
-            if (r && r.data && r.data.length > 0) {
-              const e5 = r.data[0];
+            const i = t29.data;
+            if (i && i.data && i.data.length > 0) {
+              const e5 = i.data[0];
               return log71.info("Trial license granted", { email: e5.email, licenseKey: e5.license_key }), e5;
             }
             throw new Error("Invalid trial response format");
@@ -125551,20 +125927,20 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async loginWithLicense(e4, t28) {
           if (!License.isValidFormat(e4)) throw new Error(`Invalid license key format: ${e4}`);
-          const i = License.create(e4, "free", Date.now() + 864e5, {}, Date.now()), r = i.getEmail(), s2 = i.getPassword();
-          log71.info("Logging in with license key", { licenseKey: e4, email: r });
-          const n3 = await this.login(r, s2, t28);
+          const r = License.create(e4, "free", Date.now() + 864e5, {}, Date.now()), i = r.getEmail(), s2 = r.getPassword();
+          log71.info("Logging in with license key", { licenseKey: e4, email: i });
+          const n3 = await this.login(i, s2, t28);
           return n3._pendingLicenseKey = e4, n3;
         }
-        async activateLicense(e4, t28, i) {
+        async activateLicense(e4, t28, r) {
           var _a11;
           if (!License.isValidFormat(t28)) throw new Error(`Invalid license key format: ${t28}`);
-          const r = i || await Device.createFromEnvironment();
-          log71.info("Activating license", { licenseKey: t28, deviceId: r.getId() });
+          const i = r || await Device.createFromEnvironment();
+          log71.info("Activating license", { licenseKey: t28, deviceId: i.getId() });
           try {
-            const i2 = e4.getToken();
-            if (!i2) throw new Error("User must be logged in to activate license");
-            const s2 = await this.httpClient.postMultipart(`${e4.getServerConfig().getApiUrl()}/api/license/activate`, { license_key: t28, device_id: r.getId(), device_name: r.getName(), device_type: r.getType() }, { Authorization: `Bearer ${i2.getValue()}` });
+            const r3 = e4.getToken();
+            if (!r3) throw new Error("User must be logged in to activate license");
+            const s2 = await this.httpClient.postMultipart(`${e4.getServerConfig().getApiUrl()}/api/license/activate`, { license_key: t28, device_id: i.getId(), device_name: i.getName(), device_type: i.getType() }, { Authorization: `Bearer ${r3.getValue()}` });
             if (200 !== s2.status && 201 !== s2.status) throw new Error("License activation failed");
             const n3 = ((_a11 = s2.data.data) == null ? void 0 : _a11[0]) || s2.data;
             if (!n3.success) throw new Error("License activation unsuccessful");
@@ -125581,21 +125957,21 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async requestAndActivateTrial(e4, t28) {
           log71.info("Starting trial flow", { email: e4 });
           try {
-            const i = await this.requestTrialLicense(e4, t28), r = await this.loginWithLicense(i.license_key, t28);
-            return await this.activateLicense(r, i.license_key), log71.info("Trial flow completed successfully", { email: e4, licenseKey: i.license_key }), r;
+            const r = await this.requestTrialLicense(e4, t28), i = await this.loginWithLicense(r.license_key, t28);
+            return await this.activateLicense(i, r.license_key), log71.info("Trial flow completed successfully", { email: e4, licenseKey: r.license_key }), i;
           } catch (e5) {
             throw log71.error("Trial flow failed", e5), new Error(`Trial flow failed: ${e5.message}`);
           }
         }
         async refreshTokenIfNeeded(e4) {
-          const t28 = e4.getToken(), i = e4.getLicense();
+          const t28 = e4.getToken(), r = e4.getLicense();
           if (!t28) return log71.debug("No token to refresh"), e4;
           if (t28.isValid() && !t28.isExpired()) return log71.debug("Token is still valid, no refresh needed"), e4;
-          if (log71.info("Token expired or expiring soon, attempting auto-refresh"), i) try {
-            const t29 = i.getKey(), r = e4.getServerConfig();
+          if (log71.info("Token expired or expiring soon, attempting auto-refresh"), r) try {
+            const t29 = r.getKey(), i = e4.getServerConfig();
             log71.info("Refreshing token using license", { licenseKey: t29 });
-            const s2 = await this.loginWithLicense(t29, r);
-            return s2.setLicense(i), await this.save(s2), log71.info("Token refreshed successfully using license"), s2;
+            const s2 = await this.loginWithLicense(t29, i);
+            return s2.setLicense(r), await this.save(s2), log71.info("Token refreshed successfully using license"), s2;
           } catch (e5) {
             throw log71.error("Failed to refresh token with license", e5), new Error(`Failed to refresh token: ${e5.message}`);
           }
@@ -125603,31 +125979,31 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async requestWithAutoRefresh(e4, t28) {
           var _a11;
-          const i = e4.getToken();
-          if (!i) throw new Error("User is not authenticated");
+          const r = e4.getToken();
+          if (!r) throw new Error("User is not authenticated");
           try {
-            return await t28(i.getValue());
-          } catch (i2) {
-            const r = (i2 == null ? void 0 : i2.message) || ((_a11 = i2 == null ? void 0 : i2.toString) == null ? void 0 : _a11.call(i2)) || String(i2);
-            if (r.includes("401") || r.includes("Unauthorized") || (i2 == null ? void 0 : i2.status) && 401 === i2.status) {
+            return await t28(r.getValue());
+          } catch (r3) {
+            const i = (r3 == null ? void 0 : r3.message) || ((_a11 = r3 == null ? void 0 : r3.toString) == null ? void 0 : _a11.call(r3)) || String(r3);
+            if (i.includes("401") || i.includes("Unauthorized") || (r3 == null ? void 0 : r3.status) && 401 === r3.status) {
               log71.info("Received 401 error, attempting token refresh");
               try {
-                const i3 = (await this.refreshTokenIfNeeded(e4)).getToken();
-                if (!i3) throw new Error("Failed to refresh token - no token returned");
-                return log71.info("Token refreshed, retrying request"), await t28(i3.getValue());
+                const r4 = (await this.refreshTokenIfNeeded(e4)).getToken();
+                if (!r4) throw new Error("Failed to refresh token - no token returned");
+                return log71.info("Token refreshed, retrying request"), await t28(r4.getValue());
               } catch (e5) {
                 throw log71.error("Failed to refresh token and retry request", e5), new Error(`Request failed with 401, and token refresh failed: ${e5.message}`);
               }
             }
-            throw i2;
+            throw r3;
           }
         }
         async getLicenseUsage(e4) {
           const t28 = e4.getLicense();
           if (!t28) throw new Error("No license found for user");
-          const i = t28.getKey(), r = e4.getServerConfig();
-          return log71.info("Getting license usage", { licenseKey: i }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const t29 = Date.now(), s2 = `${r.getApiUrl()}/api/license/usage?key=${i}&_t=${t29}`, n3 = await this.httpClient.get(s2, { Authorization: `Bearer ${e5}`, "Cache-Control": "no-cache", Pragma: "no-cache" });
+          const r = t28.getKey(), i = e4.getServerConfig();
+          return log71.info("Getting license usage", { licenseKey: r }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const t29 = Date.now(), s2 = `${i.getApiUrl()}/api/license/usage?key=${r}&_t=${t29}`, n3 = await this.httpClient.get(s2, { Authorization: `Bearer ${e5}`, "Cache-Control": "no-cache", Pragma: "no-cache" });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               throw log71.error("License usage fetch failed", { status: n3.status, text: e6 }), new Error(`License usage fetch failed: ${n3.status}`);
@@ -125638,15 +126014,15 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async getLicenseInfo(e4, t28) {
-          let i = t28;
-          if (!i) {
+          let r = t28;
+          if (!r) {
             const t29 = e4.getLicense();
             if (!t29) throw new Error("No license found for user and no license key provided");
-            i = t29.getKey();
+            r = t29.getKey();
           }
-          const r = e4.getServerConfig();
-          return log71.info("Getting license info", { licenseKey: i }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const t29 = Date.now(), s2 = `${r.getApiUrl()}/api/license/info?key=${i}&_t=${t29}`, n3 = await this.httpClient.get(s2, { Authorization: `Bearer ${e5}`, "Cache-Control": "no-cache", Pragma: "no-cache" });
+          const i = e4.getServerConfig();
+          return log71.info("Getting license info", { licenseKey: r }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const t29 = Date.now(), s2 = `${i.getApiUrl()}/api/license/info?key=${r}&_t=${t29}`, n3 = await this.httpClient.get(s2, { Authorization: `Bearer ${e5}`, "Cache-Control": "no-cache", Pragma: "no-cache" });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               throw log71.error("License info fetch failed", { status: n3.status, text: e6 }), new Error(`License info fetch failed: ${n3.status}`);
@@ -125659,9 +126035,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async resetUsage(e4) {
           const t28 = e4.getLicense();
           if (!t28) throw new Error("No license found for user");
-          const i = t28.getKey(), r = e4.getServerConfig();
-          return log71.info("Resetting license usage", { licenseKey: i }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const t29 = `${r.getApiUrl()}/api/license/usage/reset?key=${i}`, s2 = await this.httpClient.post(t29, {}, { Authorization: `Bearer ${e5}` });
+          const r = t28.getKey(), i = e4.getServerConfig();
+          return log71.info("Resetting license usage", { licenseKey: r }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const t29 = `${i.getApiUrl()}/api/license/usage/reset?key=${r}`, s2 = await this.httpClient.post(t29, {}, { Authorization: `Bearer ${e5}` });
             if (200 !== s2.status && 201 !== s2.status) {
               const e6 = await s2.text();
               throw log71.error("License usage reset failed", { status: s2.status, text: e6 }), new Error(`Reset failed: ${s2.status}`);
@@ -125672,9 +126048,9 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async getDomains(e4) {
           const t28 = e4.getLicense();
           if (!t28) throw new Error("No license found for user");
-          const i = t28.getKey(), r = e4.getServerConfig();
-          return log71.info("Getting domains", { licenseKey: i }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const t29 = `${r.getApiUrl()}/api/license/domains?key=${i}`, s2 = await this.httpClient.get(t29, { Authorization: `Bearer ${e5}` });
+          const r = t28.getKey(), i = e4.getServerConfig();
+          return log71.info("Getting domains", { licenseKey: r }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const t29 = `${i.getApiUrl()}/api/license/domains?key=${r}`, s2 = await this.httpClient.get(t29, { Authorization: `Bearer ${e5}` });
             if (200 !== s2.status) {
               const e6 = await s2.text();
               return log71.error("Get domains failed", { status: s2.status, text: e6 }), null;
@@ -125684,11 +126060,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async checkSubdomainAvailability(e4, t28) {
-          const i = e4.getLicense();
-          if (!i) throw new Error("No license found for user");
-          const r = i.getKey(), s2 = e4.getServerConfig();
-          return log71.info("Checking subdomain availability", { licenseKey: r, subdomain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const i2 = `${s2.getApiUrl()}/api/license/subdomain/check`, n3 = await this.httpClient.postMultipart(i2, { license_key: r, subdomain: t28 }, { Authorization: `Bearer ${e5}` });
+          const r = e4.getLicense();
+          if (!r) throw new Error("No license found for user");
+          const i = r.getKey(), s2 = e4.getServerConfig();
+          return log71.info("Checking subdomain availability", { licenseKey: i, subdomain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const r3 = `${s2.getApiUrl()}/api/license/subdomain/check`, n3 = await this.httpClient.postMultipart(r3, { license_key: i, subdomain: t28 }, { Authorization: `Bearer ${e5}` });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               return log71.error("Check subdomain failed", { status: n3.status, text: e6 }), null;
@@ -125698,11 +126074,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async updateSubdomain(e4, t28) {
-          const i = e4.getLicense();
-          if (!i) throw new Error("No license found for user");
-          const r = i.getKey(), s2 = e4.getServerConfig();
-          return log71.info("Updating subdomain", { licenseKey: r, newSubdomain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const i2 = `${s2.getApiUrl()}/api/license/subdomain/update`, n3 = await this.httpClient.postMultipart(i2, { license_key: r, new_subdomain: t28 }, { Authorization: `Bearer ${e5}` });
+          const r = e4.getLicense();
+          if (!r) throw new Error("No license found for user");
+          const i = r.getKey(), s2 = e4.getServerConfig();
+          return log71.info("Updating subdomain", { licenseKey: i, newSubdomain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const r3 = `${s2.getApiUrl()}/api/license/subdomain/update`, n3 = await this.httpClient.postMultipart(r3, { license_key: i, new_subdomain: t28 }, { Authorization: `Bearer ${e5}` });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               return log71.error("Update subdomain failed", { status: n3.status, text: e6 }), null;
@@ -125712,11 +126088,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async checkCustomDomain(e4, t28) {
-          const i = e4.getLicense();
-          if (!i) throw new Error("No license found for user");
-          const r = i.getKey(), s2 = e4.getServerConfig();
-          return log71.info("Checking custom domain", { licenseKey: r, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const i2 = `${s2.getApiUrl()}/api/license/domain/check`, n3 = await this.httpClient.postMultipart(i2, { license_key: r, domain: t28 }, { Authorization: `Bearer ${e5}` });
+          const r = e4.getLicense();
+          if (!r) throw new Error("No license found for user");
+          const i = r.getKey(), s2 = e4.getServerConfig();
+          return log71.info("Checking custom domain", { licenseKey: i, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const r3 = `${s2.getApiUrl()}/api/license/domain/check`, n3 = await this.httpClient.postMultipart(r3, { license_key: i, domain: t28 }, { Authorization: `Bearer ${e5}` });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               return log71.error("Check custom domain failed", { status: n3.status, text: e6 }), null;
@@ -125726,11 +126102,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async addCustomDomain(e4, t28) {
-          const i = e4.getLicense();
-          if (!i) throw new Error("No license found for user");
-          const r = i.getKey(), s2 = e4.getServerConfig();
-          return log71.info("Adding custom domain", { licenseKey: r, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const i2 = `${s2.getApiUrl()}/api/license/domain/add`, n3 = await this.httpClient.postMultipart(i2, { license_key: r, domain: t28 }, { Authorization: `Bearer ${e5}` });
+          const r = e4.getLicense();
+          if (!r) throw new Error("No license found for user");
+          const i = r.getKey(), s2 = e4.getServerConfig();
+          return log71.info("Adding custom domain", { licenseKey: i, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const r3 = `${s2.getApiUrl()}/api/license/domain/add`, n3 = await this.httpClient.postMultipart(r3, { license_key: i, domain: t28 }, { Authorization: `Bearer ${e5}` });
             if (200 !== n3.status && 201 !== n3.status) {
               const e6 = await n3.text();
               return log71.error("Add custom domain failed", { status: n3.status, text: e6 }), null;
@@ -125740,11 +126116,11 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           });
         }
         async checkCustomDomainHttpsStatus(e4, t28) {
-          const i = e4.getLicense();
-          if (!i) throw new Error("No license found for user");
-          const r = i.getKey(), s2 = e4.getServerConfig();
-          return log71.info("Checking HTTPS status", { licenseKey: r, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
-            const i2 = `${s2.getApiUrl()}/api/license/domain/https-status`, n3 = await this.httpClient.postMultipart(i2, { license_key: r, domain: t28 }, { Authorization: `Bearer ${e5}` });
+          const r = e4.getLicense();
+          if (!r) throw new Error("No license found for user");
+          const i = r.getKey(), s2 = e4.getServerConfig();
+          return log71.info("Checking HTTPS status", { licenseKey: i, domain: t28 }), this.requestWithAutoRefresh(e4, async (e5) => {
+            const r3 = `${s2.getApiUrl()}/api/license/domain/https-status`, n3 = await this.httpClient.postMultipart(r3, { license_key: i, domain: t28 }, { Authorization: `Bearer ${e5}` });
             if (200 !== n3.status) {
               const e6 = await n3.text();
               return log71.error("Check HTTPS status failed", { status: n3.status, text: e6 }), null;
@@ -125774,14 +126150,14 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         async load(e4) {
           const t28 = this.fileSystemRepo.resolvePathSync(e4);
           log72.info("Loading workspace", { path: t28 });
-          const i = await this.workspaceRepo.loadWorkspaceMetadata(t28), r = WorkspaceMetadata.create(i), s2 = await this.workspaceRepo.loadProjectRegistry(t28), n3 = /* @__PURE__ */ new Map();
+          const r = await this.workspaceRepo.loadWorkspaceMetadata(t28), i = WorkspaceMetadata.create(r), s2 = await this.workspaceRepo.loadProjectRegistry(t28), n3 = /* @__PURE__ */ new Map();
           for (const e5 of s2.projects) try {
-            const t29 = await this.projectRepo.loadProjectMetadata(e5.absolutePath), i2 = ProjectMetadata.create(t29), r3 = new Project(e5.absolutePath, i2, this.fileSystemRepo);
-            n3.set(e5.id, r3), log72.debug("Project loaded", { projectId: e5.id, name: e5.name });
+            const t29 = await this.projectRepo.loadProjectMetadata(e5.absolutePath), r3 = ProjectMetadata.create(t29), i2 = new Project(e5.absolutePath, r3, this.fileSystemRepo);
+            n3.set(e5.id, i2), log72.debug("Project loaded", { projectId: e5.id, name: e5.name });
           } catch (t29) {
             log72.warn("Failed to load project, skipping", { projectId: e5.id, path: e5.absolutePath, error: t29.message });
           }
-          const a = await this.checkAuthFile(t28), o = new Authentication(t28, a), l = new Workspace(t28, r, n3, o, this.fileSystemRepo);
+          const a = await this.checkAuthFile(t28), o = new Authentication(t28, a), l = new Workspace(t28, i, n3, o, this.fileSystemRepo);
           return log72.info("Workspace loaded", { workspaceId: l.getId(), name: l.getName(), projectCount: l.getProjectCount() }), l;
         }
         async checkAuthFile(e4) {
@@ -125793,31 +126169,31 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
         }
         async create(e4, t28 = {}) {
-          const i = this.fileSystemRepo.resolvePathSync(e4);
-          if (log72.info("Creating workspace", { path: i }), await this.workspaceRepo.isWorkspace(i)) throw new Error(`Workspace already exists at ${i}`);
-          const r = t28.modulesDir || "modules", s2 = t28.projectsDir || "projects";
-          await this.workspaceRepo.initWorkspaceStructure(i, r, s2);
-          const n3 = Date.now(), a = WorkspaceMetadata.create({ version: "1.0", id: `workspace-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, name: t28.name || this.fileSystemRepo.basename(i), createdAt: n3, updatedAt: n3, paths: { modules: r, projects: s2 }, defaults: { modulesDir: r, language: "en" } });
-          await this.workspaceRepo.saveWorkspaceMetadata(i, a.toJSON()), await this.workspaceRepo.saveProjectRegistry(i, { version: "1.0", projects: [] });
-          const o = this.fileSystemRepo.join(i, ".mdfriday"), l = this.fileSystemRepo.join(o, "config.json");
+          const r = this.fileSystemRepo.resolvePathSync(e4);
+          if (log72.info("Creating workspace", { path: r }), await this.workspaceRepo.isWorkspace(r)) throw new Error(`Workspace already exists at ${r}`);
+          const i = t28.modulesDir || "modules", s2 = t28.projectsDir || "projects";
+          await this.workspaceRepo.initWorkspaceStructure(r, i, s2);
+          const n3 = Date.now(), a = WorkspaceMetadata.create({ version: "1.0", id: `workspace-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, name: t28.name || this.fileSystemRepo.basename(r), createdAt: n3, updatedAt: n3, paths: { modules: i, projects: s2 }, defaults: { modulesDir: i, language: "en" } });
+          await this.workspaceRepo.saveWorkspaceMetadata(r, a.toJSON()), await this.workspaceRepo.saveProjectRegistry(r, { version: "1.0", projects: [] });
+          const o = this.fileSystemRepo.join(r, ".mdfriday"), l = this.fileSystemRepo.join(o, "config.json");
           await this.fileSystemRepo.writeFile(l, "{}", "utf-8");
           const c = this.fileSystemRepo.join(o, "user-data.json");
           await this.fileSystemRepo.writeFile(c, "{}", "utf-8"), log72.debug("Initialized configuration files", { configPath: l, userDataPath: c });
-          const h3 = new Authentication(i, false), u = new Workspace(i, a, /* @__PURE__ */ new Map(), h3, this.fileSystemRepo);
+          const h3 = new Authentication(r, false), u = new Workspace(r, a, /* @__PURE__ */ new Map(), h3, this.fileSystemRepo);
           return log72.info("Workspace created", { workspaceId: u.getId(), name: u.getName() }), u;
         }
         async save(e4) {
           const t28 = e4.getPath();
           log72.info("Saving workspace", { workspaceId: e4.getId(), path: t28 }), await this.workspaceRepo.saveWorkspaceMetadata(t28, e4.getMetadata().toJSON());
-          const i = e4.getProjectRegistry();
-          await this.workspaceRepo.saveProjectRegistry(t28, i);
+          const r = e4.getProjectRegistry();
+          await this.workspaceRepo.saveProjectRegistry(t28, r);
           for (const t29 of e4.getProjects()) await this.projectRepo.saveProjectMetadata(t29.getPath(), t29.getMetadata().toJSON());
           log72.info("Workspace saved", { workspaceId: e4.getId(), projectCount: e4.getProjectCount() });
         }
         async findWorkspaceRoot(e4) {
           let t28 = this.fileSystemRepo.resolvePathSync(e4);
-          const i = this.fileSystemRepo.parsePath(t28).root;
-          for (; t28 !== i; ) {
+          const r = this.fileSystemRepo.parsePath(t28).root;
+          for (; t28 !== r; ) {
             if (await this.workspaceRepo.isWorkspace(t28)) return t28;
             t28 = this.fileSystemRepo.dirname(t28);
           }
@@ -125828,35 +126204,35 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return this.workspaceRepo.isWorkspace(t28);
         }
         async loadOrFind(e4) {
-          const t28 = e4 || process.cwd(), i = await this.findWorkspaceRoot(t28);
-          if (!i) throw new Error('No workspace found. Run "mdf workspace init" to create one.');
-          return this.load(i);
+          const t28 = e4 || process.cwd(), r = await this.findWorkspaceRoot(t28);
+          if (!r) throw new Error('No workspace found. Run "mdf workspace init" to create one.');
+          return this.load(r);
         }
-        async createProject(e4, t28, i = {}) {
-          const r = generateProjectId(t28), s2 = this.fileSystemRepo.join(e4.getProjectsDir(), t28);
-          if (log72.info("Creating project", { projectId: r, name: t28, path: s2 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
-          const n3 = i.contentDir || "content", a = i.staticDir || "static", o = i.publishDir || "public";
+        async createProject(e4, t28, r = {}) {
+          const i = generateProjectId(t28), s2 = this.fileSystemRepo.join(e4.getProjectsDir(), t28);
+          if (log72.info("Creating project", { projectId: i, name: t28, path: s2 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
+          const n3 = r.contentDir || "content", a = r.staticDir || "static", o = r.publishDir || "public";
           await this.projectRepo.initProjectStructure(s2, n3, a, o);
-          const l = Date.now(), c = ProjectMetadata.create({ id: r, name: t28, type: i.type || "site", workspaceId: e4.getId(), createdAt: l, updatedAt: l }), h3 = i.theme || "https://gohugo.net/quartz-theme.zip?version=1.2", u = { baseURL: i.baseURL || "/", title: t28, contentDir: n3, publishDir: o, defaultContentLanguage: i.language || "en", module: { imports: [{ path: h3 }] } };
+          const l = Date.now(), c = ProjectMetadata.create({ id: i, name: t28, type: r.type || "site", workspaceId: e4.getId(), createdAt: l, updatedAt: l }), h3 = r.theme || "https://gohugo.net/quartz-theme.zip?version=1.2", u = { baseURL: r.baseURL || "/", title: t28, contentDir: n3, publishDir: o, defaultContentLanguage: r.language || "en", module: { imports: [{ path: h3 }] } };
           await this.projectRepo.saveProjectMetadata(s2, c.toJSON()), await this.projectRepo.saveProjectConfig(s2, u);
           const g = this.fileSystemRepo.join(s2, n3, "index.md");
           await this.projectRepo.createSampleContent(g, this.createSampleContent());
           const d = new Project(s2, c, this.fileSystemRepo);
-          return e4.addProject(d), await this.save(e4), log72.info("Project created", { projectId: r, name: t28 }), d;
+          return e4.addProject(d), await this.save(e4), log72.info("Project created", { projectId: i, name: t28 }), d;
         }
-        async deleteProject(e4, t28, i = {}) {
-          const r = e4.findProject(t28);
-          if (!r) throw new Error(`Project not found: ${t28}`);
-          log72.info("Deleting project", { projectId: r.getId(), name: r.getName(), deleteFiles: i.deleteFiles }), e4.removeProject(r.getId()), await this.save(e4), i.deleteFiles && (await this.projectRepo.deleteProjectFiles(r.getPath()), log72.info("Project files deleted", { projectId: r.getId() })), log72.info("Project deleted", { projectId: r.getId(), name: r.getName() });
+        async deleteProject(e4, t28, r = {}) {
+          const i = e4.findProject(t28);
+          if (!i) throw new Error(`Project not found: ${t28}`);
+          log72.info("Deleting project", { projectId: i.getId(), name: i.getName(), deleteFiles: r.deleteFiles }), e4.removeProject(i.getId()), await this.save(e4), r.deleteFiles && (await this.projectRepo.deleteProjectFiles(i.getPath()), log72.info("Project files deleted", { projectId: i.getId() })), log72.info("Project deleted", { projectId: i.getId(), name: i.getName() });
         }
-        async createProjectFromFolder(e4, t28, i, r = {}) {
+        async createProjectFromFolder(e4, t28, r, i = {}) {
           var _a11;
           if (!this.fileSystemRepo) throw new Error("FileSystemRepository is required to create project from folder");
           const s2 = generateProjectId(t28), n3 = this.fileSystemRepo.join(e4.getProjectsDir(), t28);
-          if (log72.info("Creating project from folder", { projectId: s2, name: t28, sourcePath: i, targetPath: n3 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
-          const a = await this.fileSystemRepo.scanFolderStructure(i), o = FolderStructure.fromScanResult(a);
+          if (log72.info("Creating project from folder", { projectId: s2, name: t28, sourcePath: r, targetPath: n3 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
+          const a = await this.fileSystemRepo.scanFolderStructure(r), o = FolderStructure.fromScanResult(a);
           let l;
-          log72.debug("Scanned folder structure", { isStructured: o.getIsStructured(), contentFolders: o.getContentFolderCount(), hasStatic: o.hasStaticFolder() }), o.getIsStructured() && 0 !== o.getContentFolderCount() ? l = o : (log72.info("No standard structure found, treating source folder as content directory"), l = FolderStructure.createSingleContent(i, i, r.language || "en")), await this.projectRepo.initProjectStructure(n3, "content", "static", "public");
+          log72.debug("Scanned folder structure", { isStructured: o.getIsStructured(), contentFolders: o.getContentFolderCount(), hasStatic: o.hasStaticFolder() }), o.getIsStructured() && 0 !== o.getContentFolderCount() ? l = o : (log72.info("No standard structure found, treating source folder as content directory"), l = FolderStructure.createSingleContent(r, r, i.language || "en")), await this.projectRepo.initProjectStructure(n3, "content", "static", "public");
           const c = [], h3 = [];
           for (const e5 of l.getContentFolders()) {
             const t29 = 0 === e5.weight ? this.fileSystemRepo.join(n3, "content") : this.fileSystemRepo.join(n3, `content.${e5.languageCode}`);
@@ -125869,12 +126245,12 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           }
           const g = (await this.fileSystemRepo.createSymlinks(c)).filter((e5) => !e5.success);
           if (g.length > 0) throw log72.error("Some symlinks failed to create", { failed: g }), new Error(`Failed to create symlinks: ${g.map((e5) => e5.error).join(", ")}`);
-          const d = Date.now(), p2 = ProjectMetadata.create({ id: s2, name: t28, type: r.type || "site", workspaceId: e4.getId(), createdAt: d, updatedAt: d, contentLinks: h3, staticLink: u }), m2 = r.theme || "https://gohugo.net/quartz-theme.zip?version=1.2", f3 = { baseURL: "/", title: t28, contentDir: "content", publishDir: "public", defaultContentLanguage: ((_a11 = l.getDefaultContentFolder()) == null ? void 0 : _a11.languageCode) || r.language || "en", module: { imports: [{ path: m2 }] } };
+          const d = Date.now(), p2 = ProjectMetadata.create({ id: s2, name: t28, type: i.type || "site", workspaceId: e4.getId(), createdAt: d, updatedAt: d, contentLinks: h3, staticLink: u }), m2 = i.theme || "https://gohugo.net/quartz-theme.zip?version=1.2", f3 = { baseURL: "/", title: t28, contentDir: "content", publishDir: "public", defaultContentLanguage: ((_a11 = l.getDefaultContentFolder()) == null ? void 0 : _a11.languageCode) || i.language || "en", module: { imports: [{ path: m2 }] } };
           if (l.hasContentFolders()) {
             const e5 = {};
             for (const t29 of l.getContentFolders()) {
-              const i2 = 0 === t29.weight ? "content" : `content.${t29.languageCode}`;
-              e5[t29.languageCode] = { contentDir: i2, weight: t29.weight + 1 };
+              const r3 = 0 === t29.weight ? "content" : `content.${t29.languageCode}`;
+              e5[t29.languageCode] = { contentDir: r3, weight: t29.weight + 1 };
             }
             f3.languages = e5;
           }
@@ -125882,37 +126258,37 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           const y = new Project(n3, p2, this.fileSystemRepo);
           return e4.addProject(y), await this.save(e4), log72.info("Project created from folder", { projectId: s2, name: t28, linkedContentFolders: h3.length, hasStaticLink: null !== u }), y;
         }
-        async createProjectFromFile(e4, t28, i, r = {}) {
+        async createProjectFromFile(e4, t28, r, i = {}) {
           if (!this.fileSystemRepo) throw new Error("FileSystemRepository is required to create project from file");
           const s2 = generateProjectId(t28), n3 = this.fileSystemRepo.join(e4.getProjectsDir(), t28);
-          if (log72.info("Creating project from file", { projectId: s2, name: t28, sourceFile: i, targetPath: n3 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
-          if (!await this.fileSystemRepo.exists(i)) throw new Error(`Source file not found: ${i}`);
-          if (!(await this.fileSystemRepo.stat(i)).isFile()) throw new Error(`Source path is not a file: ${i}`);
+          if (log72.info("Creating project from file", { projectId: s2, name: t28, sourceFile: r, targetPath: n3 }), e4.findProject(t28)) throw new Error(`Project ${t28} already exists`);
+          if (!await this.fileSystemRepo.exists(r)) throw new Error(`Source file not found: ${r}`);
+          if (!(await this.fileSystemRepo.stat(r)).isFile()) throw new Error(`Source path is not a file: ${r}`);
           await this.projectRepo.initProjectStructure(n3, "content", "static", "public");
           const a = this.fileSystemRepo.join(n3, "content"), o = this.fileSystemRepo.join(a, "index.md");
           let l = false, c = null;
           try {
             await this.fileSystemRepo.exists(a) && await this.fileSystemRepo.remove(a, true), await this.fileSystemRepo.createDirectory(a, true);
-            const e5 = await this.fileSystemRepo.createSymlink(i, o);
+            const e5 = await this.fileSystemRepo.createSymlink(r, o);
             if (!e5.success) throw new Error(e5.error || "Failed to create symlink");
-            l = true, c = { source: i, target: o }, log72.info("Created symlink for file", { source: i, target: o });
+            l = true, c = { source: r, target: o }, log72.info("Created symlink for file", { source: r, target: o });
           } catch (e5) {
             log72.warn("Symlink creation failed, falling back to file copy", { error: e5 });
             try {
-              await this.fileSystemRepo.copyFile(i, o), l = false, c = { source: i, target: o }, log72.info("Copied file as fallback", { source: i, target: o, isSymlink: false });
+              await this.fileSystemRepo.copyFile(r, o), l = false, c = { source: r, target: o }, log72.info("Copied file as fallback", { source: r, target: o, isSymlink: false });
             } catch (e6) {
               throw log72.error("Failed to copy file", e6), new Error(`Failed to create file link or copy: ${e6.message}`);
             }
           }
-          const h3 = Date.now(), u = ProjectMetadata.create({ id: s2, name: t28, type: r.type || "site", workspaceId: e4.getId(), createdAt: h3, updatedAt: h3, fileLink: c ? { sourcePath: c.source, targetPath: c.target, isSymlink: l } : null }), g = r.theme || "https://gohugo.net/note.zip?version=1.2", d = { baseURL: "/", title: t28, contentDir: "content", publishDir: "public", defaultContentLanguage: r.language || "en", module: { imports: [{ path: g }] } };
+          const h3 = Date.now(), u = ProjectMetadata.create({ id: s2, name: t28, type: i.type || "site", workspaceId: e4.getId(), createdAt: h3, updatedAt: h3, fileLink: c ? { sourcePath: c.source, targetPath: c.target, isSymlink: l } : null }), g = i.theme || "https://gohugo.net/note.zip?version=1.2", d = { baseURL: "/", title: t28, contentDir: "content", publishDir: "public", defaultContentLanguage: i.language || "en", module: { imports: [{ path: g }] } };
           await this.projectRepo.saveProjectMetadata(n3, u.toJSON()), await this.projectRepo.saveProjectConfig(n3, d);
           const p2 = new Project(n3, u, this.fileSystemRepo);
-          return e4.addProject(p2), await this.save(e4), log72.info("Project created from file", { projectId: s2, name: t28, sourceFile: i, useSymlink: l }), p2;
+          return e4.addProject(p2), await this.save(e4), log72.info("Project created from file", { projectId: s2, name: t28, sourceFile: r, useSymlink: l }), p2;
         }
         async loadProject(e4) {
           const t28 = this.fileSystemRepo.resolvePathSync(e4);
           if (!await this.projectRepo.isProject(t28)) throw new Error(`No project found at ${t28}`);
-          const i = await this.projectRepo.loadProjectMetadata(t28), { ProjectMetadata: r } = await Promise.resolve().then(() => (init_project_metadata(), project_metadata_exports)), s2 = r.create(i);
+          const r = await this.projectRepo.loadProjectMetadata(t28), { ProjectMetadata: i } = await Promise.resolve().then(() => (init_project_metadata(), project_metadata_exports)), s2 = i.create(r);
           return new Project(t28, s2, this.fileSystemRepo);
         }
         async saveProject(e4) {
@@ -125921,31 +126297,31 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
         }
         async findProjectRoot(e4) {
           let t28 = this.fileSystemRepo.resolvePathSync(e4);
-          const i = this.fileSystemRepo.parsePath(t28).root;
-          for (; t28 !== i; ) {
+          const r = this.fileSystemRepo.parsePath(t28).root;
+          for (; t28 !== r; ) {
             if (await this.projectRepo.isProject(t28)) return t28;
             t28 = this.fileSystemRepo.dirname(t28);
           }
           return null;
         }
         async createSnapshot(e4, t28) {
-          const i = e4.getPath(), r = await e4.getPublishDir(), s2 = `${(/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-").split(".")[0]}Z`;
+          const r = e4.getPath(), i = await e4.getPublishDir(), s2 = `${(/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-").split(".")[0]}Z`;
           log72.info("Creating snapshot", { projectId: e4.getId(), snapshotId: s2 });
-          const n3 = await this.snapshotRepo.createSnapshot(i, s2, r);
+          const n3 = await this.snapshotRepo.createSnapshot(r, s2, i);
           if (t28 && t28 !== n3.id) {
             if (!this.fileSystemRepo) throw new Error("FileSystemRepository is required to update snapshot metadata");
             n3.name = t28;
-            const i2 = this.fileSystemRepo.join(e4.getPath(), ".mdfriday", "snapshots", `${n3.id}.json`);
-            await this.fileSystemRepo.writeFile(i2, JSON.stringify(n3, null, 2));
+            const r3 = this.fileSystemRepo.join(e4.getPath(), ".mdfriday", "snapshots", `${n3.id}.json`);
+            await this.fileSystemRepo.writeFile(r3, JSON.stringify(n3, null, 2));
           }
           return log72.info("Snapshot created", { snapshotId: s2, size: n3.size, fileCount: n3.fileCount }), n3;
         }
         async listSnapshots(e4) {
           return (await this.snapshotRepo.listSnapshots(e4.getPath())).sort((e5, t28) => t28.timestamp - e5.timestamp);
         }
-        async restoreSnapshot(e4, t28, i) {
-          const r = i || await e4.getPublishDir();
-          await this.snapshotRepo.restoreSnapshot(e4.getPath(), t28, r);
+        async restoreSnapshot(e4, t28, r) {
+          const i = r || await e4.getPublishDir();
+          await this.snapshotRepo.restoreSnapshot(e4.getPath(), t28, i);
         }
         async deleteSnapshot(e4, t28) {
           await this.snapshotRepo.deleteSnapshot(e4.getPath(), t28);
@@ -125954,67 +126330,67 @@ ${this.renderFragments(e5.children, t28)}    </${i}>`), r += "</li>", r;
           return await this.snapshotRepo.getSnapshot(e4.getPath(), t28);
         }
         createIdentityStorage(e4) {
-          const t28 = e4.getPath(), i = e4.getAuthentication(), r = this.fileSystemRepo;
-          if (!r) throw new Error("FileSystemRepository is required for identity storage");
+          const t28 = e4.getPath(), r = e4.getAuthentication(), i = this.fileSystemRepo;
+          if (!i) throw new Error("FileSystemRepository is required for identity storage");
           return { async saveUserData(e5) {
-            const s2 = r.join(t28, ".mdfriday", "user-data.json");
-            await r.createDirectory(r.dirname(s2), true);
+            const s2 = i.join(t28, ".mdfriday", "user-data.json");
+            await i.createDirectory(i.dirname(s2), true);
             const n3 = {};
-            e5.serverConfig && (n3.serverConfig = e5.serverConfig.toJSON()), e5.token && (n3.token = e5.token.toJSON(), i.markAuthExists()), e5.license && (n3.license = e5.license.toJSON()), e5.syncConfig && (n3.syncConfig = e5.syncConfig.toJSON()), e5.email && (n3.email = e5.email), await r.writeFile(s2, JSON.stringify(n3, null, 2));
+            e5.serverConfig && (n3.serverConfig = e5.serverConfig.toJSON()), e5.token && (n3.token = e5.token.toJSON(), r.markAuthExists()), e5.license && (n3.license = e5.license.toJSON()), e5.syncConfig && (n3.syncConfig = e5.syncConfig.toJSON()), e5.email && (n3.email = e5.email), await i.writeFile(s2, JSON.stringify(n3, null, 2));
           }, async loadUserData() {
-            const e5 = r.join(t28, ".mdfriday", "user-data.json");
+            const e5 = i.join(t28, ".mdfriday", "user-data.json");
             try {
-              const t29 = await r.readFile(e5, "utf-8"), i2 = JSON.parse(t29), { Token: s2, ServerConfig: n3, License: a, SyncConfig: o } = await Promise.resolve().then(() => (init_identity2(), identity_exports)), l = {};
-              return i2.serverConfig && (l.serverConfig = n3.create(i2.serverConfig.apiUrl, i2.serverConfig.websiteUrl)), i2.token && (l.token = s2.create(i2.token.token || i2.token.value, i2.token.expiresAt)), i2.license && (l.license = a.create(i2.license.key, i2.license.plan, i2.license.expiresAt, i2.license.features, i2.license.activatedAt, i2.license.activated, i2.license.firstTime)), i2.syncConfig && (l.syncConfig = o.fromJSON(i2.syncConfig)), i2.email && (l.email = i2.email), l;
+              const t29 = await i.readFile(e5, "utf-8"), r3 = JSON.parse(t29), { Token: s2, ServerConfig: n3, License: a, SyncConfig: o } = await Promise.resolve().then(() => (init_identity2(), identity_exports)), l = {};
+              return r3.serverConfig && (l.serverConfig = n3.create(r3.serverConfig.apiUrl, r3.serverConfig.websiteUrl)), r3.token && (l.token = s2.create(r3.token.token || r3.token.value, r3.token.expiresAt)), r3.license && (l.license = a.create(r3.license.key, r3.license.plan, r3.license.expiresAt, r3.license.features, r3.license.activatedAt, r3.license.activated, r3.license.firstTime)), r3.syncConfig && (l.syncConfig = o.fromJSON(r3.syncConfig)), r3.email && (l.email = r3.email), l;
             } catch (e6) {
               return null;
             }
           }, async clearUserData() {
-            const e5 = r.join(t28, ".mdfriday", "user-data.json");
+            const e5 = i.join(t28, ".mdfriday", "user-data.json");
             try {
-              await r.unlink(e5);
+              await i.unlink(e5);
             } catch (e6) {
             }
-            i.markAuthDeleted();
+            r.markAuthDeleted();
           } };
         }
         async setupBaseURLStructure(e4) {
           if (!this.fileSystemRepo) throw new Error("FileSystemRepository is required for baseURL structure");
-          const t28 = await e4.getBaseURL(), i = e4.parseBaseURLPath(t28), r = e4.getPath(), s2 = this.fileSystemRepo.join(r, "public");
-          if (i.isRoot) return log72.debug("baseURL is root, no structure needed"), { serverRoot: s2, baseURL: "/", symlinkCreated: false };
-          log72.info("Creating baseURL structure in public/", { baseURL: t28, pathParts: i.pathParts });
+          const t28 = await e4.getBaseURL(), r = e4.parseBaseURLPath(t28), i = e4.getPath(), s2 = this.fileSystemRepo.join(i, "public");
+          if (r.isRoot) return log72.debug("baseURL is root, no structure needed"), { serverRoot: s2, baseURL: "/", symlinkCreated: false };
+          log72.info("Creating baseURL structure in public/", { baseURL: t28, pathParts: r.pathParts });
           let n3 = s2;
-          for (const e5 of i.parentParts) n3 = this.fileSystemRepo.join(n3, e5), await this.fileSystemRepo.exists(n3) || (await this.fileSystemRepo.createDirectory(n3, false), log72.debug(`Created parent directory: ${e5}`));
-          const a = this.fileSystemRepo.join(n3, i.finalDirName);
+          for (const e5 of r.parentParts) n3 = this.fileSystemRepo.join(n3, e5), await this.fileSystemRepo.exists(n3) || (await this.fileSystemRepo.createDirectory(n3, false), log72.debug(`Created parent directory: ${e5}`));
+          const a = this.fileSystemRepo.join(n3, r.finalDirName);
           await this.fileSystemRepo.exists(a) && (await this.fileSystemRepo.remove(a, true), log72.debug(`Removed existing symlink: ${a}`));
-          const o = await this.fileSystemRepo.createSymlink(i.relativeToPublic, a);
-          if (!o.success) throw log72.error("Failed to create baseURL symlink", { target: i.relativeToPublic, link: a, error: o.error }), new Error(`Failed to create baseURL structure: ${o.error}`);
-          return log72.info("baseURL structure created successfully", { symlinkPath: i.pathParts.join("/"), target: i.relativeToPublic }), e4.updateBaseURLStructure({ baseURL: t28, createdAt: Date.now(), pathParts: i.pathParts }), await this.projectRepo.saveProjectMetadata(e4.getPath(), e4.getMetadata().toJSON()), { serverRoot: s2, baseURL: t28, symlinkCreated: true };
+          const o = await this.fileSystemRepo.createSymlink(r.relativeToPublic, a);
+          if (!o.success) throw log72.error("Failed to create baseURL symlink", { target: r.relativeToPublic, link: a, error: o.error }), new Error(`Failed to create baseURL structure: ${o.error}`);
+          return log72.info("baseURL structure created successfully", { symlinkPath: r.pathParts.join("/"), target: r.relativeToPublic }), e4.updateBaseURLStructure({ baseURL: t28, createdAt: Date.now(), pathParts: r.pathParts }), await this.projectRepo.saveProjectMetadata(e4.getPath(), e4.getMetadata().toJSON()), { serverRoot: s2, baseURL: t28, symlinkCreated: true };
         }
         async cleanBaseURLStructure(e4) {
           if (!this.fileSystemRepo) return;
           const t28 = e4.getBaseURLStructure();
           if (!t28 || 0 === t28.pathParts.length) return;
-          const i = e4.getPath(), r = this.fileSystemRepo.join(i, "public");
+          const r = e4.getPath(), i = this.fileSystemRepo.join(r, "public");
           log72.info("Cleaning baseURL structure in public/", { pathParts: t28.pathParts });
           for (let e5 = t28.pathParts.length; e5 > 0; e5--) {
-            const i2 = this.fileSystemRepo.join(r, ...t28.pathParts.slice(0, e5));
-            if (await this.fileSystemRepo.exists(i2) && (await this.fileSystemRepo.remove(i2, true), log72.debug(`Removed: ${t28.pathParts.slice(0, e5).join("/")}`)), e5 > 1) {
-              const i3 = this.fileSystemRepo.join(r, ...t28.pathParts.slice(0, e5 - 1));
-              if (await this.fileSystemRepo.exists(i3) && (await this.fileSystemRepo.readDirectory(i3)).length > 0) break;
+            const r3 = this.fileSystemRepo.join(i, ...t28.pathParts.slice(0, e5));
+            if (await this.fileSystemRepo.exists(r3) && (await this.fileSystemRepo.remove(r3, true), log72.debug(`Removed: ${t28.pathParts.slice(0, e5).join("/")}`)), e5 > 1) {
+              const r4 = this.fileSystemRepo.join(i, ...t28.pathParts.slice(0, e5 - 1));
+              if (await this.fileSystemRepo.exists(r4) && (await this.fileSystemRepo.readDirectory(r4)).length > 0) break;
             }
           }
           e4.updateBaseURLStructure(null), await this.projectRepo.saveProjectMetadata(e4.getPath(), e4.getMetadata().toJSON()), log72.info("baseURL structure cleaned");
         }
         async ensureBaseURLStructure(e4) {
-          const t28 = await e4.getBaseURL(), i = e4.getBaseURLStructure();
-          return i && i.baseURL === t28 ? { serverRoot: this.fileSystemRepo.join(e4.getPath(), "public"), baseURL: t28, recreated: false } : (i && (log72.info("baseURL changed, recreating structure", { old: i.baseURL, new: t28 }), await this.cleanBaseURLStructure(e4)), { ...await this.setupBaseURLStructure(e4), recreated: true });
+          const t28 = await e4.getBaseURL(), r = e4.getBaseURLStructure();
+          return r && r.baseURL === t28 ? { serverRoot: this.fileSystemRepo.join(e4.getPath(), "public"), baseURL: t28, recreated: false } : (r && (log72.info("baseURL changed, recreating structure", { old: r.baseURL, new: t28 }), await this.cleanBaseURLStructure(e4)), { ...await this.setupBaseURLStructure(e4), recreated: true });
         }
         async scanFolderStructure(e4) {
           if (!this.fileSystemRepo) throw new Error("FileSystemRepository is required to scan folder structure");
           log72.info("Scanning folder structure", { path: e4 });
-          const t28 = await this.fileSystemRepo.scanFolderStructure(e4), i = FolderStructure.fromScanResult(t28);
-          return log72.debug("Folder structure scanned", { isStructured: i.getIsStructured(), contentFolders: i.getContentFolderCount(), hasStatic: i.hasStaticFolder(), languages: i.getSupportedLanguages() }), i;
+          const t28 = await this.fileSystemRepo.scanFolderStructure(e4), r = FolderStructure.fromScanResult(t28);
+          return log72.debug("Folder structure scanned", { isStructured: r.getIsStructured(), contentFolders: r.getContentFolderCount(), hasStatic: r.hasStaticFolder(), languages: r.getSupportedLanguages() }), r;
         }
         createSampleContent() {
           return `---
@@ -126063,68 +126439,68 @@ This is a sample page. Edit this file to get started!
         async findWorkspaceRoot(e4) {
           return this.workspaceFactory.findWorkspaceRoot(e4 || process.cwd());
         }
-        async createProject(e4, t28, i) {
-          return this.workspaceFactory.createProject(e4, t28, i);
+        async createProject(e4, t28, r) {
+          return this.workspaceFactory.createProject(e4, t28, r);
         }
-        async createProjectFromFolder(e4, t28, i, r) {
-          return this.workspaceFactory.createProjectFromFolder(e4, t28, i, r);
+        async createProjectFromFolder(e4, t28, r, i) {
+          return this.workspaceFactory.createProjectFromFolder(e4, t28, r, i);
         }
-        async createProjectFromFile(e4, t28, i, r) {
-          return this.workspaceFactory.createProjectFromFile(e4, t28, i, r);
+        async createProjectFromFile(e4, t28, r, i) {
+          return this.workspaceFactory.createProjectFromFile(e4, t28, r, i);
         }
-        async deleteProject(e4, t28, i) {
-          return this.workspaceFactory.deleteProject(e4, t28, i);
+        async deleteProject(e4, t28, r) {
+          return this.workspaceFactory.deleteProject(e4, t28, r);
         }
         async loadWorkspaceAndProject(e4, t28) {
-          const i = await this.loadWorkspace(t28);
-          let r;
+          const r = await this.loadWorkspace(t28);
+          let i;
           if (e4) {
-            if (r = i.findProject(e4), !r) {
-              const t29 = i.getProjects(), s2 = this.workspaceFactory.fileSystemRepo;
+            if (i = r.findProject(e4), !i) {
+              const t29 = r.getProjects(), s2 = this.workspaceFactory.fileSystemRepo;
               if (s2) {
-                const i2 = s2.resolvePathSync(e4);
+                const r3 = s2.resolvePathSync(e4);
                 for (const e5 of t29) {
                   const t30 = e5.getPath();
-                  if (i2.startsWith(t30) || t30 === i2) {
-                    r = e5;
+                  if (r3.startsWith(t30) || t30 === r3) {
+                    i = e5;
                     break;
                   }
                   try {
-                    const n3 = await s2.resolvePath(i2), a = await s2.resolvePath(t30);
+                    const n3 = await s2.resolvePath(r3), a = await s2.resolvePath(t30);
                     if (n3.startsWith(a) || a === n3) {
-                      r = e5;
+                      i = e5;
                       break;
                     }
                   } catch (e6) {
                   }
                 }
-              } else r = void 0;
-              if (!r) throw new Error(`Project not found: ${e4}`);
+              } else i = void 0;
+              if (!i) throw new Error(`Project not found: ${e4}`);
             }
           } else {
-            const e5 = process.cwd(), t29 = i.getProjects(), s2 = this.workspaceFactory.fileSystemRepo;
-            if (s2) for (const i2 of t29) {
-              const t30 = i2.getPath();
+            const e5 = process.cwd(), t29 = r.getProjects(), s2 = this.workspaceFactory.fileSystemRepo;
+            if (s2) for (const r3 of t29) {
+              const t30 = r3.getPath();
               if (e5.startsWith(t30)) {
-                r = i2;
+                i = r3;
                 break;
               }
               try {
                 const n3 = await s2.resolvePath(e5), a = await s2.resolvePath(t30);
                 if (n3.startsWith(a)) {
-                  r = i2;
+                  i = r3;
                   break;
                 }
               } catch (e6) {
               }
             }
-            if (r || 1 !== t29.length || (r = t29[0]), !r) {
+            if (i || 1 !== t29.length || (i = t29[0]), !i) {
               if (0 === t29.length) throw new Error("No projects found in workspace");
               throw new Error(`Project not found in current directory: ${e5}
 Please specify a project name with --project <name>`);
             }
           }
-          return log73.debug("Loaded workspace and project", { workspaceId: i.getId(), projectId: r.getId(), projectName: r.getName() }), { workspace: i, project: r };
+          return log73.debug("Loaded workspace and project", { workspaceId: r.getId(), projectId: i.getId(), projectName: i.getName() }), { workspace: r, project: i };
         }
         async createSnapshot(e4, t28) {
           return this.workspaceFactory.createSnapshot(e4, t28);
@@ -126132,8 +126508,8 @@ Please specify a project name with --project <name>`);
         async listSnapshots(e4) {
           return this.workspaceFactory.listSnapshots(e4);
         }
-        async restoreSnapshot(e4, t28, i) {
-          return this.workspaceFactory.restoreSnapshot(e4, t28, i);
+        async restoreSnapshot(e4, t28, r) {
+          return this.workspaceFactory.restoreSnapshot(e4, t28, r);
         }
         async deleteSnapshot(e4, t28) {
           return this.workspaceFactory.deleteSnapshot(e4, t28);
@@ -126171,21 +126547,21 @@ Please specify a project name with --project <name>`);
     } });
     init_publisher3 = __esm2({ "internal/domain/publish/entity/publisher.ts"() {
       init_log(), log74 = getDomainLogger("publisher-aggregator", { component: "domain" }), PublisherAggregator = class {
-        constructor(e4, t28, i, r, s2) {
-          this.projectId = e4, this.projectPath = t28, this.config = i, this.strategy = r, this.manifestRepo = s2;
+        constructor(e4, t28, r, i, s2) {
+          this.projectId = e4, this.projectPath = t28, this.config = r, this.strategy = i, this.manifestRepo = s2;
         }
         async publish(e4, t28) {
           var _a11;
-          const i = Date.now(), r = false !== (t28 == null ? void 0 : t28.incremental) && !(t28 == null ? void 0 : t28.force);
-          log74.info(`Publishing project: ${this.projectId}`, { type: this.config.type, incremental: r, force: t28 == null ? void 0 : t28.force });
+          const r = Date.now(), i = false !== (t28 == null ? void 0 : t28.incremental) && !(t28 == null ? void 0 : t28.force);
+          log74.info(`Publishing project: ${this.projectId}`, { type: this.config.type, incremental: i, force: t28 == null ? void 0 : t28.force });
           try {
             (_a11 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a11.call(t28, { phase: "scanning", percentage: 5, message: "Scanning files..." });
             const s2 = await this.manifestRepo.generateManifest(this.projectId, e4, this.config.type, this.getRemoteConfig());
             log74.debug(`Scanned ${s2.getFileCount()} files`);
-            const n3 = r ? await this.manifestRepo.loadManifest(this.projectPath, this.config.type) : null;
+            const n3 = i ? await this.manifestRepo.loadManifest(this.projectPath, this.config.type) : null;
             let a = [], o = [];
             if (n3) {
-              if (a = n3.getChangedFiles(s2), o = n3.getDeletedFiles(s2), log74.info(`Incremental: ${a.length} changed, ${o.length} deleted`), 0 === a.length && 0 === o.length) return log74.info("No changes detected"), { success: true, filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - i };
+              if (a = n3.getChangedFiles(s2), o = n3.getDeletedFiles(s2), log74.info(`Incremental: ${a.length} changed, ${o.length} deleted`), 0 === a.length && 0 === o.length) return log74.info("No changes detected"), { success: true, filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - r };
             } else a = s2.getAllFiles(), log74.info(`Full publish: ${a.length} files`);
             const l = await this.strategy.publish(e4, { ...t28, incremental: null !== n3 });
             return l.success && (await this.manifestRepo.saveManifest(this.projectPath, s2), log74.info("Manifest saved")), l;
@@ -126249,20 +126625,20 @@ Please specify a project name with --project <name>`);
         }
         getChangedFiles(e5) {
           const t28 = [];
-          for (const [i, r] of e5.files.entries()) {
-            const e6 = this.files.get(i);
-            e6 && e6.hash === r.hash || t28.push(i);
+          for (const [r, i] of e5.files.entries()) {
+            const e6 = this.files.get(r);
+            e6 && e6.hash === i.hash || t28.push(r);
           }
           return t28;
         }
         getDeletedFiles(e5) {
           const t28 = [];
-          for (const i of this.files.keys()) e5.files.has(i) || t28.push(i);
+          for (const r of this.files.keys()) e5.files.has(r) || t28.push(r);
           return t28;
         }
         toJSON() {
           const e5 = {};
-          for (const [t28, i] of this.files.entries()) e5[t28] = i;
+          for (const [t28, r] of this.files.entries()) e5[t28] = r;
           return { projectId: this.projectId, publishMethod: this.publishMethod, lastPublishTime: this.lastPublishTime, remoteConfig: this.remoteConfig, files: e5 };
         }
         static fromJSON(t28) {
@@ -126300,34 +126676,34 @@ Please specify a project name with --project <name>`);
           return this.hasMDFriday() ? this.mdfriday : null;
         }
         static fromGlobalConfig(t28) {
-          const i = (t28 == null ? void 0 : t28.publish) || {};
-          return new e4({ ftp: i.ftp, netlify: i.netlify, mdfriday: i.mdfriday });
+          const r = (t28 == null ? void 0 : t28.publish) || {};
+          return new e4({ ftp: r.ftp, netlify: r.netlify, mdfriday: r.mdfriday });
         }
-        merge(t28, i) {
-          const r = {};
-          switch (this.ftp && (r.ftp = this.ftp), this.netlify && (r.netlify = this.netlify), this.mdfriday && (r.mdfriday = this.mdfriday), i) {
+        merge(t28, r) {
+          const i = {};
+          switch (this.ftp && (i.ftp = this.ftp), this.netlify && (i.netlify = this.netlify), this.mdfriday && (i.mdfriday = this.mdfriday), r) {
             case "ftp":
-              this.ftp && (r.ftp = { ...this.ftp, ...t28 });
+              this.ftp && (i.ftp = { ...this.ftp, ...t28 });
               break;
             case "netlify":
-              this.netlify && (r.netlify = { ...this.netlify, ...t28 });
+              this.netlify && (i.netlify = { ...this.netlify, ...t28 });
               break;
             case "mdfriday":
-              this.mdfriday && (r.mdfriday = { ...this.mdfriday, ...t28 });
+              this.mdfriday && (i.mdfriday = { ...this.mdfriday, ...t28 });
           }
-          return new e4(r);
+          return new e4(i);
         }
       };
     } });
     init_ftp_publisher = __esm2({ "internal/domain/publish/value-object/ftp-publisher.ts"() {
       init_log(), log75 = getDomainLogger("ftp-publisher", { component: "domain" }), FtpPublisher = class {
-        constructor(e4, t28, i, r) {
-          this.config = e4, this.manifestRepo = t28, this.projectId = i, this.projectPath = r;
+        constructor(e4, t28, r, i) {
+          this.config = e4, this.manifestRepo = t28, this.projectId = r, this.projectPath = i;
         }
         async publish(e4, t28) {
           var _a11, _b4, _c2, _d, _e, _f;
-          const i = Date.now();
-          let r = 0, s2 = 0;
+          const r = Date.now();
+          let i = 0, s2 = 0;
           const n3 = new ftp.Client();
           n3.ftp.ipFamily = 4, n3.ftp.verbose = false;
           try {
@@ -126342,8 +126718,8 @@ Please specify a project name with --project <name>`);
             let h3 = 0;
             (_b4 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _b4.call(t28, { phase: "uploading", percentage: 10, message: `Uploading ${o.length} file(s)...`, filesCompleted: 0, filesTotal: c });
             const u = /* @__PURE__ */ new Set();
-            for (const i2 of o) {
-              const a2 = import_path19.default.join(e4, i2), o2 = this.config.remotePath && "/" !== this.config.remotePath ? `${this.config.remotePath}/${i2}`.replace(/\\/g, "/") : i2.replace(/\\/g, "/");
+            for (const r3 of o) {
+              const a2 = import_path19.default.join(e4, r3), o2 = this.config.remotePath && "/" !== this.config.remotePath ? `${this.config.remotePath}/${r3}`.replace(/\\/g, "/") : r3.replace(/\\/g, "/");
               try {
                 const e5 = import_path19.default.dirname(o2).replace(/\\/g, "/");
                 if (e5 && "." !== e5 && "/" !== e5 && !u.has(e5)) try {
@@ -126351,29 +126727,29 @@ Please specify a project name with --project <name>`);
                 } catch (t29) {
                   log75.warn(`Failed to ensure directory ${e5}`, t29), log75.warn("Will attempt upload anyway...");
                 }
-                await this.uploadFileWithRetry(n3, a2, o2, i2, 2), s2 += (await import_fs3.promises.stat(a2)).size, r++, h3++;
+                await this.uploadFileWithRetry(n3, a2, o2, r3, 2), s2 += (await import_fs3.promises.stat(a2)).size, i++, h3++;
                 const l2 = 10 + Math.floor(h3 / c * 80);
-                (_c2 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _c2.call(t28, { phase: "uploading", percentage: l2, message: "Uploading files...", currentFile: i2, filesCompleted: h3, filesTotal: c, bytesTransferred: s2 }), log75.debug(`Uploaded: ${i2}`);
+                (_c2 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _c2.call(t28, { phase: "uploading", percentage: l2, message: "Uploading files...", currentFile: r3, filesCompleted: h3, filesTotal: c, bytesTransferred: s2 }), log75.debug(`Uploaded: ${r3}`);
               } catch (e5) {
-                throw log75.error(`Failed to upload: ${i2}`, e5), new Error(`Failed to upload ${i2}: ${e5.message}`);
+                throw log75.error(`Failed to upload: ${r3}`, e5), new Error(`Failed to upload ${r3}: ${e5.message}`);
               }
             }
             if (l.length > 0) {
               (_d = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _d.call(t28, { phase: "uploading", percentage: 90, message: `Deleting ${l.length} file(s)...`, filesCompleted: h3, filesTotal: c });
               for (const e5 of l) {
-                const i2 = this.config.remotePath && "/" !== this.config.remotePath ? `${this.config.remotePath}/${e5}`.replace(/\\/g, "/") : e5.replace(/\\/g, "/");
+                const r3 = this.config.remotePath && "/" !== this.config.remotePath ? `${this.config.remotePath}/${e5}`.replace(/\\/g, "/") : e5.replace(/\\/g, "/");
                 try {
-                  await n3.remove(i2), h3++, (_e = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _e.call(t28, { phase: "uploading", percentage: 90 + Math.floor((h3 - o.length) / l.length * 10), message: "Deleting files...", currentFile: e5, filesCompleted: h3, filesTotal: c }), log75.debug(`Deleted: ${e5}`);
+                  await n3.remove(r3), h3++, (_e = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _e.call(t28, { phase: "uploading", percentage: 90 + Math.floor((h3 - o.length) / l.length * 10), message: "Deleting files...", currentFile: e5, filesCompleted: h3, filesTotal: c }), log75.debug(`Deleted: ${e5}`);
                 } catch (t29) {
                   log75.warn(`Failed to delete: ${e5}`, t29);
                 }
               }
             }
             (_f = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _f.call(t28, { phase: "complete", percentage: 100, message: "Upload complete!", filesCompleted: h3, filesTotal: c });
-            const g = Date.now() - i;
-            return { success: true, url: `${this.config.secure ? "ftps" : "ftp"}://${this.config.host}${this.config.remotePath}`, filesUploaded: r, bytesTransferred: s2, duration: g };
+            const g = Date.now() - r;
+            return { success: true, url: `${this.config.secure ? "ftps" : "ftp"}://${this.config.host}${this.config.remotePath}`, filesUploaded: i, bytesTransferred: s2, duration: g };
           } catch (e5) {
-            return log75.error("FTP publish failed", e5), { success: false, filesUploaded: r, bytesTransferred: s2, duration: Date.now() - i, error: e5.message };
+            return log75.error("FTP publish failed", e5), { success: false, filesUploaded: i, bytesTransferred: s2, duration: Date.now() - r, error: e5.message };
           } finally {
             n3.close();
           }
@@ -126407,18 +126783,18 @@ Please specify a project name with --project <name>`);
             }
           }
         }
-        async uploadFileWithRetry(e4, t28, i, r, s2 = 2) {
+        async uploadFileWithRetry(e4, t28, r, i, s2 = 2) {
           let n3 = null;
           for (let a = 1; a <= s2; a++) try {
             try {
-              await e4.remove(i);
+              await e4.remove(r);
             } catch (e5) {
             }
-            return void await e4.uploadFrom(t28, i);
+            return void await e4.uploadFrom(t28, r);
           } catch (e5) {
-            if (n3 = e5, !(a < s2)) throw log75.error(`All upload attempts failed for ${r}`), n3;
+            if (n3 = e5, !(a < s2)) throw log75.error(`All upload attempts failed for ${i}`), n3;
             {
-              log75.warn(`Upload attempt ${a}/${s2} failed for ${r}, retrying...`), log75.warn(`Error: ${n3.message}`);
+              log75.warn(`Upload attempt ${a}/${s2} failed for ${i}, retrying...`), log75.warn(`Error: ${n3.message}`);
               const e6 = 1e3 * a;
               await new Promise((t29) => setTimeout(t29, e6));
             }
@@ -126426,39 +126802,39 @@ Please specify a project name with --project <name>`);
           throw n3 || new Error("Upload failed with unknown error");
         }
         async getFileLists(e4, t28) {
-          const i = await this.manifestRepo.generateManifest(this.projectId, e4, "ftp", { host: this.config.host, remotePath: this.config.remotePath });
-          if (!t28) return { changedFiles: i.getAllFiles(), deletedFiles: [] };
-          const r = await this.manifestRepo.loadManifest(this.projectPath, "ftp");
-          return r ? { changedFiles: r.getChangedFiles(i), deletedFiles: r.getDeletedFiles(i) } : { changedFiles: i.getAllFiles(), deletedFiles: [] };
+          const r = await this.manifestRepo.generateManifest(this.projectId, e4, "ftp", { host: this.config.host, remotePath: this.config.remotePath });
+          if (!t28) return { changedFiles: r.getAllFiles(), deletedFiles: [] };
+          const i = await this.manifestRepo.loadManifest(this.projectPath, "ftp");
+          return i ? { changedFiles: i.getChangedFiles(r), deletedFiles: i.getDeletedFiles(r) } : { changedFiles: r.getAllFiles(), deletedFiles: [] };
         }
       };
     } });
     init_netlify_publisher = __esm2({ "internal/domain/publish/value-object/netlify-publisher.ts"() {
       init_log(), log76 = getDomainLogger("netlify-publisher", { component: "domain" }), NetlifyPublisher = class {
-        constructor(e4, t28, i, r, s2) {
-          this.config = e4, this.manifestRepo = t28, this.httpClient = i, this.projectId = r, this.projectPath = s2;
+        constructor(e4, t28, r, i, s2) {
+          this.config = e4, this.manifestRepo = t28, this.httpClient = r, this.projectId = i, this.projectPath = s2;
         }
         async publish(e4, t28) {
           var _a11, _b4, _c2, _d, _e, _f;
-          const i = Date.now();
-          let r = 0, s2 = 0;
+          const r = Date.now();
+          let i = 0, s2 = 0;
           try {
             log76.info(`Starting Netlify digest deployment from: ${e4}`), log76.info("Incremental mode: " + ((t28 == null ? void 0 : t28.incremental) ? "enabled" : "disabled")), (_a11 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a11.call(t28, { phase: "scanning", percentage: 5, message: "Scanning files..." });
             const { changedFiles: n3, unchangedFiles: a } = await this.getFileLists(e4, t28 == null ? void 0 : t28.incremental), o = n3.length;
-            if (log76.info(`Files to upload: ${n3.length}, unchanged: ${a.length}`), (_b4 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _b4.call(t28, { phase: "scanning", percentage: 20, message: `Scanned ${o} files` }), 0 === n3.length) return log76.info("No files to upload, deployment skipped"), { success: true, url: await this.getSiteUrl(), filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - i };
+            if (log76.info(`Files to upload: ${n3.length}, unchanged: ${a.length}`), (_b4 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _b4.call(t28, { phase: "scanning", percentage: 20, message: `Scanned ${o} files` }), 0 === n3.length) return log76.info("No files to upload, deployment skipped"), { success: true, url: await this.getSiteUrl(), filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - r };
             (_c2 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _c2.call(t28, { phase: "uploading", percentage: 25, message: "Creating deploy..." });
             const l = await this.manifestRepo.generateManifest(this.projectId, e4, "netlify", { siteId: this.config.siteId }), c = l.getAllFiles();
             log76.info(`Sending ${c.length} files to Netlify (changed: ${n3.length}, unchanged: ${a.length})`);
             const { deployId: h3, requiredFiles: u, hashToPath: g } = await this.createDeployWithDigests(l, c);
             if (log76.info(`Deploy created: ${h3}`), log76.info(`Required files: ${u.length}/${c.length} (${c.length - u.length} cached on CDN)`), u.length > 0) {
               (_d = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _d.call(t28, { phase: "uploading", percentage: 30, message: `Uploading ${u.length} file(s)...` });
-              const i2 = await this.uploadRequiredFiles(e4, h3, u, l, (e5, i3) => {
+              const r3 = await this.uploadRequiredFiles(e4, h3, u, l, (e5, r4) => {
                 var _a12;
-                r = e5;
-                const s3 = 30 + Math.floor(e5 / i3 * 60);
-                (_a12 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a12.call(t28, { phase: "uploading", percentage: s3, message: "Uploading files...", filesCompleted: e5, filesTotal: i3 });
+                i = e5;
+                const s3 = 30 + Math.floor(e5 / r4 * 60);
+                (_a12 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a12.call(t28, { phase: "uploading", percentage: s3, message: "Uploading files...", filesCompleted: e5, filesTotal: r4 });
               });
-              s2 = i2.bytesTransferred, r = i2.filesUploaded;
+              s2 = r3.bytesTransferred, i = r3.filesUploaded;
             } else log76.info("All files are cached on Netlify CDN, no upload needed");
             (_e = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _e.call(t28, { phase: "deploying", percentage: 90, message: "Deploying..." });
             try {
@@ -126468,13 +126844,13 @@ Please specify a project name with --project <name>`);
             }
             const d = await this.getSiteUrl();
             (_f = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _f.call(t28, { phase: "complete", percentage: 100, message: "Deployment complete!" });
-            const p2 = Date.now() - i;
-            return log76.info(`Deployment successful: ${d}`), log76.info(`Uploaded ${r} files (${this.formatBytes(s2)})`), { success: true, url: d, filesUploaded: r, bytesTransferred: s2, duration: p2 };
+            const p2 = Date.now() - r;
+            return log76.info(`Deployment successful: ${d}`), log76.info(`Uploaded ${i} files (${this.formatBytes(s2)})`), { success: true, url: d, filesUploaded: i, bytesTransferred: s2, duration: p2 };
           } catch (e5) {
             log76.error("Netlify deployment failed", e5);
-            const t29 = Date.now() - i;
+            const t29 = Date.now() - r;
             let n3 = e5.message;
-            return n3.includes("401") || n3.includes("Unauthorized") ? n3 = "Invalid Netlify access token. Please check your configuration." : n3.includes("404") || n3.includes("Not Found") ? n3 = "Netlify site not found. Please check your site ID." : (n3.includes("network") || n3.includes("CORS")) && (n3 = "Network error. Please check your internet connection."), { success: false, filesUploaded: r, bytesTransferred: s2, duration: t29, error: n3 };
+            return n3.includes("401") || n3.includes("Unauthorized") ? n3 = "Invalid Netlify access token. Please check your configuration." : n3.includes("404") || n3.includes("Not Found") ? n3 = "Netlify site not found. Please check your site ID." : (n3.includes("network") || n3.includes("CORS")) && (n3 = "Network error. Please check your internet connection."), { success: false, filesUploaded: i, bytesTransferred: s2, duration: t29, error: n3 };
           }
         }
         async testConnection() {
@@ -126491,22 +126867,22 @@ Please specify a project name with --project <name>`);
           return "netlify";
         }
         async getFileLists(e4, t28) {
-          const i = await this.manifestRepo.generateManifest(this.projectId, e4, "netlify", { siteId: this.config.siteId });
-          if (!t28) return { changedFiles: i.getAllFiles(), unchangedFiles: [] };
-          const r = await this.manifestRepo.loadManifest(this.projectPath, "netlify");
-          if (!r) return { changedFiles: i.getAllFiles(), unchangedFiles: [] };
-          const s2 = r.getChangedFiles(i), n3 = i.getAllFiles().filter((e5) => !s2.includes(e5));
+          const r = await this.manifestRepo.generateManifest(this.projectId, e4, "netlify", { siteId: this.config.siteId });
+          if (!t28) return { changedFiles: r.getAllFiles(), unchangedFiles: [] };
+          const i = await this.manifestRepo.loadManifest(this.projectPath, "netlify");
+          if (!i) return { changedFiles: r.getAllFiles(), unchangedFiles: [] };
+          const s2 = i.getChangedFiles(r), n3 = r.getAllFiles().filter((e5) => !s2.includes(e5));
           return { changedFiles: s2, unchangedFiles: n3 };
         }
         async createDeployWithDigests(e4, t28) {
           log76.info(`Creating deploy with ${t28.length} file digests...`);
-          const i = {}, r = /* @__PURE__ */ new Map();
+          const r = {}, i = /* @__PURE__ */ new Map();
           for (const s3 of t28) {
             const t29 = e4.getFile(s3);
-            t29 && (i[s3] = t29.hash, r.set(t29.hash, s3));
+            t29 && (r[s3] = t29.hash, i.set(t29.hash, s3));
           }
-          log76.debug(`Built hash to path mapping for ${r.size} files`);
-          const s2 = await this.httpClient.postJSON(`https://api.netlify.com/api/v1/sites/${this.config.siteId}/deploys`, { files: i }, { Authorization: `Bearer ${this.config.accessToken}` });
+          log76.debug(`Built hash to path mapping for ${i.size} files`);
+          const s2 = await this.httpClient.postJSON(`https://api.netlify.com/api/v1/sites/${this.config.siteId}/deploys`, { files: r }, { Authorization: `Bearer ${this.config.accessToken}` });
           if (!s2.ok) {
             const e5 = await s2.text();
             throw log76.error(`Create deploy failed: ${s2.status} - ${e5}`), new Error(`Create deploy failed: ${s2.status} - ${e5}`);
@@ -126515,15 +126891,15 @@ Please specify a project name with --project <name>`);
           log76.debug(`Netlify returned ${o.length} required hashes`);
           const l = [];
           for (const e5 of o) {
-            const t29 = r.get(e5);
+            const t29 = i.get(e5);
             t29 ? l.push(t29) : log76.warn(`Hash not found in mapping: ${e5}`);
           }
-          return log76.info(`Resolved ${l.length} file paths from ${o.length} hashes`), { deployId: a, requiredFiles: l, hashToPath: r };
+          return log76.info(`Resolved ${l.length} file paths from ${o.length} hashes`), { deployId: a, requiredFiles: l, hashToPath: i };
         }
-        async uploadRequiredFiles(e4, t28, i, r, s2) {
+        async uploadRequiredFiles(e4, t28, r, i, s2) {
           let n3 = 0, a = 0;
-          for (const o of i) {
-            const l = r.getFile(o);
+          for (const o of r) {
+            const l = i.getFile(o);
             if (!l) {
               log76.warn(`File not found in manifest: ${o}`);
               continue;
@@ -126531,23 +126907,23 @@ Please specify a project name with --project <name>`);
             const c = import_path20.default.join(e4, o);
             try {
               const e5 = await import_fs4.promises.readFile(c);
-              await this.uploadFileWithRetry(t28, o, e5, l.hash), n3++, a += l.size, s2 == null ? void 0 : s2(n3, i.length), log76.debug(`Uploaded ${n3}/${i.length}: ${o}`);
+              await this.uploadFileWithRetry(t28, o, e5, l.hash), n3++, a += l.size, s2 == null ? void 0 : s2(n3, r.length), log76.debug(`Uploaded ${n3}/${r.length}: ${o}`);
             } catch (e5) {
               throw log76.error(`Failed to upload file: ${o}`, e5), e5;
             }
           }
           return log76.info(`Upload complete: ${n3} files, ${this.formatBytes(a)}`), { filesUploaded: n3, bytesTransferred: a };
         }
-        async uploadFileWithRetry(e4, t28, i, r, s2 = 2) {
+        async uploadFileWithRetry(e4, t28, r, i, s2 = 2) {
           let n3 = null;
           for (let a = 1; a <= s2; a++) try {
-            const s3 = t28.split("/").map(encodeURIComponent).join("/"), n4 = await this.httpClient.putBinary(`https://api.netlify.com/api/v1/deploys/${e4}/files/${s3}`, i, { Authorization: `Bearer ${this.config.accessToken}` });
+            const s3 = t28.split("/").map(encodeURIComponent).join("/"), n4 = await this.httpClient.putBinary(`https://api.netlify.com/api/v1/deploys/${e4}/files/${s3}`, r, { Authorization: `Bearer ${this.config.accessToken}` });
             if (!n4.ok) {
               const e5 = await n4.text();
               throw new Error(`Upload failed (${n4.status}): ${e5}`);
             }
             const a2 = n4.data, o = (a2.sha || a2.SHA || "").toLowerCase();
-            if (o !== r.toLowerCase()) throw new Error(`SHA1 mismatch: expected ${r}, got ${o}`);
+            if (o !== i.toLowerCase()) throw new Error(`SHA1 mismatch: expected ${i}, got ${o}`);
             return;
           } catch (e5) {
             if (n3 = e5, !(a < s2)) throw log76.error(`All upload attempts failed for ${t28}`), n3;
@@ -126557,18 +126933,18 @@ Please specify a project name with --project <name>`);
         }
         async waitForDeployment(e4, t28 = 30) {
           log76.info(`Waiting for deployment to complete: ${e4}`);
-          for (let i = 0; i < t28; i++) try {
-            log76.debug(`Checking deployment status (attempt ${i + 1}/${t28})...`);
-            const r = await this.httpClient.get(`https://api.netlify.com/api/v1/deploys/${e4}`, { Authorization: `Bearer ${this.config.accessToken}` });
-            if (log76.debug(`Status check response: ${r.status}`), r.ok) {
-              const e5 = r.data;
+          for (let r = 0; r < t28; r++) try {
+            log76.debug(`Checking deployment status (attempt ${r + 1}/${t28})...`);
+            const i = await this.httpClient.get(`https://api.netlify.com/api/v1/deploys/${e4}`, { Authorization: `Bearer ${this.config.accessToken}` });
+            if (log76.debug(`Status check response: ${i.status}`), i.ok) {
+              const e5 = i.data;
               if (log76.info(`Deployment state: ${e5.state}`, { published_at: e5.published_at }), "ready" === e5.state) return void log76.info("Deployment is ready!");
               if ("error" === e5.state) throw new Error(`Deployment failed: ${e5.error_message || "Unknown error"}`);
               log76.debug(`Current state: ${e5.state}, waiting...`);
-            } else log76.warn(`Unexpected status code: ${r.status}`);
+            } else log76.warn(`Unexpected status code: ${i.status}`);
             await new Promise((e5) => setTimeout(e5, 2e3));
           } catch (e5) {
-            if (log76.error(`Error checking deployment status (attempt ${i + 1}):`, e5), i === t28 - 1) throw e5;
+            if (log76.error(`Error checking deployment status (attempt ${r + 1}):`, e5), r === t28 - 1) throw e5;
             await new Promise((e6) => setTimeout(e6, 2e3));
           }
           throw log76.warn("Deployment status check timed out (60 seconds)"), new Error("Deployment timed out");
@@ -126581,8 +126957,8 @@ Please specify a project name with --project <name>`);
               const t29 = await e4.text();
               throw log76.error(`Failed to get site URL: ${e4.status} - ${t29}`), new Error(`Failed to get site URL: ${e4.status}`);
             }
-            const t28 = e4.data, i = t28.ssl_url || t28.url;
-            return log76.info(`Site URL: ${i}`, { name: t28.name }), i;
+            const t28 = e4.data, r = t28.ssl_url || t28.url;
+            return log76.info(`Site URL: ${r}`, { name: t28.name }), r;
           } catch (e4) {
             throw log76.error("Failed to get site URL:", e4), e4;
           }
@@ -126596,37 +126972,37 @@ Please specify a project name with --project <name>`);
     } });
     init_mdfriday_publisher = __esm2({ "internal/domain/publish/value-object/mdfriday-publisher.ts"() {
       init_log(), log77 = getDomainLogger("mdfriday-publisher", { component: "domain" }), MDFridayPublisher = class {
-        constructor(e4, t28, i, r, s2) {
-          this.config = e4, this.manifestRepo = t28, this.httpClient = i, this.projectId = r, this.projectPath = s2;
+        constructor(e4, t28, r, i, s2) {
+          this.config = e4, this.manifestRepo = t28, this.httpClient = r, this.projectId = i, this.projectPath = s2;
         }
         async publish(e4, t28) {
           var _a11, _b4, _c2, _d, _e, _f;
-          const i = Date.now();
+          const r = Date.now();
           try {
             if (log77.info(`Starting MDFriday deployment from: ${e4}`), log77.info(`Deployment type: ${this.config.deploymentType}`), "free" !== this.config.deploymentType && !this.config.accessToken) throw new Error("MDFriday access token not found.\nPlease login first:\n  mdf auth login");
-            const { changedFiles: r, allFiles: s2 } = await this.getFileLists(e4, t28 == null ? void 0 : t28.incremental), n3 = (t28 == null ? void 0 : t28.incremental) && r.length < s2.length && r.length > 0;
-            if (n3) log77.info(`Incremental deploy: ${r.length}/${s2.length} files (${Math.round(r.length / s2.length * 100)}%)`);
-            else if ((t28 == null ? void 0 : t28.incremental) && 0 === r.length) return log77.info("No files changed, skipping deployment"), { success: true, url: "", filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - i };
-            (_a11 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a11.call(t28, { phase: "scanning", percentage: 5, message: n3 ? `Creating incremental package (${r.length} files)...` : "Creating deployment package..." });
-            const a = n3 ? await this.createIncrementalZip(e4, r) : await this.createZipFromDirectory(e4), o = a.length;
+            const { changedFiles: i, allFiles: s2 } = await this.getFileLists(e4, t28 == null ? void 0 : t28.incremental), n3 = (t28 == null ? void 0 : t28.incremental) && i.length < s2.length && i.length > 0;
+            if (n3) log77.info(`Incremental deploy: ${i.length}/${s2.length} files (${Math.round(i.length / s2.length * 100)}%)`);
+            else if ((t28 == null ? void 0 : t28.incremental) && 0 === i.length) return log77.info("No files changed, skipping deployment"), { success: true, url: "", filesUploaded: 0, bytesTransferred: 0, duration: Date.now() - r };
+            (_a11 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a11.call(t28, { phase: "scanning", percentage: 5, message: n3 ? `Creating incremental package (${i.length} files)...` : "Creating deployment package..." });
+            const a = n3 ? await this.createIncrementalZip(e4, i) : await this.createZipFromDirectory(e4), o = a.length;
             log77.info(`Created ${n3 ? "incremental" : "full"} ZIP package: ${this.formatBytes(o)}`), (_b4 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _b4.call(t28, { phase: "scanning", percentage: 30, message: "Package created" }), (_c2 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _c2.call(t28, { phase: "uploading", percentage: 30, message: "Uploading to MDFriday..." });
             const l = await this.uploadToMDFriday(a, this.projectId, (e5) => {
               var _a12;
-              const i2 = 30 + e5 / 100 * 40;
-              (_a12 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a12.call(t28, { phase: "uploading", percentage: i2, message: "Uploading...", bytesTransferred: Math.floor(o * (e5 / 100)) });
+              const r3 = 30 + e5 / 100 * 40;
+              (_a12 = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _a12.call(t28, { phase: "uploading", percentage: r3, message: "Uploading...", bytesTransferred: Math.floor(o * (e5 / 100)) });
             });
             log77.info(`Upload complete, preview ID: ${l}`), (_d = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _d.call(t28, { phase: "deploying", percentage: 70, message: "Deploying..." });
             const c = await this.deployPreview(l);
             log77.info(`Deploy complete: ${c}`), (_e = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _e.call(t28, { phase: "deploying", percentage: 90, message: "Saving manifest..." });
             const h3 = await this.manifestRepo.generateManifest(this.projectId, e4, "mdfriday", { previewId: l, deploymentType: this.config.deploymentType });
             await this.manifestRepo.saveManifest(this.projectPath, h3, this.config.deploymentType), (_f = t28 == null ? void 0 : t28.onProgress) == null ? void 0 : _f.call(t28, { phase: "complete", percentage: 100, message: "Deployment complete!" });
-            const u = Date.now() - i;
-            return log77.info(`Deployment successful: ${c}`), { success: true, url: c, filesUploaded: r.length, bytesTransferred: o, duration: u };
+            const u = Date.now() - r;
+            return log77.info(`Deployment successful: ${c}`), { success: true, url: c, filesUploaded: i.length, bytesTransferred: o, duration: u };
           } catch (e5) {
             log77.error("MDFriday deployment failed", e5);
-            const t29 = Date.now() - i;
-            let r = e5.message;
-            return r.includes("401") || r.includes("Unauthorized") ? r = "Invalid access token. Please login again:\n  mdf auth login" : r.includes("403") || r.includes("Forbidden") ? r = "Access forbidden. Please check your account permissions." : r.includes("network") && (r = "Network error. Please check your internet connection."), { success: false, filesUploaded: 0, bytesTransferred: 0, duration: t29, error: r };
+            const t29 = Date.now() - r;
+            let i = e5.message;
+            return i.includes("401") || i.includes("Unauthorized") ? i = "Invalid access token. Please login again:\n  mdf auth login" : i.includes("403") || i.includes("Forbidden") ? i = "Access forbidden. Please check your account permissions." : i.includes("network") && (i = "Network error. Please check your internet connection."), { success: false, filesUploaded: 0, bytesTransferred: 0, duration: t29, error: i };
           }
         }
         async testConnection() {
@@ -126643,50 +127019,50 @@ Please specify a project name with --project <name>`);
           return "mdfriday";
         }
         async getFileLists(e4, t28) {
-          const i = await this.manifestRepo.generateManifest(this.projectId, e4, "mdfriday", { deploymentType: this.config.deploymentType }), r = i.getAllFiles();
-          if (!t28) return log77.debug("Full publish mode: deploying all files"), { changedFiles: r, allFiles: r };
+          const r = await this.manifestRepo.generateManifest(this.projectId, e4, "mdfriday", { deploymentType: this.config.deploymentType }), i = r.getAllFiles();
+          if (!t28) return log77.debug("Full publish mode: deploying all files"), { changedFiles: i, allFiles: i };
           const s2 = await this.manifestRepo.loadManifest(this.projectPath, "mdfriday", this.config.deploymentType);
-          if (!s2) return log77.info("No previous manifest found, performing full deploy"), { changedFiles: r, allFiles: r };
-          const n3 = s2.getChangedFiles(i);
-          return log77.info(`Incremental mode: ${n3.length}/${r.length} files changed`), { changedFiles: n3, allFiles: r };
+          if (!s2) return log77.info("No previous manifest found, performing full deploy"), { changedFiles: i, allFiles: i };
+          const n3 = s2.getChangedFiles(r);
+          return log77.info(`Incremental mode: ${n3.length}/${i.length} files changed`), { changedFiles: n3, allFiles: i };
         }
         async createIncrementalZip(e4, t28) {
-          const i = new import_jszip2.default();
+          const r = new import_jszip2.default();
           log77.debug(`Creating incremental ZIP with ${t28.length} files`);
-          for (const r of t28) {
-            const t29 = import_path21.default.join(e4, r);
+          for (const i of t28) {
+            const t29 = import_path21.default.join(e4, i);
             try {
               const e5 = await import_fs5.promises.readFile(t29);
-              i.file(r, new Uint8Array(e5));
+              r.file(i, new Uint8Array(e5));
             } catch (e5) {
-              throw log77.error(`Failed to add file to ZIP: ${r}`, e5), new Error(`Failed to add file to incremental ZIP: ${r}`);
+              throw log77.error(`Failed to add file to ZIP: ${i}`, e5), new Error(`Failed to add file to incremental ZIP: ${i}`);
             }
           }
-          return await i.generateAsync({ type: "uint8array" });
+          return await r.generateAsync({ type: "uint8array" });
         }
         async createZipFromDirectory(e4) {
-          const t28 = new import_jszip2.default(), i = async (e5, t29) => {
-            const r = await import_fs5.promises.readdir(e5, { withFileTypes: true });
-            for (const s2 of r) {
-              const r3 = import_path21.default.join(e5, s2.name);
+          const t28 = new import_jszip2.default(), r = async (e5, t29) => {
+            const i = await import_fs5.promises.readdir(e5, { withFileTypes: true });
+            for (const s2 of i) {
+              const i2 = import_path21.default.join(e5, s2.name);
               if (s2.isDirectory()) {
                 const e6 = t29.folder(s2.name);
-                e6 && await i(r3, e6);
+                e6 && await r(i2, e6);
               } else if (s2.isFile()) {
-                const e6 = await import_fs5.promises.readFile(r3);
+                const e6 = await import_fs5.promises.readFile(i2);
                 t29.file(s2.name, new Uint8Array(e6));
               }
             }
           };
-          return await i(e4, t28), await t28.generateAsync({ type: "uint8array" });
+          return await r(e4, t28), await t28.generateAsync({ type: "uint8array" });
         }
-        async uploadToMDFriday(e4, t28, i) {
+        async uploadToMDFriday(e4, t28, r) {
           try {
             log77.info(`Uploading ${this.formatBytes(e4.length)} to MDFriday...`);
-            const r = this.simulateUploadProgress(e4.length, i), s2 = this.buildFormData(e4, t28, this.config.path || "", this.config.deploymentType), n3 = "free" === this.config.deploymentType, a = n3 ? `${this.getApiUrl()}/api/mdf/preview/friday?type=MDFPreview` : `${this.getApiUrl()}/api/mdf/preview?type=MDFPreview`, o = {};
+            const i = this.simulateUploadProgress(e4.length, r), s2 = this.buildFormData(e4, t28, this.config.path || "", this.config.deploymentType), n3 = "free" === this.config.deploymentType, a = n3 ? `${this.getApiUrl()}/api/mdf/preview/friday?type=MDFPreview` : `${this.getApiUrl()}/api/mdf/preview?type=MDFPreview`, o = {};
             !n3 && this.config.accessToken && (o.Authorization = `Bearer ${this.config.accessToken}`);
             const l = await this.httpClient.postMultipart(a, s2, o);
-            if (clearInterval(r), i == null ? void 0 : i(100), !l.ok) {
+            if (clearInterval(i), r == null ? void 0 : r(100), !l.ok) {
               const e5 = await l.text();
               throw log77.error(`Upload failed: ${l.status} - ${e5}`), new Error(`Upload failed: ${l.status} - ${e5}`);
             }
@@ -126699,9 +127075,9 @@ Please specify a project name with --project <name>`);
         async deployPreview(e4) {
           try {
             log77.info(`Deploying preview: ${e4}`);
-            const t28 = { type: "MDFPreview", id: e4, host_name: "MDFriday Preview", license_key: this.config.licenseKey || "" }, i = "free" === this.config.deploymentType, r = i ? `${this.getApiUrl()}/api/mdf/preview/friday/deploy?type=MDFPreview&id=${e4}` : `${this.getApiUrl()}/api/mdf/preview/deploy?type=MDFPreview&id=${e4}`, s2 = {};
-            !i && this.config.accessToken && (s2.Authorization = `Bearer ${this.config.accessToken}`);
-            const n3 = await this.httpClient.postMultipart(r, t28, s2);
+            const t28 = { type: "MDFPreview", id: e4, host_name: "MDFriday Preview", license_key: this.config.licenseKey || "" }, r = "free" === this.config.deploymentType, i = r ? `${this.getApiUrl()}/api/mdf/preview/friday/deploy?type=MDFPreview&id=${e4}` : `${this.getApiUrl()}/api/mdf/preview/deploy?type=MDFPreview&id=${e4}`, s2 = {};
+            !r && this.config.accessToken && (s2.Authorization = `Bearer ${this.config.accessToken}`);
+            const n3 = await this.httpClient.postMultipart(i, t28, s2);
             if (!n3.ok) {
               const e5 = await n3.text();
               throw log77.error(`Deploy failed: ${n3.status} - ${e5}`), new Error(`Deploy failed: ${n3.status} - ${e5}`);
@@ -126711,17 +127087,17 @@ Please specify a project name with --project <name>`);
             throw log77.error("MDFriday deploy error:", e5), e5;
           }
         }
-        buildFormData(e4, t28, i, r) {
-          return { type: r, path: i, id: "-1", name: t28, size: e4.length.toString(), asset: { data: e4, filename: `${t28}.zip`, contentType: "application/zip" } };
+        buildFormData(e4, t28, r, i) {
+          return { type: i, path: r, id: "-1", name: t28, size: e4.length.toString(), asset: { data: e4, filename: `${t28}.zip`, contentType: "application/zip" } };
         }
         getApiUrl() {
           return this.config.apiUrl || "https://api.mdfriday.com";
         }
         simulateUploadProgress(e4, t28) {
-          let i = 0;
-          const r = 500 / Math.min(Math.max(e4 / 1024 / 1024 * 2e3, 3e3), 3e4) * 100;
+          let r = 0;
+          const i = 500 / Math.min(Math.max(e4 / 1024 / 1024 * 2e3, 3e3), 3e4) * 100;
           return setInterval(() => {
-            i = Math.min(i + r, 95), t28 == null ? void 0 : t28(i);
+            r = Math.min(r + i, 95), t28 == null ? void 0 : t28(r);
           }, 500);
         }
         formatBytes(e4) {
@@ -126736,31 +127112,31 @@ Please specify a project name with --project <name>`);
         constructor(e4, t28) {
           this.manifestRepo = e4, this.httpClient = t28;
         }
-        create(e4, t28, i) {
-          let r;
-          switch (log78.debug(`Creating publisher: ${i.type}`, { projectId: e4 }), i.type) {
+        create(e4, t28, r) {
+          let i;
+          switch (log78.debug(`Creating publisher: ${r.type}`, { projectId: e4 }), r.type) {
             case "ftp":
-              r = this.createFtpPublisher(e4, t28, i);
+              i = this.createFtpPublisher(e4, t28, r);
               break;
             case "netlify":
-              r = this.createNetlifyPublisher(e4, t28, i);
+              i = this.createNetlifyPublisher(e4, t28, r);
               break;
             case "mdfriday":
-              r = this.createMDFridayPublisher(e4, t28, i);
+              i = this.createMDFridayPublisher(e4, t28, r);
               break;
             default:
-              throw new Error(`Unknown publish type: ${i.type}`);
+              throw new Error(`Unknown publish type: ${r.type}`);
           }
-          return new PublisherAggregator(e4, t28, i, r, this.manifestRepo);
+          return new PublisherAggregator(e4, t28, r, i, this.manifestRepo);
         }
-        createFtpPublisher(e4, t28, i) {
-          return new FtpPublisher(i, this.manifestRepo, e4, t28);
+        createFtpPublisher(e4, t28, r) {
+          return new FtpPublisher(r, this.manifestRepo, e4, t28);
         }
-        createNetlifyPublisher(e4, t28, i) {
-          return new NetlifyPublisher(i, this.manifestRepo, this.httpClient, e4, t28);
+        createNetlifyPublisher(e4, t28, r) {
+          return new NetlifyPublisher(r, this.manifestRepo, this.httpClient, e4, t28);
         }
-        createMDFridayPublisher(e4, t28, i) {
-          return new MDFridayPublisher(i, this.manifestRepo, this.httpClient, e4, t28);
+        createMDFridayPublisher(e4, t28, r) {
+          return new MDFridayPublisher(r, this.manifestRepo, this.httpClient, e4, t28);
         }
       };
     } });
@@ -126776,11 +127152,11 @@ Please specify a project name with --project <name>`);
         constructor(e4, t28) {
           this.publisherFactory = e4, this.workspaceService = t28;
         }
-        async publish(e4, t28, i, r) {
+        async publish(e4, t28, r, i) {
           log79.info(`Publishing project: ${e4.getName()} to ${t28.type}`);
           try {
-            const s2 = await e4.getPublishDir(), n3 = this.publisherFactory.create(e4.getId(), e4.getPath(), t28), a = { incremental: !(i == null ? void 0 : i.force) };
-            return (i == null ? void 0 : i.force) && (a.force = true), r && (a.onProgress = r), await n3.publish(s2, a);
+            const s2 = await e4.getPublishDir(), n3 = this.publisherFactory.create(e4.getId(), e4.getPath(), t28), a = { incremental: !(r == null ? void 0 : r.force) };
+            return (r == null ? void 0 : r.force) && (a.force = true), i && (a.onProgress = i), await n3.publish(s2, a);
           } catch (e5) {
             throw log79.error(`Publish failed: ${t28.type}`, e5), e5;
           }
@@ -126788,30 +127164,30 @@ Please specify a project name with --project <name>`);
         async testConnection(e4, t28) {
           log79.info(`Testing ${t28.type} connection for project: ${e4.getName()}`);
           try {
-            const i = this.publisherFactory.create(e4.getId(), e4.getPath(), t28);
-            return i.testConnection ? await i.testConnection() : { success: true };
+            const r = this.publisherFactory.create(e4.getId(), e4.getPath(), t28);
+            return r.testConnection ? await r.testConnection() : { success: true };
           } catch (e5) {
             return log79.error(`Test connection failed: ${t28.type}`, e5), { success: false, error: e5.message };
           }
         }
-        async prepareFinalConfig(e4, t28, i) {
-          const r = await e4.getAllConfig();
-          let s2 = WorkspacePublishConfig.fromGlobalConfig(r);
+        async prepareFinalConfig(e4, t28, r) {
+          const i = await e4.getAllConfig();
+          let s2 = WorkspacePublishConfig.fromGlobalConfig(i);
           await t28.loadConfig();
           const n3 = t28.getConfig();
           if (n3 == null ? void 0 : n3.publish) {
             log79.debug("Merging project publish config");
             const e5 = n3.publish;
-            s2 = s2.merge(e5, i);
+            s2 = s2.merge(e5, r);
           }
-          return this.getMethodConfig(s2, i, e4);
+          return this.getMethodConfig(s2, r, e4);
         }
-        async getMethodConfig(e4, t28, i) {
+        async getMethodConfig(e4, t28, r) {
           switch (t28) {
             case "ftp":
-              const r = e4.getFTPConfig();
-              if (!r) throw new Error("FTP configuration not found.\nPlease configure FTP settings:\n  mdf config:set publish.ftp.host <host> --global\n  mdf config:set publish.ftp.username <username> --global\n  mdf config:set publish.ftp.password <password> --global\n  mdf config:set publish.ftp.remotePath /public_html --global");
-              return { type: "ftp", ...r };
+              const i = e4.getFTPConfig();
+              if (!i) throw new Error("FTP configuration not found.\nPlease configure FTP settings:\n  mdf config:set publish.ftp.host <host> --global\n  mdf config:set publish.ftp.username <username> --global\n  mdf config:set publish.ftp.password <password> --global\n  mdf config:set publish.ftp.remotePath /public_html --global");
+              return { type: "ftp", ...i };
             case "netlify":
               const s2 = e4.getNetlifyConfig();
               if (!s2) throw new Error("Netlify configuration not found.\nPlease configure Netlify settings:\n  mdf config:set publish.netlify.siteId <site-id> --global\n  mdf config:set publish.netlify.accessToken <token> --global");
@@ -126824,7 +127200,7 @@ Please specify a project name with --project <name>`);
               const { createIdentityService: o } = await Promise.resolve().then(() => (init_container(), container_exports));
               let l = null, c = "https://app.mdfriday.com";
               try {
-                const e5 = await o(i.getInfo().path);
+                const e5 = await o(r.getInfo().path);
                 await e5.initialize(), l = e5.getToken();
                 const t29 = e5.getServerConfig();
                 t29 && (c = t29.getApiUrl(), log79.debug(`Using API URL from auth: ${c}`));
@@ -126849,25 +127225,25 @@ Please specify a project name with --project <name>`);
             return false;
           }
         }
-        async initWorkspaceStructure(e4, t28, i) {
-          const r = import_path22.default.join(e4, ".mdfriday"), s2 = import_path22.default.join(e4, t28), n3 = import_path22.default.join(e4, i);
-          await import_fs6.promises.mkdir(r, { recursive: true }), await import_fs6.promises.mkdir(s2, { recursive: true }), await import_fs6.promises.mkdir(n3, { recursive: true });
+        async initWorkspaceStructure(e4, t28, r) {
+          const i = import_path22.default.join(e4, ".mdfriday"), s2 = import_path22.default.join(e4, t28), n3 = import_path22.default.join(e4, r);
+          await import_fs6.promises.mkdir(i, { recursive: true }), await import_fs6.promises.mkdir(s2, { recursive: true }), await import_fs6.promises.mkdir(n3, { recursive: true });
         }
         async saveWorkspaceMetadata(e4, t28) {
-          const i = import_path22.default.join(e4, ".mdfriday", "workspace.json");
-          await import_fs6.promises.writeFile(i, JSON.stringify(t28, null, 2));
+          const r = import_path22.default.join(e4, ".mdfriday", "workspace.json");
+          await import_fs6.promises.writeFile(r, JSON.stringify(t28, null, 2));
         }
         async loadWorkspaceMetadata(e4) {
-          const t28 = import_path22.default.join(e4, ".mdfriday", "workspace.json"), i = await import_fs6.promises.readFile(t28, "utf-8");
-          return JSON.parse(i);
+          const t28 = import_path22.default.join(e4, ".mdfriday", "workspace.json"), r = await import_fs6.promises.readFile(t28, "utf-8");
+          return JSON.parse(r);
         }
         async saveProjectRegistry(e4, t28) {
-          const i = import_path22.default.join(e4, ".mdfriday", "projects.json");
-          await import_fs6.promises.writeFile(i, JSON.stringify(t28, null, 2));
+          const r = import_path22.default.join(e4, ".mdfriday", "projects.json");
+          await import_fs6.promises.writeFile(r, JSON.stringify(t28, null, 2));
         }
         async loadProjectRegistry(e4) {
-          const t28 = import_path22.default.join(e4, ".mdfriday", "projects.json"), i = await import_fs6.promises.readFile(t28, "utf-8");
-          return JSON.parse(i);
+          const t28 = import_path22.default.join(e4, ".mdfriday", "projects.json"), r = await import_fs6.promises.readFile(t28, "utf-8");
+          return JSON.parse(r);
         }
       }, NodeProjectRepository = class {
         async isProject(e4) {
@@ -126878,21 +127254,21 @@ Please specify a project name with --project <name>`);
             return false;
           }
         }
-        async initProjectStructure(e4, t28, i, r) {
-          const s2 = import_path22.default.join(e4, ".mdfriday"), n3 = import_path22.default.join(e4, t28), a = import_path22.default.join(e4, i), o = import_path22.default.join(e4, r);
+        async initProjectStructure(e4, t28, r, i) {
+          const s2 = import_path22.default.join(e4, ".mdfriday"), n3 = import_path22.default.join(e4, t28), a = import_path22.default.join(e4, r), o = import_path22.default.join(e4, i);
           await import_fs6.promises.mkdir(s2, { recursive: true }), await import_fs6.promises.mkdir(n3, { recursive: true }), await import_fs6.promises.mkdir(a, { recursive: true }), await import_fs6.promises.mkdir(o, { recursive: true });
         }
         async saveProjectMetadata(e4, t28) {
-          const i = import_path22.default.join(e4, ".mdfriday", "project.json");
-          await import_fs6.promises.writeFile(i, JSON.stringify(t28, null, 2));
+          const r = import_path22.default.join(e4, ".mdfriday", "project.json");
+          await import_fs6.promises.writeFile(r, JSON.stringify(t28, null, 2));
         }
         async loadProjectMetadata(e4) {
-          const t28 = import_path22.default.join(e4, ".mdfriday", "project.json"), i = await import_fs6.promises.readFile(t28, "utf-8");
-          return JSON.parse(i);
+          const t28 = import_path22.default.join(e4, ".mdfriday", "project.json"), r = await import_fs6.promises.readFile(t28, "utf-8");
+          return JSON.parse(r);
         }
         async saveProjectConfig(e4, t28) {
-          const i = import_path22.default.join(e4, "config.json");
-          await import_fs6.promises.writeFile(i, JSON.stringify(t28, null, 2));
+          const r = import_path22.default.join(e4, "config.json");
+          await import_fs6.promises.writeFile(r, JSON.stringify(t28, null, 2));
         }
         async createSampleContent(e4, t28) {
           await import_fs6.promises.writeFile(e4, t28);
@@ -126907,12 +127283,12 @@ Please specify a project name with --project <name>`);
     } });
     init_node_snapshot_repository = __esm2({ "internal/infrastructure/persistence/node-snapshot-repository.ts"() {
       NodeSnapshotRepository = class {
-        async createSnapshot(e4, t28, i) {
-          const r = import_path23.default.join(e4, ".mdfriday", "snapshots");
-          await import_fs7.promises.mkdir(r, { recursive: true });
-          const s2 = import_path23.default.join(r, t28);
-          await import_fs7.promises.mkdir(s2, { recursive: true }), await this.copyDirectory(i, s2);
-          const n3 = await this.getDirectorySize(s2), a = await this.countFiles(s2), o = { id: t28, name: t28, timestamp: Date.now(), outputDir: import_path23.default.relative(e4, i), storageDir: import_path23.default.relative(e4, s2), size: n3, fileCount: a }, l = import_path23.default.join(r, `${t28}.json`);
+        async createSnapshot(e4, t28, r) {
+          const i = import_path23.default.join(e4, ".mdfriday", "snapshots");
+          await import_fs7.promises.mkdir(i, { recursive: true });
+          const s2 = import_path23.default.join(i, t28);
+          await import_fs7.promises.mkdir(s2, { recursive: true }), await this.copyDirectory(r, s2);
+          const n3 = await this.getDirectorySize(s2), a = await this.countFiles(s2), o = { id: t28, name: t28, timestamp: Date.now(), outputDir: import_path23.default.relative(e4, r), storageDir: import_path23.default.relative(e4, s2), size: n3, fileCount: a }, l = import_path23.default.join(i, `${t28}.json`);
           return await import_fs7.promises.writeFile(l, JSON.stringify(o, null, 2)), o;
         }
         async listSnapshots(e4) {
@@ -126922,18 +127298,18 @@ Please specify a project name with --project <name>`);
           } catch (e5) {
             return [];
           }
-          const i = (await import_fs7.promises.readdir(t28)).filter((e5) => e5.endsWith(".json")), r = [];
-          for (const e5 of i) try {
-            const i2 = await import_fs7.promises.readFile(import_path23.default.join(t28, e5), "utf-8");
-            r.push(JSON.parse(i2));
+          const r = (await import_fs7.promises.readdir(t28)).filter((e5) => e5.endsWith(".json")), i = [];
+          for (const e5 of r) try {
+            const r3 = await import_fs7.promises.readFile(import_path23.default.join(t28, e5), "utf-8");
+            i.push(JSON.parse(r3));
           } catch (e6) {
           }
-          return r;
+          return i;
         }
         async getSnapshot(e4, t28) {
-          const i = import_path23.default.join(e4, ".mdfriday", "snapshots"), r = import_path23.default.join(i, `${t28}.json`);
+          const r = import_path23.default.join(e4, ".mdfriday", "snapshots"), i = import_path23.default.join(r, `${t28}.json`);
           try {
-            const e5 = await import_fs7.promises.readFile(r, "utf-8"), t29 = JSON.parse(e5);
+            const e5 = await import_fs7.promises.readFile(i, "utf-8"), t29 = JSON.parse(e5);
             if (!t29.storageDir) throw new Error("This is a legacy metadata-only snapshot and cannot be restored");
             return t29;
           } catch (e5) {
@@ -126941,31 +127317,31 @@ Please specify a project name with --project <name>`);
             throw e5;
           }
         }
-        async restoreSnapshot(e4, t28, i) {
-          const r = await this.getSnapshot(e4, t28), s2 = import_path23.default.join(e4, r.storageDir);
+        async restoreSnapshot(e4, t28, r) {
+          const i = await this.getSnapshot(e4, t28), s2 = import_path23.default.join(e4, i.storageDir);
           try {
             await import_fs7.promises.access(s2);
           } catch (e5) {
             throw new Error(`Snapshot storage not found: ${t28}`);
           }
           try {
-            await import_fs7.promises.rm(i, { recursive: true, force: true });
+            await import_fs7.promises.rm(r, { recursive: true, force: true });
           } catch (e5) {
           }
-          await this.copyDirectory(s2, i);
+          await this.copyDirectory(s2, r);
         }
         async deleteSnapshot(e4, t28) {
-          const i = import_path23.default.join(e4, ".mdfriday", "snapshots"), r = import_path23.default.join(i, `${t28}.json`);
+          const r = import_path23.default.join(e4, ".mdfriday", "snapshots"), i = import_path23.default.join(r, `${t28}.json`);
           try {
-            const t29 = await import_fs7.promises.readFile(r, "utf-8"), i2 = JSON.parse(t29);
-            if (i2.storageDir) {
-              const t30 = import_path23.default.join(e4, i2.storageDir);
+            const t29 = await import_fs7.promises.readFile(i, "utf-8"), r3 = JSON.parse(t29);
+            if (r3.storageDir) {
+              const t30 = import_path23.default.join(e4, r3.storageDir);
               try {
                 await import_fs7.promises.rm(t30, { recursive: true, force: true });
               } catch (e5) {
               }
             }
-            await import_fs7.promises.rm(r, { force: true });
+            await import_fs7.promises.rm(i, { force: true });
           } catch (e5) {
             if ("ENOENT" === e5.code) throw new Error(`Snapshot not found: ${t28}`);
             throw e5;
@@ -126973,27 +127349,27 @@ Please specify a project name with --project <name>`);
         }
         async copyDirectory(e4, t28) {
           await import_fs7.promises.mkdir(t28, { recursive: true });
-          const i = await import_fs7.promises.readdir(e4, { withFileTypes: true });
-          await Promise.all(i.map(async (i2) => {
-            const r = import_path23.default.join(e4, i2.name), s2 = import_path23.default.join(t28, i2.name);
-            i2.isDirectory() ? await this.copyDirectory(r, s2) : await import_fs7.promises.copyFile(r, s2);
+          const r = await import_fs7.promises.readdir(e4, { withFileTypes: true });
+          await Promise.all(r.map(async (r3) => {
+            const i = import_path23.default.join(e4, r3.name), s2 = import_path23.default.join(t28, r3.name);
+            r3.isDirectory() ? await this.copyDirectory(i, s2) : await import_fs7.promises.copyFile(i, s2);
           }));
         }
         async getDirectorySize(e4) {
           let t28 = 0;
-          const i = await import_fs7.promises.readdir(e4, { withFileTypes: true });
-          for (const r of i) {
-            const i2 = import_path23.default.join(e4, r.name);
-            r.isDirectory() ? t28 += await this.getDirectorySize(i2) : t28 += (await import_fs7.promises.stat(i2)).size;
+          const r = await import_fs7.promises.readdir(e4, { withFileTypes: true });
+          for (const i of r) {
+            const r3 = import_path23.default.join(e4, i.name);
+            i.isDirectory() ? t28 += await this.getDirectorySize(r3) : t28 += (await import_fs7.promises.stat(r3)).size;
           }
           return t28;
         }
         async countFiles(e4) {
           let t28 = 0;
-          const i = await import_fs7.promises.readdir(e4, { withFileTypes: true });
-          for (const r of i) {
-            const i2 = import_path23.default.join(e4, r.name);
-            r.isDirectory() ? t28 += await this.countFiles(i2) : t28++;
+          const r = await import_fs7.promises.readdir(e4, { withFileTypes: true });
+          for (const i of r) {
+            const r3 = import_path23.default.join(e4, i.name);
+            i.isDirectory() ? t28 += await this.countFiles(r3) : t28++;
           }
           return t28;
         }
@@ -127033,21 +127409,21 @@ Please specify a project name with --project <name>`);
           try {
             if (!await this.exists(e4)) throw new Error(`Path does not exist: ${e4}`);
             if (!await this.isDirectory(e4)) throw new Error(`Path is not a directory: ${e4}`);
-            const t28 = await this.readDirectory(e4), i = [];
-            let r = null;
+            const t28 = await this.readDirectory(e4), r = [];
+            let i = null;
             for (const e5 of t28) {
               if (!e5.isDirectory) continue;
               const t29 = e5.name.toLowerCase();
-              if ("content" === t29) i.push({ path: e5.path, languageCode: "en", weight: 0 });
+              if ("content" === t29) r.push({ path: e5.path, languageCode: "en", weight: 0 });
               else if (t29.startsWith("content.")) {
-                const r3 = mapLanguageCode(t29.split(".")[1]);
-                i.push({ path: e5.path, languageCode: r3, weight: 1 });
+                const i2 = mapLanguageCode(t29.split(".")[1]);
+                r.push({ path: e5.path, languageCode: i2, weight: 1 });
               }
-              "static" === t29 && (r = { path: e5.path });
+              "static" === t29 && (i = { path: e5.path });
             }
-            i.sort((e5, t29) => e5.weight !== t29.weight ? e5.weight - t29.weight : import_path24.default.basename(e5.path).localeCompare(import_path24.default.basename(t29.path)));
-            const s2 = i.length > 0;
-            return log80.debug(`Scanned folder structure: ${e4}`, { contentFolders: i.length, hasStatic: !!r, isStructured: s2 }), { rootPath: e4, contentFolders: i, staticFolder: r, isStructured: s2 };
+            r.sort((e5, t29) => e5.weight !== t29.weight ? e5.weight - t29.weight : import_path24.default.basename(e5.path).localeCompare(import_path24.default.basename(t29.path)));
+            const s2 = r.length > 0;
+            return log80.debug(`Scanned folder structure: ${e4}`, { contentFolders: r.length, hasStatic: !!i, isStructured: s2 }), { rootPath: e4, contentFolders: r, staticFolder: i, isStructured: s2 };
           } catch (t28) {
             throw log80.error(`Failed to scan folder structure: ${e4}`, t28), t28;
           }
@@ -127059,18 +127435,18 @@ Please specify a project name with --project <name>`);
               if (await this.isSymlink(t28) && await this.readSymlink(t28) === e4) return log80.debug(`Symlink already exists: ${t28} -> ${e4}`), { source: e4, target: t28, success: true };
               await this.remove(t28, true);
             }
-            const i = this.dirname(t28);
-            await this.createDirectory(i, true);
-            const r = (await import_fs8.promises.stat(e4)).isFile(), s2 = "win32" === process.platform;
-            return r ? s2 ? await import_fs8.promises.symlink(e4, t28, "file") : await import_fs8.promises.symlink(e4, t28) : s2 ? await import_fs8.promises.symlink(e4, t28, "junction") : await import_fs8.promises.symlink(e4, t28, "dir"), log80.debug(`Created symlink: ${t28} -> ${e4}`), { source: e4, target: t28, success: true };
-          } catch (i) {
-            return log80.error(`Failed to create symlink: ${t28} -> ${e4}`, i), { source: e4, target: t28, success: false, error: i.message };
+            const r = this.dirname(t28);
+            await this.createDirectory(r, true);
+            const i = (await import_fs8.promises.stat(e4)).isFile(), s2 = "win32" === process.platform;
+            return i ? s2 ? await import_fs8.promises.symlink(e4, t28, "file") : await import_fs8.promises.symlink(e4, t28) : s2 ? await import_fs8.promises.symlink(e4, t28, "junction") : await import_fs8.promises.symlink(e4, t28, "dir"), log80.debug(`Created symlink: ${t28} -> ${e4}`), { source: e4, target: t28, success: true };
+          } catch (r) {
+            return log80.error(`Failed to create symlink: ${t28} -> ${e4}`, r), { source: e4, target: t28, success: false, error: r.message };
           }
         }
         async createSymlinks(e4) {
           const t28 = [];
-          for (const i of e4) {
-            const e5 = await this.createSymlink(i.source, i.target);
+          for (const r of e4) {
+            const e5 = await this.createSymlink(r.source, r.target);
             t28.push(e5);
           }
           return t28;
@@ -127120,10 +127496,10 @@ Please specify a project name with --project <name>`);
         }
         async copyFile(e4, t28) {
           try {
-            const i = import_path24.default.dirname(t28);
-            await this.exists(i) || await import_fs8.promises.mkdir(i, { recursive: true }), await import_fs8.promises.copyFile(e4, t28), log80.debug(`Copied file: ${e4} -> ${t28}`);
-          } catch (i) {
-            throw log80.error(`Failed to copy file: ${e4} -> ${t28}`, i), i;
+            const r = import_path24.default.dirname(t28);
+            await this.exists(r) || await import_fs8.promises.mkdir(r, { recursive: true }), await import_fs8.promises.copyFile(e4, t28), log80.debug(`Copied file: ${e4} -> ${t28}`);
+          } catch (r) {
+            throw log80.error(`Failed to copy file: ${e4} -> ${t28}`, r), r;
           }
         }
         async readFile(e4, t28 = "utf-8") {
@@ -127133,10 +127509,10 @@ Please specify a project name with --project <name>`);
             throw log80.error(`Failed to read file: ${e4}`, t29), t29;
           }
         }
-        async writeFile(e4, t28, i = "utf-8") {
+        async writeFile(e4, t28, r = "utf-8") {
           try {
-            const r = import_path24.default.dirname(e4);
-            await this.exists(r) || await import_fs8.promises.mkdir(r, { recursive: true }), await import_fs8.promises.writeFile(e4, t28, i), log80.debug(`Wrote file: ${e4}`);
+            const i = import_path24.default.dirname(e4);
+            await this.exists(i) || await import_fs8.promises.mkdir(i, { recursive: true }), await import_fs8.promises.writeFile(e4, t28, r), log80.debug(`Wrote file: ${e4}`);
           } catch (t29) {
             throw log80.error(`Failed to write file: ${e4}`, t29), t29;
           }
@@ -127186,64 +127562,64 @@ Please specify a project name with --project <name>`);
     } });
     init_node_manifest_repository = __esm2({ "internal/infrastructure/persistence/node-manifest-repository.ts"() {
       init_publish2(), init_log(), log81 = getDomainLogger("node-manifest-repo", { component: "infrastructure" }), NodeManifestRepository = class {
-        async loadManifest(e4, t28, i) {
-          const r = this.getManifestPath(e4, t28, i);
+        async loadManifest(e4, t28, r) {
+          const i = this.getManifestPath(e4, t28, r);
           try {
-            const e5 = await import_fs9.promises.readFile(r, "utf-8"), t29 = JSON.parse(e5);
+            const e5 = await import_fs9.promises.readFile(i, "utf-8"), t29 = JSON.parse(e5);
             return PublishManifest.fromJSON(t29);
           } catch (e5) {
-            if ("ENOENT" === e5.code) return log81.debug(`Manifest not found: ${r}`), null;
-            throw log81.error(`Failed to load manifest: ${r}`, e5), e5;
+            if ("ENOENT" === e5.code) return log81.debug(`Manifest not found: ${i}`), null;
+            throw log81.error(`Failed to load manifest: ${i}`, e5), e5;
           }
         }
-        async saveManifest(e4, t28, i) {
-          const r = import_path25.default.join(e4, ".mdfriday");
-          await import_fs9.promises.mkdir(r, { recursive: true });
-          const s2 = this.getManifestPath(e4, t28.getPublishMethod(), i);
+        async saveManifest(e4, t28, r) {
+          const i = import_path25.default.join(e4, ".mdfriday");
+          await import_fs9.promises.mkdir(i, { recursive: true });
+          const s2 = this.getManifestPath(e4, t28.getPublishMethod(), r);
           await import_fs9.promises.writeFile(s2, JSON.stringify(t28.toJSON(), null, 2), "utf-8"), log81.debug(`Manifest saved: ${s2}`);
         }
-        async generateManifest(e4, t28, i, r) {
+        async generateManifest(e4, t28, r, i) {
           log81.debug(`Generating manifest for: ${t28}`);
-          const s2 = /* @__PURE__ */ new Map(), n3 = "netlify" === i ? "sha1" : "md5";
-          return await this.scanDirectory(t28, "", s2, n3), log81.debug(`Scanned ${s2.size} files`), PublishManifest.create({ projectId: e4, publishMethod: i, files: s2, remoteConfig: r });
+          const s2 = /* @__PURE__ */ new Map(), n3 = "netlify" === r ? "sha1" : "md5";
+          return await this.scanDirectory(t28, "", s2, n3), log81.debug(`Scanned ${s2.size} files`), PublishManifest.create({ projectId: e4, publishMethod: r, files: s2, remoteConfig: i });
         }
-        async deleteManifest(e4, t28, i) {
-          const r = this.getManifestPath(e4, t28, i);
+        async deleteManifest(e4, t28, r) {
+          const i = this.getManifestPath(e4, t28, r);
           try {
-            return await import_fs9.promises.unlink(r), log81.debug(`Manifest deleted: ${r}`), true;
+            return await import_fs9.promises.unlink(i), log81.debug(`Manifest deleted: ${i}`), true;
           } catch (e5) {
             if ("ENOENT" === e5.code) return false;
             throw e5;
           }
         }
-        getManifestPath(e4, t28, i) {
-          const r = i ? `manifest-${t28}-${i}.json` : `manifest-${t28}.json`;
-          return import_path25.default.join(e4, ".mdfriday", r);
+        getManifestPath(e4, t28, r) {
+          const i = r ? `manifest-${t28}-${r}.json` : `manifest-${t28}.json`;
+          return import_path25.default.join(e4, ".mdfriday", i);
         }
-        async scanDirectory(e4, t28, i, r = "md5") {
+        async scanDirectory(e4, t28, r, i = "md5") {
           const s2 = await import_fs9.promises.readdir(e4, { withFileTypes: true });
           for (const n3 of s2) {
             const s3 = import_path25.default.join(e4, n3.name), a = t28 ? import_path25.default.join(t28, n3.name) : n3.name;
-            if (n3.isDirectory()) await this.scanDirectory(s3, a, i, r);
+            if (n3.isDirectory()) await this.scanDirectory(s3, a, r, i);
             else if (n3.isFile()) {
-              const e5 = await import_fs9.promises.stat(s3), t29 = await this.calculateFileHash(s3, r), n4 = a.replace(/\\/g, "/");
-              i.set(n4, { hash: t29, size: e5.size, mtime: e5.mtimeMs, relativePath: n4 });
+              const e5 = await import_fs9.promises.stat(s3), t29 = await this.calculateFileHash(s3, i), n4 = a.replace(/\\/g, "/");
+              r.set(n4, { hash: t29, size: e5.size, mtime: e5.mtimeMs, relativePath: n4 });
             }
           }
         }
         async calculateFileHash(e4, t28 = "md5") {
-          return new Promise((i, r) => {
+          return new Promise((r, i) => {
             const s2 = import_crypto5.default.createHash(t28), n3 = (0, import_fs10.createReadStream)(e4);
-            n3.on("data", (e5) => s2.update(e5)), n3.on("end", () => i(s2.digest("hex"))), n3.on("error", r);
+            n3.on("data", (e5) => s2.update(e5)), n3.on("end", () => r(s2.digest("hex"))), n3.on("error", i);
           });
         }
       };
     } });
     init_node_http_client = __esm2({ "internal/infrastructure/http/node-http-client.ts"() {
       init_log(), log82 = getDomainLogger("node-http-client", { component: "infrastructure" }), NodeHttpClient2 = class {
-        async post(e4, t28, i) {
+        async post(e4, t28, r) {
           log82.debug(`POST ${e4} (JSON)`);
-          const r = t28 && Object.keys(t28).length > 0, s2 = await fetch(e4, { method: "POST", headers: r ? { "Content-Type": "application/json", ...i } : { ...i }, ...r && { body: JSON.stringify(t28) } }), n3 = await s2.text();
+          const i = t28 && Object.keys(t28).length > 0, s2 = await fetch(e4, { method: "POST", headers: i ? { "Content-Type": "application/json", ...r } : { ...r }, ...i && { body: JSON.stringify(t28) } }), n3 = await s2.text();
           let a;
           try {
             a = JSON.parse(n3);
@@ -127253,30 +127629,30 @@ Please specify a project name with --project <name>`);
           return log82.debug(`Response status: ${s2.status}`), { status: s2.status, data: a, text: async () => n3 };
         }
         async postForm(e4, t28) {
-          const i = Object.entries(t28).map(([e5, t29]) => `${encodeURIComponent(e5)}=${encodeURIComponent(t29)}`).join("&");
-          log82.debug(`POST ${e4} (form-urlencoded)`), log82.debug(`Request body: ${i.replace(/password=[^&]+/, "password=***")}`);
-          const r = await fetch(e4, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: i }), s2 = await r.text();
+          const r = Object.entries(t28).map(([e5, t29]) => `${encodeURIComponent(e5)}=${encodeURIComponent(t29)}`).join("&");
+          log82.debug(`POST ${e4} (form-urlencoded)`), log82.debug(`Request body: ${r.replace(/password=[^&]+/, "password=***")}`);
+          const i = await fetch(e4, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: r }), s2 = await i.text();
           let n3;
-          log82.debug(`Response status: ${r.status}`), log82.debug(`Response text: ${s2.substring(0, 500)}`);
+          log82.debug(`Response status: ${i.status}`), log82.debug(`Response text: ${s2.substring(0, 500)}`);
           try {
             n3 = JSON.parse(s2);
           } catch (e5) {
             log82.error("Failed to parse response as JSON:", e5), n3 = { text: s2 };
           }
-          return { status: r.status, data: n3, text: async () => s2 };
+          return { status: i.status, data: n3, text: async () => s2 };
         }
-        async postMultipart(e4, t28, i) {
-          const r = `----WebKitFormBoundary${Math.random().toString(36).substring(2, 9)}`, s2 = [];
+        async postMultipart(e4, t28, r) {
+          const i = `----WebKitFormBoundary${Math.random().toString(36).substring(2, 9)}`, s2 = [];
           new TextEncoder();
-          for (const [e5, i2] of Object.entries(t28)) s2.push(Buffer.from(`--${r}\r
+          for (const [e5, r3] of Object.entries(t28)) s2.push(Buffer.from(`--${i}\r
 `)), s2.push(Buffer.from(`Content-Disposition: form-data; name="${e5}"\r
 \r
-`)), "string" == typeof i2 ? s2.push(Buffer.from(i2)) : Buffer.isBuffer(i2) ? s2.push(i2) : s2.push(Buffer.from(String(i2))), s2.push(Buffer.from("\r\n"));
-          s2.push(Buffer.from(`--${r}--\r
+`)), "string" == typeof r3 ? s2.push(Buffer.from(r3)) : Buffer.isBuffer(r3) ? s2.push(r3) : s2.push(Buffer.from(String(r3))), s2.push(Buffer.from("\r\n"));
+          s2.push(Buffer.from(`--${i}--\r
 `));
           const n3 = Buffer.concat(s2);
-          log82.debug(`POST ${e4} (multipart/form-data)`), log82.debug(`Boundary: ${r}, Body size: ${n3.length} bytes`);
-          const a = await fetch(e4, { method: "POST", headers: { "Content-Type": `multipart/form-data; boundary=${r}`, ...i }, body: n3 }), o = await a.text();
+          log82.debug(`POST ${e4} (multipart/form-data)`), log82.debug(`Boundary: ${i}, Body size: ${n3.length} bytes`);
+          const a = await fetch(e4, { method: "POST", headers: { "Content-Type": `multipart/form-data; boundary=${i}`, ...r }, body: n3 }), o = await a.text();
           let l;
           log82.debug(`Response status: ${a.status}`), log82.debug(`Response text: ${o.substring(0, 500)}`);
           try {
@@ -127288,60 +127664,60 @@ Please specify a project name with --project <name>`);
         }
         async get(e4, t28) {
           log82.debug(`GET ${e4}`);
-          const i = await fetch(e4, { method: "GET", ...t28 && { headers: t28 } }), r = await i.text();
+          const r = await fetch(e4, { method: "GET", ...t28 && { headers: t28 } }), i = await r.text();
           let s2;
           try {
-            s2 = JSON.parse(r);
+            s2 = JSON.parse(i);
           } catch (e5) {
-            s2 = { text: r };
+            s2 = { text: i };
           }
-          return log82.debug(`Response status: ${i.status}`), { status: i.status, data: s2, text: async () => r };
+          return log82.debug(`Response status: ${r.status}`), { status: r.status, data: s2, text: async () => i };
         }
       };
     } });
     init_netlify_http_client = __esm2({ "internal/infrastructure/http/netlify-http-client.ts"() {
       init_log(), log83 = getDomainLogger("netlify-http-client", { component: "infrastructure" }), NetlifyHttpClient = class {
-        async postJSON(e4, t28, i) {
+        async postJSON(e4, t28, r) {
           log83.debug(`POST ${e4}`);
-          const r = await fetch(e4, { method: "POST", headers: { "Content-Type": "application/json", ...i }, body: JSON.stringify(t28) });
-          return this.createResponse(r);
+          const i = await fetch(e4, { method: "POST", headers: { "Content-Type": "application/json", ...r }, body: JSON.stringify(t28) });
+          return this.createResponse(i);
         }
-        async postMultipart(e4, t28, i) {
+        async postMultipart(e4, t28, r) {
           log83.debug(`POST ${e4} (multipart)`);
-          const r = `----WebKitFormBoundary${Math.random().toString(36).substring(2, 15)}`, s2 = [];
-          for (const [e5, i2] of Object.entries(t28)) i2 && "object" == typeof i2 && "data" in i2 ? (s2.push(Buffer.from(`--${r}\r
-Content-Disposition: form-data; name="${e5}"; filename="${i2.filename}"\r
-Content-Type: ${i2.contentType}\r
+          const i = `----WebKitFormBoundary${Math.random().toString(36).substring(2, 15)}`, s2 = [];
+          for (const [e5, r3] of Object.entries(t28)) r3 && "object" == typeof r3 && "data" in r3 ? (s2.push(Buffer.from(`--${i}\r
+Content-Disposition: form-data; name="${e5}"; filename="${r3.filename}"\r
+Content-Type: ${r3.contentType}\r
 \r
-`)), s2.push(Buffer.from(i2.data)), s2.push(Buffer.from("\r\n"))) : s2.push(Buffer.from(`--${r}\r
+`)), s2.push(Buffer.from(r3.data)), s2.push(Buffer.from("\r\n"))) : s2.push(Buffer.from(`--${i}\r
 Content-Disposition: form-data; name="${e5}"\r
 \r
-${i2}\r
+${r3}\r
 `));
-          s2.push(Buffer.from(`--${r}--\r
+          s2.push(Buffer.from(`--${i}--\r
 `));
-          const n3 = Buffer.concat(s2), a = await fetch(e4, { method: "POST", headers: { "Content-Type": `multipart/form-data; boundary=${r}`, ...i }, body: n3 });
+          const n3 = Buffer.concat(s2), a = await fetch(e4, { method: "POST", headers: { "Content-Type": `multipart/form-data; boundary=${i}`, ...r }, body: n3 });
           return this.createResponse(a);
         }
-        async putBinary(e4, t28, i) {
+        async putBinary(e4, t28, r) {
           log83.debug(`PUT ${e4} (${t28.byteLength} bytes)`);
-          const r = await fetch(e4, { method: "PUT", headers: { "Content-Type": "application/octet-stream", ...i }, body: t28 });
-          return this.createResponse(r);
+          const i = await fetch(e4, { method: "PUT", headers: { "Content-Type": "application/octet-stream", ...r }, body: t28 });
+          return this.createResponse(i);
         }
         async get(e4, t28) {
           log83.debug(`GET ${e4}`);
-          const i = await fetch(e4, { method: "GET", ...t28 ? { headers: t28 } : {} });
-          return this.createResponse(i);
+          const r = await fetch(e4, { method: "GET", ...t28 ? { headers: t28 } : {} });
+          return this.createResponse(r);
         }
         async createResponse(e4) {
           const t28 = await e4.text();
-          let i;
+          let r;
           try {
-            i = JSON.parse(t28);
+            r = JSON.parse(t28);
           } catch (e5) {
-            i = t28;
+            r = t28;
           }
-          return { status: e4.status, ok: e4.ok, statusText: e4.statusText, data: i, text: async () => t28, json: async () => "object" == typeof i ? i : JSON.parse(t28) };
+          return { status: e4.status, ok: e4.ok, statusText: e4.statusText, data: r, text: async () => t28, json: async () => "object" == typeof r ? r : JSON.parse(t28) };
         }
       };
     } });
@@ -127355,8 +127731,8 @@ ${i2}\r
           super(`Failed to connect to ${e4}: ${(t28 == null ? void 0 : t28.message) || "Unknown error"}`, e4), this.name = "LLMConnectError";
         }
       }, LLMHttpError = class extends LLMError {
-        constructor(e4, t28, i) {
-          super(`${e4} HTTP error: ${t28} ${i}`, e4), this.status = t28, this.statusText = i, this.name = "LLMHttpError";
+        constructor(e4, t28, r) {
+          super(`${e4} HTTP error: ${t28} ${r}`, e4), this.status = t28, this.statusText = r, this.name = "LLMHttpError";
         }
       }, LLMAbortError = class extends LLMError {
         constructor(e4) {
@@ -127369,18 +127745,18 @@ ${i2}\r
         async fetch(e4) {
           const t28 = { method: e4.method };
           e4.headers && (t28.headers = e4.headers), e4.body && (t28.body = e4.body), e4.signal && (t28.signal = e4.signal);
-          const i = await fetch(e4.url, t28);
-          return { status: i.status, statusText: i.statusText, ok: i.ok, body: i.body, text: () => i.text(), json: () => i.json() };
+          const r = await fetch(e4.url, t28);
+          return { status: r.status, statusText: r.statusText, ok: r.ok, body: r.body, text: () => r.text(), json: () => r.json() };
         }
       };
     } });
     init_lmstudio_provider = __esm2({ "internal/infrastructure/llm/lmstudio-provider.ts"() {
       init_provider2(), init_fetch_http_client(), OpenAICompatibleEmbeddingProvider = class {
-        constructor(e4 = "http://localhost:1234/v1", t28 = "text-embedding-nomic-embed-text-v2-moe", i, r, s2) {
+        constructor(e4 = "http://localhost:1234/v1", t28 = "text-embedding-nomic-embed-text-v2-moe", r, i, s2) {
           __publicField(this, "name");
           __publicField(this, "embeddingModel");
           __publicField(this, "httpClient");
-          this.baseURL = e4, this.apiKey = r, this.embeddingModel = t28, this.httpClient = i || createDefaultLLMHttpClient(), this.name = s2 || this.inferProviderName(e4);
+          this.baseURL = e4, this.apiKey = i, this.embeddingModel = t28, this.httpClient = r || createDefaultLLMHttpClient(), this.name = s2 || this.inferProviderName(e4);
         }
         inferProviderName(e4) {
           return e4.includes("localhost") || e4.includes("127.0.0.1") ? "LMStudio" : e4.includes("openai.com") ? "OpenAI" : e4.includes("bigmodel.cn") ? "GLM" : e4.includes("deepseek.com") ? "DeepSeek" : e4.includes("moonshot.cn") ? "Moonshot" : "OpenAI-Compatible";
@@ -127389,15 +127765,15 @@ ${i2}\r
           const e4 = { "Content-Type": "application/json" };
           return this.apiKey && (e4.Authorization = `Bearer ${this.apiKey}`), e4;
         }
-        async *complete(e4, t28, i) {
+        async *complete(e4, t28, r) {
           var _a11, _b4, _c2, _d;
-          const r = `${this.baseURL}/chat/completions`, s2 = [];
+          const i = `${this.baseURL}/chat/completions`, s2 = [];
           t28.systemMessage && s2.push({ role: "system", content: t28.systemMessage }), s2.push({ role: "user", content: e4 });
           const n3 = { model: t28.model || this.embeddingModel, messages: s2, temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, max_tokens: (_b4 = t28.maxTokens) != null ? _b4 : 16384, stream: true };
           let a;
           try {
-            const e5 = { url: r, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(n3) };
-            i && (e5.signal = i), a = await this.httpClient.fetch(e5);
+            const e5 = { url: i, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(n3) };
+            r && (e5.signal = r), a = await this.httpClient.fetch(e5);
           } catch (e5) {
             if ("AbortError" === e5.name) throw new LLMAbortError(this.name);
             throw new LLMConnectError(this.name, e5);
@@ -127411,15 +127787,15 @@ ${i2}\r
               const { done: e5, value: t29 } = await o.read();
               if (e5) break;
               c += l.decode(t29, { stream: true });
-              const i2 = c.split("\n");
-              c = i2.pop() || "";
-              for (const e6 of i2) {
+              const r3 = c.split("\n");
+              c = r3.pop() || "";
+              for (const e6 of r3) {
                 const t30 = e6.trim();
                 if (t30 && "data: [DONE]" !== t30 && t30.startsWith("data: ")) {
                   const e7 = t30.slice(6);
                   try {
-                    const t31 = JSON.parse(e7), i3 = (_c2 = t31.choices[0]) == null ? void 0 : _c2.delta, r3 = (i3 == null ? void 0 : i3.content) || (i3 == null ? void 0 : i3.reasoning_content) || "", s3 = (_d = t31.choices[0]) == null ? void 0 : _d.finish_reason;
-                    if (r3 && (yield { text: r3, done: false }), s3) return void (yield { text: "", done: true });
+                    const t31 = JSON.parse(e7), r4 = (_c2 = t31.choices[0]) == null ? void 0 : _c2.delta, i2 = (r4 == null ? void 0 : r4.content) || (r4 == null ? void 0 : r4.reasoning_content) || "", s3 = (_d = t31.choices[0]) == null ? void 0 : _d.finish_reason;
+                    if (i2 && (yield { text: i2, done: false }), s3) return void (yield { text: "", done: true });
                   } catch (e8) {
                   }
                 }
@@ -127430,7 +127806,7 @@ ${i2}\r
             o.releaseLock();
           }
         }
-        async completeSync(e4, t28, i, r) {
+        async completeSync(e4, t28, r, i) {
           var _a11, _b4, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m;
           const s2 = `${this.baseURL}/chat/completions`, n3 = [];
           t28.systemMessage && n3.push({ role: "system", content: t28.systemMessage }), n3.push({ role: "user", content: e4 });
@@ -127438,7 +127814,7 @@ ${i2}\r
           let o;
           try {
             const e5 = { url: s2, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(a) };
-            i && (e5.signal = i), o = await this.httpClient.fetch(e5);
+            r && (e5.signal = r), o = await this.httpClient.fetch(e5);
           } catch (e5) {
             if ("AbortError" === e5.name) throw new LLMAbortError(this.name);
             throw new LLMConnectError(this.name, e5);
@@ -127448,23 +127824,23 @@ ${i2}\r
             throw new LLMHttpError(this.name, o.status, `${o.statusText}: ${e5}`);
           }
           const l = await o.json();
-          if (r && l.usage) {
+          if (i && l.usage) {
             const e5 = l.model || t28.model || this.embeddingModel;
-            r({ promptTokens: (_c2 = l.usage.prompt_tokens) != null ? _c2 : 0, completionTokens: (_d = l.usage.completion_tokens) != null ? _d : 0, totalTokens: (_e = l.usage.total_tokens) != null ? _e : 0, ...e5 ? { model: e5 } : {} });
+            i({ promptTokens: (_c2 = l.usage.prompt_tokens) != null ? _c2 : 0, completionTokens: (_d = l.usage.completion_tokens) != null ? _d : 0, totalTokens: (_e = l.usage.total_tokens) != null ? _e : 0, ...e5 ? { model: e5 } : {} });
           }
           const c = ((_h = (_g = (_f = l.choices) == null ? void 0 : _f[0]) == null ? void 0 : _g.message) == null ? void 0 : _h.content) || "", h3 = ((_k = (_j = (_i = l.choices) == null ? void 0 : _i[0]) == null ? void 0 : _j.message) == null ? void 0 : _k.reasoning_content) || "", u = (_m = (_l = l.choices) == null ? void 0 : _l[0]) == null ? void 0 : _m.finish_reason;
           return !c && "length" === u && h3 ? (console.warn(`\u26A0\uFE0F  [${this.name}] Model hit maxTokens limit during reasoning. Consider increasing maxTokens.`), h3.trim()) : c.trim();
         }
-        async generateEmbedding(e4, t28, i) {
-          return this.embed({ text: e4, model: t28, ...i ? { onUsage: i } : {} });
+        async generateEmbedding(e4, t28, r) {
+          return this.embed({ text: e4, model: t28, ...r ? { onUsage: r } : {} });
         }
         async embed(e4) {
           var _a11, _b4, _c2, _d, _e, _f;
-          const t28 = `${this.baseURL}/embeddings`, i = e4.model || this.embeddingModel, r = { model: i, input: e4.text };
+          const t28 = `${this.baseURL}/embeddings`, r = e4.model || this.embeddingModel, i = { model: r, input: e4.text };
           let s2;
           try {
-            const i2 = { url: t28, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(r) };
-            e4.signal && (i2.signal = e4.signal), s2 = await this.httpClient.fetch(i2);
+            const r3 = { url: t28, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(i) };
+            e4.signal && (r3.signal = e4.signal), s2 = await this.httpClient.fetch(r3);
           } catch (e5) {
             if ("AbortError" === e5.name) throw new Error("Embedding request aborted");
             throw new Error(`[${this.name}] Failed to connect to embedding API: ${e5.message}`);
@@ -127476,18 +127852,18 @@ ${i2}\r
           const n3 = await s2.json();
           if (!((_b4 = (_a11 = n3.data) == null ? void 0 : _a11[0]) == null ? void 0 : _b4.embedding)) throw new Error(`[${this.name}] Invalid embedding response format`);
           if (e4.onUsage) {
-            const t29 = (_d = (_c2 = n3.usage) == null ? void 0 : _c2.prompt_tokens) != null ? _d : 0, r3 = (_f = (_e = n3.usage) == null ? void 0 : _e.total_tokens) != null ? _f : t29, s3 = t29 > 0 ? t29 : Math.max(1, Math.ceil(e4.text.length / 4)), a = r3 > 0 ? r3 : s3, o = n3.model || i;
+            const t29 = (_d = (_c2 = n3.usage) == null ? void 0 : _c2.prompt_tokens) != null ? _d : 0, i2 = (_f = (_e = n3.usage) == null ? void 0 : _e.total_tokens) != null ? _f : t29, s3 = t29 > 0 ? t29 : Math.max(1, Math.ceil(e4.text.length / 4)), a = i2 > 0 ? i2 : s3, o = n3.model || r;
             e4.onUsage({ promptTokens: s3, completionTokens: 0, totalTokens: a, ...o ? { model: o } : {} });
           }
           return n3.data[0].embedding;
         }
         async embedBatch(e4) {
-          const t28 = `${this.baseURL}/embeddings`, i = { model: this.embeddingModel, input: e4 }, r = await this.httpClient.fetch({ url: t28, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(i) });
-          if (!r.ok) {
-            const e5 = await r.text();
-            throw new Error(`[${this.name}] Embedding batch API error (${r.status}): ${e5}`);
+          const t28 = `${this.baseURL}/embeddings`, r = { model: this.embeddingModel, input: e4 }, i = await this.httpClient.fetch({ url: t28, method: "POST", headers: this.buildHeaders(), body: JSON.stringify(r) });
+          if (!i.ok) {
+            const e5 = await i.text();
+            throw new Error(`[${this.name}] Embedding batch API error (${i.status}): ${e5}`);
           }
-          const s2 = await r.json();
+          const s2 = await i.json();
           if (!s2.data || !Array.isArray(s2.data)) throw new Error(`[${this.name}] Invalid batch embedding response format`);
           return s2.data.sort((e5, t29) => e5.index - t29.index).map((e5) => e5.embedding);
         }
@@ -127506,17 +127882,17 @@ ${i2}\r
           __publicField(this, "name", "Ollama");
           this.baseURL = e4;
         }
-        async *complete(e4, t28, i) {
-          t28.systemMessage ? yield* this.completeWithChat(e4, t28, i) : yield* this.completeWithGenerate(e4, t28, i);
+        async *complete(e4, t28, r) {
+          t28.systemMessage ? yield* this.completeWithChat(e4, t28, r) : yield* this.completeWithGenerate(e4, t28, r);
         }
-        async *completeWithChat(e4, t28, i) {
+        async *completeWithChat(e4, t28, r) {
           var _a11, _b4, _c2, _d, _e, _f, _g;
-          const r = `${this.baseURL}/api/chat`, s2 = [];
+          const i = `${this.baseURL}/api/chat`, s2 = [];
           t28.systemMessage && s2.push({ role: "system", content: t28.systemMessage }), s2.push({ role: "user", content: e4 });
           const n3 = { model: t28.model || "llama2", messages: s2, stream: true, options: { temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, num_predict: (_b4 = t28.maxTokens) != null ? _b4 : 16384 } };
           let a;
           try {
-            a = await fetch(r, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(n3), ...i ? { signal: i } : {} });
+            a = await fetch(i, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(n3), ...r ? { signal: r } : {} });
           } catch (e5) {
             if ("AbortError" === e5.name) throw new LLMAbortError(this.name);
             throw new LLMConnectError(this.name, e5);
@@ -127526,13 +127902,13 @@ ${i2}\r
           const o = a.body.getReader(), l = new TextDecoder();
           try {
             for (; ; ) {
-              const { done: e5, value: i2 } = await o.read();
+              const { done: e5, value: r3 } = await o.read();
               if (e5) break;
-              const r3 = l.decode(i2, { stream: true }).split("\n").filter((e6) => e6.trim());
-              for (const e6 of r3) try {
-                const i3 = JSON.parse(e6), r4 = ((_c2 = i3.message) == null ? void 0 : _c2.content) || "";
-                if (r4 && (yield { text: r4, done: false }), i3.done) {
-                  const e7 = void 0 !== i3.prompt_eval_count || void 0 !== i3.eval_count ? { promptTokens: (_d = i3.prompt_eval_count) != null ? _d : 0, completionTokens: (_e = i3.eval_count) != null ? _e : 0, totalTokens: ((_f = i3.prompt_eval_count) != null ? _f : 0) + ((_g = i3.eval_count) != null ? _g : 0), model: i3.model || t28.model } : void 0;
+              const i2 = l.decode(r3, { stream: true }).split("\n").filter((e6) => e6.trim());
+              for (const e6 of i2) try {
+                const r4 = JSON.parse(e6), i3 = ((_c2 = r4.message) == null ? void 0 : _c2.content) || "";
+                if (i3 && (yield { text: i3, done: false }), r4.done) {
+                  const e7 = void 0 !== r4.prompt_eval_count || void 0 !== r4.eval_count ? { promptTokens: (_d = r4.prompt_eval_count) != null ? _d : 0, completionTokens: (_e = r4.eval_count) != null ? _e : 0, totalTokens: ((_f = r4.prompt_eval_count) != null ? _f : 0) + ((_g = r4.eval_count) != null ? _g : 0), model: r4.model || t28.model } : void 0;
                   return void (yield { text: "", done: true, ...e7 ? { usage: e7 } : {} });
                 }
               } catch (t29) {
@@ -127543,12 +127919,12 @@ ${i2}\r
             o.releaseLock();
           }
         }
-        async *completeWithGenerate(e4, t28, i) {
+        async *completeWithGenerate(e4, t28, r) {
           var _a11, _b4, _c2, _d, _e, _f;
-          const r = `${this.baseURL}/api/generate`, s2 = { model: t28.model || "llama2", prompt: e4, stream: true, options: { temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, num_predict: (_b4 = t28.maxTokens) != null ? _b4 : 4096 } };
+          const i = `${this.baseURL}/api/generate`, s2 = { model: t28.model || "llama2", prompt: e4, stream: true, options: { temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, num_predict: (_b4 = t28.maxTokens) != null ? _b4 : 4096 } };
           let n3;
           try {
-            n3 = await fetch(r, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(s2), ...i ? { signal: i } : {} });
+            n3 = await fetch(i, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(s2), ...r ? { signal: r } : {} });
           } catch (e5) {
             if ("AbortError" === e5.name) throw new LLMAbortError(this.name);
             throw new LLMConnectError(this.name, e5);
@@ -127558,16 +127934,16 @@ ${i2}\r
           const a = n3.body.getReader(), o = new TextDecoder();
           try {
             for (; ; ) {
-              const { done: e5, value: i2 } = await a.read();
+              const { done: e5, value: r3 } = await a.read();
               if (e5) break;
-              const r3 = o.decode(i2, { stream: true }).split("\n").filter((e6) => e6.trim());
-              for (const e6 of r3) try {
-                const i3 = JSON.parse(e6);
-                if (i3.done) {
-                  const e7 = void 0 !== i3.prompt_eval_count || void 0 !== i3.eval_count ? { promptTokens: (_c2 = i3.prompt_eval_count) != null ? _c2 : 0, completionTokens: (_d = i3.eval_count) != null ? _d : 0, totalTokens: ((_e = i3.prompt_eval_count) != null ? _e : 0) + ((_f = i3.eval_count) != null ? _f : 0), model: i3.model || t28.model } : void 0;
-                  return void (yield { text: i3.response || "", done: true, ...e7 ? { usage: e7 } : {} });
+              const i2 = o.decode(r3, { stream: true }).split("\n").filter((e6) => e6.trim());
+              for (const e6 of i2) try {
+                const r4 = JSON.parse(e6);
+                if (r4.done) {
+                  const e7 = void 0 !== r4.prompt_eval_count || void 0 !== r4.eval_count ? { promptTokens: (_c2 = r4.prompt_eval_count) != null ? _c2 : 0, completionTokens: (_d = r4.eval_count) != null ? _d : 0, totalTokens: ((_e = r4.prompt_eval_count) != null ? _e : 0) + ((_f = r4.eval_count) != null ? _f : 0), model: r4.model || t28.model } : void 0;
+                  return void (yield { text: r4.response || "", done: true, ...e7 ? { usage: e7 } : {} });
                 }
-                yield { text: i3.response || "", done: false };
+                yield { text: r4.response || "", done: false };
               } catch (t29) {
                 console.warn("Failed to parse Ollama chunk:", e6);
               }
@@ -127576,9 +127952,9 @@ ${i2}\r
             a.releaseLock();
           }
         }
-        async completeSync(e4, t28, i, r) {
+        async completeSync(e4, t28, r, i) {
           let s2 = "";
-          for await (const n3 of this.complete(e4, t28, i)) n3.done ? n3.usage && r && r(n3.usage) : s2 += n3.text;
+          for await (const n3 of this.complete(e4, t28, r)) n3.done ? n3.usage && i && i(n3.usage) : s2 += n3.text;
           return s2.trim();
         }
         async healthCheck() {
@@ -127601,20 +127977,20 @@ ${i2}\r
           __publicField(this, "config");
           this.config = { timeout: 3e4, ...e4 };
         }
-        async generateEmbedding(e4, t28, i) {
-          return this.embed({ text: e4, model: t28, ...i ? { onUsage: i } : {} });
+        async generateEmbedding(e4, t28, r) {
+          return this.embed({ text: e4, model: t28, ...r ? { onUsage: r } : {} });
         }
         async embed(e4) {
           var _a11, _b4, _c2;
-          const t28 = (_a11 = e4.model) != null ? _a11 : this.config.model, i = `${this.config.baseUrl}/api/embeddings`, r = new AbortController(), s2 = setTimeout(() => r.abort(), this.config.timeout);
+          const t28 = (_a11 = e4.model) != null ? _a11 : this.config.model, r = `${this.config.baseUrl}/api/embeddings`, i = new AbortController(), s2 = setTimeout(() => i.abort(), this.config.timeout);
           try {
-            const s3 = await fetch(i, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: t28, prompt: e4.text }), signal: (_b4 = e4.signal) != null ? _b4 : r.signal });
+            const s3 = await fetch(r, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: t28, prompt: e4.text }), signal: (_b4 = e4.signal) != null ? _b4 : i.signal });
             if (!s3.ok) throw new Error(`Ollama embedding failed: ${s3.status} ${s3.statusText}`);
             const n3 = await s3.json();
             if (!n3.embedding || !Array.isArray(n3.embedding)) throw new Error("Invalid embedding response from Ollama");
             if (e4.onUsage) {
-              const i2 = (_c2 = n3.prompt_eval_count) != null ? _c2 : 0, r3 = i2 > 0 ? i2 : Math.max(1, Math.ceil(e4.text.length / 4)), s4 = n3.model || t28;
-              e4.onUsage({ promptTokens: r3, completionTokens: 0, totalTokens: r3, ...s4 ? { model: s4 } : {} });
+              const r3 = (_c2 = n3.prompt_eval_count) != null ? _c2 : 0, i2 = r3 > 0 ? r3 : Math.max(1, Math.ceil(e4.text.length / 4)), s4 = n3.model || t28;
+              e4.onUsage({ promptTokens: i2, completionTokens: 0, totalTokens: i2, ...s4 ? { model: s4 } : {} });
             }
             return n3.embedding;
           } finally {
@@ -127623,8 +127999,8 @@ ${i2}\r
         }
         async embedBatch(e4) {
           const t28 = [];
-          for (const i of e4) {
-            const e5 = await this.embed({ text: i });
+          for (const r of e4) {
+            const e5 = await this.embed({ text: r });
             t28.push(e5);
           }
           return t28;
@@ -127647,8 +128023,8 @@ ${i2}\r
         async readFile(e4, t28) {
           return await fs12.readFile(e4, t28);
         }
-        async writeFile(e4, t28, i) {
-          await fs12.writeFile(e4, t28, i);
+        async writeFile(e4, t28, r) {
+          await fs12.writeFile(e4, t28, r);
         }
         async stat(e4) {
           const t28 = await fs12.stat(e4);
@@ -127716,14 +128092,14 @@ ${i2}\r
     } });
     init_node_conversation_repository = __esm2({ "internal/infrastructure/node/node-conversation-repository.ts"() {
       NodeConversationRepository = class {
-        constructor(e4, t28, i) {
-          this.baseDir = e4, this.fileSystem = t28, this.pathService = i, this.ensureDirectory();
+        constructor(e4, t28, r) {
+          this.baseDir = e4, this.fileSystem = t28, this.pathService = r, this.ensureDirectory();
         }
         async save(e4, t28 = {}) {
-          const i = e4.getFilename(), r = this.pathService.join(this.baseDir, i);
-          if (await this.fileSystem.exists(this.baseDir) || await this.fileSystem.mkdir(this.baseDir, { recursive: true }), !t28.overwrite && await this.fileSystem.exists(r)) throw new Error(`Conversation file already exists: ${r}`);
+          const r = e4.getFilename(), i = this.pathService.join(this.baseDir, r);
+          if (await this.fileSystem.exists(this.baseDir) || await this.fileSystem.mkdir(this.baseDir, { recursive: true }), !t28.overwrite && await this.fileSystem.exists(i)) throw new Error(`Conversation file already exists: ${i}`);
           const s2 = e4.formatAsMarkdown();
-          return await this.fileSystem.writeFile(r, s2, "utf-8"), r;
+          return await this.fileSystem.writeFile(i, s2, "utf-8"), i;
         }
         async list() {
           if (!await this.fileSystem.exists(this.baseDir)) return [];
@@ -127739,8 +128115,8 @@ ${i2}\r
           return [];
         }
         async exists(e4) {
-          const t28 = `${e4}.md`, i = this.pathService.join(this.baseDir, t28);
-          return await this.fileSystem.exists(i);
+          const t28 = `${e4}.md`, r = this.pathService.join(this.baseDir, t28);
+          return await this.fileSystem.exists(r);
         }
         getFilePath(e4) {
           const t28 = `${e4}.md`;
@@ -127760,9 +128136,9 @@ ${i2}\r
           return this._value;
         }
         static create(t28) {
-          const i = t28.toLowerCase().trim().replace(/[^\w\s\u4e00-\u9fa5-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
-          if (!i) throw new Error("Cannot create EntityId from empty string");
-          return new e4(i);
+          const r = t28.toLowerCase().trim().replace(/[^\w\s\u4e00-\u9fa5-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+          if (!r) throw new Error("Cannot create EntityId from empty string");
+          return new e4(r);
         }
         equals(e5) {
           return this._value === e5._value;
@@ -127783,8 +128159,8 @@ ${i2}\r
           return this._value;
         }
         static fromString(t28) {
-          const i = t28.toLowerCase();
-          return _a11.VALID_TYPES.has(i) ? new _a11(i) : new _a11("other");
+          const r = t28.toLowerCase();
+          return _a11.VALID_TYPES.has(r) ? new _a11(r) : new _a11("other");
         }
         equals(e4) {
           return this._value === e4._value;
@@ -127805,8 +128181,8 @@ ${i2}\r
           return this._value;
         }
         static fromString(t28) {
-          const i = t28.toLowerCase();
-          return _a11.VALID_TYPES.has(i) ? new _a11(i) : new _a11("related-to");
+          const r = t28.toLowerCase();
+          return _a11.VALID_TYPES.has(r) ? new _a11(r) : new _a11("related-to");
         }
         equals(e4) {
           return this._value === e4._value;
@@ -127818,14 +128194,14 @@ ${i2}\r
     } });
     init_source_record = __esm2({ "internal/domain/wiki/value-object/source-record.ts"() {
       SourceRecord = class e4 {
-        constructor(e5, t28, i, r, s2, n3) {
+        constructor(e5, t28, r, i, s2, n3) {
           __publicField(this, "path");
           __publicField(this, "summary");
           __publicField(this, "date");
           __publicField(this, "mtime");
           __publicField(this, "origin");
           __publicField(this, "contentHash");
-          this.path = e5, this.summary = t28, this.date = i, this.mtime = r, this.origin = s2, this.contentHash = n3;
+          this.path = e5, this.summary = t28, this.date = r, this.mtime = i, this.origin = s2, this.contentHash = n3;
         }
         toJSON() {
           return { path: this.path, summary: this.summary, date: this.date.toISOString(), mtime: this.mtime, origin: this.origin, contentHash: this.contentHash };
@@ -127837,12 +128213,12 @@ ${i2}\r
     } });
     init_extraction_result = __esm2({ "internal/domain/wiki/value-object/extraction-result.ts"() {
       ExtractionResult = class e4 {
-        constructor(e5, t28, i, r) {
+        constructor(e5, t28, r, i) {
           __publicField(this, "sourceSummary");
           __publicField(this, "entities");
           __publicField(this, "concepts");
           __publicField(this, "connections");
-          this.sourceSummary = e5, this.entities = t28, this.concepts = i, this.connections = r;
+          this.sourceSummary = e5, this.entities = t28, this.concepts = r, this.connections = i;
         }
         static fromJSON(t28) {
           return new e4(t28.source_summary || "", t28.entities || [], t28.concepts || [], t28.connections || []);
@@ -127866,130 +128242,130 @@ ${i2}\r
         static rankByKeyword(e4, t28) {
           var _a11;
           if (0 === t28.length) return [];
-          const i = [];
-          for (const r of e4.getAllEntities()) {
+          const r = [];
+          for (const i of e4.getAllEntities()) {
             let e5 = 0;
-            const s2 = r.name.toLowerCase(), n3 = Array.from(r.aliases).map((e6) => e6.toLowerCase());
-            for (const i2 of t28) {
-              (s2.includes(i2) || n3.some((e6) => e6.includes(i2))) && (e5 += 3);
-              for (const t29 of r.facts) t29.toLowerCase().includes(i2) && (e5 += 1);
+            const s2 = i.name.toLowerCase(), n3 = Array.from(i.aliases).map((e6) => e6.toLowerCase());
+            for (const r3 of t28) {
+              (s2.includes(r3) || n3.some((e6) => e6.includes(r3))) && (e5 += 3);
+              for (const t29 of i.facts) t29.toLowerCase().includes(r3) && (e5 += 1);
             }
-            for (let i2 = 0; i2 < t28.length - 1; i2++) {
-              const r3 = `${t28[i2]} ${t28[i2 + 1]}`;
-              s2.includes(r3) && (e5 += 6);
+            for (let r3 = 0; r3 < t28.length - 1; r3++) {
+              const i2 = `${t28[r3]} ${t28[r3 + 1]}`;
+              s2.includes(i2) && (e5 += 6);
             }
-            e5 > 0 && i.push({ id: r.id.value, score: e5, richness: r.facts.length + r.sources.length });
+            e5 > 0 && r.push({ id: i.id.value, score: e5, richness: i.facts.length + i.sources.length });
           }
-          for (const r of e4.getAllConcepts()) {
+          for (const i of e4.getAllConcepts()) {
             let e5 = 0;
-            const s2 = r.name.toLowerCase(), n3 = Array.from(r.aliases).map((e6) => e6.toLowerCase()), a = ((_a11 = r.definition) != null ? _a11 : "").toLowerCase();
-            for (const i2 of t28) (s2.includes(i2) || n3.some((e6) => e6.includes(i2))) && (e5 += 3), a.includes(i2) && (e5 += 1);
-            for (let i2 = 0; i2 < t28.length - 1; i2++) {
-              const r3 = `${t28[i2]} ${t28[i2 + 1]}`;
-              s2.includes(r3) && (e5 += 6);
+            const s2 = i.name.toLowerCase(), n3 = Array.from(i.aliases).map((e6) => e6.toLowerCase()), a = ((_a11 = i.definition) != null ? _a11 : "").toLowerCase();
+            for (const r3 of t28) (s2.includes(r3) || n3.some((e6) => e6.includes(r3))) && (e5 += 3), a.includes(r3) && (e5 += 1);
+            for (let r3 = 0; r3 < t28.length - 1; r3++) {
+              const i2 = `${t28[r3]} ${t28[r3 + 1]}`;
+              s2.includes(i2) && (e5 += 6);
             }
-            e5 > 0 && i.push({ id: `concept:${r.id.value}`, score: e5, richness: r.related.length + r.sources.length });
+            e5 > 0 && r.push({ id: `concept:${i.id.value}`, score: e5, richness: i.related.length + i.sources.length });
           }
-          return i.sort((e5, t29) => t29.score - e5.score || t29.richness - e5.richness), i.map(({ id: e5, score: t29 }) => ({ id: e5, score: t29 }));
+          return r.sort((e5, t29) => t29.score - e5.score || t29.richness - e5.richness), r.map(({ id: e5, score: t29 }) => ({ id: e5, score: t29 }));
         }
         static rankByPath(e4, t28) {
           if (0 === t28.length) return [];
-          const i = [];
-          for (const r of e4.getAllEntities()) {
+          const r = [];
+          for (const i of e4.getAllEntities()) {
             let e5 = 0;
-            for (const i2 of r.sources) {
-              const r3 = i2.toLowerCase();
-              for (const i3 of t28) r3.includes(i3) && (e5 += 1);
+            for (const r3 of i.sources) {
+              const i2 = r3.toLowerCase();
+              for (const r4 of t28) i2.includes(r4) && (e5 += 1);
             }
-            e5 > 0 && i.push({ id: r.id.value, score: e5 });
+            e5 > 0 && r.push({ id: i.id.value, score: e5 });
           }
-          for (const r of e4.getAllConcepts()) {
+          for (const i of e4.getAllConcepts()) {
             let e5 = 0;
-            for (const i2 of r.sources) {
-              const r3 = i2.toLowerCase();
-              for (const i3 of t28) r3.includes(i3) && (e5 += 1);
+            for (const r3 of i.sources) {
+              const i2 = r3.toLowerCase();
+              for (const r4 of t28) i2.includes(r4) && (e5 += 1);
             }
-            e5 > 0 && i.push({ id: `concept:${r.id.value}`, score: e5 });
+            e5 > 0 && r.push({ id: `concept:${i.id.value}`, score: e5 });
           }
-          return i.sort((e5, t29) => t29.score - e5.score), i;
+          return r.sort((e5, t29) => t29.score - e5.score), r;
         }
         static rankByEmbedding(e4, t28) {
-          const i = [], r = (Map, () => e4.keys()), s2 = (t29) => e4.get(t29);
-          for (const e5 of r()) {
-            const r3 = s2(e5);
-            if (!r3) continue;
-            const n3 = this.cosineSimilarity(t28, r3);
-            n3 > 0 && i.push({ id: e5, score: n3 });
+          const r = [], i = (Map, () => e4.keys()), s2 = (t29) => e4.get(t29);
+          for (const e5 of i()) {
+            const i2 = s2(e5);
+            if (!i2) continue;
+            const n3 = this.cosineSimilarity(t28, i2);
+            n3 > 0 && r.push({ id: e5, score: n3 });
           }
-          return i.sort((e5, t29) => t29.score - e5.score), i.slice(0, 50);
+          return r.sort((e5, t29) => t29.score - e5.score), r.slice(0, 50);
         }
-        static rrfFuse(e4, t28, i = 60) {
+        static rrfFuse(e4, t28, r = 60) {
           var _a11, _b4;
-          const r = /* @__PURE__ */ new Map();
+          const i = /* @__PURE__ */ new Map();
           for (let s2 = 0; s2 < e4.length; s2++) {
             const n3 = e4[s2], a = (_a11 = t28[s2]) != null ? _a11 : 1;
             for (let e5 = 0; e5 < n3.length; e5++) {
-              const t29 = n3[e5], s3 = a / (i + e5 + 1);
-              r.set(t29.id, ((_b4 = r.get(t29.id)) != null ? _b4 : 0) + s3);
+              const t29 = n3[e5], s3 = a / (r + e5 + 1);
+              i.set(t29.id, ((_b4 = i.get(t29.id)) != null ? _b4 : 0) + s3);
             }
           }
-          return Array.from(r.entries()).map(([e5, t29]) => ({ id: e5, score: t29 })).sort((e5, t29) => t29.score - e5.score);
+          return Array.from(i.entries()).map(([e5, t29]) => ({ id: e5, score: t29 })).sort((e5, t29) => t29.score - e5.score);
         }
         static qualityMultiplier(e4, t28) {
           if (e4.startsWith("concept:")) {
-            const i = e4.slice(8), r = t28.getConcept(i);
-            return r ? 1 + 0.1 * (r.related.length + r.sources.length) : 1;
+            const r = e4.slice(8), i = t28.getConcept(r);
+            return i ? 1 + 0.1 * (i.related.length + i.sources.length) : 1;
           }
           {
-            const i = t28.getEntity(e4);
-            return i ? 1 + 0.1 * (i.facts.length + i.sources.length) : 1;
+            const r = t28.getEntity(e4);
+            return r ? 1 + 0.1 * (r.facts.length + r.sources.length) : 1;
           }
         }
         static cosineSimilarity(e4, t28) {
-          const i = Math.min(e4.length, t28.length);
-          let r = 0, s2 = 0, n3 = 0;
-          for (let a = 0; a < i; a++) {
-            const i2 = e4[a], o = t28[a];
-            r += i2 * o, s2 += i2 * i2, n3 += o * o;
+          const r = Math.min(e4.length, t28.length);
+          let i = 0, s2 = 0, n3 = 0;
+          for (let a = 0; a < r; a++) {
+            const r3 = e4[a], o = t28[a];
+            i += r3 * o, s2 += r3 * r3, n3 += o * o;
           }
-          return 0 === s2 || 0 === n3 ? 0 : r / (Math.sqrt(s2) * Math.sqrt(n3));
+          return 0 === s2 || 0 === n3 ? 0 : i / (Math.sqrt(s2) * Math.sqrt(n3));
         }
         static contextualTextForEntity(e4) {
-          const t28 = [`Entity [${e4.type.value}]: ${e4.name}.`], i = Array.from(e4.aliases);
-          return i.length > 0 && t28.push(`Also known as: ${i.join(", ")}.`), e4.facts.length > 0 && t28.push(e4.facts.slice(0, 5).join(" ")), t28.join(" ");
+          const t28 = [`Entity [${e4.type.value}]: ${e4.name}.`], r = Array.from(e4.aliases);
+          return r.length > 0 && t28.push(`Also known as: ${r.join(", ")}.`), e4.facts.length > 0 && t28.push(e4.facts.slice(0, 5).join(" ")), t28.join(" ");
         }
         static contextualTextForConcept(e4) {
           var _a11;
-          const t28 = [`Concept: ${e4.name}.`], i = ((_a11 = e4.definition) != null ? _a11 : "").slice(0, 200);
-          return i.length > 0 && t28.push(i), e4.related && e4.related.length > 0 && t28.push(`Related to: ${e4.related.join(", ")}.`), t28.join(" ");
+          const t28 = [`Concept: ${e4.name}.`], r = ((_a11 = e4.definition) != null ? _a11 : "").slice(0, 200);
+          return r.length > 0 && t28.push(r), e4.related && e4.related.length > 0 && t28.push(`Related to: ${e4.related.join(", ")}.`), t28.join(" ");
         }
         static async buildEmbeddingIndex(e4) {
           var _a11, _b4;
-          const t28 = /* @__PURE__ */ new Map(), i = e4.kb.getAllEntities(), r = e4.kb.getAllConcepts(), s2 = i.length + r.length;
+          const t28 = /* @__PURE__ */ new Map(), r = e4.kb.getAllEntities(), i = e4.kb.getAllConcepts(), s2 = r.length + i.length;
           let n3 = 0;
           const a = (t29) => {
             var _a12;
             n3 += 1, (_a12 = e4.onProgress) == null ? void 0 : _a12.call(e4, { current: n3, total: s2, phase: t29 });
           };
-          for (const r3 of i) {
-            if ((_a11 = e4.signal) == null ? void 0 : _a11.aborted) throw new Error("Embedding index build aborted");
-            const i2 = r3.id.value, s3 = this.contextualTextForEntity(r3), n4 = e4.cache.entries[i2];
-            if (n4 && n4.sourceText === s3) {
-              t28.set(i2, n4.vector), a("entities");
-              continue;
-            }
-            const o = await e4.provider.embed({ text: s3, model: e4.model, ...e4.signal ? { signal: e4.signal } : {} });
-            e4.cache.entries[i2] = { sourceText: s3, vector: o }, t28.set(i2, o), a("entities");
-          }
           for (const i2 of r) {
-            if ((_b4 = e4.signal) == null ? void 0 : _b4.aborted) throw new Error("Embedding index build aborted");
-            const r3 = `concept:${i2.id.value}`, s3 = this.contextualTextForConcept(i2), n4 = e4.cache.entries[r3];
+            if ((_a11 = e4.signal) == null ? void 0 : _a11.aborted) throw new Error("Embedding index build aborted");
+            const r3 = i2.id.value, s3 = this.contextualTextForEntity(i2), n4 = e4.cache.entries[r3];
             if (n4 && n4.sourceText === s3) {
-              t28.set(r3, n4.vector), a("concepts");
+              t28.set(r3, n4.vector), a("entities");
               continue;
             }
             const o = await e4.provider.embed({ text: s3, model: e4.model, ...e4.signal ? { signal: e4.signal } : {} });
-            e4.cache.entries[r3] = { sourceText: s3, vector: o }, t28.set(r3, o), a("concepts");
+            e4.cache.entries[r3] = { sourceText: s3, vector: o }, t28.set(r3, o), a("entities");
+          }
+          for (const r3 of i) {
+            if ((_b4 = e4.signal) == null ? void 0 : _b4.aborted) throw new Error("Embedding index build aborted");
+            const i2 = `concept:${r3.id.value}`, s3 = this.contextualTextForConcept(r3), n4 = e4.cache.entries[i2];
+            if (n4 && n4.sourceText === s3) {
+              t28.set(i2, n4.vector), a("concepts");
+              continue;
+            }
+            const o = await e4.provider.embed({ text: s3, model: e4.model, ...e4.signal ? { signal: e4.signal } : {} });
+            e4.cache.entries[i2] = { sourceText: s3, vector: o }, t28.set(i2, o), a("concepts");
           }
           return t28;
         }
@@ -128015,9 +128391,9 @@ ${i2}\r
           var _a11, _b4, _c2;
           this.options = { markFirstOccurrenceOnly: (_a11 = e4.markFirstOccurrenceOnly) != null ? _a11 : true, contextAware: (_b4 = e4.contextAware) != null ? _b4 : true, differentMarkers: (_c2 = e4.differentMarkers) != null ? _c2 : false };
         }
-        annotate(e4, t28, i) {
-          const r = this.collectTerms(t28, i), s2 = [];
-          r.forEach((e5) => {
+        annotate(e4, t28, r) {
+          const i = this.collectTerms(t28, r), s2 = [];
+          i.forEach((e5) => {
             s2.push({ term: e5, text: e5.name, isAlias: false }), e5.aliases.forEach((t29) => {
               t29 && t29 !== e5.name && s2.push({ term: e5, text: t29, isAlias: true });
             });
@@ -128026,29 +128402,29 @@ ${i2}\r
           return this.markTerms(e4, n3);
         }
         collectTerms(e4, t28) {
-          const i = [];
+          const r = [];
           return e4.forEach((e5) => {
-            i.push({ name: e5.name, aliases: Array.from(e5.aliases), type: "entity" });
+            r.push({ name: e5.name, aliases: Array.from(e5.aliases), type: "entity" });
           }), t28.forEach((e5) => {
-            i.push({ name: e5.name, aliases: Array.from(e5.aliases), type: "concept" });
-          }), i;
+            r.push({ name: e5.name, aliases: Array.from(e5.aliases), type: "concept" });
+          }), r;
         }
         markTerms(e4, t28) {
-          const i = this.options.contextAware ? this.extractSkipRanges(e4) : [];
-          let r = e4;
+          const r = this.options.contextAware ? this.extractSkipRanges(e4) : [];
+          let i = e4;
           const s2 = /* @__PURE__ */ new Set();
           for (const { term: e5, text: n3, isAlias: a } of t28) {
             const t29 = e5.name, a2 = this.options.sanitizeName ? this.options.sanitizeName(t29) : null, o = a2 ? `[[${a2}|${t29}]]` : `[[${t29}]]`;
-            r = this.markSingleTerm(r, n3, o, e5.type, i, s2);
+            i = this.markSingleTerm(i, n3, o, e5.type, r, s2);
           }
-          return r;
+          return i;
         }
         extractSkipRanges(e4) {
-          const t28 = [], i = e4.match(/^---\n[\s\S]*?\n---\n/);
-          i && t28.push([0, i[0].length]);
-          const r = /```[\s\S]*?```/g;
+          const t28 = [], r = e4.match(/^---\n[\s\S]*?\n---\n/);
+          r && t28.push([0, r[0].length]);
+          const i = /```[\s\S]*?```/g;
           let s2;
-          for (; null !== (s2 = r.exec(e4)); ) t28.push([s2.index, s2.index + s2[0].length]);
+          for (; null !== (s2 = i.exec(e4)); ) t28.push([s2.index, s2.index + s2[0].length]);
           const n3 = /`[^`]+`/g;
           for (; null !== (s2 = n3.exec(e4)); ) t28.push([s2.index, s2.index + s2[0].length]);
           const a = /\[\[[^\]]+\]\]/g;
@@ -128058,9 +128434,9 @@ ${i2}\r
           return t28.sort((e5, t29) => e5[0] - t29[0]), t28;
         }
         isInSkipRange(e4, t28) {
-          return t28.some(([t29, i]) => e4 >= t29 && e4 < i);
+          return t28.some(([t29, r]) => e4 >= t29 && e4 < r);
         }
-        markSingleTerm(e4, t28, i, r, s2, n3) {
+        markSingleTerm(e4, t28, r, i, s2, n3) {
           const a = t28.toLowerCase();
           if (this.options.markFirstOccurrenceOnly && n3.has(a)) return e4;
           const o = this.escapeRegex(t28), l = /[\u4e00-\u9fa5]/.test(t28), c = new RegExp(l ? `(?<!\\[\\[)${o}(?!\\]\\])` : `(?<!\\[\\[)\\b${o}\\b(?!\\]\\])`, "gi");
@@ -128069,7 +128445,7 @@ ${i2}\r
             const t29 = h3.index, n4 = t29 + h3[0].length;
             if (!this.options.contextAware || !this.isInSkipRange(t29, s2)) {
               if (this.options.markFirstOccurrenceOnly && d > 0) break;
-              u += e4.substring(g, t29), this.options.differentMarkers ? u += "entity" === r ? i : `**${i}**` : u += i, g = n4, d++;
+              u += e4.substring(g, t29), this.options.differentMarkers ? u += "entity" === i ? r : `**${r}**` : u += r, g = n4, d++;
             }
           }
           return u += e4.substring(g), d > 0 && n3.add(a), u;
@@ -128091,14 +128467,14 @@ ${i2}\r
     } });
     init_entity22 = __esm2({ "internal/domain/wiki/entity/entity.ts"() {
       init_entity_id(), init_entity_type(), Entity = class e4 {
-        constructor(e5, t28, i, r = [], s2 = [], n3 = []) {
+        constructor(e5, t28, r, i = [], s2 = [], n3 = []) {
           __publicField(this, "_id");
           __publicField(this, "_name");
           __publicField(this, "_type");
           __publicField(this, "_aliases");
           __publicField(this, "_facts");
           __publicField(this, "_sources");
-          this._id = e5, this._name = t28, this._type = i, this._aliases = [...r], this._facts = [...s2], this._sources = [...n3];
+          this._id = e5, this._name = t28, this._type = r, this._aliases = [...i], this._facts = [...s2], this._sources = [...n3];
         }
         get id() {
           return this._id;
@@ -128118,10 +128494,10 @@ ${i2}\r
         get sources() {
           return this._sources;
         }
-        merge(e5, t28, i) {
+        merge(e5, t28, r) {
           for (const t29 of e5) this._aliases.includes(t29) || this._aliases.push(t29);
           for (const e6 of t28) this._facts.includes(e6) || this._facts.push(e6);
-          this._sources.includes(i) || this._sources.push(i);
+          this._sources.includes(r) || this._sources.push(r);
         }
         qualityScore() {
           return 2 * this._facts.length + this._sources.length;
@@ -128136,14 +128512,14 @@ ${i2}\r
     } });
     init_concept = __esm2({ "internal/domain/wiki/entity/concept.ts"() {
       init_entity_id(), Concept = class e4 {
-        constructor(e5, t28, i, r = [], s2 = [], n3 = []) {
+        constructor(e5, t28, r, i = [], s2 = [], n3 = []) {
           __publicField(this, "_id");
           __publicField(this, "_name");
           __publicField(this, "_definition");
           __publicField(this, "_related");
           __publicField(this, "_sources");
           __publicField(this, "_aliases");
-          this._id = e5, this._name = t28, this._definition = i, this._related = [...r], this._sources = [...s2], this._aliases = new Set(n3);
+          this._id = e5, this._name = t28, this._definition = r, this._related = [...i], this._sources = [...s2], this._aliases = new Set(n3);
         }
         get id() {
           return this._id;
@@ -128163,11 +128539,11 @@ ${i2}\r
         get aliases() {
           return this._aliases;
         }
-        merge(e5, t28, i, r) {
+        merge(e5, t28, r, i) {
           e5 && e5.length > this._definition.length && (this._definition = e5);
           for (const e6 of t28) this._related.includes(e6) || this._related.push(e6);
-          for (const e6 of i) e6 && e6 !== this._name && this._aliases.add(e6);
-          this._sources.includes(r) || this._sources.push(r);
+          for (const e6 of r) e6 && e6 !== this._name && this._aliases.add(e6);
+          this._sources.includes(i) || this._sources.push(i);
         }
         qualityScore() {
           return (this._definition.length > 0 ? 10 : 0) + 2 * this._related.length + this._sources.length;
@@ -128182,13 +128558,13 @@ ${i2}\r
     } });
     init_connection = __esm2({ "internal/domain/wiki/entity/connection.ts"() {
       init_connection_type(), Connection = class e4 {
-        constructor(e5, t28, i, r = "", s2 = []) {
+        constructor(e5, t28, r, i = "", s2 = []) {
           __publicField(this, "_from");
           __publicField(this, "_to");
           __publicField(this, "_type");
           __publicField(this, "_description");
           __publicField(this, "_sources");
-          this._from = e5, this._to = t28, this._type = i, this._description = r, this._sources = [...s2];
+          this._from = e5, this._to = t28, this._type = r, this._description = i, this._sources = [...s2];
         }
         get from() {
           return this._from;
@@ -128229,8 +128605,8 @@ ${i2}\r
           this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "ingest", details: t28, metadata: e5 });
         }
         addQuery(e5) {
-          const t28 = e5.answerSaved ? " [saved]" : "", i = `"${this.truncate(e5.query, 60)}" \u2192 ${e5.resultCount} results${t28}`;
-          this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "query", details: i, metadata: e5 });
+          const t28 = e5.answerSaved ? " [saved]" : "", r = `"${this.truncate(e5.query, 60)}" \u2192 ${e5.resultCount} results${t28}`;
+          this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "query", details: r, metadata: e5 });
         }
         addLint(e5) {
           const t28 = `${e5.issuesCount} issues found` + (e5.issuesCount > 0 ? ` (${this.formatCategories(e5.categories)})` : "");
@@ -128241,8 +128617,8 @@ ${i2}\r
           this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "generate", details: t28, metadata: { pageCount: e5 } });
         }
         addSaveAnswer(e5, t28) {
-          const i = `"${this.truncate(e5, 50)}" \u2192 ${t28}`;
-          this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "save-answer", details: i, metadata: { query: e5, filepath: t28 } });
+          const r = `"${this.truncate(e5, 50)}" \u2192 ${t28}`;
+          this.entries.push({ timestamp: /* @__PURE__ */ new Date(), operation: "save-answer", details: r, metadata: { query: e5, filepath: t28 } });
         }
         toMarkdown() {
           return 0 === this.entries.length ? "# Operation Log\n\nNo operations recorded yet.\n" : "# Operation Log\n\n> This file records all operations performed on the wiki (ingests, queries, lints, etc.)\n\n" + this.entries.map((e5) => `#### [${this.formatTimestamp(e5.timestamp)}] ${this.formatOperation(e5.operation)} | ${e5.details}`).join("\n\n") + "\n";
@@ -128260,8 +128636,8 @@ ${i2}\r
           this.entries = [];
         }
         static fromJSON(t28) {
-          const i = new e4();
-          return t28 && Array.isArray(t28.entries) && (i.entries = t28.entries.map((e5) => ({ ...e5, timestamp: new Date(e5.timestamp) }))), i;
+          const r = new e4();
+          return t28 && Array.isArray(t28.entries) && (r.entries = t28.entries.map((e5) => ({ ...e5, timestamp: new Date(e5.timestamp) }))), r;
         }
         toJSON() {
           return { entries: this.entries };
@@ -128299,12 +128675,12 @@ ${i2}\r
           return this.index.get(e5);
         }
         findSimilar(e5, t28) {
-          const i = [];
-          for (const [t29, r] of this.index.entries()) {
-            const s2 = this.cosineSimilarity(e5, r);
-            i.push({ key: t29, similarity: s2 });
+          const r = [];
+          for (const [t29, i] of this.index.entries()) {
+            const s2 = this.cosineSimilarity(e5, i);
+            r.push({ key: t29, similarity: s2 });
           }
-          return i.sort((e6, t29) => t29.similarity - e6.similarity).slice(0, t28);
+          return r.sort((e6, t29) => t29.similarity - e6.similarity).slice(0, t28);
         }
         getReadOnlyIndex() {
           return this.index;
@@ -128318,16 +128694,16 @@ ${i2}\r
         toJSON() {
           return Object.fromEntries(this.index.entries());
         }
-        static fromJSON(t28, i) {
-          const r = new Map(Object.entries(i)), s2 = new e4(t28, r);
+        static fromJSON(t28, r) {
+          const i = new Map(Object.entries(r)), s2 = new e4(t28, i);
           return s2.isDirty = false, s2;
         }
         cosineSimilarity(e5, t28) {
           if (e5.length !== t28.length) return 0;
-          let i = 0, r = 0, s2 = 0;
-          for (let n4 = 0; n4 < e5.length; n4++) i += e5[n4] * t28[n4], r += e5[n4] * e5[n4], s2 += t28[n4] * t28[n4];
-          const n3 = Math.sqrt(r) * Math.sqrt(s2);
-          return 0 === n3 ? 0 : i / n3;
+          let r = 0, i = 0, s2 = 0;
+          for (let n4 = 0; n4 < e5.length; n4++) r += e5[n4] * t28[n4], i += e5[n4] * e5[n4], s2 += t28[n4] * t28[n4];
+          const n3 = Math.sqrt(i) * Math.sqrt(s2);
+          return 0 === n3 ? 0 : r / n3;
         }
         getCachePath() {
           return this.cachePath;
@@ -128360,27 +128736,27 @@ ${i2}\r
           __publicField(this, "_updatedAt");
           this._entities = /* @__PURE__ */ new Map(), this._concepts = /* @__PURE__ */ new Map(), this._connections = [], this._sources = /* @__PURE__ */ new Map(), this._operationLog = new OperationLog(), this._embeddingIndex = null, this._version = 1, this._createdAt = /* @__PURE__ */ new Date(), this._updatedAt = /* @__PURE__ */ new Date();
         }
-        addOrMergeEntity(e5, t28, i, r, s2) {
+        addOrMergeEntity(e5, t28, r, i, s2) {
           const n3 = EntityId.create(e5), a = n3.value, o = this._entities.get(a);
-          if (o) return o.merge(i, r, s2), this._updatedAt = /* @__PURE__ */ new Date(), o;
+          if (o) return o.merge(r, i, s2), this._updatedAt = /* @__PURE__ */ new Date(), o;
           {
-            const o2 = new Entity(n3, e5, EntityType.fromString(t28), i, r, [s2]);
+            const o2 = new Entity(n3, e5, EntityType.fromString(t28), r, i, [s2]);
             return this._entities.set(a, o2), this._updatedAt = /* @__PURE__ */ new Date(), o2;
           }
         }
-        addOrMergeConcept(e5, t28, i, r, s2) {
+        addOrMergeConcept(e5, t28, r, i, s2) {
           const n3 = EntityId.create(e5), a = n3.value, o = this._concepts.get(a);
-          if (o) return o.merge(t28, i, r, s2), this._updatedAt = /* @__PURE__ */ new Date(), o;
+          if (o) return o.merge(t28, r, i, s2), this._updatedAt = /* @__PURE__ */ new Date(), o;
           {
-            const o2 = new Concept(n3, e5, t28, i, [s2], r);
+            const o2 = new Concept(n3, e5, t28, r, [s2], i);
             return this._concepts.set(a, o2), this._updatedAt = /* @__PURE__ */ new Date(), o2;
           }
         }
-        addConnection(e5, t28, i, r, s2) {
-          const n3 = EntityId.create(e5).value, a = EntityId.create(t28).value, o = this._connections.find((e6) => e6.from === n3 && e6.to === a && e6.type.value === i);
-          if (o) return o.addSource(s2), o.updateDescription(r), this._updatedAt = /* @__PURE__ */ new Date(), o;
+        addConnection(e5, t28, r, i, s2) {
+          const n3 = EntityId.create(e5).value, a = EntityId.create(t28).value, o = this._connections.find((e6) => e6.from === n3 && e6.to === a && e6.type.value === r);
+          if (o) return o.addSource(s2), o.updateDescription(i), this._updatedAt = /* @__PURE__ */ new Date(), o;
           {
-            const e6 = new Connection(n3, a, ConnectionType.fromString(i), r, [s2]);
+            const e6 = new Connection(n3, a, ConnectionType.fromString(r), i, [s2]);
             return this._connections.push(e6), this._updatedAt = /* @__PURE__ */ new Date(), e6;
           }
         }
@@ -128393,9 +128769,9 @@ ${i2}\r
         getStats() {
           return { entities: this._entities.size, concepts: this._concepts.size, connections: this._connections.length, sources: this._sources.size, operations: this._operationLog.count };
         }
-        needsExtraction(e5, t28, i) {
-          const r = this._sources.get(e5);
-          return !r || r.contentHash !== i;
+        needsExtraction(e5, t28, r) {
+          const i = this._sources.get(e5);
+          return !i || i.contentHash !== r;
         }
         isNewSource(e5) {
           return !this._sources.has(e5);
@@ -128403,10 +128779,10 @@ ${i2}\r
         getIngestedPaths() {
           return new Set(this._sources.keys());
         }
-        backfillContentHash(e5, t28, i) {
-          const r = this._sources.get(e5);
-          if (r) {
-            const s2 = new SourceRecord(r.path, r.summary, r.date, i, r.origin, t28);
+        backfillContentHash(e5, t28, r) {
+          const i = this._sources.get(e5);
+          if (i) {
+            const s2 = new SourceRecord(i.path, i.summary, i.date, r, i.origin, t28);
             this._sources.set(e5, s2);
           }
         }
@@ -128464,48 +128840,48 @@ ${i2}\r
         }
         static fromJSON(t28) {
           var _a11, _b4, _c2;
-          const i = "string" == typeof t28 ? JSON.parse(t28) : t28, r = new e4();
-          if (r._version = ((_a11 = i.meta) == null ? void 0 : _a11.version) || 1, r._createdAt = ((_b4 = i.meta) == null ? void 0 : _b4.created) ? new Date(i.meta.created) : /* @__PURE__ */ new Date(), r._updatedAt = ((_c2 = i.meta) == null ? void 0 : _c2.updated) ? new Date(i.meta.updated) : /* @__PURE__ */ new Date(), i.entities) for (const [e5, t29] of Object.entries(i.entities)) r._entities.set(e5, Entity.fromJSON(t29));
-          if (i.concepts) for (const [e5, t29] of Object.entries(i.concepts)) r._concepts.set(e5, Concept.fromJSON(t29));
-          if (i.connections && (r._connections = i.connections.map((e5) => Connection.fromJSON(e5))), i.sources) for (const [e5, t29] of Object.entries(i.sources)) r._sources.set(e5, SourceRecord.fromJSON(t29));
-          return r;
+          const r = "string" == typeof t28 ? JSON.parse(t28) : t28, i = new e4();
+          if (i._version = ((_a11 = r.meta) == null ? void 0 : _a11.version) || 1, i._createdAt = ((_b4 = r.meta) == null ? void 0 : _b4.created) ? new Date(r.meta.created) : /* @__PURE__ */ new Date(), i._updatedAt = ((_c2 = r.meta) == null ? void 0 : _c2.updated) ? new Date(r.meta.updated) : /* @__PURE__ */ new Date(), r.entities) for (const [e5, t29] of Object.entries(r.entities)) i._entities.set(e5, Entity.fromJSON(t29));
+          if (r.concepts) for (const [e5, t29] of Object.entries(r.concepts)) i._concepts.set(e5, Concept.fromJSON(t29));
+          if (r.connections && (i._connections = r.connections.map((e5) => Connection.fromJSON(e5))), r.sources) for (const [e5, t29] of Object.entries(r.sources)) i._sources.set(e5, SourceRecord.fromJSON(t29));
+          return i;
         }
-        mergeExtraction(e5, t28, i, r, s2) {
-          for (const i2 of e5.entities) this.addOrMergeEntity(i2.name, i2.type, i2.aliases || [], i2.facts || [], t28);
-          for (const i2 of e5.concepts) this.addOrMergeConcept(i2.name, i2.definition || "", i2.related || [], i2.aliases || [], t28);
-          for (const i2 of e5.connections) this.addConnection(i2.from, i2.to, i2.type, i2.description || "", t28);
-          const n3 = new SourceRecord(t28, e5.sourceSummary, /* @__PURE__ */ new Date(), i, s2, r);
+        mergeExtraction(e5, t28, r, i, s2) {
+          for (const r3 of e5.entities) this.addOrMergeEntity(r3.name, r3.type, r3.aliases || [], r3.facts || [], t28);
+          for (const r3 of e5.concepts) this.addOrMergeConcept(r3.name, r3.definition || "", r3.related || [], r3.aliases || [], t28);
+          for (const r3 of e5.connections) this.addConnection(r3.from, r3.to, r3.type, r3.description || "", t28);
+          const n3 = new SourceRecord(t28, e5.sourceSummary, /* @__PURE__ */ new Date(), r, s2, i);
           this.markSource(n3);
         }
-        async ingestFromSource(e5, t28, i) {
+        async ingestFromSource(e5, t28, r) {
           var _a11, _b4;
-          const r = Date.now();
+          const i = Date.now();
           try {
-            const s2 = await i.fileSystem.stat(e5), n3 = i.crypto.hash(t28, "sha256");
-            if (!this.needsExtraction(e5, s2.mtimeMs, n3)) return { success: true, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - r, error: "Already processed (same content hash)" };
-            const a = this.exportVocabulary(), o = this.buildExtractionPrompt(a, e5, t28, i.outputLanguage || "English"), l = { model: i.model, temperature: (_a11 = i.temperature) != null ? _a11 : 0.1, maxTokens: (_b4 = i.maxTokens) != null ? _b4 : 32768, systemMessage: "You are a knowledge extraction system. Output ONLY valid JSON, no explanations, no thinking process, no commentary." };
+            const s2 = await r.fileSystem.stat(e5), n3 = r.crypto.hash(t28, "sha256");
+            if (!this.needsExtraction(e5, s2.mtimeMs, n3)) return { success: true, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - i, error: "Already processed (same content hash)" };
+            const a = this.exportVocabulary(), o = this.buildExtractionPrompt(a, e5, t28, r.outputLanguage || "English"), l = { model: r.model, temperature: (_a11 = r.temperature) != null ? _a11 : 0.1, maxTokens: (_b4 = r.maxTokens) != null ? _b4 : 32768, systemMessage: "You are a knowledge extraction system. Output ONLY valid JSON, no explanations, no thinking process, no commentary." };
             let c;
-            if (i.onIngestProgress) {
+            if (r.onIngestProgress) {
               let e6 = "", t29 = 0;
-              const r3 = (e7) => Math.max(1, Math.ceil(e7.length / 3));
-              for await (const s3 of i.llmProvider.complete(o, l)) s3.done ? s3.usage && i.onIngestTokenUsage && i.onIngestTokenUsage(s3.usage) : (e6 += s3.text, t29 += r3(s3.text), i.onIngestProgress(t29));
+              const i2 = (e7) => Math.max(1, Math.ceil(e7.length / 3));
+              for await (const s3 of r.llmProvider.complete(o, l)) s3.done ? s3.usage && r.onIngestTokenUsage && r.onIngestTokenUsage(s3.usage) : (e6 += s3.text, t29 += i2(s3.text), r.onIngestProgress(t29));
               c = e6.trim();
-            } else c = await i.llmProvider.completeSync(o, l, void 0, i.onIngestTokenUsage);
+            } else c = await r.llmProvider.completeSync(o, l, void 0, r.onIngestTokenUsage);
             const h3 = function(e6) {
               let t29 = e6.trim();
               t29 = t29.replace(/```json\s*/g, ""), t29 = t29.replace(/```\s*/g, "");
-              const i2 = [];
-              let r3 = 0;
-              for (; r3 < t29.length; ) {
-                const e7 = t29.indexOf("{", r3);
+              const r3 = [];
+              let i2 = 0;
+              for (; i2 < t29.length; ) {
+                const e7 = t29.indexOf("{", i2);
                 if (-1 === e7) break;
                 let s3 = 0, n4 = -1, a2 = false, o2 = false;
-                for (let i3 = e7; i3 < t29.length; i3++) {
-                  const e8 = t29[i3];
+                for (let r4 = e7; r4 < t29.length; r4++) {
+                  const e8 = t29[r4];
                   if (o2) o2 = false;
                   else if ("\\" !== e8) if ('"' !== e8) {
                     if (!a2 && ("{" === e8 && s3++, "}" === e8 && (s3--, 0 === s3))) {
-                      n4 = i3;
+                      n4 = r4;
                       break;
                     }
                   } else a2 = !a2;
@@ -128514,32 +128890,32 @@ ${i2}\r
                 if (!(n4 > e7)) break;
                 {
                   const s4 = t29.substring(e7, n4 + 1);
-                  i2.push(s4), r3 = n4 + 1;
+                  r3.push(s4), i2 = n4 + 1;
                 }
-                if (i2.length >= 5) break;
+                if (r3.length >= 5) break;
               }
-              for (let e7 = 0; e7 < i2.length; e7++) {
-                const t30 = i2[e7];
+              for (let e7 = 0; e7 < r3.length; e7++) {
+                const t30 = r3[e7];
                 try {
                   const e8 = JSON.parse(t30);
                   if (!e8 || "object" != typeof e8) continue;
-                  const i3 = e8.source_summary || e8.summary || "";
-                  if ("..." === i3 || "Brief summary" === i3 || i3.includes("...")) continue;
-                  const r4 = { source_summary: cleanString(i3), entities: cleanEntities(e8.entities || []), concepts: cleanConcepts(e8.concepts || []), connections: cleanConnections(e8.connections || []) };
-                  if (0 === r4.entities.length && 0 === r4.concepts.length) continue;
-                  return ExtractionResult.fromJSON(r4);
+                  const r4 = e8.source_summary || e8.summary || "";
+                  if ("..." === r4 || "Brief summary" === r4 || r4.includes("...")) continue;
+                  const i3 = { source_summary: cleanString(r4), entities: cleanEntities(e8.entities || []), concepts: cleanConcepts(e8.concepts || []), connections: cleanConnections(e8.connections || []) };
+                  if (0 === i3.entities.length && 0 === i3.concepts.length) continue;
+                  return ExtractionResult.fromJSON(i3);
                 } catch (e8) {
                   continue;
                 }
               }
               return null;
             }(c);
-            return h3 ? (this.mergeExtraction(h3, e5, s2.mtimeMs, n3, "user-note"), this._operationLog.addIngest({ sourcePath: e5, entities: h3.entities.length, concepts: h3.concepts.length, connections: h3.connections.length }), { success: true, extractedEntities: h3.entities.length, extractedConcepts: h3.concepts.length, extractedConnections: h3.connections.length, timeMs: Date.now() - r }) : { success: false, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - r, error: "Failed to parse extraction result" };
+            return h3 ? (this.mergeExtraction(h3, e5, s2.mtimeMs, n3, "user-note"), this._operationLog.addIngest({ sourcePath: e5, entities: h3.entities.length, concepts: h3.concepts.length, connections: h3.connections.length }), { success: true, extractedEntities: h3.entities.length, extractedConcepts: h3.concepts.length, extractedConnections: h3.connections.length, timeMs: Date.now() - i }) : { success: false, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - i, error: "Failed to parse extraction result" };
           } catch (e6) {
-            return { success: false, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - r, error: e6.message || "Unknown error" };
+            return { success: false, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: Date.now() - i, error: e6.message || "Unknown error" };
           }
         }
-        buildExtractionPrompt(e5, t28, i, r) {
+        buildExtractionPrompt(e5, t28, r, i) {
           return `You are analyzing a knowledge source to extract structured information.
 
 EXISTING VOCABULARY (merge with these if applicable):
@@ -128547,16 +128923,16 @@ ${e5}
 
 SOURCE: ${t28}
 CONTENT:
-${i}
+${r}
 
-Extract the following in ${r}:
+Extract the following in ${i}:
 1. ENTITIES: People, places, organizations, tools, etc.
 2. CONCEPTS: Abstract ideas, methodologies, principles.
 3. CONNECTIONS: Relationships between entities and concepts.
 
 IMPORTANT NAMING RULES:
 - The "name" field for entities and concepts must be the canonical original name (e.g. English proper nouns, original technical terms). Do NOT add translations or parenthetical equivalents to names.
-- Use ${r} only for descriptive fields: "facts", "definition", "description", "sourceSummary".
+- Use ${i} only for descriptive fields: "facts", "definition", "description", "sourceSummary".
 - Bad example: {"name": "Incremental Building (\u589E\u91CF\u6784\u5EFA)", ...}
 - Good example: {"name": "Incremental Building", "definition": "LLM \u4E0D\u6BCF\u6B21\u91CD\u65B0\u63A8\u5BFC...", ...}
 
@@ -128570,18 +128946,18 @@ Output ONLY valid JSON in this exact format:
         }
         retrieve(e5, t28 = {}) {
           var _a11, _b4;
-          const i = (_a11 = t28.maxEntities) != null ? _a11 : 12, r = (_b4 = t28.maxConcepts) != null ? _b4 : 8, s2 = [2, 0.5, 1], n3 = Retrieval.extractQueryTerms(e5), a = [Retrieval.rankByKeyword(this, n3), Retrieval.rankByPath(this, n3)], o = [s2[0], s2[1]];
+          const r = (_a11 = t28.maxEntities) != null ? _a11 : 12, i = (_b4 = t28.maxConcepts) != null ? _b4 : 8, s2 = [2, 0.5, 1], n3 = Retrieval.extractQueryTerms(e5), a = [Retrieval.rankByKeyword(this, n3), Retrieval.rankByPath(this, n3)], o = [s2[0], s2[1]];
           if (t28.embeddingIndex && t28.queryEmbedding) {
             const e6 = Retrieval.rankByEmbedding(t28.embeddingIndex, t28.queryEmbedding);
             a.push(e6), o.push(s2[2]);
           }
           const l = Retrieval.rrfFuse(a, o, 60).map((e6) => ({ id: e6.id, score: e6.score * Retrieval.qualityMultiplier(e6.id, this) })).sort((e6, t29) => t29.score - e6.score), c = [], h3 = [];
           for (const e6 of l) if (e6.id.startsWith("concept:")) {
-            if (h3.length >= r) continue;
-            const t29 = e6.id.slice(8), i2 = this._concepts.get(t29);
-            i2 && h3.push(i2);
+            if (h3.length >= i) continue;
+            const t29 = e6.id.slice(8), r3 = this._concepts.get(t29);
+            r3 && h3.push(r3);
           } else {
-            if (c.length >= i) continue;
+            if (c.length >= r) continue;
             const t29 = this._entities.get(e6.id);
             t29 && c.push(t29);
           }
@@ -128593,47 +128969,47 @@ Output ONLY valid JSON in this exact format:
         lint() {
           const e5 = [], t28 = /* @__PURE__ */ new Set();
           for (const e6 of this._connections) t28.add(e6.from), t28.add(e6.to);
-          for (const i2 of this._entities.values()) t28.has(i2.id.value) || e5.push({ severity: "info", type: "orphan-entity", message: `Entity "${i2.name}" has no connections`, location: `entity/${i2.id.value}`, suggestion: "Consider adding relationships to other entities or concepts" });
+          for (const r3 of this._entities.values()) t28.has(r3.id.value) || e5.push({ severity: "info", type: "orphan-entity", message: `Entity "${r3.name}" has no connections`, location: `entity/${r3.id.value}`, suggestion: "Consider adding relationships to other entities or concepts" });
           for (const t29 of this._entities.values()) 0 === t29.facts.length && e5.push({ severity: "warning", type: "empty-entity", message: `Entity "${t29.name}" has no facts`, location: `entity/${t29.id.value}`, suggestion: "Add descriptive facts about this entity" });
           for (const t29 of this._concepts.values()) t29.definition && 0 !== t29.definition.trim().length || e5.push({ severity: "warning", type: "missing-definition", message: `Concept "${t29.name}" lacks a definition`, location: `concept/${t29.id.value}`, suggestion: "Add a clear definition for this concept" });
-          const i = /* @__PURE__ */ new Set();
-          for (const e6 of this._entities.values()) i.add(e6.id.value);
-          for (const e6 of this._concepts.values()) i.add(e6.id.value);
-          for (const t29 of this._connections) i.has(t29.from) || e5.push({ severity: "error", type: "broken-connection", message: `Connection references non-existent entity: "${t29.from}"`, suggestion: "Remove this connection or create the missing entity" }), i.has(t29.to) || e5.push({ severity: "error", type: "broken-connection", message: `Connection references non-existent entity: "${t29.to}"`, suggestion: "Remove this connection or create the missing entity" });
+          const r = /* @__PURE__ */ new Set();
+          for (const e6 of this._entities.values()) r.add(e6.id.value);
+          for (const e6 of this._concepts.values()) r.add(e6.id.value);
+          for (const t29 of this._connections) r.has(t29.from) || e5.push({ severity: "error", type: "broken-connection", message: `Connection references non-existent entity: "${t29.from}"`, suggestion: "Remove this connection or create the missing entity" }), r.has(t29.to) || e5.push({ severity: "error", type: "broken-connection", message: `Connection references non-existent entity: "${t29.to}"`, suggestion: "Remove this connection or create the missing entity" });
           for (const t29 of this._entities.values()) 1 === t29.sources.length && t29.facts.length < 3 && e5.push({ severity: "info", type: "single-source", message: `Entity "${t29.name}" has only one source and few facts`, location: `entity/${t29.id.value}`, suggestion: "Consider gathering more information from additional sources" });
           return e5;
         }
         async query(e5, t28) {
-          const i = t28.maxResults || 10;
-          let r;
+          const r = t28.maxResults || 10;
+          let i;
           if (this.hasEmbeddingIndex() && t28.embeddingProvider) try {
-            const i2 = t28.embeddingModel || t28.model;
-            r = await t28.embeddingProvider.generateEmbedding(e5, i2, t28.onEmbeddingUsage);
+            const r3 = t28.embeddingModel || t28.model;
+            i = await t28.embeddingProvider.generateEmbedding(e5, r3, t28.onEmbeddingUsage);
           } catch (e6) {
             console.warn("Failed to generate query embedding, falling back to keyword search", e6);
           }
-          const s2 = { maxEntities: i, maxConcepts: i };
-          this._embeddingIndex && (s2.embeddingIndex = this._embeddingIndex.getReadOnlyIndex()), r && (s2.queryEmbedding = r);
+          const s2 = { maxEntities: r, maxConcepts: r };
+          this._embeddingIndex && (s2.embeddingIndex = this._embeddingIndex.getReadOnlyIndex()), i && (s2.queryEmbedding = i);
           const n3 = this.retrieve(e5, s2);
           return { entities: n3.entities.map((e6, t29) => ({ id: e6.id.value, name: e6.name, type: e6.type.value, relevance: 1 - 0.05 * t29 })), concepts: n3.concepts.map((e6, t29) => ({ name: e6.name, definition: e6.definition, relevance: 1 - 0.05 * t29 })), connections: n3.connections.map((e6) => ({ from: e6.from, to: e6.to, type: e6.type.value, description: e6.description })) };
         }
         async generateWikiPages(e5) {
-          const t28 = /* @__PURE__ */ new Map(), i = new ContentAnnotator({ sanitizeName: (e6) => this.sanitizeFilename(e6) });
-          for (const r of this._entities.values()) {
-            const s2 = this.renderEntityPage(r, i, e5.pathService, e5.sourcePath), n3 = this.sanitizeFilename(r.name);
+          const t28 = /* @__PURE__ */ new Map(), r = new ContentAnnotator({ sanitizeName: (e6) => this.sanitizeFilename(e6) });
+          for (const i of this._entities.values()) {
+            const s2 = this.renderEntityPage(i, r, e5.pathService, e5.sourcePath), n3 = this.sanitizeFilename(i.name);
             t28.set(`entities/${n3}.md`, s2);
           }
-          for (const r of this._concepts.values()) {
-            const s2 = this.renderConceptPage(r, i, e5.pathService, e5.sourcePath), n3 = this.sanitizeFilename(r.name);
+          for (const i of this._concepts.values()) {
+            const s2 = this.renderConceptPage(i, r, e5.pathService, e5.sourcePath), n3 = this.sanitizeFilename(i.name);
             t28.set(`concepts/${n3}.md`, s2);
           }
-          for (const r of this._sources.values()) {
-            const s2 = await this.renderSourcePage(r, i, e5.pathService, e5.fileSystem), n3 = this.getSourceFilename(r.path, e5.pathService, e5.sourcePath);
+          for (const i of this._sources.values()) {
+            const s2 = await this.renderSourcePage(i, r, e5.pathService, e5.fileSystem), n3 = this.getSourceFilename(i.path, e5.pathService, e5.sourcePath);
             t28.set(`sources/${n3}`, s2);
           }
           t28.set("index.md", this.generateIndex(e5.pathService, e5.sourcePath)), t28.set("GLOSSARY.md", this.generateGlossary()), this._operationLog.count > 0 && t28.set("log.md", this._operationLog.toMarkdown()), await e5.wikiPageRepo.writePages(t28);
         }
-        renderEntityPage(e5, t28, i, r) {
+        renderEntityPage(e5, t28, r, i) {
           let s2 = `---
 title: ${e5.name}
 type: entity
@@ -128648,23 +129024,23 @@ category: ${e5.type.value}
 `, e5.aliases && e5.aliases.length > 0 && (s2 += `**Aliases**: ${e5.aliases.join(", ")}
 
 `), s2 += "## Facts\n\n";
-          for (const i2 of e5.facts) s2 += `- ${t28.annotate(i2, this.getAllEntities(), this.getAllConcepts())}
+          for (const r3 of e5.facts) s2 += `- ${t28.annotate(r3, this.getAllEntities(), this.getAllConcepts())}
 `;
           const n3 = this.getConnectionsByEntity(e5.id);
           if (n3.length > 0) {
             s2 += "\n## Connections\n\n";
             for (const e6 of n3) {
-              const t29 = this._entities.get(e6.from), i2 = this._entities.get(e6.to) || this._concepts.get(e6.to);
-              t29 && i2 && (s2 += `- ${this.wikiLink(t29.name)} ${e6.type.value} ${this.wikiLink(i2.name)}: ${e6.description}
+              const t29 = this._entities.get(e6.from), r3 = this._entities.get(e6.to) || this._concepts.get(e6.to);
+              t29 && r3 && (s2 += `- ${this.wikiLink(t29.name)} ${e6.type.value} ${this.wikiLink(r3.name)}: ${e6.description}
 `);
             }
           }
           s2 += "\n## Sources\n\n";
-          for (const t29 of e5.sources) this._sources.get(t29) && (s2 += `- [[${this.getSourceLinkName(t29, i, r)}]]
+          for (const t29 of e5.sources) this._sources.get(t29) && (s2 += `- [[${this.getSourceLinkName(t29, r, i)}]]
 `);
           return s2;
         }
-        renderConceptPage(e5, t28, i, r) {
+        renderConceptPage(e5, t28, r, i) {
           let s2 = `---
 title: ${e5.name}
 type: concept
@@ -128684,20 +129060,20 @@ type: concept
             s2 += "\n";
           }
           s2 += "## Sources\n\n";
-          for (const t29 of e5.sources) this._sources.get(t29) && (s2 += `- [[${this.getSourceLinkName(t29, i, r)}]]
+          for (const t29 of e5.sources) this._sources.get(t29) && (s2 += `- [[${this.getSourceLinkName(t29, r, i)}]]
 `);
           return s2;
         }
-        async renderSourcePage(e5, t28, i, r) {
+        async renderSourcePage(e5, t28, r, i) {
           let s2 = `---
-title: ${i.basename(e5.path)}
+title: ${r.basename(e5.path)}
 type: source
 path: ${e5.path}
 date: ${e5.date.toISOString()}
 ---
 
 `;
-          s2 += `# ${i.basename(e5.path)}
+          s2 += `# ${r.basename(e5.path)}
 
 `, s2 += `**Path**: \`${e5.path}\`
 
@@ -128720,8 +129096,8 @@ date: ${e5.date.toISOString()}
           }
           s2 += "## Original Content\n\n";
           try {
-            const i2 = await r.readFile(e5.path, "utf-8"), n4 = this.getAllEntities(), a2 = this.getAllConcepts();
-            s2 += `${t28.annotate(i2, n4, a2)}
+            const r3 = await i.readFile(e5.path, "utf-8"), n4 = this.getAllEntities(), a2 = this.getAllConcepts();
+            s2 += `${t28.annotate(r3, n4, a2)}
 
 `;
           } catch (t29) {
@@ -128732,68 +129108,68 @@ date: ${e5.date.toISOString()}
           return s2;
         }
         generateIndex(e5, t28) {
-          let i = "---\ntitle: Knowledge Base Index\n---\n\n";
-          i += "# Knowledge Base\n\n", i += `**Last Updated**: ${this._updatedAt.toISOString()}
+          let r = "---\ntitle: Knowledge Base Index\n---\n\n";
+          r += "# Knowledge Base\n\n", r += `**Last Updated**: ${this._updatedAt.toISOString()}
 
-`, i += "## Statistics\n\n";
-          const r = this.getStats();
-          if (i += `- **Entities**: ${r.entities}
-`, i += `- **Concepts**: ${r.concepts}
-`, i += `- **Connections**: ${r.connections}
-`, i += `- **Sources**: ${r.sources}
+`, r += "## Statistics\n\n";
+          const i = this.getStats();
+          if (r += `- **Entities**: ${i.entities}
+`, r += `- **Concepts**: ${i.concepts}
+`, r += `- **Connections**: ${i.connections}
+`, r += `- **Sources**: ${i.sources}
 
 `, this._entities.size > 0) {
-            i += "## Entities\n\n";
+            r += "## Entities\n\n";
             const e6 = /* @__PURE__ */ new Map();
             for (const t30 of this._entities.values()) {
-              const i2 = t30.type.value;
-              e6.has(i2) || e6.set(i2, []), e6.get(i2).push(t30);
+              const r3 = t30.type.value;
+              e6.has(r3) || e6.set(r3, []), e6.get(r3).push(t30);
             }
             const t29 = Array.from(e6.keys()).sort();
-            for (const r3 of t29) {
-              const s2 = e6.get(r3).sort((e7, t30) => e7.name.localeCompare(t30.name));
-              t29.length > 1 && "other" !== r3 && (i += `### ${r3.charAt(0).toUpperCase() + r3.slice(1)}
+            for (const i2 of t29) {
+              const s2 = e6.get(i2).sort((e7, t30) => e7.name.localeCompare(t30.name));
+              t29.length > 1 && "other" !== i2 && (r += `### ${i2.charAt(0).toUpperCase() + i2.slice(1)}
 
 `);
               for (const e7 of s2) {
-                const t30 = e7.facts.length > 0 ? e7.facts[0].substring(0, 80) + (e7.facts[0].length > 80 ? "..." : "") : e7.type.value, r4 = e7.sources.length;
-                i += `- ${this.wikiLink(e7.name)} - ${t30} (${r4} source${1 !== r4 ? "s" : ""})
+                const t30 = e7.facts.length > 0 ? e7.facts[0].substring(0, 80) + (e7.facts[0].length > 80 ? "..." : "") : e7.type.value, i3 = e7.sources.length;
+                r += `- ${this.wikiLink(e7.name)} - ${t30} (${i3} source${1 !== i3 ? "s" : ""})
 `;
               }
-              i += "\n";
+              r += "\n";
             }
           }
           if (this._concepts.size > 0) {
-            i += "## Concepts\n\n";
+            r += "## Concepts\n\n";
             const e6 = Array.from(this._concepts.values()).sort((e7, t29) => e7.name.localeCompare(t29.name));
             for (const t29 of e6) {
-              const e7 = t29.definition.split(/[.!?]\s/)[0], r3 = e7.length > 100 ? e7.substring(0, 100) + "..." : e7, s2 = t29.sources.length;
-              i += `- ${this.wikiLink(t29.name)} - ${r3} (${s2} source${1 !== s2 ? "s" : ""})
+              const e7 = t29.definition.split(/[.!?]\s/)[0], i2 = e7.length > 100 ? e7.substring(0, 100) + "..." : e7, s2 = t29.sources.length;
+              r += `- ${this.wikiLink(t29.name)} - ${i2} (${s2} source${1 !== s2 ? "s" : ""})
 `;
             }
-            i += "\n";
+            r += "\n";
           }
           if (this._sources.size > 0) {
-            i += "## Sources\n\n";
-            const r3 = Array.from(this._sources.values()).sort((e6, t29) => t29.date.getTime() - e6.date.getTime());
-            for (const s2 of r3) {
-              const r4 = this.getSourceLinkName(s2.path, e5, t28), n3 = s2.date.toISOString().split("T")[0], a = this.getEntitiesBySource(s2.path).length, o = this.getConceptsBySource(s2.path).length, l = s2.summary.split(/[.!?]\s/)[0];
-              i += `- [[${r4}]] - ${l.length > 80 ? l.substring(0, 80) + "..." : l} (${n3}, ${a} entities, ${o} concepts)
+            r += "## Sources\n\n";
+            const i2 = Array.from(this._sources.values()).sort((e6, t29) => t29.date.getTime() - e6.date.getTime());
+            for (const s2 of i2) {
+              const i3 = this.getSourceLinkName(s2.path, e5, t28), n3 = s2.date.toISOString().split("T")[0], a = this.getEntitiesBySource(s2.path).length, o = this.getConceptsBySource(s2.path).length, l = s2.summary.split(/[.!?]\s/)[0];
+              r += `- [[${i3}]] - ${l.length > 80 ? l.substring(0, 80) + "..." : l} (${n3}, ${a} entities, ${o} concepts)
 `;
             }
-            i += "\n";
+            r += "\n";
           }
-          return i += "## Quick Links\n\n", i += "- [[GLOSSARY]]\n", this._operationLog.count > 0 && (i += "- [[log]]\n"), i;
+          return r += "## Quick Links\n\n", r += "- [[GLOSSARY]]\n", this._operationLog.count > 0 && (r += "- [[log]]\n"), r;
         }
         generateGlossary() {
           let e5 = "---\ntitle: Glossary\n---\n\n";
           e5 += "# Glossary\n\n", e5 += "## Entities\n\n";
           const t28 = Array.from(this._entities.values()).sort((e6, t29) => e6.name.localeCompare(t29.name));
-          for (const i2 of t28) e5 += `- ${this.wikiLink(i2.name)} - ${i2.type.value}
+          for (const r3 of t28) e5 += `- ${this.wikiLink(r3.name)} - ${r3.type.value}
 `;
           e5 += "\n## Concepts\n\n";
-          const i = Array.from(this._concepts.values()).sort((e6, t29) => e6.name.localeCompare(t29.name));
-          for (const t29 of i) e5 += `- ${this.wikiLink(t29.name)}
+          const r = Array.from(this._concepts.values()).sort((e6, t29) => e6.name.localeCompare(t29.name));
+          for (const t29 of r) e5 += `- ${this.wikiLink(t29.name)}
 `;
           return e5;
         }
@@ -128803,48 +129179,48 @@ date: ${e5.date.toISOString()}
         wikiLink(e5) {
           return `[[${this.sanitizeFilename(e5)}|${e5}]]`;
         }
-        getSourceLinkName(e5, t28, i) {
-          const r = this.resolveSourceRelParts(e5, t28, i), s2 = r[r.length - 1] || e5.split("/").pop() || e5;
-          return [...r.slice(0, -1), s2.endsWith(".md") ? s2.slice(0, -3) : s2].filter(Boolean).map((e6) => this.sanitizeFilename(e6)).join("-");
+        getSourceLinkName(e5, t28, r) {
+          const i = this.resolveSourceRelParts(e5, t28, r), s2 = i[i.length - 1] || e5.split("/").pop() || e5;
+          return [...i.slice(0, -1), s2.endsWith(".md") ? s2.slice(0, -3) : s2].filter(Boolean).map((e6) => this.sanitizeFilename(e6)).join("-");
         }
-        getSourceFilename(e5, t28, i) {
-          return `${this.getSourceLinkName(e5, t28, i)}.md`;
+        getSourceFilename(e5, t28, r) {
+          return `${this.getSourceLinkName(e5, t28, r)}.md`;
         }
-        resolveSourceRelParts(e5, t28, i) {
-          if (t28 && i) try {
-            const r = t28.relative(i, e5).split("/").filter((e6) => e6 && "." !== e6);
-            if (r.length > 1) return r.slice(1);
-            if (1 === r.length) return r;
+        resolveSourceRelParts(e5, t28, r) {
+          if (t28 && r) try {
+            const i = t28.relative(r, e5).split("/").filter((e6) => e6 && "." !== e6);
+            if (i.length > 1) return i.slice(1);
+            if (1 === i.length) return i;
           } catch (e6) {
           }
           return [e5.split("/").pop() || e5];
         }
         async buildEmbeddingIndex(e5) {
-          const { embeddingProvider: t28, model: i, cachePath: r, fileSystem: s2, onEmbeddingUsage: n3 } = e5;
-          if (!this._embeddingIndex && await s2.exists(r)) try {
-            const e6 = await s2.readFile(r, "utf-8"), t29 = JSON.parse(e6);
-            this._embeddingIndex = EmbeddingIndex.fromJSON(r, t29);
+          const { embeddingProvider: t28, model: r, cachePath: i, fileSystem: s2, onEmbeddingUsage: n3 } = e5;
+          if (!this._embeddingIndex && await s2.exists(i)) try {
+            const e6 = await s2.readFile(i, "utf-8"), t29 = JSON.parse(e6);
+            this._embeddingIndex = EmbeddingIndex.fromJSON(i, t29);
           } catch (e6) {
             console.warn("Failed to load embedding cache, will rebuild from scratch", e6);
           }
-          this._embeddingIndex || (this._embeddingIndex = new EmbeddingIndex(r));
+          this._embeddingIndex || (this._embeddingIndex = new EmbeddingIndex(i));
           const a = this.getAllEntities(), o = this.getAllConcepts();
           for (const e6 of a) if (!this._embeddingIndex.has(e6.id.value)) {
-            const r3 = `${e6.name}: ${e6.facts.join(". ")}`;
+            const i2 = `${e6.name}: ${e6.facts.join(". ")}`;
             try {
-              const s3 = await t28.generateEmbedding(r3, i, n3);
+              const s3 = await t28.generateEmbedding(i2, r, n3);
               this._embeddingIndex.set(e6.id.value, s3);
             } catch (t29) {
               throw console.error(`[kb] generateEmbedding FAILED for entity "${e6.name}": ${t29.message}`), t29;
             }
           }
           for (const e6 of o) {
-            const r3 = `concept:${e6.id.value}`;
-            if (!this._embeddingIndex.has(r3)) {
+            const i2 = `concept:${e6.id.value}`;
+            if (!this._embeddingIndex.has(i2)) {
               const s3 = `${e6.name}: ${e6.definition}`;
               try {
-                const e7 = await t28.generateEmbedding(s3, i, n3);
-                this._embeddingIndex.set(r3, e7);
+                const e7 = await t28.generateEmbedding(s3, r, n3);
+                this._embeddingIndex.set(i2, e7);
               } catch (t29) {
                 throw console.error(`[kb] generateEmbedding FAILED for concept "${e6.name}": ${t29.message}`), t29;
               }
@@ -128853,8 +129229,8 @@ date: ${e5.date.toISOString()}
         }
         async saveEmbeddingIndex(e5, t28) {
           if (!this._embeddingIndex || !this._embeddingIndex.isDirtyState()) return;
-          const i = this._embeddingIndex.getCachePath(), r = t28.dirname(i);
-          await e5.mkdir(r, { recursive: true }), await e5.writeFile(i, JSON.stringify(this._embeddingIndex.toJSON(), null, 2), "utf-8"), this._embeddingIndex.markClean();
+          const r = this._embeddingIndex.getCachePath(), i = t28.dirname(r);
+          await e5.mkdir(i, { recursive: true }), await e5.writeFile(r, JSON.stringify(this._embeddingIndex.toJSON(), null, 2), "utf-8"), this._embeddingIndex.markClean();
         }
         getEmbeddingIndex() {
           return this._embeddingIndex;
@@ -128866,19 +129242,19 @@ date: ${e5.date.toISOString()}
           let t28 = "";
           if (e5.entities.length > 0) {
             t28 += "ENTITIES:\n";
-            for (const i of e5.entities) t28 += `- ${i.name} (${i.type.value}): ${i.facts.join(". ")}
+            for (const r of e5.entities) t28 += `- ${r.name} (${r.type.value}): ${r.facts.join(". ")}
 `;
             t28 += "\n";
           }
           if (e5.concepts.length > 0) {
             t28 += "CONCEPTS:\n";
-            for (const i of e5.concepts) t28 += `- ${i.name}: ${i.definition}
+            for (const r of e5.concepts) t28 += `- ${r.name}: ${r.definition}
 `;
             t28 += "\n";
           }
           if (e5.connections.length > 0) {
             t28 += "CONNECTIONS:\n";
-            for (const i of e5.connections) t28 += `- ${i.from} ${i.type.value} ${i.to}
+            for (const r of e5.connections) t28 += `- ${r.from} ${r.type.value} ${r.to}
 `;
             t28 += "\n";
           }
@@ -128897,16 +129273,16 @@ Please provide a comprehensive answer based on the context above. If the context
         }
         async *queryStream(e5, t28) {
           var _a11;
-          const i = t28.maxResults || 10;
-          let r;
+          const r = t28.maxResults || 10;
+          let i;
           if (this.hasEmbeddingIndex() && t28.embeddingProvider) try {
-            const i2 = t28.embeddingModel || t28.model;
-            r = await t28.embeddingProvider.generateEmbedding(e5, i2, t28.onEmbeddingUsage);
+            const r3 = t28.embeddingModel || t28.model;
+            i = await t28.embeddingProvider.generateEmbedding(e5, r3, t28.onEmbeddingUsage);
           } catch (e6) {
             console.warn("Failed to generate query embedding", e6);
           }
-          const s2 = { maxEntities: i, maxConcepts: i };
-          this._embeddingIndex && (s2.embeddingIndex = this._embeddingIndex.getReadOnlyIndex()), r && (s2.queryEmbedding = r);
+          const s2 = { maxEntities: r, maxConcepts: r };
+          this._embeddingIndex && (s2.embeddingIndex = this._embeddingIndex.getReadOnlyIndex()), i && (s2.queryEmbedding = i);
           const n3 = this.retrieve(e5, s2), a = this.buildQueryContext(n3), o = this.buildQueryPrompt(e5, a);
           for await (const e6 of t28.llmProvider.complete(o, { model: t28.model, temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, maxTokens: 8192, systemMessage: "You are a helpful assistant answering questions based on the provided knowledge base." })) e6.done ? e6.usage && t28.onTokenUsage && t28.onTokenUsage(e6.usage) : e6.text && (yield e6.text);
         }
@@ -128914,19 +129290,19 @@ Please provide a comprehensive answer based on the context above. If the context
     } });
     init_conversation = __esm2({ "internal/domain/wiki/entity/conversation.ts"() {
       Conversation = class e4 {
-        constructor(e5, t28, i, r) {
+        constructor(e5, t28, r, i) {
           __publicField(this, "id");
           __publicField(this, "query");
           __publicField(this, "answer");
           __publicField(this, "metadata");
-          this.id = e5, this.query = t28, this.answer = i, this.metadata = r;
+          this.id = e5, this.query = t28, this.answer = r, this.metadata = i;
         }
-        static create(t28, i, r) {
+        static create(t28, r, i) {
           const s2 = /* @__PURE__ */ new Date(), n3 = e4.generateId(t28, s2);
-          return new e4(n3, t28, i, { query: t28, timestamp: s2, ...r });
+          return new e4(n3, t28, r, { query: t28, timestamp: s2, ...i });
         }
-        static generateId(t28, i) {
-          return `${e4.formatDate(i)}-${e4.slugify(t28)}`;
+        static generateId(t28, r) {
+          return `${e4.formatDate(r)}-${e4.slugify(t28)}`;
         }
         formatAsMarkdown() {
           return this.buildFrontmatter() + this.buildBody() + this.buildFooter();
@@ -129028,8 +129404,8 @@ Please provide a comprehensive answer based on the context above. If the context
     } });
     init_node_kb_repository = __esm2({ "internal/infrastructure/node/node-kb-repository.ts"() {
       init_wiki(), NodeKBRepository = class {
-        constructor(e4, t28, i) {
-          this.filePath = e4, this.fileSystem = t28, this.pathService = i;
+        constructor(e4, t28, r) {
+          this.filePath = e4, this.fileSystem = t28, this.pathService = r;
         }
         async load() {
           if (!await this.fileSystem.exists(this.filePath)) return null;
@@ -129046,8 +129422,8 @@ Please provide a comprehensive answer based on the context above. If the context
         async save(e4) {
           const t28 = this.pathService.dirname(this.filePath);
           await this.fileSystem.exists(t28) || await this.fileSystem.mkdir(t28, { recursive: true });
-          const i = JSON.stringify(e4.toJSON(), null, 2);
-          await this.fileSystem.writeFile(this.filePath, i, "utf-8");
+          const r = JSON.stringify(e4.toJSON(), null, 2);
+          await this.fileSystem.writeFile(this.filePath, r, "utf-8");
         }
         async getLastModified() {
           return await this.fileSystem.exists(this.filePath) ? (await this.fileSystem.stat(this.filePath)).mtimeMs : 0;
@@ -129059,35 +129435,35 @@ Please provide a comprehensive answer based on the context above. If the context
     } });
     init_node_wiki_page_repository = __esm2({ "internal/infrastructure/node/node-wiki-page-repository.ts"() {
       NodeWikiPageRepository = class {
-        constructor(e4, t28, i) {
+        constructor(e4, t28, r) {
           __publicField(this, "wikiDir");
-          this.baseDir = e4, this.fileSystem = t28, this.pathService = i, this.wikiDir = e4;
+          this.baseDir = e4, this.fileSystem = t28, this.pathService = r, this.wikiDir = e4;
         }
         async writePage(e4, t28) {
-          const i = this.pathService.join(this.wikiDir, e4), r = this.pathService.dirname(i);
-          await this.fileSystem.exists(r) || await this.fileSystem.mkdir(r, { recursive: true }), await this.fileSystem.writeFile(i, t28, "utf-8");
+          const r = this.pathService.join(this.wikiDir, e4), i = this.pathService.dirname(r);
+          await this.fileSystem.exists(i) || await this.fileSystem.mkdir(i, { recursive: true }), await this.fileSystem.writeFile(r, t28, "utf-8");
         }
         async deletePage(e4) {
           const t28 = this.pathService.join(this.wikiDir, e4);
           await this.fileSystem.exists(t28) && await this.fileSystem.unlink(t28);
         }
         async writePages(e4) {
-          for (const [t28, i] of e4.entries()) await this.writePage(t28, i);
+          for (const [t28, r] of e4.entries()) await this.writePage(t28, r);
         }
         async listPages(e4) {
           const t28 = this.pathService.join(this.wikiDir, e4);
           return await this.fileSystem.exists(t28) ? (await this.listMarkdownFiles(t28)).map((e5) => this.pathService.relative(this.wikiDir, e5)) : [];
         }
         async appendToLog(e4) {
-          const t28 = this.pathService.join(this.wikiDir, "log.md"), i = `
+          const t28 = this.pathService.join(this.wikiDir, "log.md"), r = `
 ## [${(/* @__PURE__ */ new Date()).toISOString()}] ${e4}
 `;
           if (!await this.fileSystem.exists(t28)) {
             const e5 = this.pathService.dirname(t28);
             await this.fileSystem.exists(e5) || await this.fileSystem.mkdir(e5, { recursive: true }), await this.fileSystem.writeFile(t28, "# Wiki Operation Log\n\n", "utf-8");
           }
-          const r = await this.fileSystem.readFile(t28, "utf-8");
-          await this.fileSystem.writeFile(t28, r + i, "utf-8");
+          const i = await this.fileSystem.readFile(t28, "utf-8");
+          await this.fileSystem.writeFile(t28, i + r, "utf-8");
         }
         async updateIndex(e4) {
           await this.writePage("index.md", e4);
@@ -129102,13 +129478,13 @@ Please provide a comprehensive answer based on the context above. If the context
         async listMarkdownFiles(e4) {
           const t28 = [];
           try {
-            const i = await this.fileSystem.readdir(e4);
-            for (const r of i) {
-              const i2 = this.pathService.join(e4, r);
-              if ((await this.fileSystem.stat(i2)).isDirectory()) {
-                const e5 = await this.listMarkdownFiles(i2);
+            const r = await this.fileSystem.readdir(e4);
+            for (const i of r) {
+              const r3 = this.pathService.join(e4, i);
+              if ((await this.fileSystem.stat(r3)).isDirectory()) {
+                const e5 = await this.listMarkdownFiles(r3);
                 t28.push(...e5);
-              } else r.endsWith(".md") && t28.push(i2);
+              } else i.endsWith(".md") && t28.push(r3);
             }
           } catch (t29) {
             console.warn(`Failed to list files in ${e4}:`, t29);
@@ -129139,12 +129515,12 @@ Please provide a comprehensive answer based on the context above. If the context
           }
         }
         async login(e4, t28) {
-          const i = await this.userFactory.login(e4, t28, this.cachedServerConfig || void 0);
-          return this.currentUser = i, this.cachedServerConfig = i.getServerConfig(), i;
+          const r = await this.userFactory.login(e4, t28, this.cachedServerConfig || void 0);
+          return this.currentUser = r, this.cachedServerConfig = r.getServerConfig(), r;
         }
         async register(e4, t28) {
-          const i = await this.userFactory.register(e4, t28, this.cachedServerConfig || void 0);
-          return this.currentUser = i, this.cachedServerConfig = i.getServerConfig(), i;
+          const r = await this.userFactory.register(e4, t28, this.cachedServerConfig || void 0);
+          return this.currentUser = r, this.cachedServerConfig = r.getServerConfig(), r;
         }
         async logout() {
           await this.userFactory.logout(), this.currentUser = null;
@@ -129178,8 +129554,8 @@ Please provide a comprehensive answer based on the context above. If the context
         }
         async activateLicense(e4, t28) {
           if (!this.currentUser) throw new Error("User must be logged in to activate license");
-          const i = await this.userFactory.activateLicense(this.currentUser, e4, t28);
-          return this.currentUser = i, i;
+          const r = await this.userFactory.activateLicense(this.currentUser, e4, t28);
+          return this.currentUser = r, r;
         }
         async requestAndActivateTrial(e4) {
           const t28 = await this.userFactory.requestAndActivateTrial(e4, this.cachedServerConfig || void 0);
@@ -129203,13 +129579,13 @@ Please provide a comprehensive answer based on the context above. If the context
         }
         async refreshTokenIfNeeded() {
           if (!this.currentUser) return log84.debug("No current user, cannot refresh token"), false;
-          const e4 = this.currentUser.getToken(), t28 = await this.userFactory.refreshTokenIfNeeded(this.currentUser), i = t28.getToken(), r = (e4 == null ? void 0 : e4.getValue()) !== (i == null ? void 0 : i.getValue());
-          return r && (this.currentUser = t28, log84.info("Token was refreshed")), r;
+          const e4 = this.currentUser.getToken(), t28 = await this.userFactory.refreshTokenIfNeeded(this.currentUser), r = t28.getToken(), i = (e4 == null ? void 0 : e4.getValue()) !== (r == null ? void 0 : r.getValue());
+          return i && (this.currentUser = t28, log84.info("Token was refreshed")), i;
         }
         async requestWithAutoRefresh(e4) {
           if (!this.currentUser) throw new Error("User must be logged in to make authenticated requests");
-          const t28 = await this.userFactory.requestWithAutoRefresh(this.currentUser, e4), i = await this.userFactory.load();
-          return i && (this.currentUser = i), t28;
+          const t28 = await this.userFactory.requestWithAutoRefresh(this.currentUser, e4), r = await this.userFactory.load();
+          return r && (this.currentUser = r), t28;
         }
         async getLicenseUsage() {
           if (!this.currentUser) throw new Error("User must be logged in to get license usage");
@@ -129218,6 +129594,16 @@ Please provide a comprehensive answer based on the context above. If the context
         async getLicenseInfo(e4) {
           if (!this.currentUser) throw new Error("User must be logged in to get license info");
           return this.userFactory.getLicenseInfo(this.currentUser, e4);
+        }
+        async refreshLicense() {
+          var _a11, _b4, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+          if (!this.currentUser) throw new Error("User must be logged in to refresh license");
+          const e4 = this.currentUser.getLicense();
+          if (!e4) throw new Error("User has no license to refresh");
+          const t28 = await this.userFactory.getLicenseInfo(this.currentUser);
+          if (!t28) throw new Error("Failed to fetch license info from API");
+          const { License: r } = await Promise.resolve().then(() => (init_license3(), license_exports)), i = r.create(t28.license_key || e4.getKey(), t28.plan || e4.getPlan(), t28.expires_at || e4.getExpiresAt(), { maxDevices: ((_a11 = t28.features) == null ? void 0 : _a11.max_devices) || e4.getFeatures().maxDevices, maxIps: ((_b4 = t28.features) == null ? void 0 : _b4.max_ips) || e4.getFeatures().maxIps, syncEnabled: (_d = (_c2 = t28.features) == null ? void 0 : _c2.sync_enabled) != null ? _d : e4.getFeatures().syncEnabled, syncQuota: ((_e = t28.features) == null ? void 0 : _e.sync_quota) || e4.getFeatures().syncQuota, publishEnabled: (_g = (_f = t28.features) == null ? void 0 : _f.publish_enabled) != null ? _g : e4.getFeatures().publishEnabled, maxSites: ((_h = t28.features) == null ? void 0 : _h.max_sites) || e4.getFeatures().maxSites, maxStorage: ((_i = t28.features) == null ? void 0 : _i.max_storage) || e4.getFeatures().maxStorage, customDomain: (_k = (_j = t28.features) == null ? void 0 : _j.custom_domain) != null ? _k : e4.getFeatures().customDomain, customSubDomain: (_m = (_l = t28.features) == null ? void 0 : _l.custom_sub_domain) != null ? _m : e4.getFeatures().customSubDomain, validityDays: ((_n = t28.features) == null ? void 0 : _n.validity_days) || e4.getFeatures().validityDays }, e4.getActivatedAt(), e4.isActivated(), e4.isFirstTime());
+          return this.currentUser.setLicense(i), await this.userFactory.save(this.currentUser), this.currentUser;
         }
         async resetUsage() {
           if (!this.currentUser) throw new Error("User must be logged in to reset usage");
@@ -129271,23 +129657,23 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async processBatch(e4) {
         if (!this.initialized) throw new Error("Worker not initialized. Call initialize() first.");
-        const t28 = performance.now(), i = [];
+        const t28 = performance.now(), r = [];
         log58.info(`\u{1F4E6} Processing batch: ${e4.length} tasks`);
         try {
-          r = e4, pageFilter.setFilter(r), log58.debug(`Filter set for ${e4.length} tasks`);
+          i = e4, pageFilter.setFilter(i), log58.debug(`Filter set for ${e4.length} tasks`);
           const { generateStaticSite: s2 } = await Promise.resolve().then(() => (init_ssg(), ssg_exports));
           await s2(this.projDir, this.moduleDir), log58.debug("\u2705 Tasks processed (filtered)");
-          const n3 = performance.now() - t28, a = { success: true, processedCount: e4.length, totalCount: e4.length, duration: n3, errors: i };
+          const n3 = performance.now() - t28, a = { success: true, processedCount: e4.length, totalCount: e4.length, duration: n3, errors: r };
           return log58.info(`\u2705 Batch processed: ${e4.length} tasks in ${n3.toFixed(2)}ms`), a;
-        } catch (r3) {
-          const s2 = `Batch processing failed: ${r3 instanceof Error ? r3.message : String(r3)}`;
-          log58.error(`\u274C ${s2}`), i.push(s2);
+        } catch (i2) {
+          const s2 = `Batch processing failed: ${i2 instanceof Error ? i2.message : String(i2)}`;
+          log58.error(`\u274C ${s2}`), r.push(s2);
           const n3 = performance.now() - t28;
-          return { success: false, processedCount: 0, totalCount: e4.length, duration: n3, errors: i };
+          return { success: false, processedCount: 0, totalCount: e4.length, duration: n3, errors: r };
         } finally {
           pageFilter.clearFilter();
         }
-        var r;
+        var i;
       }
       async cleanup() {
         log58.info("\u{1F9F9} Cleaning up worker resources..."), this.initialized = false;
@@ -129335,19 +129721,19 @@ Please provide a comprehensive answer based on the context above. If the context
           const t28 = performance.now() - e4;
           log60.info(`\u2705 Worker pool initialized in ${t28.toFixed(2)}ms`);
         } catch (t28) {
-          const i = t28 instanceof Error ? t28.message : String(t28);
+          const r = t28 instanceof Error ? t28.message : String(t28);
           if ("node" === this.environment) {
-            log60.warn(`\u274C Node worker pool initialization failed: ${i}`), log60.warn("\u{1F504} Attempting fallback to browser workers...");
+            log60.warn(`\u274C Node worker pool initialization failed: ${r}`), log60.warn("\u{1F504} Attempting fallback to browser workers...");
             try {
               this.environment = "browser", await this.initializeBrowserPool();
               const t29 = performance.now() - e4;
               return void log60.info(`\u2705 Successfully initialized browser worker pool as fallback in ${t29.toFixed(2)}ms`);
             } catch (e5) {
               const t29 = e5 instanceof Error ? e5.message : String(e5);
-              throw log60.error(`\u274C Fallback to browser workers also failed: ${t29}`), new Error(`Worker pool initialization failed. Node: ${i}, Browser: ${t29}`);
+              throw log60.error(`\u274C Fallback to browser workers also failed: ${t29}`), new Error(`Worker pool initialization failed. Node: ${r}, Browser: ${t29}`);
             }
           }
-          throw log60.error(`\u274C Failed to initialize worker pool: ${i}`), t28;
+          throw log60.error(`\u274C Failed to initialize worker pool: ${r}`), t28;
         }
       }
       async initializeNodePool() {
@@ -129433,30 +129819,30 @@ Please provide a comprehensive answer based on the context above. If the context
         this.callbacks.push(e4);
       }
       queueEvent(e4, t28) {
-        let i = e4;
+        let r = e4;
         if (this.isSingleFileMode) {
           const t29 = this.config.contentDirs.findIndex((t30) => path29.normalize(e4) === path29.normalize(t30));
           if (-1 === t29) return;
           {
-            const r3 = this.config.projContentDirs[t29];
-            i = path29.join(r3, "index.md"), log63.debug("Single file event mapped", { original: e4, mapped: i });
+            const i2 = this.config.projContentDirs[t29];
+            r = path29.join(i2, "index.md"), log63.debug("Single file event mapped", { original: e4, mapped: r });
           }
         } else {
           const { projContentDirs: e5, contentDirs: t29 } = this.config;
-          for (let r3 = 0; r3 < e5.length; r3++) {
-            const s3 = e5[r3];
+          for (let i2 = 0; i2 < e5.length; i2++) {
+            const s3 = e5[i2];
             for (let e6 = 0; e6 < t29.length; e6++) {
-              const r4 = t29[e6];
-              if (s3 !== r4 && i.startsWith(r4)) {
-                i = s3 + i.slice(r4.length);
+              const i3 = t29[e6];
+              if (s3 !== i3 && r.startsWith(i3)) {
+                r = s3 + r.slice(i3.length);
                 break;
               }
             }
           }
         }
-        const r = path29.normalize(i);
-        if (!this.isRelevantFile(r)) return;
-        const s2 = { filePath: r, eventType: t28, timestamp: Date.now(), isMarkdown: this.isMarkdownFile(r), isImage: this.isImageFile(r) };
+        const i = path29.normalize(r);
+        if (!this.isRelevantFile(i)) return;
+        const s2 = { filePath: i, eventType: t28, timestamp: Date.now(), isMarkdown: this.isMarkdownFile(i), isImage: this.isImageFile(i) };
         this.eventQueue.push(s2), this.scheduleBatch();
       }
       isRelevantFile(e4) {
@@ -129485,9 +129871,9 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       deduplicateEvents(e4) {
         const t28 = /* @__PURE__ */ new Map();
-        for (const i of e4) {
-          const e5 = t28.get(i.filePath);
-          (!e5 || i.timestamp > e5.timestamp) && t28.set(i.filePath, i);
+        for (const r of e4) {
+          const e5 = t28.get(r.filePath);
+          (!e5 || r.timestamp > e5.timestamp) && t28.set(r.filePath, r);
         }
         return Array.from(t28.values());
       }
@@ -129528,11 +129914,11 @@ Please provide a comprehensive answer based on the context above. If the context
         if (!this.config.enableLiveReload || 0 === this.clients.size) return;
         const t28 = { command: "reload", liveCSS: this.shouldLiveReloadCSS(e4), liveImg: this.shouldLiveReloadImages(e4) };
         if (e4 && 1 === e4.length) {
-          const i2 = e4[0], r = path30.extname(i2).toLowerCase();
-          ".css" === r ? (t28.path = i2, t28.liveCSS = true) : [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"].includes(r) && (t28.path = i2, t28.liveImg = true);
+          const r3 = e4[0], i = path30.extname(r3).toLowerCase();
+          ".css" === i ? (t28.path = r3, t28.liveCSS = true) : [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"].includes(i) && (t28.path = r3, t28.liveImg = true);
         }
-        const i = JSON.stringify(t28);
-        for (const e5 of this.clients) e5.readyState === import_ws.WebSocket.OPEN && e5.send(i);
+        const r = JSON.stringify(t28);
+        for (const e5 of this.clients) e5.readyState === import_ws.WebSocket.OPEN && e5.send(r);
       }
       getUrl() {
         return `http://${this.config.host}:${this.config.port}`;
@@ -129571,23 +129957,23 @@ Please provide a comprehensive answer based on the context above. If the context
         });
       }
       async handleHttpRequest(e4, t28) {
-        const i = e4.url || "/";
-        let r = this.resolveFilePath(i);
+        const r = e4.url || "/";
+        let i = this.resolveFilePath(r);
         try {
-          if ((await fs3.stat(r)).isDirectory()) {
-            const e6 = path30.join(r, "index.html");
+          if ((await fs3.stat(i)).isDirectory()) {
+            const e6 = path30.join(i, "index.html");
             try {
-              await fs3.stat(e6), r = e6;
+              await fs3.stat(e6), i = e6;
             } catch (e7) {
               return t28.statusCode = 404, void t28.end("Not Found");
             }
           }
-          let e5 = await fs3.readFile(r);
-          const i2 = this.getContentType(r);
-          if (t28.setHeader("Content-Type", i2), i2.includes("text/html") && this.config.enableLiveReload) {
-            const t29 = e5.toString(), i3 = this.getLiveReloadScript(), r3 = t29.replace(/<\/body>/i, `${i3}
+          let e5 = await fs3.readFile(i);
+          const r3 = this.getContentType(i);
+          if (t28.setHeader("Content-Type", r3), r3.includes("text/html") && this.config.enableLiveReload) {
+            const t29 = e5.toString(), r4 = this.getLiveReloadScript(), i2 = t29.replace(/<\/body>/i, `${r4}
 </body>`);
-            e5 = Buffer.from(r3, "utf8");
+            e5 = Buffer.from(i2, "utf8");
           }
           t28.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"), t28.setHeader("Pragma", "no-cache"), t28.setHeader("Expires", "0"), t28.statusCode = 200, t28.end(e5);
         } catch (e5) {
@@ -129597,13 +129983,13 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       resolveFilePath(e4) {
         const t28 = e4.split("?")[0].split("#")[0];
-        let i;
+        let r;
         try {
-          i = decodeURIComponent(t28);
+          r = decodeURIComponent(t28);
         } catch (e5) {
-          log64.warn("Failed to decode URL:", t28, e5), i = t28;
+          log64.warn("Failed to decode URL:", t28, e5), r = t28;
         }
-        const r = path30.normalize(i).replace(/^(\.\.[\/\\])+/, ""), s2 = r.startsWith("/") ? r.slice(1) : r, n3 = path30.join(this.config.publicDir, s2);
+        const i = path30.normalize(r).replace(/^(\.\.[\/\\])+/, ""), s2 = i.startsWith("/") ? i.slice(1) : i, n3 = path30.join(this.config.publicDir, s2);
         return "win32" === process.platform && n3.length > 260 && log64.warn("Path too long for Windows filesystem:", n3), "win32" === process.platform && /[<>:"|?*\x00-\x1f]/.test(s2) && log64.warn("Path contains invalid characters for Windows:", s2), n3;
       }
       getContentType(e4) {
@@ -129723,8 +130109,8 @@ Please provide a comprehensive answer based on the context above. If the context
         if (!this.config.enableLiveReload) return;
         const t28 = { timestamp: Date.now(), command: "reload", liveCSS: this.shouldLiveReloadCSS(e4), liveImg: this.shouldLiveReloadImages(e4), ...e4 && { changedFiles: e4 } };
         if (e4 && 1 === e4.length) {
-          const i = e4[0], r = path31.extname(i).toLowerCase();
-          (".css" === r || [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"].includes(r)) && (t28.path = i);
+          const r = e4[0], i = path31.extname(r).toLowerCase();
+          (".css" === i || [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"].includes(i)) && (t28.path = r);
         }
         this.writeStateFile(t28).catch((e5) => {
           log65.error("Failed to write state file:", e5);
@@ -129763,29 +130149,29 @@ Please provide a comprehensive answer based on the context above. If the context
         });
       }
       async handleHttpRequest(e4, t28) {
-        const i = e4.url || "/";
-        if (i.startsWith("/.foundry-livereload-state.json")) try {
+        const r = e4.url || "/";
+        if (r.startsWith("/.foundry-livereload-state.json")) try {
           const e5 = await fs4.readFile(this.stateFilePath, "utf8");
           return t28.setHeader("Content-Type", "application/json; charset=utf-8"), t28.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"), t28.setHeader("Pragma", "no-cache"), t28.setHeader("Expires", "0"), t28.statusCode = 200, void t28.end(e5);
         } catch (e5) {
           return void ("ENOENT" === e5.code ? (t28.statusCode = 404, t28.end("State file not found")) : (t28.statusCode = 500, t28.end("Internal Server Error")));
         }
-        let r = this.resolveFilePath(i);
+        let i = this.resolveFilePath(r);
         try {
-          if ((await fs4.stat(r)).isDirectory()) {
-            const e6 = path31.join(r, "index.html");
+          if ((await fs4.stat(i)).isDirectory()) {
+            const e6 = path31.join(i, "index.html");
             try {
-              await fs4.stat(e6), r = e6;
+              await fs4.stat(e6), i = e6;
             } catch (e7) {
               return t28.statusCode = 404, void t28.end("Not Found");
             }
           }
-          let e5 = await fs4.readFile(r);
-          const i2 = this.getContentType(r);
-          if (t28.setHeader("Content-Type", i2), i2.includes("text/html") && this.config.enableLiveReload) {
-            const t29 = e5.toString(), i3 = this.getLiveReloadScript(), r3 = t29.replace(/<\/body>/i, `${i3}
+          let e5 = await fs4.readFile(i);
+          const r3 = this.getContentType(i);
+          if (t28.setHeader("Content-Type", r3), r3.includes("text/html") && this.config.enableLiveReload) {
+            const t29 = e5.toString(), r4 = this.getLiveReloadScript(), i2 = t29.replace(/<\/body>/i, `${r4}
 </body>`);
-            e5 = Buffer.from(r3, "utf8");
+            e5 = Buffer.from(i2, "utf8");
           }
           t28.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"), t28.setHeader("Pragma", "no-cache"), t28.setHeader("Expires", "0"), t28.statusCode = 200, t28.end(e5);
         } catch (e5) {
@@ -129795,13 +130181,13 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       resolveFilePath(e4) {
         const t28 = e4.split("?")[0].split("#")[0];
-        let i;
+        let r;
         try {
-          i = decodeURIComponent(t28);
+          r = decodeURIComponent(t28);
         } catch (e5) {
-          log65.warn("Failed to decode URL:", t28, e5), i = t28;
+          log65.warn("Failed to decode URL:", t28, e5), r = t28;
         }
-        const r = path31.normalize(i).replace(/^(\.\.[\/\\])+/, ""), s2 = r.startsWith("/") ? r.slice(1) : r;
+        const i = path31.normalize(r).replace(/^(\.\.[\/\\])+/, ""), s2 = i.startsWith("/") ? i.slice(1) : i;
         return path31.join(this.config.publicDir, s2);
       }
       getContentType(e4) {
@@ -130010,12 +130396,12 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async getStatus(e4) {
         try {
-          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = t28.getStatus(), r = { isAuthenticated: i.isAuthenticated, serverUrl: i.serverUrl, hasSyncConfig: i.hasSyncConfig, ...i.license ? { license: i.license } : {}, ...i.email ? { email: i.email } : {} };
-          if (i.isAuthenticated) {
+          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = t28.getStatus(), i = { isAuthenticated: r.isAuthenticated, serverUrl: r.serverUrl, hasSyncConfig: r.hasSyncConfig, ...r.license ? { license: r.license } : {}, ...r.email ? { email: r.email } : {} };
+          if (r.isAuthenticated) {
             const e5 = t28.getToken();
-            e5 && (r.token = e5);
+            e5 && (i.token = e5);
           }
-          return i.syncConfig && (r.syncConfig = { dbEndpoint: i.syncConfig.dbEndpoint, dbName: i.syncConfig.dbName, email: i.syncConfig.email, userDir: i.syncConfig.userDir, status: i.syncConfig.status, isActive: i.syncConfig.isActive }), { success: true, message: i.isAuthenticated ? `Authenticated as ${i.email}` : "Not authenticated", data: r };
+          return r.syncConfig && (i.syncConfig = { dbEndpoint: r.syncConfig.dbEndpoint, dbName: r.syncConfig.dbName, email: r.syncConfig.email, userDir: r.syncConfig.userDir, status: r.syncConfig.status, isActive: r.syncConfig.isActive }), { success: true, message: r.isAuthenticated ? `Authenticated as ${r.email}` : "Not authenticated", data: i };
         } catch (e5) {
           const t28 = e5.message;
           return t28.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t28 } : { success: false, message: `Failed to get status: ${t28}`, error: t28 };
@@ -130023,8 +130409,8 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async getConfig(e4) {
         try {
-          const t28 = (await this.identityAdapter.getIdentityService(e4, this.httpClient)).getServerConfig(), i = t28.getWebsiteUrl(), r = { apiUrl: t28.getApiUrl() };
-          return i && (r.websiteUrl = i), { success: true, message: "Server configuration retrieved", data: r };
+          const t28 = (await this.identityAdapter.getIdentityService(e4, this.httpClient)).getServerConfig(), r = t28.getWebsiteUrl(), i = { apiUrl: t28.getApiUrl() };
+          return r && (i.websiteUrl = r), { success: true, message: "Server configuration retrieved", data: i };
         } catch (e5) {
           const t28 = e5.message;
           return t28.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t28 } : { success: false, message: `Failed to get config: ${t28}`, error: t28 };
@@ -130032,11 +130418,11 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async updateConfig(e4, t28) {
         try {
-          const i = {};
-          t28.apiUrl && (i.apiUrl = t28.apiUrl), t28.websiteUrl && (i.websiteUrl = t28.websiteUrl);
-          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient);
-          await r.updateServerConfig(i);
-          const s2 = r.getServerConfig(), n3 = s2.getWebsiteUrl(), a = { apiUrl: s2.getApiUrl() };
+          const r = {};
+          t28.apiUrl && (r.apiUrl = t28.apiUrl), t28.websiteUrl && (r.websiteUrl = t28.websiteUrl);
+          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient);
+          await i.updateServerConfig(r);
+          const s2 = i.getServerConfig(), n3 = s2.getWebsiteUrl(), a = { apiUrl: s2.getApiUrl() };
           return n3 && (a.websiteUrl = n3), { success: true, message: "Server configuration updated", data: a };
         } catch (e5) {
           const t29 = e5.message;
@@ -130054,8 +130440,8 @@ Please provide a comprehensive answer based on the context above. If the context
         try {
           if (!t28) return { success: false, error: "Email is required" };
           log85.info("Requesting trial license (without activation)", { email: t28 });
-          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = await i.requestTrial(t28);
-          return { success: true, message: "Trial license requested successfully", data: { email: r.email, licenseKey: r.license_key, password: r.password, validityDays: r.validity_days } };
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = await r.requestTrial(t28);
+          return { success: true, message: "Trial license requested successfully", data: { email: i.email, licenseKey: i.license_key, password: i.password, validityDays: i.validity_days } };
         } catch (e5) {
           return log85.error("Trial license request failed", e5), { success: false, error: e5.message };
         }
@@ -130064,8 +130450,8 @@ Please provide a comprehensive answer based on the context above. If the context
         try {
           if (!t28) return { success: false, error: "Email is required" };
           log85.info("Requesting and activating trial license", { email: t28 });
-          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = (await i.requestAndActivateTrial(t28)).getLicense();
-          return r ? { success: true, message: "Trial license activated successfully", data: this.buildLicenseInfo(r) } : { success: false, error: "Trial license request succeeded but license not found" };
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = (await r.requestAndActivateTrial(t28)).getLicense();
+          return i ? { success: true, message: "Trial license activated successfully", data: this.buildLicenseInfo(i) } : { success: false, error: "Trial license request succeeded but license not found" };
         } catch (e5) {
           return log85.error("Trial license request and activation failed", e5), { success: false, error: e5.message };
         }
@@ -130074,8 +130460,8 @@ Please provide a comprehensive answer based on the context above. If the context
         try {
           if (!t28) return { success: false, error: "License key is required" };
           log85.info("Logging in with license key", { licenseKey: t28 });
-          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = await i.loginWithLicense(t28);
-          return log85.info("Login successful", { email: r.getEmail().getValue(), hasToken: !!r.getToken() }), { success: true, message: "Logged in successfully. Token saved.", data: {} };
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = await r.loginWithLicense(t28);
+          return log85.info("Login successful", { email: i.getEmail().getValue(), hasToken: !!i.getToken() }), { success: true, message: "Logged in successfully. Token saved.", data: {} };
         } catch (e5) {
           return log85.error("License login failed", e5), { success: false, error: e5.message };
         }
@@ -130084,32 +130470,50 @@ Please provide a comprehensive answer based on the context above. If the context
         try {
           if (!t28) return { success: false, error: "License key is required" };
           log85.info("Activating license", { licenseKey: t28 });
-          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = await i.activateLicense(t28), s2 = r.getLicense(), n3 = r.getSyncConfig();
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = await r.activateLicense(t28), s2 = i.getLicense(), n3 = i.getSyncConfig();
           if (!s2) return { success: false, error: "License activation succeeded but license not found" };
           const a = this.buildLicenseInfo(s2);
-          return a.user = { email: r.getEmail().getValue(), userDir: (n3 == null ? void 0 : n3.getUserDir()) || "" }, a.activation = { activated: s2.isActivated(), firstTime: s2.isFirstTime() }, n3 && s2.getFeatures().syncEnabled && (a.sync = { enabled: true, status: n3.getStatus(), dbEndpoint: n3.getDbEndpoint(), dbName: n3.getDbName(), email: n3.getEmail(), dbPassword: n3.getDbPassword(), userDir: n3.getUserDir(), liveSyncConfig: n3.toObsidianLiveSyncFormat() }, log85.info("Sync configuration included in activation response", { dbName: n3.getDbName(), email: n3.getEmail(), status: n3.getStatus() })), { success: true, message: "License activated successfully", data: a };
+          return a.user = { email: i.getEmail().getValue(), userDir: (n3 == null ? void 0 : n3.getUserDir()) || "" }, a.activation = { activated: s2.isActivated(), firstTime: s2.isFirstTime() }, n3 && s2.getFeatures().syncEnabled && (a.sync = { enabled: true, status: n3.getStatus(), dbEndpoint: n3.getDbEndpoint(), dbName: n3.getDbName(), email: n3.getEmail(), dbPassword: n3.getDbPassword(), userDir: n3.getUserDir(), liveSyncConfig: n3.toObsidianLiveSyncFormat() }, log85.info("Sync configuration included in activation response", { dbName: n3.getDbName(), email: n3.getEmail(), status: n3.getStatus() })), { success: true, message: "License activated successfully", data: a };
         } catch (e5) {
           return log85.error("License activation failed", e5), { success: false, error: e5.message };
         }
       }
-      async getLicenseInfo(e4) {
+      async getLicenseInfo(e4, t28) {
         try {
-          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = t28.getLicense();
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient);
+          if (t28 == null ? void 0 : t28.refresh) return await this.refreshLicenseInfo(e4);
+          const i = r.getLicense();
           if (!i) return { success: true, message: "No active license" };
-          const r = this.buildLicenseInfo(i), s2 = t28.getCurrentUser();
-          if (s2) {
-            const e5 = s2.getSyncConfig();
-            r.user = { email: s2.getEmail().getValue(), userDir: (e5 == null ? void 0 : e5.getUserDir()) || "" };
+          const s2 = this.buildLicenseInfo(i), n3 = r.getCurrentUser();
+          if (n3) {
+            const e5 = n3.getSyncConfig();
+            s2.user = { email: n3.getEmail().getValue(), userDir: (e5 == null ? void 0 : e5.getUserDir()) || "" };
           }
-          return { success: true, data: r };
+          return { success: true, data: s2 };
         } catch (e5) {
           return log85.error("Failed to get license info", e5), { success: false, error: e5.message };
         }
       }
+      async refreshLicenseInfo(e4) {
+        try {
+          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = t28.getCurrentUser();
+          if (!r) return { success: false, error: "User must be logged in to refresh license info" };
+          const i = r.getLicense();
+          if (!i) return { success: true, message: "No active license" };
+          log85.info("Refreshing license info from API", { licenseKey: i.getKey() });
+          const s2 = await t28.refreshLicense(), n3 = s2.getLicense();
+          if (!n3) return { success: false, error: "Failed to refresh license" };
+          log85.info("License info refreshed successfully", { plan: n3.getPlan(), expires: n3.getFormattedExpiresAt(), isExpired: n3.isExpired() });
+          const a = this.buildLicenseInfo(n3), o = s2.getSyncConfig();
+          return a.user = { email: s2.getEmail().getValue(), userDir: (o == null ? void 0 : o.getUserDir()) || "" }, { success: true, message: "License info refreshed from server", data: a };
+        } catch (e5) {
+          return log85.error("Failed to refresh license info", e5), { success: false, error: e5.message };
+        }
+      }
       async getLicenseUsage(e4) {
         try {
-          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = await t28.getLicenseUsage();
-          return i ? { success: true, data: { licenseKey: i.license_key, plan: i.plan, devices: { count: i.devices.count, max: i.features.max_devices, list: i.devices.devices.map((e5) => ({ id: e5.id, name: e5.device_name, type: e5.device_type, status: e5.status, lastSeenAt: e5.last_seen_at })) }, ips: { count: i.ips.count, max: i.features.max_ips, list: i.ips.ips.map((e5) => ({ ip: e5.ip_address, city: e5.city, region: e5.region, country: e5.country, status: e5.status, lastSeenAt: e5.last_seen_at })) }, disk: { syncUsage: Number(i.disks.sync_disk_usage) || 0, publishUsage: Number(i.disks.publish_disk_usage) || 0, totalUsage: Number(i.disks.total_disk_usage) || 0, maxStorage: i.features.max_storage, unit: i.disks.unit } } } : { success: false, error: "Failed to get license usage information" };
+          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = await t28.getLicenseUsage();
+          return r ? { success: true, data: { licenseKey: r.license_key, plan: r.plan, devices: { count: r.devices.count, max: r.features.max_devices, list: r.devices.devices.map((e5) => ({ id: e5.id, name: e5.device_name, type: e5.device_type, status: e5.status, lastSeenAt: e5.last_seen_at })) }, ips: { count: r.ips.count, max: r.features.max_ips, list: r.ips.ips.map((e5) => ({ ip: e5.ip_address, city: e5.city, region: e5.region, country: e5.country, status: e5.status, lastSeenAt: e5.last_seen_at })) }, disk: { syncUsage: Number(r.disks.sync_disk_usage) || 0, publishUsage: Number(r.disks.publish_disk_usage) || 0, totalUsage: Number(r.disks.total_disk_usage) || 0, maxStorage: r.features.max_storage, unit: r.disks.unit } } } : { success: false, error: "Failed to get license usage information" };
         } catch (e5) {
           return log85.error("Failed to get license usage", e5), { success: false, error: e5.message };
         }
@@ -130117,8 +130521,8 @@ Please provide a comprehensive answer based on the context above. If the context
       async resetUsage(e4, t28) {
         try {
           if (!t28) return { success: false, error: "This will delete all sync and publish data! Set force=true to confirm." };
-          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient), r = await i.resetUsage();
-          return r.success ? { success: true, message: "License usage data has been reset successfully", data: r } : { success: false, error: r.message || "Unknown error" };
+          const r = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = await r.resetUsage();
+          return i.success ? { success: true, message: "License usage data has been reset successfully", data: i } : { success: false, error: i.message || "Unknown error" };
         } catch (e5) {
           return log85.error("Failed to reset license usage", e5), { success: false, error: e5.message };
         }
@@ -130143,18 +130547,18 @@ Please provide a comprehensive answer based on the context above. If the context
         this.workspaceAdapter = e4;
       }
       buildWorkspaceInfo(e4) {
-        const t28 = e4.getInfo(), i = e4.getProjects();
-        return { id: t28.id, name: t28.name, path: t28.path, createdAt: t28.createdAt.toISOString(), modulesDir: t28.modulesDir, projectsDir: t28.projectsDir, projectCount: t28.projectCount, projects: i.map((e5) => {
-          const t29 = e5.getMetadata(), i2 = t29.buildHistory || [], r = i2.length > 0 ? new Date(i2[i2.length - 1].timestamp).toISOString() : void 0, s2 = { id: t29.id, name: t29.name, path: e5.getPath(), createdAt: new Date(t29.createdAt).toISOString() };
-          return r && (s2.lastBuild = r), s2;
+        const t28 = e4.getInfo(), r = e4.getProjects();
+        return { id: t28.id, name: t28.name, path: t28.path, createdAt: t28.createdAt.toISOString(), modulesDir: t28.modulesDir, projectsDir: t28.projectsDir, projectCount: t28.projectCount, projects: r.map((e5) => {
+          const t29 = e5.getMetadata(), r3 = t29.buildHistory || [], i = r3.length > 0 ? new Date(r3[r3.length - 1].timestamp).toISOString() : void 0, s2 = { id: t29.id, name: t29.name, path: e5.getPath(), createdAt: new Date(t29.createdAt).toISOString() };
+          return i && (s2.lastBuild = i), s2;
         }) };
       }
       async initWorkspace(e4, t28 = {}) {
         try {
           log86.info("Initializing workspace from Obsidian", { workspacePath: e4, options: t28 });
-          const i = this.workspaceAdapter.getWorkspaceAppService(), r = {};
-          t28.name && (r.name = t28.name), t28.modulesDir && (r.modulesDir = t28.modulesDir), t28.projectsDir && (r.projectsDir = t28.projectsDir);
-          const s2 = await i.createWorkspace(e4, r), n3 = this.buildWorkspaceInfo(s2);
+          const r = this.workspaceAdapter.getWorkspaceAppService(), i = {};
+          t28.name && (i.name = t28.name), t28.modulesDir && (i.modulesDir = t28.modulesDir), t28.projectsDir && (i.projectsDir = t28.projectsDir);
+          const s2 = await r.createWorkspace(e4, i), n3 = this.buildWorkspaceInfo(s2);
           return log86.info("Workspace initialized successfully", { workspaceId: n3.id, name: n3.name, projectCount: n3.projects.length }), { success: true, message: `Workspace initialized: ${n3.name}`, data: n3 };
         } catch (e5) {
           return log86.error("Failed to initialize workspace", e5), { success: false, message: "Failed to initialize workspace", error: e5.message };
@@ -130163,8 +130567,8 @@ Please provide a comprehensive answer based on the context above. If the context
       async getWorkspaceInfo(e4) {
         try {
           log86.info("Getting workspace info from Obsidian", { workspacePath: e4 });
-          const t28 = this.workspaceAdapter.getWorkspaceAppService(), i = await t28.loadWorkspace(e4), r = this.buildWorkspaceInfo(i);
-          return log86.info("Workspace info retrieved", { workspaceId: r.id, name: r.name, projectCount: r.projects.length }), { success: true, data: r };
+          const t28 = this.workspaceAdapter.getWorkspaceAppService(), r = await t28.loadWorkspace(e4), i = this.buildWorkspaceInfo(r);
+          return log86.info("Workspace info retrieved", { workspaceId: i.id, name: i.name, projectCount: i.projects.length }), { success: true, data: i };
         } catch (e5) {
           return log86.error("Failed to get workspace info", e5), { success: false, message: "Failed to get workspace info", error: e5.message };
         }
@@ -130172,8 +130576,8 @@ Please provide a comprehensive answer based on the context above. If the context
       async workspaceExists(e4) {
         try {
           log86.debug("Checking workspace existence", { workspacePath: e4 });
-          const t28 = this.workspaceAdapter.getFileSystemRepository(), i = this.workspaceAdapter.getWorkspaceFactory(), r = await t28.resolvePath(e4);
-          return { success: true, data: await i.isWorkspace(r) };
+          const t28 = this.workspaceAdapter.getFileSystemRepository(), r = this.workspaceAdapter.getWorkspaceFactory(), i = await t28.resolvePath(e4);
+          return { success: true, data: await r.isWorkspace(i) };
         } catch (e5) {
           return log86.error("Failed to check workspace existence", e5), { success: false, error: e5.message, data: false };
         }
@@ -130188,17 +130592,17 @@ Please provide a comprehensive answer based on the context above. If the context
       async get(e4, t28) {
         try {
           log87.info("Getting global config", { workspacePath: e4, key: t28 });
-          const i = this.workspaceAdapter.getWorkspaceAppService(), r = await i.loadWorkspace(e4), s2 = await r.getConfig(t28);
+          const r = this.workspaceAdapter.getWorkspaceAppService(), i = await r.loadWorkspace(e4), s2 = await i.getConfig(t28);
           return void 0 === s2 ? { success: false, error: `Configuration key not found: ${t28}` } : { success: true, data: { key: t28, value: s2 } };
         } catch (e5) {
           return log87.error("Failed to get global config", e5), { success: false, error: e5.message };
         }
       }
-      async set(e4, t28, i) {
+      async set(e4, t28, r) {
         try {
           log87.info("Setting global config", { workspacePath: e4, key: t28 });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), s2 = await r.loadWorkspace(e4);
-          return await s2.setConfig(t28, i), await r.saveWorkspace(s2), { success: true, message: `Configuration updated: ${t28}`, data: { key: t28, value: i } };
+          const i = this.workspaceAdapter.getWorkspaceAppService(), s2 = await i.loadWorkspace(e4);
+          return await s2.setConfig(t28, r), await i.saveWorkspace(s2), { success: true, message: `Configuration updated: ${t28}`, data: { key: t28, value: r } };
         } catch (e5) {
           return log87.error("Failed to set global config", e5), { success: false, error: e5.message };
         }
@@ -130206,8 +130610,8 @@ Please provide a comprehensive answer based on the context above. If the context
       async list(e4) {
         try {
           log87.info("Listing global config", { workspacePath: e4 });
-          const t28 = this.workspaceAdapter.getWorkspaceAppService(), i = await t28.loadWorkspace(e4);
-          return { success: true, data: { config: await i.getAllConfig(), scope: "global" } };
+          const t28 = this.workspaceAdapter.getWorkspaceAppService(), r = await t28.loadWorkspace(e4);
+          return { success: true, data: { config: await r.getAllConfig(), scope: "global" } };
         } catch (e5) {
           return log87.error("Failed to list global config", e5), { success: false, error: e5.message };
         }
@@ -130215,8 +130619,8 @@ Please provide a comprehensive answer based on the context above. If the context
       async unset(e4, t28) {
         try {
           log87.info("Unsetting global config", { workspacePath: e4, key: t28 });
-          const i = this.workspaceAdapter.getWorkspaceAppService(), r = await i.loadWorkspace(e4);
-          return await r.unsetConfig(t28) ? (await i.saveWorkspace(r), { success: true, message: `Configuration deleted: ${t28}`, data: { key: t28 } }) : { success: false, error: `Configuration key not found: ${t28}` };
+          const r = this.workspaceAdapter.getWorkspaceAppService(), i = await r.loadWorkspace(e4);
+          return await i.unsetConfig(t28) ? (await r.saveWorkspace(i), { success: true, message: `Configuration deleted: ${t28}`, data: { key: t28 } }) : { success: false, error: `Configuration key not found: ${t28}` };
         } catch (e5) {
           return log87.error("Failed to unset global config", e5), { success: false, error: e5.message };
         }
@@ -130234,31 +130638,31 @@ Please provide a comprehensive answer based on the context above. If the context
       constructor(e4) {
         this.workspaceAdapter = e4;
       }
-      async get(e4, t28, i) {
+      async get(e4, t28, r) {
         try {
-          log87.info("Getting project config", { workspacePath: e4, projectName: t28, key: i });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await r.loadWorkspaceAndProject(t28, e4);
+          log87.info("Getting project config", { workspacePath: e4, projectName: t28, key: r });
+          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await i.loadWorkspaceAndProject(t28, e4);
           await n3.loadConfig();
-          const a = n3.getConfigValue(i);
-          return void 0 === a ? { success: false, error: `Configuration key not found: ${i}` } : { success: true, data: { key: i, value: a, project: n3.getName() } };
+          const a = n3.getConfigValue(r);
+          return void 0 === a ? { success: false, error: `Configuration key not found: ${r}` } : { success: true, data: { key: r, value: a, project: n3.getName() } };
         } catch (e5) {
           return log87.error("Failed to get project config", e5), { success: false, error: e5.message };
         }
       }
-      async set(e4, t28, i, r) {
+      async set(e4, t28, r, i) {
         try {
-          log87.info("Setting project config", { workspacePath: e4, projectName: t28, key: i });
+          log87.info("Setting project config", { workspacePath: e4, projectName: t28, key: r });
           const s2 = this.workspaceAdapter.getWorkspaceAppService(), { workspace: n3, project: a } = await s2.loadWorkspaceAndProject(t28, e4);
-          return await a.loadConfig(), a.setConfigValue(i, r), await s2.saveProject(a), { success: true, message: `Configuration updated: ${i}`, data: { key: i, value: r, project: a.getName() } };
+          return await a.loadConfig(), a.setConfigValue(r, i), await s2.saveProject(a), { success: true, message: `Configuration updated: ${r}`, data: { key: r, value: i, project: a.getName() } };
         } catch (e5) {
           return log87.error("Failed to set project config", e5), { success: false, error: e5.message };
         }
       }
-      async setAll(e4, t28, i) {
+      async setAll(e4, t28, r) {
         try {
           log87.info("Setting entire project config", { workspacePath: e4, projectName: t28 });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await r.loadWorkspaceAndProject(t28, e4);
-          return await n3.loadConfig(), n3.setConfig(i), await r.saveProject(n3), { success: true, message: "Project configuration fully updated", data: { config: i, scope: "project", project: n3.getName() } };
+          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await i.loadWorkspaceAndProject(t28, e4);
+          return await n3.loadConfig(), n3.setConfig(r), await i.saveProject(n3), { success: true, message: "Project configuration fully updated", data: { config: r, scope: "project", project: n3.getName() } };
         } catch (e5) {
           return log87.error("Failed to set entire project config", e5), { success: false, error: e5.message };
         }
@@ -130266,24 +130670,24 @@ Please provide a comprehensive answer based on the context above. If the context
       async list(e4, t28) {
         try {
           log87.info("Listing project config", { workspacePath: e4, projectName: t28 });
-          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: r, project: s2 } = await i.loadWorkspaceAndProject(t28, e4);
+          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: i, project: s2 } = await r.loadWorkspaceAndProject(t28, e4);
           return await s2.loadConfig(), { success: true, data: { config: s2.getConfig() || {}, scope: "project", project: s2.getName() } };
         } catch (e5) {
           return log87.error("Failed to list project config", e5), { success: false, error: e5.message };
         }
       }
-      async unset(e4, t28, i) {
+      async unset(e4, t28, r) {
         try {
-          log87.info("Unsetting project config", { workspacePath: e4, projectName: t28, key: i });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await r.loadWorkspaceAndProject(t28, e4);
-          return await n3.loadConfig(), n3.unsetConfigValue(i) ? (await r.saveProject(n3), { success: true, message: `Configuration deleted: ${i}`, data: { key: i, project: n3.getName() } }) : { success: false, error: `Configuration key not found: ${i}` };
+          log87.info("Unsetting project config", { workspacePath: e4, projectName: t28, key: r });
+          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await i.loadWorkspaceAndProject(t28, e4);
+          return await n3.loadConfig(), n3.unsetConfigValue(r) ? (await i.saveProject(n3), { success: true, message: `Configuration deleted: ${r}`, data: { key: r, project: n3.getName() } }) : { success: false, error: `Configuration key not found: ${r}` };
         } catch (e5) {
           return log87.error("Failed to unset project config", e5), { success: false, error: e5.message };
         }
       }
       async getConfigPath(e4, t28) {
         try {
-          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: r, project: s2 } = await i.loadWorkspaceAndProject(t28, e4);
+          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: i, project: s2 } = await r.loadWorkspaceAndProject(t28, e4);
           return { success: true, data: { path: s2.getConfigPath(), project: s2.getName() } };
         } catch (e5) {
           return log87.error("Failed to get project config path", e5), { success: false, error: e5.message };
@@ -130298,41 +130702,41 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async createProject(e4) {
         try {
-          const { name: t28, workspacePath: i, sourceFile: r, sourceFolder: s2 } = e4;
+          const { name: t28, workspacePath: r, sourceFile: i, sourceFolder: s2 } = e4;
           if (!t28) return { success: false, error: "Project name is required" };
-          log88.info("Creating project from Obsidian", { name: t28, workspacePath: i, hasSourceFile: !!r, hasSourceFolder: !!s2 });
-          const n3 = this.workspaceAdapter.getWorkspaceAppService(), a = await n3.loadWorkspace(i);
-          return r ? await this.createProjectFromFile(a, e4) : s2 ? await this.createProjectFromFolder(a, e4) : await this.createEmptyProject(a, e4);
+          log88.info("Creating project from Obsidian", { name: t28, workspacePath: r, hasSourceFile: !!i, hasSourceFolder: !!s2 });
+          const n3 = this.workspaceAdapter.getWorkspaceAppService(), a = await n3.loadWorkspace(r);
+          return i ? await this.createProjectFromFile(a, e4) : s2 ? await this.createProjectFromFolder(a, e4) : await this.createEmptyProject(a, e4);
         } catch (e5) {
           return log88.error("Failed to create project", e5), { success: false, message: "Failed to create project", error: e5.message };
         }
       }
       async createProjectFromFile(e4, t28) {
-        const { name: i, sourceFile: r, theme: s2, language: n3, type: a = "site" } = t28;
-        log88.info("Creating project from file", { name: i, sourceFile: r, type: a });
-        const o = { type: a, theme: s2 || "https://gohugo.net/note.zip?version=1.2", language: n3 || "en" }, l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProjectFromFile(e4, i, r, o), h3 = await this.buildProjectInfo(c, o);
-        return log88.info("Project created from file", { projectId: h3.id, name: h3.name, type: a }), { success: true, message: `Project created from file: ${i}`, data: h3 };
+        const { name: r, sourceFile: i, theme: s2, language: n3, type: a = "site" } = t28;
+        log88.info("Creating project from file", { name: r, sourceFile: i, type: a });
+        const o = { type: a, theme: s2 || "https://gohugo.net/note.zip?version=1.2", language: n3 || "en" }, l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProjectFromFile(e4, r, i, o), h3 = await this.buildProjectInfo(c, o);
+        return log88.info("Project created from file", { projectId: h3.id, name: h3.name, type: a }), { success: true, message: `Project created from file: ${r}`, data: h3 };
       }
       async createProjectFromFolder(e4, t28) {
         var _a11;
-        const { name: i, sourceFolder: r, theme: s2, language: n3, type: a = "site" } = t28;
-        log88.info("Creating project from folder", { name: i, sourceFolder: r, type: a });
+        const { name: r, sourceFolder: i, theme: s2, language: n3, type: a = "site" } = t28;
+        log88.info("Creating project from folder", { name: r, sourceFolder: i, type: a });
         const o = { type: a, language: n3 || "en" };
         s2 && (o.theme = s2);
-        const l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProjectFromFolder(e4, i, r, o), h3 = await this.buildProjectInfo(c, { ...s2 ? { theme: s2 } : {}, language: o.language });
-        return log88.info("Project created from folder", { projectId: h3.id, name: h3.name, type: a, contentLinks: ((_a11 = h3.contentLinks) == null ? void 0 : _a11.length) || 0, hasStaticLink: !!h3.staticLink }), { success: true, message: `Project created from folder: ${i}`, data: h3 };
+        const l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProjectFromFolder(e4, r, i, o), h3 = await this.buildProjectInfo(c, { ...s2 ? { theme: s2 } : {}, language: o.language });
+        return log88.info("Project created from folder", { projectId: h3.id, name: h3.name, type: a, contentLinks: ((_a11 = h3.contentLinks) == null ? void 0 : _a11.length) || 0, hasStaticLink: !!h3.staticLink }), { success: true, message: `Project created from folder: ${r}`, data: h3 };
       }
       async createEmptyProject(e4, t28) {
-        const { name: i, theme: r, language: s2, createSampleContent: n3 = true, type: a = "site" } = t28;
-        log88.info("Creating empty project", { name: i, type: a });
+        const { name: r, theme: i, language: s2, createSampleContent: n3 = true, type: a = "site" } = t28;
+        log88.info("Creating empty project", { name: r, type: a });
         const o = { type: a, language: s2 || "en", createSampleContent: n3 };
-        r && (o.theme = r);
-        const l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProject(e4, i, o), h3 = await this.buildProjectInfo(c, { ...r ? { theme: r } : {}, language: o.language });
-        return log88.info("Empty project created", { projectId: h3.id, name: h3.name, type: a }), { success: true, message: `Project created: ${i}`, data: h3 };
+        i && (o.theme = i);
+        const l = this.workspaceAdapter.getWorkspaceAppService(), c = await l.createProject(e4, r, o), h3 = await this.buildProjectInfo(c, { ...i ? { theme: i } : {}, language: o.language });
+        return log88.info("Empty project created", { projectId: h3.id, name: h3.name, type: a }), { success: true, message: `Project created: ${r}`, data: h3 };
       }
       async buildProjectInfo(e4, t28) {
-        const i = e4.getMetadata(), r = e4.getContentLinks(), s2 = e4.getStaticLink(), n3 = e4.getFileLink(), a = e4.getSupportedLanguagesFromLinks(), o = { id: i.id, name: i.name, type: i.type, path: e4.getPath(), createdAt: new Date(i.createdAt).toISOString(), updatedAt: new Date(i.updatedAt).toISOString() };
-        t28.theme && (o.theme = t28.theme), t28.language && (o.language = t28.language), n3 && (o.fileLink = { sourcePath: n3.sourcePath, targetPath: n3.targetPath, isSymlink: n3.isSymlink }), r && r.length > 0 && (o.contentLinks = r.map((e5) => ({ sourcePath: e5.sourcePath, languageCode: e5.languageCode, weight: e5.weight }))), s2 && (o.staticLink = { sourcePath: s2.sourcePath }), a && a.length > 0 && (o.languages = a);
+        const r = e4.getMetadata(), i = e4.getContentLinks(), s2 = e4.getStaticLink(), n3 = e4.getFileLink(), a = e4.getSupportedLanguagesFromLinks(), o = { id: r.id, name: r.name, type: r.type, path: e4.getPath(), createdAt: new Date(r.createdAt).toISOString(), updatedAt: new Date(r.updatedAt).toISOString() };
+        t28.theme && (o.theme = t28.theme), t28.language && (o.language = t28.language), n3 && (o.fileLink = { sourcePath: n3.sourcePath, targetPath: n3.targetPath, isSymlink: n3.isSymlink }), i && i.length > 0 && (o.contentLinks = i.map((e5) => ({ sourcePath: e5.sourcePath, languageCode: e5.languageCode, weight: e5.weight }))), s2 && (o.staticLink = { sourcePath: s2.sourcePath }), a && a.length > 0 && (o.languages = a);
         try {
           await e4.loadConfig();
           const t29 = e4.getConfigValue("publish.method");
@@ -130345,9 +130749,9 @@ Please provide a comprehensive answer based on the context above. If the context
       async listProjects(e4) {
         try {
           log88.info("Listing projects from Obsidian", { workspacePath: e4 });
-          const t28 = this.workspaceAdapter.getWorkspaceAppService(), i = (await t28.loadWorkspace(e4)).getProjects(), r = await Promise.all(i.map(async (e5) => {
-            const t29 = e5.getMetadata(), i2 = e5.getContentLinks(), r3 = e5.getStaticLink(), s2 = e5.getFileLink(), n3 = e5.getSupportedLanguagesFromLinks(), a = { id: t29.id, name: t29.name, type: t29.type, path: e5.getPath(), createdAt: new Date(t29.createdAt).toISOString(), updatedAt: new Date(t29.updatedAt).toISOString() };
-            s2 && (a.fileLink = { sourcePath: s2.sourcePath, targetPath: s2.targetPath, isSymlink: s2.isSymlink }), i2 && i2.length > 0 && (a.contentLinks = i2.map((e6) => ({ sourcePath: e6.sourcePath, languageCode: e6.languageCode, weight: e6.weight }))), r3 && (a.staticLink = { sourcePath: r3.sourcePath }), n3 && n3.length > 0 && (a.languages = n3);
+          const t28 = this.workspaceAdapter.getWorkspaceAppService(), r = (await t28.loadWorkspace(e4)).getProjects(), i = await Promise.all(r.map(async (e5) => {
+            const t29 = e5.getMetadata(), r3 = e5.getContentLinks(), i2 = e5.getStaticLink(), s2 = e5.getFileLink(), n3 = e5.getSupportedLanguagesFromLinks(), a = { id: t29.id, name: t29.name, type: t29.type, path: e5.getPath(), createdAt: new Date(t29.createdAt).toISOString(), updatedAt: new Date(t29.updatedAt).toISOString() };
+            s2 && (a.fileLink = { sourcePath: s2.sourcePath, targetPath: s2.targetPath, isSymlink: s2.isSymlink }), r3 && r3.length > 0 && (a.contentLinks = r3.map((e6) => ({ sourcePath: e6.sourcePath, languageCode: e6.languageCode, weight: e6.weight }))), i2 && (a.staticLink = { sourcePath: i2.sourcePath }), n3 && n3.length > 0 && (a.languages = n3);
             try {
               await e5.loadConfig();
               const t30 = e5.getConfigValue("publish.method");
@@ -130357,7 +130761,7 @@ Please provide a comprehensive answer based on the context above. If the context
             }
             return a;
           }));
-          return log88.info("Projects listed", { count: r.length }), { success: true, data: r };
+          return log88.info("Projects listed", { count: i.length }), { success: true, data: i };
         } catch (e5) {
           return log88.error("Failed to list projects", e5), { success: false, error: e5.message };
         }
@@ -130365,19 +130769,19 @@ Please provide a comprehensive answer based on the context above. If the context
       async getProjectInfo(e4, t28) {
         try {
           log88.info("Getting project info from Obsidian", { workspacePath: e4, projectName: t28 });
-          const i = this.workspaceAdapter.getWorkspaceAppService(), r = (await i.loadWorkspace(e4)).findProject(t28);
-          return r ? { success: true, data: await this.buildProjectInfo(r, {}) } : { success: false, error: `Project not found: ${t28}` };
+          const r = this.workspaceAdapter.getWorkspaceAppService(), i = (await r.loadWorkspace(e4)).findProject(t28);
+          return i ? { success: true, data: await this.buildProjectInfo(i, {}) } : { success: false, error: `Project not found: ${t28}` };
         } catch (e5) {
           return log88.error("Failed to get project info", e5), { success: false, error: e5.message };
         }
       }
-      async deleteProject(e4, t28, i) {
+      async deleteProject(e4, t28, r) {
         try {
-          log88.info("Deleting project from Obsidian", { workspacePath: e4, projectIdOrName: t28, deleteFiles: i == null ? void 0 : i.deleteFiles });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), s2 = await r.loadWorkspace(e4), n3 = s2.findProject(t28);
+          log88.info("Deleting project from Obsidian", { workspacePath: e4, projectIdOrName: t28, deleteFiles: r == null ? void 0 : r.deleteFiles });
+          const i = this.workspaceAdapter.getWorkspaceAppService(), s2 = await i.loadWorkspace(e4), n3 = s2.findProject(t28);
           if (!n3) return { success: false, error: `Project not found: ${t28}` };
           const a = n3.getName();
-          return await r.deleteProject(s2, t28, i), log88.info("Project deleted successfully", { projectName: a, deleteFiles: i == null ? void 0 : i.deleteFiles }), { success: true, message: `Project deleted: ${a}` };
+          return await i.deleteProject(s2, t28, r), log88.info("Project deleted successfully", { projectName: a, deleteFiles: r == null ? void 0 : r.deleteFiles }), { success: true, message: `Project deleted: ${a}` };
         } catch (e5) {
           return log88.error("Failed to delete project", e5), { success: false, error: e5.message };
         }
@@ -130386,7 +130790,7 @@ Please provide a comprehensive answer based on the context above. If the context
         var _a11;
         try {
           log88.info("Scanning folder structure from Obsidian", { folderPath: e4 });
-          const t28 = this.workspaceAdapter.getWorkspaceAppService(), i = await t28.scanFolderStructure(e4), r = i.getStaticFolder(), s2 = { rootPath: i.getRootPath(), isStructured: i.getIsStructured(), contentFolders: i.getContentFolders(), staticFolder: r ? { path: r.path } : void 0, isValid: i.isValid(), isMultilingual: i.isMultilingual(), supportedLanguages: i.getSupportedLanguages(), defaultLanguage: (_a11 = i.getDefaultContentFolder()) == null ? void 0 : _a11.languageCode, summary: i.getSummary() };
+          const t28 = this.workspaceAdapter.getWorkspaceAppService(), r = await t28.scanFolderStructure(e4), i = r.getStaticFolder(), s2 = { rootPath: r.getRootPath(), isStructured: r.getIsStructured(), contentFolders: r.getContentFolders(), staticFolder: i ? { path: i.path } : void 0, isValid: r.isValid(), isMultilingual: r.isMultilingual(), supportedLanguages: r.getSupportedLanguages(), defaultLanguage: (_a11 = r.getDefaultContentFolder()) == null ? void 0 : _a11.languageCode, summary: r.getSummary() };
           return log88.info("Folder structure scanned", { isStructured: s2.isStructured, contentFolders: s2.contentFolders.length, isMultilingual: s2.isMultilingual, languages: s2.supportedLanguages }), { success: true, message: "Folder structure scanned successfully", data: s2 };
         } catch (e5) {
           return log88.error("Failed to scan folder structure", e5), { success: false, error: e5.message };
@@ -130401,11 +130805,11 @@ Please provide a comprehensive answer based on the context above. If the context
       }
       async buildProject(e4) {
         try {
-          const { workspacePath: t28, projectNameOrPath: i, destination: r, modulesDir: s2, contentDirs: n3, clean: a = false, parallel: o = false, snapshot: l = false, snapshotName: c } = e4;
-          log89.info("Building project from Obsidian", { projectNameOrPath: i, parallel: o, clean: a });
-          const h3 = this.workspaceAdapter.getWorkspaceAppService(), { workspace: u, project: g } = await h3.loadWorkspaceAndProject(i, t28);
+          const { workspacePath: t28, projectNameOrPath: r, destination: i, modulesDir: s2, contentDirs: n3, clean: a = false, parallel: o = false, snapshot: l = false, snapshotName: c } = e4;
+          log89.info("Building project from Obsidian", { projectNameOrPath: r, parallel: o, clean: a });
+          const h3 = this.workspaceAdapter.getWorkspaceAppService(), { workspace: u, project: g } = await h3.loadWorkspaceAndProject(r, t28);
           log89.info(`Building project: ${g.getName()}`), await g.loadConfig();
-          const d = g.getPath(), p2 = s2 || u.getModulesDir(), m2 = r ? import_path26.default.resolve(d, r) : await g.getPublishDir();
+          const d = g.getPath(), p2 = s2 || u.getModulesDir(), m2 = i ? import_path26.default.resolve(d, i) : await g.getPublishDir();
           a && (await this.cleanOutputDir(m2), log89.info(`Cleaned output directory: ${m2}`));
           const f3 = Date.now();
           let y = await g.getContentDirs();
@@ -130481,15 +130885,15 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
             return t28;
         }
       }
-      createProgressCallback(e4, t28, i, r) {
-        const s2 = { phase: e4, percentage: t28, overallPercentage: this.calculateOverallProgress(e4, t28), message: i };
-        return (r == null ? void 0 : r.currentFile) && (s2.currentFile = r.currentFile), (r == null ? void 0 : r.data) && (s2.data = r.data), s2;
+      createProgressCallback(e4, t28, r, i) {
+        const s2 = { phase: e4, percentage: t28, overallPercentage: this.calculateOverallProgress(e4, t28), message: r };
+        return (i == null ? void 0 : i.currentFile) && (s2.currentFile = i.currentFile), (i == null ? void 0 : i.data) && (s2.data = i.data), s2;
       }
       async startServer(e4, t28) {
         try {
-          const { workspacePath: i, projectName: r } = e4;
-          this.hasAutoPublish = !!e4.publishConfig, log90.info("Starting server from Obsidian", { projectName: r, hasAutoPublish: this.hasAutoPublish }), t28 == null ? void 0 : t28(this.createProgressCallback("initializing", 10, "Loading project..."));
-          const s2 = this.workspaceAdapter.getWorkspaceAppService(), { workspace: n3, project: a } = await s2.loadWorkspaceAndProject(r, i);
+          const { workspacePath: r, projectName: i } = e4;
+          this.hasAutoPublish = !!e4.publishConfig, log90.info("Starting server from Obsidian", { projectName: i, hasAutoPublish: this.hasAutoPublish }), t28 == null ? void 0 : t28(this.createProgressCallback("initializing", 10, "Loading project..."));
+          const s2 = this.workspaceAdapter.getWorkspaceAppService(), { workspace: n3, project: a } = await s2.loadWorkspaceAndProject(i, r);
           log90.info(`Starting server for project: ${a.getName()}`);
           const o = e4.port || 8080, l = e4.host || "localhost", c = e4.livereloadPort || 35729, h3 = false !== e4.livereload;
           t28 == null ? void 0 : t28(this.createProgressCallback("initializing", 30, "Preparing build configuration..."));
@@ -130499,12 +130903,12 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
           let y = Date.now();
           const w2 = { projDir: f3, modulesDir: p2, contentDirs: d, projContentDirs: g, publicDir: m2, enableWatching: true, batchDelay: 300, progressCallback: (e5) => {
             if (t28) {
-              const i2 = {};
-              e5.currentFile && (i2.currentFile = e5.currentFile), t28(this.createProgressCallback("building", e5.percentage, e5.message, i2));
+              const r3 = {};
+              e5.currentFile && (r3.currentFile = e5.currentFile), t28(this.createProgressCallback("building", e5.percentage, e5.message, r3));
             }
           }, onSuccess: async () => {
-            const i2 = (Date.now() - y) / 1e3;
-            t28 == null ? void 0 : t28(this.createProgressCallback("build-success", 100, "Build completed successfully", { data: { buildTime: Number(i2.toFixed(2)), filesProcessed: 0 } })), e4.publishConfig && this.publishAppService && await this.autoPublish(a, e4.publishConfig.method, e4.publishConfig.config, e4.publishConfig.delay, t28), y = Date.now();
+            const r3 = (Date.now() - y) / 1e3;
+            t28 == null ? void 0 : t28(this.createProgressCallback("build-success", 100, "Build completed successfully", { data: { buildTime: Number(r3.toFixed(2)), filesProcessed: 0 } })), e4.publishConfig && this.publishAppService && await this.autoPublish(a, e4.publishConfig.method, e4.publishConfig.config, e4.publishConfig.delay, t28), y = Date.now();
           } };
           if (h3 && (w2.liveReload = { enabled: true, port: o, host: l, livereloadPort: c }), e4.markdown && (w2.markdown = e4.markdown), await this.syncFileLinkIfNeeded(a), log90.info("Starting incremental build server..."), this.coordinator = await startIncrementalBuild(w2), !this.coordinator.isInitialized()) throw new Error("Failed to initialize build coordinator");
           const S = `http://${l}:${o}${u.baseURL}`;
@@ -130524,18 +130928,18 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         var _a11;
         return ((_a11 = this.coordinator) == null ? void 0 : _a11.isInitialized()) || false;
       }
-      async autoPublish(e4, t28, i, r, s2) {
+      async autoPublish(e4, t28, r, i, s2) {
         this.publishTimer && clearTimeout(this.publishTimer);
-        const n3 = r || 2e3;
+        const n3 = i || 2e3;
         this.publishTimer = setTimeout(async () => {
           try {
             log90.info(`Auto-publishing to ${t28}...`), s2 == null ? void 0 : s2(this.createProgressCallback("publishing", 0, `Publishing to ${t28}...`));
-            const r3 = Date.now(), n4 = await this.publishAppService.publish(e4, i, { incremental: true }, (e5) => {
+            const i2 = Date.now(), n4 = await this.publishAppService.publish(e4, r, { incremental: true }, (e5) => {
               if (s2) {
                 const t29 = {};
                 e5.currentFile && (t29.currentFile = e5.currentFile), s2(this.createProgressCallback("publishing", e5.percentage, e5.message, t29));
               }
-            }), a = (Date.now() - r3) / 1e3;
+            }), a = (Date.now() - i2) / 1e3;
             if (n4.success) {
               const e5 = `Published to ${t28.toUpperCase()} successfully`;
               log90.info(e5, { url: n4.url, filesUploaded: n4.filesUploaded, bytesTransferred: n4.bytesTransferred, duration: a }), s2 == null ? void 0 : s2(this.createProgressCallback("publish-success", 100, e5, { data: { publishUrl: n4.url, filesUploaded: n4.filesUploaded, bytesTransferred: n4.bytesTransferred, publishTime: Number(a.toFixed(2)), method: t28 } }));
@@ -130565,25 +130969,25 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         this.workspaceAdapter = t28, this.publishAppService = e4;
       }
       async publish(e4, t28) {
-        const i = Date.now();
+        const r = Date.now();
         try {
-          const { workspacePath: r, projectName: s2, method: n3, config: a, force: o = false } = e4;
+          const { workspacePath: i, projectName: s2, method: n3, config: a, force: o = false } = e4;
           log91.info("Publishing from Obsidian", { projectName: s2, method: n3 });
-          const l = this.workspaceAdapter.getWorkspaceAppService(), { workspace: c, project: h3 } = await l.loadWorkspaceAndProject(s2, r);
+          const l = this.workspaceAdapter.getWorkspaceAppService(), { workspace: c, project: h3 } = await l.loadWorkspaceAndProject(s2, i);
           log91.info(`Publishing project: ${h3.getName()} to ${n3}`);
           const u = await this.publishAppService.publish(h3, a, o ? { force: true } : {}, t28 ? (e5) => {
-            const i2 = { phase: e5.phase, percentage: e5.percentage, message: e5.message };
-            void 0 !== e5.currentFile && (i2.currentFile = e5.currentFile), void 0 !== e5.filesCompleted && (i2.filesCompleted = e5.filesCompleted), void 0 !== e5.filesTotal && (i2.filesTotal = e5.filesTotal), void 0 !== e5.bytesTransferred && (i2.bytesTransferred = e5.bytesTransferred), t28(i2);
-          } : void 0), g = Date.now() - i;
+            const r3 = { phase: e5.phase, percentage: e5.percentage, message: e5.message };
+            void 0 !== e5.currentFile && (r3.currentFile = e5.currentFile), void 0 !== e5.filesCompleted && (r3.filesCompleted = e5.filesCompleted), void 0 !== e5.filesTotal && (r3.filesTotal = e5.filesTotal), void 0 !== e5.bytesTransferred && (r3.bytesTransferred = e5.bytesTransferred), t28(r3);
+          } : void 0), g = Date.now() - r;
           return u.success ? { success: true, message: `Published to ${n3.toUpperCase()} successfully`, data: { url: u.url, filesUploaded: u.filesUploaded || 0, bytesTransferred: u.bytesTransferred || 0, duration: g } } : { success: false, message: "Publish failed", error: u.error };
         } catch (e5) {
           return log91.error("Publish failed", e5), { success: false, message: "Publish failed", error: e5.message };
         }
       }
-      async testConnection(e4, t28, i) {
+      async testConnection(e4, t28, r) {
         try {
-          log91.info("Testing connection from Obsidian", { projectName: t28, type: i.type });
-          const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await r.loadWorkspaceAndProject(t28, e4), a = await this.publishAppService.testConnection(n3, i);
+          log91.info("Testing connection from Obsidian", { projectName: t28, type: r.type });
+          const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: s2, project: n3 } = await i.loadWorkspaceAndProject(t28, e4), a = await this.publishAppService.testConnection(n3, r);
           return { success: a.success, ...a.error ? { error: a.error } : {} };
         } catch (e5) {
           return log91.error("Test connection failed", e5), { success: false, error: e5.message };
@@ -130599,10 +131003,10 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async getDomainInfo(e4) {
         try {
-          const t28 = await this.getIdentityService(e4), i = await t28.getDomains();
-          if (!i) return { success: false, message: "No domain information found" };
-          const r = { subdomain: i.subdomain, fullDomain: i.full_domain, folder: i.folder, createdAt: "number" == typeof i.created_at ? new Date(i.created_at).toISOString() : i.created_at };
-          return i.cus_domain && (r.customDomain = i.cus_domain), { success: true, message: "Domain information retrieved", data: r };
+          const t28 = await this.getIdentityService(e4), r = await t28.getDomains();
+          if (!r) return { success: false, message: "No domain information found" };
+          const i = { subdomain: r.subdomain, fullDomain: r.full_domain, folder: r.folder, createdAt: "number" == typeof r.created_at ? new Date(r.created_at).toISOString() : r.created_at };
+          return r.cus_domain && (i.customDomain = r.cus_domain), { success: true, message: "Domain information retrieved", data: i };
         } catch (e5) {
           const t28 = e5.message;
           return t28.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t28 } : { success: false, message: `Failed to get domain info: ${t28}`, error: t28 };
@@ -130610,12 +131014,12 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async checkSubdomain(e4, t28) {
         try {
-          const i = await this.getIdentityService(e4), r = await i.checkSubdomainAvailability(t28);
-          if (!r) return { success: false, message: "Failed to check subdomain availability" };
-          const s2 = { available: r.available };
-          r.message && (s2.message = r.message);
-          const n3 = r.available ? `Subdomain "${t28}" is available` : `Subdomain "${t28}" is not available`;
-          return { success: r.available, message: n3, data: s2 };
+          const r = await this.getIdentityService(e4), i = await r.checkSubdomainAvailability(t28);
+          if (!i) return { success: false, message: "Failed to check subdomain availability" };
+          const s2 = { available: i.available };
+          i.message && (s2.message = i.message);
+          const n3 = i.available ? `Subdomain "${t28}" is available` : `Subdomain "${t28}" is not available`;
+          return { success: i.available, message: n3, data: s2 };
         } catch (e5) {
           const t29 = e5.message;
           return t29.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t29 } : { success: false, message: `Failed to check subdomain: ${t29}`, error: t29 };
@@ -130623,8 +131027,8 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async updateSubdomain(e4, t28) {
         try {
-          const i = await this.getIdentityService(e4), r = await i.updateSubdomain(t28);
-          return r ? { success: true, message: "Subdomain updated successfully", data: { oldSubdomain: r.old_subdomain, newSubdomain: r.new_subdomain, fullDomain: r.full_domain, message: r.message } } : { success: false, message: "Failed to update subdomain" };
+          const r = await this.getIdentityService(e4), i = await r.updateSubdomain(t28);
+          return i ? { success: true, message: "Subdomain updated successfully", data: { oldSubdomain: i.old_subdomain, newSubdomain: i.new_subdomain, fullDomain: i.full_domain, message: i.message } } : { success: false, message: "Failed to update subdomain" };
         } catch (e5) {
           const t29 = e5.message;
           return t29.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t29 } : { success: false, message: `Failed to update subdomain: ${t29}`, error: t29 };
@@ -130632,10 +131036,10 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async checkCustomDomain(e4, t28) {
         try {
-          const i = await this.getIdentityService(e4), r = await i.checkCustomDomain(t28);
-          if (!r) return { success: false, message: "Failed to check custom domain" };
-          const s2 = { ready: r.ready, dnsValid: r.dns_valid, message: r.message };
-          return r.resolved_ips && r.resolved_ips.length > 0 && (s2.resolvedIps = r.resolved_ips), { success: r.ready, message: r.ready ? "Custom domain is ready" : "Custom domain is not ready", data: s2 };
+          const r = await this.getIdentityService(e4), i = await r.checkCustomDomain(t28);
+          if (!i) return { success: false, message: "Failed to check custom domain" };
+          const s2 = { ready: i.ready, dnsValid: i.dns_valid, message: i.message };
+          return i.resolved_ips && i.resolved_ips.length > 0 && (s2.resolvedIps = i.resolved_ips), { success: i.ready, message: i.ready ? "Custom domain is ready" : "Custom domain is not ready", data: s2 };
         } catch (e5) {
           const t29 = e5.message;
           return t29.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t29 } : { success: false, message: `Failed to check custom domain: ${t29}`, error: t29 };
@@ -130643,8 +131047,8 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async addCustomDomain(e4, t28) {
         try {
-          const i = await this.getIdentityService(e4), r = await i.addCustomDomain(t28);
-          return r ? { success: true, message: "Custom domain added successfully", data: { domain: r.domain, status: r.status, message: r.message } } : { success: false, message: "Failed to add custom domain" };
+          const r = await this.getIdentityService(e4), i = await r.addCustomDomain(t28);
+          return i ? { success: true, message: "Custom domain added successfully", data: { domain: i.domain, status: i.status, message: i.message } } : { success: false, message: "Failed to add custom domain" };
         } catch (e5) {
           const t29 = e5.message;
           return t29.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t29 } : { success: false, message: `Failed to add custom domain: ${t29}`, error: t29 };
@@ -130652,14 +131056,14 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async checkHttpsStatus(e4, t28) {
         try {
-          const i = await this.getIdentityService(e4), r = await i.checkCustomDomainHttpsStatus(t28);
-          if (!r) return { success: false, message: "Failed to check HTTPS status" };
-          const s2 = { tlsReady: r.tls_ready, dnsValid: r.dns_valid, status: r.status, message: r.message };
-          if (r.certificate) {
+          const r = await this.getIdentityService(e4), i = await r.checkCustomDomainHttpsStatus(t28);
+          if (!i) return { success: false, message: "Failed to check HTTPS status" };
+          const s2 = { tlsReady: i.tls_ready, dnsValid: i.dns_valid, status: i.status, message: i.message };
+          if (i.certificate) {
             const e5 = {};
-            r.certificate.issuer && (e5.issuer = r.certificate.issuer), r.certificate.valid_from && (e5.validFrom = r.certificate.valid_from), r.certificate.valid_to && (e5.validTo = r.certificate.valid_to), s2.certificate = e5;
+            i.certificate.issuer && (e5.issuer = i.certificate.issuer), i.certificate.valid_from && (e5.validFrom = i.certificate.valid_from), i.certificate.valid_to && (e5.validTo = i.certificate.valid_to), s2.certificate = e5;
           }
-          return { success: r.tls_ready, message: r.tls_ready ? "HTTPS is ready" : "HTTPS is not ready yet", data: s2 };
+          return { success: i.tls_ready, message: i.tls_ready ? "HTTPS is ready" : "HTTPS is not ready yet", data: s2 };
         } catch (e5) {
           const t29 = e5.message;
           return t29.includes("No workspace found") ? { success: false, message: "No workspace found. Please initialize workspace first.", error: t29 } : { success: false, message: `Failed to check HTTPS status: ${t29}`, error: t29 };
@@ -130674,12 +131078,12 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async ingest(e4) {
         try {
-          const { workspacePath: t28, projectName: i, filePath: r, temperature: s2, onProgress: n3 } = e4;
-          log92.info("Starting wiki ingest", { workspacePath: t28, projectName: i, filePath: r }), n3 == null ? void 0 : n3(createProgressEvent("ingest:start", r ? `Starting ingest for file: ${r}` : "Starting folder ingest"));
-          const a = await this.wikiAdapter.createWikiService(t28, i);
+          const { workspacePath: t28, projectName: r, filePath: i, temperature: s2, onProgress: n3 } = e4;
+          log92.info("Starting wiki ingest", { workspacePath: t28, projectName: r, filePath: i }), n3 == null ? void 0 : n3(createProgressEvent("ingest:start", i ? `Starting ingest for file: ${i}` : "Starting folder ingest"));
+          const a = await this.wikiAdapter.createWikiService(t28, r);
           let o;
-          if (await a.loadKB(), r) {
-            n3 == null ? void 0 : n3(createProgressEvent("ingest:file:start", `Processing file: ${r}`));
+          if (await a.loadKB(), i) {
+            n3 == null ? void 0 : n3(createProgressEvent("ingest:file:start", `Processing file: ${i}`));
             const e5 = {};
             void 0 !== s2 && (e5.temperature = s2), n3 && (e5.onIngestProgress = (e6) => {
               n3(createProgressEvent("ingest:llm:token:usage", `Ingest LLM token usage (live) \u2014 completion: ~${e6}`, { metadata: { tokenUsage: { promptTokens: 0, completionTokens: e6, totalTokens: e6 }, isEstimate: true } }));
@@ -130688,24 +131092,24 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
             }, e5.onEmbeddingUsage = (e6) => {
               n3(createProgressEvent("ingest:embedding:token:usage", `Embedding token usage \u2014 prompt: ${e6.promptTokens}, total: ${e6.totalTokens}`, { metadata: { embeddingTokenUsage: { promptTokens: e6.promptTokens, completionTokens: 0, totalTokens: e6.totalTokens, model: e6.model } } }));
             }), n3 == null ? void 0 : n3(createProgressEvent("ingest:file:reading", "Reading file content"));
-            const t29 = await a.ingestFile(r, e5);
+            const t29 = await a.ingestFile(i, e5);
             n3 == null ? void 0 : n3(createProgressEvent("ingest:file:complete", `File processed: ${t29.extractedEntities} entities, ${t29.extractedConcepts} concepts`)), o = { success: t29.success, sourcePath: t29.sourcePath, extractedEntities: t29.extractedEntities, extractedConcepts: t29.extractedConcepts, extractedConnections: t29.extractedConnections, timeMs: t29.timeMs, pagesGenerated: 0, ...t29.error && { error: t29.error } };
           } else {
             const e5 = n3 ? (e6) => {
               n3(createProgressEvent("ingest:llm:token:usage", `Ingest LLM token usage (live) \u2014 completion: ~${e6}`, { metadata: { tokenUsage: { promptTokens: 0, completionTokens: e6, totalTokens: e6 }, isEstimate: true } }));
             } : void 0, t29 = n3 ? (e6) => {
               n3(createProgressEvent("ingest:llm:token:usage", `Ingest LLM token usage \u2014 prompt: ${e6.promptTokens}, completion: ${e6.completionTokens}, total: ${e6.totalTokens}`, { metadata: { tokenUsage: { promptTokens: e6.promptTokens, completionTokens: e6.completionTokens, totalTokens: e6.totalTokens, model: e6.model }, isEstimate: false } }));
-            } : void 0, i2 = n3 ? (e6) => {
+            } : void 0, r3 = n3 ? (e6) => {
               n3(createProgressEvent("ingest:embedding:token:usage", `Embedding token usage \u2014 prompt: ${e6.promptTokens}, total: ${e6.totalTokens}`, { metadata: { embeddingTokenUsage: { promptTokens: e6.promptTokens, completionTokens: 0, totalTokens: e6.totalTokens, model: e6.model } } }));
             } : void 0;
-            o = await this.ingestFolder(a, s2, n3, i2, t29, e5);
+            o = await this.ingestFolder(a, s2, n3, r3, t29, e5);
           }
           if (o.success) {
             log92.info("Auto-generating wiki pages after ingest"), n3 == null ? void 0 : n3(createProgressEvent("ingest:pages:generating", "Generating wiki pages"));
             try {
               await a.generateAllPages();
-              const e5 = a.kb, t29 = (e5 == null ? void 0 : e5._entities) ? e5._entities.size : 0, i2 = (e5 == null ? void 0 : e5._concepts) ? e5._concepts.size : 0;
-              o.pagesGenerated = t29 + i2, n3 == null ? void 0 : n3(createProgressEvent("ingest:pages:complete", `Generated ${o.pagesGenerated} pages`)), log92.info("Wiki pages auto-generated", { pagesGenerated: o.pagesGenerated });
+              const e5 = a.kb, t29 = (e5 == null ? void 0 : e5._entities) ? e5._entities.size : 0, r3 = (e5 == null ? void 0 : e5._concepts) ? e5._concepts.size : 0;
+              o.pagesGenerated = t29 + r3, n3 == null ? void 0 : n3(createProgressEvent("ingest:pages:complete", `Generated ${o.pagesGenerated} pages`)), log92.info("Wiki pages auto-generated", { pagesGenerated: o.pagesGenerated });
             } catch (e5) {
               log92.error("Failed to auto-generate pages", e5), o.pagesGenerated = 0;
             }
@@ -130717,9 +131121,9 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async *queryStream(e4) {
         var _a11;
-        const { workspacePath: t28, projectName: i, question: r, temperature: s2, maxResults: n3, onProgress: a } = e4;
-        log92.info("Starting wiki query stream", { workspacePath: t28, projectName: i, question: r }), a == null ? void 0 : a(createProgressEvent("query:start", `Starting query: ${r}`));
-        const o = await this.wikiAdapter.createWikiService(t28, i);
+        const { workspacePath: t28, projectName: r, question: i, temperature: s2, maxResults: n3, onProgress: a } = e4;
+        log92.info("Starting wiki query stream", { workspacePath: t28, projectName: r, question: i }), a == null ? void 0 : a(createProgressEvent("query:start", `Starting query: ${i}`));
+        const o = await this.wikiAdapter.createWikiService(t28, r);
         await o.loadKB();
         const l = o.kb;
         ((_a11 = l == null ? void 0 : l.hasEmbeddingIndex) == null ? void 0 : _a11.call(l)) && (a == null ? void 0 : a(createProgressEvent("query:embedding:searching", "Searching knowledge base with embeddings")));
@@ -130731,23 +131135,23 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         });
         let h3 = 0, u = false;
         const g = (e5) => Math.max(1, Math.ceil(e5.length / 3));
-        for await (const e5 of o.queryStream(r, c)) u || (u = true, a == null ? void 0 : a(createProgressEvent("query:llm:generating", "Generating answer"))), h3 += g(e5), a && a(createProgressEvent("query:token:usage", `Token usage (live) \u2014 completion: ~${h3}`, { metadata: { tokenUsage: { promptTokens: 0, completionTokens: h3, totalTokens: h3 }, isEstimate: true } })), yield e5;
+        for await (const e5 of o.queryStream(i, c)) u || (u = true, a == null ? void 0 : a(createProgressEvent("query:llm:generating", "Generating answer"))), h3 += g(e5), a && a(createProgressEvent("query:token:usage", `Token usage (live) \u2014 completion: ~${h3}`, { metadata: { tokenUsage: { promptTokens: 0, completionTokens: h3, totalTokens: h3 }, isEstimate: true } })), yield e5;
         a == null ? void 0 : a(createProgressEvent("query:complete", "Query completed"));
       }
       async saveConversation(e4) {
         try {
-          const { workspacePath: t28, projectName: i, question: r, answer: s2, title: n3, topic: a, conversationHistory: o, filename: l, sources: c, autoIngest: h3 = true } = e4;
-          log92.info("Saving conversation", { workspacePath: t28, projectName: i });
-          const u = await this.wikiAdapter.createWikiService(t28, i);
+          const { workspacePath: t28, projectName: r, question: i, answer: s2, title: n3, topic: a, conversationHistory: o, filename: l, sources: c, autoIngest: h3 = true } = e4;
+          log92.info("Saving conversation", { workspacePath: t28, projectName: r });
+          const u = await this.wikiAdapter.createWikiService(t28, r);
           let g;
           if (await u.loadKB(), o && o.length > 0) {
-            const e5 = n3 || o.map((e6, t30) => `Q${t30 + 1}: ${e6.question}`).join("\n\n"), t29 = o.map((e6, t30) => `A${t30 + 1}: ${e6.answer}`).join("\n\n"), i2 = {};
-            c && (i2.sources = c), g = await u.saveConversation(e5, t29, i2);
+            const e5 = n3 || o.map((e6, t30) => `Q${t30 + 1}: ${e6.question}`).join("\n\n"), t29 = o.map((e6, t30) => `A${t30 + 1}: ${e6.answer}`).join("\n\n"), r3 = {};
+            c && (r3.sources = c), g = await u.saveConversation(e5, t29, r3);
           } else {
-            if (!r || !s2) throw new Error("Either conversationHistory or (question, answer) must be provided");
+            if (!i || !s2) throw new Error("Either conversationHistory or (question, answer) must be provided");
             {
               const e5 = {};
-              c && (e5.sources = c), g = await u.saveConversation(r, s2, e5);
+              c && (e5.sources = c), g = await u.saveConversation(i, s2, e5);
             }
           }
           const d = await this.wikiAdapter.getBasename(g);
@@ -130764,30 +131168,30 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       async generatePages(e4) {
         var _a11, _b4;
         try {
-          const { workspacePath: t28, projectName: i } = e4;
-          log92.info("Starting wiki page generation", { workspacePath: t28, projectName: i });
-          const r = Date.now(), s2 = await this.wikiAdapter.createWikiService(t28, i);
+          const { workspacePath: t28, projectName: r } = e4;
+          log92.info("Starting wiki page generation", { workspacePath: t28, projectName: r });
+          const i = Date.now(), s2 = await this.wikiAdapter.createWikiService(t28, r);
           await s2.loadKB(), await s2.generateAllPages();
-          const n3 = Date.now() - r, a = ((_b4 = (_a11 = s2.config) == null ? void 0 : _a11.paths) == null ? void 0 : _b4.wikiDir) || "", o = s2.kb, l = ((o == null ? void 0 : o.entities) ? Object.keys(o.entities).length : 0) + ((o == null ? void 0 : o.concepts) ? Object.keys(o.concepts).length : 0);
+          const n3 = Date.now() - i, a = ((_b4 = (_a11 = s2.config) == null ? void 0 : _a11.paths) == null ? void 0 : _b4.wikiDir) || "", o = s2.kb, l = ((o == null ? void 0 : o.entities) ? Object.keys(o.entities).length : 0) + ((o == null ? void 0 : o.concepts) ? Object.keys(o.concepts).length : 0);
           return log92.info("Wiki page generation completed", { pageCount: l, timeMs: n3 }), { success: true, message: "Wiki pages generated", data: { success: true, pageCount: l, outputDir: a, timeMs: n3 } };
         } catch (e5) {
           return log92.error("Failed to generate wiki pages", e5), { success: false, error: e5.message };
         }
       }
-      async ingestFolder(e4, t28, i, r, s2, n3) {
+      async ingestFolder(e4, t28, r, i, s2, n3) {
         var _a11, _b4;
         const a = ((_b4 = (_a11 = e4.config) == null ? void 0 : _a11.paths) == null ? void 0 : _b4.sourcePath) || "", o = await this.wikiAdapter.listMarkdownFiles(a), l = (o.length, Date.now()), c = { temperature: t28 };
-        n3 && (c.onIngestProgress = n3), s2 && (c.onIngestTokenUsage = s2), r && (c.onEmbeddingUsage = r);
-        const h3 = await e4.ingestFolderIncremental(o, c, async (e5, t29, r3, s3) => {
-          const n4 = await this.wikiAdapter.getBasename(r3);
-          i == null ? void 0 : i(s3 ? createProgressEvent("ingest:file:start", `[new] Processing file ${e5}/${t29}: ${n4}`, { progress: calculateProgress(e5, t29) }) : createProgressEvent("ingest:file:skip", `[skip] Already ingested: ${n4}`, { progress: calculateProgress(e5, t29) }));
+        n3 && (c.onIngestProgress = n3), s2 && (c.onIngestTokenUsage = s2), i && (c.onEmbeddingUsage = i);
+        const h3 = await e4.ingestFolderIncremental(o, c, async (e5, t29, i2, s3) => {
+          const n4 = await this.wikiAdapter.getBasename(i2);
+          r == null ? void 0 : r(s3 ? createProgressEvent("ingest:file:start", `[new] Processing file ${e5}/${t29}: ${n4}`, { progress: calculateProgress(e5, t29) }) : createProgressEvent("ingest:file:skip", `[skip] Already ingested: ${n4}`, { progress: calculateProgress(e5, t29) }));
         }), { newFiles: u, skippedFiles: g } = h3;
-        return u.length > 0 ? i == null ? void 0 : i(createProgressEvent("ingest:file:complete", `Processed ${u.length} new file(s), skipped ${g.length} already-ingested file(s)`)) : i == null ? void 0 : i(createProgressEvent("ingest:file:complete", `No new files found (${g.length} file(s) already up-to-date)`)), { success: true, sourcePath: a, extractedEntities: h3.extractedEntities, extractedConcepts: h3.extractedConcepts, extractedConnections: h3.extractedConnections, timeMs: Date.now() - l, pagesGenerated: 0, newFilesCount: u.length, skippedFilesCount: g.length };
+        return u.length > 0 ? r == null ? void 0 : r(createProgressEvent("ingest:file:complete", `Processed ${u.length} new file(s), skipped ${g.length} already-ingested file(s)`)) : r == null ? void 0 : r(createProgressEvent("ingest:file:complete", `No new files found (${g.length} file(s) already up-to-date)`)), { success: true, sourcePath: a, extractedEntities: h3.extractedEntities, extractedConcepts: h3.extractedConcepts, extractedConnections: h3.extractedConnections, timeMs: Date.now() - l, pagesGenerated: 0, newFilesCount: u.length, skippedFilesCount: g.length };
       }
       calculateCost(e4) {
         try {
-          const { provider: t28, model: i, inputTokens: r, outputTokens: s2 } = e4, n3 = estimateCost(t28, i, r, s2);
-          return n3 ? (log92.info("Cost calculated", { provider: t28, model: i, inputTokens: r, outputTokens: s2, totalCost: n3.totalCost }), { success: true, data: n3 }) : { success: false, error: `No pricing data found for provider "${t28}". Check MODEL_PRICING or use getPricingTable().` };
+          const { provider: t28, model: r, inputTokens: i, outputTokens: s2 } = e4, n3 = estimateCost(t28, r, i, s2);
+          return n3 ? (log92.info("Cost calculated", { provider: t28, model: r, inputTokens: i, outputTokens: s2, totalCost: n3.totalCost }), { success: true, data: n3 }) : { success: false, error: `No pricing data found for provider "${t28}". Check MODEL_PRICING or use getPricingTable().` };
         } catch (e5) {
           return log92.error("Failed to calculate cost", e5), { success: false, error: e5.message };
         }
@@ -130880,7 +131284,7 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         var _a11, _b4;
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
         try {
-          const i = await this.fileSystem.readFile(e4, "utf-8"), r = this.config.llm.defaultModel, s2 = (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.ingestTemperature, n3 = (_b4 = this.config.llm.defaultMaxTokens) != null ? _b4 : 32768, a = this.config.wiki.outputLanguage, o = { llmProvider: this.llmProvider, model: r, temperature: s2, maxTokens: n3, outputLanguage: a, fileSystem: this.fileSystem, crypto: this.cryptoService, ...(t28 == null ? void 0 : t28.onIngestTokenUsage) ? { onIngestTokenUsage: t28.onIngestTokenUsage } : {}, ...(t28 == null ? void 0 : t28.onIngestProgress) ? { onIngestProgress: t28.onIngestProgress } : {} }, l = await this.kb.ingestFromSource(e4, i, o);
+          const r = await this.fileSystem.readFile(e4, "utf-8"), i = this.config.llm.defaultModel, s2 = (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.ingestTemperature, n3 = (_b4 = this.config.llm.defaultMaxTokens) != null ? _b4 : 32768, a = this.config.wiki.outputLanguage, o = { llmProvider: this.llmProvider, model: i, temperature: s2, maxTokens: n3, outputLanguage: a, fileSystem: this.fileSystem, crypto: this.cryptoService, ...(t28 == null ? void 0 : t28.onIngestTokenUsage) ? { onIngestTokenUsage: t28.onIngestTokenUsage } : {}, ...(t28 == null ? void 0 : t28.onIngestProgress) ? { onIngestProgress: t28.onIngestProgress } : {} }, l = await this.kb.ingestFromSource(e4, r, o);
           if (l.success && this.embeddingProvider) try {
             await this.buildEmbeddingIndexForKB(t28 == null ? void 0 : t28.onEmbeddingUsage);
           } catch (e5) {
@@ -130891,34 +131295,34 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
           return console.error("\u274C Ingest failed:", t29.message), { success: false, sourcePath: e4, extractedEntities: 0, extractedConcepts: 0, extractedConnections: 0, timeMs: 0, error: t29.message || "Unknown error" };
         }
       }
-      async ingestFolderIncremental(e4, t28, i) {
+      async ingestFolderIncremental(e4, t28, r) {
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
-        const r = [], s2 = [];
+        const i = [], s2 = [];
         let n3 = 0, a = 0, o = 0;
         const l = Date.now();
         for (let l2 = 0; l2 < e4.length; l2++) {
           const c = e4[l2], h3 = this.kb.isNewSource(c);
-          if (await (i == null ? void 0 : i(l2 + 1, e4.length, c, h3)), !h3) {
+          if (await (r == null ? void 0 : r(l2 + 1, e4.length, c, h3)), !h3) {
             s2.push(c);
             continue;
           }
-          r.push(c);
+          i.push(c);
           const u = await this.ingestFile(c, t28);
           u.success && (n3 += u.extractedEntities, a += u.extractedConcepts, o += u.extractedConnections);
         }
-        return { newFiles: r, skippedFiles: s2, extractedEntities: n3, extractedConcepts: a, extractedConnections: o, timeMs: Date.now() - l };
+        return { newFiles: i, skippedFiles: s2, extractedEntities: n3, extractedConcepts: a, extractedConnections: o, timeMs: Date.now() - l };
       }
       async query(e4, t28) {
         var _a11, _b4, _c2;
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
-        const i = { llmProvider: this.llmProvider, model: this.config.llm.defaultModel, temperature: (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.queryTemperature, maxResults: (_b4 = t28 == null ? void 0 : t28.maxResults) != null ? _b4 : this.config.wiki.maxQueryResults };
-        return this.embeddingProvider && (i.embeddingProvider = this.embeddingProvider, i.embeddingModel = (_c2 = this.config.embedding) == null ? void 0 : _c2.defaultModel), await this.kb.query(e4, i);
+        const r = { llmProvider: this.llmProvider, model: this.config.llm.defaultModel, temperature: (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.queryTemperature, maxResults: (_b4 = t28 == null ? void 0 : t28.maxResults) != null ? _b4 : this.config.wiki.maxQueryResults };
+        return this.embeddingProvider && (r.embeddingProvider = this.embeddingProvider, r.embeddingModel = (_c2 = this.config.embedding) == null ? void 0 : _c2.defaultModel), await this.kb.query(e4, r);
       }
       async *queryStream(e4, t28) {
         var _a11, _b4, _c2;
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
-        const i = { llmProvider: this.llmProvider, model: this.config.llm.defaultModel, temperature: (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.queryTemperature, maxResults: (_b4 = t28 == null ? void 0 : t28.maxResults) != null ? _b4 : this.config.wiki.maxQueryResults };
-        this.embeddingProvider && (i.embeddingProvider = this.embeddingProvider, i.embeddingModel = (_c2 = this.config.embedding) == null ? void 0 : _c2.defaultModel), (t28 == null ? void 0 : t28.onTokenUsage) && (i.onTokenUsage = t28.onTokenUsage), (t28 == null ? void 0 : t28.onEmbeddingUsage) && (i.onEmbeddingUsage = t28.onEmbeddingUsage), yield* this.kb.queryStream(e4, i);
+        const r = { llmProvider: this.llmProvider, model: this.config.llm.defaultModel, temperature: (_a11 = t28 == null ? void 0 : t28.temperature) != null ? _a11 : this.config.wiki.queryTemperature, maxResults: (_b4 = t28 == null ? void 0 : t28.maxResults) != null ? _b4 : this.config.wiki.maxQueryResults };
+        this.embeddingProvider && (r.embeddingProvider = this.embeddingProvider, r.embeddingModel = (_c2 = this.config.embedding) == null ? void 0 : _c2.defaultModel), (t28 == null ? void 0 : t28.onTokenUsage) && (r.onTokenUsage = t28.onTokenUsage), (t28 == null ? void 0 : t28.onEmbeddingUsage) && (r.onEmbeddingUsage = t28.onEmbeddingUsage), yield* this.kb.queryStream(e4, r);
       }
       async generateAllPages() {
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
@@ -130929,8 +131333,8 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         if (!this.kb) throw new Error("KB not loaded. Call loadKB() first.");
         return this.kb.lint();
       }
-      calculateCost(e4, t28, i, r) {
-        return estimateCost(e4, t28, i, r);
+      calculateCost(e4, t28, r, i) {
+        return estimateCost(e4, t28, r, i);
       }
       getPricingTable() {
         return MODEL_PRICING;
@@ -130947,9 +131351,9 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       async buildEmbeddingIndex() {
         await this.buildEmbeddingIndexForKB();
       }
-      async saveConversation(e4, t28, i) {
-        const r = Conversation.create(e4, t28, { sources: (i == null ? void 0 : i.sources) || [], retrieval: (i == null ? void 0 : i.retrieval) || { entityCount: 0, conceptCount: 0, totalResults: 0 } });
-        return await this.conversationRepo.save(r);
+      async saveConversation(e4, t28, r) {
+        const i = Conversation.create(e4, t28, { sources: (r == null ? void 0 : r.sources) || [], retrieval: (r == null ? void 0 : r.retrieval) || { entityCount: 0, conceptCount: 0, totalResults: 0 } });
+        return await this.conversationRepo.save(i);
       }
       async listConversations() {
         return (await this.conversationRepo.list()).map((e4) => e4.getMetadata());
@@ -130966,16 +131370,16 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         __publicField(this, "httpClient");
         this.baseURL = e4.baseURL.replace(/\/$/, ""), this.name = e4.providerName || "OpenAI-Compatible", e4.apiKey && (this.apiKey = e4.apiKey), e4.defaultModel && (this.defaultModel = e4.defaultModel), this.customHeaders = e4.customHeaders || {}, this.httpClient = e4.httpClient || createDefaultLLMHttpClient();
       }
-      async *complete(e4, t28, i) {
+      async *complete(e4, t28, r) {
         var _a11, _b4, _c2, _d, _e, _f, _g;
-        const r = `${this.baseURL}/chat/completions`, s2 = [];
+        const i = `${this.baseURL}/chat/completions`, s2 = [];
         t28.systemMessage && s2.push({ role: "system", content: t28.systemMessage }), s2.push({ role: "user", content: e4 });
         const n3 = { model: t28.model || this.defaultModel || "gpt-3.5-turbo", messages: s2, stream: true, temperature: (_a11 = t28.temperature) != null ? _a11 : 0.7, max_tokens: (_b4 = t28.maxTokens) != null ? _b4 : 4096, stream_options: { include_usage: true } }, a = { "Content-Type": "application/json", ...this.customHeaders };
         let o;
         (this.apiKey || t28.apiKey) && (a.Authorization = `Bearer ${t28.apiKey || this.apiKey}`);
         try {
-          const e5 = { url: r, method: "POST", headers: a, body: JSON.stringify(n3) };
-          i && (e5.signal = i), o = await this.httpClient.fetch(e5);
+          const e5 = { url: i, method: "POST", headers: a, body: JSON.stringify(n3) };
+          r && (e5.signal = r), o = await this.httpClient.fetch(e5);
         } catch (e5) {
           if ("AbortError" === e5.name) throw new LLMAbortError(this.name);
           throw new LLMConnectError(this.name, e5);
@@ -130987,26 +131391,26 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         if (!o.body) throw new LLMConnectError(this.name, new Error("No response body"));
         const l = o.body.getReader(), c = new TextDecoder();
         try {
-          let e5, i2 = "", r3 = false;
+          let e5, r3 = "", i2 = false;
           for (; ; ) {
             const { done: s3, value: n4 } = await l.read();
             if (s3) break;
-            i2 += c.decode(n4, { stream: true });
-            const a2 = i2.split("\n");
-            i2 = a2.pop() || "";
-            for (const i3 of a2) {
-              const s4 = i3.trim();
+            r3 += c.decode(n4, { stream: true });
+            const a2 = r3.split("\n");
+            r3 = a2.pop() || "";
+            for (const r4 of a2) {
+              const s4 = r4.trim();
               if (s4 && "data: [DONE]" !== s4 && s4.startsWith("data: ")) {
-                const i4 = s4.slice(6);
+                const r5 = s4.slice(6);
                 try {
-                  const s5 = JSON.parse(i4), n5 = ((_e = (_d = (_c2 = s5.choices) == null ? void 0 : _c2[0]) == null ? void 0 : _d.delta) == null ? void 0 : _e.content) || "", a3 = (_g = (_f = s5.choices) == null ? void 0 : _f[0]) == null ? void 0 : _g.finish_reason;
+                  const s5 = JSON.parse(r5), n5 = ((_e = (_d = (_c2 = s5.choices) == null ? void 0 : _c2[0]) == null ? void 0 : _d.delta) == null ? void 0 : _e.content) || "", a3 = (_g = (_f = s5.choices) == null ? void 0 : _f[0]) == null ? void 0 : _g.finish_reason;
                   if (s5.usage) {
-                    const i5 = s5.model || t28.model || this.defaultModel;
-                    e5 = { promptTokens: s5.usage.prompt_tokens, completionTokens: s5.usage.completion_tokens, totalTokens: s5.usage.total_tokens, ...i5 ? { model: i5 } : {} };
+                    const r6 = s5.model || t28.model || this.defaultModel;
+                    e5 = { promptTokens: s5.usage.prompt_tokens, completionTokens: s5.usage.completion_tokens, totalTokens: s5.usage.total_tokens, ...r6 ? { model: r6 } : {} };
                   }
-                  n5 && (yield { text: n5, done: false }), a3 && (r3 = true);
+                  n5 && (yield { text: n5, done: false }), a3 && (i2 = true);
                 } catch (e6) {
-                  console.warn("Failed to parse chunk:", i4);
+                  console.warn("Failed to parse chunk:", r5);
                 }
               }
             }
@@ -131016,9 +131420,9 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
           l.releaseLock();
         }
       }
-      async completeSync(e4, t28, i, r) {
+      async completeSync(e4, t28, r, i) {
         let s2 = "";
-        for await (const n3 of this.complete(e4, t28, i)) n3.done ? n3.usage && r && r(n3.usage) : s2 += n3.text;
+        for await (const n3 of this.complete(e4, t28, r)) n3.done ? n3.usage && i && i(n3.usage) : s2 += n3.text;
         return s2.trim();
       }
       async healthCheck() {
@@ -131041,46 +131445,46 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
       }
       async createWikiService(e4, t28) {
         log93.info("Creating WikiService", { workspacePath: e4, projectName: t28 });
-        const i = this.workspaceAdapter.getWorkspaceAppService(), { workspace: r, project: s2 } = await i.loadWorkspaceAndProject(t28, e4), n3 = await r.getConfig("llm") || {}, a = await r.getConfig("wiki.outputLanguage") || "en";
+        const r = this.workspaceAdapter.getWorkspaceAppService(), { workspace: i, project: s2 } = await r.loadWorkspaceAndProject(t28, e4), n3 = await i.getConfig("llm") || {}, a = await i.getConfig("wiki.outputLanguage") || "en";
         await s2.loadConfig();
         const o = s2.getConfigValue("outputDir"), l = s2.getPath();
         if (!o) throw new Error(`Project ${t28} does not have 'outputDir' configured`);
         const c = createWikiConfig(o), h3 = s2.getFilePath(c.kbPath), u = s2.getFilePath(c.embeddingsPath), g = function(e5, t29) {
           switch (e5.type) {
             case "lmstudio":
-              return function(e6 = "http://localhost:1234/v1", t30, i2) {
-                const r3 = { baseURL: e6, providerName: "LM Studio" };
-                return t30 && (r3.defaultModel = t30), i2 && (r3.httpClient = i2), new OpenAICompatibleProvider(r3);
+              return function(e6 = "http://localhost:1234/v1", t30, r3) {
+                const i2 = { baseURL: e6, providerName: "LM Studio" };
+                return t30 && (i2.defaultModel = t30), r3 && (i2.httpClient = r3), new OpenAICompatibleProvider(i2);
               }(e5.baseURL, e5.defaultModel, t29);
             case "ollama":
               return new OllamaProvider(e5.baseURL);
             case "openai":
               if (!e5.apiKey) throw new Error("OpenAI requires an API key");
-              return function(e6, t30, i2) {
-                const r3 = { baseURL: "https://api.openai.com/v1", apiKey: e6, providerName: "OpenAI", defaultModel: t30 || "gpt-4-turbo-preview" };
-                return i2 && (r3.httpClient = i2), new OpenAICompatibleProvider(r3);
+              return function(e6, t30, r3) {
+                const i2 = { baseURL: "https://api.openai.com/v1", apiKey: e6, providerName: "OpenAI", defaultModel: t30 || "gpt-4-turbo-preview" };
+                return r3 && (i2.httpClient = r3), new OpenAICompatibleProvider(i2);
               }(e5.apiKey, e5.defaultModel, t29);
             case "glm":
               if (!e5.apiKey) throw new Error("GLM requires an API key");
-              return function(e6, t30, i2) {
-                const r3 = { baseURL: "https://open.bigmodel.cn/api/paas/v4", apiKey: e6, providerName: "GLM (\u667A\u8C31AI)", defaultModel: t30 || "glm-4" };
-                return i2 && (r3.httpClient = i2), new OpenAICompatibleProvider(r3);
+              return function(e6, t30, r3) {
+                const i2 = { baseURL: "https://open.bigmodel.cn/api/paas/v4", apiKey: e6, providerName: "GLM (\u667A\u8C31AI)", defaultModel: t30 || "glm-4" };
+                return r3 && (i2.httpClient = r3), new OpenAICompatibleProvider(i2);
               }(e5.apiKey, e5.defaultModel, t29);
             case "deepseek":
               if (!e5.apiKey) throw new Error("DeepSeek requires an API key");
-              return function(e6, t30, i2) {
-                const r3 = { baseURL: "https://api.deepseek.com/v1", apiKey: e6, providerName: "DeepSeek", defaultModel: t30 || "deepseek-chat" };
-                return i2 && (r3.httpClient = i2), new OpenAICompatibleProvider(r3);
+              return function(e6, t30, r3) {
+                const i2 = { baseURL: "https://api.deepseek.com/v1", apiKey: e6, providerName: "DeepSeek", defaultModel: t30 || "deepseek-chat" };
+                return r3 && (i2.httpClient = r3), new OpenAICompatibleProvider(i2);
               }(e5.apiKey, e5.defaultModel, t29);
             case "moonshot":
               if (!e5.apiKey) throw new Error("Moonshot requires an API key");
-              return function(e6, t30, i2) {
-                const r3 = { baseURL: "https://api.moonshot.cn/v1", apiKey: e6, providerName: "Moonshot (Kimi)", defaultModel: t30 || "moonshot-v1-8k" };
-                return i2 && (r3.httpClient = i2), new OpenAICompatibleProvider(r3);
+              return function(e6, t30, r3) {
+                const i2 = { baseURL: "https://api.moonshot.cn/v1", apiKey: e6, providerName: "Moonshot (Kimi)", defaultModel: t30 || "moonshot-v1-8k" };
+                return r3 && (i2.httpClient = r3), new OpenAICompatibleProvider(i2);
               }(e5.apiKey, e5.defaultModel, t29);
             case "custom": {
-              const i2 = { baseURL: e5.baseURL, providerName: "Custom", ...e5.apiKey && { apiKey: e5.apiKey }, ...e5.defaultModel && { defaultModel: e5.defaultModel }, ...e5.customHeaders && { customHeaders: e5.customHeaders }, ...t29 && { httpClient: t29 } };
-              return new OpenAICompatibleProvider(i2);
+              const r3 = { baseURL: e5.baseURL, providerName: "Custom", ...e5.apiKey && { apiKey: e5.apiKey }, ...e5.defaultModel && { defaultModel: e5.defaultModel }, ...e5.customHeaders && { customHeaders: e5.customHeaders }, ...t29 && { httpClient: t29 } };
+              return new OpenAICompatibleProvider(r3);
             }
             default:
               throw new Error(`Unknown LLM service type: ${e5.type}`);
@@ -131088,7 +131492,7 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
         }(n3, this.httpClient);
         let d;
         if (n3.embeddingModel) {
-          const e5 = n3.embeddingType || n3.type || "lmstudio", t29 = n3.embeddingBaseUrl || n3.embeddingBaseURL || n3.baseUrl || n3.baseURL, i2 = n3.embeddingApiKey || n3.apiKey;
+          const e5 = n3.embeddingType || n3.type || "lmstudio", t29 = n3.embeddingBaseUrl || n3.embeddingBaseURL || n3.baseUrl || n3.baseURL, r3 = n3.embeddingApiKey || n3.apiKey;
           d = function(e6, t30) {
             if (!e6 || "none" === e6.type) return null;
             switch (e6.type) {
@@ -131113,19 +131517,19 @@ Snapshot: ${S}`), { success: true, message: k, data: { projectName: g.getName(),
               default:
                 throw new Error(`Unknown embedding service type: ${e6.type}`);
             }
-          }({ type: e5, baseURL: t29, model: n3.embeddingModel, apiKey: i2 }, this.httpClient), log93.info("Embedding provider created", { type: e5, model: n3.embeddingModel, baseURL: t29 });
+          }({ type: e5, baseURL: t29, model: n3.embeddingModel, apiKey: r3 }, this.httpClient), log93.info("Embedding provider created", { type: e5, model: n3.embeddingModel, baseURL: t29 });
         } else log93.info("Embedding provider not configured (no embeddingModel in llm config)");
         const p2 = new NodeKBRepository(h3, this.fileSystem, this.pathService), m2 = new NodeWikiPageRepository(o, this.fileSystem, this.pathService), f3 = new NodeConversationRepository(c.conversationsDir, this.fileSystem, this.pathService), y = new WikiFactory({ kbRepo: p2, wikiPageRepo: m2 }), w2 = { llm: { provider: g, defaultModel: n3.model || g.defaultModel || "default", defaultMaxTokens: n3.maxTokens || 32768 }, wiki: { outputLanguage: a, ingestTemperature: 0.3, queryTemperature: 0.7, maxQueryResults: 10 }, infrastructure: { fileSystem: this.fileSystem, pathService: this.pathService, cryptoService: this.cryptoService, conversationRepo: f3 }, paths: { kbPath: h3, embeddingsPath: u, wikiDir: o, conversationsDir: c.conversationsDir, sourcePath: l } };
         return d ? (w2.embedding = { provider: d, defaultModel: n3.embeddingModel, cacheEnabled: true }, log93.info("Embedding configured in WikiService", { model: n3.embeddingModel, embeddingsPath: u })) : console.warn(`[wiki-adapter] No embedding provider (llmConfig.embeddingModel=${n3.embeddingModel})`), log93.info("WikiService created successfully", { kbPath: h3, embeddingsPath: u, wikiDir: o, conversationsDir: c.conversationsDir }), new WikiService(y, w2);
       }
       async listMarkdownFiles(e4) {
-        const t28 = [], i = await this.fileSystem.readdir(e4);
-        for (const r of i) {
-          const i2 = this.pathService.join(e4, r);
-          if ((await this.fileSystem.stat(i2)).isDirectory()) {
-            const e5 = await this.listMarkdownFiles(i2);
+        const t28 = [], r = await this.fileSystem.readdir(e4);
+        for (const i of r) {
+          const r3 = this.pathService.join(e4, i);
+          if ((await this.fileSystem.stat(r3)).isDirectory()) {
+            const e5 = await this.listMarkdownFiles(r3);
             t28.push(...e5);
-          } else r.endsWith(".md") && t28.push(i2);
+          } else i.endsWith(".md") && t28.push(r3);
         }
         return t28;
       }
@@ -138817,7 +139221,7 @@ function createProgressEvent2(e4, t28, i) {
 function calculateProgress2(e4, t28) {
   return { current: e4, total: t28, percentage: t28 > 0 ? Math.round(e4 / t28 * 100) : 0 };
 }
-var BrowserLogger, __defProp4, __getOwnPropNames3, __esm3, __export3, __publicField2, init_types5, globalBrowserLoggerManager, init_browser2, Email2, Token3, ServerConfig2, License2, SyncConfig2, Device2, User2, log45, UserFactory2, init_browser_manager, init_email2, init_token4, init_server_config2, init_license4, init_sync_config2, init_device2, init_user2, init_user_factory2, init_type13, identity_exports2, ProjectMetadata2, init_identity4, project_metadata_exports2, init_project_metadata2, ObsidianAuthService2, log6, ObsidianLicenseService2, log28, ObsidianWorkspaceService2, log37, ObsidianGlobalConfigService2, log52, IdentityAppService2, log67, WorkspaceAppService2, WorkspaceMetadata2, FolderStructure2, log7, Workspace2, log810, Project3, Authentication2, log102, WorkspaceFactory2, MobileIdentityAdapter, MobileWorkspaceAdapter;
+var BrowserLogger, __defProp4, __getOwnPropNames3, __esm3, __export3, __publicField2, init_types5, globalBrowserLoggerManager, init_browser2, Email2, Token3, ServerConfig2, License2, init_browser_manager, init_email2, init_token4, init_server_config2, license_exports2, SyncConfig2, Device2, User2, log45, UserFactory2, init_license4, init_sync_config2, init_device2, init_user2, init_user_factory2, init_type13, identity_exports2, ProjectMetadata2, init_identity4, project_metadata_exports2, init_project_metadata2, ObsidianAuthService2, log6, ObsidianLicenseService2, log28, ObsidianWorkspaceService2, log37, ObsidianGlobalConfigService2, log52, IdentityAppService2, log67, WorkspaceAppService2, WorkspaceMetadata2, FolderStructure2, log7, Workspace2, log810, Project3, Authentication2, log102, WorkspaceFactory2, MobileIdentityAdapter, MobileWorkspaceAdapter;
 var init_mobile = __esm({
   "node_modules/@mdfriday/foundry/dist/esm/obsidian/mobile.js"() {
     __defProp4 = Object.defineProperty;
@@ -139101,6 +139505,8 @@ var init_mobile = __esm({
         }
       };
     } });
+    license_exports2 = {};
+    __export3(license_exports2, { License: () => License2 });
     init_license4 = __esm3({ "internal/domain/identity/value-object/license.ts"() {
       License2 = class e4 {
         constructor(e5, t28, i, s2, r, a = false, n3 = false) {
@@ -139817,18 +140223,36 @@ var init_mobile = __esm({
           return log6.error("License activation failed", e5), { success: false, error: e5.message };
         }
       }
-      async getLicenseInfo(e4) {
+      async getLicenseInfo(e4, t28) {
         try {
-          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = t28.getLicense();
-          if (!i) return { success: true, message: "No active license" };
-          const s2 = this.buildLicenseInfo(i), r = t28.getCurrentUser();
-          if (r) {
-            const e5 = r.getSyncConfig();
-            s2.user = { email: r.getEmail().getValue(), userDir: (e5 == null ? void 0 : e5.getUserDir()) || "" };
+          const i = await this.identityAdapter.getIdentityService(e4, this.httpClient);
+          if (t28 == null ? void 0 : t28.refresh) return await this.refreshLicenseInfo(e4);
+          const s2 = i.getLicense();
+          if (!s2) return { success: true, message: "No active license" };
+          const r = this.buildLicenseInfo(s2), a = i.getCurrentUser();
+          if (a) {
+            const e5 = a.getSyncConfig();
+            r.user = { email: a.getEmail().getValue(), userDir: (e5 == null ? void 0 : e5.getUserDir()) || "" };
           }
-          return { success: true, data: s2 };
+          return { success: true, data: r };
         } catch (e5) {
           return log6.error("Failed to get license info", e5), { success: false, error: e5.message };
+        }
+      }
+      async refreshLicenseInfo(e4) {
+        try {
+          const t28 = await this.identityAdapter.getIdentityService(e4, this.httpClient), i = t28.getCurrentUser();
+          if (!i) return { success: false, error: "User must be logged in to refresh license info" };
+          const s2 = i.getLicense();
+          if (!s2) return { success: true, message: "No active license" };
+          log6.info("Refreshing license info from API", { licenseKey: s2.getKey() });
+          const r = await t28.refreshLicense(), a = r.getLicense();
+          if (!a) return { success: false, error: "Failed to refresh license" };
+          log6.info("License info refreshed successfully", { plan: a.getPlan(), expires: a.getFormattedExpiresAt(), isExpired: a.isExpired() });
+          const n3 = this.buildLicenseInfo(a), o = r.getSyncConfig();
+          return n3.user = { email: r.getEmail().getValue(), userDir: (o == null ? void 0 : o.getUserDir()) || "" }, { success: true, message: "License info refreshed from server", data: n3 };
+        } catch (e5) {
+          return log6.error("Failed to refresh license info", e5), { success: false, error: e5.message };
         }
       }
       async getLicenseUsage(e4) {
@@ -140048,6 +140472,16 @@ var init_mobile = __esm({
       async getLicenseInfo(e4) {
         if (!this.currentUser) throw new Error("User must be logged in to get license info");
         return this.userFactory.getLicenseInfo(this.currentUser, e4);
+      }
+      async refreshLicense() {
+        var _a11, _b4, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+        if (!this.currentUser) throw new Error("User must be logged in to refresh license");
+        const e4 = this.currentUser.getLicense();
+        if (!e4) throw new Error("User has no license to refresh");
+        const t28 = await this.userFactory.getLicenseInfo(this.currentUser);
+        if (!t28) throw new Error("Failed to fetch license info from API");
+        const { License: i } = await Promise.resolve().then(() => (init_license4(), license_exports2)), s2 = i.create(t28.license_key || e4.getKey(), t28.plan || e4.getPlan(), t28.expires_at || e4.getExpiresAt(), { maxDevices: ((_a11 = t28.features) == null ? void 0 : _a11.max_devices) || e4.getFeatures().maxDevices, maxIps: ((_b4 = t28.features) == null ? void 0 : _b4.max_ips) || e4.getFeatures().maxIps, syncEnabled: (_d = (_c2 = t28.features) == null ? void 0 : _c2.sync_enabled) != null ? _d : e4.getFeatures().syncEnabled, syncQuota: ((_e = t28.features) == null ? void 0 : _e.sync_quota) || e4.getFeatures().syncQuota, publishEnabled: (_g = (_f = t28.features) == null ? void 0 : _f.publish_enabled) != null ? _g : e4.getFeatures().publishEnabled, maxSites: ((_h = t28.features) == null ? void 0 : _h.max_sites) || e4.getFeatures().maxSites, maxStorage: ((_i = t28.features) == null ? void 0 : _i.max_storage) || e4.getFeatures().maxStorage, customDomain: (_k = (_j = t28.features) == null ? void 0 : _j.custom_domain) != null ? _k : e4.getFeatures().customDomain, customSubDomain: (_m = (_l = t28.features) == null ? void 0 : _l.custom_sub_domain) != null ? _m : e4.getFeatures().customSubDomain, validityDays: ((_n = t28.features) == null ? void 0 : _n.validity_days) || e4.getFeatures().validityDays }, e4.getActivatedAt(), e4.isActivated(), e4.isFirstTime());
+        return this.currentUser.setLicense(s2), await this.userFactory.save(this.currentUser), this.currentUser;
       }
       async resetUsage() {
         if (!this.currentUser) throw new Error("User must be logged in to reset usage");

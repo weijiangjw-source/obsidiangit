@@ -1,0 +1,29 @@
+{
+  "resultsCount": 15,
+  "khojUrl": "http://127.0.0.1:42110",
+  "khojApiKey": "",
+  "connectedToBackend": true,
+  "autoConfigure": true,
+  "lastSync": {},
+  "syncFileType": {
+    "markdown": true,
+    "images": true,
+    "pdf": true
+  },
+  "userInfo": null,
+  "syncFolders": [
+    "Eric/公众号图文",
+    "clippings",
+    "flomo",
+    "copilot",
+    "Eric/公众号文章",
+    "Eric/品味觉醒",
+    "library"
+  ],
+  "excludeFolders": [],
+  "syncInterval": 1440,
+  "autoVoiceResponse": true,
+  "fileAccessMode": "read",
+  "selectedChatModelId": null,
+  "availableChatModels": []
+}

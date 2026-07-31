@@ -1,0 +1,1016 @@
+{
+  "workspaces": {
+    "文章写作流程": {
+      "main": {
+        "id": "5324373015726ba8",
+        "type": "split",
+        "children": [
+          {
+            "id": "546f7dea9cb62eb3",
+            "type": "split",
+            "children": [
+              {
+                "id": "99773d1d6d09e233",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "6f8bec4e808a0480",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "Eric/常用提示词/通用提示/文章解构提示词.md",
+                        "mode": "preview",
+                        "source": true
+                      },
+                      "icon": "lucide-file",
+                      "title": "文章解构提示词"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "d593f65ba0a55645",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "d75b8384ec41df0a",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "Eric/常用提示词/通用提示/公众号爆款标题提示词.md",
+                        "mode": "preview",
+                        "source": true
+                      },
+                      "icon": "lucide-file",
+                      "title": "公众号爆款标题提示词"
+                    }
+                  }
+                ]
+              }
+            ],
+            "direction": "horizontal"
+          },
+          {
+            "id": "8a03d354b5ba5738",
+            "type": "split",
+            "children": [
+              {
+                "id": "d9ad1b8f19f81b1d",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "109c8f40ed1ba4e9",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "Eric/常用提示词/让心流溢/长文写作框架生成提示词.md",
+                        "mode": "preview",
+                        "source": true
+                      },
+                      "icon": "lucide-file",
+                      "title": "长文写作框架生成提示词"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "eb264beb7c49b959",
+                "type": "tabs",
+                "children": [
+                  {
+                    "id": "cc5a961afbb77eb9",
+                    "type": "leaf",
+                    "state": {
+                      "type": "markdown",
+                      "state": {
+                        "file": "Eric/常用提示词/通用提示/微信封面图制作.md",
+                        "mode": "preview",
+                        "source": true
+                      },
+                      "icon": "lucide-file",
+                      "title": "微信封面图制作"
+                    }
+                  }
+                ]
+              }
+            ],
+            "direction": "horizontal"
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "43b375a1cc48d8e4",
+        "type": "split",
+        "children": [
+          {
+            "id": "dbeffe00459186f4",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "91c06a5f3552c834",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": false
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "文件列表"
+                }
+              },
+              {
+                "id": "d791518f21005e44",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "搜索"
+                }
+              },
+              {
+                "id": "f75b6d6cc950c2a7",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "书签"
+                }
+              },
+              {
+                "id": "6dc54ce0f5a991f4",
+                "type": "leaf",
+                "state": {
+                  "type": "notebook-navigator",
+                  "state": {},
+                  "icon": "notebook-navigator",
+                  "title": "笔记本导航器"
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 239.5
+      },
+      "right": {
+        "id": "45ea0ff02e697e3b",
+        "type": "split",
+        "children": [
+          {
+            "id": "ea67386ccc30b16b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "98a9bf4185ce898a",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "命运不是努力决定的，而是看错了地方 的反向链接列表"
+                }
+              },
+              {
+                "id": "5c2334227a858681",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "命运不是努力决定的，而是看错了地方 的出链列表"
+                }
+              },
+              {
+                "id": "0482b8cf4100df20",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "标签"
+                }
+              },
+              {
+                "id": "cf5fa2ad4b05acfa",
+                "type": "leaf",
+                "state": {
+                  "type": "all-properties",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-archive",
+                  "title": "添加笔记属性"
+                }
+              },
+              {
+                "id": "44749e19e79ba090",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "大纲"
+                }
+              },
+              {
+                "id": "5d8d42138eb1842f",
+                "type": "leaf",
+                "state": {
+                  "type": "calendar",
+                  "state": {},
+                  "icon": "calendar-with-checkmark",
+                  "title": "Calendar"
+                }
+              },
+              {
+                "id": "00b8e695e8bb72b1",
+                "type": "leaf",
+                "state": {
+                  "type": "smart-lookup-view-connections",
+                  "state": {},
+                  "icon": "lucide-ghost",
+                  "title": "smart-lookup-view-connections"
+                }
+              },
+              {
+                "id": "9297e6d84b553849",
+                "type": "leaf",
+                "state": {
+                  "type": "smart-connections-view",
+                  "state": {},
+                  "icon": "smart-connections",
+                  "title": "Connections"
+                }
+              },
+              {
+                "id": "9ffbdaa7da7652b4",
+                "type": "leaf",
+                "state": {
+                  "type": "apple-style-converter",
+                  "state": {},
+                  "icon": "wand",
+                  "title": "微信公众号转换器"
+                }
+              },
+              {
+                "id": "32d419c36dfa112a",
+                "type": "leaf",
+                "state": {
+                  "type": "copilot-chat-view",
+                  "state": {},
+                  "icon": "message-square",
+                  "title": "Copilot"
+                }
+              },
+              {
+                "id": "7b82a39dd9d66e5b",
+                "type": "leaf",
+                "state": {
+                  "type": "claudian-view",
+                  "state": {},
+                  "icon": "bot",
+                  "title": "Claudian"
+                }
+              },
+              {
+                "id": "43b64b60f5f4097a",
+                "type": "leaf",
+                "state": {
+                  "type": "file-properties",
+                  "state": {
+                    "file": "未命名.base"
+                  },
+                  "icon": "lucide-info",
+                  "title": "未命名的笔记属性"
+                }
+              },
+              {
+                "id": "059bc94497489048",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {},
+                  "icon": "git-pull-request",
+                  "title": "Source Control"
+                }
+              }
+            ],
+            "currentTab": 8
+          }
+        ],
+        "direction": "horizontal",
+        "width": 200,
+        "collapsed": true
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "workspaces:管理工作区布局": false,
+          "templater-obsidian:Templater": false,
+          "switcher:打开快速切换": false,
+          "graph:查看关系图谱": false,
+          "canvas:新建白板": false,
+          "daily-notes:打开/创建今天的日记": false,
+          "templates:插入模板": false,
+          "command-palette:打开命令面板": false,
+          "bases:新建数据库": false,
+          "homepage:Open homepage": false,
+          "notebook-navigator:笔记本导航器": false,
+          "copilot:Open Copilot Chat": false,
+          "realclaudian:Open Claudian": false,
+          "pdf-plus:PDF++: Toggle auto-paste": false,
+          "smart-connections:Smart Connections: Open connections view": false,
+          "smart-connections:Toggle Footer Connections": false,
+          "smart-connections:Smart Connections: Open random connection": false,
+          "wechat-converter:微信公众号转换器": false,
+          "terminal:Open terminal": false,
+          "obsidian-importer:Open Importer": false,
+          "obsidian-git:Open Git source control": false,
+          "obsidian-excalidraw-plugin:New drawing": false,
+          "audio-recorder:开始/结束录音": false,
+          "markdown-importer:打开 Markdown 格式转换器": false
+        }
+      },
+      "active": "cc5a961afbb77eb9",
+      "mtime": "2026-06-17T09:32:39-07:00"
+    },
+    "图文制作区": {
+      "main": {
+        "id": "5324373015726ba8",
+        "type": "split",
+        "children": [
+          {
+            "id": "4509724f8bf84da7",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "4220df1a5c7c2cf0",
+                "type": "leaf",
+                "state": {
+                  "type": "aHR0cHM6Ly9hcHAubm90aW9uLmNvbS8=",
+                  "state": {},
+                  "icon": "aHR0cHM6Ly9hcHAubm90aW9uLmNvbS8=",
+                  "title": "Notion"
+                }
+              },
+              {
+                "id": "84f3baf9a2898f6e",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Eric/公众号图文/镜鉴野望/2026年度/7月/大部分人的疯狂学习，只是一场掩盖时代恐惧的自我麻醉.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "大部分人的疯狂学习，只是一场掩盖时代恐惧的自我麻醉"
+                }
+              }
+            ],
+            "currentTab": 1
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "43b375a1cc48d8e4",
+        "type": "split",
+        "children": [
+          {
+            "id": "dbeffe00459186f4",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "6dc54ce0f5a991f4",
+                "type": "leaf",
+                "state": {
+                  "type": "notebook-navigator",
+                  "state": {},
+                  "icon": "notebook-navigator",
+                  "title": "笔记本导航器"
+                }
+              },
+              {
+                "id": "91c06a5f3552c834",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": false
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "文件列表"
+                }
+              },
+              {
+                "id": "d791518f21005e44",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "搜索"
+                }
+              },
+              {
+                "id": "f75b6d6cc950c2a7",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "书签"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 239.5,
+        "collapsed": true
+      },
+      "right": {
+        "id": "45ea0ff02e697e3b",
+        "type": "split",
+        "children": [
+          {
+            "id": "ea67386ccc30b16b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "98a9bf4185ce898a",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "命运不是努力决定的，而是看错了地方 的反向链接列表"
+                }
+              },
+              {
+                "id": "5c2334227a858681",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "命运不是努力决定的，而是看错了地方 的出链列表"
+                }
+              },
+              {
+                "id": "0482b8cf4100df20",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "标签"
+                }
+              },
+              {
+                "id": "cf5fa2ad4b05acfa",
+                "type": "leaf",
+                "state": {
+                  "type": "all-properties",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-archive",
+                  "title": "添加笔记属性"
+                }
+              },
+              {
+                "id": "44749e19e79ba090",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "Eric/公众号图文/镜鉴野望/2026年度/5月/真正拖累你的,从来不是没有方法.md",
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "真正拖累你的,从来不是没有方法 的大纲"
+                }
+              },
+              {
+                "id": "5d8d42138eb1842f",
+                "type": "leaf",
+                "state": {
+                  "type": "calendar",
+                  "state": {},
+                  "icon": "calendar-with-checkmark",
+                  "title": "Calendar"
+                }
+              },
+              {
+                "id": "32d419c36dfa112a",
+                "type": "leaf",
+                "state": {
+                  "type": "copilot-chat-view",
+                  "state": {},
+                  "icon": "message-square",
+                  "title": "Copilot"
+                }
+              },
+              {
+                "id": "7b82a39dd9d66e5b",
+                "type": "leaf",
+                "state": {
+                  "type": "claudian-view",
+                  "state": {},
+                  "icon": "bot",
+                  "title": "Claudian"
+                }
+              },
+              {
+                "id": "43b64b60f5f4097a",
+                "type": "leaf",
+                "state": {
+                  "type": "file-properties",
+                  "state": {
+                    "file": "Eric/公众号图文/镜鉴野望/2026年度/5月/真正拖累你的,从来不是没有方法.md"
+                  },
+                  "icon": "lucide-info",
+                  "title": "真正拖累你的,从来不是没有方法的笔记属性"
+                }
+              },
+              {
+                "id": "059bc94497489048",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {},
+                  "icon": "git-pull-request",
+                  "title": "Source Control"
+                }
+              },
+              {
+                "id": "a9dc41367b437d18",
+                "type": "leaf",
+                "state": {
+                  "type": "aHR0cHM6Ly9tZDJjYXJkLmNu",
+                  "state": {},
+                  "icon": "aHR0cHM6Ly9tZDJjYXJkLmNu",
+                  "title": "MD2card"
+                }
+              },
+              {
+                "id": "b5365bc42171b0bf",
+                "type": "leaf",
+                "state": {
+                  "type": "aHR0cHM6Ly9jaGF0LmRlZXBzZWVrLmNvbQ==",
+                  "state": {},
+                  "icon": "aHR0cHM6Ly9jaGF0LmRlZXBzZWVrLmNvbQ==",
+                  "title": "Deepseek"
+                }
+              }
+            ],
+            "currentTab": 10
+          }
+        ],
+        "direction": "horizontal",
+        "width": 648
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "obsidian-excalidraw-plugin:新建绘图文件": false,
+          "homepage:Open homepage": false,
+          "table-editor-obsidian:Advanced Tables Toolbar": false,
+          "obsidian-kanban:Create new board": false,
+          "open-gate:Deepseek": false,
+          "smart-lookup:Smart Lookup: Open lookup view": false,
+          "share-to-notionnext:同步到 NotionNext": false,
+          "workspaces:管理工作区布局": false,
+          "templater-obsidian:Templater": false,
+          "switcher:打开快速切换": false,
+          "graph:查看关系图谱": false,
+          "canvas:新建白板": false,
+          "daily-notes:打开/创建今天的日记": false,
+          "templates:插入模板": false,
+          "command-palette:打开命令面板": false,
+          "bases:新建数据库": false,
+          "notebook-navigator:笔记本导航器": false,
+          "copilot:Open Copilot Chat": false,
+          "realclaudian:Open Claudian": false,
+          "pdf-plus:PDF++: Toggle auto-paste": false,
+          "smart-connections:Smart Connections: Open connections view": false,
+          "smart-connections:Toggle Footer Connections": false,
+          "smart-connections:Smart Connections: Open random connection": false,
+          "terminal:Open terminal": false,
+          "obsidian-importer:Open Importer": false,
+          "obsidian-git:Open Git source control": false,
+          "audio-recorder:开始/结束录音": false,
+          "markdown-importer:打开 Markdown 格式转换器": false,
+          "open-gate:MD2card": false,
+          "open-gate:Notion": false
+        }
+      },
+      "active": "84f3baf9a2898f6e",
+      "mtime": "2026-07-01T23:12:18+08:00"
+    },
+    "公众号写作区": {
+      "main": {
+        "id": "5324373015726ba8",
+        "type": "split",
+        "children": [
+          {
+            "id": "99773d1d6d09e233",
+            "type": "tabs",
+            "dimension": 49.75165562913907,
+            "children": [
+              {
+                "id": "9047c419c75d0fa8",
+                "type": "leaf",
+                "state": {
+                  "type": "aHR0cHM6Ly9hcHAubm90aW9uLmNvbS8=",
+                  "state": {},
+                  "icon": "aHR0cHM6Ly9hcHAubm90aW9uLmNvbS8=",
+                  "title": "Notion"
+                }
+              }
+            ]
+          },
+          {
+            "id": "eb264beb7c49b959",
+            "type": "tabs",
+            "dimension": 50.248344370860934,
+            "children": [
+              {
+                "id": "cc5a961afbb77eb9",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Eric/公众号文章/品味流溢/你每天拼命学习的干货，正在悄悄废掉你.md",
+                    "mode": "preview",
+                    "source": true,
+                    "backlinks": true,
+                    "backlinkOpts": {
+                      "collapseAll": false,
+                      "extraContext": false,
+                      "sortOrder": "alphabetical",
+                      "showSearch": false,
+                      "searchQuery": "",
+                      "backlinkCollapsed": false,
+                      "unlinkedCollapsed": true
+                    }
+                  },
+                  "icon": "lucide-file",
+                  "title": "你每天拼命学习的干货，正在悄悄废掉你"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "43b375a1cc48d8e4",
+        "type": "split",
+        "children": [
+          {
+            "id": "dbeffe00459186f4",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "91c06a5f3552c834",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": false
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "文件列表"
+                }
+              },
+              {
+                "id": "d791518f21005e44",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "搜索"
+                }
+              },
+              {
+                "id": "f75b6d6cc950c2a7",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "书签"
+                }
+              },
+              {
+                "id": "6dc54ce0f5a991f4",
+                "type": "leaf",
+                "state": {
+                  "type": "notebook-navigator",
+                  "state": {},
+                  "icon": "notebook-navigator",
+                  "title": "笔记本导航器"
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 239.5,
+        "collapsed": true
+      },
+      "right": {
+        "id": "45ea0ff02e697e3b",
+        "type": "split",
+        "children": [
+          {
+            "id": "ea67386ccc30b16b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "98a9bf4185ce898a",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "命运不是努力决定的，而是看错了地方 的反向链接列表"
+                }
+              },
+              {
+                "id": "5c2334227a858681",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "Eric/My Gmini/让心自然流溢/2026年度/4月/命运不是努力决定的，而是看错了地方.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "命运不是努力决定的，而是看错了地方 的出链列表"
+                }
+              },
+              {
+                "id": "0482b8cf4100df20",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "标签"
+                }
+              },
+              {
+                "id": "cf5fa2ad4b05acfa",
+                "type": "leaf",
+                "state": {
+                  "type": "all-properties",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-archive",
+                  "title": "添加笔记属性"
+                }
+              },
+              {
+                "id": "44749e19e79ba090",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "大纲"
+                }
+              },
+              {
+                "id": "5d8d42138eb1842f",
+                "type": "leaf",
+                "state": {
+                  "type": "calendar",
+                  "state": {},
+                  "icon": "calendar-with-checkmark",
+                  "title": "Calendar"
+                }
+              },
+              {
+                "id": "00b8e695e8bb72b1",
+                "type": "leaf",
+                "state": {
+                  "type": "smart-lookup-view-connections",
+                  "state": {},
+                  "icon": "lucide-ghost",
+                  "title": "smart-lookup-view-connections"
+                }
+              },
+              {
+                "id": "9297e6d84b553849",
+                "type": "leaf",
+                "state": {
+                  "type": "smart-connections-view",
+                  "state": {},
+                  "icon": "smart-connections",
+                  "title": "Connections"
+                }
+              },
+              {
+                "id": "9ffbdaa7da7652b4",
+                "type": "leaf",
+                "state": {
+                  "type": "apple-style-converter",
+                  "state": {},
+                  "icon": "lucide-ghost",
+                  "title": "apple-style-converter"
+                }
+              },
+              {
+                "id": "32d419c36dfa112a",
+                "type": "leaf",
+                "state": {
+                  "type": "copilot-chat-view",
+                  "state": {},
+                  "icon": "message-square",
+                  "title": "Copilot"
+                }
+              },
+              {
+                "id": "7b82a39dd9d66e5b",
+                "type": "leaf",
+                "state": {
+                  "type": "claudian-view",
+                  "state": {},
+                  "icon": "bot",
+                  "title": "Claudian"
+                }
+              },
+              {
+                "id": "43b64b60f5f4097a",
+                "type": "leaf",
+                "state": {
+                  "type": "file-properties",
+                  "state": {
+                    "file": "Eric/公众号文章/品味流溢/你每天拼命学习的干货，正在悄悄废掉你.md"
+                  },
+                  "icon": "lucide-info",
+                  "title": "你每天拼命学习的干货，正在悄悄废掉你的笔记属性"
+                }
+              },
+              {
+                "id": "059bc94497489048",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {},
+                  "icon": "git-pull-request",
+                  "title": "Source Control"
+                }
+              }
+            ],
+            "currentTab": 11
+          }
+        ],
+        "direction": "horizontal",
+        "width": 200,
+        "collapsed": true
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "obsidotion:Upload to Notion": false,
+          "obsidotion:Pull from Notion": false,
+          "obsidian-excalidraw-plugin:新建绘图文件": false,
+          "table-editor-obsidian:Advanced Tables Toolbar": false,
+          "obsidian-kanban:Create new board": false,
+          "open-gate:Deepseek": false,
+          "smart-lookup:Smart Lookup: Open lookup view": false,
+          "open-gate:MD2card": false,
+          "open-gate:Notion": false,
+          "workspaces:管理工作区布局": false,
+          "templater-obsidian:Templater": false,
+          "switcher:打开快速切换": false,
+          "graph:查看关系图谱": false,
+          "canvas:新建白板": false,
+          "daily-notes:打开/创建今天的日记": false,
+          "templates:插入模板": false,
+          "command-palette:打开命令面板": false,
+          "bases:新建数据库": false,
+          "homepage:Open homepage": false,
+          "notebook-navigator:笔记本导航器": false,
+          "copilot:Open Copilot Chat": false,
+          "realclaudian:Open Claudian": false,
+          "pdf-plus:PDF++: Toggle auto-paste": false,
+          "smart-connections:Smart Connections: Open connections view": false,
+          "smart-connections:Toggle Footer Connections": false,
+          "smart-connections:Smart Connections: Open random connection": false,
+          "terminal:Open terminal": false,
+          "obsidian-importer:Open Importer": false,
+          "obsidian-git:Open Git source control": false,
+          "audio-recorder:开始/结束录音": false,
+          "markdown-importer:打开 Markdown 格式转换器": false
+        }
+      },
+      "active": "9047c419c75d0fa8",
+      "mtime": "2026-07-07T00:45:33+08:00"
+    }
+  },
+  "active": "公众号写作区"
+}

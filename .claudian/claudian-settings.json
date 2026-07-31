@@ -1,18 +1,26 @@
 {
   "userName": "小伟",
   "permissionMode": "normal",
-  "model": "glm-4.7",
+  "model": "claude-code/glm-4.7-flash",
   "thinkingBudget": "medium",
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
-  "titleGenerationModel": "",
+  "titleGenerationModel": "claude-code/glm-4.7-flash",
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
   "persistentExternalContextPaths": [],
-  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here\n\n\nANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nAPI_TIMEOUT_MS=3000000\n",
-  "envSnippets": [],
+  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nAPI_TIMEOUT_MS=3000000\n",
+  "envSnippets": [
+    {
+      "id": "snippet-1782632128924",
+      "name": "llm studio",
+      "description": "本地",
+      "envVars": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here\n\n\n",
+      "scope": "provider:claude"
+    }
+  ],
   "customContextLimits": {},
   "customModelAliases": {},
   "keyboardNavigation": {
@@ -32,12 +40,12 @@
       "loadUserSettings": true,
       "enableChrome": false,
       "enableBangBash": false,
-      "enableOpus1M": false,
-      "enableSonnet1M": false,
       "customModels": "",
       "lastModel": "opus",
-      "environmentVariables": "",
-      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
+      "modelEnvironmentType": "",
+      "titleModelEnvironmentType": "",
+      "environmentVariables": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here",
+      "environmentHash": "ANTHROPIC_BASE_URL=http://localhost:1234|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash"
     },
     "codex": {
       "enabled": false,
@@ -48,10 +56,13 @@
       "reasoningSummary": "detailed",
       "environmentVariables": "",
       "environmentHash": "",
-      "installationMethodsByHost": {
-        "device:19cc9ffd-ee8c-4b37-a039-a448292a996a": "native-windows"
-      },
-      "wslDistroOverridesByHost": {}
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
+      "modelAliases": {},
+      "visibleModels": null,
+      "discoveredModels": [],
+      "catalogTimestamp": 0,
+      "catalogFingerprint": ""
     },
     "opencode": {
       "cliPath": "",
@@ -76,11 +87,23 @@
       "preferredThinkingByModel": {},
       "toolMode": "all",
       "visibleModels": []
+    },
+    "grok": {
+      "catalogsByHost": {},
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "enabled": false,
+      "environmentHash": "",
+      "environmentVariables": "",
+      "modelAliases": {},
+      "planBasePermissionMode": "normal",
+      "preferredReasoningByModel": {},
+      "visibleModels": null
     }
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "glm-4.7"
+    "claude": "claude-code/glm-4.7-flash"
   },
   "savedProviderEffort": {
     "claude": "high"
@@ -90,12 +113,13 @@
   "savedProviderPermissionMode": {
     "claude": "normal"
   },
-  "lastCustomModel": "glm-4.7-flash",
+  "pendingProviderSessionInvalidations": {},
+  "lastCustomModel": "claude-code/glm-4.7-flash",
   "maxTabs": 3,
-  "tabBarPosition": "input",
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
-  "hiddenProviderCommands": {}
+  "hiddenProviderCommands": {},
+  "tabBarPosition": "input"
 }

@@ -15,19 +15,11 @@
       "shortcuts": [
         {
           "type": "note",
-          "path": "Eric/常用提示词/镜鉴野望/小绿书描述文提示词.md"
+          "path": "Eric/常用提示词/品味流溢/长文写作框架生成提示词.md"
         },
         {
           "type": "note",
-          "path": "Eric/常用提示词/让心流溢/长文写作框架生成提示词.md"
-        },
-        {
-          "type": "note",
-          "path": "Eric/常用提示词/让心流溢/Claude生成导语和互动提示词.md"
-        },
-        {
-          "type": "note",
-          "path": "Eric/常用提示词/通用提示/公众号爆款标题提示词.md"
+          "path": "Eric/常用提示词/品味流溢/贴图导语提示词.md"
         },
         {
           "type": "note",
@@ -48,6 +40,26 @@
         {
           "type": "note",
           "path": "Eric/常用提示词/通用提示/文章结构化提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/品味流溢/新版长文框架提示词1.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/品味流溢/新版长文框架提示词2.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/品味流溢/长文颠覆型玩法提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/品味流溢/固定标题提示词.md"
+        },
+        {
+          "type": "note",
+          "path": "Eric/常用提示词/品味流溢/自由标题提示词.md"
         }
       ],
       "navRainbow": {
@@ -97,7 +109,8 @@
           "transitionStyle": "hue",
           "scope": "root"
         }
-      }
+      },
+      "descendantExcludedFolders": []
     }
   ],
   "vaultProfile": "default",
@@ -112,6 +125,9 @@
     "useFloatingToolbars": "synced",
     "dualPane": "synced",
     "dualPaneOrientation": "synced",
+    "narrowSidebarLayout": "synced",
+    "narrowSidebarTriggerMode": "synced",
+    "narrowSidebarCustomWidth": "synced",
     "paneTransitionDuration": "synced",
     "toolbarVisibility": "synced",
     "pinNavigationBanner": "synced",
@@ -145,8 +161,11 @@
     "file": null,
     "createMissingPeriodicNote": true
   },
-  "dualPane": false,
+  "dualPane": true,
   "dualPaneOrientation": "horizontal",
+  "narrowSidebarLayout": "singlePane",
+  "narrowSidebarTriggerMode": "fitPanes",
+  "narrowSidebarCustomWidth": 350,
   "showTooltips": false,
   "showTooltipPath": true,
   "showTooltipWordCount": false,
@@ -166,7 +185,9 @@
     "list": {
       "back": true,
       "search": true,
+      "reveal": false,
       "descendants": true,
+      "groupExpansion": false,
       "sort": true,
       "appearance": true,
       "newNote": true
@@ -193,6 +214,8 @@
   "navItemHeightScaleText": true,
   "collapseBehavior": "all",
   "smartCollapse": true,
+  "excludeVaultRootFromCollapse": false,
+  "collapseOtherBranchesOnExpand": false,
   "autoSelectFirstFileOnFocusChange": false,
   "autoExpandNavItems": false,
   "springLoadedFolders": true,
@@ -249,6 +272,7 @@
   "showSelectedNavigationPills": false,
   "stickyGroupHeaders": true,
   "showFolderGroupPaths": true,
+  "showGroupHeaderItemCounts": false,
   "showCurrentFolderFilesAtBottom": false,
   "filterPinnedByFolder": false,
   "compactItemHeight": 28,
@@ -277,11 +301,13 @@
   "fileNameIconMap": {},
   "showCategoryIcons": false,
   "fileTypeIconMap": {},
+  "fileTypeIconPreset": "none",
   "fileNameRows": 1,
   "useFolderColorForTitles": false,
   "showFilePreview": true,
   "skipHeadingsInPreview": true,
   "skipCodeBlocksInPreview": true,
+  "skipCalloutsInPreview": false,
   "stripHtmlInPreview": true,
   "stripLatexInPreview": true,
   "previewRows": 2,
@@ -321,11 +347,13 @@
   "calendarEnabled": true,
   "calendarPlacement": "left-sidebar",
   "calendarConfirmBeforeCreate": true,
+  "calendarShowHiddenItems": false,
   "calendarLocale": "system-default",
   "calendarWeekendDays": "sat-sun",
   "calendarMonthHeadingFormat": "full",
   "calendarHighlightToday": true,
   "calendarShowFeatureImage": true,
+  "calendarShowTasks": true,
   "calendarMonthHighlights": {},
   "calendarShowWeekNumber": false,
   "calendarShowQuarter": false,
@@ -378,6 +406,12 @@
     "pane:end": [
       {
         "key": "End",
+        "modifiers": []
+      }
+    ],
+    "pane:rename": [
+      {
+        "key": "Enter",
         "modifiers": []
       }
     ],
@@ -455,6 +489,22 @@
         ]
       }
     ],
+    "list:manual-sort-up": [
+      {
+        "key": "ArrowUp",
+        "modifiers": [
+          "Mod"
+        ]
+      }
+    ],
+    "list:manual-sort-down": [
+      {
+        "key": "ArrowDown",
+        "modifiers": [
+          "Mod"
+        ]
+      }
+    ],
     "list:range-to-start": [
       {
         "key": "Home",
@@ -498,13 +548,14 @@
   },
   "customVaultName": "",
   "pinnedNotes": {},
-  "collapsedPinnedContexts": {},
   "fileIcons": {},
   "fileColors": {},
   "fileBackgroundColors": {},
   "folderIcons": {},
   "folderColors": {
-    "/": "#0ea5e9"
+    "/": "#3badf6",
+    "Eric": "#0ea5e9",
+    "copilot": "#0ea5e9"
   },
   "folderBackgroundColors": {},
   "folderSortOverrides": {
@@ -512,14 +563,7 @@
   },
   "folderTreeSortOverrides": {},
   "folderAppearances": {
-    "Eric/常用提示词/让心流溢": {
-      "mode": "compact"
-    },
     "Eric/英语学习/词组短语/常用短语": {
-      "groupBy": "custom"
-    },
-    "Eric/公众号图文/让心自然流溢/2026年度/1月": {
-      "titleRows": 2,
       "groupBy": "custom"
     },
     "Eric/常用提示词": {
@@ -530,6 +574,13 @@
     },
     "Eric/常用提示词/通用提示": {
       "groupBy": "folder"
+    },
+    "Eric/公众号图文/品味流溢/2026年度/1月": {
+      "titleRows": 2,
+      "groupBy": "custom"
+    },
+    "Eric/常用提示词/品味流溢": {
+      "mode": "compact"
     }
   },
   "tagIcons": {},
@@ -544,7 +595,12 @@
   "propertySortOverrides": {},
   "propertyTreeSortOverrides": {},
   "propertyAppearances": {},
-  "virtualFolderColors": {},
+  "virtualFolderColors": {
+    "recent-notes-root": "#84cc16",
+    "shortcuts-root": "#14b8a6",
+    "tags-root": "#78716c",
+    "properties-root": "#78716c"
+  },
   "virtualFolderBackgroundColors": {},
   "navigationSeparators": {},
   "userColors": [
@@ -569,7 +625,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "3.1.1",
+  "lastShownVersion": "3.3.0",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": []

@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"91fe3a389722660e","type":"text","text":"我们是什么吗谁让你发看看你","x":-420,"y":-660,"width":250,"height":60,"color":"4"},
+		{"id":"469fa573fec9d4d2","type":"file","file":"Eric/碎念/关于生活.md","x":20,"y":-680,"width":300,"height":245},
+		{"id":"ae54487d2c9581d6","type":"file","file":"Eric/碎念/我们在哪里？你在哪里？我们又在哪里？.md","x":380,"y":-767,"width":400,"height":400},
+		{"id":"3bac415074fd0d3c","type":"text","text":"","x":-362,"y":-732,"width":250,"height":60},
+		{"id":"08127c9010ba82f9","type":"text","text":"# 核心主题定义\n\n- 明确画板讨论的核心议题\n- 界定范围与边界\n- 消除“我们是什么”的模糊性","x":889,"y":-1334,"width":280,"height":216,"color":"1"},
+		{"id":"97fe0a4b80a23e13","type":"text","text":"# 关键问题梳理\n\n- 我们在哪里？(定位)\n- 你在哪里？(角色)\n- 目标是什么？(方向)\n- 现状与差距分析","x":889,"y":-1070,"width":280,"height":244,"color":"2"},
+		{"id":"014842f413a97d9c","type":"text","text":"# 关联素材索引\n\n- [[公众号图文.base]]\n- [[Eric/日记/2026-06-19]]\n- [[Eric/碎念/关于生活]]\n- [[Eric/碎念/我们在哪里？你在哪里？我们又在哪里？]]","x":889,"y":-778,"width":372,"height":244,"color":"3"},
+		{"id":"deaa28b56802c681","type":"text","text":"# 下一步行动\n\n- [ ] 整理现有碎念中的共性\n- [ ] 绘制关系图谱\n- [ ] 输出结论草案","x":889,"y":-486,"width":280,"height":216,"color":"4"},
+		{"id":"bbc4ffa7f36fd4bc","type":"text","text":"","x":-940,"y":-920,"width":250,"height":60,"color":"6"},
+		{"id":"4fbe5c33a9e5b02e","type":"file","file":"公众号图文.base","x":-475,"y":-300,"width":395,"height":400},
+		{"id":"bbfd4448bcb5b296","type":"file","file":"Eric/日记/2026-06-19.md","x":20,"y":-300,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"23381a60e731efdf","fromNode":"469fa573fec9d4d2","fromSide":"right","toNode":"ae54487d2c9581d6","toSide":"left"},
+		{"id":"0560c59127d89cb3","fromNode":"bbc4ffa7f36fd4bc","fromSide":"right","toNode":"08127c9010ba82f9","toSide":"left","label":"clarifies"},
+		{"id":"28c629115d2ff8c1","fromNode":"91fe3a389722660e","fromSide":"bottom","toNode":"97fe0a4b80a23e13","toSide":"left","label":"questions"},
+		{"id":"512b6f99ab7fc3ea","fromNode":"bbc4ffa7f36fd4bc","fromSide":"right","toNode":"014842f413a97d9c","toSide":"left","label":"references"},
+		{"id":"ac25b63a74c20ed7","fromNode":"bbc4ffa7f36fd4bc","fromSide":"right","toNode":"deaa28b56802c681","toSide":"left","label":"leads to"}
+	]
+}

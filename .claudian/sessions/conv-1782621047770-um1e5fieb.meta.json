@@ -1,0 +1,27 @@
+{
+  "id": "conv-1782621047770-um1e5fieb",
+  "providerId": "claude",
+  "title": "@Eric/公众号文章/品味流溢/你引以为傲的情绪稳定与高效，可能正在悄悄拖垮你",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1782621047770,
+  "updatedAt": 1785514210373,
+  "lastResponseAt": 1785514203581,
+  "sessionId": "6e322df9-cca3-4feb-85c5-3ee1fa9942f2",
+  "selectedModel": "claude-code/glm-4.7-flash",
+  "providerState": {
+    "providerSessionId": "6e322df9-cca3-4feb-85c5-3ee1fa9942f2",
+    "previousProviderSessionIds": [
+      "ecb22247-87b1-4c90-94f1-a01ed8923fe5"
+    ]
+  },
+  "usage": {
+    "model": "glm-4.7-flash",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextWindowIsAuthoritative": true,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

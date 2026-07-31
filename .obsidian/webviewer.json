@@ -1,0 +1,8 @@
+{
+  "openExternalURLs": true,
+  "enableAdblocking": true,
+  "markdownPath": "clippings",
+  "searchEngine": "bing",
+  "homepage": "https://chat.deepseek.com/",
+  "customSearchEngine": "https://duckduckgo.com/?q=%s"
+}

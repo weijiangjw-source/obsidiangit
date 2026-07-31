@@ -7,6 +7,7 @@
   "updatedAt": 1779037354195,
   "lastResponseAt": 1779087060238,
   "sessionId": null,
+  "selectedModel": "claude-code/glm-4.7-flash",
   "providerState": {
     "providerSessionId": "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a"
   },

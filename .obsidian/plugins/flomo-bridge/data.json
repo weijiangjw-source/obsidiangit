@@ -1,0 +1,38 @@
+{
+  "token": "19429771|YyDVwnXQq1mk1x3Y9z4WofFfWs2awj3HkzgaLI1C",
+  "targetDir": "flomo",
+  "downloadAttachments": true,
+  "syncInterval": 3600,
+  "debugMode": false,
+  "cursor": {
+    "latest_updated_at": 1784559368,
+    "latest_slug": "MjQ3NzQ0MDEz"
+  },
+  "lastSyncStats": {
+    "created": 0,
+    "updated": 0,
+    "skipped": 0,
+    "failed": 0,
+    "deleted": 0,
+    "total": 0,
+    "newContent": {
+      "created": 0,
+      "updated": 0,
+      "skipped": 0,
+      "failed": 0,
+      "deleted": 0,
+      "total": 0
+    },
+    "bufferZone": {
+      "created": 0,
+      "updated": 0,
+      "total": 0
+    },
+    "timestamp": 1785514448579,
+    "duration": 0
+  },
+  "enableBacklinks": true,
+  "backlinkLinkStyle": "wikilink",
+  "tokenValidated": true,
+  "tokenValidatedAt": 1782984355737
+}

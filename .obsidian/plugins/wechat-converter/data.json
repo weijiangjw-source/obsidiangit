@@ -1,8 +1,8 @@
 {
-  "theme": "wechat",
-  "themeColor": "orange",
+  "theme": "paper",
+  "themeColor": "teal",
   "customColor": "#0366d6",
-  "quoteCalloutStyleMode": "neutral",
+  "quoteCalloutStyleMode": "theme",
   "fontFamily": "sans-serif",
   "fontSize": 2,
   "macCodeBlock": true,
@@ -15,12 +15,51 @@
   "wechatAccounts": [],
   "defaultAccountId": "",
   "proxyUrl": "",
+  "clientId": "wp_dev_yt0vfz8u4pmmrxnavmh",
+  "draftCache": {
+    "version": 1,
+    "articles": {}
+  },
   "usePhoneFrame": true,
   "sidePadding": 16,
   "coloredHeader": false,
   "cleanupAfterSync": false,
   "cleanupUseSystemTrash": true,
   "cleanupDirTemplate": "",
+  "multiPlatformSync": {
+    "enabled": false,
+    "port": 9527,
+    "token": "",
+    "allowRemote": false,
+    "supportedPlatforms": [],
+    "selectedPlatforms": [],
+    "connection": {
+      "status": "untested",
+      "checkedAt": 0,
+      "platforms": [],
+      "message": "",
+      "capabilities": {}
+    },
+    "recentTasks": [],
+    "connectedClients": []
+  },
+  "feishuSync": {
+    "enabled": false,
+    "appId": "",
+    "appSecret": "",
+    "folderToken": "",
+    "userId": "",
+    "enableSmartUpdate": true,
+    "enableDoubleLinkMode": false,
+    "debugLoggingEnabled": false,
+    "uploadHistory": [],
+    "mermaidPreferences": {},
+    "apiUsage": {
+      "month": "2026-07",
+      "count": 0,
+      "updatedAt": 0
+    }
+  },
   "wechatAppId": "",
   "wechatAppSecret": "",
   "ai": {
@@ -31,7 +70,7 @@
     "defaultStylePack": "tech-green",
     "customColor": "#7c3aed",
     "includeImagesInLayout": true,
-    "requestTimeoutMs": 45000,
+    "requestTimeoutMs": 120000,
     "providers": [],
     "articleLayoutsByPath": {}
   }

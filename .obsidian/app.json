@@ -2,6 +2,6 @@
   "openBehavior": "",
   "attachmentFolderPath": "./attachments",
   "alwaysUpdateLinks": true,
-  "defaultViewMode": "preview",
-  "livePreview": false
+  "defaultViewMode": "source",
+  "livePreview": true
 }

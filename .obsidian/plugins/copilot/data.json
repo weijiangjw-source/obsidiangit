@@ -73,12 +73,13 @@
       "projectEnabled": true,
       "capabilities": [
         "vision"
-      ]
+      ],
+      "apiKey": "──────────────────────────────────────────────────────────"
     },
     {
       "name": "gpt-5.5",
       "provider": "openai",
-      "enabled": true,
+      "enabled": false,
       "isBuiltIn": true,
       "core": true,
       "capabilities": [
@@ -88,7 +89,7 @@
     {
       "name": "gpt-5.4-mini",
       "provider": "openai",
-      "enabled": true,
+      "enabled": false,
       "isBuiltIn": true,
       "core": true,
       "capabilities": [
@@ -98,7 +99,7 @@
     {
       "name": "gpt-5.4",
       "provider": "openai",
-      "enabled": true,
+      "enabled": false,
       "isBuiltIn": true,
       "core": true,
       "capabilities": [
@@ -108,7 +109,7 @@
     {
       "name": "gpt-5-mini",
       "provider": "openai",
-      "enabled": true,
+      "enabled": false,
       "isBuiltIn": true,
       "core": true,
       "capabilities": [
@@ -118,30 +119,10 @@
     {
       "name": "claude-sonnet-4-6",
       "provider": "anthropic",
-      "enabled": true,
+      "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
         "reasoning",
-        "vision"
-      ]
-    },
-    {
-      "name": "gemini-3.1-flash-lite-preview",
-      "provider": "google",
-      "enabled": true,
-      "isBuiltIn": true,
-      "projectEnabled": true,
-      "capabilities": [
-        "vision"
-      ]
-    },
-    {
-      "name": "gemini-2.5-flash",
-      "provider": "google",
-      "enabled": true,
-      "isBuiltIn": true,
-      "projectEnabled": true,
-      "capabilities": [
         "vision"
       ]
     },
@@ -253,36 +234,6 @@
       ]
     },
     {
-      "name": "gemini-3-flash-preview",
-      "provider": "google",
-      "enabled": false,
-      "isBuiltIn": true,
-      "capabilities": [
-        "reasoning",
-        "vision"
-      ]
-    },
-    {
-      "name": "gemini-3.1-pro-preview",
-      "provider": "google",
-      "enabled": false,
-      "isBuiltIn": true,
-      "capabilities": [
-        "reasoning",
-        "vision"
-      ]
-    },
-    {
-      "name": "gemini-2.5-pro",
-      "provider": "google",
-      "enabled": false,
-      "isBuiltIn": true,
-      "projectEnabled": true,
-      "capabilities": [
-        "vision"
-      ]
-    },
-    {
       "name": "deepseek-chat",
       "provider": "deepseek",
       "enabled": false,
@@ -332,7 +283,68 @@
     {
       "name": "gemini-3.1-flash-lite",
       "provider": "google",
-      "enabled": true
+      "enabled": true,
+      "isBuiltIn": false,
+      "baseUrl": "",
+      "apiKey": "AIzaSyDlX8nwVjTUdXDxvxGUg2ujDk0kXs07G7Y",
+      "isEmbeddingModel": false,
+      "capabilities": [
+        "reasoning",
+        "vision",
+        "websearch"
+      ],
+      "stream": true,
+      "enableCors": true,
+      "temperature": 0.85,
+      "maxTokens": 46000
+    },
+    {
+      "name": "gemini-3.5-flash",
+      "provider": "google",
+      "enabled": true,
+      "isBuiltIn": false,
+      "baseUrl": "",
+      "apiKey": "AIzaSyDlX8nwVjTUdXDxvxGUg2ujDk0kXs07G7Y",
+      "isEmbeddingModel": false,
+      "capabilities": [
+        "reasoning",
+        "vision",
+        "websearch"
+      ],
+      "stream": true,
+      "enableCors": true
+    },
+    {
+      "name": "gemma-4-31b-it",
+      "provider": "google",
+      "enabled": true,
+      "isBuiltIn": false,
+      "baseUrl": "",
+      "apiKey": "AIzaSyDlX8nwVjTUdXDxvxGUg2ujDk0kXs07G7Y",
+      "isEmbeddingModel": false,
+      "capabilities": [
+        "reasoning",
+        "vision",
+        "websearch"
+      ],
+      "stream": true,
+      "enableCors": true
+    },
+    {
+      "name": "glm-4.7-flash",
+      "provider": "anthropic",
+      "enabled": true,
+      "isBuiltIn": false,
+      "baseUrl": "",
+      "apiKey": "8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2",
+      "isEmbeddingModel": false,
+      "capabilities": [
+        "reasoning",
+        "vision",
+        "websearch"
+      ],
+      "stream": true,
+      "displayName": "zhipu"
     }
   ],
   "activeEmbeddingModels": [
@@ -487,7 +499,8 @@
   "enableRecentConversations": true,
   "maxRecentConversations": 30,
   "enableSavedMemory": true,
-  "quickCommandIncludeNoteContext": true,
+  "quickCommandModelKey": "gemini-2.5-flash|google",
+  "quickCommandIncludeNoteContext": false,
   "autoIncludeTextSelection": false,
   "autoAddSelectionToContext": false,
   "autoAcceptEdits": false,

@@ -6,6 +6,7 @@
   "exposeInternalModules": true,
   "focusOnNewInstance": true,
   "hideStatusBar": "focused",
+  "showTerminalTabPrefix": false,
   "interceptKeysWhenFocused": true,
   "interceptLogging": true,
   "keymappings": [
@@ -132,7 +133,8 @@
   ],
   "language": "",
   "macOSOptionKeyPassthrough": true,
-  "newInstanceBehavior": "newHorizontalSplit",
+  "rightClickAction": "copyPaste",
+  "newInstanceBehavior": "newRightSplit",
   "noticeTimeout": 5,
   "openChangelogOnUpdate": true,
   "pinNewInstance": true,
@@ -290,7 +292,7 @@
       "useWin32Conhost": true
     }
   },
-  "defaultProfile": null,
+  "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
     "documentOverride": null
   }

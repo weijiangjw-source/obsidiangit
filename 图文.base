@@ -1,0 +1,11 @@
+views:
+  - type: cards
+    name: 表格
+    filters:
+      and:
+        - file.inFolder("Eric/公众号图文")
+    order:
+      - file.name
+    imageAspectRatio: 1.1
+    imageFit: contain
+    cardSize: 280

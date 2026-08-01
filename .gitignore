@@ -1,3 +1,9 @@
+
+# === 核心：不同步 Obsidian 的配置文件夹 ===
+# 这会忽略所有插件、主题、快捷键等配置，实现你的目标[reference:3][reference:4]
+.obsidian/
+
+
 # 忽略图片文件
 *.png
 *.jpg

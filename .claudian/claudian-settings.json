@@ -6,6 +6,7 @@
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
+  "titleGenerationLocale": "",
   "titleGenerationModel": "claude-code/glm-4.7-flash",
   "excludedTags": [],
   "mediaFolder": "",
@@ -19,10 +20,45 @@
       "description": "本地",
       "envVars": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here\n\n\n",
       "scope": "provider:claude"
+    },
+    {
+      "id": "snippet-1785683633904",
+      "name": "omlx1",
+      "description": "local",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "scope": "provider:claude",
+      "modelAliases": {
+        "gpt-oss-20b-MXFP4-Q8": "gpt"
+      }
+    },
+    {
+      "id": "snippet-1785683669782",
+      "name": "omlx2",
+      "description": "local",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gemma-4-12B-it-8bit\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "scope": "provider:claude",
+      "modelAliases": {
+        "gemma-4-12B-it-8bit": "gm12b8"
+      }
+    },
+    {
+      "id": "snippet-1785683736643",
+      "name": "omlx3",
+      "description": "local",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "scope": "provider:claude",
+      "modelAliases": {
+        "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6"
+      }
     }
   ],
   "customContextLimits": {},
-  "customModelAliases": {},
+  "customModelAliases": {
+    "glm-4.7-flash": "glm4.7",
+    "gpt-oss-20b-MXFP4-Q8": "gpt",
+    "gemma-4-12B-it-8bit": "gm12b8",
+    "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6"
+  },
   "keyboardNavigation": {
     "scrollUpKey": "w",
     "scrollDownKey": "s",
@@ -32,6 +68,7 @@
   "locale": "zh-CN",
   "providerConfigs": {
     "claude": {
+      "enabled": true,
       "safeMode": "acceptEdits",
       "cliPath": "",
       "cliPathsByHost": {
@@ -42,10 +79,10 @@
       "enableBangBash": false,
       "customModels": "",
       "lastModel": "opus",
-      "modelEnvironmentType": "",
-      "titleModelEnvironmentType": "",
-      "environmentVariables": "ANTHROPIC_BASE_URL=http://localhost:1234\nANTHROPIC_AUTH_TOKEN=any-value-here",
-      "environmentHash": "ANTHROPIC_BASE_URL=http://localhost:1234|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash"
+      "modelEnvironmentType": "opus",
+      "titleModelEnvironmentType": "haiku",
+      "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "environmentHash": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash|ANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8"
     },
     "codex": {
       "enabled": false,
@@ -62,7 +99,8 @@
       "visibleModels": null,
       "discoveredModels": [],
       "catalogTimestamp": 0,
-      "catalogFingerprint": ""
+      "catalogFingerprint": "",
+      "enableUltraEffort": false
     },
     "opencode": {
       "cliPath": "",

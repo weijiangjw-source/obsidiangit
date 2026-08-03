@@ -1,25 +1,27 @@
 {
   "id": "conv-1778912394140-74tpj3jym",
   "providerId": "claude",
-  "title": "Generate engaging article headlines for officia...",
-  "titleGenerationStatus": "success",
+  "title": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
+  "titleGenerationStatus": "failed",
   "createdAt": 1778912394140,
-  "updatedAt": 1779037354195,
-  "lastResponseAt": 1779087060238,
-  "sessionId": null,
-  "selectedModel": "claude-code/glm-4.7-flash",
+  "updatedAt": 1785765433650,
+  "lastResponseAt": 1785684705950,
+  "sessionId": "00a62d6b-3e97-4250-a45e-439170c6ca03",
+  "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
   "providerState": {
-    "providerSessionId": "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a"
+    "previousProviderSessionIds": [
+      "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a"
+    ],
+    "providerSessionId": "00a62d6b-3e97-4250-a45e-439170c6ca03"
   },
   "currentNote": "Eric/My Gmini/让心自然流溢/2026年度/1月/如何用一天时间，彻底重启你的人生.md",
   "usage": {
-    "model": "opus",
-    "inputTokens": 19981,
-    "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
-    "contextWindow": 1000000,
-    "contextTokens": 19981,
-    "percentage": 2,
-    "contextWindowIsAuthoritative": true
+    "model": "gpt-oss-20b-MXFP4-Q8",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 1837,
+    "cacheReadInputTokens": 23040,
+    "contextWindow": 200000,
+    "contextTokens": 24877,
+    "percentage": 12
   }
 }

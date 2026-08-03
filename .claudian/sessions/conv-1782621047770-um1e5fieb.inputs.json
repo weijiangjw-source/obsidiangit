@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1782621047770-um1e5fieb",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785684115511-qa1f18x",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1785684115500-227z246",
+      "timestamp": 1785684115500,
+      "rawDisplayText": "你好",
+      "canonicalText": "你好",
+      "images": [],
+      "contentDigest": "815b1925f3db319cfc8ef8cad8a91b3f8b512f630d8f82635cb105e93e666c2a",
+      "providerUserMessageId": "53873fea-1e90-40cf-9f8e-34a5ed6a7e28",
+      "providerAssistantMessageId": "54ddeeb5-4527-4a1a-8b35-9c12db09e962"
+    }
+  ]
+}

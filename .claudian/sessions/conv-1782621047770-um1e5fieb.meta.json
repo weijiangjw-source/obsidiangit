@@ -4,24 +4,24 @@
   "title": "@Eric/公众号文章/品味流溢/你引以为傲的情绪稳定与高效，可能正在悄悄拖垮你",
   "titleGenerationStatus": "failed",
   "createdAt": 1782621047770,
-  "updatedAt": 1785514210373,
-  "lastResponseAt": 1785514203581,
-  "sessionId": "6e322df9-cca3-4feb-85c5-3ee1fa9942f2",
-  "selectedModel": "claude-code/glm-4.7-flash",
+  "updatedAt": 1785684163763,
+  "lastResponseAt": 1785684163763,
+  "sessionId": "ffe447e5-2d99-423a-86b0-734d2d88d85c",
+  "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
   "providerState": {
-    "providerSessionId": "6e322df9-cca3-4feb-85c5-3ee1fa9942f2",
     "previousProviderSessionIds": [
-      "ecb22247-87b1-4c90-94f1-a01ed8923fe5"
-    ]
+      "ecb22247-87b1-4c90-94f1-a01ed8923fe5",
+      "6e322df9-cca3-4feb-85c5-3ee1fa9942f2"
+    ],
+    "providerSessionId": "ffe447e5-2d99-423a-86b0-734d2d88d85c"
   },
   "usage": {
-    "model": "glm-4.7-flash",
+    "model": "gpt-oss-20b-MXFP4-Q8",
     "inputTokens": 0,
-    "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheCreationInputTokens": 1854,
+    "cacheReadInputTokens": 24576,
     "contextWindow": 200000,
-    "contextWindowIsAuthoritative": true,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 26430,
+    "percentage": 13
   }
 }

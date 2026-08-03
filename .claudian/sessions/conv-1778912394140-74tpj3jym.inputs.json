@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1778912394140-74tpj3jym",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785684238205-ck7s50f",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1785684238181-qf17yaz",
+      "timestamp": 1785684238181,
+      "rawDisplayText": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
+      "canonicalText": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
+      "context": {
+        "currentNote": {
+          "path": "Eric/My Gmini/让心自然流溢/2026年度/1月/如何用一天时间，彻底重启你的人生.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "d6dfc967bd6a13bed95a9b2bd8cfb58610d646c000567501228094ad918552d8",
+      "providerUserMessageId": "aad9f18a-9781-4032-b766-103782f2cfd6"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785684312556-ohqz10c",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1785684312553-obknc9h",
+      "timestamp": 1785684312553,
+      "rawDisplayText": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
+      "canonicalText": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
+      "images": [],
+      "contentDigest": "d6dfc967bd6a13bed95a9b2bd8cfb58610d646c000567501228094ad918552d8",
+      "providerUserMessageId": "bfd8f5da-bbd8-4c87-953b-843a8b217439",
+      "providerAssistantMessageId": "b0e7c4c8-a1bf-438e-952d-d2a1fae65f67"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785684393314-fyw9i1f",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1785684393311-m6bclb4",
+      "timestamp": 1785684393311,
+      "rawDisplayText": "标签无需数字，只需要横向加一个空格排列给我即可",
+      "canonicalText": "标签无需数字，只需要横向加一个空格排列给我即可",
+      "images": [],
+      "contentDigest": "a92c38fa548f200324e5334f78e2728d387e6e5879cfc387a9d7ef4940bffc43",
+      "providerUserMessageId": "e5794a92-8a97-4722-b657-499ee9ca2a3b",
+      "providerAssistantMessageId": "96207453-95ed-415d-b10e-d098a5097aa0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785684660928-n2erqf5",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1785684660923-slnitws",
+      "timestamp": 1785684660923,
+      "rawDisplayText": "帮我把这篇内容扩写成1000字左右的长文，语气要平实自然、清晰，像和老朋友在咖啡馆聊天一样，四部分内容每一部分要有一个通俗易懂的小标题，开始你的创作",
+      "canonicalText": "帮我把这篇内容扩写成1000字左右的长文，语气要平实自然、清晰，像和老朋友在咖啡馆聊天一样，四部分内容每一部分要有一个通俗易懂的小标题，开始你的创作",
+      "context": {
+        "editorSelection": {
+          "notePath": "Eric/常用提示词/通用提示/文章解构提示词.md",
+          "mode": "selection",
+          "selectedText": "语气要平实自然、清晰，像和老朋友在咖啡馆聊天一样，四部分内容每一部分要有一个通俗易懂的小标题，开始你的创作",
+          "lineCount": 1,
+          "startLine": 4
+        }
+      },
+      "images": [],
+      "contentDigest": "961e41799266d697651d497c820985e54f76d0ef4ae37309da05051b446d8562",
+      "providerUserMessageId": "cf0a220c-bdc1-4cff-8e4d-d2d8181652d8",
+      "providerAssistantMessageId": "9274994d-7ec2-4007-bb94-4ad8db7762ae"
+    }
+  ]
+}

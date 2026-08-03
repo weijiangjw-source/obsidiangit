@@ -8,10 +8,10 @@
   "lastResponseAt": 1781527717124,
   "sessionId": null,
   "providerState": {
-    "providerSessionId": "50fffa62-418d-4346-8343-92c0ac5f14d1",
     "previousProviderSessionIds": [
       "74a03a72-2abc-4131-9ede-ed77e2f6bae4",
-      "ef8247d8-f389-4b0b-ba10-79b0a1f1b1f3"
+      "ef8247d8-f389-4b0b-ba10-79b0a1f1b1f3",
+      "50fffa62-418d-4346-8343-92c0ac5f14d1"
     ]
   },
   "usage": {

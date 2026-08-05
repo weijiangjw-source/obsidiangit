@@ -70,6 +70,20 @@
       "contentDigest": "961e41799266d697651d497c820985e54f76d0ef4ae37309da05051b446d8562",
       "providerUserMessageId": "cf0a220c-bdc1-4cff-8e4d-d2d8181652d8",
       "providerAssistantMessageId": "9274994d-7ec2-4007-bb94-4ad8db7762ae"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785860873764-2n624yd",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1785860873747-5ly8by8",
+      "timestamp": 1785860873747,
+      "rawDisplayText": "一句话总结这段文章",
+      "canonicalText": "一句话总结这段文章",
+      "images": [],
+      "contentDigest": "52ebee5c84f3efbc66f728d5016862d3fbd9351a3e66085c2f990c9168199c09",
+      "providerUserMessageId": "84459bf5-f689-482c-8de1-a04f9cca2667",
+      "providerAssistantMessageId": "df07414b-3ad1-48e4-920e-58dee7121541"
     }
   ]
 }

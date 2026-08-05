@@ -4,8 +4,8 @@
   "title": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
   "titleGenerationStatus": "failed",
   "createdAt": 1778912394140,
-  "updatedAt": 1785765433650,
-  "lastResponseAt": 1785684705950,
+  "updatedAt": 1785900140862,
+  "lastResponseAt": 1785860906991,
   "sessionId": "00a62d6b-3e97-4250-a45e-439170c6ca03",
   "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
   "providerState": {
@@ -18,10 +18,10 @@
   "usage": {
     "model": "gpt-oss-20b-MXFP4-Q8",
     "inputTokens": 0,
-    "cacheCreationInputTokens": 1837,
-    "cacheReadInputTokens": 23040,
+    "cacheCreationInputTokens": 25732,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 24877,
-    "percentage": 12
+    "contextTokens": 25732,
+    "percentage": 13
   }
 }

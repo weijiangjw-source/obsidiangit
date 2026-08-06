@@ -16,6 +16,31 @@
     "file_exclusions": "Untitled",
     "folder_exclusions": "Templates,Eric/常用提示词,Eric/工具用途"
   },
+  "gitignore_exclusions": [
+    ".obsidian/",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.bmp",
+    "*.svg",
+    "*.webp",
+    "*.pdf",
+    "*.docx",
+    "*.xlsx",
+    "*.pptx",
+    "*.zip",
+    "*.rar",
+    "*.7z",
+    "*.tar.gz",
+    ".obsidian/workspace.json",
+    ".obsidian/workspace-mobile.json",
+    ".DS_Store",
+    "Thumbs.db",
+    "  attachments/",
+    "  media/"
+  ],
+  "gitignore_exclusions_updated_at": 1786041197756,
   "language": "en",
   "re_import_wait_time": 13,
   "smart_chat_threads": {
@@ -56,7 +81,8 @@
         "show_full_path": false
       }
     },
-    "footer_connections": true
+    "footer_connections": true,
+    "footer_connections_list_component_key": "connections_list_v3"
   },
   "context_items": {
     "template_preset": "xml_structured",
@@ -73,7 +99,8 @@
   "lookup_lists": {
     "results_collection_key": "smart_blocks",
     "score_algo_key": "similarity",
-    "results_limit": 20
+    "results_limit": 20,
+    "get_results_action_key": "lookup_list_get_results"
   },
   "smart_contexts": {
     "template_preset": "xml_structured",

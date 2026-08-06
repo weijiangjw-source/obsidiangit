@@ -4,15 +4,14 @@
   "title": "用一句话总结在这篇内容，并给出5个适用于公众号平台的话题标签",
   "titleGenerationStatus": "failed",
   "createdAt": 1778912394140,
-  "updatedAt": 1785900140862,
-  "lastResponseAt": 1785860906991,
-  "sessionId": "00a62d6b-3e97-4250-a45e-439170c6ca03",
+  "lastActivityAt": 1785860906991,
+  "sessionId": null,
   "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
   "providerState": {
     "previousProviderSessionIds": [
-      "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a"
-    ],
-    "providerSessionId": "00a62d6b-3e97-4250-a45e-439170c6ca03"
+      "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a",
+      "00a62d6b-3e97-4250-a45e-439170c6ca03"
+    ]
   },
   "currentNote": "Eric/My Gmini/让心自然流溢/2026年度/1月/如何用一天时间，彻底重启你的人生.md",
   "usage": {

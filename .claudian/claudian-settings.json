@@ -82,7 +82,7 @@
       "modelEnvironmentType": "opus",
       "titleModelEnvironmentType": "haiku",
       "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
-      "environmentHash": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash|ANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8"
+      "environmentHash": "runtime-input:v1:5fc5bae10b85a038d5f87c5c391fe225de2ccefe1e2f43a7d6b5dd4fde65c3f9"
     },
     "codex": {
       "enabled": false,
@@ -153,11 +153,17 @@
   },
   "pendingProviderSessionInvalidations": {},
   "lastCustomModel": "claude-code/glm-4.7-flash",
-  "maxTabs": 3,
+  "maxWarmAgentProcesses": 5,
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
+  "enableDualPane": true,
+  "dualPaneSide": "right",
+  "sessionManagerOrganization": "list",
+  "sessionManagerSort": "last-updated",
+  "pinnedLinkedNotePaths": [],
   "hiddenProviderCommands": {},
+  "maxTabs": 3,
   "tabBarPosition": "input"
 }

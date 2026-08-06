@@ -1,3 +1,4 @@
+
 要实现你的目标，需要一个核心思路：因为 `claude` 命令原生只支持 `ANTHROPIC_BASE_URL` 这一个接口地址，所以它不能同时连接多个后端，需要通过外挂工具来实现。我们可以用一个叫做 **Claude Code Router (CCR)** 的中转服务作为“AI总机”，来统一管理这两个模型，让终端和 Obsidian 都能通过它随意切换。下面是具体的配置步骤：
 
 ### 🧱 1. 配置中转服务：Claude Code Router (CCR)

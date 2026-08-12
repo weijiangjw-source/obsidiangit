@@ -78,6 +78,7 @@
       "enableChrome": false,
       "enableBangBash": false,
       "customModels": "",
+      "defaultModel": "opus",
       "lastModel": "opus",
       "modelEnvironmentType": "opus",
       "titleModelEnvironmentType": "haiku",
@@ -140,6 +141,10 @@
     }
   },
   "settingsProvider": "claude",
+  "lastSelectedChatModel": {
+    "providerId": "claude",
+    "model": "claude-code/glm-4.7-flash"
+  },
   "savedProviderModel": {
     "claude": "claude-code/glm-4.7-flash"
   },
@@ -159,6 +164,7 @@
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "enableDualPane": true,
+  "enableFilePane": true,
   "dualPaneSide": "right",
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",

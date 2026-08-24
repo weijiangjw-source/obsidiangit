@@ -1,0 +1,30 @@
+## 2026-08-24T04:10:07.346Z | 10月/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md
+
+1. FILE block "wiki/sources/3-10月--28-别再拿课题分离当借口了你分离的不是世界是你乞求被爱的自己--mb6x56.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+2. Truncated FILE repair failed: HTTP 503: Service Unavailable — {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+## 2026-08-24T04:11:08.484Z | 10月/高手过招：真正的讨论，是一场测试“文明弹性”的共震实验》.md
+
+1. FILE block "wiki/sources/3-10月--23-高手过招真正的讨论是一场测试文明弹性的共震实验--1m82aiz.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-08-24T04:12:05.956Z | 10月/高质量对话的关键步骤.md
+
+1. FILE block "wiki/sources/3-10月--10-高质量对话的关键步骤--f9cwxr.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-08-24T07:28:12.371Z | 10月/人生的支点决策：在不适中识别命运信号.md
+
+1. FILE block "wiki/sources/3-10月--17-人生的支点决策在不适中识别命运信号--7770ju.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-08-24T07:41:02.844Z | 10月/信息流动的“三重天堑”与破局之道.md
+
+1. FILE block "wiki/log.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-08-24T13:42:04.836Z | 别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md
+
+1. FILE block with unsafe path "wiki/sources/别再拿"课题分离"当借口了！你分离的不是世界，是你乞求被爱的自己.md" rejected (must be under wiki/, no .., no absolute paths, and Windows-safe file names).

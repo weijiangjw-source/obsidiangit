@@ -1,0 +1,921 @@
+[
+  {
+    "type": "contradiction",
+    "title": "\"随缘\"作为防御 vs. 健康策略",
+    "description": "文章强烈质疑\"随缘\"\"佛系\"是恐惧的伪装，但如果 [[concepts/不确定性耐受力]] 已将\"随缘\"定义为健康的心理策略，两者存在直接张力。需要人工判断：是更新现有概念页纳入反驳视角，还是保留两者并标注分歧？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "wiki/concepts/不确定性耐受力.md"
+    ],
+    "searchQueries": [
+      "随缘 佛系 心理学 防御机制 不确定性 接纳",
+      "正念 接纳 不确定性 心理灵活性 ACT"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2ab3f248",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "Created: wiki/concepts/随缘作为防御-vs-健康策略-2026-08-24-132835.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "随缘的智慧还是防御",
+    "description": "分析建议创建一个查询页面来追踪\"随缘\"概念的张力，这是一个值得保留的开放问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: 随缘 佛教 心理学 防御机制 正念 回避 | 佛系 网络用语 心理分析 逃避"
+    ],
+    "searchQueries": [
+      "随缘 佛教 心理学 防御机制 正念 回避",
+      "佛系 网络用语 心理分析 逃避"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-99da5b35",
+    "resolved": false,
+    "createdAt": 1787555765264
+  },
+  {
+    "type": "suggestion",
+    "title": "\"能量泄漏\"的心理学对应概念",
+    "description": "\"能量泄漏\"作为核心隐喻缺乏实证支撑，其可能与\"外部控制点\"\"习得性无助\"等已建立概念重叠，建议创建 comparison 页面厘清边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: external locus of control learned helplessness self-efficacy psychological energy | 控制点 习得性无助 自我效能 心理能量"
+    ],
+    "searchQueries": [
+      "external locus of control learned helplessness self-efficacy psychological energy",
+      "控制点 习得性无助 自我效能 心理能量"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c087c143",
+    "resolved": false,
+    "createdAt": 1787555765264
+  },
+  {
+    "type": "suggestion",
+    "title": "\"随缘是智慧还是防御\"查询页",
+    "description": "\"随缘\"在本 wiki 中至少涉及两个概念的交叉：[[concepts/不确定性耐受力]]（正向）与 [[concepts/自欺谎言]]（批判），建议创建 queries 页面追踪这一持续张力。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: 随缘 佛教 心理学 防御机制 正念 回避 | 佛系 网络用语 心理分析 逃避"
+    ],
+    "searchQueries": [
+      "随缘 佛教 心理学 防御机制 正念 回避",
+      "佛系 网络用语 心理分析 逃避"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6922a550",
+    "resolved": false,
+    "createdAt": 1787555765264
+  },
+  {
+    "type": "contradiction",
+    "title": "宇宙 indifferent 与行动动力的哲学张力",
+    "description": "文章用\"天地不仁\"论证宇宙 indifferent，但紧接着以此激励人采取行动——如果宇宙不关心，\"收回能量\"的动力从何而来？这是一个未解决的内部张力，值得在 [[concepts/宇宙不仁]] 或新页面中标注。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "wiki/concepts/宇宙不仁.md",
+      "wiki/concepts/能量泄漏.md"
+    ],
+    "searchQueries": [
+      "道德经 第五章 天地不仁 解读 斯多葛 行动动力",
+      "Dao De Jing chapter 5 interpretation motivational implications"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ba352d52",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "Created: wiki/concepts/宇宙-indifferent-与行动动力的哲学张力-2026-08-24-133154.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "开放问题追踪",
+    "description": "该文档提出了若干值得进一步研究的问题：\n1. \"不真实\"与\"自欺\"的明确分界线在哪里？是否有一致性标准？\n2. \"极少数值得信任的人\"如何界定？有无判断标准？\n3. 不同文化语境下（如东西方社交规范），这一框架是否同样适用？\n建议创建 query 页面追踪这些问题，或在后续阅读中寻找实证支持。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-disclosure social psychology research",
+      "cultural differences in emotional expression social norms",
+      "emotional boundaries personal relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7294da76",
+    "resolved": false,
+    "createdAt": 1787556812638
+  },
+  {
+    "type": "missing-page",
+    "title": "缺少query页面追踪开放问题",
+    "description": "文档中存在几个明确的开放问题：\n1. \"不真实\"与\"自欺谎言\"的本质边界在哪？\n2. \"极少数值得信任的人\"的判断标准是什么？\n3. 东西方文化语境下该框架的适用性差异？\n建议创建 query 页面以追踪这些持续存在的问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-disclosure social psychology research",
+      "cultural differences in emotional expression social norms",
+      "emotional boundaries personal relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-25c36758",
+    "resolved": false,
+    "createdAt": 1787556812638
+  },
+  {
+    "type": "contradiction",
+    "title": "与自欺谎言概念的潜在张力",
+    "description": "[[concepts/自欺谎言]]倡导诚实内核，而\"社交智慧\"概念中的\"不真实\"若被理解为隐瞒或伪装，可能与自欺谎言的核心理念产生张力。文档未明确区分\"策略性不真实\"（有意识的边界保护）与\"自欺\"（认知扭曲）的边界。需在后续阅读中进一步澄清。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-deception vs boundary-setting psychology",
+      "honesty versus privacy in relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-935b069c",
+    "resolved": true,
+    "createdAt": 1787556812638,
+    "resolvedAction": "Created: wiki/concepts/与自欺谎言概念的潜在张力-2026-08-24-133206.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "真诚与边界 - 需补充试探作为边界维护技术",
+    "description": "原文建议更新 [[concepts/真诚与边界]] 页面，补充\"试探\"作为边界维护的具体技术手段。当前已有此页面，但内容可能需要扩展以包含高效试探的方法论。请确认是否需要更新该页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/真诚与边界.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ac37d62f",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "missing-page",
+    "title": "损失厌恶的学术来源待确认",
+    "description": "原文引用\"损失厌恶\"心理机制解释老实人吃亏后的委屈感，但未标注原始文献。需补充Tversky & Kahneman（1979）《前景理论》或后续行为经济学研究，以增强论证可信度。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/损失厌恶.md"
+    ],
+    "searchQueries": [
+      "loss aversion Tversky Kahneman prospect theory 1979",
+      "损失厌恶 心理学 定义 原始文献",
+      "loss aversion behavioral economics original source"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-33bab180",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "学生思维的实证研究缺失",
+    "description": "原文将\"学生思维\"定义为认知陷阱并列出三个子特征，但未引用任何发展心理学或教育社会学研究。建议补充相关实证文献以验证该框架的科学性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/学生思维.md"
+    ],
+    "searchQueries": [
+      "student mindset cognitive bias empirical study",
+      "学生思维 认知偏差 发展心理学 研究",
+      "naive realism adult social cognition transition"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d81433c7",
+    "resolved": false,
+    "createdAt": 1787556932135
+  },
+  {
+    "type": "contradiction",
+    "title": "试探的道德重构存在张力",
+    "description": "原文刻意将\"试探\"从负面词重构为中性技能，但承认这是\"信息不对称世界中的生存工具\"，隐含零和博弈假设。这与[[concepts/真诚与边界]]中可能存在的合作导向立场存在潜在冲突，需用户判断如何协调。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/试探的道德重构.md",
+      "wiki/concepts/真诚与边界.md"
+    ],
+    "searchQueries": [
+      "game theory cooperation vs competition social interaction",
+      "试探 道德重构 博弈论 零和",
+      "moral reframing suspicion trust social survival"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2aab1cb9",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "Created: wiki/concepts/试探的道德重构存在张力-2026-08-24-133145.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "自爱概念与经典心理学模型的关联梳理",
+    "description": "自爱页面中提到的\"内在小孩\"与\"冒名顶替综合征\"均属于有独立心理学文献支撑的概念，建议创建对应页面以丰富wiki的知识网络。同时，八大自爱原则与马斯洛需求层次理论的映射关系值得进一步梳理。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "SEARCH: 内在小孩疗法 心理学 定义 | 冒名顶替综合征 心理学 研究 | 马斯洛需求层次 自爱 关联"
+    ],
+    "searchQueries": [
+      "内在小孩疗法 心理学 定义",
+      "冒名顶替综合征 心理学 研究",
+      "马斯洛需求层次 自爱 关联"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-10e513bf",
+    "resolved": false,
+    "createdAt": 1787557044391
+  },
+  {
+    "type": "suggestion",
+    "title": "补充\"自我实现的预言（负面）\"页面",
+    "description": "源文档提出的\"无法自爱导致讨好、边界崩塌、拖延，这些行为进一步强化'我不够好'的信念，形成闭环\"是一个值得单独梳理的概念。当前wiki缺乏对此机制的系统描述，可考虑创建 dedicated concept page。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "SEARCH: 自我实现的预言 负面循环 心理学 | self-fulfilling prophecy negative loop self-worth"
+    ],
+    "searchQueries": [
+      "自我实现的预言 负面循环 心理学",
+      "self-fulfilling prophecy negative loop self-worth"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7e7ce7e1",
+    "resolved": false,
+    "createdAt": 1787557044391
+  },
+  {
+    "type": "missing-page",
+    "title": "三大障碍的正反馈循环未独立成页",
+    "description": "分析指出认知熔断与算法信息茧房之间可能存在正反馈循环（熔断路径被算法强化），但现有wiki中尚无页面专门讨论这一递归关系。建议创建独立概念页或在此合成页中补充。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/concepts/认知-算法正反馈循环.md"
+    ],
+    "searchQueries": [
+      "cognitive overload algorithmic filter bubble feedback loop information inequality"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-191db55f",
+    "resolved": false,
+    "createdAt": 1787558120244
+  },
+  {
+    "type": "missing-page",
+    "title": "核心自我参数",
+    "description": "文章核心概念\"核心自我参数\"缺乏明确的心理学定义和实证支持，建议调研其与心理学既有概念（如自我图式self-schema、内隐人格理论implicit personality theory、核心信念core beliefs）的关系，以判断该概念的理论根基是否成立。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/核心自我参数.md"
+    ],
+    "searchQueries": [
+      "自我图式 schema theory self",
+      "核心信念 认知行为疗法 core beliefs",
+      "implicit personality theory 自我概念 structure"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e5a446f3",
+    "resolved": true,
+    "createdAt": 1787560868698,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "断裂带效应的心理学对照",
+    "description": "\"断裂带效应\"是作者原创概念，描述与内在标准不符时的排斥反应。建议调研是否有对应的心理学机制（如认知失调、经验回避experiential avoidance、价值观冲突），以及是否存在更成熟的术语可以借用或对照。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/断裂带效应.md"
+    ],
+    "searchQueries": [
+      "认知失调 排斥机制 cognitive dissonance avoidance",
+      "experiential avoidance values incongruence",
+      "自我一致性自我验证理论 self-verification theory"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f816379d",
+    "resolved": false,
+    "createdAt": 1787560868698
+  },
+  {
+    "type": "missing-page",
+    "title": "选择的权力",
+    "description": "\"选择的权力\"是全文行动落脚点，被表述为\"与生俱来却常被遗忘的根本权力\"，但未与存在主义哲学（萨特\"人被判定为自由\"、加缪反抗哲学）或积极心理学中的主体性（agency）概念做理论对接，建议补充学术锚点。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/选择的权力.md"
+    ],
+    "searchQueries": [
+      "existentialism freedom responsibility Sartre agency",
+      "self-determination theory autonomy agency Deci Ryan",
+      "locus of control internal external Rotter"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c087f84f",
+    "resolved": true,
+    "createdAt": 1787560868698,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "contradiction",
+    "title": "认知失调与防御页面的反向重构张力",
+    "description": "本文对\"认知失调\"进行了正向重构（不适感=突破信号），与现有[[concepts/认知失调与防御]]页面聚焦于防御机制的框架形成张力。建议在认知失调与防御页面记录这一对立解读，标注\"正向重构视角\"。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f9a31567",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "Created: wiki/concepts/认知失调与防御页面的反向重构张力-2026-08-24-133214.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "系统2实体页面缺失",
+    "description": "[[concepts/认知惯性]]和相关概念引用了\"系统1/系统2\"框架，但系统中尚无系统2的独立实体页面。已在此批生成中包含系统2实体页面。若系统1也已存在类似页面，请合并或去重。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/entities/系统2.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-64bd7d3a",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "支点决策可扩展到组织决策层面",
+    "description": "本文框架明确针对个人重大人生决策，但作者未探讨其向组织/团队决策的扩展性。这是一个值得后续探索的研究方向，可考虑创建query页面跟踪。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: organizational decision making pivot decisions framework | team decision quality high-potential groups | cognitive bias organizational behavior Kahneman"
+    ],
+    "searchQueries": [
+      "organizational decision making pivot decisions framework",
+      "team decision quality high-potential groups",
+      "cognitive bias organizational behavior Kahneman"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6e7a9e91",
+    "resolved": false,
+    "createdAt": 1787568266826
+  },
+  {
+    "type": "missing-page",
+    "title": "系统2实体页面可能重复",
+    "description": "分析阶段指出系统1在多个概念页中被引用，但未确认系统2实体是否已存在。新批处理中已创建[[entities/系统2.md]]，需人工核查是否与已有页面重复。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/entities/系统2.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5adfb329",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "支点决策框架的组织决策扩展性",
+    "description": "本文框架明确针对个人重大人生决策，但未探讨向组织/团队决策层面的扩展性。这是一个值得跟踪的研究开放问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: organizational decision making pivot decisions Kahneman | team decision quality high-potential groups | cognitive bias organizational behavior loss aversion"
+    ],
+    "searchQueries": [
+      "organizational decision making pivot decisions Kahneman",
+      "team decision quality high-potential groups",
+      "cognitive bias organizational behavior loss aversion"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6a357153",
+    "resolved": false,
+    "createdAt": 1787568266826
+  },
+  {
+    "type": "missing-page",
+    "title": "递归性与结构性矛盾需追踪",
+    "description": "源文档框架存在两个未被充分讨论的张力：(1) 三重障碍的递归互动关系——认知壁垒使人无法识别圈层闭环的存在，系统设计通过低价值内容加固认知壁垒；(2) 个体能力升级与结构性不平等的循环矛盾——构建三种能力所需的资源本身受结构性不平等影响。建议创建 query 页面追踪这些问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/queries/information-barrier-recursion.md",
+      "wiki/queries/capability-vs-structure-paradox.md"
+    ],
+    "searchQueries": [
+      "information asymmetry structural inequality social capital",
+      "cognitive barriers information hierarchy"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-84d313d4",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "探索三重障碍的递归模型",
+    "description": "考虑创建综合分析页面，探讨认知壁垒、圈层闭环、系统设计三者如何相互强化，以及打破其中一个是否依赖于先突破另一个。这对理解\"能力升级是否足够\"的关键问题至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/synthesis/信息障碍递归模型.md"
+    ],
+    "searchQueries": [
+      "information asymmetry recursive model social capital cognition"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4b18c270",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "三重障碍的递归互动模型",
+    "description": "源文档将三重障碍（认知壁垒/圈层闭环/系统设计）呈现为并列关系，但未深入探讨它们如何相互强化：认知壁垒使人无法识别圈层闭环的存在，系统设计通过低价值内容淹没注意力进一步加固认知壁垒。理解这种递归关系对框架的实际应用至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/synthesis/信息障碍递归模型.md",
+      "wiki/concepts/信息流动的结构性不平等.md"
+    ],
+    "searchQueries": [
+      "information asymmetry recursive barriers social capital",
+      "cognitive filtering information segregation"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a0ef9a56",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "能力升级与结构性不平等的循环矛盾",
+    "description": "框架暗示个体能力升级足以破局，但构建重构/连接/洞察能力所需的资源（深度阅读时间、导师渠道、批判性思维训练）本身已被结构性不平等分配。这一循环矛盾需要进一步澄清：能力升级是突破口还是安慰剂？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/concepts/信息流动的结构性不平等.md"
+    ],
+    "searchQueries": [
+      "social reproduction information inequality education access",
+      "capability vs structure information gaps"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-618a6442",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "missing-page",
+    "title": "支点决策页面的内容更新需求",
+    "description": "当前 `concepts/支点决策.md` 已有页面，但本文档提供了更完整的四大征兆框架和三大心理陷阱机制，建议在对应页面补充更新：① 完整呈现四大征兆表；② 补充三大心理陷阱（损失厌恶、双曲贴现、认知惯性）的详细说明；③ 增加元决策与支点决策层级关系的说明。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/支点决策.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ab5ea06d",
+    "resolved": true,
+    "createdAt": 1787578701448,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "不适感信号与认知失调防御的区分规则",
+    "description": "文档中\"隐约的不安感\"作为成长信号的概念，与已有 `concepts/认知失调与防御` 页面存在潜在张力。建议创建一个明确的区分规则页面或在不適感作为信号页面中补充\"如何区分成长型不适与防御型不适\"的操作指南。搜索关键词：growth discomfort vs defensive avoidance cognitive dissonance threshold.",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: growth discomfort vs defensive avoidance cognitive dissonance | distinguishing growth signals from defense mechanisms psychology | cognitive dissonance theory approach-avoidance conflict"
+    ],
+    "searchQueries": [
+      "growth discomfort vs defensive avoidance cognitive dissonance",
+      "distinguishing growth signals from defense mechanisms psychology",
+      "cognitive dissonance theory approach-avoidance conflict"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2999139c",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "suggestion",
+    "title": "成长型不适与防御型不适的区分框架",
+    "description": "本文档核心论点依赖\"不适感=成长信号\"的判断，但wiki中已有`concepts/认知失调与防御`页面，存在读者将防御性回避误认为成长信号的混淆风险。建议在`concepts/不适感作为信号`或新建页面中，明确列出区分\"成长型不适\"与\"防御型不适\"的操作性标准，例如：成长型不适指向具体行动（如加入新社群），防御型不适指向抽象焦虑（如\"我不配\"）。这一区分直接影响整个支点决策框架的实践可靠性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/不适感作为信号.md",
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "searchQueries": [
+      "growth discomfort vs avoidance behavior distinction psychology",
+      "approach-avoidance conflict diagnostic criteria",
+      "when is anxiety a signal vs a defense mechanism"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a89811f3",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "missing-page",
+    "title": "元决策与信息获取三重维度的整合研究",
+    "description": "本文档提出\"元决策=选择环境\"是最具辐射力的决策，并与`synthesis/信息获取能力的三重维度`形成呼应，但两处尚未建立实质整合。建议搜索并确认：元决策与信息获取能力的三个维度（连接能力、重构能力、洞察能力）之间的理论映射关系是什么？是否有学术文献支持\"环境选择作为信息获取的元策略\"这一命题？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/synthesis/信息获取能力的三重维度.md",
+      "wiki/concepts/元决策.md"
+    ],
+    "searchQueries": [
+      "meta-decision theory environment selection information acquisition",
+      "choosing your environment as strategic decision-making",
+      "community of practice learning theory environmental choice"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4d6bf1fc",
+    "resolved": true,
+    "createdAt": 1787578701448,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "随缘防御与支点决策不适感的概念张力",
+    "description": "wiki中已有`concepts/随缘作为防御-vs-健康策略`页面，而本文档将\"隐约的不安感\"视为成长信号，两者存在潜在张力：当个体以\"随缘\"态度面对不适感时，如何判断这是健康策略还是防御性逃避？建议在两个概念之间建立交叉引用和区分规则。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/随缘作为防御-vs-健康策略.md",
+      "wiki/concepts/不适感作为信号.md"
+    ],
+    "searchQueries": [
+      "letting go vs avoidance distinction mindfulness psychology",
+      "wu wei adaptive acceptance or defensive resignation",
+      "随缘 佛教 心理学 应对策略 区分"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1a1f25e6",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "suggestion",
+    "title": "阿德勒心理学（个体心理学）系统框架",
+    "description": "源文反复引用\"阿德勒心理学\"但未建立基础理论框架。当前wiki对\"课题分离\"和\"共同体感觉\"的处理依赖单篇来源，缺少阿德勒原典的系统性背景（如《被讨厌的勇气》、自卑与超越、生活风格等核心概念）。建立此页面将为现有概念提供理论锚点，并有助于辨别哪些是阿德勒原意、哪些是作者的创造性重构。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/课题分离.md",
+      "wiki/concepts/共同体感觉.md"
+    ],
+    "searchQueries": [
+      "阿德勒心理学 个体心理学 核心概念 体系",
+      "Adlerian psychology individual psychology original concepts social interest",
+      "被讨厌的勇气 阿德勒 课题分离 共同体感觉 原文对照"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-686dd1a1",
+    "resolved": false,
+    "createdAt": 1787578924842
+  },
+  {
+    "type": "suggestion",
+    "title": "\"共业\"概念的独立定义与跨文化语境分析",
+    "description": "源文在\"共同体感觉\"三步路径的终极阶段引用了佛教概念\"共业\"，但未做任何解释或溯源。这是一个重要的跨学科桥梁概念——若wiki使用者不熟悉佛教语境，此处的论证链条就会断裂。建议建立独立概念页或至少补充明确定义，并考察\"共业\"与\"共同体感觉\"在哲学层面的可比性与差异。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/共同体感觉.md"
+    ],
+    "searchQueries": [
+      "佛教 共业 概念 定义 与 共同体感觉 比较",
+      "karma collective Buddhist concept compared to Adler social interest",
+      "共业 阿德勒 共同体感觉 无分别心 哲学对照"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0d38defe",
+    "resolved": false,
+    "createdAt": 1787578924842
+  },
+  {
+    "type": "suggestion",
+    "title": "课题分离有效剂量的情境化研究",
+    "description": "现有wiki对课题分离的讨论停留在概念层面，开放问题中明确提出\"什么情境下它是拐杖，什么情境下成为牢笼\"但未回答。这是本文最有实践价值的判断框架。建议补充相关心理学实证研究（如边界设定与健康人际关系的研究），为\"有效剂量\"提供可操作的判断标准，否则该概念页将停留在思辨层面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/课题分离.md",
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "searchQueries": [
+      "boundary setting psychology healthy boundaries research empirical",
+      "课题分离 滥用 过度防御 心理学研究 边界设定",
+      "when is separation of tasks maladaptive research interpersonal boundaries"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f4fbdf1e",
+    "resolved": false,
+    "createdAt": 1787578924842
+  }
+]

@@ -1,0 +1,406 @@
+{
+  "version": 1,
+  "updatedAt": 1787584360981,
+  "files": {
+    "purpose.md": {
+      "hash": "77546dadbea32fdcf671400051e18f56",
+      "size": 324,
+      "mtimeMs": 1787502583726
+    },
+    "raw/sources/10月/从思绪的牢笼中解脱——现代人的内在自由指南.md": {
+      "hash": "5b6b0776f7181ac20d8fa361cb74cf5e",
+      "size": 3649,
+      "mtimeMs": 1781626553092
+    },
+    "raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md": {
+      "hash": "daaa0c1e95c694560a9c40b3f00c45a2",
+      "size": 4231,
+      "mtimeMs": 1781626553096
+    },
+    "raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md": {
+      "hash": "113abaeb379a6a6d3f565f55d4a63ab3",
+      "size": 3905,
+      "mtimeMs": 1781626918599
+    },
+    "raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md": {
+      "hash": "da40f3bf9c6af1479f8d89faab83df96",
+      "size": 4347,
+      "mtimeMs": 1781626553100
+    },
+    "raw/sources/10月/停止无效犒劳，你真的会自爱吗？.md": {
+      "hash": "2e0b7556c314938879823fbfa1ab8efd",
+      "size": 6858,
+      "mtimeMs": 1781626593676
+    },
+    "raw/sources/10月/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md": {
+      "hash": "1475e1133fd72c52f214f10c1eb1b7e8",
+      "size": 186,
+      "mtimeMs": 1787584359480
+    },
+    "raw/sources/10月/社交智慧：真诚但不真实.md": {
+      "hash": "53a191bcaf8ef36dbc3e2a7fa71ba00f",
+      "size": 1379,
+      "mtimeMs": 1781626932221
+    },
+    "raw/sources/10月/高手过招：真正的讨论，是一场测试“文明弹性”的共震实验》.md": {
+      "hash": "50ec19a4689bc74b1fb153f3f44bea67",
+      "size": 4898,
+      "mtimeMs": 1781626553093
+    },
+    "raw/sources/10月/高质量对话的关键步骤.md": {
+      "hash": "65808454e8cd16a8747c96eda5ad2b59",
+      "size": 4536,
+      "mtimeMs": 1781626593649
+    },
+    "raw/sources/人生的支点决策：在不适中识别命运信号.md": {
+      "hash": "5b332bf6de16752ebcdea3c7e113b643",
+      "size": 3119,
+      "mtimeMs": 1781626593663
+    },
+    "raw/sources/信息流动的“三重天堑”与破局之道.md": {
+      "hash": "7cc15b0b4934cdeaa5f8507340d07385",
+      "size": 2734,
+      "mtimeMs": 1787573075998
+    },
+    "raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md": {
+      "hash": "7c2be1417c14c6ab2f003563f15fc885",
+      "size": 4067,
+      "mtimeMs": 1781626553077
+    },
+    "schema.md": {
+      "hash": "74be8ad21cdd66495b0e39508ee783b9",
+      "size": 2078,
+      "mtimeMs": 1787502583725
+    },
+    "wiki/concepts/不确定性耐受力.md": {
+      "hash": "7a70fcbe125d4d823925449134026bbf",
+      "size": 2507,
+      "mtimeMs": 1787555515849
+    },
+    "wiki/concepts/与自欺谎言概念的潜在张力-2026-08-24-133206.md": {
+      "hash": "b444b9f0018bbbe5bf86ff8418418df9",
+      "size": 472,
+      "mtimeMs": 1787578326718
+    },
+    "wiki/concepts/信息战.md": {
+      "hash": "517858962130b8815b60bdf160bb83c4",
+      "size": 1353,
+      "mtimeMs": 1787556932125
+    },
+    "wiki/concepts/信息流动的结构性不平等.md": {
+      "hash": "9334b686ae89aa07c6d293e288adefb0",
+      "size": 1960,
+      "mtimeMs": 1787583109185
+    },
+    "wiki/concepts/信息流动结构性不平等.md": {
+      "hash": "53b5fb25d3483fffc9c8a5a984878493",
+      "size": 3805,
+      "mtimeMs": 1787558028210
+    },
+    "wiki/concepts/元信息.md": {
+      "hash": "4fa603ef9dfdcb4939cf6a26d467b97b",
+      "size": 1334,
+      "mtimeMs": 1787583109186
+    },
+    "wiki/concepts/元决策.md": {
+      "hash": "aa616f07dc05f4ef9d30d820624e5bb6",
+      "size": 3539,
+      "mtimeMs": 1787583134254
+    },
+    "wiki/concepts/共同体感觉.md": {
+      "hash": "b43ab300c40c92eeb0504bc80ca553d6",
+      "size": 1078,
+      "mtimeMs": 1787583099931
+    },
+    "wiki/concepts/共震实验.md": {
+      "hash": "c7c815758783e0b4f47ec30be2704ffe",
+      "size": 2602,
+      "mtimeMs": 1787555515850
+    },
+    "wiki/concepts/向内凝视.md": {
+      "hash": "9361959fc57a418f020c188b671bf4a4",
+      "size": 1372,
+      "mtimeMs": 1787555765253
+    },
+    "wiki/concepts/圈层闭环.md": {
+      "hash": "71fb986a396624f9e261d4962900271b",
+      "size": 1376,
+      "mtimeMs": 1787583109187
+    },
+    "wiki/concepts/增量自由.md": {
+      "hash": "b7d7608fed3ecfb3761321e86d968f42",
+      "size": 1472,
+      "mtimeMs": 1787560868685
+    },
+    "wiki/concepts/外包人生控制权.md": {
+      "hash": "fda5ce8b679fe0c2407dd94798060290",
+      "size": 1711,
+      "mtimeMs": 1787555765253
+    },
+    "wiki/concepts/学生思维.md": {
+      "hash": "c8da91dfd3abdaa83d29e17a260d3f70",
+      "size": 1735,
+      "mtimeMs": 1787556932123
+    },
+    "wiki/concepts/宇宙-indifferent-与行动动力的哲学张力-2026-08-24-133154.md": {
+      "hash": "ac0bfcf939f3b792a3114f8c7ff602a4",
+      "size": 433,
+      "mtimeMs": 1787578314227
+    },
+    "wiki/concepts/宇宙不仁.md": {
+      "hash": "29e6f10a247b3bc743800f2010209529",
+      "size": 1872,
+      "mtimeMs": 1787555765254
+    },
+    "wiki/concepts/延伸感.md": {
+      "hash": "2140d21e332033a26eacd547f0157a7f",
+      "size": 1544,
+      "mtimeMs": 1787560868686
+    },
+    "wiki/concepts/开放结构.md": {
+      "hash": "a87e78f49b5c9bca2ca55d40e36776e2",
+      "size": 2305,
+      "mtimeMs": 1787555515846
+    },
+    "wiki/concepts/损失厌恶.md": {
+      "hash": "2cde7efaf5ade952674c69c298efee6c",
+      "size": 1198,
+      "mtimeMs": 1787556932125
+    },
+    "wiki/concepts/断裂带效应.md": {
+      "hash": "da3ea91420d6bf55a1a48c511438057b",
+      "size": 1514,
+      "mtimeMs": 1787560868683
+    },
+    "wiki/concepts/核心自我参数.md": {
+      "hash": "d792fd90b55317800637159792a8650a",
+      "size": 1570,
+      "mtimeMs": 1787560868682
+    },
+    "wiki/concepts/框架重塑.md": {
+      "hash": "e79b6966c129a3e430f9cef57d21a8b0",
+      "size": 1383,
+      "mtimeMs": 1787560868687
+    },
+    "wiki/concepts/真诚与边界.md": {
+      "hash": "009b67389773ac44e92afbc17a9cf937",
+      "size": 1632,
+      "mtimeMs": 1787556812626
+    },
+    "wiki/concepts/社交智慧.md": {
+      "hash": "7dc9517330028286056b42b74b90b601",
+      "size": 1234,
+      "mtimeMs": 1787556812627
+    },
+    "wiki/concepts/算法信息茧房.md": {
+      "hash": "5325044113ce47697f80312b10776ae8",
+      "size": 1701,
+      "mtimeMs": 1787583109191
+    },
+    "wiki/concepts/经验的茧房.md": {
+      "hash": "c3c2a9e91cb2cd3fd38ead4c9e87dff3",
+      "size": 1967,
+      "mtimeMs": 1787560868681
+    },
+    "wiki/concepts/能量泄漏.md": {
+      "hash": "e41ff9c774d135cd159032e55949433b",
+      "size": 2186,
+      "mtimeMs": 1787555765252
+    },
+    "wiki/concepts/自我价值外包.md": {
+      "hash": "da5b778e012a01a37378d11910ac5816",
+      "size": 1190,
+      "mtimeMs": 1787583099936
+    },
+    "wiki/concepts/自我茧房.md": {
+      "hash": "62258b25a3f1eebb992cc581e4696a3e",
+      "size": 1417,
+      "mtimeMs": 1787560868689
+    },
+    "wiki/concepts/自我认同防御.md": {
+      "hash": "0a294003ec9b2bc74fdf7e9dd94b96d6",
+      "size": 2696,
+      "mtimeMs": 1787555515848
+    },
+    "wiki/concepts/自欺谎言.md": {
+      "hash": "7795385749a97fa746c88b9c3452e5d5",
+      "size": 1549,
+      "mtimeMs": 1787555765255
+    },
+    "wiki/concepts/自爱.md": {
+      "hash": "6b146c0251657f5d4da946ec7e4ed9a1",
+      "size": 5003,
+      "mtimeMs": 1787557044384
+    },
+    "wiki/concepts/虚无的满级号.md": {
+      "hash": "143bc1070db214a7b91f781de114cd3b",
+      "size": 1504,
+      "mtimeMs": 1787560868689
+    },
+    "wiki/concepts/认知失调与防御.md": {
+      "hash": "b875d97ac680812ff6e7b2853321b351",
+      "size": 2257,
+      "mtimeMs": 1787555515847
+    },
+    "wiki/concepts/认知失调与防御页面的反向重构张力-2026-08-24-133214.md": {
+      "hash": "2bf9468126bd6cefb2b637e169751e81",
+      "size": 436,
+      "mtimeMs": 1787578334464
+    },
+    "wiki/concepts/认知熔断.md": {
+      "hash": "7f4bfd5acacdccdf72eb4dd559121b43",
+      "size": 1612,
+      "mtimeMs": 1787583109193
+    },
+    "wiki/concepts/试探的道德重构存在张力-2026-08-24-133145.md": {
+      "hash": "f87692ffcc0b889b2bb4abb5358f3572",
+      "size": 411,
+      "mtimeMs": 1787578305761
+    },
+    "wiki/concepts/课题分离.md": {
+      "hash": "788034387ae9347c2819867376264ffe",
+      "size": 2437,
+      "mtimeMs": 1787583099938
+    },
+    "wiki/concepts/边界感.md": {
+      "hash": "8f187aab23ea30911d08ffc5d8028adb",
+      "size": 1641,
+      "mtimeMs": 1787556932124
+    },
+    "wiki/concepts/选择的权力.md": {
+      "hash": "75a2ff3f84ab344b4980c15c6c879da7",
+      "size": 1511,
+      "mtimeMs": 1787560868688
+    },
+    "wiki/concepts/防御模式与觉知模式.md": {
+      "hash": "bdcbd38592754ffd980bb62c10c3f92c",
+      "size": 1102,
+      "mtimeMs": 1787583099939
+    },
+    "wiki/concepts/随缘作为防御-vs-健康策略-2026-08-24-132835.md": {
+      "hash": "8d8e8304367f980b12d194c24eabf3ef",
+      "size": 428,
+      "mtimeMs": 1787578115728
+    },
+    "wiki/concepts/非黑即白认知框架.md": {
+      "hash": "6173b808e8fb7be8d17346d91d10c77e",
+      "size": 1195,
+      "mtimeMs": 1787556932126
+    },
+    "wiki/concepts/高价值信息资产.md": {
+      "hash": "e4e88211527c449c98de03cd02183715",
+      "size": 1679,
+      "mtimeMs": 1787583109195
+    },
+    "wiki/concepts/高效试探.md": {
+      "hash": "cb2c857dc34db7d27884344082b9c79b",
+      "size": 2622,
+      "mtimeMs": 1787556932122
+    },
+    "wiki/entities/洞察能力.md": {
+      "hash": "b0eb9d449c3c0da25c30654214633b4d",
+      "size": 3477,
+      "mtimeMs": 1787573376260
+    },
+    "wiki/entities/清醒者.md": {
+      "hash": "5adf08c7beed52e4a6ada2aecfe8c10a",
+      "size": 1186,
+      "mtimeMs": 1787556932120
+    },
+    "wiki/entities/老子.md": {
+      "hash": "f844e6a322d1b6257d0c89344c1e5f46",
+      "size": 1269,
+      "mtimeMs": 1787555765251
+    },
+    "wiki/entities/老实人.md": {
+      "hash": "6ec1ff0ba31af4d5c638395a9a1073c0",
+      "size": 1829,
+      "mtimeMs": 1787556932119
+    },
+    "wiki/entities/连接能力.md": {
+      "hash": "6484b7e39dcec2ea90523d87657c0abb",
+      "size": 3490,
+      "mtimeMs": 1787573349825
+    },
+    "wiki/entities/重构能力.md": {
+      "hash": "a6b616abe1fe11e77d031e424a34231d",
+      "size": 2770,
+      "mtimeMs": 1787573332263
+    },
+    "wiki/index.md": {
+      "hash": "ae419cfcbef8cdf4a73fcee39f91cc0c",
+      "size": 4276,
+      "mtimeMs": 1787583134262
+    },
+    "wiki/log.md": {
+      "hash": "da87670b3268408d085f7731c20d5627",
+      "size": 10956,
+      "mtimeMs": 1787583134263
+    },
+    "wiki/overview.md": {
+      "hash": "3a6b8de12b70516be93fe9f2f947b45c",
+      "size": 210,
+      "mtimeMs": 1787502583717
+    },
+    "wiki/sources/3-10月--10-社交智慧真诚但不真实--140nr1a.md": {
+      "hash": "2e17a151ad2dc3ef3e72e45b39ad9186",
+      "size": 1619,
+      "mtimeMs": 1787556812624
+    },
+    "wiki/sources/3-10月--10-高质量对话的关键步骤--f9cwxr.md": {
+      "hash": "68d3985d35448c9306d0886cb2a92db6",
+      "size": 4205,
+      "mtimeMs": 1787583789738
+    },
+    "wiki/sources/3-10月--13-停止无效犒劳你真的会自爱吗--1j3bb7j.md": {
+      "hash": "774c049186e2696d00d9a7f7ae5d3690",
+      "size": 5343,
+      "mtimeMs": 1787557044383
+    },
+    "wiki/sources/3-10月--14-信息流动的三重天堑与破局之道--er6gck.md": {
+      "hash": "6f0d4c919f5ff25477b216f16a3eb484",
+      "size": 6509,
+      "mtimeMs": 1787557960005
+    },
+    "wiki/sources/3-10月--16-停止吃亏老实人的清醒系统升级指南--1yazm6s.md": {
+      "hash": "eafbc8921ec6b95f74cfbfff2440dc2c",
+      "size": 3625,
+      "mtimeMs": 1787556932117
+    },
+    "wiki/sources/3-10月--19-从思绪的牢笼中解脱现代人的内在自由指南--dq3wp5.md": {
+      "hash": "70de579842bf3e8b59ffb228fb98a979",
+      "size": 1093,
+      "mtimeMs": 1787544645526
+    },
+    "wiki/sources/3-10月--21-你的人生只差一念之间激活你被遗忘的选择权力--m3bkyk.md": {
+      "hash": "bd3b1500b82c6b795a564f0bf1bf4993",
+      "size": 2464,
+      "mtimeMs": 1787560868680
+    },
+    "wiki/sources/3-10月--23-高手过招真正的讨论是一场测试文明弹性的共震实验--1m82aiz.md": {
+      "hash": "699e13e9b589a0c4a22baf8d8843bbf3",
+      "size": 7697,
+      "mtimeMs": 1787544697719
+    },
+    "wiki/sources/3-10月--26-你的人生在漏电停止喊老天帮我你正在亲手交出人生控制权--14b7xul.md": {
+      "hash": "260933b240a6dd0e494081f89f94a272",
+      "size": 3945,
+      "mtimeMs": 1787555765250
+    },
+    "wiki/sources/信息流动的“三重天堑”与破局之道.md": {
+      "hash": "ab914fcda3d4b467e66c48d82efaa86d",
+      "size": 3653,
+      "mtimeMs": 1787583109199
+    },
+    "wiki/synthesis/信息获取能力的三重维度.md": {
+      "hash": "0387ea1343719e0a868347e7add03903",
+      "size": 2125,
+      "mtimeMs": 1787583109200
+    },
+    "wiki/synthesis/高质量对话方法论.md": {
+      "hash": "c412c71ea8a919e531db87218d16ec57",
+      "size": 4080,
+      "mtimeMs": 1787555515850
+    }
+  }
+}

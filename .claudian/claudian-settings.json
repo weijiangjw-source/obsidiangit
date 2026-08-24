@@ -143,7 +143,7 @@
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "claude-code/glm-4.7-flash"
+    "model": "claude-code/gpt-oss-20b-MXFP4-Q8"
   },
   "savedProviderModel": {
     "claude": "claude-code/glm-4.7-flash"
@@ -164,11 +164,14 @@
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "enableDualPane": true,
-  "enableFilePane": true,
   "dualPaneSide": "right",
+  "restoreTabsOnStartup": true,
+  "collabEnabled": false,
+  "collabProjectsFolder": "workspace",
+  "collabGitPath": "",
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",
-  "pinnedLinkedNotePaths": [],
+  "pinnedLinkedContentPaths": [],
   "hiddenProviderCommands": {},
   "maxTabs": 3,
   "tabBarPosition": "input"

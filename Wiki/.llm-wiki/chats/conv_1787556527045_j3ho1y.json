@@ -1,0 +1,74 @@
+[
+  {
+    "id": "msg_1787556527045_1_s8tcpp",
+    "role": "user",
+    "content": "你好",
+    "timestamp": 1787556527045,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787556539432_2_xlz325",
+    "role": "assistant",
+    "content": "你好！我是 Agnes，由 Sapiens AI 开发的语言模型。有什么我可以帮你的吗？",
+    "timestamp": 1787556539432,
+    "conversationId": "conv_1787556527045_j3ho1y",
+    "references": [],
+    "agentSteps": [
+      {
+        "id": "backend-0-skills.load-completed",
+        "type": "tool_result",
+        "tool": "project_file_read",
+        "message": "85 skill(s) available",
+        "status": "success",
+        "timestamp": 1787556527198
+      }
+    ]
+  },
+  {
+    "id": "msg_1787582583271_1_t74xh1",
+    "role": "user",
+    "content": "你可以识别图片内容吗",
+    "timestamp": 1787582583271,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787582644612_2_4ou9m8",
+    "role": "assistant",
+    "content": "Error: LLM request failed: error sending request for url (https://apihub.agnes-ai.com/v1/chat/completions)",
+    "timestamp": 1787582644612,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787582988018_3_bphamt",
+    "role": "user",
+    "content": "你这个语言模型可以识别图片内容吗",
+    "timestamp": 1787582988018,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787583015564_4_anjmq4",
+    "role": "assistant",
+    "content": "No, I cannot recognize or analyze image content. My current tool set only supports text-based operations—searching the wiki, reading pages, writing files, and running shell commands. I don't have access to any vision or image-processing capabilities.",
+    "timestamp": 1787583015564,
+    "conversationId": "conv_1787556527045_j3ho1y",
+    "references": [],
+    "agentSteps": [
+      {
+        "id": "backend-0-skills.load-completed",
+        "type": "tool_result",
+        "tool": "project_file_read",
+        "message": "85 skill(s) available",
+        "status": "success",
+        "timestamp": 1787582988170
+      },
+      {
+        "id": "backend-1-agent.action-completed",
+        "type": "tool_result",
+        "tool": "unknown_tool",
+        "message": "rejected: Agent loop responses must be compact JSON. Return either a tool action like {\"action\":\"tool\",\"tool\":\"wiki.read_page\",\"path\":\"...\"} or a final action like {\"action\":\"final\",\"answer\":\"...\"}. Do not return plain text.",
+        "status": "success",
+        "timestamp": 1787583001755
+      }
+    ]
+  }
+]

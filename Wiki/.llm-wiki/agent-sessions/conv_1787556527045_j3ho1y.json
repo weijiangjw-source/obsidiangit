@@ -1,0 +1,27 @@
+{
+  "sessionId": "conv_1787556527045_j3ho1y",
+  "projectId": "2078de67-1b95-4e8d-8e1e-6f27d4db900b",
+  "messages": [
+    {
+      "role": "user",
+      "content": "你好",
+      "timestamp": 1787556539421
+    },
+    {
+      "role": "assistant",
+      "content": "你好！我是 Agnes，由 Sapiens AI 开发的语言模型。有什么我可以帮你的吗？",
+      "timestamp": 1787556539421
+    },
+    {
+      "role": "user",
+      "content": "你这个语言模型可以识别图片内容吗",
+      "timestamp": 1787583015554
+    },
+    {
+      "role": "assistant",
+      "content": "No, I cannot recognize or analyze image content. My current tool set only supports text-based operations—searching the wiki, reading pages, writing files, and running shell commands. I don't have access to any vision or image-processing capabilities.",
+      "timestamp": 1787583015554
+    }
+  ],
+  "updatedAt": 1787583015554
+}

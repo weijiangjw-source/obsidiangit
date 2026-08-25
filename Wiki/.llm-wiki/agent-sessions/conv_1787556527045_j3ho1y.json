@@ -21,7 +21,27 @@
       "role": "assistant",
       "content": "No, I cannot recognize or analyze image content. My current tool set only supports text-based operations—searching the wiki, reading pages, writing files, and running shell commands. I don't have access to any vision or image-processing capabilities.",
       "timestamp": 1787583015554
+    },
+    {
+      "role": "user",
+      "content": "你这个模型上下文多少，有多少参数",
+      "timestamp": 1787629780342
+    },
+    {
+      "role": "assistant",
+      "content": "我是 Agnes-2.5-Flash，由 Sapiens AI 开发。不过我无法透露具体的模型参数数量或上下文窗口大小等内部技术细节。",
+      "timestamp": 1787629780342
+    },
+    {
+      "role": "user",
+      "content": "你好",
+      "timestamp": 1787630043834
+    },
+    {
+      "role": "assistant",
+      "content": "你好！有什么我可以帮你的吗？",
+      "timestamp": 1787630043834
     }
   ],
-  "updatedAt": 1787583015554
+  "updatedAt": 1787630043834
 }

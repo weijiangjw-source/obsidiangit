@@ -70,5 +70,60 @@
         "timestamp": 1787583001755
       }
     ]
+  },
+  {
+    "id": "msg_1787629773752_1_aud4x3",
+    "role": "user",
+    "content": "你这个模型上下文多少，有多少参数",
+    "timestamp": 1787629773752,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787629780352_2_3whrhh",
+    "role": "assistant",
+    "content": "我是 Agnes-2.5-Flash，由 Sapiens AI 开发。不过我无法透露具体的模型参数数量或上下文窗口大小等内部技术细节。",
+    "timestamp": 1787629780352,
+    "conversationId": "conv_1787556527045_j3ho1y",
+    "references": [],
+    "agentSteps": [
+      {
+        "id": "backend-0-agent.action-completed",
+        "type": "tool_result",
+        "tool": "unknown_tool",
+        "message": "rejected: Agent loop responses must be compact JSON. Return either a tool action like {\"action\":\"tool\",\"tool\":\"wiki.read_page\",\"path\":\"...\"} or a final action like {\"action\":\"final\",\"answer\":\"...\"}. Do not return plain text.",
+        "status": "success",
+        "timestamp": 1787629777339
+      }
+    ]
+  },
+  {
+    "id": "msg_1787629939696_3_4ek8cv",
+    "role": "user",
+    "content": "你好",
+    "timestamp": 1787629939696,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787629960236_4_niodga",
+    "role": "assistant",
+    "content": "Error: LLM HTTP 503 Service Unavailable: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}",
+    "timestamp": 1787629960236,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787630039512_5_8idedt",
+    "role": "user",
+    "content": "你好",
+    "timestamp": 1787630039512,
+    "conversationId": "conv_1787556527045_j3ho1y"
+  },
+  {
+    "id": "msg_1787630043837_6_si44gt",
+    "role": "assistant",
+    "content": "你好！有什么我可以帮你的吗？",
+    "timestamp": 1787630043837,
+    "conversationId": "conv_1787556527045_j3ho1y",
+    "references": [],
+    "agentSteps": []
   }
 ]

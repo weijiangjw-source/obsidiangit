@@ -584,3 +584,5 @@ sources: []
   - 创建概念：`wiki/concepts/性格结构定律.md`
   - 创建综合页：`wiki/synthesis/性格解构的三重分析框架.md`
   - 检测到与 `[[concepts/防御模式与觉知模式]]`、`[[concepts/认知失调与防御]]`、`[[concepts/归因模式改变]]` 的高度相关性，已在综合页中建立交叉引用
+- 2026-08-25: Created 1 page from review: `三优三缺法则的适用范围与源文本不一致-2026-08-25-153745.md`
+- 2026-08-25: Created 1 page from review: `性格公式的量化主张与证据缺失之间的张力-2026-08-25-153809.md`

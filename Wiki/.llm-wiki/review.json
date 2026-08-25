@@ -2162,8 +2162,9 @@
       }
     ],
     "id": "review-8b468e91",
-    "resolved": false,
-    "createdAt": 1787638766219
+    "resolved": true,
+    "createdAt": 1787638766219,
+    "resolvedAction": "Created: wiki/concepts/三优三缺法则的适用范围与源文本不一致-2026-08-25-153745.md"
   },
   {
     "type": "missing-page",
@@ -2500,8 +2501,9 @@
       }
     ],
     "id": "review-aab1588a",
-    "resolved": false,
-    "createdAt": 1787639658637
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "Created: wiki/synthesis/性格公式的量化主张与证据缺失之间的张力-2026-08-25-153809.md"
   },
   {
     "type": "missing-page",

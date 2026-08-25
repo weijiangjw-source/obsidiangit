@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1787639659359,
+  "updatedAt": 1787672290599,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -256,6 +256,11 @@
       "hash": "366f2f7eecc25a4398a8464170f0aa9b",
       "size": 540,
       "mtimeMs": 1787638766202
+    },
+    "wiki/concepts/三优三缺法则的适用范围与源文本不一致-2026-08-25-153745.md": {
+      "hash": "895fa0d60460d48bd9c2600d081ffe37",
+      "size": 466,
+      "mtimeMs": 1787672265248
     },
     "wiki/concepts/不介入他人剧本-vs-共同体感觉-2026-08-25-055510.md": {
       "hash": "f21f9f5974d1e3d045a7b7e9904db8d9",
@@ -993,14 +998,14 @@
       "mtimeMs": 1787630115889
     },
     "wiki/index.md": {
-      "hash": "a49941b571a78db1873993fff28153b7",
-      "size": 13986,
-      "mtimeMs": 1787639658632
+      "hash": "6c9722765cefb20989f98f8d834b1b33",
+      "size": 14279,
+      "mtimeMs": 1787672289752
     },
     "wiki/log.md": {
-      "hash": "65697d5a27c7ea5e843df39ac298dfc5",
-      "size": 23963,
-      "mtimeMs": 1787639658629
+      "hash": "86faa4a3818c63a8ada6ba6032001ed1",
+      "size": 24207,
+      "mtimeMs": 1787672289753
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -1221,6 +1226,11 @@
       "hash": "8d446d2556d0cd97a46615b44e12b5bf",
       "size": 1780,
       "mtimeMs": 1787637950312
+    },
+    "wiki/synthesis/性格公式的量化主张与证据缺失之间的张力-2026-08-25-153809.md": {
+      "hash": "b3ff281f2e0b8fec5891ac7fca4b96a4",
+      "size": 606,
+      "mtimeMs": 1787672289743
     },
     "wiki/synthesis/性格解构的三重分析框架.md": {
       "hash": "047e6f9e7df1df10a68a0cf4239cd377",

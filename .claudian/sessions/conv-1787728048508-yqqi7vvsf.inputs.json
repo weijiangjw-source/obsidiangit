@@ -32,7 +32,8 @@
       "canonicalText": "给出这篇文章适合于小红书平台的6个话题标签，横向排列",
       "images": [],
       "contentDigest": "f7b10d4816d425035598e60d328cd47f9ba2526bf603dde109e50800fb8c78fa",
-      "providerUserMessageId": "612b0a5a-951d-4bb5-9599-f634cdb25aa3"
+      "providerUserMessageId": "612b0a5a-951d-4bb5-9599-f634cdb25aa3",
+      "providerAssistantMessageId": "afb62673-da3e-48d8-a552-2f698db3b6f3"
     },
     {
       "schemaVersion": 1,
@@ -45,7 +46,8 @@
       "canonicalText": "继续",
       "images": [],
       "contentDigest": "65f454414e2fda4840658901f9399831363ad75712ba36b930b5ad393f72f7b7",
-      "providerUserMessageId": "ec1cc953-40ed-47be-b004-bbb1c868de2d"
+      "providerUserMessageId": "ec1cc953-40ed-47be-b004-bbb1c868de2d",
+      "providerAssistantMessageId": "2423c79c-055a-40ec-926f-92d83e308999"
     },
     {
       "schemaVersion": 1,
@@ -58,7 +60,8 @@
       "canonicalText": "什么意思",
       "images": [],
       "contentDigest": "96e2670d0598107cbff9b65251fc6b616872e0ddec1aa7e2e5835fecca2ecf29",
-      "providerUserMessageId": "1fcc327a-d36c-469f-98bf-e9f28a430a0d"
+      "providerUserMessageId": "1fcc327a-d36c-469f-98bf-e9f28a430a0d",
+      "providerAssistantMessageId": "d2791f27-a4f6-4ac6-8429-b6130bf3c533"
     }
   ]
 }

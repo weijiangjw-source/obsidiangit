@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1787728778283,
+  "updatedAt": 1787752834268,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -96,6 +96,11 @@
       "hash": "fae5701856f0523e83693cc9fa011a8f",
       "size": 2681,
       "mtimeMs": 1781626701467
+    },
+    "raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md": {
+      "hash": "f4729a5f687a2538e84490dd4d8a6f19",
+      "size": 15283,
+      "mtimeMs": 1787723232000
     },
     "raw/sources/你和成功之间，只隔着这 3 个启动开关.md": {
       "hash": "579376ae1c6b4b1f46f2b327485b4007",
@@ -255,7 +260,7 @@
     "wiki/concepts/一人公司.md": {
       "hash": "5a430fae2b2769b0ecc817173baebc84",
       "size": 1262,
-      "mtimeMs": 1787728777544
+      "mtimeMs": 1787752833551
     },
     "wiki/concepts/万相纵横.md": {
       "hash": "68bf7fb53daf0bfe55b8610533dd5c80",
@@ -1068,9 +1073,9 @@
       "mtimeMs": 1787728777549
     },
     "wiki/log.md": {
-      "hash": "1ac6c8002773468960120decb47306c6",
-      "size": 25531,
-      "mtimeMs": 1787728777547
+      "hash": "5c5015fc6fb67000938140801cd8fb78",
+      "size": 25676,
+      "mtimeMs": 1787752812507
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -1186,6 +1191,11 @@
       "hash": "2bb9363e67ab5c319fceefea20dbfd08",
       "size": 12629,
       "mtimeMs": 1787632272868
+    },
+    "wiki/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md": {
+      "hash": "d90f62ac2f0f73d1abf5336f7a3761bf",
+      "size": 8134,
+      "mtimeMs": 1787752812510
     },
     "wiki/sources/你和成功之间，只隔着这 3 个启动开关.md": {
       "hash": "690f064107fcc5e6d248ff6fa5c65e4a",

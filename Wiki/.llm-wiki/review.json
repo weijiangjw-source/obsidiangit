@@ -2756,5 +2756,85 @@
     "id": "review-1544f05a",
     "resolved": false,
     "createdAt": 1787728777556
+  },
+  {
+    "type": "missing-page",
+    "title": "递归思考 vs 单次执行 对比页",
+    "description": "Stage 1建议创建对比页面区分两种决策模式，有助于澄清\"递归思考并非万能\"的核心论点。当前wiki缺少显式的对比框架，仅有一篇概念页记录递归思考本身。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/comparisons/递归思考-vs-单次执行.md"
+    ],
+    "searchQueries": [
+      "recursive thinking vs single-step decision making",
+      "递归思考 单次执行 对比 元认知",
+      "递归思考 单次执行 对比 元认知 分析瘫痪"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-512c1d25",
+    "resolved": false,
+    "createdAt": 1787752812517
+  },
+  {
+    "type": "suggestion",
+    "title": "递归思考的最佳深度与阈值",
+    "description": "Stage 1提出了一个值得追踪的开放问题：递归思考是否存在\"最佳深度\"（几层自我觉察）的普适阈值？这与[[哥德尔不完备定理]]揭示的认知边界直接相关，也影响[[螺旋上升认知模型]]的适用范围。建议创建query页面跟踪。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/queries/递归思考的最佳深度与元认知阈值.md"
+    ],
+    "searchQueries": [
+      "metacognition depth threshold optimal recursion level",
+      "元认知最佳层级 递归深度 分析瘫痪阈值",
+      "元认知最佳层级 递归深度 分析瘫痪阈值 自我觉察层数"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5d1f5ddd",
+    "resolved": false,
+    "createdAt": 1787752812517
+  },
+  {
+    "type": "contradiction",
+    "title": "递归思考与万相纵横的场景策略张力",
+    "description": "Stage 1指出[[concepts/万相纵横]]强调\"随境而动\"的场景化适应（向外），而[[递归思考]]强调\"向内凝视\"的自我觉察——两者在策略取向上形成互补与张力，但未在当前wiki中显式讨论。建议创建comparison页面或在相关页面中添加cross-reference。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/comparisons/递归思考-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "万相纵横 递归思考 适用场景 对比 自我觉察 随境而动",
+      "万相纵横 递归思考 适用场景 对比 自我觉察 随境而动 内省 情境适应"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5b69b22f",
+    "resolved": false,
+    "createdAt": 1787752812517
   }
 ]

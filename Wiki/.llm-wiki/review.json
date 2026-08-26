@@ -2532,5 +2532,229 @@
     "resolved": true,
     "createdAt": 1787639658637,
     "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "反差感与万相纵横的对比页面",
+    "description": "分析发现[[concepts/反差感与人格完整性]]与[[concepts/万相纵横]]存在显著关联但尚未建立明确对比。建议创建对比页面以澄清两者差异：反差感强调对立面共存，万相纵横强调随境而动。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/comparisons/反差感-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "反差感 万相纵横 人格完整性 对比",
+      "辩证统一 情境适应 人格模型"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f67315c7",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "missing-page",
+    "title": "反差感的角色扮演风险查询页",
+    "description": "分析提出开放问题：反差感是否可能导致\"表演性人格\"——为展示反差而刻意营造对立面？这与[[queries/万相纵横与真诚边界的适用边界]]的张力一致，建议创建查询页面追踪此问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/queries/反差感是否会导致角色扮演自我迷失.md"
+    ],
+    "searchQueries": [
+      "反差感 表演性人格 真实性 边界",
+      "场景化角色 自我迷失 真诚"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-02b7d238",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "suggestion",
+    "title": "反差感与万相纵横的对比研究",
+    "description": "分析发现[[concepts/反差感与人格完整性]]与[[concepts/万相纵横]]存在显著关联但尚未建立明确对比。两者都涉及情境适应，但结构不同：反差感强调二元对立（刚/柔），万相纵横强调多维度流动。建议创建对比页面澄清差异。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/comparisons/反差感-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "反差感 万相纵横 人格完整性 对比",
+      "辩证统一 情境适应 人格模型"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-552a83ae",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "suggestion",
+    "title": "水的隐喻可操作性提升",
+    "description": "\"水的智慧\"作为理想人格模型富有诗意，但缺乏具体行为指南。建议补充：如何将四重特质（柔韧、流动、边界、原则）转化为可执行的决策框架或日常练习。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/concepts/水的智慧与人格模型.md"
+    ],
+    "searchQueries": [
+      "水的隐喻 人格修养 实践方法",
+      "柔性领导力 原则性与适应性平衡"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-28e0c6e0",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "missing-page",
+    "title": "双核生存系统新概念需人工确认",
+    "description": "新增概念页面[[concepts/双核生存系统]]基于原文\"攻守兼备\"框架创建。请确认：\n1. 该框架是否需要单独页面，或应合并到[[concepts/战略蛰伏]]或[[concepts/中年危机重构]]\n2. 与[[concepts/熵增]]的能量管理原则是否存在框架重叠",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年危机 双核系统 攻守策略",
+      "反脆弱 生活苦行僧 职业CEO",
+      "塔勒布 中年转型 杠杆理论"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c0b3fb20",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "战略蛰伏与进攻转型的衔接路径",
+    "description": "[[sources/中年突围指南-从劳动力进化为生产力的10个动作]]提出\"战略蛰伏\"与\"一人公司\"两个阶段，但未说明：\n1. 蛰伏期如何为\"偷师\"创造条件\n2. 从蛰伏到进攻的触发条件是什么\n3. 是否有其他中年转型案例可补充此路径",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年转型 蛰伏期 主动准备 策略",
+      "一人公司 成立路径 案例",
+      "中年危机 职业转型 阶段性策略"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5847e190",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "战略蛰伏与一人公司的衔接路径需要研究",
+    "description": "[[sources/中年突围指南-从劳动力进化为生产力的10个动作]]提出\"战略蛰伏\"（蛰伏等待）与\"一人公司\"（主动进攻）两个阶段，但未说明：\n1. 蛰伏期如何为\"偷师\"创造条件\n2. 从蛰伏过渡到进攻的触发条件是什么\n3. 是否有其他中年转型案例或理论可补充此路径\n\n这会影响[[concepts/战略蛰伏]]和[[concepts/一人公司]]的实操指导价值。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年转型 蛰伏期 主动准备 策略",
+      "一人公司 成立路径 案例",
+      "中年危机 职业转型 阶段性策略"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d89aa33e",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "\"偷师\"策略的职业道德边界需澄清",
+    "description": "[[concepts/一人公司]]提到利用职场时间\"偷师\"商业模式、获客渠道、供应链管理，但未讨论：\n1. 如何在不过度侵犯职业道德的前提下获取这些知识\n2. 与雇主忠诚义务的边界在哪里\n3. 是否有法律风险\n\n这是实操层面的重要张力点，值得进一步研究。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "员工偷师商业模式 职业道德边界",
+      "竞业禁止 商业秘密 职场转型",
+      "跳槽创业 道德风险"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-dee08e91",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "missing-page",
+    "title": "双核生存系统概念单薄需确认",
+    "description": "新增概念页面[[concepts/双核生存系统]]仅基于单篇source，内容较薄。请确认：\n1. 该框架是否需要单独页面，或应合并到[[concepts/战略蛰伏]]或[[concepts/中年危机重构]]\n2. 与[[concepts/熵增]]的能量管理原则是否存在框架重叠",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年危机 双核系统 攻守策略",
+      "反脆弱 生活苦行僧 职业CEO",
+      "塔勒布 中年转型 杠杆理论"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1544f05a",
+    "resolved": false,
+    "createdAt": 1787728777556
   }
 ]

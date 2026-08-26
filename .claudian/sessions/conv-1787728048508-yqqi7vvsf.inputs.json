@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787728048508-yqqi7vvsf",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787728048579-xhhisn1",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787728048505-qkb2q86",
+      "timestamp": 1787728048505,
+      "rawDisplayText": "给出适合于小红书平台的6个话题标签，横向排列",
+      "canonicalText": "给出适合于小红书平台的6个话题标签，横向排列",
+      "context": {
+        "linkedContent": {
+          "path": "Eric/公众号文章/品味流溢/没有这三样底牌托底，你所有的不内卷都是在自断退路.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "75433c65e23555ed9d99de7883efc2ee4e4d242416ef126c3472a636a0e26561",
+      "providerUserMessageId": "93459046-19c5-4bb4-ae7f-6823da413877",
+      "providerAssistantMessageId": "9b4bd900-7bed-4ba7-aa84-60414a54f2a7"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787728203865-0jrqswa",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1787728203861-4eoqff3",
+      "timestamp": 1787728203861,
+      "rawDisplayText": "给出这篇文章适合于小红书平台的6个话题标签，横向排列",
+      "canonicalText": "给出这篇文章适合于小红书平台的6个话题标签，横向排列",
+      "images": [],
+      "contentDigest": "f7b10d4816d425035598e60d328cd47f9ba2526bf603dde109e50800fb8c78fa",
+      "providerUserMessageId": "612b0a5a-951d-4bb5-9599-f634cdb25aa3"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787728220897-6e99edh",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1787728220893-ib75rxh",
+      "timestamp": 1787728220893,
+      "rawDisplayText": "继续",
+      "canonicalText": "继续",
+      "images": [],
+      "contentDigest": "65f454414e2fda4840658901f9399831363ad75712ba36b930b5ad393f72f7b7",
+      "providerUserMessageId": "ec1cc953-40ed-47be-b004-bbb1c868de2d"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787728242031-mqzrlew",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1787728242025-xczyngc",
+      "timestamp": 1787728242025,
+      "rawDisplayText": "什么意思",
+      "canonicalText": "什么意思",
+      "images": [],
+      "contentDigest": "96e2670d0598107cbff9b65251fc6b616872e0ddec1aa7e2e5835fecca2ecf29",
+      "providerUserMessageId": "1fcc327a-d36c-469f-98bf-e9f28a430a0d"
+    }
+  ]
+}

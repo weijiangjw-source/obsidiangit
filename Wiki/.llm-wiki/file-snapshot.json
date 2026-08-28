@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1787752834268,
+  "updatedAt": 1787849732233,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -263,9 +263,9 @@
       "mtimeMs": 1787752833551
     },
     "wiki/concepts/万相纵横.md": {
-      "hash": "68bf7fb53daf0bfe55b8610533dd5c80",
-      "size": 4606,
-      "mtimeMs": 1787637498198
+      "hash": "b1eb445ca7b336b64f3e43960432a91d",
+      "size": 4646,
+      "mtimeMs": 1787826323326
     },
     "wiki/concepts/万相纵横与真诚边界的适用边界问题需人工确认-2026-08-25-060718.md": {
       "hash": "a4d7996966aef8a8525e6ed425171feb",
@@ -293,9 +293,9 @@
       "mtimeMs": 1787630380598
     },
     "wiki/concepts/不确定性耐受力.md": {
-      "hash": "7a70fcbe125d4d823925449134026bbf",
-      "size": 2507,
-      "mtimeMs": 1787555515849
+      "hash": "fbebe86ec7eb82a24aaabf6263db45d9",
+      "size": 2530,
+      "mtimeMs": 1787826323382
     },
     "wiki/concepts/与自欺谎言概念的潜在张力-2026-08-24-133206.md": {
       "hash": "b444b9f0018bbbe5bf86ff8418418df9",
@@ -388,9 +388,9 @@
       "mtimeMs": 1787583099931
     },
     "wiki/concepts/共震实验.md": {
-      "hash": "c7c815758783e0b4f47ec30be2704ffe",
-      "size": 2602,
-      "mtimeMs": 1787555515850
+      "hash": "57cd91043bc759ee18169d4b48cb4f82",
+      "size": 2625,
+      "mtimeMs": 1787826323405
     },
     "wiki/concepts/内在压舱石.md": {
       "hash": "bf699eba462a04484e583d61baca5024",
@@ -398,9 +398,9 @@
       "mtimeMs": 1787630115888
     },
     "wiki/concepts/冒名顶替综合征.md": {
-      "hash": "f2ff7499914a6d123c66f09951834b94",
-      "size": 1699,
-      "mtimeMs": 1787629605689
+      "hash": "d15b43208f6deb4f9915bb0c59c8d9d2",
+      "size": 1716,
+      "mtimeMs": 1787826323408
     },
     "wiki/concepts/切换成本.md": {
       "hash": "8ddd2e8d242250589d0b7b877cd56f36",
@@ -418,9 +418,9 @@
       "mtimeMs": 1787632808067
     },
     "wiki/concepts/功能性匹配.md": {
-      "hash": "5ae8ed6c38e1116501211f19ffdb432a",
-      "size": 2116,
-      "mtimeMs": 1787637498199
+      "hash": "84bb86cda8a6c9c08db82ea9fcbcfacf",
+      "size": 2133,
+      "mtimeMs": 1787826323409
     },
     "wiki/concepts/努力合群.md": {
       "hash": "b5794db94f4480f38202a6b3f6b4e46a",
@@ -548,9 +548,9 @@
       "mtimeMs": 1787560868686
     },
     "wiki/concepts/开放结构.md": {
-      "hash": "a87e78f49b5c9bca2ca55d40e36776e2",
-      "size": 2305,
-      "mtimeMs": 1787555515846
+      "hash": "14b9dce41f75d96aafc7e1f8f30ea493",
+      "size": 2328,
+      "mtimeMs": 1787826323412
     },
     "wiki/concepts/归因模式改变.md": {
       "hash": "823d295823c982e0545fafddf23423d3",
@@ -808,9 +808,9 @@
       "mtimeMs": 1787560868689
     },
     "wiki/concepts/自我认同防御.md": {
-      "hash": "0a294003ec9b2bc74fdf7e9dd94b96d6",
-      "size": 2696,
-      "mtimeMs": 1787555515848
+      "hash": "c4d026916560acab5170aad650362671",
+      "size": 2719,
+      "mtimeMs": 1787826323413
     },
     "wiki/concepts/自欺谎言.md": {
       "hash": "7795385749a97fa746c88b9c3452e5d5",
@@ -823,9 +823,9 @@
       "mtimeMs": 1787557044384
     },
     "wiki/concepts/自爱八原则.md": {
-      "hash": "116fe7dcbd08fed0b70ed4b4332bae55",
-      "size": 2347,
-      "mtimeMs": 1787629605691
+      "hash": "5e471c026b2f7db01331a61a69750427",
+      "size": 2364,
+      "mtimeMs": 1787826323416
     },
     "wiki/concepts/艾森豪威尔矩阵.md": {
       "hash": "1edd98fa5d9feff1d592e922b4f2daf7",
@@ -843,9 +843,9 @@
       "mtimeMs": 1787635749900
     },
     "wiki/concepts/虚假自爱与真正自爱.md": {
-      "hash": "a8d737dd9ceb3008a4938bc000e2e575",
-      "size": 1650,
-      "mtimeMs": 1787629605690
+      "hash": "586e745b6a163535986aad650d654151",
+      "size": 1667,
+      "mtimeMs": 1787826323417
     },
     "wiki/concepts/虚无的满级号.md": {
       "hash": "143bc1070db214a7b91f781de114cd3b",
@@ -858,9 +858,9 @@
       "mtimeMs": 1787637257948
     },
     "wiki/concepts/认知失调与防御.md": {
-      "hash": "b875d97ac680812ff6e7b2853321b351",
-      "size": 2257,
-      "mtimeMs": 1787555515847
+      "hash": "6e7b0cefbf42d861875b4d48df214f37",
+      "size": 2280,
+      "mtimeMs": 1787826323419
     },
     "wiki/concepts/认知失调与防御页面的反向重构张力-2026-08-24-133214.md": {
       "hash": "2bf9468126bd6cefb2b637e169751e81",
@@ -918,9 +918,9 @@
       "mtimeMs": 1787631941743
     },
     "wiki/concepts/辩证思维.md": {
-      "hash": "a5d233bcd0578c222429a57f63cd7fc9",
-      "size": 1906,
-      "mtimeMs": 1787637950334
+      "hash": "f5262470341b0c2009b5e635b54ab7f2",
+      "size": 1989,
+      "mtimeMs": 1787849731201
     },
     "wiki/concepts/边界感.md": {
       "hash": "8f187aab23ea30911d08ffc5d8028adb",
@@ -1298,9 +1298,9 @@
       "mtimeMs": 1787633156446
     },
     "wiki/sources/顶级社交高手的变脸操作系统.md": {
-      "hash": "95316f9a25ab1cf7b9dcfe8f1ad8663d",
-      "size": 10122,
-      "mtimeMs": 1787631870986
+      "hash": "b9ec1bfab23670bcfcb1c1a6dd41feb0",
+      "size": 10176,
+      "mtimeMs": 1787826323421
     },
     "wiki/synthesis/信息获取能力的三重维度.md": {
       "hash": "0387ea1343719e0a868347e7add03903",
@@ -1318,14 +1318,14 @@
       "mtimeMs": 1787672289743
     },
     "wiki/synthesis/性格解构的三重分析框架.md": {
-      "hash": "047e6f9e7df1df10a68a0cf4239cd377",
-      "size": 3188,
-      "mtimeMs": 1787639658628
+      "hash": "f20abd4189d121ab4eb9357a4a9b034c",
+      "size": 3205,
+      "mtimeMs": 1787826323422
     },
     "wiki/synthesis/高质量对话方法论.md": {
-      "hash": "c412c71ea8a919e531db87218d16ec57",
-      "size": 4080,
-      "mtimeMs": 1787555515850
+      "hash": "08ac00bee27036b9dd7634b1d0366951",
+      "size": 4103,
+      "mtimeMs": 1787826323424
     }
   }
 }

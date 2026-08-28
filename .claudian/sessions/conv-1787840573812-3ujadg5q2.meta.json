@@ -1,0 +1,16 @@
+{
+  "id": "conv-1787840573812-3ujadg5q2",
+  "providerId": "claude",
+  "title": "你好",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1787840573816,
+  "lastActivityAt": 1787840677747,
+  "sessionId": "23db8093-8bd7-4a75-a033-1fff56365411",
+  "selectedModel": "claude-code/agnes-2.5-flash",
+  "providerState": {
+    "previousProviderSessionIds": [
+      "a3c6c62c-0b0e-4262-9392-6b1db7d8fef0"
+    ],
+    "providerSessionId": "23db8093-8bd7-4a75-a033-1fff56365411"
+  }
+}

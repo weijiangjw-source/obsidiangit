@@ -50,6 +50,16 @@
       "modelAliases": {
         "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6"
       }
+    },
+    {
+      "id": "snippet-1787839630663",
+      "name": "agnes-2.5",
+      "description": "",
+      "envVars": "ANTHROPIC_BASE_URL=http://localhost:4000/v1/messages\nANTHROPIC_AUTH_TOKEN=sk-1234567890\nANTHROPIC_MODEL=agnes-2.5-flash\nANTHROPIC_SMALL_FAST_MODEL=agnes-2.5-flash",
+      "scope": "provider:claude",
+      "modelAliases": {
+        "agnes-2.5-flash": "agnes2.5"
+      }
     }
   ],
   "customContextLimits": {},
@@ -57,7 +67,8 @@
     "glm-4.7-flash": "glm4.7",
     "gpt-oss-20b-MXFP4-Q8": "gpt",
     "gemma-4-12B-it-8bit": "gm12b8",
-    "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6"
+    "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6",
+    "agnes-2.5-flash": "agnes2.5"
   },
   "keyboardNavigation": {
     "scrollUpKey": "w",
@@ -78,12 +89,12 @@
       "enableChrome": false,
       "enableBangBash": false,
       "customModels": "",
-      "defaultModel": "opus",
+      "defaultModel": "model",
       "lastModel": "opus",
       "modelEnvironmentType": "opus",
       "titleModelEnvironmentType": "haiku",
-      "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
-      "environmentHash": "runtime-input:v1:5fc5bae10b85a038d5f87c5c391fe225de2ccefe1e2f43a7d6b5dd4fde65c3f9"
+      "environmentVariables": "ANTHROPIC_BASE_URL=http://localhost:4000/v1/messages\nANTHROPIC_AUTH_TOKEN=sk-1234567890\nANTHROPIC_MODEL=agnes-2.5-flash\nANTHROPIC_SMALL_FAST_MODEL=agnes-2.5-flash",
+      "environmentHash": "runtime-input:v1:bea31b43b0afa2f5af24b5c3b89438e2e3cb0f525c20bb0381dea97a179a0e91"
     },
     "codex": {
       "enabled": false,
@@ -143,7 +154,7 @@
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "claude-code/gpt-oss-20b-MXFP4-Q8"
+    "model": "claude-code/agnes-2.5-flash"
   },
   "savedProviderModel": {
     "claude": "claude-code/glm-4.7-flash"

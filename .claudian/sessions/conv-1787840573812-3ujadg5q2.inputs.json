@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1787840573812-3ujadg5q2",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787840573835-oz8ol4e",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1787840573807-2vspfz6",
+      "timestamp": 1787840573807,
+      "rawDisplayText": "你好",
+      "canonicalText": "你好",
+      "images": [],
+      "contentDigest": "815b1925f3db319cfc8ef8cad8a91b3f8b512f630d8f82635cb105e93e666c2a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1787840875560-6d4erve",
+      "userTurnOrdinal": 2,
+      "state": "staged",
+      "localMessageId": "msg-1787840875546-pru2whm",
+      "timestamp": 1787840875546,
+      "rawDisplayText": "你好",
+      "canonicalText": "你好",
+      "images": [],
+      "contentDigest": "815b1925f3db319cfc8ef8cad8a91b3f8b512f630d8f82635cb105e93e666c2a"
+    }
+  ]
+}

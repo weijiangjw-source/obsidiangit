@@ -6,7 +6,7 @@
   "createdAt": 1782621047770,
   "lastActivityAt": 1785684163763,
   "sessionId": null,
-  "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
+  "selectedModel": "claude-code/glm-4.7-flash",
   "providerState": {
     "previousProviderSessionIds": [
       "ecb22247-87b1-4c90-94f1-a01ed8923fe5",

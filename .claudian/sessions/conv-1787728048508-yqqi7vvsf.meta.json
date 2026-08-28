@@ -5,10 +5,12 @@
   "titleGenerationStatus": "failed",
   "createdAt": 1787728048513,
   "lastActivityAt": 1787728249127,
-  "sessionId": "ee74c28e-3778-46fa-8bf2-314c68380d80",
-  "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
+  "sessionId": null,
+  "selectedModel": "claude-code/agnes-2.5-flash",
   "providerState": {
-    "providerSessionId": "ee74c28e-3778-46fa-8bf2-314c68380d80"
+    "previousProviderSessionIds": [
+      "ee74c28e-3778-46fa-8bf2-314c68380d80"
+    ]
   },
   "linkedContentPath": "Eric/公众号文章/品味流溢/没有这三样底牌托底，你所有的不内卷都是在自断退路.md",
   "usage": {

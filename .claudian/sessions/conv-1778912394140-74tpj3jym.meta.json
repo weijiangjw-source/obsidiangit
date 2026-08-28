@@ -5,14 +5,14 @@
   "titleGenerationStatus": "failed",
   "createdAt": 1778912394140,
   "lastActivityAt": 1786539384677,
-  "sessionId": "b0327786-f992-4718-8f2f-fc3677eb49ac",
-  "selectedModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
+  "sessionId": null,
+  "selectedModel": "claude-code/glm-4.7-flash",
   "providerState": {
     "previousProviderSessionIds": [
       "9c1d8f8a-1ee6-447c-8034-41110cf6fd1a",
-      "00a62d6b-3e97-4250-a45e-439170c6ca03"
-    ],
-    "providerSessionId": "b0327786-f992-4718-8f2f-fc3677eb49ac"
+      "00a62d6b-3e97-4250-a45e-439170c6ca03",
+      "b0327786-f992-4718-8f2f-fc3677eb49ac"
+    ]
   },
   "usage": {
     "model": "gpt-oss-20b-MXFP4-Q8",

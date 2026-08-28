@@ -69,28 +69,28 @@
 
 ## 4️⃣ 轨道 & 片段
 
-| 工具 | 作用 |
-|------|------|
-| `resolve_add_track` | 给当前时间线添加新轨道（video/audio/subtitle） |
-| `resolve_set_track_enabled` / `resolve_set_track_locked` | 启用/锁定轨道 |
-| `resolve_set_track_name` | 重命名轨道 |
-| `resolve_list_clips_on_track` | 列出指定轨道的所有 Clip |
-| `resolve_move_clips` | 把 Clip 移到其它 Bin |
-| `resolve_set_clip_color_on_timeline` | 给时间线上的 Clip 设置颜色标签 |
-| `resolve_set_clip_enabled` | 启用/禁用时间线 Clip |
-| `resolve_create_compound_clip` | 创建复合 Clip |
-| `resolve_add_marker` / `resolve_delete_marker` | 在轨道或 Clip 上添加/删除标记 |
-| `resolve_get_marker_data` | 读取标记的自定义数据 |
-| `resolve_update_marker_data` | 更新标记自定义数据 |
-| `resolve_get_clip_info` / `resolve_get_clip_source_info` | 读取 Clip 的详细信息 |
-| `resolve_get_item_properties` / `resolve_set_item_properties` | 读取/写入时间线项目属性（transform、复合模式等） |
-| `resolve_get_item_flags` / `resolve_set_item_flags` | 读取/写入项目标记 |
-| `resolve_get_item_id` | 获取项目的唯一 ID |
-| `resolve_apply_grade_from_album` | 给 Clip 应用已存在的调色 |
-| `resolve_set_color_group` / `resolve_get_color_group` | 给 Clip 设置/读取颜色分组 |
-| `resolve_add_version` / `resolve_delete_version` / `resolve_load_version` | 管理 Clip 版本 |
-| `resolve_stabilize_clip` | 稳定时间线 Clip |
-| `resolve_smart_reframe` | 自动裁剪适应不同宽高比 |
+| 工具                                                                        | 作用                                |
+| ------------------------------------------------------------------------- | --------------------------------- |
+| `resolve_add_track`                                                       | 给当前时间线添加新轨道（video/audio/subtitle） |
+| `resolve_set_track_enabled` / `resolve_set_track_locked`                  | 启用/锁定轨道                           |
+| `resolve_set_track_name`                                                  | 重命名轨道                             |
+| `resolve_list_clips_on_track`                                             | 列出指定轨道的所有 Clip                    |
+| `resolve_move_clips`                                                      | 把 Clip 移到其它 Bin                   |
+| `resolve_set_clip_color_on_timeline`                                      | 给时间线上的 Clip 设置颜色标签                |
+| `resolve_set_clip_enabled`                                                | 启用/禁用时间线 Clip                     |
+| `resolve_create_compound_clip`                                            | 创建复合 Clip                         |
+| `resolve_add_marker` / `resolve_delete_marker`                            | 在轨道或 Clip 上添加/删除标记                |
+| `resolve_get_marker_data`                                                 | 读取标记的自定义数据                        |
+| `resolve_update_marker_data`                                              | 更新标记自定义数据                         |
+| `resolve_get_clip_info` / `resolve_get_clip_source_info`                  | 读取 Clip 的详细信息                     |
+| `resolve_get_item_properties` / `resolve_set_item_properties`             | 读取/写入时间线项目属性（transform、复合模式等）     |
+| `resolve_get_item_flags` / `resolve_set_item_flags`                       | 读取/写入项目标记                         |
+| `resolve_get_item_id`                                                     | 获取项目的唯一 ID                        |
+| `resolve_apply_grade_from_album`                                          | 给 Clip 应用已存在的调色                   |
+| `resolve_set_color_group` / `resolve_get_color_group`                     | 给 Clip 设置/读取颜色分组                  |
+| `resolve_add_version` / `resolve_delete_version` / `resolve_load_version` | 管理 Clip 版本                        |
+| `resolve_stabilize_clip`                                                  | 稳定时间线 Clip                        |
+| `resolve_smart_reframe`                                                   | 自动裁剪适应不同宽高比                       |
 
 ---
 

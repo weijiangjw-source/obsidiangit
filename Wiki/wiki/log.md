@@ -633,3 +633,72 @@ sources: []
 - 新增概念页面：[[concepts/双核生存系统]]（攻守兼备的生存框架）
 
 ## [2026-08-26] ingest | 人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md
+
+
+---
+type: synthesis
+title: Wiki Activity Log
+tags: [log, activity]
+related: []
+created: 2026-09-01
+updated: 2026-09-01
+---
+
+# Wiki Activity Log
+
+记录所有 wiki 活动和变更。
+
+## 2026-09-01
+
+- Action: Ingest source "别被"猛兽独行"洗脑：揭秘社会顶层真实的生存逻辑.md"
+- Created: [[sources/别被"猛兽独行"洗脑：揭秘社会顶层真实的生存逻辑]]
+- Created: [[concepts/杠铃策略]]
+- Created: [[concepts/T型技能树]]
+- Created: [[concepts/理性给予者]]
+- Created: [[concepts/幸存者偏差]]
+- Created: [[concepts/巴纳姆效应]]
+- Created: [[concepts/情绪止痛]]
+- Created: [[concepts/复利思维]]
+- Updated: [[entities/塔勒布]] (reference added)
+- Updated: [[concepts/杠杆三要素]] (reference added)
+
+## [2026-09-01] ingest | 成年人最大的清醒：停止向“认知结构”不同的人解释自己.md
+
+## [2026-09-01] ingest | 成人世界的真相：人的属性，永远高于关系的属性.md
+
+## [2026-09-01] ingest | 成人世界的真相：人的属性，永远高于关系的属性.md
+
+
+# Wiki Log
+
+## 2026-09-01
+
+- Ingest: [[sources/成人世界的真相：人的属性，永远高于关系的属性]] — 成人世界的真相：人的属性，永远高于关系的属性；创建概念页 [[人的属性高于关系属性]]、[[过情关]]、[[祛魅式认知解绑]]、[[重新养育自己]]
+
+## [2026-09-01] ingest | 出轨的本质从来不是性，而是一场低难度的自我确认.md
+
+
+## 2026-09-01
+
+- ingest | 答案只有四个字：普通人逆袭，这是我见过最狠的执行策略 — 创建源页面、持续交卷概念页、投入思维vs交卷思维概念页、MVP思维概念页、防御性悲观概念页、控制感错觉概念页
+
+## [2026-09-01] ingest | 杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md
+
+
+---
+type: log
+title: Wiki Log
+created: 2026-09-01
+updated: 2026-09-01
+---
+## 2026-09-01
+
+- 新增源页面 `sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md`
+- 新增实体页面 `entities/shi-qi-ji.md`（蒸汽机，创新案例）
+- 新增实体页面 `entities/you-te-dixiong-di.md`（莱特兄弟，创新案例）
+- 新增概念页面 `concepts/shi-bai-ji-xin-xi.md`（失败即信息）
+- 新增概念页面 `concepts/chuang-xin-shi-cuo-lu-jing.md`（创新试错路径）
+
+## [2026-09-01] ingest | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+## [2026-09-01] ingest | 高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md

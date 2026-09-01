@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1787849732233,
+  "updatedAt": 1788270653339,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -142,6 +142,11 @@
       "size": 1688,
       "mtimeMs": 1781626660728
     },
+    "raw/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md": {
+      "hash": "c7d1d4b539f632ee42638b3846cb630a",
+      "size": 3151,
+      "mtimeMs": 1781626734173
+    },
     "raw/sources/别再与思绪搏斗！学会给它们贴标签，把担忧拖入“待处理”.md": {
       "hash": "c6370fec6add5a4874d31f7d4ecd85dd",
       "size": 3425,
@@ -161,6 +166,11 @@
       "hash": "0a8c20ef05323f4f65531916f50ee776",
       "size": 9013,
       "mtimeMs": 1781626676135
+    },
+    "raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md": {
+      "hash": "996bd7ffefbe153bc113363541ad7414",
+      "size": 4552,
+      "mtimeMs": 1781626777057
     },
     "raw/sources/四相能量：功能、误区与精炼 —— 极致状态的解析.md": {
       "hash": "8e916f418b7fa171a336ffcb07c0e00b",
@@ -182,20 +192,45 @@
       "size": 4785,
       "mtimeMs": 1781626654901
     },
+    "raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md": {
+      "hash": "606cecf18862208ea0a0b4b6bcf24d38",
+      "size": 3258,
+      "mtimeMs": 1781626766341
+    },
+    "raw/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md": {
+      "hash": "32277fb1e284bd0d798f95e555361537",
+      "size": 2990,
+      "mtimeMs": 1781626724067
+    },
     "raw/sources/放弃意志力吧，7天用痛苦杠杆让自律变本能.md": {
       "hash": "12fa0382694f712009f70e5583e4378d",
       "size": 2546,
       "mtimeMs": 1781626680227
+    },
+    "raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md": {
+      "hash": "5b2889a6651fbd853c477b41fa9fd89f",
+      "size": 4285,
+      "mtimeMs": 1781626745682
     },
     "raw/sources/深耕者与浮躁者的分水岭：如何穿越“无反馈”的黑暗期.md": {
       "hash": "803533405fa2be2d9c2cfa90cbe28f26",
       "size": 3270,
       "mtimeMs": 1781626641146
     },
+    "raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md": {
+      "hash": "1986d6006812d59d2af19821d6a84189",
+      "size": 4268,
+      "mtimeMs": 1781626751178
+    },
     "raw/sources/真正的魅力,藏在你的反差感里.md": {
       "hash": "6cba31f53d873abb47945a47d605ad7a",
       "size": 2732,
       "mtimeMs": 1781626686508
+    },
+    "raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md": {
+      "hash": "00645f45b696235d5a0db4b072e7631c",
+      "size": 3370,
+      "mtimeMs": 1781626751174
     },
     "raw/sources/认知套利：用3年时间跃升3个阶层的实战地图.md": {
       "hash": "674e2ea581304b6452416b0bcf60e5bc",
@@ -211,6 +246,11 @@
       "hash": "fa39f42abda8e62b138091d37c3c62cf",
       "size": 4467,
       "mtimeMs": 1781626647487
+    },
+    "raw/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md": {
+      "hash": "c8c3d85cac38fdc336d4d198f7abd563",
+      "size": 3949,
+      "mtimeMs": 1781626761391
     },
     "schema.md": {
       "hash": "74be8ad21cdd66495b0e39508ee783b9",
@@ -231,6 +271,11 @@
       "hash": "a45484919bf3004ea45c96e1f841aece",
       "size": 3374,
       "mtimeMs": 1787635749902
+    },
+    "wiki/comparisons/小事认怂大事梭哈-vs-杠铃策略.md": {
+      "hash": "8957e3486d101afb9f732c01b89aa93a",
+      "size": 2344,
+      "mtimeMs": 1788270652595
     },
     "wiki/comparisons/控制者-vs-创造者.md": {
       "hash": "ee142456c622b2094232bbf7379b04df",
@@ -257,10 +302,25 @@
       "size": 2773,
       "mtimeMs": 1787633156440
     },
+    "wiki/concepts/MVP思维.md": {
+      "hash": "563f1afafe5f1768f2fb816ed5d60a74",
+      "size": 1740,
+      "mtimeMs": 1788244451732
+    },
+    "wiki/concepts/T型技能树.md": {
+      "hash": "e3e0ff9ea1fe89d011a8490fd11dfb36",
+      "size": 2622,
+      "mtimeMs": 1788233730924
+    },
     "wiki/concepts/一人公司.md": {
       "hash": "5a430fae2b2769b0ecc817173baebc84",
       "size": 1262,
       "mtimeMs": 1787752833551
+    },
+    "wiki/concepts/七分法则.md": {
+      "hash": "264c15f2418085ea0e397275e71ecb92",
+      "size": 1482,
+      "mtimeMs": 1788270652593
     },
     "wiki/concepts/万相纵横.md": {
       "hash": "b1eb445ca7b336b64f3e43960432a91d",
@@ -321,6 +381,11 @@
       "hash": "96249b303ba019be2113c55520ffe875",
       "size": 1975,
       "mtimeMs": 1787632486385
+    },
+    "wiki/concepts/人的属性高于关系属性.md": {
+      "hash": "ea1edc9bd705bbf25d6c38387dd7bb6c",
+      "size": 2232,
+      "mtimeMs": 1788234283727
     },
     "wiki/concepts/价值体系.md": {
       "hash": "57489dac60f8cd98e51298f84e2940a7",
@@ -407,6 +472,11 @@
       "size": 1660,
       "mtimeMs": 1787639090130
     },
+    "wiki/concepts/创新试错路径.md": {
+      "hash": "69da345a3666758342aca46f97ea6089",
+      "size": 1740,
+      "mtimeMs": 1788244761328
+    },
     "wiki/concepts/副业.md": {
       "hash": "7eb749efaccf1b06d57455c49d2f9892",
       "size": 499,
@@ -432,6 +502,11 @@
       "size": 3132,
       "mtimeMs": 1787728328432
     },
+    "wiki/concepts/印象管理.md": {
+      "hash": "1125283c4f7001532db449a1f5eb95f2",
+      "size": 1245,
+      "mtimeMs": 1788270652589
+    },
     "wiki/concepts/即时反馈陷阱.md": {
       "hash": "b2be850201ef088e91d623fdf3476777",
       "size": 1785,
@@ -441,6 +516,11 @@
       "hash": "3982658288e72c1c86ae36ef3b876fdf",
       "size": 1259,
       "mtimeMs": 1787728777546
+    },
+    "wiki/concepts/反内耗.md": {
+      "hash": "23eb3b5d2d36fb555160e54c8b8f9670",
+      "size": 1352,
+      "mtimeMs": 1788270652588
     },
     "wiki/concepts/反完美主义.md": {
       "hash": "792c70721a724c68072ca3cb297cf27a",
@@ -452,6 +532,11 @@
       "size": 1958,
       "mtimeMs": 1787727132181
     },
+    "wiki/concepts/反脆弱.md": {
+      "hash": "e799804def6416ffa9172493f6236fc8",
+      "size": 3450,
+      "mtimeMs": 1788244691551
+    },
     "wiki/concepts/反视觉化.md": {
       "hash": "7b8bac80fcd7c993bd7e999ccd737b86",
       "size": 1847,
@@ -461,6 +546,11 @@
       "hash": "5f1d34f12adc340173d4b850b113f2e8",
       "size": 2047,
       "mtimeMs": 1787630633569
+    },
+    "wiki/concepts/可选择性.md": {
+      "hash": "492a1ed813b99bed2e67c72b69448988",
+      "size": 4988,
+      "mtimeMs": 1788244691553
     },
     "wiki/concepts/向内凝视.md": {
       "hash": "9361959fc57a418f020c188b671bf4a4",
@@ -487,6 +577,11 @@
       "size": 1472,
       "mtimeMs": 1787560868685
     },
+    "wiki/concepts/复利思维.md": {
+      "hash": "d5e033ecd0a9bc0da981acdfdd243455",
+      "size": 2201,
+      "mtimeMs": 1788233730929
+    },
     "wiki/concepts/外包人生控制权.md": {
       "hash": "fda5ce8b679fe0c2407dd94798060290",
       "size": 1711,
@@ -496,6 +591,11 @@
       "hash": "d72963016e2ff32b9c9bf335a14a479d",
       "size": 1271,
       "mtimeMs": 1787639010062
+    },
+    "wiki/concepts/失败即信息.md": {
+      "hash": "b58b58dcdc7bc818e888e0e9a29df64e",
+      "size": 1452,
+      "mtimeMs": 1788244761327
     },
     "wiki/concepts/存在之问.md": {
       "hash": "26568bac6e86b568d98541ac2383d978",
@@ -537,10 +637,25 @@
       "size": 478,
       "mtimeMs": 1787637243242
     },
+    "wiki/concepts/小事认怂大事梭哈.md": {
+      "hash": "b0a45febb2fe76ceaff1fc72be0fcf95",
+      "size": 2061,
+      "mtimeMs": 1788270652587
+    },
     "wiki/concepts/尽人事听天命.md": {
       "hash": "00ecb7fd518c2dd0731552c2e43c3f29",
       "size": 1707,
       "mtimeMs": 1787630115887
+    },
+    "wiki/concepts/巴纳姆效应.md": {
+      "hash": "0e58059ee8b1550a02702056f8a0fd96",
+      "size": 2827,
+      "mtimeMs": 1788233730928
+    },
+    "wiki/concepts/幸存者偏差.md": {
+      "hash": "0784399de7eaeb1cf8cb841a493c08c9",
+      "size": 2565,
+      "mtimeMs": 1788233730927
     },
     "wiki/concepts/延伸感.md": {
       "hash": "2140d21e332033a26eacd547f0157a7f",
@@ -602,6 +717,11 @@
       "size": 1488,
       "mtimeMs": 1787637950311
     },
+    "wiki/concepts/情绪止痛.md": {
+      "hash": "89dd29258183ba6a6fdf3b3b4acaa27c",
+      "size": 2931,
+      "mtimeMs": 1788233730929
+    },
     "wiki/concepts/情绪边界.md": {
       "hash": "1697a0553a220c60fb8d4dfc8565c6db",
       "size": 2268,
@@ -632,6 +752,16 @@
       "size": 425,
       "mtimeMs": 1787638454482
     },
+    "wiki/concepts/投入思维-vs-交卷思维.md": {
+      "hash": "2f5825b0da7634a6ec6d5ead2c2ccb22",
+      "size": 1945,
+      "mtimeMs": 1788244451731
+    },
+    "wiki/concepts/持续交卷.md": {
+      "hash": "2f8a6175bc24cad97584716bcee1bdb0",
+      "size": 2572,
+      "mtimeMs": 1788244451729
+    },
     "wiki/concepts/损失厌恶.md": {
       "hash": "2cde7efaf5ade952674c69c298efee6c",
       "size": 1198,
@@ -641,6 +771,11 @@
       "hash": "07c9b7c9f497fbb6bb74a78ff256e878",
       "size": 1732,
       "mtimeMs": 1787630380595
+    },
+    "wiki/concepts/控制感错觉.md": {
+      "hash": "d0390dc75e3fb4b70dc56cc7592aa1dc",
+      "size": 1317,
+      "mtimeMs": 1788244451734
     },
     "wiki/concepts/收放自如与场景化角色.md": {
       "hash": "de786684f3ab5a9575b830a77ec566a9",
@@ -662,6 +797,16 @@
       "size": 1784,
       "mtimeMs": 1787630115886
     },
+    "wiki/concepts/最小行动清单.md": {
+      "hash": "6ca6493bb91ebb45d42612f5d230daed",
+      "size": 1683,
+      "mtimeMs": 1788270652593
+    },
+    "wiki/concepts/朋友视角.md": {
+      "hash": "0776a193a60c28adffb982420707b227",
+      "size": 1524,
+      "mtimeMs": 1788270652591
+    },
     "wiki/concepts/权力泄漏.md": {
       "hash": "b83611b6cb750767e8c5bc43014d0369",
       "size": 2318,
@@ -671,6 +816,11 @@
       "hash": "168bfa41f339647420e963e7c85ae9f1",
       "size": 1477,
       "mtimeMs": 1787728777539
+    },
+    "wiki/concepts/杠铃策略.md": {
+      "hash": "db09837db90e799b6c626af2ca07fab4",
+      "size": 5883,
+      "mtimeMs": 1788244691549
     },
     "wiki/concepts/极致清醒.md": {
       "hash": "7c880ba1223d58f128f89de084f2b555",
@@ -707,6 +857,11 @@
       "size": 1698,
       "mtimeMs": 1787637950330
     },
+    "wiki/concepts/灰度思维.md": {
+      "hash": "50007d5330641930ce895219cbb82335",
+      "size": 1559,
+      "mtimeMs": 1788270652590
+    },
     "wiki/concepts/熵增.md": {
       "hash": "ef8203ab8ef3d3ea5e2caf38620751c0",
       "size": 421,
@@ -716,6 +871,11 @@
       "hash": "65c4e4b609d6aad2a510ae68ab6e08ad",
       "size": 1559,
       "mtimeMs": 1787631941745
+    },
+    "wiki/concepts/理性给予者.md": {
+      "hash": "37cc570b3a389ddf7f9accda4352744a",
+      "size": 3260,
+      "mtimeMs": 1788233730926
     },
     "wiki/concepts/理想化与贬低循环.md": {
       "hash": "ae5a9b669edaa2f74c6852510a4beabe",
@@ -762,6 +922,11 @@
       "size": 1234,
       "mtimeMs": 1787556812627
     },
+    "wiki/concepts/祛魅式认知解绑.md": {
+      "hash": "4e4aa77c4ff0a7762d1c6c3b1cc7fd37",
+      "size": 1676,
+      "mtimeMs": 1788234283729
+    },
     "wiki/concepts/稀缺性锚定.md": {
       "hash": "d04ca4280e5c66b1b606ad773ff81826",
       "size": 1515,
@@ -781,6 +946,11 @@
       "hash": "c3c2a9e91cb2cd3fd38ead4c9e87dff3",
       "size": 1967,
       "mtimeMs": 1787560868681
+    },
+    "wiki/concepts/聚光灯效应.md": {
+      "hash": "3c3be6d9c0d5a356d20f782e04c6243c",
+      "size": 1447,
+      "mtimeMs": 1788270652589
     },
     "wiki/concepts/能量泄漏.md": {
       "hash": "e41ff9c774d135cd159032e55949433b",
@@ -811,6 +981,11 @@
       "hash": "c4d026916560acab5170aad650362671",
       "size": 2719,
       "mtimeMs": 1787826323413
+    },
+    "wiki/concepts/自我霸凌.md": {
+      "hash": "b02d14e61010c9d54f40b46c0caf832b",
+      "size": 1374,
+      "mtimeMs": 1788270652592
     },
     "wiki/concepts/自欺谎言.md": {
       "hash": "7795385749a97fa746c88b9c3452e5d5",
@@ -927,6 +1102,11 @@
       "size": 1641,
       "mtimeMs": 1787556932124
     },
+    "wiki/concepts/过情关.md": {
+      "hash": "803ff6ff86897e0bab08d5ba7fac9320",
+      "size": 2037,
+      "mtimeMs": 1788234283728
+    },
     "wiki/concepts/过程指标.md": {
       "hash": "88133735e0c2e01e6ed6454c1ed0e517",
       "size": 1895,
@@ -942,6 +1122,11 @@
       "size": 1682,
       "mtimeMs": 1787637950313
     },
+    "wiki/concepts/逃避作为战术.md": {
+      "hash": "52d98d5eb0ae05d83598c64b737591bd",
+      "size": 1825,
+      "mtimeMs": 1788270652594
+    },
     "wiki/concepts/选择性失明.md": {
       "hash": "c24de25dcc95e75632c2c4dafd4de59a",
       "size": 2088,
@@ -951,6 +1136,16 @@
       "hash": "75a2ff3f84ab344b4980c15c6c879da7",
       "size": 1511,
       "mtimeMs": 1787560868688
+    },
+    "wiki/concepts/重新养育自己.md": {
+      "hash": "8d8122487685abd1fee8f39be98d6ce1",
+      "size": 1791,
+      "mtimeMs": 1788234283730
+    },
+    "wiki/concepts/防御性悲观.md": {
+      "hash": "52505050294fe6e952e81c749e24285c",
+      "size": 1311,
+      "mtimeMs": 1788244451733
     },
     "wiki/concepts/防御模式与觉知模式.md": {
       "hash": "bdcbd38592754ffd980bb62c10c3f92c",
@@ -982,6 +1177,11 @@
       "size": 1665,
       "mtimeMs": 1787632808065
     },
+    "wiki/concepts/非线性成长.md": {
+      "hash": "fc75bcdb138b7af55dee3c0b1da21d85",
+      "size": 5159,
+      "mtimeMs": 1788244691555
+    },
     "wiki/concepts/非黑即白认知框架.md": {
       "hash": "6173b808e8fb7be8d17346d91d10c77e",
       "size": 1195,
@@ -997,10 +1197,20 @@
       "size": 2622,
       "mtimeMs": 1787556932122
     },
+    "wiki/concepts/高敏感者.md": {
+      "hash": "cf94cab331c69c99fec0bc4f3c8cf463",
+      "size": 1408,
+      "mtimeMs": 1788270652586
+    },
     "wiki/concepts/高认知评估维度.md": {
       "hash": "8c77d4e635380a1338ea542d644ffce6",
       "size": 2504,
       "mtimeMs": 1787630633559
+    },
+    "wiki/concepts/黑天鹅.md": {
+      "hash": "00d32f1eea1122d5ec94d66158e9bdd6",
+      "size": 3915,
+      "mtimeMs": 1788244691552
     },
     "wiki/entities/刘邦.md": {
       "hash": "244824d163320441b3052d4079fe3a95",
@@ -1008,9 +1218,9 @@
       "mtimeMs": 1787630115890
     },
     "wiki/entities/塔勒布.md": {
-      "hash": "e9093cbcda4e80feb06ed47dfb5240d0",
-      "size": 1576,
-      "mtimeMs": 1787728328430
+      "hash": "245bbf987bc09fe4ac3cb5a39363b7e6",
+      "size": 2566,
+      "mtimeMs": 1788244640982
     },
     "wiki/entities/洞察能力.md": {
       "hash": "b0eb9d449c3c0da25c30654214633b4d",
@@ -1042,6 +1252,16 @@
       "size": 1829,
       "mtimeMs": 1787556932119
     },
+    "wiki/entities/莱特兄弟.md": {
+      "hash": "e9f7ccfa46fa76ce867b7cc60efe48d4",
+      "size": 852,
+      "mtimeMs": 1788244761322
+    },
+    "wiki/entities/蒸汽机.md": {
+      "hash": "4b4ac03c5d04384c5211ca70caeee1ed",
+      "size": 883,
+      "mtimeMs": 1788244761310
+    },
     "wiki/entities/连接能力.md": {
       "hash": "6484b7e39dcec2ea90523d87657c0abb",
       "size": 3490,
@@ -1068,14 +1288,14 @@
       "mtimeMs": 1787630115889
     },
     "wiki/index.md": {
-      "hash": "6843f8d0de3a689c730b7e2970ba8955",
-      "size": 15167,
-      "mtimeMs": 1787728777549
+      "hash": "deaef382e154b2d8a8921f4ffaa9a67d",
+      "size": 15694,
+      "mtimeMs": 1788270652599
     },
     "wiki/log.md": {
-      "hash": "5c5015fc6fb67000938140801cd8fb78",
-      "size": 25676,
-      "mtimeMs": 1787752812507
+      "hash": "5b05c885ba30fa1be55d1371f1e2d3a1",
+      "size": 28248,
+      "mtimeMs": 1788270652600
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -1237,6 +1457,11 @@
       "size": 2631,
       "mtimeMs": 1787636219823
     },
+    "wiki/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md": {
+      "hash": "c2089e27b198a01d68e878522787e260",
+      "size": 12540,
+      "mtimeMs": 1788234339909
+    },
     "wiki/sources/别再与思绪搏斗！学会给它们贴标签，把担忧拖入“待处理”.md": {
       "hash": "f82d4657fad2f6027dee0606375ec59a",
       "size": 3981,
@@ -1251,6 +1476,11 @@
       "hash": "087dc138446f7c97359d6f352827956d",
       "size": 4094,
       "mtimeMs": 1787630633555
+    },
+    "wiki/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md": {
+      "hash": "079d6552dd30a4f7e6e46881d0a5f998",
+      "size": 8189,
+      "mtimeMs": 1788233730939
     },
     "wiki/sources/四相能量：功能、误区与精炼 —— 极致状态的解析.md": {
       "hash": "1f8b961a23c5bcf8ddfc1fc0f806aac7",
@@ -1272,20 +1502,45 @@
       "size": 3443,
       "mtimeMs": 1787639658624
     },
+    "wiki/sources/成人世界的真相：人的属性，永远高于关系的属性.md": {
+      "hash": "366a6022f07aaf0dd6a656e0985dbba1",
+      "size": 4462,
+      "mtimeMs": 1788234283725
+    },
+    "wiki/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md": {
+      "hash": "628d7d894cbfdece0f6d7661351e0dec",
+      "size": 17398,
+      "mtimeMs": 1788233852685
+    },
     "wiki/sources/放弃意志力吧，7天用痛苦杠杆让自律变本能.md": {
       "hash": "56a4078e5937d90b1137555e3d9614f0",
       "size": 3364,
       "mtimeMs": 1787631941741
+    },
+    "wiki/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md": {
+      "hash": "03a95ab188db242118301a3f7f76273c",
+      "size": 5400,
+      "mtimeMs": 1788244761308
     },
     "wiki/sources/深耕者与浮躁者的分水岭：如何穿越“无反馈”的黑暗期.md": {
       "hash": "e9727dece6f687308f3e558586a0e012",
       "size": 5477,
       "mtimeMs": 1787632808074
     },
+    "wiki/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md": {
+      "hash": "681b33c22e54b1dedb8931c85ddca1ba",
+      "size": 24304,
+      "mtimeMs": 1788270565438
+    },
     "wiki/sources/真正的魅力,藏在你的反差感里.md": {
       "hash": "ae9b0c2643df13661107a93faf2caf33",
       "size": 3072,
       "mtimeMs": 1787727132178
+    },
+    "wiki/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md": {
+      "hash": "60a1d1a1ccc032f9f7d1fba8806a4f74",
+      "size": 3670,
+      "mtimeMs": 1788244451728
     },
     "wiki/sources/认知套利：用3年时间跃升3个阶层的实战地图.md": {
       "hash": "9d064e12ebc488f43c8b78709e403a9c",
@@ -1301,6 +1556,11 @@
       "hash": "b9ec1bfab23670bcfcb1c1a6dd41feb0",
       "size": 10176,
       "mtimeMs": 1787826323421
+    },
+    "wiki/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md": {
+      "hash": "fea85da7b586b3813c336cf3855889ca",
+      "size": 8710,
+      "mtimeMs": 1788270652602
     },
     "wiki/synthesis/信息获取能力的三重维度.md": {
       "hash": "0387ea1343719e0a868347e7add03903",

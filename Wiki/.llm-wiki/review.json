@@ -2836,5 +2836,876 @@
     "id": "review-5b69b22f",
     "resolved": false,
     "createdAt": 1787752812517
+  },
+  {
+    "type": "suggestion",
+    "title": "与现有概念的张力需要进一步澄清",
+    "description": "Description: 本文提出的\"理性给予者\"与现有\"讨好\"概念存在边界张力，建议在[[concepts/讨好]]页面增加\"理性给予者 vs 讨好\"的对比段落。同时，\"弱关系建网\"与[[concepts/沉默作为筛选机制]]的关系也需要澄清——两者并非矛盾，但需明确适用场景的分工。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/讨好.md",
+      "wiki/concepts/沉默作为筛选机制.md"
+    ],
+    "searchQueries": [
+      "weak ties granovetter social network theory",
+      "silent screening mechanism social filtering",
+      "rational giver vs people pleaser boundary"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-013cd718",
+    "resolved": false,
+    "createdAt": 1788233730956
+  },
+  {
+    "type": "missing-page",
+    "title": "猛兽独行（作为一种文化话语/叙事模式）",
+    "description": "来源对\"猛兽独行\"这一流行文化叙事有深入批判，但wiki中尚无专门页面记录这一文化现象本身的结构、传播机制及其与成功学话语的关系。当前仅有心理机制页面（巴纳姆效应、情绪止痛、幸存者偏差），缺少对叙事形态本身的分析。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/杠铃策略.md",
+      "wiki/concepts/情绪止痛.md",
+      "wiki/concepts/巴纳姆效应.md"
+    ],
+    "searchQueries": [
+      "猛兽独行 名言 出处 原文",
+      "真正强者独行 语境 源文本",
+      "猛兽独行 社交孤立 成功学话术"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-82adc6f9",
+    "resolved": true,
+    "createdAt": 1788233730956,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略85/15比例的实证依据",
+    "description": "来源声称85%/15%的比例分配，但未提供实证依据。该数字在塔勒布原著《反脆弱》或《黑天鹅》中是否出现需要核实，或仅为文章作者的通俗化改写。核实此比例来源对wiki准确性至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/杠铃策略.md",
+      "wiki/entities/塔勒布.md"
+    ],
+    "searchQueries": [
+      "Nassim Taleb barbell strategy 85 15 allocation",
+      "塔勒布 杠铃策略 比例 原书",
+      "barbell strategy time allocation evidence"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-112da362",
+    "resolved": false,
+    "createdAt": 1788233730956
+  },
+  {
+    "type": "contradiction",
+    "title": "弱关系建网 vs 沉默筛选机制的边界需人工确认",
+    "description": "来源主张\"广泛建立弱关系网络\"（结网者生），与wiki现有页面[[concepts/沉默作为筛选机制]]形成潜在张力：前者鼓励更多社交连接，后者强调减少无效社交。两者是否互补、如何划分适用场景，需要人工确认并在wiki中明确边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/沉默作为筛选机制.md",
+      "wiki/comparisons/努力合群-vs-主动社交.md",
+      "wiki/sources/别被\"猛兽独行\"洗脑：揭秘社会顶层真实的生存逻辑.md"
+    ],
+    "searchQueries": [
+      "弱关系 Granovetter 强关系 社交网络 实证研究",
+      "沉默筛选 弱关系 社交效率 平衡"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-35fb4752",
+    "resolved": false,
+    "createdAt": 1788233730956
+  },
+  {
+    "type": "missing-page",
+    "title": "弱关系理论（Granovetter）基础页面",
+    "description": "来源将\"弱关系\"作为核心论据，但未建立理论溯源页面。Granovetter的\"弱关系的强度\"（1973）是社会学经典理论，单独成页可为wiki中的多个概念（理性给予者、沉默筛选、万相纵横）提供理论锚点。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/理性给予者.md",
+      "wiki/concepts/沉默作为筛选机制.md",
+      "wiki/concepts/杠铃策略.md"
+    ],
+    "searchQueries": [
+      "Granovetter weak tie strength 1973 社会学",
+      "弱关系的强度 论文 核心论点",
+      "弱关系 信息桥接 社会资本 实证"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-12fa0313",
+    "resolved": true,
+    "createdAt": 1788233730956,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "认知距离概念的学术溯源与实证支撑",
+    "description": "源文档提出的\"认知距离\"概念缺乏实证研究支撑，主要依赖经验观察和类比推理。建议搜索传播学、社会心理学中是否存在类似概念（如cognitive distance、perspective-taking、communication accommodation theory），以确认该框架的学术根基或发现更有证据支持的替代理论。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md",
+    "affectedPages": [
+      "wiki/concepts/认知距离.md",
+      "wiki/sources/成年人最大的清醒-停止向认知结构不同的人解释自己.md"
+    ],
+    "searchQueries": [
+      "cognitive distance persuasion communication theory",
+      "perspective taking communication accommodation theory",
+      "认知距离 说服 传播学 心理学"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8bb25cbc",
+    "resolved": false,
+    "createdAt": 1788233852709
+  },
+  {
+    "type": "suggestion",
+    "title": "三败局面分类的既有框架对照",
+    "description": "源文档将认知悬殊时的沟通退化归纳为\"三败局面\"（高维压低维/低维压高维/互相碾压），这是一个有解释力的分类。建议确认该分类是否已有既有学术框架（如权力不对称沟通、防御性沟通、攻击-退缩模式等），以便将新页面与现有知识体系对齐，避免重复发明轮子。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md",
+    "affectedPages": [
+      "wiki/concepts/认知距离.md",
+      "wiki/concepts/结构重建.md"
+    ],
+    "searchQueries": [
+      "asymmetric power communication defense aggression withdrawal pattern",
+      "权力不对等 沟通 防御 攻击 退缩 模式"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-404e000b",
+    "resolved": false,
+    "createdAt": 1788233852709
+  },
+  {
+    "type": "suggestion",
+    "title": "自指性悖论的澄清",
+    "description": "源文档本身是一篇试图说服读者的文字，其核心主张（\"不要试图说服认知结构不同的人\"）存在自指性张力：如果读者认知结构与作者不同，文档本身也是无效的；如果读者认同该观点，则恰恰证明了\"同路人\"筛选的有效性。这一逻辑循环未被讨论，建议在相关页面中标注并寻求澄清。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md",
+    "affectedPages": [
+      "wiki/concepts/认知距离.md",
+      "wiki/sources/成年人最大的清醒-停止向认知结构不同的人解释自己.md"
+    ],
+    "searchQueries": [
+      "self-referential argument persuasion limit paradox"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-afbddc5e",
+    "resolved": false,
+    "createdAt": 1788233852709
+  },
+  {
+    "type": "suggestion",
+    "title": "万相纵横与认知距离理论适用边界的精确划定",
+    "description": "wiki中已有一个query（[[queries/万相纵横与真诚边界的适用边界-何时是弹性何时是自欺]]）涉及类似问题，但尚未得出明确结论。建议深化研究：万相纵横主张灵活适应不同对象，认知距离理论主张放弃说服——两者的适用边界究竟在哪里？是否有量化或半量化的判定标准（如认知距离阈值）？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md",
+    "affectedPages": [
+      "wiki/concepts/万相纵横.md",
+      "wiki/concepts/认知距离.md",
+      "wiki/comparisons/万相纵横-vs-角色快速切换.md"
+    ],
+    "searchQueries": [
+      "万相纵横 适用边界 认知差异 灵活适应 vs 放弃沟通",
+      "人格弹性 认知距离 阈值 判断标准"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7766aac7",
+    "resolved": false,
+    "createdAt": 1788233852709
+  },
+  {
+    "type": "missing-page",
+    "title": "身体作为无条件之爱载体",
+    "description": "本文核心前提——\"身体是唯一无条件的爱\"——是一个隐喻性主张，非标准心理学概念。该命题与[[自爱]]、[[重新养育自己]]密切相关，但独立记录有助于澄清其修辞性与工具性边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "affectedPages": [
+      "wiki/concepts/身体作为无条件之爱.md"
+    ],
+    "searchQueries": [
+      "body unconditional love self-compassion reparenting somatic self-care",
+      "身体作为无条件爱的载体 自我养育 身体忠诚",
+      "body unconditional love self-compassion somatic attachment reparenting",
+      "身体 无条件爱 自我养育 具身心理学"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f3ad6620",
+    "resolved": false,
+    "createdAt": 1788234283749
+  },
+  {
+    "type": "contradiction",
+    "title": "共同体感觉与人的属性优先的张力",
+    "description": "本文强调弱化关系期待、将他人还原为独立个体，与[[共同体感觉]]强调人际连接存在潜在张力。建议在合成页或相关概念页中明确课题分离的健康边界，避免滑向情感疏离。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "affectedPages": [
+      "wiki/synthesis/课题分离与健康边界合成.md"
+    ],
+    "searchQueries": [
+      "adler individual psychology community feeling vs课题分离边界",
+      "课题分离 情感疏离 共同体感觉 张力",
+      "adler课题分离 情感疏离 共同体感觉 边界",
+      "课题分离 健康边界 人际依赖 情感疏离 阿德勒"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-9c3b1220",
+    "resolved": false,
+    "createdAt": 1788234283749
+  },
+  {
+    "type": "suggestion",
+    "title": "情绪行为解离与认知解离的比较研究",
+    "description": "\"过情关\"定义的情绪与行为解离，与CBT中的认知解离（Cognitive Defusion）存在概念重叠与潜在差异，值得深入比较。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "affectedPages": [
+      "wiki/comparisons/过情关-vs-认知解离.md"
+    ],
+    "searchQueries": [
+      "cognitive defusion emotion behavior dissociation ACT therapy",
+      "情绪行为解离 认知解离 接纳承诺疗法 ACT"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-926ee544",
+    "resolved": false,
+    "createdAt": 1788234283749
+  },
+  {
+    "type": "suggestion",
+    "title": "情绪行为解离与认知解离的概念比较",
+    "description": "\"过情关\"定义的情绪与行为解离，与CBT/ACT中的认知解离（Cognitive Defusion）存在概念重叠与潜在差异。澄清两者的异同对wiki中相关页面的定位至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "affectedPages": [
+      "wiki/comparisons/过情关-vs-认知解离.md"
+    ],
+    "searchQueries": [
+      "cognitive defusion emotion behavior dissociation ACT therapy mindfulness",
+      "情绪行为解离 认知解离 接纳承诺疗法 ACT 行为激活"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-645933eb",
+    "resolved": false,
+    "createdAt": 1788234283749
+  },
+  {
+    "type": "missing-page",
+    "title": "重新养育自己的具身转向",
+    "description": "本文提出以\"身体为父母\"的重新养育（Reparenting）路径，这是对传统内在父母对话模型的具身化转向。现有[[重新养育自己]]页面（如已存在）需纳入这一视角，或单独记录该变体。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "affectedPages": [
+      "wiki/concepts/重新养育自己.md"
+    ],
+    "searchQueries": [
+      "reparenting somatic self-care body as inner parent embodied therapy",
+      "重新养育自己 具身心理治疗 内在父母 身体导向自我关怀"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f72a44c5",
+    "resolved": true,
+    "createdAt": 1788234283749,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "虚假共振与心理学既有概念的边界澄清",
+    "description": "本文独创的\"虚假共振\"概念未被锚定到心理学学术文献中，其核心机制（通过陌生人目光确认自我价值）与库利\"镜像自我\"、霍尼\"理想化自我形象\"、科胡特\"自我客体需求\"等既有理论存在高度相似性。澄清边界有助于评估该概念是原创贡献还是已有理论的通俗重述。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md",
+    "affectedPages": [
+      "wiki/concepts/虚假共振.md",
+      "wiki/concepts/自我价值外包.md"
+    ],
+    "searchQueries": [
+      "Cooley looking-glass self infidelity self-validation",
+      "Kohut selfobject mirroring extramarital affair",
+      "Horney idealized self-image fantasy"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-fdb93525",
+    "resolved": false,
+    "createdAt": 1788234339927
+  },
+  {
+    "type": "suggestion",
+    "title": "三次结构升级的实践支撑核查",
+    "description": "source文档提出\"回归被看见/重建投射空间/性作为调频仪式\"为关系重建的三次结构升级，但未提供任何实证来源或可操作指南。若此框架有价值，需核查是否存在相关临床/研究文献支撑；若无法找到，应标注为纯观点性框架而非循证方法。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md",
+    "affectedPages": [
+      "wiki/concepts/真实共振.md",
+      "wiki/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md"
+    ],
+    "searchQueries": [
+      "relationship repair structural upgrade intimacy research evidence",
+      "sexual resonance couple therapy empirical",
+      "mystery未完成感 relationship longevity study"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8b590b4c",
+    "resolved": false,
+    "createdAt": 1788234339927
+  },
+  {
+    "type": "suggestion",
+    "title": "框架适用边界：权力不对等与情感虐待情境",
+    "description": "analysis明确指出的核心局限——本文框架未涵盖权力不对等、情感虐待等结构性因素——属于重大适用边界问题。若读者将该框架用于判断出轨归因，可能错误地忽视施虐者的操纵机制（如gaslighting导致的\"虚假共振\"合理化）。建议增加\"适用边界\"章节或创建关联页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/出轨的本质从来不是性，而是一场低难度的自我确认.md",
+    "affectedPages": [
+      "wiki/concepts/虚假共振.md",
+      "wiki/concepts/课题分离.md"
+    ],
+    "searchQueries": [
+      "gaslighting extramarital affair victim blaming relationship power imbalance",
+      "coercive control cheating justification psychology"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e4600c20",
+    "resolved": false,
+    "createdAt": 1788234339927
+  },
+  {
+    "type": "suggestion",
+    "title": "防御性悲观的心理学标准定义与本文用法的差异需澄清",
+    "description": "本文对\"防御性悲观\"的使用较为随意，未标注其原始提出者Barbara Norem及实证研究。建议查证Defensive Pessimism的标准心理学定义（一种通过预设最坏情况来准备行动的策略，而非单纯的拒绝行动），确认与wiki中\"拒绝交卷\"的描述是否一致，避免概念误用。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "affectedPages": [
+      "wiki/concepts/防御性悲观.md"
+    ],
+    "searchQueries": [
+      "Barbara Norem defensive pessimism definition",
+      "防御性悲观心理学定义 Norem",
+      "defensive pessimism vs avoidance"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1d4d68b7",
+    "resolved": false,
+    "createdAt": 1788244451752
+  },
+  {
+    "type": "suggestion",
+    "title": "持续交卷与战略蛰伏的适用边界需研究",
+    "description": "wiki中同时存在[[concepts/持续交卷]]（强调每日强制交付）和[[concepts/战略蛰伏]]（强调静默积累），两者在时序逻辑上存在张力。未明确何时切换策略——例如高风险项目是否适合MVP交卷，或长期复利项目是否应先蛰伏。明确适用边界可避免策略冲突。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "affectedPages": [
+      "wiki/concepts/持续交卷.md",
+      "wiki/concepts/战略蛰伏.md"
+    ],
+    "searchQueries": [
+      "MVP strategy vs long-term preparation when to ship",
+      "持续交付与战略耐心 适用边界",
+      "\"ship it\" vs \"prepare\" decision framework"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-62b90ed9",
+    "resolved": false,
+    "createdAt": 1788244451752
+  },
+  {
+    "type": "suggestion",
+    "title": "控制感错觉与准备行为的区分需澄清",
+    "description": "本文用\"控制感错觉\"解释\"先准备再行动\"的认知误区，但Langer的Illusion of Control原意指概率情境下的控制感高估，与\"完美主义式准备\"是否为同一机制需辨析。建议查证认知心理学文献中对该概念的标准用法，避免工具书化泛化。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "affectedPages": [
+      "wiki/concepts/控制感错觉.md"
+    ],
+    "searchQueries": [
+      "illusion of control Langer definition psychology",
+      "控制感错觉 认知偏差 Langer",
+      "illusion of control vs overconfidence preparation"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1b79eaa9",
+    "resolved": false,
+    "createdAt": 1788244451752
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略案例的普适性验证",
+    "description": "本文引用的创新案例（蒸汽机、飞机）和涨粉案例缺乏系统性研究支撑，建议搜索相关文献验证：\n1. \"steam engine history craftsmanship vs theory\"\n2. \"Wright brothers flight innovation process research\"\n3. \"non-linear growth patterns empirical studies\"",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "searchQueries": [
+      "steam engine history craftsmanship innovation",
+      "Wright brothers flight innovation process",
+      "non-linear growth empirical studies"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7a617642",
+    "resolved": false,
+    "createdAt": 1788244761342
+  },
+  {
+    "type": "missing-page",
+    "title": "中产阶级思维危险论",
+    "description": "文章提出\"中产阶级思维最危险\"的论点，认为追求中等风险反而最脆弱，但wiki中尚无专门页面承载这一概念。建议创建页面或在 `concepts/gang-bing-ce-lue.md` 中增加相关内容。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "affectedPages": [
+      "wiki/concepts/zhong-chan-jie-wei-xin.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ffd007fd",
+    "resolved": false,
+    "createdAt": 1788244761342
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略90/10比例的普适性验证",
+    "description": "文章将90%保守+10%激进作为最优配置，但未讨论该比例是否适用于不同收入阶层、风险承受能力和人生阶段。塔勒布在《反脆弱》原文中是否讨论过比例的个体差异？搜索验证有助于修正wiki中的绝对化表述。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "searchQueries": [
+      "Taleb barbell strategy 90 10 allocation individual differences",
+      "barbell strategy optimal ratio evidence",
+      "杠铃策略 90/10 比例 适用性 研究"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-61009373",
+    "resolved": false,
+    "createdAt": 1788244761342
+  },
+  {
+    "type": "missing-page",
+    "title": "弱关系价值与社交能量消耗的关系",
+    "description": "文章提到涨粉案例涉及不同内容类型的尝试（留学、编程、生活），隐含了弱关系网络的多样性价值，但未建立与Granovetter\"弱关系的强度\"理论或wiki中已有`社交宿醉`概念的显式链接。建议创建专门页面或补充到相关概念页。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "affectedPages": [
+      "wiki/concepts/ruo-guan-xi-jia-zhi.md",
+      "wiki/concepts/she-jiao-su-zui.md"
+    ],
+    "searchQueries": [
+      "Granovetter weak tie strength theory social capital",
+      "弱关系 社交网络 信息多样性 价值"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ab1b3060",
+    "resolved": false,
+    "createdAt": 1788244761342
+  },
+  {
+    "type": "suggestion",
+    "title": "蒸汽机与莱特兄弟案例的史实核查",
+    "description": "文章对两个经典创新案例的表述存在过度简化：蒸汽机并非完全无理论依据（如纽科门蒸汽机的热力学探索），莱特兄弟也有大量风洞实验数据支撑。若wiki以当前简化的表述引用，可能误导读者对\"理论vs实践\"二元对立的判断，建议核查原始史料后修正。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "searchQueries": [
+      "steam engine history Newcomen Watt theory craftsmanship",
+      "Wright brothers wind tunnel experiments aerodynamics theory"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8ec2c17f",
+    "resolved": false,
+    "createdAt": 1788244761342
+  },
+  {
+    "type": "missing-page",
+    "title": "前额叶.md",
+    "description": "分析中大量依赖\"前额叶\"作为杏仁核的对立面概念（理智中心），但wiki中仅有实体页面未创建对应的概念页面。前额叶的执行功能、情绪调节机制本身值得独立阐述，以支撑\"两阶段模型\"的理论基础。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/concepts/杏仁核劫持.md",
+      "wiki/entities/前额叶.md"
+    ],
+    "searchQueries": [
+      "前额叶执行功能 情绪调节 神经科学",
+      "prefrontal cortex emotion regulation anxiety"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f0880846",
+    "resolved": false,
+    "createdAt": 1788270565453
+  },
+  {
+    "type": "missing-page",
+    "title": "权力动力学的向下兼容-与讨好边界澄清",
+    "description": "分析创建了`权力动力学（向下兼容）`概念页，但该概念与wiki中已有的`讨好 vs 善良`比较页、`锋芒型人格`实体存在交叉关系，需明确区分：向下兼容是安全感驱动的态度选择，讨好是恐惧驱动的向上迎合。现有wiki中这一边界的讨论不够清晰。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/concepts/讨好.md",
+      "wiki/comparisons/讨好-vs-善良.md",
+      "wiki/concepts/权力动力学-向下兼容.md"
+    ],
+    "searchQueries": [
+      "讨好 vs 向下兼容 心理学区别",
+      "权力动力学 向下兼容 安全感",
+      "阿德勒 课题分离 讨好行为边界"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c832f009",
+    "resolved": true,
+    "createdAt": 1788270565453,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "杏仁核劫持的神经可塑性研究",
+    "description": "分析中标注了开放问题：长期练习是否可降低杏仁核对焦虑的刺激反应阈值？这与wiki中已有的`反脆弱`、`神经可塑性`相关概念存在连接潜力，值得补充循证研究以支撑\"两阶段模型\"的长期有效性主张。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/concepts/杏仁核劫持.md",
+      "wiki/concepts/斯坦福生理性叹气.md",
+      "wiki/sources/焦虑急救手册-生理阻断到认知重塑.md"
+    ],
+    "searchQueries": [
+      "杏仁核劫持 神经可塑性 长期练习 焦虑干预",
+      "amygdala hijack neuroplasticity meditation breathing",
+      "生理阻断 认知重塑 干预顺序 实证研究"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-9b444cb1",
+    "resolved": false,
+    "createdAt": 1788270565453
+  },
+  {
+    "type": "missing-page",
+    "title": "课题分离的神经科学解读页面",
+    "description": "分析指出[[entities/阿德勒]]页面应补充\"课题分离的神经科学解读（杏仁核vs前额叶）\"，但现有wiki中尚无专门页面将阿德勒的课题分离与神经科学框架对接。这一整合对理解\"两阶段模型\"的理论根基至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/entities/阿德勒.md",
+      "wiki/concepts/课题分离.md",
+      "wiki/concepts/杏仁核劫持.md"
+    ],
+    "searchQueries": [
+      "阿德勒 课题分离 神经科学 杏仁核 前额叶",
+      "Adler课题分离 存在性焦虑 应用边界",
+      "神经科学视角 课题分离 可控不可控"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e1debdfd",
+    "resolved": true,
+    "createdAt": 1788270565453,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略 vs 小事认怂大事梭哈 对比页缺失",
+    "description": "来源分析明确建议建立 [[comparisons/小事认怂大事梭哈-vs-杠铃策略]] 对比页，指出两者共享二分能量分配结构但表述框架不同（90%保守+10%疯狂 vs 小事止损+大事集中）。当前wiki仅各自独立成页，缺少直接对照，无法回答\"何时用哪个框架更合适\"这一实用问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md",
+    "affectedPages": [
+      "wiki/concepts/杠铃策略.md",
+      "wiki/concepts/小事认怂大事梭哈.md"
+    ],
+    "searchQueries": [
+      "杠铃策略 塔勒布 能量分配 高敏感",
+      "小事认怂大事梭哈 量化交易员 策略对比",
+      "杠铃策略 vs 二分决策 应用场景"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8ba44c16",
+    "resolved": false,
+    "createdAt": 1788270652610
+  },
+  {
+    "type": "suggestion",
+    "title": "聚光灯效应的实证边界需澄清",
+    "description": "新建的 [[concepts/聚光灯效应]] 页面将高敏感者对细节的捕捉能力\"简单归因为认知偏差\"的风险被提及但未充分展开。聚光灯效应在实验室环境中的效应量有限，高敏感者（HSP）的感知敏锐度本身有实证支持（Aron, 1996），二者如何区分是用户需要判断的问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md",
+    "affectedPages": [
+      "wiki/concepts/聚光灯效应.md"
+    ],
+    "searchQueries": [
+      "high sensitivity perception accuracy spotlight effect validity",
+      "HSP 高敏感 感知优势 实证研究",
+      "聚光灯效应 批评 局限性"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-86e01c7a",
+    "resolved": false,
+    "createdAt": 1788270652610
+  },
+  {
+    "type": "contradiction",
+    "title": "灰度思维与二分框架的隐含张力未解决",
+    "description": "[[concepts/灰度思维]] 和 [[concepts/小事认怂大事梭哈]] 之间存在结构性矛盾：前者反对非黑即白分类，后者本身是严格的二分策略。来源分析已指出这一张力，但两个页面各自独立陈述，未在任何页面中交叉标注此矛盾，可能导致用户理解混乱。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md",
+    "affectedPages": [
+      "wiki/concepts/灰度思维.md",
+      "wiki/concepts/小事认怂大事梭哈.md"
+    ],
+    "searchQueries": [
+      "灰度思维 陈宏 原意 与二分法张力",
+      "辩证思维 非二元 认知弹性 边界"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d86f24ab",
+    "resolved": false,
+    "createdAt": 1788270652610
   }
 ]

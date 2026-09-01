@@ -83,7 +83,7 @@
       "safeMode": "acceptEdits",
       "cliPath": "",
       "cliPathsByHost": {
-        "device:19cc9ffd-ee8c-4b37-a039-a448292a996a": "/Users/eric/.local/bin/claude"
+        "device-cbe6a2bd587980e8c315eebb249616a210a81398405c3f90a33b21e2f33f4727": "/Users/eric/.local/bin/claude"
       },
       "loadUserSettings": true,
       "enableChrome": false,

@@ -88,3 +88,23 @@
 ## 2026-08-26T14:00:12.508Z | 人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md
 
 1. FILE block "wiki/sources/人类最强的能力之一，可能不是"思考"，而是"递归思考" 36a7d11d97dd803c8a61f867286ff97f.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-01T03:35:30.939Z | 别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md
+
+1. FILE block with unsafe path "wiki/sources/别被"猛兽独行"洗脑：揭秘社会顶层真实的生存逻辑.md" rejected (must be under wiki/, no .., no absolute paths, and Windows-safe file names).
+
+## 2026-09-01T03:43:31.473Z | 成人世界的真相：人的属性，永远高于关系的属性.md
+
+1. FILE block "wiki/sources/成人世界的真相：人的属性，永远高于关系的属性.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-01T03:43:42.406Z | 成人世界的真相：人的属性，永远高于关系的属性.md
+
+1. FILE block "wiki/sources/成人世界的真相：人的属性，永远高于关系的属性.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-01T06:38:18.065Z | 杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md
+
+1. FILE block "wiki/concepts/安全垫.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-01T13:50:52.601Z | 高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md
+
+1. FILE block with unsafe path "wiki/sources/高敏感者的生存博弈：小事"认怂"，大事"梭哈".md" rejected (must be under wiki/, no .., no absolute paths, and Windows-safe file names).

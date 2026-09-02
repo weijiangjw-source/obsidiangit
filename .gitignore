@@ -27,9 +27,29 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
-# 忽略系统文件
+
+# ===== AI 插件缓存（你这次冲突的罪魁祸首）=====
+.copilot/
+.smart-env/
+.llm-wiki/
+
+
+# ===== 回收站/临时文件 =====
+.trash/
+.tmp/
+
+
+
+# 忽略操作系统垃圾文件
 .DS_Store
 Thumbs.db
+desktop.ini
+
+
+# ===== 如果你用了第三方同步盘（如iCloud/OneDrive），强烈建议加上 =====
+*.icloud
+.icloud/
+
 
 # 如果你有专门的附件文件夹，比如 attachments 或 media，请取消下面这行的注释并修改为你的文件夹名
   attachments/

@@ -2836,5 +2836,339 @@
     "id": "review-5b69b22f",
     "resolved": false,
     "createdAt": 1787752812517
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略85/15比例的实证依据需要核实",
+    "description": "来源中给出的杠铃策略配置参数（85%稳健+15%进攻）标注为\"经验法则\"，但wiki页面以准学术口吻呈现。需核实塔勒布原著中是否明确给出了此比例，还是本文作者的自行量化。若为作者发明，应在页面中添加免责声明并修正归属。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/杠铃策略.md"
+    ],
+    "searchQueries": [
+      "塔勒布 杠铃策略 85 15 比例 原文",
+      "Taleb barbell strategy 85/15 allocation",
+      "反脆弱 杠铃策略 资产配置比例"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-530a5b1b",
+    "resolved": false,
+    "createdAt": 1788345467742
+  },
+  {
+    "type": "missing-page",
+    "title": "格兰诺维特与弱关系理论原始文献缺失",
+    "description": "[[concepts/弱关系机会理论]] 引用了格兰诺维特但未标注1973年 seminal paper \"The Strength of Weak Ties\"。作为社会学经典理论，缺失原始文献引用削弱了wiki的学术可信度。建议补充原文献条目或创建独立页面追溯理论来源。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/弱关系机会理论.md"
+    ],
+    "searchQueries": [
+      "Granovetter 1973 Strength of Weak Ties original paper",
+      "格兰诺维特 弱关系 原始文献 引用",
+      "The Strength of Weak Ties social network theory empirical evidence"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-b841faff",
+    "resolved": false,
+    "createdAt": 1788345467742
+  },
+  {
+    "type": "suggestion",
+    "title": "T型技能树的学术来源与实证基础需澄清",
+    "description": "[[concepts/T型技能树]] 未标注概念来源——该表述在管理学和职业规划领域有多种出处（如Iyer等2014年研究），且缺乏量化研究支撑\"深度+广度=不可替代性\"的因果链。需确认该概念在wiki中的表述是原创整合还是引用已有理论，并补充相应的学术或实证依据。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别被“猛兽独行”洗脑：揭秘社会顶层真实的生存逻辑.md",
+    "affectedPages": [
+      "wiki/concepts/T型技能树.md"
+    ],
+    "searchQueries": [
+      "T-shaped skills empirical research evidence",
+      "T型技能 深度广度 不可替代性 研究",
+      "Iyer T-shaped skills career development"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-b30fab28",
+    "resolved": false,
+    "createdAt": 1788345467742
+  },
+  {
+    "type": "contradiction",
+    "title": "无条件爱的排他性断言与共同体感觉存在张力",
+    "description": "\"世界上只有身体才给你无条件的爱\"这一命题排除了父母/伴侣在特定情境（如对重症子女的照护）下提供无条件之爱的可能性，与[[共同体感觉]]的阿德勒视角形成张力。建议在\"身体-无条件盟友\"页面标注此争议，并在相关页面中保持审慎措辞。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c10cd9e9",
+    "resolved": false,
+    "createdAt": 1788345528721
+  },
+  {
+    "type": "missing-page",
+    "title": "\"重新养育自己\"未单独建页",
+    "description": "源文明确提出\"重新养育自己\"作为核心实践方法（成为自己的父母、伴侣和战友，替换内在批判语言），当前wiki无独立概念页面。该概念与[[自爱]]、[[虚假自爱与真正自爱]]有部分重叠但角度不同，值得独立成页。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "searchQueries": [
+      "重新养育自己 心理学 自我再抚育 内在儿童 方法框架",
+      "re-parenting therapy self inner child techniques",
+      "重新养育自己 自爱八原则 步骤清单"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-113d09d0",
+    "resolved": false,
+    "createdAt": 1788345528721
+  },
+  {
+    "type": "suggestion",
+    "title": "\"过情关\"与认知解离的可对话性值得深入",
+    "description": "\"过情关=情绪与行为解离\"与ACT疗法中的[[认知解离]]存在高度可对话性，建议进一步查阅ACT相关文献，明确两者在机制层面的异同，以丰富wiki中认知干预策略的理论深度。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/成人世界的真相：人的属性，永远高于关系的属性.md",
+    "searchQueries": [
+      "ACT acceptance commitment therapy cognitive defusion emotional behavioral dissociation",
+      "情绪与行为解离 心理灵活性 过情关",
+      "ACT认知解离 情绪调节 行为激活"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-b1cedd62",
+    "resolved": false,
+    "createdAt": 1788345528721
+  },
+  {
+    "type": "missing-page",
+    "title": "好奇心（投资认知维度）",
+    "description": "原文\"三位一体框架\"将\"好奇心\"列为引擎层核心特质之一，但正文八项反人性特质中并无此条目。这是一个被引用却未被展开的概念，值得单独建页或在相关条目中补充说明其内涵与操作化定义。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/普通人与大师的距离：决定财富量级的 8 个反人性特质.md",
+    "affectedPages": [
+      "wiki/concepts/概率思维.md",
+      "wiki/concepts/第二层思维.md",
+      "wiki/concepts/适应性进化.md"
+    ],
+    "searchQueries": [
+      "好奇心 投资大师 霍华德·马克斯 认知好奇心 投资决策"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f8a3a951",
+    "resolved": false,
+    "createdAt": 1788345913073
+  },
+  {
+    "type": "suggestion",
+    "title": "\"好奇心\"作为投资特质的来源与实证依据核查",
+    "description": "三位一体框架中\"引擎=概率+二层思维+好奇心\"，但好奇心不在八个反人性特质之列。需确认：此三元素是作者综合归纳还是引用自某位大师（如霍华德·马克斯关于好奇心的论述），并核查原始出处以消除内部不一致。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/普通人与大师的距离：决定财富量级的 8 个反人性特质.md",
+    "affectedPages": [
+      "wiki/concepts/概率思维.md",
+      "wiki/concepts/投资者的三位一体框架.md"
+    ],
+    "searchQueries": [
+      "霍华德·马克斯 好奇心 investor curiosity 概率思维 二层思维 好奇心"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0f37017a",
+    "resolved": false,
+    "createdAt": 1788345913073
+  },
+  {
+    "type": "suggestion",
+    "title": "\"反社会本能\"修辞的心理学边界澄清",
+    "description": "逆向思维条目中使用的\"反社会本能\"措辞存在误导性风险：可能将健康的逆向决策与反社会人格特征混淆。建议补充心理学文献中对\"反社会性\"(antisociality)与\"独立思考\"(independent thinking)的区别，或改用更精确的表述。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/普通人与大师的距离：决定财富量级的 8 个反人性特质.md",
+    "affectedPages": [
+      "wiki/concepts/逆向思维.md",
+      "wiki/concepts/冷静气质.md"
+    ],
+    "searchQueries": [
+      "逆向思维 反社会人格 投资心理学 独立判断 从众压力 学术文献"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-58d985b8",
+    "resolved": false,
+    "createdAt": 1788345913073
+  },
+  {
+    "type": "suggestion",
+    "title": "八项反人性特质的实证测量与研究综述",
+    "description": "本文声称这些特质决定财富量级，但缺乏实证支撑。建议补充相关心理学/行为金融学研究，验证这些特质是否可通过量表测量（如延迟满足、情绪调节、认知风格等），并与财富/投资绩效的实际数据关联。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/普通人与大师的距离：决定财富量级的 8 个反人性特质.md",
+    "affectedPages": [
+      "wiki/concepts/极致耐心.md",
+      "wiki/concepts/冷静气质.md",
+      "wiki/concepts/概率思维.md",
+      "wiki/synthesis/性格公式的量化主张与证据缺失之间的张力-2026-08-25-153809.md"
+    ],
+    "searchQueries": [
+      "投资成功 人格特质 实证研究 延迟满足 概率思维 行为金融学 量化研究"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-50473db7",
+    "resolved": false,
+    "createdAt": 1788345913073
+  },
+  {
+    "type": "contradiction",
+    "title": "杠铃策略与尽人事听天命的控制-接受张力",
+    "description": "[[concepts/杠铃策略|杠铃策略]] 强调主动设计下限与上限（控制维度），而 [[concepts/尽人事听天命|尽人事听天命]] 强调接受不可控因素（接受维度）。两者在\"控制 vs 接受\"的适用边界上存在潜在张力，需厘清各自适用的场景与条件。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "affectedPages": [
+      "concepts/杠铃策略.md",
+      "concepts/尽人事听天命.md"
+    ],
+    "searchQueries": [
+      "杠铃策略 尽人事听天命 控制 接受 适用边界",
+      "塔勒布 反脆弱 宿命论 哲学张力"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d37422c3",
+    "resolved": false,
+    "createdAt": 1788346025052
+  },
+  {
+    "type": "missing-page",
+    "title": "反脆弱跨领域适用边界的开放问题",
+    "description": "[[concepts/反脆弱|反脆弱]] 最初是针对金融和投资风险管理的框架，推广到人生规划时有边界问题需谨慎确认。当前缺乏专门页面讨论其适用范围（感情、健康、职业等）及经济压力人群的适用性问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "affectedPages": [
+      "queries/反脆弱跨领域适用边界.md"
+    ],
+    "searchQueries": [
+      "反脆弱 适用边界 人生领域 感情 健康 职业",
+      "塔勒布 反脆弱 批评 局限性"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e7406fc1",
+    "resolved": false,
+    "createdAt": 1788346025052
+  },
+  {
+    "type": "suggestion",
+    "title": "杠铃策略90/10比例的量化研究",
+    "description": "[[concepts/杠铃策略|杠铃策略]] 的\"90/10\"比例是经验法则还是可量化的最优解？是否有跨领域适用的一般性原则？建议进一步研究不同场景下的最优风险配置比例及验证方法。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md",
+    "affectedPages": [
+      "queries/杠铃策略最优比例研究.md"
+    ],
+    "searchQueries": [
+      "杠铃策略 最优比例 风险配置 量化模型",
+      "barbell strategy optimal allocation quantitative"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ea8862bc",
+    "resolved": false,
+    "createdAt": 1788346025052
   }
 ]

@@ -716,3 +716,105 @@ updated: 2026-09-02
 - Ingest | 杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？
 
 ## [2026-09-02] ingest | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+## [2026-09-02] ingest | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+## [2026-09-02] ingest | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+
+---
+type: synthesis
+title: Wiki Log
+tags: [log]
+related: []
+created: 2026-09-02
+updated: 2026-09-02
+---
+
+## 2026-09-02
+
+- Ingested source: 答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md
+- Created source page: wiki/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md
+- Created concept page: wiki/concepts/投入思维-vs-交卷思维.md
+- Noted connections to existing pages: [[伪勤奋]], [[虚假成就感]], [[学习成瘾]], [[执行法则]], [[真实成长闭环]], [[先落地]], [[五分钟法则]], [[反视觉化]]
+- Flagged open questions: "可交付的垃圾"最低标准、交卷频率的适用边界、与万相纵横的潜在张力
+
+## [2026-09-02] ingest | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+## [2026-09-02] ingest | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+## [2026-09-02] ingest | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+## [2026-09-02] ingest | 搜索框的原罪：当AI开始逼迫人类重新学会思考.md
+
+
+---
+type: synthesis
+title: Wiki Log
+tags: [log]
+related: []
+created: 2026-09-02
+updated: 2026-09-02
+sources: []
+---
+## 2026-09-02
+
+- Ingest: [[人须在事上磨：治好你的精神内耗和行动瘫痪]] — 王阳明"知行合一"理论应用于现代认知-行动脱节问题的分析文章
+- Created entities: [[王阳明]], [[乔纳森·海特]]
+- Created concepts: [[知行合一]], [[事上练]], [[致良知]]
+
+---
+type: synthesis
+title: Wiki Log
+tags: [日志, 更新记录]
+related: []
+sources: []
+created: 2026-09-02
+updated: 2026-09-02
+---
+
+# Wiki 日志
+
+## 2026-09-02
+
+- 新增源页面 [[认知炼狱指南：拆解世界底层逻辑的8级阶梯]]
+- 新增概念页面 [[八层认知炼狱]]
+- 新增概念页面 [[智商过滤器]]
+- 新增概念页面 [[毒丸机制]]
+- 新增概念页面 [[权威霸凌]]
+- 新增概念页面 [[共谋者]]
+- 新增概念页面 [[认知代价论]]
+- 新增对比页面 [[八层认知炼狱 vs 认知套利]]
+
+## 2026-09-02
+
+- ingest | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md
+
+## [2026-09-02] ingest | 搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902.md
+
+
+---
+type: synthesis
+title: Wiki Log
+tags: []
+related: []
+created: 2026-09-02
+updated: 2026-09-02
+sources: []
+---
+
+# Wiki Log
+
+## 2026-09-02
+
+- 新增 source: [[搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902]] — 搜索框的原罪：当AI开始逼迫人类重新学会思考
+- 新增 entity: [[ben-gomes]] — Ben Gomes，谷歌首席专家，战略变革核心人物
+- 新增 entity: [[lila-ibrahim]] — Lila Ibrahim，DeepMind首席运营官
+- 新增 entity: [[gemini]] — Gemini，谷歌苏格拉底式AI产品
+- 新增 entity: [[notebooklm]] — NotebookLM，谷歌AI笔记工具
+- 新增 entity: [[deepmind]] — DeepMind，谷歌旗下AI研究机构
+- 新增 concept: [[搜索框的原罪-知道扼杀思考]] — 搜索框的原罪：知道扼杀思考
+- 新增 concept: [[苏格拉底式AI交互]] — 苏格拉底式AI交互
+- 新增 concept: [[人机协同基础设施]] — 人机协同基础设施
+- 新增 concept: [[认知平权]] — 认知平权
+- 新增 synthesis: [[从信息平权到认知平权的叙事框架]] — 从信息平权到认知平权的叙事框架

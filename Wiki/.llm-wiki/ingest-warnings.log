@@ -138,3 +138,28 @@
 ## 2026-09-02T10:48:28.939Z | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
 
 1. FILE block "wiki/sources/焦虑急救手册-从生理阻断到认知重塑的完整方案.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-02T10:51:05.585Z | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+1. FILE block with unsafe path "wiki/sources/焦虑急救手册：从"生理阻断"到"认知重塑"的完整方案.md" rejected (must be under wiki/, no .., no absolute paths, and Windows-safe file names).
+2. FILE block "wiki/concepts/具体化对抗模糊.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-02T10:52:00.508Z | 焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md
+
+1. FILE block with unsafe path "wiki/sources/焦虑急救手册：从"生理阻断"到"认知重塑"的完整方案.md" rejected (must be under wiki/, no .., no absolute paths, and Windows-safe file names).
+
+## 2026-09-02T12:36:40.068Z | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+1. FILE block "wiki/concepts/心流模型.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-02T12:37:45.553Z | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+1. FILE block "wiki/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-02T12:37:53.275Z | 如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md
+
+1. FILE block "wiki/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.
+
+## 2026-09-02T12:47:49.901Z | 搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902.md
+
+1. FILE block "wiki/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902.md" was not closed before end of stream — likely truncation (model hit max_tokens, timeout, or connection dropped). Block dropped.

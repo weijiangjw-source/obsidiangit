@@ -559,6 +559,101 @@
         "wiki/log.md",
         "wiki/index.md"
       ]
+    },
+    "焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md": {
+      "hash": "604fb1bda7a14eba536e53033fa879d3d0138b2f8ff2fa51bd615150b5016812",
+      "timestamp": 1788346320526,
+      "filesWritten": [
+        "wiki/log.md",
+        "wiki/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md"
+      ]
+    },
+    "答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md": {
+      "hash": "31dbf3be5e887a0e5425a70faefc82e22fd0db90f6987a96abf75921254654e1",
+      "timestamp": 1788346370576,
+      "filesWritten": [
+        "wiki/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+        "wiki/concepts/投入思维-vs-交卷思维.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
+    },
+    "搜索框的原罪：当AI开始逼迫人类重新学会思考.md": {
+      "hash": "fb23c2656af46a922ee161ba930d0767918be5b2f467410c78104d1e4a21ba9e",
+      "timestamp": 1788352740646,
+      "filesWritten": [
+        "wiki/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考.md",
+        "wiki/index.md",
+        "wiki/log.md"
+      ]
+    },
+    "人须在事上磨：治好你的精神内耗和行动瘫痪.md": {
+      "hash": "059a01fd2ccc82c23ac6197cc77b8473bd7abb45b005672e7f1f120118ad8134",
+      "timestamp": 1788352905619,
+      "filesWritten": [
+        "wiki/sources/人须在事上磨：治好你的精神内耗和行动瘫痪.md",
+        "wiki/entities/王阳明.md",
+        "wiki/entities/乔纳森·海特.md",
+        "wiki/concepts/知行合一.md",
+        "wiki/concepts/事上练.md",
+        "wiki/concepts/致良知.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
+    },
+    "认知炼狱指南：拆解世界底层逻辑的8级阶梯.md": {
+      "hash": "0c11ce2a9dc11c0b3a84283f014729bd3491716daee9753e317c09f3fa776339",
+      "timestamp": 1788352991094,
+      "filesWritten": [
+        "wiki/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+        "wiki/concepts/八层认知炼狱.md",
+        "wiki/concepts/智商过滤器.md",
+        "wiki/concepts/毒丸机制.md",
+        "wiki/concepts/权威霸凌.md",
+        "wiki/concepts/共谋者.md",
+        "wiki/concepts/认知代价论.md",
+        "wiki/comparisons/八层认知炼狱-vs-认知套利.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
+    },
+    "如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md": {
+      "hash": "7d2d8a8c04f293fd4a6485a21b5b6d2dd574cae35488d6ece95f70f0a9bb7331",
+      "timestamp": 1788353182759,
+      "filesWritten": [
+        "wiki/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md",
+        "wiki/entities/乔布斯.md",
+        "wiki/entities/马斯克.md",
+        "wiki/entities/亚马逊.md",
+        "wiki/concepts/复利-芒格视角.md",
+        "wiki/concepts/非线性思维.md",
+        "wiki/concepts/逆向思维.md",
+        "wiki/concepts/排列组合-跨学科思维.md",
+        "wiki/concepts/心流模型.md",
+        "wiki/concepts/三层解释.md",
+        "wiki/synthesis/芒格15模型整合框架.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
+    },
+    "搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902.md": {
+      "hash": "fb23c2656af46a922ee161ba930d0767918be5b2f467410c78104d1e4a21ba9e",
+      "timestamp": 1788353325309,
+      "filesWritten": [
+        "wiki/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902.md",
+        "wiki/entities/ben-gomes.md",
+        "wiki/entities/lila-ibrahim.md",
+        "wiki/entities/gemini.md",
+        "wiki/entities/notebooklm.md",
+        "wiki/entities/deepmind.md",
+        "wiki/concepts/搜索框的原罪-知道扼杀思考.md",
+        "wiki/concepts/苏格拉底式AI交互.md",
+        "wiki/concepts/人机协同基础设施.md",
+        "wiki/concepts/认知平权.md",
+        "wiki/synthesis/从信息平权到认知平权的叙事框架.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
     }
   }
 }

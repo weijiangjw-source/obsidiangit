@@ -155,8 +155,9 @@
       }
     ],
     "id": "review-7294da76",
-    "resolved": false,
-    "createdAt": 1787556812638
+    "resolved": true,
+    "createdAt": 1787556812638,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -1393,8 +1394,9 @@
       }
     ],
     "id": "review-ad0a9b72",
-    "resolved": false,
-    "createdAt": 1787631870995
+    "resolved": true,
+    "createdAt": 1787631870995,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "contradiction",
@@ -2185,8 +2187,9 @@
       }
     ],
     "id": "review-758028c1",
-    "resolved": false,
-    "createdAt": 1787639010075
+    "resolved": true,
+    "createdAt": 1787639010075,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -2211,8 +2214,9 @@
       }
     ],
     "id": "review-4632510c",
-    "resolved": false,
-    "createdAt": 1787639010075
+    "resolved": true,
+    "createdAt": 1787639010075,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -2556,8 +2560,9 @@
       }
     ],
     "id": "review-f67315c7",
-    "resolved": false,
-    "createdAt": 1787727132196
+    "resolved": true,
+    "createdAt": 1787727132196,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -2608,8 +2613,9 @@
       }
     ],
     "id": "review-552a83ae",
-    "resolved": false,
-    "createdAt": 1787727132196
+    "resolved": true,
+    "createdAt": 1787727132196,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "suggestion",
@@ -2834,8 +2840,9 @@
       }
     ],
     "id": "review-5b69b22f",
-    "resolved": false,
-    "createdAt": 1787752812517
+    "resolved": true,
+    "createdAt": 1787752812517,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "suggestion",
@@ -2888,8 +2895,9 @@
       }
     ],
     "id": "review-b841faff",
-    "resolved": false,
-    "createdAt": 1788345467742
+    "resolved": true,
+    "createdAt": 1788345467742,
+    "resolvedAction": "auto-resolved"
   },
   {
     "type": "suggestion",
@@ -3009,8 +3017,9 @@
       }
     ],
     "id": "review-f8a3a951",
-    "resolved": false,
-    "createdAt": 1788345913073
+    "resolved": true,
+    "createdAt": 1788345913073,
+    "resolvedAction": "auto-resolved"
   },
   {
     "type": "suggestion",
@@ -3170,5 +3179,688 @@
     "id": "review-ea8862bc",
     "resolved": false,
     "createdAt": 1788346025052
+  },
+  {
+    "type": "missing-page",
+    "title": "意义疗法实体页面缺失",
+    "description": "分析显示[[concepts/意义疗法]]仅作为概念页存在，但文献中该理论由维克托·弗兰克尔（Viktor Frankl）创立，具备独立实体价值。建议创建 `entities/弗兰克尔.md` 和扩展概念页。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/entities/弗兰克尔.md"
+    ],
+    "searchQueries": [
+      "Viktor Frankl logotherapy meaning therapy",
+      "弗兰克尔意义疗法核心著作"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-3a3ae104",
+    "resolved": false,
+    "createdAt": 1788346320520
+  },
+  {
+    "type": "contradiction",
+    "title": "斯多葛预设负面与承认运气的张力需人工判断",
+    "description": "[[concepts/斯多葛预设负面]] 强调主动预案掌控（\"写下最坏结果并制定预案\"），而法则04\"承认运气\"强调接受随机性（\"顺时不狂逆时不馁\"）。两者在\"何时主动规划、何时接受不可控\"之间存在未解决的边界问题，需在相关页面上标注此张力。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "wiki/concepts/斯多葛预设负面.md",
+      "wiki/concepts/微小野心.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7019c789",
+    "resolved": false,
+    "createdAt": 1788346320520
+  },
+  {
+    "type": "suggestion",
+    "title": "建议探索与杠铃策略、反脆弱的方法论互补关系",
+    "description": "文档末尾提出的开放问题值得进一步研究：[[全维反焦虑操作系统]] 的九条法则与 [[杠铃策略]]、[[反脆弱]]、[[可选择性]] 等概念是否存在方法论上的互补或冲突？特别是\"肉体阻断\"（法则02）与\"先开枪后瞄准\"的关系值得厘清。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
+    "affectedPages": [
+      "SEARCH: anxiety physiological intervention cognitive restructuring Frankl logotherapy evidence | 微小野心 五分钟法则 启动惯性 方法学对比"
+    ],
+    "searchQueries": [
+      "anxiety physiological intervention cognitive restructuring Frankl logotherapy evidence",
+      "微小野心 五分钟法则 启动惯性 方法学对比"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f5196979",
+    "resolved": false,
+    "createdAt": 1788346320520
+  },
+  {
+    "type": "missing-page",
+    "title": "三算法子概念页面是否需单独创建",
+    "description": "分析建议将MVP思维、复利效应、帕金森定律作为交卷思维的子模块而非独立页面。但若后续深入扩展，可考虑创建：\n- concepts/mvp思维-最小可行性闭环.md\n- concepts/死线强制规则.md\n\n目前不建议创建，保持精简。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-74700b2d",
+    "resolved": false,
+    "createdAt": 1788346370571
+  },
+  {
+    "type": "missing-page",
+    "title": "防御性悲观概念页缺失",
+    "description": "本文核心心理机制之一\"防御性悲观\"在wiki中尚未创建独立页面，仅作为\"投入思维-vs-交卷思维\"的一个子点提及。该概念与[[冒充者综合征]]、[[认知失调与防御]]等已有页面存在交叉，值得单独建立以丰富wiki的心理防御机制知识图谱。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "searchQueries": [
+      "防御性悲观 defensive pessimism psychology",
+      "防御性悲观 完美主义 心理学研究",
+      "塔克曼 防御性悲观 原始研究"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e98e5f1e",
+    "resolved": false,
+    "createdAt": 1788346370571
+  },
+  {
+    "type": "suggestion",
+    "title": "MVP思维单独成页的可行性评估",
+    "description": "本文提出的\"算法一：MVP思维\"源自产品开发领域，已在wiki中存在独立的[[杠铃策略]]和[[认知套利]]等跨领域借用框架。MVP思维作为行动方法论有独立价值，但当前wiki中并无产品/项目管理类概念页。建议确认：是创建独立页面还是作为交卷思维子模块保留。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "searchQueries": [
+      "MVP思维 最小可行性闭环 个人成长 实践指南",
+      "minimum viable product personal development framework"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2af681e1",
+    "resolved": false,
+    "createdAt": 1788346370571
+  },
+  {
+    "type": "suggestion",
+    "title": "日拱一卒复利效应的量化依据缺口",
+    "description": "本文\"算法二：复利效应\"声称\"每天一个烂作品，一年365个资产节点\"，但未提供任何实证或量化模型支撑。这与[[非线性成长曲线]]页面形成潜在张力——复利曲线是否适用于所有类型的创造性输出？建议补充相关研究或明确适用边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
+    "searchQueries": [
+      "复利效应 创造力产出 量化研究",
+      "daily creative output compounding effect evidence",
+      "刻意练习 每日产出 复利模型"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c62c3fd8",
+    "resolved": false,
+    "createdAt": 1788346370571
+  },
+  {
+    "type": "missing-page",
+    "title": "Google AI教育战略的落地进展与效果评估",
+    "description": "来源文章描述Google教育转型时使用大量愿景性语言（\"终极野心\"\"巨大格局\"），但未提供任何实证数据：Gemini苏格拉底式功能是否已上线、NotebookLM用户数据、评估改革在哪些学校试点、认知平权是否有测量框架。这是关键信息缺口——一个未经实证检验的战略叙事不应被当作既定事实写入wiki。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考.md",
+    "affectedPages": [
+      "wiki/entities/google-教育转型.md",
+      "wiki/concepts/认知平权.md"
+    ],
+    "searchQueries": [
+      "Google Gemini Socratic AI education rollout 2025 2026",
+      "NotebookLM education adoption metrics",
+      "Google AI classroom assessment reform trials"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0138d131",
+    "resolved": true,
+    "createdAt": 1788352740631,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "contradiction",
+    "title": "脚手架定位与自动生成功能的内在张力",
+    "description": "[[脚手架-vs-枪手]]页面已指出该张力但未解决：Gemini既能\"苏格拉底式追问\"又能\"自动生成复习题卡和摘要\"，NotebookLM同样自动读取生成——这两个功能在技术上难以区分\"辅助\"与\"代劳\"。需要查证：Google是否公开过这两类功能的触发条件与用户控制选项？如果用户无法关闭自动生成，则\"脚手架\"定位是修辞而非设计原则。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考.md",
+    "affectedPages": [
+      "wiki/concepts/脚手架-vs-枪手.md",
+      "wiki/entities/gemini.md"
+    ],
+    "searchQueries": [
+      "Google Gemini Socratic mode vs summary generation toggle controls",
+      "NotebookLM auto-generate features user control 2025 2026"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-84e1a659",
+    "resolved": false,
+    "createdAt": 1788352740631
+  },
+  {
+    "type": "suggestion",
+    "title": "苏格拉底式AI追问的教育效果实证研究",
+    "description": "[[苏格拉底式AI追问]]作为核心概念建立，但完全没有引用任何实证研究支持\"引导式追问比直接给答案更能促进深度学习\"这一主张。这是一个可检验的学术命题，已有大量关于\"生产性失败\"\"检索练习\"\"交互式学习\"的认知科学文献可对照。缺少这一步使页面停留在类比层面而非证据层面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/搜索框的原罪：当AI开始逼迫人类重新学会思考.md",
+    "affectedPages": [
+      "wiki/concepts/苏格拉底式AI追问.md",
+      "wiki/concepts/顿悟的神经-教育框架.md"
+    ],
+    "searchQueries": [
+      "Socratic method AI tutoring learning outcomes meta-analysis",
+      "generative AI guided questioning vs direct instruction education study",
+      "productive failure AI learning effectiveness 2024 2025"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-07f7eebc",
+    "resolved": false,
+    "createdAt": 1788352740631
+  },
+  {
+    "type": "missing-page",
+    "title": "三分法则适用边界需澄清",
+    "description": "源文档未直接讨论\"三分法则\"，但现有索引中存在相关概念页面。建议确认是否需要创建专门页面或补充说明。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人须在事上磨：治好你的精神内耗和行动瘫痪.md",
+    "affectedPages": [
+      "SEARCH: 三分法则 适用边界 决策方法 | 三优三缺法则 王阳明 心学 | 三分法则 心理学 认知偏差"
+    ],
+    "searchQueries": [
+      "三分法则 适用边界 决策方法",
+      "三优三缺法则 王阳明 心学",
+      "三分法则 心理学 认知偏差"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-426a418a",
+    "resolved": false,
+    "createdAt": 1788352905613
+  },
+  {
+    "type": "missing-page",
+    "title": "大象与骑象人模型",
+    "description": "源文档核心论据来自乔纳森·海特的\"大象与骑象人\"模型，但该模型本身尚未建立独立页面。作为知行割裂机制的心理学解释框架，值得单独建页并补充实证来源（如Haidt《象与骑象人》原著内容），以便后续与其他情绪/认知相关页面交叉引用。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人须在事上磨：治好你的精神内耗和行动瘫痪.md",
+    "affectedPages": [
+      "wiki/entities/乔纳森·海特.md",
+      "wiki/concepts/知行合一.md"
+    ],
+    "searchQueries": [
+      "Jonathan Haidt The Happiness Hypothesis elephant rider model",
+      "象与骑象人 海特 心理学 实证研究",
+      "双重过程理论 情绪直觉 骑手大象"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-98c56d1f",
+    "resolved": true,
+    "createdAt": 1788352905613,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "知行合一视角下的内耗机制补充",
+    "description": "现有页面[[停止内耗：你必须为自己立下的 3 道心力防火墙]]从\"心力资源管理\"角度论述内耗，而本次源文档从\"知行合一\"角度指出内耗根源是\"假知\"而非\"意志力不足\"。两个视角存在互补关系，但尚未建立关联。建议人工确认如何整合这两种内耗解释框架，或创建对比/综合页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人须在事上磨：治好你的精神内耗和行动瘫痪.md",
+    "affectedPages": [
+      "wiki/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+      "wiki/concepts/知行合一.md",
+      "wiki/concepts/事上练.md"
+    ],
+    "searchQueries": [
+      "王阳明 知行合一 精神内耗 执行力",
+      "乔纳森海特 骑象人大象 意志力 自我控制 实证"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8ef77f7d",
+    "resolved": false,
+    "createdAt": 1788352905613
+  },
+  {
+    "type": "contradiction",
+    "title": "致良知与理性的冲突边界需澄清",
+    "description": "源文档提出\"致良知\"作为信息过载中的决策锚点，但同时承认\"道理只说服了骑手（理性）\"。当直觉（大象）与理性分析冲突时，以谁为准？源文档未给出答案，且该张力直接影响\"致良知\"概念的可操作性。建议在[[致良知]]页面补充与理性决策框架（如[[全维反焦虑操作系统]]）的冲突处理规则，或标记为待澄清项。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人须在事上磨：治好你的精神内耗和行动瘫痪.md",
+    "affectedPages": [
+      "wiki/concepts/致良知.md",
+      "wiki/concepts/全维反焦虑操作系统.md",
+      "wiki/concepts/知行合一.md"
+    ],
+    "searchQueries": [
+      "王阳明 致良知 直觉 理性冲突 决策",
+      "Jonathan Haidt reason versus emotion moral judgment",
+      "直觉决策 vs 理性分析 边界条件"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-03e79af0",
+    "resolved": false,
+    "createdAt": 1788352905613
+  },
+  {
+    "type": "missing-page",
+    "title": "剧本杀机制页面缺失",
+    "description": "源文档第2层的\"剧本杀\"机制是一个独立且重要的概念，但目前没有创建对应的页面。建议创建 [[concepts/剧本杀]] 页面，描述其作为阅历筛选机制的特征。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/剧本杀.md"
+    ],
+    "searchQueries": [
+      "杀猪盘 剧本杀 认知骗局 阅历筛选",
+      "杀猪盘心理机制 网络骗局 情感操控"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-fd1c50b4",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "盲人摸象机制页面缺失",
+    "description": "源文档第4层的\"盲人摸象\"机制是一个独立的概念，但目前没有创建对应的页面。建议创建 [[concepts/盲人摸象]] 页面，描述其作为信息隐藏机制的特征。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/盲人摸象.md"
+    ],
+    "searchQueries": [
+      "盲人摸象 信息不对称 认知偏误 选择性呈现",
+      "信息隐藏机制 认知偏见 部分真相"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-95257514",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "楚门的世界机制页面缺失",
+    "description": "源文档第7层的\"楚门的世界\"是一个重要隐喻，但目前没有创建对应的页面。建议创建 [[concepts/楚门的世界]] 页面，描述其作为文化共识囚笼的隐喻特征。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/楚门的世界.md"
+    ],
+    "searchQueries": [
+      "楚门的世界 文化共识 集体幻觉 社会规训",
+      "楚门的世界隐喻 认知囚笼 社会共识"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-350a22f1",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "剧本杀（第2层认知机制）",
+    "description": "源文档第2层的\"剧本杀\"机制描述了一个独立且重要的认知筛选模式：利用细节堆砌真实感，针对目标未涉足领域进行降维打击。目前wiki中没有此概念页面，仅有在八层认知炼狱中提及。该机制与杀猪盘、信息差骗局等主题高度相关，值得独立成页。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/剧本杀.md"
+    ],
+    "searchQueries": [
+      "杀猪盘 剧本杀 认知骗局 阅历筛选",
+      "杀猪盘心理机制 网络骗局 情感操控"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-71cd3498",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "盲人摸象（第4层认知机制）",
+    "description": "源文档第4层的\"盲人摸象\"机制描述了\"每句话都是真的，但隐藏了最致命部分\"的信息操纵模式。目前wiki中没有此概念页面，仅作为八层框架的子项提及。该机制与选择性失明、确认偏误、信息不对称等已有概念形成重要补充关系，值得独立成页以建立概念网络。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/盲人摸象.md"
+    ],
+    "searchQueries": [
+      "盲人摸象 信息不对称 认知偏误 选择性呈现",
+      "信息隐藏机制 认知偏见 部分真相"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8d6ad496",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "楚门的世界（第7层文化共识隐喻）",
+    "description": "源文档第7层以\"楚门的世界\"为隐喻，描述骗局内化为风俗、文化和世界观的集体幻觉状态。目前wiki中没有此页面。这一隐喻连接了社会规训、消费主义批判、从众心理等多个已有主题，独立成页有助于深化对第7层机制的理解。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/楚门的世界.md"
+    ],
+    "searchQueries": [
+      "楚门的世界 文化共识 集体幻觉 社会规训",
+      "楚门的世界隐喻 认知囚笼 社会共识"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2983714c",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "contradiction",
+    "title": "认知代价论与进步叙事的哲学张力",
+    "description": "八层认知炼狱的结语\"清醒是一种罪过\"与wiki中多处存在的进步主义框架（如知行合一、真实成长闭环、顿悟的神经-教育框架）存在根本张力：前者暗示认知觉醒必然伴随孤独与失去，后者暗示认知提升带来更好的生活状态。这一张力需要人工判断——是两种互补视角，还是不可调和的矛盾？建议在synthesis页面或专门的concept页面中显式处理这一张力。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/synthesis/性格解构的三重分析框架.md",
+      "wiki/concepts/存在之问.md",
+      "wiki/concepts/知行合一.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8a43a4d4",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "suggestion",
+    "title": "课题分离在7-8层的适用边界需检验",
+    "description": "阿德勒的课题分离是当前wiki中处理人际边界的核心工具，但八层认知炼狱的第7层（文化共识）和第8层（宇宙虚无）暗示：当骗局内化为整个社会的\"常识\"时，个体几乎无法通过课题分离来保护自己——质疑共识本身就是社会性风险。建议深入研究课题分离在面对系统性文化幻觉时的实际效力，这关系到阿德勒工具在wiki框架中的适用边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/认知炼狱指南：拆解世界底层逻辑的8级阶梯.md",
+    "affectedPages": [
+      "wiki/concepts/阿德勒的课题分离.md",
+      "wiki/concepts/权威霸凌.md",
+      "wiki/concepts/认知代价论.md"
+    ],
+    "searchQueries": [
+      "阿德勒 课题分离 社会共识 批判边界",
+      "课题分离 集体幻觉 社会规训 局限性"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6b70dabb",
+    "resolved": false,
+    "createdAt": 1788352991087
+  },
+  {
+    "type": "missing-page",
+    "title": "沃伦·巴菲特",
+    "description": "文中作为\"湿雪与长坡\"隐喻的提出者被引用，且是复利概念的核心佐证人物。但Wiki索引中无独立实体页面，仅在其他页面中被提及。作为投资与复利思维领域的标志性人物，缺少独立页面是明显知识缺口。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md",
+    "affectedPages": [
+      "SEARCH: 沃伦·巴菲特 投资哲学 核心思想 | Warren Buffett investment philosophy mental models | 巴菲特 芒格 复利 湿雪长坡"
+    ],
+    "searchQueries": [
+      "沃伦·巴菲特 投资哲学 核心思想",
+      "Warren Buffett investment philosophy mental models",
+      "巴菲特 芒格 复利 湿雪长坡"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-9edf275a",
+    "resolved": true,
+    "createdAt": 1788353182746,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "missing-page",
+    "title": "复利（通用概念页）",
+    "description": "现有页面为`复利-芒格视角.md`，侧重芒格个人解读。但复利作为独立基础概念（数学定义、历史发展、跨领域应用）尚无通用页面。用户需判断：是否合并为单一页面，或保留\"通用复利\"与\"芒格视角\"两个分层页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md",
+    "affectedPages": [
+      "wiki/concepts/复利-芒格视角.md"
+    ],
+    "searchQueries": [
+      "复利 概念 定义 历史 应用",
+      "compound interest definition history applications",
+      "复利效应 经济学 心理学 跨学科"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-287a171c",
+    "resolved": true,
+    "createdAt": 1788353182746,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "三层解释 vs 八层认知炼狱 对比分析",
+    "description": "两者均为深度思考的分层框架，但分层逻辑与适用场景不同。三层解释（现实→技术→人性）更简洁实用，八层认知炼狱更系统化。目前仅有间接提及，缺乏系统对比。建立对比页可帮助用户理解两框架的互补性或替代关系，对Wiki的实用价值显著提升。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md",
+    "affectedPages": [
+      "wiki/concepts/三层解释.md",
+      "wiki/concepts/八层认知炼狱.md",
+      "wiki/comparisons/八层认知炼狱-vs-认知套利.md"
+    ],
+    "searchQueries": [
+      "三层解释 八层认知炼狱 对比",
+      "深度思考框架 分层模型 比较",
+      "三层解释 查理·芒格 认知炼狱 王阳明"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-25eda2f2",
+    "resolved": false,
+    "createdAt": 1788353182746
+  },
+  {
+    "type": "suggestion",
+    "title": "反脆弱与反熵增的对立统一关系",
+    "description": "文档分析已指出：反熵增是防御性（对抗混乱），反脆弱是进攻性（从混乱中获益）。两者构成张力但未系统辨析。建议创建对比或综合页面，厘清两者的边界、重叠与协同关系，这对理解复杂系统下的生存策略具有重要价值。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具-20260902.md",
+    "affectedPages": [
+      "wiki/concepts/反脆弱.md",
+      "wiki/concepts/反熵增.md"
+    ],
+    "searchQueries": [
+      "反脆弱 反熵增 区别 联系",
+      "antifragile vs negentropy",
+      "塔勒布 反脆弱 热力学熵 对立统一"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-98f8d100",
+    "resolved": false,
+    "createdAt": 1788353182746
   }
 ]

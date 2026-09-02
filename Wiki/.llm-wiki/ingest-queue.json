@@ -10,33 +10,23 @@
     "retryCount": 3
   },
   {
-    "id": "ingest-1788345217972-0vj2nb",
-    "projectId": "2078de67-1b95-4e8d-8e1e-6f27d4db900b",
-    "sourcePath": "raw/sources/焦虑急救手册：从“生理阻断”到“认知重塑”的完整方案.md",
-    "folderContext": "",
-    "status": "processing",
-    "addedAt": 1788345217972,
-    "error": "Ingest incomplete: 1 truncated wiki file(s) could not be repaired: wiki/sources/焦虑急救手册-从生理阻断到认知重塑的完整方案.md",
-    "retryCount": 1
-  },
-  {
-    "id": "ingest-1788345217972-wddz3h",
-    "projectId": "2078de67-1b95-4e8d-8e1e-6f27d4db900b",
-    "sourcePath": "raw/sources/答案只有四个字：普通人逆袭，这是我见过最狠的执行策略.md",
-    "folderContext": "",
-    "status": "pending",
-    "addedAt": 1788345217972,
-    "error": null,
-    "retryCount": 0
-  },
-  {
     "id": "ingest-1788345217972-w57xdl",
     "projectId": "2078de67-1b95-4e8d-8e1e-6f27d4db900b",
     "sourcePath": "raw/sources/高敏感者的生存博弈：小事“认怂”，大事“梭哈”.md",
     "folderContext": "",
-    "status": "pending",
+    "status": "cancelled",
     "addedAt": 1788345217972,
     "error": null,
     "retryCount": 0
+  },
+  {
+    "id": "ingest-1788352507506-tqizl1",
+    "projectId": "2078de67-1b95-4e8d-8e1e-6f27d4db900b",
+    "sourcePath": "raw/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md",
+    "folderContext": "",
+    "status": "failed",
+    "addedAt": 1788352507506,
+    "error": "Ingest incomplete: 1 truncated wiki file(s) could not be repaired: wiki/sources/如何避免平庸与愚蠢？查理·芒格留给世界的15个终极思考工具.md",
+    "retryCount": 3
   }
 ]

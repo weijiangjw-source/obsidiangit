@@ -1,0 +1,2840 @@
+[
+  {
+    "type": "contradiction",
+    "title": "\"随缘\"作为防御 vs. 健康策略",
+    "description": "文章强烈质疑\"随缘\"\"佛系\"是恐惧的伪装，但如果 [[concepts/不确定性耐受力]] 已将\"随缘\"定义为健康的心理策略，两者存在直接张力。需要人工判断：是更新现有概念页纳入反驳视角，还是保留两者并标注分歧？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "wiki/concepts/不确定性耐受力.md"
+    ],
+    "searchQueries": [
+      "随缘 佛系 心理学 防御机制 不确定性 接纳",
+      "正念 接纳 不确定性 心理灵活性 ACT"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2ab3f248",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "Created: wiki/concepts/随缘作为防御-vs-健康策略-2026-08-24-132835.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "随缘的智慧还是防御",
+    "description": "分析建议创建一个查询页面来追踪\"随缘\"概念的张力，这是一个值得保留的开放问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: 随缘 佛教 心理学 防御机制 正念 回避 | 佛系 网络用语 心理分析 逃避"
+    ],
+    "searchQueries": [
+      "随缘 佛教 心理学 防御机制 正念 回避",
+      "佛系 网络用语 心理分析 逃避"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-99da5b35",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "llm-judged"
+  },
+  {
+    "type": "suggestion",
+    "title": "\"能量泄漏\"的心理学对应概念",
+    "description": "\"能量泄漏\"作为核心隐喻缺乏实证支撑，其可能与\"外部控制点\"\"习得性无助\"等已建立概念重叠，建议创建 comparison 页面厘清边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: external locus of control learned helplessness self-efficacy psychological energy | 控制点 习得性无助 自我效能 心理能量"
+    ],
+    "searchQueries": [
+      "external locus of control learned helplessness self-efficacy psychological energy",
+      "控制点 习得性无助 自我效能 心理能量"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c087c143",
+    "resolved": false,
+    "createdAt": 1787555765264
+  },
+  {
+    "type": "suggestion",
+    "title": "\"随缘是智慧还是防御\"查询页",
+    "description": "\"随缘\"在本 wiki 中至少涉及两个概念的交叉：[[concepts/不确定性耐受力]]（正向）与 [[concepts/自欺谎言]]（批判），建议创建 queries 页面追踪这一持续张力。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "SEARCH: 随缘 佛教 心理学 防御机制 正念 回避 | 佛系 网络用语 心理分析 逃避"
+    ],
+    "searchQueries": [
+      "随缘 佛教 心理学 防御机制 正念 回避",
+      "佛系 网络用语 心理分析 逃避"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6922a550",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "llm-judged"
+  },
+  {
+    "type": "contradiction",
+    "title": "宇宙 indifferent 与行动动力的哲学张力",
+    "description": "文章用\"天地不仁\"论证宇宙 indifferent，但紧接着以此激励人采取行动——如果宇宙不关心，\"收回能量\"的动力从何而来？这是一个未解决的内部张力，值得在 [[concepts/宇宙不仁]] 或新页面中标注。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生在漏电！停止喊“老天帮我”，你正在亲手交出人生控制权.md",
+    "affectedPages": [
+      "wiki/concepts/宇宙不仁.md",
+      "wiki/concepts/能量泄漏.md"
+    ],
+    "searchQueries": [
+      "道德经 第五章 天地不仁 解读 斯多葛 行动动力",
+      "Dao De Jing chapter 5 interpretation motivational implications"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ba352d52",
+    "resolved": true,
+    "createdAt": 1787555765264,
+    "resolvedAction": "Created: wiki/concepts/宇宙-indifferent-与行动动力的哲学张力-2026-08-24-133154.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "开放问题追踪",
+    "description": "该文档提出了若干值得进一步研究的问题：\n1. \"不真实\"与\"自欺\"的明确分界线在哪里？是否有一致性标准？\n2. \"极少数值得信任的人\"如何界定？有无判断标准？\n3. 不同文化语境下（如东西方社交规范），这一框架是否同样适用？\n建议创建 query 页面追踪这些问题，或在后续阅读中寻找实证支持。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-disclosure social psychology research",
+      "cultural differences in emotional expression social norms",
+      "emotional boundaries personal relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7294da76",
+    "resolved": false,
+    "createdAt": 1787556812638
+  },
+  {
+    "type": "missing-page",
+    "title": "缺少query页面追踪开放问题",
+    "description": "文档中存在几个明确的开放问题：\n1. \"不真实\"与\"自欺谎言\"的本质边界在哪？\n2. \"极少数值得信任的人\"的判断标准是什么？\n3. 东西方文化语境下该框架的适用性差异？\n建议创建 query 页面以追踪这些持续存在的问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-disclosure social psychology research",
+      "cultural differences in emotional expression social norms",
+      "emotional boundaries personal relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-25c36758",
+    "resolved": false,
+    "createdAt": 1787556812638
+  },
+  {
+    "type": "contradiction",
+    "title": "与自欺谎言概念的潜在张力",
+    "description": "[[concepts/自欺谎言]]倡导诚实内核，而\"社交智慧\"概念中的\"不真实\"若被理解为隐瞒或伪装，可能与自欺谎言的核心理念产生张力。文档未明确区分\"策略性不真实\"（有意识的边界保护）与\"自欺\"（认知扭曲）的边界。需在后续阅读中进一步澄清。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/社交智慧：真诚但不真实.md",
+    "searchQueries": [
+      "strategic self-deception vs boundary-setting psychology",
+      "honesty versus privacy in relationships"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-935b069c",
+    "resolved": true,
+    "createdAt": 1787556812638,
+    "resolvedAction": "Created: wiki/concepts/与自欺谎言概念的潜在张力-2026-08-24-133206.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "真诚与边界 - 需补充试探作为边界维护技术",
+    "description": "原文建议更新 [[concepts/真诚与边界]] 页面，补充\"试探\"作为边界维护的具体技术手段。当前已有此页面，但内容可能需要扩展以包含高效试探的方法论。请确认是否需要更新该页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/真诚与边界.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ac37d62f",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "missing-page",
+    "title": "损失厌恶的学术来源待确认",
+    "description": "原文引用\"损失厌恶\"心理机制解释老实人吃亏后的委屈感，但未标注原始文献。需补充Tversky & Kahneman（1979）《前景理论》或后续行为经济学研究，以增强论证可信度。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/损失厌恶.md"
+    ],
+    "searchQueries": [
+      "loss aversion Tversky Kahneman prospect theory 1979",
+      "损失厌恶 心理学 定义 原始文献",
+      "loss aversion behavioral economics original source"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-33bab180",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "学生思维的实证研究缺失",
+    "description": "原文将\"学生思维\"定义为认知陷阱并列出三个子特征，但未引用任何发展心理学或教育社会学研究。建议补充相关实证文献以验证该框架的科学性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/学生思维.md"
+    ],
+    "searchQueries": [
+      "student mindset cognitive bias empirical study",
+      "学生思维 认知偏差 发展心理学 研究",
+      "naive realism adult social cognition transition"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d81433c7",
+    "resolved": false,
+    "createdAt": 1787556932135
+  },
+  {
+    "type": "contradiction",
+    "title": "试探的道德重构存在张力",
+    "description": "原文刻意将\"试探\"从负面词重构为中性技能，但承认这是\"信息不对称世界中的生存工具\"，隐含零和博弈假设。这与[[concepts/真诚与边界]]中可能存在的合作导向立场存在潜在冲突，需用户判断如何协调。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止吃亏：老实人的清醒系统升级指南.md",
+    "affectedPages": [
+      "wiki/concepts/试探的道德重构.md",
+      "wiki/concepts/真诚与边界.md"
+    ],
+    "searchQueries": [
+      "game theory cooperation vs competition social interaction",
+      "试探 道德重构 博弈论 零和",
+      "moral reframing suspicion trust social survival"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2aab1cb9",
+    "resolved": true,
+    "createdAt": 1787556932135,
+    "resolvedAction": "Created: wiki/concepts/试探的道德重构存在张力-2026-08-24-133145.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "自爱概念与经典心理学模型的关联梳理",
+    "description": "自爱页面中提到的\"内在小孩\"与\"冒名顶替综合征\"均属于有独立心理学文献支撑的概念，建议创建对应页面以丰富wiki的知识网络。同时，八大自爱原则与马斯洛需求层次理论的映射关系值得进一步梳理。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "SEARCH: 内在小孩疗法 心理学 定义 | 冒名顶替综合征 心理学 研究 | 马斯洛需求层次 自爱 关联"
+    ],
+    "searchQueries": [
+      "内在小孩疗法 心理学 定义",
+      "冒名顶替综合征 心理学 研究",
+      "马斯洛需求层次 自爱 关联"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-10e513bf",
+    "resolved": false,
+    "createdAt": 1787557044391
+  },
+  {
+    "type": "suggestion",
+    "title": "补充\"自我实现的预言（负面）\"页面",
+    "description": "源文档提出的\"无法自爱导致讨好、边界崩塌、拖延，这些行为进一步强化'我不够好'的信念，形成闭环\"是一个值得单独梳理的概念。当前wiki缺乏对此机制的系统描述，可考虑创建 dedicated concept page。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "SEARCH: 自我实现的预言 负面循环 心理学 | self-fulfilling prophecy negative loop self-worth"
+    ],
+    "searchQueries": [
+      "自我实现的预言 负面循环 心理学",
+      "self-fulfilling prophecy negative loop self-worth"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7e7ce7e1",
+    "resolved": false,
+    "createdAt": 1787557044391
+  },
+  {
+    "type": "missing-page",
+    "title": "三大障碍的正反馈循环未独立成页",
+    "description": "分析指出认知熔断与算法信息茧房之间可能存在正反馈循环（熔断路径被算法强化），但现有wiki中尚无页面专门讨论这一递归关系。建议创建独立概念页或在此合成页中补充。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/concepts/认知-算法正反馈循环.md"
+    ],
+    "searchQueries": [
+      "cognitive overload algorithmic filter bubble feedback loop information inequality"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-191db55f",
+    "resolved": false,
+    "createdAt": 1787558120244
+  },
+  {
+    "type": "missing-page",
+    "title": "核心自我参数",
+    "description": "文章核心概念\"核心自我参数\"缺乏明确的心理学定义和实证支持，建议调研其与心理学既有概念（如自我图式self-schema、内隐人格理论implicit personality theory、核心信念core beliefs）的关系，以判断该概念的理论根基是否成立。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/核心自我参数.md"
+    ],
+    "searchQueries": [
+      "自我图式 schema theory self",
+      "核心信念 认知行为疗法 core beliefs",
+      "implicit personality theory 自我概念 structure"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e5a446f3",
+    "resolved": true,
+    "createdAt": 1787560868698,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "断裂带效应的心理学对照",
+    "description": "\"断裂带效应\"是作者原创概念，描述与内在标准不符时的排斥反应。建议调研是否有对应的心理学机制（如认知失调、经验回避experiential avoidance、价值观冲突），以及是否存在更成熟的术语可以借用或对照。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/断裂带效应.md"
+    ],
+    "searchQueries": [
+      "认知失调 排斥机制 cognitive dissonance avoidance",
+      "experiential avoidance values incongruence",
+      "自我一致性自我验证理论 self-verification theory"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f816379d",
+    "resolved": false,
+    "createdAt": 1787560868698
+  },
+  {
+    "type": "missing-page",
+    "title": "选择的权力",
+    "description": "\"选择的权力\"是全文行动落脚点，被表述为\"与生俱来却常被遗忘的根本权力\"，但未与存在主义哲学（萨特\"人被判定为自由\"、加缪反抗哲学）或积极心理学中的主体性（agency）概念做理论对接，建议补充学术锚点。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/你的人生，只差“一念之间”：激活你被遗忘的“选择权力”.md",
+    "affectedPages": [
+      "wiki/concepts/选择的权力.md"
+    ],
+    "searchQueries": [
+      "existentialism freedom responsibility Sartre agency",
+      "self-determination theory autonomy agency Deci Ryan",
+      "locus of control internal external Rotter"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c087f84f",
+    "resolved": true,
+    "createdAt": 1787560868698,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "contradiction",
+    "title": "认知失调与防御页面的反向重构张力",
+    "description": "本文对\"认知失调\"进行了正向重构（不适感=突破信号），与现有[[concepts/认知失调与防御]]页面聚焦于防御机制的框架形成张力。建议在认知失调与防御页面记录这一对立解读，标注\"正向重构视角\"。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f9a31567",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "Created: wiki/concepts/认知失调与防御页面的反向重构张力-2026-08-24-133214.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "系统2实体页面缺失",
+    "description": "[[concepts/认知惯性]]和相关概念引用了\"系统1/系统2\"框架，但系统中尚无系统2的独立实体页面。已在此批生成中包含系统2实体页面。若系统1也已存在类似页面，请合并或去重。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/entities/系统2.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-64bd7d3a",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "支点决策可扩展到组织决策层面",
+    "description": "本文框架明确针对个人重大人生决策，但作者未探讨其向组织/团队决策的扩展性。这是一个值得后续探索的研究方向，可考虑创建query页面跟踪。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: organizational decision making pivot decisions framework | team decision quality high-potential groups | cognitive bias organizational behavior Kahneman"
+    ],
+    "searchQueries": [
+      "organizational decision making pivot decisions framework",
+      "team decision quality high-potential groups",
+      "cognitive bias organizational behavior Kahneman"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6e7a9e91",
+    "resolved": false,
+    "createdAt": 1787568266826
+  },
+  {
+    "type": "missing-page",
+    "title": "系统2实体页面可能重复",
+    "description": "分析阶段指出系统1在多个概念页中被引用，但未确认系统2实体是否已存在。新批处理中已创建[[entities/系统2.md]]，需人工核查是否与已有页面重复。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/entities/系统2.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5adfb329",
+    "resolved": true,
+    "createdAt": 1787568266826,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "支点决策框架的组织决策扩展性",
+    "description": "本文框架明确针对个人重大人生决策，但未探讨向组织/团队决策层面的扩展性。这是一个值得跟踪的研究开放问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/10月/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: organizational decision making pivot decisions Kahneman | team decision quality high-potential groups | cognitive bias organizational behavior loss aversion"
+    ],
+    "searchQueries": [
+      "organizational decision making pivot decisions Kahneman",
+      "team decision quality high-potential groups",
+      "cognitive bias organizational behavior loss aversion"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6a357153",
+    "resolved": false,
+    "createdAt": 1787568266826
+  },
+  {
+    "type": "missing-page",
+    "title": "递归性与结构性矛盾需追踪",
+    "description": "源文档框架存在两个未被充分讨论的张力：(1) 三重障碍的递归互动关系——认知壁垒使人无法识别圈层闭环的存在，系统设计通过低价值内容加固认知壁垒；(2) 个体能力升级与结构性不平等的循环矛盾——构建三种能力所需的资源本身受结构性不平等影响。建议创建 query 页面追踪这些问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/queries/information-barrier-recursion.md",
+      "wiki/queries/capability-vs-structure-paradox.md"
+    ],
+    "searchQueries": [
+      "information asymmetry structural inequality social capital",
+      "cognitive barriers information hierarchy"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-84d313d4",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "探索三重障碍的递归模型",
+    "description": "考虑创建综合分析页面，探讨认知壁垒、圈层闭环、系统设计三者如何相互强化，以及打破其中一个是否依赖于先突破另一个。这对理解\"能力升级是否足够\"的关键问题至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/synthesis/信息障碍递归模型.md"
+    ],
+    "searchQueries": [
+      "information asymmetry recursive model social capital cognition"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4b18c270",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "三重障碍的递归互动模型",
+    "description": "源文档将三重障碍（认知壁垒/圈层闭环/系统设计）呈现为并列关系，但未深入探讨它们如何相互强化：认知壁垒使人无法识别圈层闭环的存在，系统设计通过低价值内容淹没注意力进一步加固认知壁垒。理解这种递归关系对框架的实际应用至关重要。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/synthesis/信息障碍递归模型.md",
+      "wiki/concepts/信息流动的结构性不平等.md"
+    ],
+    "searchQueries": [
+      "information asymmetry recursive barriers social capital",
+      "cognitive filtering information segregation"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a0ef9a56",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "suggestion",
+    "title": "能力升级与结构性不平等的循环矛盾",
+    "description": "框架暗示个体能力升级足以破局，但构建重构/连接/洞察能力所需的资源（深度阅读时间、导师渠道、批判性思维训练）本身已被结构性不平等分配。这一循环矛盾需要进一步澄清：能力升级是突破口还是安慰剂？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息流动的“三重天堑”与破局之道.md",
+    "affectedPages": [
+      "wiki/concepts/信息流动的结构性不平等.md"
+    ],
+    "searchQueries": [
+      "social reproduction information inequality education access",
+      "capability vs structure information gaps"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-618a6442",
+    "resolved": false,
+    "createdAt": 1787573376272
+  },
+  {
+    "type": "missing-page",
+    "title": "支点决策页面的内容更新需求",
+    "description": "当前 `concepts/支点决策.md` 已有页面，但本文档提供了更完整的四大征兆框架和三大心理陷阱机制，建议在对应页面补充更新：① 完整呈现四大征兆表；② 补充三大心理陷阱（损失厌恶、双曲贴现、认知惯性）的详细说明；③ 增加元决策与支点决策层级关系的说明。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/支点决策.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ab5ea06d",
+    "resolved": true,
+    "createdAt": 1787578701448,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "不适感信号与认知失调防御的区分规则",
+    "description": "文档中\"隐约的不安感\"作为成长信号的概念，与已有 `concepts/认知失调与防御` 页面存在潜在张力。建议创建一个明确的区分规则页面或在不適感作为信号页面中补充\"如何区分成长型不适与防御型不适\"的操作指南。搜索关键词：growth discomfort vs defensive avoidance cognitive dissonance threshold.",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "SEARCH: growth discomfort vs defensive avoidance cognitive dissonance | distinguishing growth signals from defense mechanisms psychology | cognitive dissonance theory approach-avoidance conflict"
+    ],
+    "searchQueries": [
+      "growth discomfort vs defensive avoidance cognitive dissonance",
+      "distinguishing growth signals from defense mechanisms psychology",
+      "cognitive dissonance theory approach-avoidance conflict"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2999139c",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "suggestion",
+    "title": "成长型不适与防御型不适的区分框架",
+    "description": "本文档核心论点依赖\"不适感=成长信号\"的判断，但wiki中已有`concepts/认知失调与防御`页面，存在读者将防御性回避误认为成长信号的混淆风险。建议在`concepts/不适感作为信号`或新建页面中，明确列出区分\"成长型不适\"与\"防御型不适\"的操作性标准，例如：成长型不适指向具体行动（如加入新社群），防御型不适指向抽象焦虑（如\"我不配\"）。这一区分直接影响整个支点决策框架的实践可靠性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/不适感作为信号.md",
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "searchQueries": [
+      "growth discomfort vs avoidance behavior distinction psychology",
+      "approach-avoidance conflict diagnostic criteria",
+      "when is anxiety a signal vs a defense mechanism"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a89811f3",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "missing-page",
+    "title": "元决策与信息获取三重维度的整合研究",
+    "description": "本文档提出\"元决策=选择环境\"是最具辐射力的决策，并与`synthesis/信息获取能力的三重维度`形成呼应，但两处尚未建立实质整合。建议搜索并确认：元决策与信息获取能力的三个维度（连接能力、重构能力、洞察能力）之间的理论映射关系是什么？是否有学术文献支持\"环境选择作为信息获取的元策略\"这一命题？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/synthesis/信息获取能力的三重维度.md",
+      "wiki/concepts/元决策.md"
+    ],
+    "searchQueries": [
+      "meta-decision theory environment selection information acquisition",
+      "choosing your environment as strategic decision-making",
+      "community of practice learning theory environmental choice"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4d6bf1fc",
+    "resolved": true,
+    "createdAt": 1787578701448,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "随缘防御与支点决策不适感的概念张力",
+    "description": "wiki中已有`concepts/随缘作为防御-vs-健康策略`页面，而本文档将\"隐约的不安感\"视为成长信号，两者存在潜在张力：当个体以\"随缘\"态度面对不适感时，如何判断这是健康策略还是防御性逃避？建议在两个概念之间建立交叉引用和区分规则。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生的支点决策：在不适中识别命运信号.md",
+    "affectedPages": [
+      "wiki/concepts/随缘作为防御-vs-健康策略.md",
+      "wiki/concepts/不适感作为信号.md"
+    ],
+    "searchQueries": [
+      "letting go vs avoidance distinction mindfulness psychology",
+      "wu wei adaptive acceptance or defensive resignation",
+      "随缘 佛教 心理学 应对策略 区分"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1a1f25e6",
+    "resolved": false,
+    "createdAt": 1787578701448
+  },
+  {
+    "type": "suggestion",
+    "title": "阿德勒心理学（个体心理学）系统框架",
+    "description": "源文反复引用\"阿德勒心理学\"但未建立基础理论框架。当前wiki对\"课题分离\"和\"共同体感觉\"的处理依赖单篇来源，缺少阿德勒原典的系统性背景（如《被讨厌的勇气》、自卑与超越、生活风格等核心概念）。建立此页面将为现有概念提供理论锚点，并有助于辨别哪些是阿德勒原意、哪些是作者的创造性重构。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/课题分离.md",
+      "wiki/concepts/共同体感觉.md"
+    ],
+    "searchQueries": [
+      "阿德勒心理学 个体心理学 核心概念 体系",
+      "Adlerian psychology individual psychology original concepts social interest",
+      "被讨厌的勇气 阿德勒 课题分离 共同体感觉 原文对照"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-686dd1a1",
+    "resolved": false,
+    "createdAt": 1787578924842
+  },
+  {
+    "type": "suggestion",
+    "title": "\"共业\"概念的独立定义与跨文化语境分析",
+    "description": "源文在\"共同体感觉\"三步路径的终极阶段引用了佛教概念\"共业\"，但未做任何解释或溯源。这是一个重要的跨学科桥梁概念——若wiki使用者不熟悉佛教语境，此处的论证链条就会断裂。建议建立独立概念页或至少补充明确定义，并考察\"共业\"与\"共同体感觉\"在哲学层面的可比性与差异。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/共同体感觉.md"
+    ],
+    "searchQueries": [
+      "佛教 共业 概念 定义 与 共同体感觉 比较",
+      "karma collective Buddhist concept compared to Adler social interest",
+      "共业 阿德勒 共同体感觉 无分别心 哲学对照"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0d38defe",
+    "resolved": false,
+    "createdAt": 1787578924842
+  },
+  {
+    "type": "suggestion",
+    "title": "课题分离有效剂量的情境化研究",
+    "description": "现有wiki对课题分离的讨论停留在概念层面，开放问题中明确提出\"什么情境下它是拐杖，什么情境下成为牢笼\"但未回答。这是本文最有实践价值的判断框架。建议补充相关心理学实证研究（如边界设定与健康人际关系的研究），为\"有效剂量\"提供可操作的判断标准，否则该概念页将停留在思辨层面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再拿“课题分离”当借口了！你分离的不是世界，是你乞求被爱的自己.md",
+    "affectedPages": [
+      "wiki/concepts/课题分离.md",
+      "wiki/concepts/认知失调与防御.md"
+    ],
+    "searchQueries": [
+      "boundary setting psychology healthy boundaries research empirical",
+      "课题分离 滥用 过度防御 心理学研究 边界设定",
+      "when is separation of tasks maladaptive research interpersonal boundaries"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f4fbdf1e",
+    "resolved": false,
+    "createdAt": 1787578924842
+  },
+  {
+    "type": "contradiction",
+    "title": "认知失调术语非标准用法需澄清",
+    "description": "来源将\"短暂满足→满足后空虚\"的心理循环描述为\"认知失调\"，但心理学标准定义是\"信念与行为不一致导致的心理不适\"。此非标准用法已在[[concepts/无效犒劳]]中记录警告，但[[concepts/认知失调与防御]]页面本身未包含术语澄清，可能导致读者混淆。需确认现有认知失调页面的定义是否严谨。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调与防御.md",
+      "wiki/concepts/无效犒劳.md"
+    ],
+    "searchQueries": [
+      "认知失调 费斯汀格 定义 学术",
+      "cognitive dissonance theory definition Festinger"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8c291e3e",
+    "resolved": true,
+    "createdAt": 1787629605701,
+    "resolvedAction": "Created: wiki/concepts/认知失调术语非标准用法需澄清-2026-08-25-055223.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "自爱八原则的实践优先级缺乏分层建议",
+    "description": "[[concepts/自爱八原则]]已创建，但来源未解决\"应从哪个原则开始\"的问题——对于处于讨好型困境、冒名顶替综合征、或拖延内耗的不同人群，启动路径应不同。建议调研积极心理学或CBT中关于\"自我关怀干预优先序\"的实证研究，或参考[[concepts/高效试探]]中的渐进式行动思路，为八原则补充分层落地指南。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "wiki/concepts/自爱八原则.md",
+      "wiki/concepts/无效犒劳.md"
+    ],
+    "searchQueries": [
+      "self-compassion intervention order priority research",
+      "自爱 自我关怀 干预顺序 心理学",
+      "impostor syndrome treatment protocol first step"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-6f67124c",
+    "resolved": false,
+    "createdAt": 1787629605701
+  },
+  {
+    "type": "suggestion",
+    "title": "原则2与原则3边界重叠问题需厘清",
+    "description": "[[concepts/自爱八原则]]中，原则2（认识自我：观察情绪触发点）与原则3（关注自我：把精力转向自己需求）在\"注意力管理\"维度高度重叠，来源未给出区分标准。建议调研正念自我观察（self-observation）与自我关怀（self-compassion）在心理学中的操作定义差异，以重新划定两原则边界或建议合并。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止无效犒劳，你真的会自爱吗？.md",
+    "affectedPages": [
+      "wiki/concepts/自爱八原则.md"
+    ],
+    "searchQueries": [
+      "self-awareness vs self-compassion distinction psychology",
+      "正念 自我观察 自我关怀 区别",
+      "mindful self-observation self-compassion difference"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-bcbac45f",
+    "resolved": false,
+    "createdAt": 1787629605701
+  },
+  {
+    "type": "suggestion",
+    "title": "身份转变的实证基础与操作路径",
+    "description": "本文提出的\"身份转变\"概念缺乏具体研究引用和操作步骤。建议调研身份心理学（如Mark Leary的自我确认理论）和行为改变研究（如BJ Fogg的行为模型、James Clear的习惯养成）以建立实证支撑。同时，可搜索\"身份转变财务自由\"、\"行为改变身份心理学实证研究\"、\"习惯形成财务行为\"等关键词寻找操作化路径。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【警惕】你的“舒适区”正在精确校准你的贫穷.md",
+    "affectedPages": [
+      "wiki/concepts/身份转变与财务自由.md",
+      "wiki/concepts/精确校准.md"
+    ],
+    "searchQueries": [
+      "身份转变 财务自由 心理学实证",
+      "行为改变 自我概念 操作路径",
+      "习惯形成 经济结果 因果关系"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0905e414",
+    "resolved": false,
+    "createdAt": 1787629857705
+  },
+  {
+    "type": "suggestion",
+    "title": "\"精确校准\"的因果机制与边界",
+    "description": "\"精确校准\"作为隐喻性表述缺乏量化证据，建议探索行为模式与经济结果之间的具体因果机制，以及该框架的适用边界（何时适用、何时不适用）。可搜索\"习惯与经济结果 相关性研究\"、\"舒适区 收入水平 实证\"、\"个人财务行为 结构因素\"等关键词。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【警惕】你的“舒适区”正在精确校准你的贫穷.md",
+    "affectedPages": [
+      "wiki/concepts/精确校准.md",
+      "wiki/synthesis/财务自由的身份代价.md"
+    ],
+    "searchQueries": [
+      "习惯模式 收入水平 实证研究",
+      "舒适区 经济结果 因果关系",
+      "财务行为 结构性因素 适用边界"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-b6a212eb",
+    "resolved": false,
+    "createdAt": 1787629857705
+  },
+  {
+    "type": "suggestion",
+    "title": "认知失调的利用 vs. 防御机制",
+    "description": "本文提出\"利用认知失调推动改变\"而非解释防御机制，但缺乏对认知失调理论（Festinger, Janis）的详细讨论。建议补充认知失调在行为改变中的应用研究，并与现有[[concepts/认知失调与防御]]页面建立更清晰的区分。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【警惕】你的“舒适区”正在精确校准你的贫穷.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调与防御.md",
+      "wiki/concepts/身份转变与财务自由.md"
+    ],
+    "searchQueries": [
+      "认知失调 行为改变 应用研究",
+      "Festinger 认知失调 理论发展",
+      "认知失调 利用 心理机制"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-537ed5f9",
+    "resolved": false,
+    "createdAt": 1787629857705
+  },
+  {
+    "type": "suggestion",
+    "title": "顺应时势与坚守道德底线的哲学冲突探讨",
+    "description": "源文档提出一方面要“顺应时势”，另一方面要坚守“贫贱不能移”的内在操守。然而在环境风气恶化或特殊历史时期，时代大势可能要求个体牺牲道德原则。后续可进一步探讨“顺势”与“退隐/独善其身”的边界问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【人生指南】穿越“时”与“势”的迷雾.md",
+    "affectedPages": [
+      "wiki/concepts/时与势.md",
+      "wiki/concepts/内在压舱石.md"
+    ],
+    "searchQueries": [
+      "顺应时势 与 道德坚守 冲突",
+      "独善其身 兼济天下 处世哲学",
+      "个人操守 与 时代大势 张力"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d8bec3b5",
+    "resolved": false,
+    "createdAt": 1787630115902
+  },
+  {
+    "type": "contradiction",
+    "title": "“屈身于小人”的策略性妥协与“贫贱不能移”的道德底线张力",
+    "description": "《时与势》中提到君子时运不济时需“屈身于小人”，而《内在压舱石》强调“贫贱不能移”与不丢弃道德底线。现实中“策略性屈从/韬光养晦”与“维持道德完整性”之间存在明确的行为边界模糊区，需要厘清个体在逆境中何种程度的妥协属于保全自我的生存智慧，何种妥协构成了对核心自我参数的侵蚀。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【人生指南】穿越“时”与“势”的迷雾.md",
+    "affectedPages": [
+      "wiki/concepts/时与势.md",
+      "wiki/concepts/内在压舱石.md"
+    ],
+    "searchQueries": [
+      "韬光养晦 与 道德底线 边界",
+      "策略性妥协 道德完整性 张力",
+      "屈身于小人 贫贱不能移 处世困境"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5bc3f9ce",
+    "resolved": true,
+    "createdAt": 1787630115902,
+    "resolvedAction": "Created: wiki/queries/屈身于小人的策略性妥协与贫贱不能移的道德底线张力-2026-08-25-055307.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "“听天命”的归因模式与心理防御机制界限",
+    "description": "“听天命”既可作为健康的不确定性耐受与课题分离策略，也极易演变为逃避责任、消极习得性无助或将控制权外包的心理防御机制（如“随缘”作为防御策略）。有必要深入研讨如何区分建设性的“结果接纳”与防御性的“行为放弃”。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【人生指南】穿越“时”与“势”的迷雾.md",
+    "affectedPages": [
+      "wiki/concepts/尽人事听天命.md",
+      "wiki/concepts/随缘作为防御-vs-健康策略-2026-08-24-132835.md",
+      "wiki/concepts/外包人生控制权.md"
+    ],
+    "searchQueries": [
+      "听天命 心理防御机制 习得性无助",
+      "课题分离 vs 消极逃避",
+      "控制点理论 控制感外包 顺应接纳"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-20260b62",
+    "resolved": false,
+    "createdAt": 1787630115902
+  },
+  {
+    "type": "contradiction",
+    "title": "归因模式改变与个人主观能动性的认知张力",
+    "description": "《【行动指南】四大启示与实践》在启示一中主张遇到挫折时识别外部因素（时机、环境）以避免过度自我攻击；这与管理学/心理学中强强调“内部控制点（Internal Locus of Control）”和极端自我负责的成功学理念存在一定张力。\n维基在 [[concepts/归因模式改变]] 中将此张力解释为“拒绝无限责任以保护心理能量”，但后续研究可探讨如何在“止损保护”与“积极主体性”之间建立定量或具体的判断标准。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/【行动指南】四大启示与实践.md",
+    "affectedPages": [
+      "wiki/concepts/归因模式改变.md",
+      "wiki/concepts/控制圈.md"
+    ],
+    "searchQueries": [
+      "attribution theory internal vs external locus of control psychological resilience",
+      "self blame mental fatigue personal responsibility boundary"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-81479410",
+    "resolved": true,
+    "createdAt": 1787630380610,
+    "resolvedAction": "Created: wiki/concepts/归因模式改变与个人主观能动性的认知张力-2026-08-25-055342.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "探索弱关系资本与个人能量管理的平衡机制",
+    "description": "《别再被绑架了！你患上了「社交宿醉」吗？》提出了严格的能量保护策略（聚焦1-2个深度同频者），但这与格兰诺维特的“弱关系优势”理论存在潜在张力。建议后续检索有关“低能耗弱关系维系”或“社交资本与能量管理平衡”的研究与方法论。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再被绑架了！你患上了「社交宿醉」吗？.md",
+    "affectedPages": [
+      "wiki/queries/如何平衡弱关系价值与社交能量消耗.md"
+    ],
+    "searchQueries": [
+      "weak ties social capital energy management balance",
+      "low cost networking strategy deep work",
+      "professional boundaries and networking fatigue"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f5590cf9",
+    "resolved": true,
+    "createdAt": 1787630444143,
+    "resolvedAction": "llm-judged"
+  },
+  {
+    "type": "missing-page",
+    "title": "错失恐惧症（FOMO）的心理机制与行为干预",
+    "description": "错失恐惧症（FOMO）是驱动“人脉至上”迷思与“社交宿醉”的关键底层心理机制。Wiki 中已被多次引用但仍缺乏独立的概念页面，建议对其心理学根源（如社会比较、归属需求与损失厌恶）及认知干预策略进行深度拓展。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再被绑架了！你患上了「社交宿醉」吗？.md",
+    "affectedPages": [
+      "wiki/sources/别再被绑架了！你患上了「社交宿醉」吗？.md",
+      "wiki/concepts/社交宿醉.md"
+    ],
+    "searchQueries": [
+      "FOMO psychology mechanism social anxiety",
+      "fear of missing out cognitive reframing",
+      "FOMO loss aversion social overload"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-aa7b9a34",
+    "resolved": true,
+    "createdAt": 1787630444143,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "弱关系资本与个人能量管理的平衡机制",
+    "description": "《别再被绑架了！你患上了「社交宿醉」吗？》主张切断泛泛交际并聚焦极少数同频者，这与格兰诺维特的“弱关系优势”（Strength of Weak Ties）理论存在现实张力。研究如何在防范社交宿醉的同时以低能量消耗维持弱关系信息通道，将大幅提升能量管理体系的系统性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再被绑架了！你患上了「社交宿醉」吗？.md",
+    "affectedPages": [
+      "wiki/queries/如何平衡弱关系价值与社交能量消耗.md",
+      "wiki/concepts/能量账户.md"
+    ],
+    "searchQueries": [
+      "weak ties social capital energy management balance",
+      "low cost networking strategy deep work",
+      "Granovetter weak ties social exhaustion"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-39f04379",
+    "resolved": true,
+    "createdAt": 1787630444143,
+    "resolvedAction": "llm-judged"
+  },
+  {
+    "type": "suggestion",
+    "title": "厘清思维标签化与心理压抑（Suppression）的理论界限",
+    "description": "在应用“思维标签化”与“拖入待处理”工具时，需要防止使用者将其误用为防御性的心理压抑或逃避行为。建议后续补充接纳承诺疗法（ACT）与正念觉知（Mindfulness）中关于“接纳（Acceptance）”与“压抑（Suppression）”实证对比的相关文献。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/别再与思绪搏斗！学会给它们贴标签，把担忧拖入“待处理”.md",
+    "affectedPages": [
+      "wiki/concepts/思维标签化.md"
+    ],
+    "searchQueries": [
+      "cognitive defusion vs thought suppression ACT mindfulness",
+      "non-judgmental awareness mental labeling emotional regulation"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-292d48b1",
+    "resolved": false,
+    "createdAt": 1787630682417
+  },
+  {
+    "type": "contradiction",
+    "title": "对立面共存 vs 认知失调与防御",
+    "description": "[[concepts/对立面共存]]主张矛盾状态可被主动接纳和整合，而[[concepts/认知失调与防御]]框架下认知失调通常被视为需要消除的不适状态。两者存在概念张力，需要进一步澄清：本文的\"对立面共存\"是策略性整合还是另一种形式的认知失调管理？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/顶级社交高手的变脸操作系统.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调与防御.md",
+      "wiki/concepts/对立面共存.md"
+    ],
+    "searchQueries": [
+      "cognitive dissonance acceptance vs resolution",
+      "对立面共存 心理学",
+      "dialectical thinking cognitive dissonance"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-476195fa",
+    "resolved": true,
+    "createdAt": 1787631870995,
+    "resolvedAction": "Created: wiki/concepts/对立面共存-vs-认知失调与防御-2026-08-25-055403.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "社交适应能力光谱综合页",
+    "description": "分析建议创建[[synthesis/社交适应能力的光谱]]，整合本文的\"角色切换\"与wiki现有的\"真诚\"\"防御模式\"\"认知解离\"等概念，构建社交适应能力的连续谱系。这是一个有价值的综合页，但目前尚未创建。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/顶级社交高手的变脸操作系统.md",
+    "affectedPages": [
+      "wiki/synthesis/社交适应能力的光谱.md"
+    ],
+    "searchQueries": [
+      "social adaptability spectrum authenticity flexibility",
+      "社交适应 真诚 角色扮演 边界",
+      "cognitive flexibility social performance authenticity"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-92736ae2",
+    "resolved": false,
+    "createdAt": 1787631870995
+  },
+  {
+    "type": "suggestion",
+    "title": "角色切换与冒名顶替综合征的潜在关联",
+    "description": "分析指出长期进行角色切换可能导致自我认同模糊，与[[concepts/冒名顶替综合征]]存在潜在关联。这是一个值得深入探索的问题：策略性角色适配与虚假自我呈现的边界在哪里？长期角色扮演是否会导致内在自我感的稀释？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/顶级社交高手的变脸操作系统.md",
+    "affectedPages": [
+      "SEARCH: role playing self identity ambiguity imposter syndrome | 角色扮演 自我认同 模糊 冒名顶替 | strategic self-presentation authenticity threat"
+    ],
+    "searchQueries": [
+      "role playing self identity ambiguity imposter syndrome",
+      "角色扮演 自我认同 模糊 冒名顶替",
+      "strategic self-presentation authenticity threat"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ad0a9b72",
+    "resolved": false,
+    "createdAt": 1787631870995
+  },
+  {
+    "type": "contradiction",
+    "title": "角色快速切换与真诚边界的张力",
+    "description": "[[concepts/角色快速切换]]中的\"变脸\"策略与[[concepts/真诚与边界]]的真诚原则存在直接张力：策略性角色适配是否必然滑向不真诚？两者边界在哪里？这需要用户 judgment 来判断如何整合或明确区分。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/顶级社交高手的变脸操作系统.md",
+    "affectedPages": [
+      "wiki/concepts/角色快速切换.md",
+      "wiki/concepts/真诚与边界.md"
+    ],
+    "searchQueries": [
+      "strategic self-presentation authenticity boundary",
+      "角色扮演 真诚 社交适应 边界",
+      "impression management authenticity dilemma"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-05a96d22",
+    "resolved": true,
+    "createdAt": 1787631870995,
+    "resolvedAction": "Created: wiki/concepts/角色快速切换与真诚边界的张力-2026-08-25-055417.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "反视觉化的心理学实证研究",
+    "description": "本文提出的\"反视觉化\"概念与临床心理学中的\"恐惧设置\"（fear-setting）和斯多葛学派的\"消极可视化\"有相似之处，但缺乏实证支持。建议搜索相关文献以评估其科学基础和适用边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/放弃意志力吧，7天用痛苦杠杆让自律变本能.md",
+    "affectedPages": [
+      "wiki/concepts/反视觉化.md"
+    ],
+    "searchQueries": [
+      "anti-visualization fear-setting behavior change motivation",
+      "negative visualization stoicism modern psychology",
+      "implementation intentions habit formation",
+      "negative visualization stoicism psychology"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1cce83a7",
+    "resolved": true,
+    "createdAt": 1787631941757,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "高能量磁场的社会心理学实证研究",
+    "description": "文档承认\"高能量磁场\"是\"玄学但有用\"，建议寻找印象管理、具身认知领域的实证研究以建立科学支撑。这对验证步骤8的机制、增强wiki可信度有意义。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生至暗时刻的8步自我救赎.md",
+    "affectedPages": [
+      "wiki/concepts/高能量磁场.md"
+    ],
+    "searchQueries": [
+      "embodied cognition appearance confidence effect",
+      "impression management hiring opportunity physical appearance",
+      "nonverbal dominance posture status"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d221d65a",
+    "resolved": false,
+    "createdAt": 1787632272879
+  },
+  {
+    "type": "suggestion",
+    "title": "现金流效能感与班杜拉自我效能感理论的对照",
+    "description": "文档提出\"现金流→效能感\"的单方向，但开放问题指出因果可能可逆。建议检索班杜拉自我效能感理论及财务行为研究，厘清双向关系并修正wiki中的表述。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生至暗时刻的8步自我救赎.md",
+    "affectedPages": [
+      "wiki/concepts/现金流效能感.md"
+    ],
+    "searchQueries": [
+      "self-efficacy financial behavior causality",
+      "Bandura self-efficacy employment income",
+      "financial self-efficacy measurement scale"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2bbf1970",
+    "resolved": false,
+    "createdAt": 1787632272879
+  },
+  {
+    "type": "suggestion",
+    "title": "8步法对临床人群的适用边界研究",
+    "description": "文档未讨论适用边界，开放问题指出对重度抑郁/PTSD人群是否足够。建议查找临床心理学中对应干预措施的文献，明确该方法的适用范围与局限。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人生至暗时刻的8步自我救赎.md",
+    "affectedPages": [
+      "wiki/sources/人生至暗时刻的8步自我救赎.md",
+      "wiki/concepts/心理韧性"
+    ],
+    "searchQueries": [
+      "behavioral activation clinical depression PTSD guidelines",
+      "cognitive restructuring depression severity boundary",
+      "self-help intervention limits clinical populations"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-ef068ccd",
+    "resolved": false,
+    "createdAt": 1787632272879
+  },
+  {
+    "type": "missing-page",
+    "title": "两分钟规则尚未独立成页",
+    "description": "分析中提到\"两分钟规则\"作为本文第三个开关的核心技术（任何2分钟内可完成的任务立即处理），但当前 wiki 中无独立的\"两分钟规则\"页面。现有相关页面为 [[concepts/五分钟法则]] 和 [[concepts/蔡格尼克记忆效应]]，建议新建独立页面以完善概念覆盖。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/你和成功之间，只隔着这 3 个启动开关.md",
+    "affectedPages": [
+      "wiki/concepts/两分钟规则.md",
+      "SEARCH: two minute rule productivity GTD | 两分钟规则 时间管理 戴维艾伦 | Zeigarnik effect immediate task completion"
+    ],
+    "searchQueries": [
+      "two minute rule productivity GTD",
+      "两分钟规则 时间管理 戴维艾伦",
+      "Zeigarnik effect immediate task completion"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-965038d5",
+    "resolved": false,
+    "createdAt": 1787632486395
+  },
+  {
+    "type": "suggestion",
+    "title": "五分钟法则与学生思维的潜在冲突",
+    "description": "[[concepts/五分钟法则]] 允许\"5分钟后停止\"，而 [[concepts/学生思维]] 强调\"任务完成即止\"的线性完成心态。两者在行为逻辑上存在张力：前者是低承诺入口，后者是高承诺闭环。建议在人审时评估是否需要在此两个概念页面之间建立显式关联说明，或创建一个专门讨论二者张力的 query 页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/你和成功之间，只隔着这 3 个启动开关.md",
+    "affectedPages": [
+      "SEARCH: 五分钟法则 学生思维 行为心理学 张力 | 低承诺启动 高承诺完成 拖延干预 | 自我决定理论 内在动机 行为启动"
+    ],
+    "searchQueries": [
+      "五分钟法则 学生思维 行为心理学 张力",
+      "低承诺启动 高承诺完成 拖延干预",
+      "自我决定理论 内在动机 行为启动"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1424bb6f",
+    "resolved": false,
+    "createdAt": 1787632486395
+  },
+  {
+    "type": "suggestion",
+    "title": "四相能量与既有心理/人格理论的对照研究",
+    "description": "当前四相能量框架缺乏与成熟心理学理论的交叉验证，其说服力主要来自历史类比而非实证支撑。建议补充：1）四相与荣格原型理论的对应关系；2）与大五人格等主流人格框架的系统对照；3）是否有可测量的行为指标来区分各相的调用程度。这将显著提升框架的学术可信度和实践可操作性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/四相能量：功能、误区与精炼 —— 极致状态的解析.md",
+    "affectedPages": [
+      "wiki/concepts/四相能量.md",
+      "wiki/concepts/能量状态切换.md"
+    ],
+    "searchQueries": [
+      "荣格原型 阿尼玛 阿尼姆斯 人格类型",
+      "Big Five personality traits leadership states",
+      "四相能量 人格心理学 实证研究"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7172ac6f",
+    "resolved": false,
+    "createdAt": 1787633082686
+  },
+  {
+    "type": "suggestion",
+    "title": "\"匪气\"建设性边界的批判性审视",
+    "description": "\"匪气\"作为唯一带有破坏性原型的正面能量相，其\"安全线\"定义模糊——仅以\"不触碰核心底线\"笼统界定，未给出具体操作标准或案例。这在实践中存在风险：过度正当化破坏性行为、模糊伦理边界。建议搜索相关商业/组织案例，或对比\"建设性叛逆\"（constructive deviance）等已有研究概念，明确其适用条件的边界条件。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/四相能量：功能、误区与精炼 —— 极致状态的解析.md",
+    "affectedPages": [
+      "wiki/concepts/霸气状态.md",
+      "wiki/concepts/四相能量.md"
+    ],
+    "searchQueries": [
+      "建设性叛逆 constructive deviance 组织行为学",
+      "颠覆性创新 道德边界 商业案例",
+      "匪气 桀骜不驯 正当性边界"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-dc695e60",
+    "resolved": false,
+    "createdAt": 1787633082686
+  },
+  {
+    "type": "contradiction",
+    "title": "威严/贵气与课题分离的适用场景冲突",
+    "description": "wiki中已标注威严、贵气状态涉及大量外部控制与影响，与\"课题分离\"（不被他人事务干扰）原则存在潜在张力，但该矛盾未被解决。当一个人同时持有这两套框架时，在何种情境下应优先调用\"课题分离\"？威严状态的外向控制与课题分离的内向克制之间是否存在层级或序列？此冲突若不澄清，将导致实践指导上的混乱。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/四相能量：功能、误区与精炼 —— 极致状态的解析.md",
+    "affectedPages": [
+      "wiki/concepts/威严状态.md",
+      "wiki/concepts/贵气状态.md",
+      "wiki/concepts/课题分离.md"
+    ],
+    "searchQueries": [
+      "阿德勒 课题分离 领导力 控制边界",
+      "威严型领导 边界感 管理实践"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-cf49795d",
+    "resolved": true,
+    "createdAt": 1787633082686,
+    "resolvedAction": "Created: wiki/queries/威严贵气与课题分离的适用场景冲突-2026-08-25-055450.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "最小可行性行动 (MVA) 页面",
+    "description": "分析建议在[[concepts/真实成长闭环]]中提及MVA，但当前维基中尚无专门的MVA页面。考虑是否需要创建独立页面，或与现有的[[concepts/五分钟法则]]、[[concepts/任务颗粒化]]合并。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/最小可行性行动.md"
+    ],
+    "searchQueries": [
+      "Minimum Viable Action MVA 执行力",
+      "最小可行性行动 方法论",
+      "MVA 执行原则"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-cdf3412c",
+    "resolved": false,
+    "createdAt": 1787635749915
+  },
+  {
+    "type": "suggestion",
+    "title": "80/20法则页面",
+    "description": "来源中引用了80/20法则（帕累托法则）作为行动准则的一部分。当前维基中可能已有类似页面，建议检查是否存在该概念页面。若不存在，可考虑创建。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/80-20法则.md"
+    ],
+    "searchQueries": [
+      "帕累托法则 80-20原则 效率",
+      "Pareto principle 80/20 rule productivity"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-3be7d049",
+    "resolved": false,
+    "createdAt": 1787635749915
+  },
+  {
+    "type": "suggestion",
+    "title": "多巴胺与学习快感机制",
+    "description": "来源中提及多巴胺释放机制解释\"学习快感\"的神经基础，但未深入展开。可以考虑创建专门页面讨论多巴胺在学习行为中的作用机制，或将其整合到[[concepts/即时反馈陷阱]]或[[concepts/学习成瘾]]中。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/多巴胺与学习快感.md"
+    ],
+    "searchQueries": [
+      "dopamine learning addiction neuroscience",
+      "多巴胺 学习 成瘾 神经机制"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f8674cf7",
+    "resolved": false,
+    "createdAt": 1787635749915
+  },
+  {
+    "type": "missing-page",
+    "title": "最小可行性行动 (MVA) 独立页面",
+    "description": "来源中MVA（Minimum Viable Action）是破局学习成瘾的核心方法论工具，但当前仅分散在[[concepts/真实成长闭环]]和相关比较页中提及，缺乏独立定义与操作细则。若与[[concepts/五分钟法则]]、[[concepts/任务颗粒化]]合并则需明确边界，若独立建页则需补充与其他MVP概念的辨析。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/真实成长闭环.md",
+      "wiki/concepts/五分钟法则.md"
+    ],
+    "searchQueries": [
+      "Minimum Viable Action MVA 执行力 最小可行性行动",
+      "MVA vs MVP 最小可行产品 区别",
+      "最小可行性行动 执行方法"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-9cafa6a9",
+    "resolved": true,
+    "createdAt": 1787635749915,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "80/20法则页面检查与整合",
+    "description": "来源明确引用80/20法则作为行动准则（\"将学到的20%知识投入产生80%效果的行动\"），维基索引中未见该条目。需确认是否存在等价页面（如\"帕累托法则\"），若无则创建并建立与[[concepts/真实成长闭环]]、[[concepts/学习成瘾]]的交叉引用。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/真实成长闭环.md",
+      "wiki/concepts/学习成瘾.md"
+    ],
+    "searchQueries": [
+      "80-20法则 帕累托原则 效率",
+      "Pareto principle 学习应用 行动",
+      "二八法则 知识转化 生产力"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a766f220",
+    "resolved": false,
+    "createdAt": 1787635749915
+  },
+  {
+    "type": "suggestion",
+    "title": "多巴胺-学习快感神经机制页面",
+    "description": "来源以多巴胺释放解释\"学习快感\"的神经基础，但未深入展开。创建专门页面可连接神经科学与行为成瘾领域，并与[[concepts/即时反馈陷阱]]形成机制-表现的分层结构。建议聚焦\"学习情境下的多巴胺 reward prediction error\"机制。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止”学习成瘾”，开始真正成长.md",
+    "affectedPages": [
+      "wiki/concepts/即时反馈陷阱.md",
+      "wiki/concepts/学习成瘾.md"
+    ],
+    "searchQueries": [
+      "dopamine learning reward prediction error education",
+      "多巴胺 学习快感 神经机制 认知科学",
+      "dopamine knowledge acquisition satisfaction neuroscience"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2b3738da",
+    "resolved": false,
+    "createdAt": 1787635749915
+  },
+  {
+    "type": "missing-page",
+    "title": "自爱专题的synthesis页面",
+    "description": "分析中提到应更新 [[synthesis/自爱专题]]，但该页面在当前wiki索引中不存在。建议确认是否创建此synthesis页面以整合心力防火墙与自爱相关概念。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+    "affectedPages": [
+      "SEARCH: self-compassion vs self-love psychology | Kristin Neff self-compassion framework"
+    ],
+    "searchQueries": [
+      "self-compassion vs self-love psychology",
+      "Kristin Neff self-compassion framework"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2c301a32",
+    "resolved": false,
+    "createdAt": 1787636000825
+  },
+  {
+    "type": "suggestion",
+    "title": "框架整合方向",
+    "description": "本文的\"心力防火墙\"框架可与\"认知铁三角\"或\"进化型认知\"进行整合分析，建议探索三者的关联性。此外，\"主动沉默\"与\"健康的攻击性\"的平衡问题也值得深入探讨。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+    "affectedPages": [
+      "SEARCH: cognitive iron triangle framework | aggressive assertiveness versus passive silence"
+    ],
+    "searchQueries": [
+      "cognitive iron triangle framework",
+      "aggressive assertiveness versus passive silence"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-456b6abb",
+    "resolved": false,
+    "createdAt": 1787636000825
+  },
+  {
+    "type": "missing-page",
+    "title": "synthesis/自爱专题",
+    "description": "分析建议创建[[synthesis/自爱专题]]页面整合心力防火墙与自爱概念，但该页面在现有wiki索引中不存在。此synthesis页面对于理解自爱的多层次框架（从虚假自爱到自我同情到心力防火墙）具有重要价值。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+    "affectedPages": [
+      "SEARCH: self-compassion vs self-love integration framework | 自爱与自我同情关系辨析"
+    ],
+    "searchQueries": [
+      "self-compassion vs self-love integration framework",
+      "自爱与自我同情关系辨析"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-de6f959c",
+    "resolved": false,
+    "createdAt": 1787636000825
+  },
+  {
+    "type": "contradiction",
+    "title": "不介入他人剧本 vs 共同体感觉",
+    "description": "[[concepts/心力防火墙]]中的\"不介入他人剧本\"偏向隔离式边界，与[[concepts/共同体感觉]]强调的社会连接与归属存在潜在张力。需要用户判断：健康边界与情感疏离的界限在哪里？这一张力若不加澄清，可能导致wiki内部概念冲突。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+    "affectedPages": [
+      "wiki/concepts/心力防火墙.md",
+      "wiki/concepts/共同体感觉.md"
+    ],
+    "searchQueries": [
+      "boundary setting versus social connection psychology",
+      "课题分离与共同体感觉关系"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5623c47f",
+    "resolved": true,
+    "createdAt": 1787636000825,
+    "resolvedAction": "Created: wiki/concepts/不介入他人剧本-vs-共同体感觉-2026-08-25-055510.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "心力防火墙与进化型认知的整合",
+    "description": "分析提出开放问题：本文框架与\"认知铁三角\"或\"进化型认知\"如何整合？这是一个高价值的研究机会——将心理防御机制与认知能力框架对接，可能产生更有深度的综合页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/停止内耗：你必须为自己立下的 3 道心力防火墙.md",
+    "affectedPages": [
+      "wiki/concepts/进化型认知.md",
+      "wiki/concepts/认知铁三角与闭环.md",
+      "wiki/concepts/心力防火墙.md"
+    ],
+    "searchQueries": [
+      "evolutionary cognition framework psychology",
+      "认知铁三角模型解析"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5d24988c",
+    "resolved": false,
+    "createdAt": 1787636000825
+  },
+  {
+    "type": "missing-page",
+    "title": "万相纵横的\"一种相\"对立面是否需要独立页面？",
+    "description": "分析中提到应创建 `concepts/一种相与万相纵横.md` 作为对比页面，但目前已将\"一种相\"作为对比项嵌入 [[concepts/万相纵横]] 页面中。如果后续需要更详细地分析\"一种相\"的认知僵化机制及其与[[非黑即白认知框架]]的关联，可考虑拆分。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/concepts/一种相与万相纵横.md"
+    ],
+    "searchQueries": [
+      "一种相 人格僵化 人设固定 自我标签化",
+      "rigid persona cognition flexibility"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-a8b4615d",
+    "resolved": false,
+    "createdAt": 1787637498207
+  },
+  {
+    "type": "contradiction",
+    "title": "万相纵横与真诚边界的适用边界问题需人工确认",
+    "description": "本文主张\"一切行为只为成事\"的功能主义路径，与 [[concepts/真诚与边界]] 及 [[sources/社交智慧：真诚但不真实]] 存在潜在张力。[[queries/万相纵横与真诚边界的适用边界-何时是弹性何时是自欺]] 已记录此问题，但需人工判断：\n1. 是否应将此张力纳入 [[synthesis/高质量对话方法论]] 或其他 synthesis 页面？\n2. \"随境而动\"与\"自欺谎言\"的边界是否有明确的判据标准？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/synthesis/万相纵横与真诚边界的张力分析.md"
+    ],
+    "searchQueries": [
+      "功能性人格切换 真诚边界 实用主义 自欺",
+      "situational personality adaptation authenticity boundary"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-85ad1ae0",
+    "resolved": true,
+    "createdAt": 1787637498207,
+    "resolvedAction": "Created: wiki/concepts/万相纵横与真诚边界的适用边界问题需人工确认-2026-08-25-060718.md"
+  },
+  {
+    "type": "suggestion",
+    "title": "万相纵横与权力/资源特权的张力：谁有资格\"无形无相\"？",
+    "description": "原文隐含假设读者为\"已有一定社会位置的人\"，但未讨论：对于资源匮乏、缺乏社会资本的个体，\"万相纵横\"是否是特权阶级的奢侈？\"随境而动\"在权力不对等的现实中是否可能沦为被规训的伪装？此问题与[[实体/老实人]]页面中\"停止吃亏\"语境存在直接关联，值得在 synthesis 层面整合分析。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/concepts/万相纵横.md",
+      "wiki/entities/老实人.md"
+    ],
+    "searchQueries": [
+      "人格弹性 社会阶层 权力不对等 万相纵横批判",
+      "performative flexibility privilege class",
+      "角色切换 阶层差异 权力关系"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e38292aa",
+    "resolved": false,
+    "createdAt": 1787637498207
+  },
+  {
+    "type": "suggestion",
+    "title": "\"天真（孩童）\"状态与学习成瘾/反刍思维的区分需澄清",
+    "description": "[[concepts/万相纵横]]将\"天真\"定义为\"纯粹、好奇、无心机、归零的能力\"，但[[concepts/学习成瘾]]描述的是以学习为逃避真实成长的替代行为。二者在\"沉浸于某状态\"的表现上表面相似，内核机制却不同（前者是主动归零，后者是被动回避）。需要在万相纵横页面或新增对比中明确这一区分，避免概念混淆。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/concepts/万相纵横.md",
+      "wiki/concepts/学习成瘾.md",
+      "wiki/concepts/归零心态.md"
+    ],
+    "searchQueries": [
+      "天真状态 学习成瘾 心理防御机制 区别",
+      "childlike state flow vs escapism psychology",
+      "归零心态 真成长 假成长 区分"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-3493e20c",
+    "resolved": false,
+    "createdAt": 1787637498207
+  },
+  {
+    "type": "duplicate",
+    "title": "\"信息流动的结构性不平等\"疑似重复页面",
+    "description": "Wiki索引中同时存在：\n- [[concepts/信息流动的结构性不平等]]（来自[[sources/信息流动的\"三重天堑\"与破局之道]]）\n- [[concepts/信息流动结构性不平等]]（来自[[sources/3-10月--14-信息流动的三重天堑与破局之道]]）\n两处来源实质相同，概念名称仅差一个\"的\"字。需人工确认是否为同一页面的不同命名版本，避免知识碎片化。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/concepts/信息流动的结构性不平等.md",
+      "wiki/concepts/信息流动结构性不平等.md"
+    ],
+    "searchQueries": [
+      "信息流动的结构性不平等 认知熔断 圈层闭环"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4b1fabb2",
+    "resolved": false,
+    "createdAt": 1787637498207
+  },
+  {
+    "type": "suggestion",
+    "title": "将\"万相纵横\"纳入 synthesis 框架，打通人格弹性与成长闭环",
+    "description": "目前[[synthesis/信息获取能力的三重维度]]和[[synthesis/高质量对话方法论]]是两个独立的 synthesis 页面，而[[concepts/万相纵横]]所提出的\"内核稳定+外在灵活\"与[[concepts/真实成长闭环]]存在深层同构关系（内核=压舱石，外在灵活=过程指标驱动）。建议在 synthesis 层创建或扩展现有页面，将人格弹性框架与成长闭环、认知套利等模块整合，形成统一的人物发展理论。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/万相纵横：真正厉害的人格境界.md",
+    "affectedPages": [
+      "wiki/concepts/万相纵横.md",
+      "wiki/synthesis/高质量对话方法论.md",
+      "wiki/concepts/真实成长闭环.md"
+    ],
+    "searchQueries": [
+      "人格发展理论 成长闭环 内核稳定 万相纵横 整合模型",
+      "personality flexibility growth loop synthesis"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-57ba658b",
+    "resolved": false,
+    "createdAt": 1787637498207
+  },
+  {
+    "type": "contradiction",
+    "title": "三优三缺法则的适用范围与源文本不一致",
+    "description": "源文本中仅将三优三缺法则用于“无期待救世主”的滤镜实践，而概念页面却声称它同时适用于“无期待共鸣”和“无期待救世主”。这导致读者对该工具的实际应用范围产生混淆，需要澄清其正确的使用场景。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/心理解药：放下六种期待，换取终极自由.md",
+    "affectedPages": [
+      "wiki/concepts/三优三缺法则.md"
+    ],
+    "searchQueries": [
+      "三优三缺法则 用途",
+      "三优三缺法则 与 共鸣",
+      "三优三缺法则 与 救世主"
+    ],
+    "options": [
+      {
+        "label": "Skip",
+        "action": "Skip"
+      },
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      }
+    ],
+    "id": "review-8b468e91",
+    "resolved": true,
+    "createdAt": 1787638766219,
+    "resolvedAction": "Created: wiki/concepts/三优三缺法则的适用范围与源文本不一致-2026-08-25-153745.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "锚定练习需要独立页面吗？",
+    "description": "分析建议将\"锚定练习\"作为[[concepts/认知解离]]的实践部分，但也可以考虑创建独立页面以便与其他冥想/练习概念（如[[concepts/感谢告别冥想]]）并列。目前已在认知解离页面补充了锚定练习步骤，暂不需要单独页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/心力交瘁的真相：我们是如何被自己的“想法”榨干的？.md",
+    "affectedPages": [
+      "wiki/concepts/锚定练习.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-758028c1",
+    "resolved": false,
+    "createdAt": 1787639010075
+  },
+  {
+    "type": "missing-page",
+    "title": "认同 vs 观察是否应创建独立概念？",
+    "description": "分析指出这两种立场定义了痛苦循环与解脱路径的分界线，但目前[[concepts/防御模式与觉知模式]]已有类似维度。建议暂不创建独立页面，而是在相关页面中补充\"认同\"与\"观察\"的对比表述。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/心力交瘁的真相：我们是如何被自己的“想法”榨干的？.md",
+    "affectedPages": [
+      "wiki/concepts/认同与观察.md"
+    ],
+    "searchQueries": [
+      "认知解离 认同与观察 ACT疗法 正念",
+      "认知融合 心理灵活性 接纳承诺疗法"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4632510c",
+    "resolved": false,
+    "createdAt": 1787639010075
+  },
+  {
+    "type": "missing-page",
+    "title": "接纳承诺疗法（ACT）基础理论缺乏页面",
+    "description": "本文核心框架\"认知解离\"明确溯源至ACT（接纳承诺疗法），但wiki中尚无ACT的独立页面。补充ACT的核心理论（认知解离、价值导向行动、接触当下等六大核心过程）将显著提升现有概念页面的学术纵深和引用链完整性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/心力交瘁的真相：我们是如何被自己的“想法”榨干的？.md",
+    "affectedPages": [
+      "wiki/concepts/认知解离.md",
+      "wiki/concepts/防御模式与觉知模式.md"
+    ],
+    "searchQueries": [
+      "接纳承诺疗法 ACT 核心理论 六大过程",
+      "acceptance commitment therapy hexaflex model",
+      "ACT疗法 认知解离 价值行动"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-06184e7d",
+    "resolved": true,
+    "createdAt": 1787639010075,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "心流理论的独立页面缺失",
+    "description": "来源文章多次引用心流理论作为专注思维的心理学支撑，但Wiki中仅有\"深度学习\"概念可能部分覆盖，缺乏对心流理论的定义、触发条件、与专注力的关系等系统阐述。这会影响\"专注思维\"框架的科学基础完整性。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息时代的自救：如何实现对噪音的“选择性失明”.md",
+    "affectedPages": [
+      "wiki/concepts/深度学习.md",
+      "wiki/concepts/切换成本.md"
+    ],
+    "searchQueries": [
+      "心流理论 Flow Theory Csikszentmihalyi",
+      "心流状态触发条件 心理学",
+      "flow state activation factors"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-78804a1c",
+    "resolved": false,
+    "createdAt": 1787639090149
+  },
+  {
+    "type": "suggestion",
+    "title": "即时满足偏差独立概念页面缺失",
+    "description": "来源文章将\"即时满足偏差\"列为对抗目标思维的核心心理机制，与\"即时反馈陷阱\"高度相关但未建立明确区分或整合关系。该概念有助于解释为何人们容易陷入\"紧急\"而非\"重要\"的决策陷阱，独立成页可增强Wiki的决策心理学维度。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息时代的自救：如何实现对噪音的“选择性失明”.md",
+    "affectedPages": [
+      "wiki/concepts/即时反馈陷阱.md",
+      "wiki/concepts/选择性失明.md"
+    ],
+    "searchQueries": [
+      "即时满足偏差 Instant Gratification Bias 心理学",
+      "delay of gratification vs instant gratification bias"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-e819e823",
+    "resolved": false,
+    "createdAt": 1787639090149
+  },
+  {
+    "type": "missing-page",
+    "title": "主动休息与静默期的边界需明确区分",
+    "description": "Wiki中同时存在\"主动休息\"和\"静默期\"两个概念，分析指出两者高度重叠但侧重点不同，但未形成明确的适用场景边界。若用户在实际操作中混淆两者的使用时机，将削弱恢复思维框架的实操价值。建议补充对比分析或合并为一个概念。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息时代的自救：如何实现对噪音的“选择性失明”.md",
+    "affectedPages": [
+      "wiki/concepts/主动休息.md",
+      "wiki/concepts/静默期.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-7721f8f9",
+    "resolved": true,
+    "createdAt": 1787639090149,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "MIT与任务颗粒化的关系需澄清",
+    "description": "来源文章提出MIT（每日3件事）作为目标思维的核心工具，Wiki中开放问题标注了其与执行法则中\"颗粒化任务分解\"的潜在冲突或协同关系。这一张力直接影响实操效果：若MIT任务过大无法落地，或粒度过细失去聚焦意义。建议补充决策树或流程图说明何时使用宏观MIT、何时进行微观颗粒化。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息时代的自救：如何实现对噪音的“选择性失明”.md",
+    "affectedPages": [
+      "wiki/concepts/每日最重要的三件事-MIT.md",
+      "wiki/concepts/执行法则.md",
+      "wiki/concepts/任务颗粒化.md"
+    ],
+    "searchQueries": [
+      "MIT most important tasks 与任务分解 结合方法",
+      "每日三件事 如何颗粒化 执行路径"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-674b6917",
+    "resolved": false,
+    "createdAt": 1787639090149
+  },
+  {
+    "type": "suggestion",
+    "title": "单任务深度专注与多情境灵活切换的场景分化研究",
+    "description": "Wiki已标注\"万相纵横\"与本文的\"单任务专注\"存在张力，但未明确两者的适用场景边界。从研究价值看，这是一条关键的分化线：前者适合高频变动的社交/协作场景，后者适合深度创造/独立工作场景。若能建立场景选择决策框架，将显著提升Wiki的实践指导力。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/信息时代的自救：如何实现对噪音的“选择性失明”.md",
+    "affectedPages": [
+      "wiki/comparisons/万相纵横-vs-角色快速切换.md",
+      "wiki/concepts/万相纵横.md",
+      "wiki/concepts/选择性失明.md"
+    ],
+    "searchQueries": [
+      "单任务专注 vs 多任务切换 适用场景 心理学研究",
+      "deep work vs context switching when to use"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0be56cc2",
+    "resolved": false,
+    "createdAt": 1787639090149
+  },
+  {
+    "type": "missing-page",
+    "title": "老子页面需补充引用",
+    "description": "源文档末尾引用老子\"上善若水\"作为收尾类比，建议更新 [[entities/老子]] 页面补充此引用，以建立完整的知识连接。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/entities/老子.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-32043b8e",
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "missing-page",
+    "title": "防御模式与觉知模式页面需补充细化分析",
+    "description": "本文件指出\"意义的审判\"是关键枢纽，是对 [[concepts/防御模式与觉知模式]] 的重要细化。建议更新该页面，补充第二步作为改变杠杆的分析。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/concepts/防御模式与觉知模式.md"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8dc4ec71",
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "missing-page",
+    "title": "意义契约的学术溯源与理论定位需确认",
+    "description": "文档核心概念\"意义契约\"（meaning contract）在心理学文献中是否有对应术语或研究？可能与Beck的\"认知三角/核心信念\"、Seligman的\"解释风格\"、或Buber的\"我-你契约\"存在关联，但也可能是作者自创概念。建议搜索确认来源，避免将非学术术语当作心理学概念传播。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/concepts/意义契约.md",
+      "wiki/concepts/性格结构定律.md"
+    ],
+    "searchQueries": [
+      "meaning contract psychology cognitive schema",
+      "Beck core beliefs meaning making",
+      "意义契约 心理学 认知图式"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c2ff7b9d",
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "三问存在的学术来源与依恋理论的关系",
+    "description": "\"我是安全的吗/我如何被看见/我是否有价值\"三道存在之问是否与Bowlby依恋理论的\"内部工作模型\"、或Winnicott的\"够好的母亲\"理论存在直接对应关系？若是，应在[[concepts/存在之问]]页面补充学术溯源，否则应标注为原创框架而非既定心理学结论。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/concepts/存在之问.md"
+    ],
+    "searchQueries": [
+      "attachment internal working model safety worthiness questions",
+      "Bowlby internal working model self-worth",
+      "依恋理论 内部工作模型 存在感 价值感"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-55cbd118",
+    "resolved": false,
+    "createdAt": 1787639658637
+  },
+  {
+    "type": "contradiction",
+    "title": "性格公式的量化主张与证据缺失之间的张力",
+    "description": "文档以定律形式呈现\"性格=固化+旧有意义结构；成长=觉察×勇气×更新速度\"，但这两个等式在现有心理学文献中无实证支撑，且三项乘法因子是否存在可测量性、是否存在主因子，文档自身也标记为开放问题。此张力需要在synthesis页面明确标注：这是隐喻性框架而非可验证定律，避免读者将其误读为科学结论。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/concepts/性格结构定律.md",
+      "wiki/synthesis/性格解构的三重分析框架.md"
+    ],
+    "searchQueries": [],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-aab1588a",
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "Created: wiki/synthesis/性格公式的量化主张与证据缺失之间的张力-2026-08-25-153809.md"
+  },
+  {
+    "type": "missing-page",
+    "title": "老子\"上善若水\"引用的原始出处需核实",
+    "description": "文档结尾引用老子\"上善若水\"作为类比，但未标注具体出处（《道德经》哪一章）。建议核实并在[[entities/老子]]页面补充准确引文（通常出自第8章），同时确认该引用是否与上下文论述存在过度延伸的风险——老子讲水的流动性是比喻\"不争之德\"，与\"性格如礁石抗拒流动\"的隐喻是否完全契合需要审视。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/性格定律：勇气 × 觉察深度×更新速度 = 真正的成长.md",
+    "affectedPages": [
+      "wiki/entities/老子.md"
+    ],
+    "searchQueries": [
+      "老子 上善若水 道德经 第八章 原文",
+      "上善若水 性格隐喻 解读",
+      "Lao Tzu highest good is like water chapter 8"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-3b2710ea",
+    "resolved": true,
+    "createdAt": 1787639658637,
+    "resolvedAction": "auto-resolved"
+  },
+  {
+    "type": "suggestion",
+    "title": "反差感与万相纵横的对比页面",
+    "description": "分析发现[[concepts/反差感与人格完整性]]与[[concepts/万相纵横]]存在显著关联但尚未建立明确对比。建议创建对比页面以澄清两者差异：反差感强调对立面共存，万相纵横强调随境而动。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/comparisons/反差感-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "反差感 万相纵横 人格完整性 对比",
+      "辩证统一 情境适应 人格模型"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-f67315c7",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "missing-page",
+    "title": "反差感的角色扮演风险查询页",
+    "description": "分析提出开放问题：反差感是否可能导致\"表演性人格\"——为展示反差而刻意营造对立面？这与[[queries/万相纵横与真诚边界的适用边界]]的张力一致，建议创建查询页面追踪此问题。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/queries/反差感是否会导致角色扮演自我迷失.md"
+    ],
+    "searchQueries": [
+      "反差感 表演性人格 真实性 边界",
+      "场景化角色 自我迷失 真诚"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-02b7d238",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "suggestion",
+    "title": "反差感与万相纵横的对比研究",
+    "description": "分析发现[[concepts/反差感与人格完整性]]与[[concepts/万相纵横]]存在显著关联但尚未建立明确对比。两者都涉及情境适应，但结构不同：反差感强调二元对立（刚/柔），万相纵横强调多维度流动。建议创建对比页面澄清差异。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/comparisons/反差感-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "反差感 万相纵横 人格完整性 对比",
+      "辩证统一 情境适应 人格模型"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-552a83ae",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "suggestion",
+    "title": "水的隐喻可操作性提升",
+    "description": "\"水的智慧\"作为理想人格模型富有诗意，但缺乏具体行为指南。建议补充：如何将四重特质（柔韧、流动、边界、原则）转化为可执行的决策框架或日常练习。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/真正的魅力,藏在你的反差感里.md",
+    "affectedPages": [
+      "wiki/concepts/水的智慧与人格模型.md"
+    ],
+    "searchQueries": [
+      "水的隐喻 人格修养 实践方法",
+      "柔性领导力 原则性与适应性平衡"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-28e0c6e0",
+    "resolved": false,
+    "createdAt": 1787727132196
+  },
+  {
+    "type": "missing-page",
+    "title": "双核生存系统新概念需人工确认",
+    "description": "新增概念页面[[concepts/双核生存系统]]基于原文\"攻守兼备\"框架创建。请确认：\n1. 该框架是否需要单独页面，或应合并到[[concepts/战略蛰伏]]或[[concepts/中年危机重构]]\n2. 与[[concepts/熵增]]的能量管理原则是否存在框架重叠",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年危机 双核系统 攻守策略",
+      "反脆弱 生活苦行僧 职业CEO",
+      "塔勒布 中年转型 杠杆理论"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-c0b3fb20",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "战略蛰伏与进攻转型的衔接路径",
+    "description": "[[sources/中年突围指南-从劳动力进化为生产力的10个动作]]提出\"战略蛰伏\"与\"一人公司\"两个阶段，但未说明：\n1. 蛰伏期如何为\"偷师\"创造条件\n2. 从蛰伏到进攻的触发条件是什么\n3. 是否有其他中年转型案例可补充此路径",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年转型 蛰伏期 主动准备 策略",
+      "一人公司 成立路径 案例",
+      "中年危机 职业转型 阶段性策略"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5847e190",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "战略蛰伏与一人公司的衔接路径需要研究",
+    "description": "[[sources/中年突围指南-从劳动力进化为生产力的10个动作]]提出\"战略蛰伏\"（蛰伏等待）与\"一人公司\"（主动进攻）两个阶段，但未说明：\n1. 蛰伏期如何为\"偷师\"创造条件\n2. 从蛰伏过渡到进攻的触发条件是什么\n3. 是否有其他中年转型案例或理论可补充此路径\n\n这会影响[[concepts/战略蛰伏]]和[[concepts/一人公司]]的实操指导价值。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年转型 蛰伏期 主动准备 策略",
+      "一人公司 成立路径 案例",
+      "中年危机 职业转型 阶段性策略"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-d89aa33e",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "suggestion",
+    "title": "\"偷师\"策略的职业道德边界需澄清",
+    "description": "[[concepts/一人公司]]提到利用职场时间\"偷师\"商业模式、获客渠道、供应链管理，但未讨论：\n1. 如何在不过度侵犯职业道德的前提下获取这些知识\n2. 与雇主忠诚义务的边界在哪里\n3. 是否有法律风险\n\n这是实操层面的重要张力点，值得进一步研究。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "员工偷师商业模式 职业道德边界",
+      "竞业禁止 商业秘密 职场转型",
+      "跳槽创业 道德风险"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-dee08e91",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "missing-page",
+    "title": "双核生存系统概念单薄需确认",
+    "description": "新增概念页面[[concepts/双核生存系统]]仅基于单篇source，内容较薄。请确认：\n1. 该框架是否需要单独页面，或应合并到[[concepts/战略蛰伏]]或[[concepts/中年危机重构]]\n2. 与[[concepts/熵增]]的能量管理原则是否存在框架重叠",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/中年突围指南-从劳动力进化为生产力的10个动作.md",
+    "searchQueries": [
+      "中年危机 双核系统 攻守策略",
+      "反脆弱 生活苦行僧 职业CEO",
+      "塔勒布 中年转型 杠杆理论"
+    ],
+    "options": [
+      {
+        "label": "Approve",
+        "action": "Approve"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-1544f05a",
+    "resolved": false,
+    "createdAt": 1787728777556
+  },
+  {
+    "type": "missing-page",
+    "title": "递归思考 vs 单次执行 对比页",
+    "description": "Stage 1建议创建对比页面区分两种决策模式，有助于澄清\"递归思考并非万能\"的核心论点。当前wiki缺少显式的对比框架，仅有一篇概念页记录递归思考本身。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/comparisons/递归思考-vs-单次执行.md"
+    ],
+    "searchQueries": [
+      "recursive thinking vs single-step decision making",
+      "递归思考 单次执行 对比 元认知",
+      "递归思考 单次执行 对比 元认知 分析瘫痪"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-512c1d25",
+    "resolved": false,
+    "createdAt": 1787752812517
+  },
+  {
+    "type": "suggestion",
+    "title": "递归思考的最佳深度与阈值",
+    "description": "Stage 1提出了一个值得追踪的开放问题：递归思考是否存在\"最佳深度\"（几层自我觉察）的普适阈值？这与[[哥德尔不完备定理]]揭示的认知边界直接相关，也影响[[螺旋上升认知模型]]的适用范围。建议创建query页面跟踪。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/queries/递归思考的最佳深度与元认知阈值.md"
+    ],
+    "searchQueries": [
+      "metacognition depth threshold optimal recursion level",
+      "元认知最佳层级 递归深度 分析瘫痪阈值",
+      "元认知最佳层级 递归深度 分析瘫痪阈值 自我觉察层数"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5d1f5ddd",
+    "resolved": false,
+    "createdAt": 1787752812517
+  },
+  {
+    "type": "contradiction",
+    "title": "递归思考与万相纵横的场景策略张力",
+    "description": "Stage 1指出[[concepts/万相纵横]]强调\"随境而动\"的场景化适应（向外），而[[递归思考]]强调\"向内凝视\"的自我觉察——两者在策略取向上形成互补与张力，但未在当前wiki中显式讨论。建议创建comparison页面或在相关页面中添加cross-reference。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/人类最强的能力之一，可能不是“思考”，而是“递归思考” 36a7d11d97dd803c8a61f867286ff97f.md",
+    "affectedPages": [
+      "wiki/comparisons/递归思考-vs-万相纵横.md"
+    ],
+    "searchQueries": [
+      "万相纵横 递归思考 适用场景 对比 自我觉察 随境而动",
+      "万相纵横 递归思考 适用场景 对比 自我觉察 随境而动 内省 情境适应"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5b69b22f",
+    "resolved": false,
+    "createdAt": 1787752812517
+  }
+]

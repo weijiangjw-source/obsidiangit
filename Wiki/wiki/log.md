@@ -818,3 +818,32 @@ sources: []
 - 新增 concept: [[人机协同基础设施]] — 人机协同基础设施
 - 新增 concept: [[认知平权]] — 认知平权
 - 新增 synthesis: [[从信息平权到认知平权的叙事框架]] — 从信息平权到认知平权的叙事框架
+
+---
+type: synthesis
+title: Project Log
+tags: []
+related: []
+created: 2026-09-03
+updated: 2026-09-03
+---
+
+# Project Log
+
+## 2026-09-03
+
+- Ingest source: 为什么99%的人误解了真正的"自律"？.md
+- Created source page: wiki/sources/为什么99%的人误解了真正的自律.md
+- Created concept pages: 身份驱动行为模型, 痛苦阈值动力学, 战略性不协和, 环境工程（行为设计）
+- Noted terminology tension with existing 认知失调术语非标准用法需澄清 page
+- Linked to related concepts: 知行合一, 虚假成就感, 学习成瘾, 万相纵横, 性格结构定律
+
+# Wiki活动日志
+
+## 2026-09-03
+
+- ingest | 心中有爱，百病不生
+  - 新增源页面：[[sources/心中有爱，百病不生]]
+  - 新增概念页面：[[concepts/能量术语在养生语境中的漂移]]、[[concepts/正气存内与免疫隐喻]]
+  - 识别与现有概念的关联：[[concepts/自我同情]]、[[concepts/边界感（课题分离）]]、[[concepts/随缘作为防御-vs-健康策略]]
+  - 标记术语滥用问题："能量""振动频率"等物理学词汇的语义漂移

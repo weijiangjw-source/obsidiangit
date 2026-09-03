@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1788353326028,
+  "updatedAt": 1788447339570,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -81,6 +81,11 @@
       "hash": "3ba0c109a1e4cbe64b6b375df9c35905",
       "size": 4891,
       "mtimeMs": 1781626690147
+    },
+    "raw/sources/为什么 99% 的人误解了真正的“自律”？.md": {
+      "hash": "4d2ce77ca70c60ceafc655f5104d6a5a",
+      "size": 3260,
+      "mtimeMs": 1781626724078
     },
     "raw/sources/为什么你学了那么多副业，兜里还是比脸干净？.md": {
       "hash": "ad7ec21654da0f14d94ddf349d42cec1",
@@ -191,6 +196,11 @@
       "hash": "03c4b826bb165c8755e6ffeb00ef8cc5",
       "size": 5827,
       "mtimeMs": 1781626739507
+    },
+    "raw/sources/心中有爱，百病不生.md": {
+      "hash": "9fc217406fcb9b3f4e3a733488b542a6",
+      "size": 2346,
+      "mtimeMs": 1781626780963
     },
     "raw/sources/心力交瘁的真相：我们是如何被自己的“想法”榨干的？.md": {
       "hash": "822901bd099f7b6886ffc66b4a1ae730",
@@ -907,6 +917,11 @@
       "size": 2317,
       "mtimeMs": 1787630633558
     },
+    "wiki/concepts/战略性不协和.md": {
+      "hash": "2b17b1e9d8af2c2f9716edc5a424d461",
+      "size": 1337,
+      "mtimeMs": 1788447275076
+    },
     "wiki/concepts/战略蛰伏.md": {
       "hash": "6e3df5a8e43d5e387fee1069f6d9f148",
       "size": 1425,
@@ -1052,6 +1067,11 @@
       "size": 1254,
       "mtimeMs": 1788345913056
     },
+    "wiki/concepts/正气存内与免疫隐喻.md": {
+      "hash": "021a2b48e63631512d307001f312d2b4",
+      "size": 1327,
+      "mtimeMs": 1788447338829
+    },
     "wiki/concepts/每日最重要的三件事-MIT.md": {
       "hash": "1c3d59777ab880291fecb0dbba9523de",
       "size": 2094,
@@ -1102,6 +1122,11 @@
       "size": 1559,
       "mtimeMs": 1787631941745
     },
+    "wiki/concepts/环境工程行为设计.md": {
+      "hash": "c3ce876c7be4d24803d21225308bf5c0",
+      "size": 951,
+      "mtimeMs": 1788447275077
+    },
     "wiki/concepts/现实的自信.md": {
       "hash": "ad5927a433e325a1e6aead579a512d2a",
       "size": 1063,
@@ -1126,6 +1151,11 @@
       "hash": "3893509d9c288f21d91efef06b270d5a",
       "size": 1277,
       "mtimeMs": 1788346250160
+    },
+    "wiki/concepts/痛苦阈值动力学.md": {
+      "hash": "5e3d48abbc876f4cdad5a9be572b7d9f",
+      "size": 1199,
+      "mtimeMs": 1788447275075
     },
     "wiki/concepts/真实成长闭环.md": {
       "hash": "3ad7d6eae29b076562d5f9e50e50bc22",
@@ -1231,6 +1261,11 @@
       "hash": "3c3be6d9c0d5a356d20f782e04c6243c",
       "size": 1447,
       "mtimeMs": 1788270652589
+    },
+    "wiki/concepts/能量术语在养生语境中的漂移.md": {
+      "hash": "065692465b1be16a22a05bf54e585e78",
+      "size": 1511,
+      "mtimeMs": 1788447338828
     },
     "wiki/concepts/能量泄漏.md": {
       "hash": "e41ff9c774d135cd159032e55949433b",
@@ -1426,6 +1461,11 @@
       "hash": "4a8b6606c243ddc664101cf23f1eae4b",
       "size": 2143,
       "mtimeMs": 1787631941743
+    },
+    "wiki/concepts/身份驱动行为模型.md": {
+      "hash": "c0d115689f608464558a835d65509494",
+      "size": 1681,
+      "mtimeMs": 1788447275073
     },
     "wiki/concepts/辩证思维.md": {
       "hash": "f5262470341b0c2009b5e635b54ab7f2",
@@ -1813,14 +1853,14 @@
       "mtimeMs": 1788353170967
     },
     "wiki/index.md": {
-      "hash": "901f581ac767362dba2a0ab8f18ddbe1",
-      "size": 14924,
-      "mtimeMs": 1788353325295
+      "hash": "a4f263aaf6dd90dc2bad00c726e6c841",
+      "size": 15102,
+      "mtimeMs": 1788447338833
     },
     "wiki/log.md": {
-      "hash": "9baf072285d03044a216678c5f7b22d3",
-      "size": 32555,
-      "mtimeMs": 1788353325292
+      "hash": "4f5bfc9b7db39759cb4a291148d1f9d3",
+      "size": 33665,
+      "mtimeMs": 1788447338831
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -1927,6 +1967,11 @@
       "size": 2868,
       "mtimeMs": 1787728777536
     },
+    "wiki/sources/为什么 99% 的人误解了真正的“自律”？.md": {
+      "hash": "5f282126eb5f54a4db57067dea0605a8",
+      "size": 3324,
+      "mtimeMs": 1788447275072
+    },
     "wiki/sources/为什么你学了那么多副业，兜里还是比脸干净？.md": {
       "hash": "7a583ae66d945a8bdedf4b3a0434832e",
       "size": 874,
@@ -2026,6 +2071,11 @@
       "hash": "36911a558f84ffeba4eb601a20688c15",
       "size": 7008,
       "mtimeMs": 1788352673275
+    },
+    "wiki/sources/心中有爱，百病不生.md": {
+      "hash": "ce8e4bde0f88a3facd7e804264cfeb31",
+      "size": 1934,
+      "mtimeMs": 1788447338827
     },
     "wiki/sources/心力交瘁的真相：我们是如何被自己的“想法”榨干的？.md": {
       "hash": "14b29cf6e18bda7829b4bbed85819a2b",

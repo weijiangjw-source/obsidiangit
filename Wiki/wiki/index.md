@@ -80,7 +80,17 @@
 
 
 
+
+
 ## Recently Updated
+- [[sources/心中有爱，百病不生]] — 心中有爱，百病不生
+- [[concepts/能量术语在养生语境中的漂移]] — 能量术语在养生语境中的漂移
+- [[concepts/正气存内与免疫隐喻]] — 正气存内与免疫隐喻
+- [[sources/为什么 99% 的人误解了真正的“自律”？]] — 为什么99%的人误解了真正的自律？
+- [[concepts/身份驱动行为模型]] — 身份驱动行为模型
+- [[concepts/痛苦阈值动力学]] — 痛苦阈值动力学
+- [[concepts/战略性不协和]] — 战略性不协和
+- [[concepts/环境工程行为设计]] — 环境工程（行为设计）
 - [[sources/搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902]] — 搜索框的原罪：当AI开始逼迫人类重新学会思考-20260902
 - [[entities/ben-gomes]] — Ben Gomes
 - [[entities/lila-ibrahim]] — Lila Ibrahim
@@ -273,11 +283,3 @@
 - [[comparisons/讨好-vs-努力合群]] — 讨好 vs 努力合群
 - [[concepts/学习成瘾]] — 学习成瘾
 - [[concepts/真实成长闭环]] — 真实成长闭环
-- [[concepts/虚假成就感]] — 虚假成就感
-- [[concepts/知识内化]] — 知识内化
-- [[comparisons/学习成瘾-vs-真成长]] — 学习成瘾 vs. 真成长
-- [[concepts/讨好]] — 讨好
-- [[concepts/权力泄漏]] — 权力泄漏
-- [[concepts/客体视角与主体视角]] — 客体视角与主体视角
-- [[comparisons/讨好-vs-善良]] — 讨好 vs 善良
-- [[queries/如何区分善良与讨好]] — 如何区分善良与讨好

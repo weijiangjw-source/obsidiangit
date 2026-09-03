@@ -180,8 +180,9 @@
       }
     ],
     "id": "review-25c36758",
-    "resolved": false,
-    "createdAt": 1787556812638
+    "resolved": true,
+    "createdAt": 1787556812638,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "contradiction",
@@ -3862,5 +3863,110 @@
     "id": "review-98f8d100",
     "resolved": false,
     "createdAt": 1788353182746
+  },
+  {
+    "type": "contradiction",
+    "title": "战略性不协和与认知失调术语冲突",
+    "description": "\"战略性不协和\"作为新创概念，与[[concepts/认知失调术语非标准用法需澄清-2026-08-25-055223]]中的认知失调存在术语混淆风险。前者是主动策略，后者描述心理不适状态。需人工确认是否在认知失调页补充此案例。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/为什么 99% 的人误解了真正的“自律”？.md",
+    "affectedPages": [
+      "wiki/concepts/认知失调术语非标准用法需澄清-2026-08-25-055223.md"
+    ],
+    "searchQueries": [
+      "cognitive dissonance strategic dissonance definition difference",
+      "认知失调 战略性不协和 区别",
+      "cognitive dissonance strategic dissonance difference"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-4c1c882e",
+    "resolved": false,
+    "createdAt": 1788447275092
+  },
+  {
+    "type": "missing-page",
+    "title": "自我实验概念缺失",
+    "description": "源文件中提到\"自我实验\"作为身份重塑第四步，但无对应wiki页面。这是一个独立的方法论概念，值得单独建立页面。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/为什么 99% 的人误解了真正的“自律”？.md",
+    "affectedPages": [
+      "SEARCH: self-experimentation behavioral design method | 自我实验 行为改变 方法"
+    ],
+    "searchQueries": [
+      "self-experimentation behavioral design method",
+      "自我实验 行为改变 方法"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-042f3036",
+    "resolved": false,
+    "createdAt": 1788447275092
+  },
+  {
+    "type": "suggestion",
+    "title": "与知行合一的哲学对照",
+    "description": "[[concepts/身份驱动行为模型]]中的\"身份即行为\"论点与[[concepts/知行合一]]存在哲学层面的呼应，可考虑在知行合一页面补充跨文化对照内容。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/为什么 99% 的人误解了真正的“自律”？.md",
+    "affectedPages": [
+      "wiki/concepts/知行合一.md"
+    ],
+    "searchQueries": [
+      "王阳明 知行合一 身份认同 行为一致",
+      "identity and behavior philosophy 知行合一"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-0772c420",
+    "resolved": false,
+    "createdAt": 1788447275092
+  },
+  {
+    "type": "missing-page",
+    "title": "自我实验方法缺失页面",
+    "description": "源文件四步法则中的第4步\"自我实验\"（像科学家一样试驾未来，以好奇驱动行为）无对应wiki页面。与\"知识松鼠症\"\"伪勤奋\"形成对比框架，值得单独建立。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/为什么 99% 的人误解了真正的“自律”？.md",
+    "affectedPages": [
+      "SEARCH: self-experimentation behavioral change method curiosity-driven | 自我实验 行为改变 好奇心驱动"
+    ],
+    "searchQueries": [
+      "self-experimentation behavioral change method curiosity-driven",
+      "自我实验 行为改变 好奇心驱动"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-cf41ae86",
+    "resolved": false,
+    "createdAt": 1788447275092
   }
 ]

@@ -74,6 +74,15 @@ views:
     rowHeight: compact
     includeSubfolders: false
     wrapText: false
+  - id: 4d5351cc-2ca3-4a18-ab01-a6cabd8d1815
+    type: gallery
+    filters: []
+    sorts: []
+    hiddenColumns: []
+    columnWidths: {}
+    pinnedColumnId:
+    name: 画廊
+    galleryCardSize: small
 ---
 
 > [!tip] Notion Bases

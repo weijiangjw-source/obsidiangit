@@ -654,6 +654,30 @@
         "wiki/log.md",
         "wiki/index.md"
       ]
+    },
+    "为什么 99% 的人误解了真正的“自律”？.md": {
+      "hash": "cff2ad28e14d8bc80ed02127e0e05383579768a90416245a1e5a07871745a8af",
+      "timestamp": 1788447275098,
+      "filesWritten": [
+        "wiki/sources/为什么 99% 的人误解了真正的“自律”？.md",
+        "wiki/concepts/身份驱动行为模型.md",
+        "wiki/concepts/痛苦阈值动力学.md",
+        "wiki/concepts/战略性不协和.md",
+        "wiki/concepts/环境工程行为设计.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
+    },
+    "心中有爱，百病不生.md": {
+      "hash": "969ca60a518f92371cf75771df3d16ab9afb7c637023b7959a6c036d11a323fc",
+      "timestamp": 1788447338855,
+      "filesWritten": [
+        "wiki/sources/心中有爱，百病不生.md",
+        "wiki/concepts/能量术语在养生语境中的漂移.md",
+        "wiki/concepts/正气存内与免疫隐喻.md",
+        "wiki/log.md",
+        "wiki/index.md"
+      ]
     }
   }
 }

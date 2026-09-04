@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1788447339570,
+  "updatedAt": 1788497712580,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -51,6 +51,11 @@
       "hash": "65808454e8cd16a8747c96eda5ad2b59",
       "size": 4536,
       "mtimeMs": 1781626593649
+    },
+    "raw/sources/KK关于 AI 的 9 个反直觉预判.md": {
+      "hash": "1c8a9b02b255e01cdd78a8d2465a17d6",
+      "size": 4022,
+      "mtimeMs": 1781626724079
     },
     "raw/sources/【人生指南】穿越“时”与“势”的迷雾.md": {
       "hash": "6bea6d3b1dc3ce07fcd04f19bdd8d14e",
@@ -251,6 +256,11 @@
       "hash": "60692ed3ca9e254762621ba28b969533",
       "size": 3351,
       "mtimeMs": 1781626772362
+    },
+    "raw/sources/最高级的修行叫借假修真：为何心里一定要有一个人？.md": {
+      "hash": "57055b1036ed9f39fbd35e51d1ee4241",
+      "size": 2791,
+      "mtimeMs": 1781626790798
     },
     "raw/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md": {
       "hash": "5b2889a6651fbd853c477b41fa9fd89f",
@@ -517,6 +527,11 @@
       "size": 3805,
       "mtimeMs": 1787558028210
     },
+    "wiki/concepts/借假修真.md": {
+      "hash": "22972a58602d293ca6df8c59e1d17355",
+      "size": 2092,
+      "mtimeMs": 1788497547461
+    },
     "wiki/concepts/假自律与真自律.md": {
       "hash": "d6c6b6499b14fc69f775b4fa1e990fa7",
       "size": 1533,
@@ -636,6 +651,11 @@
       "hash": "d0797c3f9b6977041c0770568458ac09",
       "size": 3132,
       "mtimeMs": 1787728328432
+    },
+    "wiki/concepts/升华作用.md": {
+      "hash": "3cd0cb9edcb76d30cee03c9992965456",
+      "size": 2210,
+      "mtimeMs": 1788497547464
     },
     "wiki/concepts/印象管理.md": {
       "hash": "087d302e740bbf6d38bcaefd17b7ae3e",
@@ -777,6 +797,11 @@
       "size": 1839,
       "mtimeMs": 1787637950313
     },
+    "wiki/concepts/客体恒常性.md": {
+      "hash": "9894ad658278ed913912884593443705",
+      "size": 2006,
+      "mtimeMs": 1788497547465
+    },
     "wiki/concepts/客体视角与主体视角.md": {
       "hash": "1a37f64ac7ff363d8f1f5d436fbca38f",
       "size": 2568,
@@ -891,6 +916,11 @@
       "hash": "8e4b766f582ecb74ba6e9a4442c0f5fb",
       "size": 1488,
       "mtimeMs": 1787637950311
+    },
+    "wiki/concepts/情感锚点.md": {
+      "hash": "562148cae3a0e798d87451f7a4abb4ef",
+      "size": 1907,
+      "mtimeMs": 1788497547463
     },
     "wiki/concepts/情绪止痛.md": {
       "hash": "11fcba8d6f2a2c898237926b18af7bbb",
@@ -1853,14 +1883,14 @@
       "mtimeMs": 1788353170967
     },
     "wiki/index.md": {
-      "hash": "a4f263aaf6dd90dc2bad00c726e6c841",
-      "size": 15102,
-      "mtimeMs": 1788447338833
+      "hash": "64aa3e42acb6fad608f544be43c5962c",
+      "size": 15188,
+      "mtimeMs": 1788497711846
     },
     "wiki/log.md": {
-      "hash": "4f5bfc9b7db39759cb4a291148d1f9d3",
-      "size": 33665,
-      "mtimeMs": 1788447338831
+      "hash": "972b26559ce281e2ec241bb96a6e75ec",
+      "size": 34359,
+      "mtimeMs": 1788497711848
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -1936,6 +1966,11 @@
       "hash": "260933b240a6dd0e494081f89f94a272",
       "size": 3945,
       "mtimeMs": 1787555765250
+    },
+    "wiki/sources/KK关于 AI 的 9 个反直觉预判.md": {
+      "hash": "9c8f4547275a0175faf9c3d361b33188",
+      "size": 25387,
+      "mtimeMs": 1788497711843
     },
     "wiki/sources/【人生指南】穿越“时”与“势”的迷雾.md": {
       "hash": "7695b117f34762dc781a2f59609b76e5",
@@ -2126,6 +2161,11 @@
       "hash": "ccdf9bd46f7f05ef66ae236d86955cf4",
       "size": 3972,
       "mtimeMs": 1788345913037
+    },
+    "wiki/sources/最高级的修行叫借假修真：为何心里一定要有一个人？.md": {
+      "hash": "e560e5cfe85eafad3d526b1076d93b7a",
+      "size": 3126,
+      "mtimeMs": 1788497547459
     },
     "wiki/sources/杠铃策略：为什么90%的保守+10%的疯狂，胜过100%的中庸？.md": {
       "hash": "edd63c65c59bcea222c9ae8f62b4abb7",

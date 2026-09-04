@@ -3968,5 +3968,246 @@
     "id": "review-cf41ae86",
     "resolved": false,
     "createdAt": 1788447275092
+  },
+  {
+    "type": "suggestion",
+    "title": "情感锚点与依恋类型理论的系统对照研究",
+    "description": "文章将\"情感锚点\"描述为存在主义焦虑下的符号化机制，但未与主流依恋理论（安全型/焦虑型/回避型/混乱型）建立系统对应。补充这一对照可大幅提升\"情感锚点\"页面的学术根基，也为后续开放问题（情感锚点与依恋类型的关系）提供实证依据。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/最高级的修行叫借假修真：为何心里一定要有一个人？.md",
+    "affectedPages": [
+      "wiki/concepts/情感锚点.md"
+    ],
+    "searchQueries": [
+      "情感锚点 依恋类型 客体关系理论",
+      "emotional anchor attachment style anxious avoidant",
+      "客体恒常性 依恋类型 心理成熟 实证研究"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-8f24988c",
+    "resolved": false,
+    "createdAt": 1788497547483
+  },
+  {
+    "type": "suggestion",
+    "title": "自我实现概念页面的缺失与引用对齐",
+    "description": "源文本第五章明确使用\"自我实现\"（self-actualization）作为终极觉悟的目标层级，但当前wiki索引中未见该概念的独立页面。若已有其他条目涵盖此概念，需确认命名一致性；若无，则应考虑创建，并与马斯洛需求层次理论、积极心理学文献建立交叉引用。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/最高级的修行叫借假修真：为何心里一定要有一个人？.md",
+    "affectedPages": [
+      "wiki/concepts/客体恒常性.md",
+      "wiki/concepts/升华作用.md"
+    ],
+    "searchQueries": [
+      "自我实现 马斯洛 积极心理学",
+      "self-actualization Maslow hierarchy of needs",
+      "客体恒常性 心理成熟 发展心理学 定义争议"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-52ecc445",
+    "resolved": false,
+    "createdAt": 1788497547483
+  },
+  {
+    "type": "contradiction",
+    "title": "情感锚点的依恋导向与三优三缺法则的理性评估取向存在张力",
+    "description": "源文本的核心命题是\"心里一定要有一个人\"，将情感依恋本身视为成长的起点与动力；而[[concepts/三优三缺法则]]及其相关页面强调对关系进行理性条件评估。两者之间是否存在不可调和的张力，还是适用于不同场景，需要用户判断——前者更适用于存在主义焦虑驱动的个体，后者更适用于关系决策场景。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/最高级的修行叫借假修真：为何心里一定要有一个人？.md",
+    "affectedPages": [
+      "wiki/concepts/三优三缺法则.md",
+      "wiki/concepts/情感锚点.md",
+      "wiki/concepts/三优三缺法则的适用范围与源文本不一致-2026-08-25-153745"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-5b28bb27",
+    "resolved": false,
+    "createdAt": 1788497547483
+  },
+  {
+    "type": "missing-page",
+    "title": "GDP重定义",
+    "description": "凯利预判四中提出GDP度量体系在AI时代失效，建议转向效率、幸福感、任务完成量的新度量衡。此概念未在现有预估值页面中体现，建议考虑是否创建独立概念页 `wiki/concepts/gdp-redefinition.md` 或将其纳入现有经济相关概念中。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/concepts/gdp-redefinition.md"
+    ],
+    "searchQueries": [
+      "AI GDP measurement metrics post-growth economy",
+      "GDP redefinition artificial intelligence era",
+      "beyond GDP happiness efficiency metrics"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2f3e5d74",
+    "resolved": false,
+    "createdAt": 1788497711859
+  },
+  {
+    "type": "suggestion",
+    "title": "领导力价值判断与芒格能力圈的深度对话",
+    "description": "凯利的\"领导力作为价值判断\"与[[synthesis/芒格15模型整合框架]]中的\"能力圈\"概念存在有趣的对照关系。建议深入探索两者在AI时代的交汇点：当AI可以处理更多信息时，人类的能力圈边界是扩大还是更需要收缩？",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/concepts/领导力作为价值判断.md"
+    ],
+    "searchQueries": [
+      "leadership under AI uncertainty value judgment vs information processing",
+      "capability circle munger AI decision making",
+      "human judgment irreducibility artificial intelligence"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-52b55605",
+    "resolved": false,
+    "createdAt": 1788497711859
+  },
+  {
+    "type": "missing-page",
+    "title": "乐观主义的哲学基础",
+    "description": "凯利预判九强调\"乐观是选择\"，但涉及\"策略性乐观\"而非盲目乐观的哲学基础。建议考虑创建 `wiki/concepts/策略性乐观.md` 或 `wiki/concepts/长期主义乐观.md`，与现有的[[concepts/全维反焦虑操作系统]]和[[concepts/心理解药]]形成对话。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/concepts/策略性乐观.md"
+    ],
+    "searchQueries": [
+      "strategic optimism philosophy Kevin Kelly",
+      "long-term optimism rational choice",
+      "optimistic realism technology trends"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-2883c2a7",
+    "resolved": false,
+    "createdAt": 1788497711859
+  },
+  {
+    "type": "suggestion",
+    "title": "KK的乐观主义哲学基础",
+    "description": "凯文·凯利的预判九以\"乐观是理性选择\"收束，但wiki中尚未建立\"乐观主义\"作为可操作认知框架的独立页面。KK区分了\"盲目乐观\"与\"长期主义视角下的策略性乐观\"，这与[[concepts/全维反焦虑操作系统]]中提到的心理调适策略形成互补——前者是宏观历史叙事，后者是微观个体工具。补全此页可将KK的论点从情绪安慰升格为可复用的认知工具。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/concepts/社会滞后缓冲期.md",
+      "wiki/concepts/全维反焦虑操作系统.md"
+    ],
+    "searchQueries": [
+      "Kevin Kelly optimism longtermism rational choice",
+      "凯文凯利 乐观主义 长期主义 哲学基础"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-fbfb8c31",
+    "resolved": false,
+    "createdAt": 1788497711859
+  },
+  {
+    "type": "suggestion",
+    "title": "AI只生产不消费对经济度量体系的重构",
+    "description": "KK预判四提出\"AI只生产不消费\"，从而动摇GDP作为经济增长度量指标的有效性。这是一个具有学术价值的待验证论点，但wiki中尚未建立专门页面记录该命题及其推导链条。补全此页可为后续探讨\"效率/幸福感/任务完成量\"等新度量体系提供理论起点。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/sources/kk-2024-ai-predictions.md"
+    ],
+    "searchQueries": [
+      "GDP measure post-AI economy productivity vs consumption",
+      "AI only produces not consumes GDP measurement critique"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-626f9a33",
+    "resolved": false,
+    "createdAt": 1788497711859
+  },
+  {
+    "type": "suggestion",
+    "title": "KK社会滞后论 vs 塔勒布适应理论的对比研究",
+    "description": "KK的社会滞后缓冲期（约10年）与塔勒布的[[concepts/反脆弱]]、[[concepts/适应性进化]]存在概念交叠但论证路径不同：KK从制度适应速度出发，塔勒布从系统从冲击中受益出发。建立一个comparisons页面进行系统对照，有助于厘清两者在AGI加速情境下的适用边界。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/KK关于 AI 的 9 个反直觉预判.md",
+    "affectedPages": [
+      "wiki/concepts/社会滞后缓冲期.md",
+      "wiki/concepts/反脆弱.md",
+      "wiki/concepts/适应性进化.md"
+    ],
+    "searchQueries": [
+      "social lag buffer period technology adaptation 10 years Kevin Kelly",
+      "塔勒布 反脆弱 适应 技术演化 社会滞后 比较"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-65884006",
+    "resolved": false,
+    "createdAt": 1788497711859
   }
 ]

@@ -7,5 +7,4 @@ views:
     order:
       - file.name
     imageAspectRatio: 1.1
-    imageFit: contain
     cardSize: 280

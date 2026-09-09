@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "activeSetId": "default",
+  "visibleSetIds": [
+    "default"
+  ],
+  "sets": [
+    {
+      "id": "default",
+      "name": "My notes",
+      "kind": "manual",
+      "accent": "#7c5cff",
+      "created": "2026-09-09T12:56:33.169Z",
+      "updated": "2026-09-09T12:56:33.169Z"
+    }
+  ]
+}

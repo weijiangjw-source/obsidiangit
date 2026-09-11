@@ -13,6 +13,7 @@ tags:
 zotero-link: "{{selectURI}}"
 ---
 
+
 # {{title}}
 
 ## 📖 文献元数据
@@ -22,7 +23,7 @@ zotero-link: "{{selectURI}}"
 {% if publicationTitle %}- **期刊/来源**: *{{publicationTitle}}*{% endif %}
 {% if doi %}- **DOI**: [{{doi}}](https://doi.org/{{doi}}){% endif %}
 {% if url %}- **原文链接**: [点击跳转]({{url}}){% endif %}
-- **Zotero 库**: [在 Zotero 中打开]({{zoteroSelectURI}})
+- **Zotero 库**: [在 Zotero 中打开]({{desktopURI}})
 
 {% if abstractNote %}
 ## 💡 摘要

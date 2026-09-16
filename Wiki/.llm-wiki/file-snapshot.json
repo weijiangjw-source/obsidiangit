@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1788497712580,
+  "updatedAt": 1789534014063,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -373,9 +373,9 @@
       "mtimeMs": 1787633156440
     },
     "wiki/concepts/10-10-10法则.md": {
-      "hash": "84141c54c517761952db2d91cfbd1292",
-      "size": 1261,
-      "mtimeMs": 1788352589289
+      "hash": "7ec3b69fef8d28f537775ca99957620b",
+      "size": 1275,
+      "mtimeMs": 1789534013038
     },
     "wiki/concepts/80岁视角.md": {
       "hash": "96da1b5357eab54363f8ee9176c739a3",
@@ -493,9 +493,9 @@
       "mtimeMs": 1788353325289
     },
     "wiki/concepts/人的属性高于关系属性.md": {
-      "hash": "8bbe66cb73b1aca0439134e7f714ce59",
-      "size": 2149,
-      "mtimeMs": 1788332175276
+      "hash": "eb13cf3b635535a6775764645f5ffb00",
+      "size": 2166,
+      "mtimeMs": 1789534013124
     },
     "wiki/concepts/价值体系.md": {
       "hash": "57489dac60f8cd98e51298f84e2940a7",
@@ -623,9 +623,9 @@
       "mtimeMs": 1788244761328
     },
     "wiki/concepts/前景理论.md": {
-      "hash": "16d9991c3e1840a74e7a61637ef6bd5c",
-      "size": 1699,
-      "mtimeMs": 1788352589291
+      "hash": "7bbd44123101c7d2a9601a4e67b7402c",
+      "size": 1727,
+      "mtimeMs": 1789534013172
     },
     "wiki/concepts/副业.md": {
       "hash": "7eb749efaccf1b06d57455c49d2f9892",
@@ -688,9 +688,9 @@
       "mtimeMs": 1787727132181
     },
     "wiki/concepts/反熵增.md": {
-      "hash": "c62459a89a9b956a1f98a9c93f7d660d",
-      "size": 1586,
-      "mtimeMs": 1788352589288
+      "hash": "bb8591228c3e9a2669f373dfd48aa54e",
+      "size": 1600,
+      "mtimeMs": 1789534013179
     },
     "wiki/concepts/反脆弱.md": {
       "hash": "0bed65567663403a68f0a29a22875f81",
@@ -763,9 +763,9 @@
       "mtimeMs": 1788244761327
     },
     "wiki/concepts/奥卡姆剃刀.md": {
-      "hash": "b0bf2a8e49aafcc934744291084c9480",
-      "size": 1515,
-      "mtimeMs": 1788352589292
+      "hash": "7da0890a6b01a3c023ab7b36269e04e7",
+      "size": 1529,
+      "mtimeMs": 1789534013181
     },
     "wiki/concepts/存在之问.md": {
       "hash": "26568bac6e86b568d98541ac2383d978",
@@ -1198,9 +1198,9 @@
       "mtimeMs": 1787556812626
     },
     "wiki/concepts/知行合一.md": {
-      "hash": "e8c1116816c71dea53289f57adea26af",
-      "size": 1349,
-      "mtimeMs": 1788352905593
+      "hash": "4192e7c5134a7dd962fa33c3c0926c23",
+      "size": 1366,
+      "mtimeMs": 1789534013188
     },
     "wiki/concepts/知识内化.md": {
       "hash": "3e0c25253f2c33ff84e1290e4f4d088e",
@@ -1233,9 +1233,9 @@
       "mtimeMs": 1787556812627
     },
     "wiki/concepts/祛魅式认知解绑.md": {
-      "hash": "f4bff5cba9bc161f9501458f4d370f7f",
-      "size": 1622,
-      "mtimeMs": 1788332175278
+      "hash": "f086c481145042b8f489939370f5390a",
+      "size": 1639,
+      "mtimeMs": 1789534013193
     },
     "wiki/concepts/稀缺性锚定.md": {
       "hash": "d04ca4280e5c66b1b606ad773ff81826",
@@ -1248,9 +1248,9 @@
       "mtimeMs": 1787637950310
     },
     "wiki/concepts/笛卡尔思维-第一性原理.md": {
-      "hash": "848832f2d5c8f9129d33e538e51c46a8",
-      "size": 1523,
-      "mtimeMs": 1788352589293
+      "hash": "2a486c2c17fb60c55bd3935251db9175",
+      "size": 1537,
+      "mtimeMs": 1789534013199
     },
     "wiki/concepts/第二层思维.md": {
       "hash": "70b724c8032e8df71d5131a6abc3850a",
@@ -1363,9 +1363,9 @@
       "mtimeMs": 1788353325288
     },
     "wiki/concepts/获得性偏差.md": {
-      "hash": "6a56a5066ee60874c6804e3790d86cfd",
-      "size": 1721,
-      "mtimeMs": 1788352589293
+      "hash": "f4e9614f785b7461f974c9b727452e0b",
+      "size": 1735,
+      "mtimeMs": 1789534013206
     },
     "wiki/concepts/蔡格尼克记忆效应.md": {
       "hash": "f7d431488ac7da2f3a446b4cd2136197",
@@ -1473,9 +1473,9 @@
       "mtimeMs": 1787583099938
     },
     "wiki/concepts/费马帕斯卡系统.md": {
-      "hash": "9004590a3ad4fe51c752490872189803",
-      "size": 1336,
-      "mtimeMs": 1788352589290
+      "hash": "08c4616cbef8fed69510cbcb10fe9b56",
+      "size": 1350,
+      "mtimeMs": 1789534013213
     },
     "wiki/concepts/路径依赖.md": {
       "hash": "6fbb46a558fae07fbbf5bb4f45649238",
@@ -1513,9 +1513,9 @@
       "mtimeMs": 1788345913064
     },
     "wiki/concepts/过情关.md": {
-      "hash": "33c1806bbafb82d17d24abe5c392726c",
-      "size": 1974,
-      "mtimeMs": 1788332175278
+      "hash": "4d4d590f40ceeb263ca958dec1b9943c",
+      "size": 1991,
+      "mtimeMs": 1789534013220
     },
     "wiki/concepts/过程指标.md": {
       "hash": "88133735e0c2e01e6ed6454c1ed0e517",
@@ -1558,9 +1558,9 @@
       "mtimeMs": 1787560868688
     },
     "wiki/concepts/重新养育自己.md": {
-      "hash": "8669ca98400905e9d0f8fdf878dfb119",
-      "size": 1709,
-      "mtimeMs": 1788332175278
+      "hash": "fbf63983e653d0e13cf687a030948d2b",
+      "size": 1726,
+      "mtimeMs": 1789534013221
     },
     "wiki/concepts/防御性悲观.md": {
       "hash": "52505050294fe6e952e81c749e24285c",
@@ -1648,9 +1648,9 @@
       "mtimeMs": 1787630633559
     },
     "wiki/concepts/黄金圈.md": {
-      "hash": "4ff2534d246fc9fc6671cd3c8fefb16c",
-      "size": 1397,
-      "mtimeMs": 1788352589290
+      "hash": "435052e945a7aa713efe28ed7ef62e04",
+      "size": 1411,
+      "mtimeMs": 1789534013229
     },
     "wiki/concepts/黑天鹅.md": {
       "hash": "16658b8fe791b6b01fb931783f3f64d1",
@@ -1683,9 +1683,9 @@
       "mtimeMs": 1788353325286
     },
     "wiki/entities/丹尼尔·卡尼曼.md": {
-      "hash": "7ee66b11f18197447f417a0baef11239",
-      "size": 1217,
-      "mtimeMs": 1788352589286
+      "hash": "f3067a4b6757fdaf436893c6ea96f671",
+      "size": 1231,
+      "mtimeMs": 1789534013230
     },
     "wiki/entities/乔布斯.md": {
       "hash": "957be7d8a242fad717262d1a7124d76a",
@@ -1698,14 +1698,14 @@
       "mtimeMs": 1788345913049
     },
     "wiki/entities/乔纳森·海特.md": {
-      "hash": "ba0b4fd00bc6cb40c8555b18b92a7228",
-      "size": 801,
-      "mtimeMs": 1788352905590
+      "hash": "2465175f3d5c53d5650906278bbcd7ff",
+      "size": 818,
+      "mtimeMs": 1789534013235
     },
     "wiki/entities/亚里士多德.md": {
-      "hash": "6e1dd32c93da3bf95841957973e097cc",
-      "size": 756,
-      "mtimeMs": 1788352589287
+      "hash": "e79890394e55b14c7992498fa3c42a57",
+      "size": 770,
+      "mtimeMs": 1789534013236
     },
     "wiki/entities/亚马逊.md": {
       "hash": "e3fa46a255f2856b9644f5cdef7a38b5",
@@ -1723,9 +1723,9 @@
       "mtimeMs": 1788346250146
     },
     "wiki/entities/勒内·笛卡尔.md": {
-      "hash": "8af8ae4d3ef0e7426160db6919dc9cd9",
-      "size": 854,
-      "mtimeMs": 1788352589287
+      "hash": "3eb019dad1778885500e8df2a4b715fc",
+      "size": 868,
+      "mtimeMs": 1789534013238
     },
     "wiki/entities/塔勒布.md": {
       "hash": "e9093cbcda4e80feb06ed47dfb5240d0",
@@ -1753,9 +1753,9 @@
       "mtimeMs": 1788346250145
     },
     "wiki/entities/杰夫·贝佐斯.md": {
-      "hash": "893ec8e267ba375a8e7b94ba87ab5ea0",
-      "size": 631,
-      "mtimeMs": 1788352589285
+      "hash": "e6b655b2722b5722b657e1379a9d3af0",
+      "size": 645,
+      "mtimeMs": 1789534013240
     },
     "wiki/entities/查理·芒格.md": {
       "hash": "1338712de9ec3e9836a7097e7c480a4b",
@@ -1798,9 +1798,9 @@
       "mtimeMs": 1788345437437
     },
     "wiki/entities/王阳明.md": {
-      "hash": "68457a8d9cf2b94b95458539ddaf5ad8",
-      "size": 1119,
-      "mtimeMs": 1788352905588
+      "hash": "4ac2012edcdd9a71b15990c4983e418b",
+      "size": 1153,
+      "mtimeMs": 1789534013252
     },
     "wiki/entities/罗伯特·J·希勒.md": {
       "hash": "698fa439b7c517767b383e7dd9dda977",
@@ -1888,9 +1888,9 @@
       "mtimeMs": 1788497711846
     },
     "wiki/log.md": {
-      "hash": "972b26559ce281e2ec241bb96a6e75ec",
-      "size": 34359,
-      "mtimeMs": 1788497711848
+      "hash": "12ee748f8fe773e556ce57d24211885d",
+      "size": 34395,
+      "mtimeMs": 1789534013269
     },
     "wiki/overview.md": {
       "hash": "3a6b8de12b70516be93fe9f2f947b45c",
@@ -2128,9 +2128,9 @@
       "mtimeMs": 1787639658624
     },
     "wiki/sources/成人世界的真相：人的属性，永远高于关系的属性.md": {
-      "hash": "ab42784d97cec44ed25fa790a3bf90f7",
-      "size": 12125,
-      "mtimeMs": 1788345528710
+      "hash": "01b1555a6621bfcc185a64c9c0b4e928",
+      "size": 12197,
+      "mtimeMs": 1789534013284
     },
     "wiki/sources/成年人最大的清醒：停止向“认知结构”不同的人解释自己.md": {
       "hash": "c96c748738c15dcac6751e351055e584",

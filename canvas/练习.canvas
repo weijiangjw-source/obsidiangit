@@ -18,5 +18,9 @@
 		{"id":"28c629115d2ff8c1","fromNode":"91fe3a389722660e","fromSide":"bottom","toNode":"97fe0a4b80a23e13","toSide":"left","label":"questions"},
 		{"id":"512b6f99ab7fc3ea","fromNode":"bbc4ffa7f36fd4bc","fromSide":"right","toNode":"014842f413a97d9c","toSide":"left","label":"references"},
 		{"id":"ac25b63a74c20ed7","fromNode":"bbc4ffa7f36fd4bc","fromSide":"right","toNode":"deaa28b56802c681","toSide":"left","label":"leads to"}
-	]
+	],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{}
+	}
 }

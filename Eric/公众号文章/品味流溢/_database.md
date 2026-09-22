@@ -67,13 +67,22 @@ views:
   - id: default
     type: table
     filters: []
-    sorts: []
-    hiddenColumns: []
+    sorts:
+      - columnId: 创建时间
+        direction: desc
+    hiddenColumns:
+      - 标题
+      - 标签
+      - 参考资料
+      - 修改时间
+      - 发布渠道
     columnWidths: {}
     pinnedColumnId:
-    rowHeight: compact
+    rowHeight: medium
     includeSubfolders: false
     wrapText: false
+    aggregations:
+      _title: count
 ---
 
 > [!tip] Notion Bases

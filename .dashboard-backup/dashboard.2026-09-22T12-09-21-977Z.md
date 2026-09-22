@@ -35,7 +35,7 @@ columns:
   - name: Memo
     color: "#f59e0b"
     type: memo
-  - name: Database
+  - name: 文件夹
     color: "#6366f1"
     type: folder
     library:
@@ -230,18 +230,4 @@ type: generic
 系统内存临时解除限制：
 sudo sysctl iogpu.wired_limit_mb=27648
 
-### Claude调用gemini命令
-id: card-mucmsmui
-type: generic
-Claude code调用gemini命令：
-1、终端启动：export LITELLM_LOCAL_MODEL_COST_MAP=True
-litellm --config ~/.litellm/config.yaml --detailed_debug
-2、另一个终端执行测试：
-export ANTHROPIC_BASE_URL="http://localhost:4000"
-export ANTHROPIC_AUTH_TOKEN="sk-1234567890"
-export ANTHROPIC_MODEL="gemini-model"
-claude
-3、查看日志：tail -f ~/.litellm/litellm_background.log
-4、彻底关掉后台：kill $(lsof -t -i:4000)
-
-## Database
+## 文件夹

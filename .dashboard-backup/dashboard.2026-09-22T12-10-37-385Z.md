@@ -35,7 +35,7 @@ columns:
   - name: Memo
     color: "#f59e0b"
     type: memo
-  - name: Database
+  - name: 文件夹
     color: "#6366f1"
     type: folder
     library:
@@ -230,7 +230,7 @@ type: generic
 系统内存临时解除限制：
 sudo sysctl iogpu.wired_limit_mb=27648
 
-### Claude调用gemini命令
+### Claude code调用gemini命令
 id: card-mucmsmui
 type: generic
 Claude code调用gemini命令：
@@ -244,4 +244,4 @@ claude
 3、查看日志：tail -f ~/.litellm/litellm_background.log
 4、彻底关掉后台：kill $(lsof -t -i:4000)
 
-## Database
+## 文件夹

@@ -35,7 +35,7 @@ columns:
   - name: Memo
     color: "#f59e0b"
     type: memo
-  - name: Database
+  - name: 文件夹
     color: "#6366f1"
     type: folder
     library:
@@ -244,4 +244,4 @@ claude
 3、查看日志：tail -f ~/.litellm/litellm_background.log
 4、彻底关掉后台：kill $(lsof -t -i:4000)
 
-## Database
+## 文件夹

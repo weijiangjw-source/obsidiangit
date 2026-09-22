@@ -29,6 +29,49 @@
 			"y":-460,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"0a7515e61bea9837",
+			"type":"text",
+			"text":"思维中存在的各种谬误",
+			"styleAttributes":{
+				"textAlign":"center",
+				"border":null
+			},
+			"x":-280,
+			"y":-180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9d9f875986efeaef",
+			"type":"text",
+			"text":"合取谬误",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":20,
+			"y":-180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"bb83f5455e440f2f",
+			"type":"text",
+			"text":"后见之明",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":-580,
+			"y":-180,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"93ef95fcddc0837b",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":-280,
+			"y":-20,
+			"width":260,
+			"height":60
 		}
 	],
 	"edges":[
@@ -49,7 +92,35 @@
 			"fromSide":"bottom",
 			"toNode":"aacb2d40f2e726b9",
 			"toSide":"top"
-		}
+		},
+		{
+			"id":"9f7a929821ec896c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"aacb2d40f2e726b9",
+			"fromSide":"bottom",
+			"toNode":"0a7515e61bea9837",
+			"toSide":"top"
+		},
+		{
+			"id":"f1fa74dc57f4bc81",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"0a7515e61bea9837",
+			"fromSide":"right",
+			"toNode":"9d9f875986efeaef",
+			"toSide":"left"
+		},
+		{
+			"id":"e42ef19fd9d8da11",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"0a7515e61bea9837",
+			"fromSide":"left",
+			"toNode":"bb83f5455e440f2f",
+			"toSide":"right"
+		},
+		{"id":"bc78fdffec905650","fromNode":"0a7515e61bea9837","fromSide":"bottom","toNode":"93ef95fcddc0837b","toSide":"top"}
 	],
 	"metadata":{
 		"version":"1.0-1.0",

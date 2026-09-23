@@ -35,7 +35,7 @@ columns:
   - name: Memo
     color: "#f59e0b"
     type: memo
-  - name: 文件夹
+  - name: Database
     color: "#6366f1"
     type: folder
     library:
@@ -230,7 +230,7 @@ type: generic
 系统内存临时解除限制：
 sudo sysctl iogpu.wired_limit_mb=27648
 
-### 2026-09-22 备忘录
+### Claude调用gemini命令
 id: card-mucmsmui
 type: generic
 Claude code调用gemini命令：
@@ -244,4 +244,9 @@ claude
 3、查看日志：tail -f ~/.litellm/litellm_background.log
 4、彻底关掉后台：kill $(lsof -t -i:4000)
 
-## 文件夹
+### 2026-09-23 备忘录
+id: card-mudme1j8
+type: generic
+根据我们现在配置成功的经验，总结和复盘具体操作中的失误与问题，将全套打通的这个流程制定为一份可供复用的操作指南，要有具体的配置方法和需要注意的地方，以及工具的必要说明，开始你的工作
+
+## Database

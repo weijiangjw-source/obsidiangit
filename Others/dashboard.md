@@ -244,4 +244,9 @@ claude
 3、查看日志：tail -f ~/.litellm/litellm_background.log
 4、彻底关掉后台：kill $(lsof -t -i:4000)
 
+### 工具配置提示词
+id: card-mudme1j8
+type: generic
+根据我们现在配置成功的经验，总结和复盘具体操作中的失误与问题，将全套打通的这个流程制定为一份可供复用的操作指南，要有具体的配置方法和需要注意的地方，以及工具的必要说明，开始你的工作
+
 ## Database

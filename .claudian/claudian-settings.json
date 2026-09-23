@@ -6,8 +6,8 @@
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
-  "titleGenerationLocale": "",
-  "titleGenerationModel": "claude-code/glm-4.7-flash",
+  "titleGenerationLocale": "zh-CN",
+  "titleGenerationModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
@@ -63,11 +63,12 @@
     "scrollDownKey": "s",
     "focusInputKey": "i"
   },
-  "requireCommandOrControlEnterToSend": false,
+  "requireCommandOrControlEnterToSend": true,
   "locale": "zh-CN",
   "providerConfigs": {
     "claude": {
       "enabled": true,
+      "responseStyle": "Default",
       "safeMode": "acceptEdits",
       "cliPath": "",
       "cliPathsByHost": {
@@ -76,10 +77,10 @@
       "loadUserSettings": true,
       "enableChrome": false,
       "customModels": "",
-      "defaultModel": "opus",
+      "defaultModel": "model",
       "lastModel": "opus",
       "modelEnvironmentType": "opus",
-      "titleModelEnvironmentType": "haiku",
+      "titleModelEnvironmentType": "model",
       "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
       "environmentHash": "runtime-input:v1:5fc5bae10b85a038d5f87c5c391fe225de2ccefe1e2f43a7d6b5dd4fde65c3f9"
     },
@@ -99,7 +100,8 @@
       "discoveredModels": [],
       "catalogTimestamp": 0,
       "catalogFingerprint": "",
-      "enableUltraEffort": false
+      "enableUltraEffort": false,
+      "responseStyle": "pragmatic"
     },
     "opencode": {
       "cliPath": "",

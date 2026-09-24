@@ -1,16 +1,6 @@
 {
 	"nodes":[
 		{
-			"id":"a4cd8e6f8fd99682",
-			"type":"text",
-			"text":"<font color=\"#ffffff\">思维、判断决策等的基本概念与关系</font>",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-280,
-			"y":-460,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"aacb2d40f2e726b9",
 			"type":"text",
 			"text":"判断的心理机制影响",
@@ -39,17 +29,7 @@
 				"border":null
 			},
 			"x":-280,
-			"y":-180,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"9d9f875986efeaef",
-			"type":"text",
-			"text":"合取谬误",
-			"styleAttributes":{"shape":"circle","textAlign":"center"},
-			"x":20,
-			"y":-180,
+			"y":-210,
 			"width":260,
 			"height":60
 		},
@@ -59,17 +39,57 @@
 			"text":"后见之明",
 			"styleAttributes":{"shape":"circle","textAlign":"center"},
 			"x":-580,
-			"y":-180,
+			"y":-210,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9d9f875986efeaef",
+			"type":"text",
+			"text":"合取谬误",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":20,
+			"y":-210,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a4cd8e6f8fd99682",
+			"type":"text",
+			"text":"<font color=\"#ffffff\">思维、判断决策等的基本概念与关系</font>",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":-430,
 			"width":260,
 			"height":60
 		},
 		{
 			"id":"93ef95fcddc0837b",
 			"type":"text",
-			"text":"",
-			"styleAttributes":{},
+			"text":"如何做出更好的选择",
+			"styleAttributes":{"textAlign":"center"},
 			"x":-280,
-			"y":-20,
+			"y":-100,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"0edb0f93c035811a",
+			"type":"text",
+			"text":"基于属性的选择",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":20,
+			"y":-100,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"b40104c671bb7c77",
+			"type":"text",
+			"text":"基于备选项的选择",
+			"styleAttributes":{"shape":"circle"},
+			"x":-580,
+			"y":-100,
 			"width":260,
 			"height":60
 		}
@@ -120,7 +140,25 @@
 			"toNode":"bb83f5455e440f2f",
 			"toSide":"right"
 		},
-		{"id":"bc78fdffec905650","fromNode":"0a7515e61bea9837","fromSide":"bottom","toNode":"93ef95fcddc0837b","toSide":"top"}
+		{"id":"bc78fdffec905650","fromNode":"0a7515e61bea9837","fromSide":"bottom","toNode":"93ef95fcddc0837b","toSide":"top"},
+		{
+			"id":"84e9adab4e3501f4",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"93ef95fcddc0837b",
+			"fromSide":"left",
+			"toNode":"b40104c671bb7c77",
+			"toSide":"right"
+		},
+		{
+			"id":"d087eeda5e65247b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"93ef95fcddc0837b",
+			"fromSide":"right",
+			"toNode":"0edb0f93c035811a",
+			"toSide":"left"
+		}
 	],
 	"metadata":{
 		"version":"1.0-1.0",

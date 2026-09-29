@@ -1,0 +1,14 @@
+{
+  "id": "2e3e9da6-c433-44d0-8f4f-4240fe3539c8",
+  "title": "",
+  "messages": [],
+  "createdAt": 1790600802566,
+  "updatedAt": 1790600802566,
+  "schemaVersion": 1,
+  "cliSession": {
+    "runtimeId": "claude-code",
+    "nativeSessionId": "4a45bb7d-dab2-4e0d-8ae2-063a6b86a179"
+  },
+  "overrides": null,
+  "origin": "user"
+}

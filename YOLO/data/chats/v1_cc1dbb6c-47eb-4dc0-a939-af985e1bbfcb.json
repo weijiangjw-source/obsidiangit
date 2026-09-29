@@ -1,0 +1,21 @@
+{
+  "id": "cc1dbb6c-47eb-4dc0-a939-af985e1bbfcb",
+  "title": "",
+  "messages": [],
+  "createdAt": 1790598950156,
+  "updatedAt": 1790598966055,
+  "schemaVersion": 1,
+  "cliSession": {
+    "runtimeId": "claude-code",
+    "nativeSessionId": "4a45bb7d-dab2-4e0d-8ae2-063a6b86a179"
+  },
+  "overrides": {
+    "cliChatModeByRuntime": {
+      "claude-code": "agent"
+    },
+    "cliAgentYoloEnabledByRuntime": {
+      "claude-code": false
+    }
+  },
+  "origin": "user"
+}

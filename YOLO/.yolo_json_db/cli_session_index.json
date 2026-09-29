@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "sessions": {
+    "claude-code:475023f9-e6fc-4487-90c9-43dea150d329": {
+      "runtimeId": "claude-code",
+      "nativeSessionId": "475023f9-e6fc-4487-90c9-43dea150d329",
+      "modelId": "default",
+      "reasoningEffort": null
+    },
+    "claude-code:4a45bb7d-dab2-4e0d-8ae2-063a6b86a179": {
+      "runtimeId": "claude-code",
+      "nativeSessionId": "4a45bb7d-dab2-4e0d-8ae2-063a6b86a179",
+      "turnOverlays": [
+        {
+          "clientUserMessageId": "dd3b197b-f046-441a-a085-56a7bc830ff0",
+          "transportHash": "1e5177099e00df72",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "cladue-gpt",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "dd3b197b-f046-441a-a085-56a7bc830ff0",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 19:35 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": null
+          }
+        },
+        {
+          "clientUserMessageId": "7caac525-7e2a-4bbe-a492-3834a70f4984",
+          "transportHash": "62564c0711e63c6d",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "cladue-gpt",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "7caac525-7e2a-4bbe-a492-3834a70f4984",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 20:35 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": null
+          }
+        },
+        {
+          "clientUserMessageId": "b8204107-3364-46cd-9ceb-22e4db8a6021",
+          "transportHash": "74fd1fef572ded4f",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "请调用终端，执行 claude -gpt命令， '帮我在当前目录下创建一个 test.py 文件'",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "b8204107-3364-46cd-9ceb-22e4db8a6021",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 20:37 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        },
+        {
+          "clientUserMessageId": "1e0fd046-6026-464a-9de1-1dcdceac399d",
+          "transportHash": "76e895849ceadbc6",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "请调用终端，执行 claude -gpt命令， '帮我在当前目录下创建一个 test.py 文件'",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "1e0fd046-6026-464a-9de1-1dcdceac399d",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 20:38 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        },
+        {
+          "clientUserMessageId": "f0ca82a4-6ba3-43cd-8988-d476da25cec2",
+          "transportHash": "4220212031ef59a7",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "请调用终端，执行 claude -p '帮我在当前目录下创建一个 test.py 文件'",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "f0ca82a4-6ba3-43cd-8988-d476da25cec2",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 20:40 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        },
+        {
+          "clientUserMessageId": "f5354f7d-7ecc-4f07-a913-665bca03fc39",
+          "transportHash": "c6ccf39270c9544d",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "请调用终端，执行 claude -p '帮我在当前目录下创建一个 test.py 文件'",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "f5354f7d-7ecc-4f07-a913-665bca03fc39",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 21:06 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        },
+        {
+          "clientUserMessageId": "fb93cc08-36f8-4e90-be0c-e32d9749518f",
+          "transportHash": "0e16e909390d8550",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "给我在当前命令创建一个est.py 文件",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "fb93cc08-36f8-4e90-be0c-e32d9749518f",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 21:15 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        },
+        {
+          "clientUserMessageId": "935220a4-10c3-4055-8a38-70d8f0a76d59",
+          "transportHash": "aab04d6dcecbf062",
+          "userMessage": {
+            "role": "user",
+            "content": {
+              "root": {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "给我在当前命令创建一个est.md 文件",
+                        "type": "text",
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                    "textFormat": 0,
+                    "textStyle": ""
+                  }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "root",
+                "version": 1
+              }
+            },
+            "promptContent": null,
+            "id": "935220a4-10c3-4055-8a38-70d8f0a76d59",
+            "reasoningLevel": "off",
+            "mentionables": [],
+            "selectedSkills": [],
+            "selectedModelIds": [],
+            "timeContext": "2026-09-28 21:39 (Monday)"
+          },
+          "configuration": {
+            "modelId": "default",
+            "reasoningEffort": "low"
+          }
+        }
+      ],
+      "modelId": "default",
+      "reasoningEffort": "low"
+    },
+    "claude-code:d55ad795-5326-4b46-8806-3a8d84f8ec09": {
+      "runtimeId": "claude-code",
+      "nativeSessionId": "d55ad795-5326-4b46-8806-3a8d84f8ec09",
+      "modelId": "default",
+      "reasoningEffort": null
+    }
+  }
+}

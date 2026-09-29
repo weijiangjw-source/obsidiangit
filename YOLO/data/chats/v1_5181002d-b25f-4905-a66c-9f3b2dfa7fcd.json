@@ -1,0 +1,112 @@
+{
+  "id": "5181002d-b25f-4905-a66c-9f3b2dfa7fcd",
+  "title": "",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "agnes-3.0-flash",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "agnes-3.0-flash",
+                  "mentionable": {
+                    "type": "model",
+                    "modelId": "Agnes/agnes-3.0-flash",
+                    "name": "agnes-3.0-flash",
+                    "providerId": "Agnes"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " 你好，你能做什么",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "id": "b0d8a3f5-9ea7-4456-be62-be2fb36e0410",
+      "mentionables": [
+        {
+          "type": "model",
+          "modelId": "Agnes/agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "providerId": "Agnes"
+        }
+      ],
+      "selectedSkills": [],
+      "selectedModelIds": [
+        "Agnes/agnes-3.0-flash"
+      ],
+      "reasoningLevel": "off",
+      "timeContext": "2026-09-28 19:24 (Monday)",
+      "injectedContext": []
+    },
+    {
+      "role": "assistant",
+      "content": "你好！我是 **Agnes**，由 Sapiens AI 开发，你的 AI 伙伴。\n\n简单说，我可以帮你处理**知识库（Obsidian 库）里的各种事**，以及一般的写作、分析、编程等任务。具体来说：\n\n## 📚 知识库 / Obsidian\n- **搜索与阅读**：在笔记里查找内容，理解你的知识体系，做总结提炼\n- **写 & 改**：创建新笔记、编辑现有笔记、整理结构、补充内容\n- **整理归档**：归类、重命名、整理混乱的笔记，保持库的整洁\n\n## ✍️ 写作 & 创作\n- 文章、报告、邮件、文案、故事、诗歌等\n- 润色、改写、翻译、摘要\n\n## 💻 编程\n- 写代码、调试、解释代码\n- 多种语言支持（Python、JS/TS、Go、Rust 等）\n\n## 🔍 信息检索与分析\n- 回答知识性问题\n- 数据分析、逻辑推理、概念解释\n\n## 🧠 日常对话\n- 头脑风暴、提供建议、学习辅导等\n\n---\n\n**试试看？**你可以直接告诉我你想做的事，比如：\n- \"帮我总结一下 `XXX` 这篇笔记\"\n- \"写一封感谢邮件，主题是……\"\n- \"看看我库里关于 Python 的笔记，整理一下\"\n\n你现在想做什么？ 😊",
+      "id": "6b64f654-e7da-4871-9f57-746218ed49ea",
+      "metadata": {
+        "model": {
+          "providerId": "Agnes",
+          "id": "Agnes/agnes-3.0-flash",
+          "model": "agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "reasoningType": "none",
+          "modalities": [
+            "text"
+          ]
+        },
+        "usage": {
+          "prompt_tokens": 3884,
+          "completion_tokens": 304,
+          "total_tokens": 4188
+        },
+        "durationMs": 20951,
+        "generationState": "completed",
+        "branchConversationId": "5181002d-b25f-4905-a66c-9f3b2dfa7fcd",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    }
+  ],
+  "createdAt": 1790594641469,
+  "updatedAt": 1790594662496,
+  "schemaVersion": 1,
+  "compaction": [],
+  "origin": "user",
+  "overrides": {
+    "chatMode": "agent",
+    "agentYoloEnabled": false
+  },
+  "conversationModelId": "",
+  "assistantGroupBoundaryMessageIds": [],
+  "reasoningLevel": "off"
+}

@@ -54,7 +54,10 @@ columns:
         - "Wiki/raw"
         - "Wiki/wiki/sources"
         - "copilot"
+      templatePaths:
+        - "Templates/record/图文模板.md"
       templatePath: "Templates/record/图文模板.md"
+      viewGroupMode: folder
       kanbanShowCovers: true
       propertyLimit: 4
       quickDateFilter:

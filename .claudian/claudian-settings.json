@@ -1,8 +1,7 @@
 {
   "userName": "小伟",
-  "permissionMode": "normal",
+  "permissionMode": "acceptEdits",
   "model": "claude-code/glm-4.7-flash",
-  "thinkingBudget": "medium",
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
@@ -68,7 +67,7 @@
       "cliPathsByHost": {
         "device-cbe6a2bd587980e8c315eebb249616a210a81398405c3f90a33b21e2f33f4727": "/Users/eric/.local/bin/claude"
       },
-      "loadUserSettings": true,
+      "loadUserSettings": false,
       "enableChrome": false,
       "customModels": "",
       "lastModel": "opus",
@@ -167,7 +166,6 @@
       "environmentVariables": "OPENCODE_ENABLE_EXA=1",
       "modelAliases": {},
       "preferredThinkingByModel": {},
-      "selectedMode": "",
       "thinkingOptionsByModel": {},
       "visibleModels": [],
       "selectedModels": []
@@ -180,7 +178,6 @@
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
-      "toolMode": "all",
       "visibleModels": [],
       "selectedModels": []
     },
@@ -208,9 +205,8 @@
     "claude": "high"
   },
   "savedProviderServiceTier": {},
-  "savedProviderThinkingBudget": {},
   "savedProviderPermissionMode": {
-    "claude": "normal"
+    "claude": "acceptEdits"
   },
   "pendingProviderSessionInvalidations": {},
   "maxWarmAgentProcesses": 5,
@@ -219,14 +215,18 @@
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
+  "enableZenMode": true,
   "enableDualPane": true,
   "dualPaneSide": "right",
   "restoreTabsOnStartup": true,
   "skillsSynced": false,
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",
+  "sessionAutoArchiveAfter": "off",
   "pinnedLinkedContentPaths": [],
   "hiddenCommands": [],
+  "thinkingBudget": "medium",
+  "savedProviderThinkingBudget": {},
   "lastCustomModel": "claude-code/glm-4.7-flash",
   "collabEnabled": false,
   "collabProjectsFolder": "workspace",

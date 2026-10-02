@@ -74,5 +74,13 @@
       "runtimeId": "claude-code",
       "nativeSessionId": "4a45bb7d-dab2-4e0d-8ae2-063a6b86a179"
     }
+  },
+  {
+    "id": "c18feb1d-f19c-405e-8b9e-c2081aa3d100",
+    "title": "# 小红书话题标签建议\n\n1. #假装情绪稳定\n2. #成年人的崩溃都在深夜\n3. #允许一切发生\n4. #拒绝内耗\n5. #接纳不完美的自己\n6. #真正的自洽\n7. #做自己就好\n8. #停止精神内耗",
+    "updatedAt": 1790948025720,
+    "schemaVersion": 1,
+    "isPinned": false,
+    "origin": "user"
   }
 ]

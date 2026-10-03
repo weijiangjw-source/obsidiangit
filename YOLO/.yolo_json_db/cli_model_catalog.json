@@ -4,8 +4,8 @@
     "claude-code": [
       {
         "id": "default",
-        "label": "claude-opus-4-8[1m]",
-        "description": "Use the default model (currently Opus 4.8 (1M context)) · $5/$25 per Mtok",
+        "label": "gpt-oss-20b-MXFP4-Q8[1m]",
+        "description": "Use the default model (currently gpt-oss-20b-MXFP4-Q8[1m]) · $5/$25 per Mtok",
         "reasoningEfforts": [
           {
             "id": "low"
@@ -26,9 +26,32 @@
         "isDefault": true
       },
       {
-        "id": "opus[1m]",
-        "label": "Opus (1M context)",
-        "description": "Opus 4.8 with 1M context · Best for everyday, complex tasks · $5/$25 per Mtok",
+        "id": "opus",
+        "label": "gpt-oss-20b-MXFP4-Q8",
+        "description": "Custom Opus model",
+        "reasoningEfforts": [
+          {
+            "id": "low"
+          },
+          {
+            "id": "medium"
+          },
+          {
+            "id": "high"
+          },
+          {
+            "id": "xhigh"
+          },
+          {
+            "id": "max"
+          }
+        ],
+        "isDefault": false
+      },
+      {
+        "id": "fable",
+        "label": "gpt-oss-20b-MXFP4-Q8",
+        "description": "Custom Fable model",
         "reasoningEfforts": [
           {
             "id": "low"
@@ -50,8 +73,8 @@
       },
       {
         "id": "sonnet",
-        "label": "Sonnet",
-        "description": "Sonnet 5 · Efficient for routine tasks · $3/$15 per Mtok",
+        "label": "gpt-oss-20b-MXFP4-Q8",
+        "description": "Custom Sonnet model",
         "reasoningEfforts": [
           {
             "id": "low"
@@ -73,15 +96,8 @@
       },
       {
         "id": "haiku",
-        "label": "Haiku",
-        "description": "Haiku 4.5 · Fastest for quick answers · $1/$5 per Mtok",
-        "reasoningEfforts": [],
-        "isDefault": false
-      },
-      {
-        "id": "opus",
-        "label": "Opus",
-        "description": "Opus 4.8 · Best for everyday, complex tasks",
+        "label": "gpt-oss-20b-MXFP4-Q8",
+        "description": "Custom Haiku model",
         "reasoningEfforts": [
           {
             "id": "low"

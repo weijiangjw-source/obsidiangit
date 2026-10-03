@@ -412,6 +412,12 @@
       "nativeSessionId": "d55ad795-5326-4b46-8806-3a8d84f8ec09",
       "modelId": "default",
       "reasoningEffort": null
+    },
+    "claude-code:55add9d5-509d-4253-ac58-184f83a65bf4": {
+      "runtimeId": "claude-code",
+      "nativeSessionId": "55add9d5-509d-4253-ac58-184f83a65bf4",
+      "modelId": "default",
+      "reasoningEffort": null
     }
   }
 }

@@ -2,7 +2,7 @@
   "userName": "小伟",
   "permissionMode": "acceptEdits",
   "model": "claude-code/glm-4.7-flash",
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "zh-CN",
@@ -196,13 +196,13 @@
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "claude-code/glm-4.7-flash"
+    "model": "claude-code/gpt-oss-20b-MXFP4-Q8"
   },
   "savedProviderModel": {
     "claude": "claude-code/glm-4.7-flash"
   },
   "savedProviderEffort": {
-    "claude": "high"
+    "claude": "medium"
   },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {

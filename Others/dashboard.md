@@ -34,7 +34,7 @@ banner:
 columns:
   - name: Memo
     color: "#f59e0b"
-    type: memo
+    type: sticky
   - name: Database
     color: "#6366f1"
     type: folder

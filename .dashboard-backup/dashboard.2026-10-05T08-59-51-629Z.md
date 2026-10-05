@@ -54,7 +54,10 @@ columns:
         - "Wiki/raw"
         - "Wiki/wiki/sources"
         - "copilot"
+      templatePaths:
+        - "Templates/record/图文模板.md"
       templatePath: "Templates/record/图文模板.md"
+      viewGroupMode: folder
       kanbanShowCovers: true
       propertyLimit: 4
       quickDateFilter:
@@ -248,9 +251,5 @@ claude
 id: card-mudme1j8
 type: generic
 根据我们现在配置成功的经验，总结和复盘具体操作中的失误与问题，将全套打通的这个流程制定为一份可供复用的操作指南，要有具体的配置方法和需要注意的地方，以及工具的必要说明，开始你的工作
-
-### 2026-09-26 备忘录
-id: card-muify3q9
-type: generic
 
 ## Database

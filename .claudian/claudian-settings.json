@@ -61,7 +61,6 @@
   "providerConfigs": {
     "claude": {
       "enabled": true,
-      "responseStyle": "Default",
       "safeMode": "acceptEdits",
       "cliPath": "",
       "cliPathsByHost": {
@@ -140,6 +139,14 @@
             "max"
           ]
         }
+      ],
+      "outputStyle": null,
+      "promptSuggestions": false,
+      "discoveredOutputStyles": [
+        "default",
+        "Proactive",
+        "Explanatory",
+        "Learning"
       ]
     },
     "codex": {
@@ -156,7 +163,8 @@
       "visibleModels": [],
       "enableUltraEffort": false,
       "responseStyle": "pragmatic",
-      "selectedModels": []
+      "selectedModels": [],
+      "responseVerbosity": "default"
     },
     "opencode": {
       "cliPath": "",
@@ -209,7 +217,6 @@
     "claude": "acceptEdits"
   },
   "pendingProviderSessionInvalidations": {},
-  "maxWarmAgentProcesses": 5,
   "enableAutoScroll": true,
   "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,

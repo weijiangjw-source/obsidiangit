@@ -11,16 +11,6 @@
 			"height":60
 		},
 		{
-			"id":"07a32b2a6c09c888",
-			"type":"text",
-			"text":"沉默成本",
-			"styleAttributes":{"shape":"circle","textAlign":"center"},
-			"x":20,
-			"y":-460,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"0a7515e61bea9837",
 			"type":"text",
 			"text":"思维中存在的各种谬误",
@@ -30,16 +20,6 @@
 			},
 			"x":-280,
 			"y":-210,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"a4cd8e6f8fd99682",
-			"type":"text",
-			"text":"<font color=\"#ffffff\">思维、判断决策等的基本概念与关系</font>",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-280,
-			"y":-430,
 			"width":260,
 			"height":60
 		},
@@ -162,6 +142,56 @@
 			"y":180,
 			"width":120,
 			"height":60
+		},
+		{
+			"id":"a4cd8e6f8fd99682",
+			"type":"text",
+			"text":"<font color=\"#ffffff\">思维、判断决策等的基本概念与关系</font>",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":-580,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a435a28f867563c9",
+			"type":"text",
+			"text":"大脑的健康与行为和结果的关系",
+			"styleAttributes":{},
+			"x":-280,
+			"y":-460,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"07a32b2a6c09c888",
+			"type":"text",
+			"text":"沉默成本",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":100,
+			"y":-640,
+			"width":130,
+			"height":60
+		},
+		{
+			"id":"9d1b03cd3389ba7d",
+			"type":"text",
+			"text":"准确、实时、可靠的反馈维持应变",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":100,
+			"y":-550,
+			"width":180,
+			"height":120
+		},
+		{
+			"id":"238bfcf7871afbb6",
+			"type":"text",
+			"text":"无聊会削弱应变能力",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":-520,
+			"y":-550,
+			"width":130,
+			"height":60
 		}
 	],
 	"edges":[
@@ -173,15 +203,6 @@
 			"fromSide":"right",
 			"toNode":"07a32b2a6c09c888",
 			"toSide":"left"
-		},
-		{
-			"id":"d82707665a6d07d6",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"a4cd8e6f8fd99682",
-			"fromSide":"bottom",
-			"toNode":"aacb2d40f2e726b9",
-			"toSide":"top"
 		},
 		{
 			"id":"9f7a929821ec896c",
@@ -290,6 +311,42 @@
 			"fromNode":"24da85acd783532e",
 			"fromSide":"left",
 			"toNode":"cd05db82d40f112f",
+			"toSide":"right"
+		},
+		{
+			"id":"d06675a09cd6d26e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a4cd8e6f8fd99682",
+			"fromSide":"bottom",
+			"toNode":"a435a28f867563c9",
+			"toSide":"top"
+		},
+		{
+			"id":"6798b3e69d4afded",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"bottom",
+			"toNode":"aacb2d40f2e726b9",
+			"toSide":"top"
+		},
+		{
+			"id":"2d5b495aeb4c2bc0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"right",
+			"toNode":"9d1b03cd3389ba7d",
+			"toSide":"left"
+		},
+		{
+			"id":"e843bb7d49c78072",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"left",
+			"toNode":"238bfcf7871afbb6",
 			"toSide":"right"
 		}
 	],

@@ -192,6 +192,36 @@
 			"y":-550,
 			"width":130,
 			"height":60
+		},
+		{
+			"id":"e7e0237a77ef1aad",
+			"type":"text",
+			"text":"生活之镜的定义",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":-585,
+			"y":-400,
+			"width":130,
+			"height":60
+		},
+		{
+			"id":"d084549d7c2e248a",
+			"type":"text",
+			"text":"认知资本的概念",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":-690,
+			"y":-515,
+			"width":130,
+			"height":55
+		},
+		{
+			"id":"a3bb374504b8d48e",
+			"type":"text",
+			"text":"真实世界的应变计算和精神世界的应变计算",
+			"styleAttributes":{"shape":"circle","textAlign":"center"},
+			"x":230,
+			"y":-410,
+			"width":180,
+			"height":120
 		}
 	],
 	"edges":[
@@ -348,6 +378,33 @@
 			"fromSide":"left",
 			"toNode":"238bfcf7871afbb6",
 			"toSide":"right"
+		},
+		{
+			"id":"602d5259d712fe86",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"left",
+			"toNode":"e7e0237a77ef1aad",
+			"toSide":"right"
+		},
+		{
+			"id":"3dad25a49600a22b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"left",
+			"toNode":"d084549d7c2e248a",
+			"toSide":"right"
+		},
+		{
+			"id":"4ff2041a97fa2082",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a435a28f867563c9",
+			"fromSide":"right",
+			"toNode":"a3bb374504b8d48e",
+			"toSide":"left"
 		}
 	],
 	"metadata":{

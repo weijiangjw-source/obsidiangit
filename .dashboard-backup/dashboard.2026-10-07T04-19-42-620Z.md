@@ -34,7 +34,7 @@ banner:
 columns:
   - name: Memo
     color: "#f59e0b"
-    type: memo
+    type: sticky
   - name: Database
     color: "#6366f1"
     type: folder
@@ -57,6 +57,7 @@ columns:
       templatePaths:
         - "Templates/record/图文模板.md"
       templatePath: "Templates/record/图文模板.md"
+      viewGroupMode: folder
       kanbanShowCovers: true
       propertyLimit: 4
       quickDateFilter:
@@ -64,6 +65,9 @@ columns:
         start: ""
         end: ""
         days: 7
+  - name: 网页
+    color: "#6366f1"
+    type: web
 ---
 
 ## Memo
@@ -252,3 +256,5 @@ type: generic
 根据我们现在配置成功的经验，总结和复盘具体操作中的失误与问题，将全套打通的这个流程制定为一份可供复用的操作指南，要有具体的配置方法和需要注意的地方，以及工具的必要说明，开始你的工作
 
 ## Database
+
+## 网页

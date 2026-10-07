@@ -82,5 +82,13 @@
     "schemaVersion": 1,
     "isPinned": false,
     "origin": "user"
+  },
+  {
+    "id": "ad77ccd2-33c7-4836-9dc8-1b759ca54c45",
+    "title": "小红书情感标签",
+    "updatedAt": 1791300379736,
+    "schemaVersion": 1,
+    "isPinned": false,
+    "origin": "user"
   }
 ]

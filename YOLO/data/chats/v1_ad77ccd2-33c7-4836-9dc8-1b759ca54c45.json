@@ -1,0 +1,185 @@
+{
+  "id": "ad77ccd2-33c7-4836-9dc8-1b759ca54c45",
+  "title": "小红书情感标签",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "给我制定6个适合于小红书平台的话题标签，只给出标签即可，横向一次排列",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "snapshotRef": {
+        "hash": "2f5d0543"
+      },
+      "id": "61f8673f-0a87-4cf0-9ee3-d82d3205e79c",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md"
+        }
+      ],
+      "selectedSkills": [],
+      "selectedModelIds": [],
+      "reasoningLevel": "off",
+      "timeContext": "2026-10-06 23:26 (Tuesday)",
+      "injectedContext": [
+        {
+          "type": "text",
+          "text": "# Current Context (auto-attached, content NOT included)\nThe user is currently viewing this file. Use an available file-reading tool if you need its content.\n\nFile: Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md\nTotal: 75 lines\nVisible: lines 10-48\nCursor: line 19\n\n"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "toolCallRequests": [
+        {
+          "id": "call_94db922f63014deea976e0a2",
+          "name": "yolo_local__fs_read",
+          "arguments": {
+            "kind": "complete",
+            "value": {
+              "paths": [
+                "Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md"
+              ]
+            },
+            "rawText": "{\"paths\": [\"Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md\"]}"
+          }
+        }
+      ],
+      "id": "e02c8318-aa0f-4aa6-a904-eee5f840cfa5",
+      "metadata": {
+        "model": {
+          "providerId": "Agnes",
+          "id": "Agnes/agnes-3.0-flash",
+          "model": "agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "reasoningType": "none",
+          "modalities": [
+            "text"
+          ]
+        },
+        "usage": {
+          "prompt_tokens": 4588,
+          "completion_tokens": 52,
+          "total_tokens": 4640
+        },
+        "durationMs": 4865,
+        "generationState": "completed",
+        "branchConversationId": "ad77ccd2-33c7-4836-9dc8-1b759ca54c45",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    },
+    {
+      "role": "tool",
+      "toolCalls": [
+        {
+          "request": {
+            "id": "call_94db922f63014deea976e0a2",
+            "name": "yolo_local__fs_read",
+            "arguments": {
+              "kind": "complete",
+              "value": {
+                "paths": [
+                  "Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md"
+                ]
+              },
+              "rawText": "{\"paths\": [\"Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md\"]}"
+            }
+          },
+          "response": {
+            "status": "success",
+            "data": {
+              "type": "text",
+              "text": "{\n  \"toolCallId\": \"call_94db922f63014deea976e0a2\",\n  \"requestedOperation\": {\n    \"type\": \"full\"\n  },\n  \"results\": [\n    {\n      \"path\": \"Eric/公众号文章/品味流溢/男人拒绝为你花钱的瞬间，他的潜意识究竟在抗拒什么？.md\",\n      \"ok\": true,\n      \"totalLines\": 75,\n      \"hasMoreBelow\": false,\n      \"nextStartLine\": null,\n      \"content\": \"1|---\\n2|title: 男人拒绝为你花钱的瞬间，他究竟在抗拒什么？\\n3|created: 2026-10-04 22:24\\n4|modified: 2026-10-04 22:24\\n5|publish_channel: 公众号\\n6|is_modified: true\\n7|tags: []\\n8|references: https://app.notion.com/p/jiangweii/3087d11d97dd80f99fead9bea327cba4?v=c657927578124d7cb22deec0fed73aac&source=copy_link\\n9|publish_status: true\\n10|---\\n11|\\n12|**(最高转发率)：现在的恋爱，到底正在变成多少人的合法白嫖？**\\n13|**(最强代入感)：掏心掏肺还掏钱，为什么你最后却只混成了一个备胎？**\\n14|\\n15|最近休假期间，跟几个许久未见的老友喝茶聊天，大家都不约而同地叹气道：现在谈个恋爱，真的是太难、太累了。\\n16|\\n17|很多男同胞倒苦水，说自己掏心掏肺还掏钱，节假日礼物一个不落，大额红包也没少转，最后却发现自己只能落得个备胎待遇。更让人憋屈的是，对方拿你钱的时候理直气壮，不带任何道德负担，转身离开时只留下一句我又没逼你给。\\n18|\\n19|于是大家都在感慨：现在的人是不是都这么现实和自私？怎么全是无止境的试探和算计？其实我们没必要感伤，这不是你不够好，也并非遇人不淑，而是现实中，有些所谓的恋爱，早已经被部分人变成了一场零成本的合法白嫖。\\n20|\\n21|换句话说，感情已经不是感情，早已演变成一门生意了。\\n22|\\n23|你觉得委屈、更是觉得愤懑，这实在太正常不过了。今天我们就不扯那些男人不花钱就是不爱的烂鸡汤了，我们就聊点实实在在的生理学和社会学真相。\\n24|\\n25|### 一、有些恋爱就是一场合法的白嫖\\n26|\\n27|有很多女孩在网上抱怨，现在的男人真是越来越抠门了，只要一接触发现要花钱，跑得比兔子还快。\\n28|\\n29|我们总以为这种退缩是自私，亦或是现在经济不景气，大家手里都没钱。实际上，只要你留心观察就会发现，大多数男人并不害怕在喜欢的人身上花钱，买单的时候他们通常比谁都积极。\\n30|\\n31|那他们到底在怕什么？他们怕的是自己的付出在对方眼里，压根不是感情的铺垫，而是理所应当的提款，被当成傻子。当你倾其所有，换来的不是双向的关心，而是对方心安理得的单向索取时，这就不是在谈感情了，这叫赤裸裸的资源掠夺。\\n32|\\n33|### 二、为什么被要钱时会本能退缩？\\n34|\\n35|当你面对对方频繁开口索要礼物、甚至明码标价要求你转账时，心里那一闪而过的排斥和不情愿，到底是怎么回事？这绝不是因为你小气。\\n36|\\n37|脑科学对这个现象给出了明确解释。当男人感知到自己正在被对方单方面当成提款机时，大脑前额叶和岛叶会瞬间形成特殊回响，产生一种化学反应。前额叶大家都很清楚，负责人的理性判断的地方。岛叶也许会感到陌生，它实际上是负责处理厌恶与恶心反应的地方。\\n38|\\n39|此时，你的大脑根本不会把眼前的场景理解为浪漫的互动，而是会直接判定为身处一场剥削性的交易当中。紧接着，你的皮质醇，也就是压力荷尔蒙的水平会急速飙升，生理上的厌恶感就被瞬间拉满。\\n40|\\n41|所以，哪怕对方要的东西，在男人经济可承受范围之内，身体也会比嘴巴更诚实的做出拒绝。因为你潜意识开始警告：对方看中的根本不是你这个人，只是你有用而已。没谁愿意做一台毫无感情的ATM机，抗拒剥削，是人类生存的最基本本能。\\n42|\\n43|### 三、认清现实吧，这是双标带来的毒打\\n44|\\n45|不仅是生理上抗拒，从现在的社会风气来看，我们也是结结实实地撞上了双标的枪口。\\n46|\\n47|这三十年来，资本和消费主义进行的最成功的洗脑就是：将爱与消费强行画上了等号。各种自媒体、广告都在暗示：他给你转个520就是爱你，买个包就是宠你，秋天的第一杯奶茶喝不上就是不重视你。\\n48|\\n49|在这样的叙事下，金钱被塑造成了验证感情的唯一且合法的货币。\\n50|\\n51|仔细想想，为什么有些人在肆无忌惮地索取时，不仅不脸红，还能那么理直气壮？因为现在的婚恋市场存在一个离谱的错位。\\n52|\\n53|有些人，既想要享受传统的性别红利，要求男方必须像个传统男人一样大度，要请客买单、送包送礼，这本就是应尽的义务。同时，她们又极其崇尚现代的利己主义，只要拿到了好处，翻脸无情的时候，还会说我是独立的个体，只要没结婚，我随时可以走人，我不欠你什么。\\n54|\\n55|看明白了吗？找你要钱的时候，她跟你讲老祖宗的传统规矩。不想负责任的时候，她跟你讲现代女性的自由独立。这种极度不对等的霸王条款，才是现在恋爱谈不下去的根源所在。\\n56|\\n57|这不是你的真心一文不值，而是你在从一开始，就注定在一场被榨干的生意里，及时清醒了。\\n58|\\n59|### 四、唯一的对策，将感恩当做筛选\\n60|\\n61|看透了这些糟心事，并不是为了封心锁爱，自此变得偏激，这是不成熟的表现。当下环境这么乱，试图用道德约束和长篇大论感化来改变现状，自然是徒劳无功。\\n62|\\n63|唯能做的一件事：将感恩作为筛选伴侣的第一底线。\\n64|\\n65|什么意思呢？破局的方法特别简单。在刚开始接触的阶段，不妨带着诚意大方一点，吃个饭、送杯咖啡、这节那节递个小礼物和红包，这就是探测对方底线的试金石。\\n66|\\n67|东西给出去了，然后你就后退一步，安静地看。\\n68|\\n69|如果对方把这一切当成理所当然，吃干抹净后连句谢谢都没有，甚至明里暗里都在嫌你付出的不够多，那么请你毫不犹豫立刻转身止损，果断拉黑，半分钟都别留恋。\\n70|\\n71|感情从来都不是单向扶贫，无论男女。千万不要在垃圾堆里做慈善，去把你辛苦打拼的钱与难得的真心，留给那个哪怕是收到一块小蛋糕，也会红着脸开心半天，并且在下一次约会时，还能主动抢着买电影票的人。\\n72|\\n73|想要在这个时代找到真爱，必须有一点赌徒的勇气和忍者的无情。真诚永远是必需品，但善良，一定要带着锋利去筛选。\\n74|\\n75|放弃用钱去购买廉价服从的妄念。虽然现在恋爱被部分人当成了生意，但这个世界上依然会有大量脚踏实地、渴望真诚相爱，愿意跟你一起奋斗的女孩。她们可能不会在社交媒体上大声喧哗，但她们真实存在。\"\n    }\n  ]\n}",
+              "metadata": {
+                "fsReadOperation": {
+                  "type": "full",
+                  "isPdf": false
+                }
+              }
+            }
+          }
+        }
+      ],
+      "id": "d858d8e0-fc3c-4705-914e-873c8181c583",
+      "metadata": {
+        "branchConversationId": "ad77ccd2-33c7-4836-9dc8-1b759ca54c45",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "#男人不给礼物就绝情 #情感 #恋爱 #亲密关系 #两性情感 #恋爱脑",
+      "id": "f439df75-c1c2-40e9-a362-b535ce257324",
+      "metadata": {
+        "model": {
+          "providerId": "Agnes",
+          "id": "Agnes/agnes-3.0-flash",
+          "model": "agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "reasoningType": "none",
+          "modalities": [
+            "text"
+          ]
+        },
+        "usage": {
+          "prompt_tokens": 6441,
+          "completion_tokens": 21,
+          "total_tokens": 6462,
+          "cache_read_input_tokens": 4352
+        },
+        "durationMs": 3192,
+        "generationState": "completed",
+        "branchConversationId": "ad77ccd2-33c7-4836-9dc8-1b759ca54c45",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    }
+  ],
+  "createdAt": 1791300371589,
+  "updatedAt": 1791300379736,
+  "schemaVersion": 1,
+  "compaction": [],
+  "origin": "user",
+  "overrides": {
+    "chatMode": "agent",
+    "agentYoloEnabled": false
+  },
+  "conversationModelId": "Agnes/agnes-3.0-flash",
+  "messageModelMap": {
+    "61f8673f-0a87-4cf0-9ee3-d82d3205e79c": "Agnes/agnes-3.0-flash"
+  },
+  "assistantGroupBoundaryMessageIds": [],
+  "reasoningLevel": "off"
+}

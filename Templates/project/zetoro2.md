@@ -30,11 +30,11 @@ zotero-link: "{{selectURI}}"
 > {{abstractNote}}
 {% endif %}
 
-## 📄 批注与思考
+## 📄 Zotero 条目笔记与独立便签
 {%- for annotation in annotations %}
 {%- if annotation.comment %}
 
-- 📌 **个人注释/便签** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): <span style="color: #2ecc71;">{{annotation.comment}}</span>
+- 📌 **个人注释/便签** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): {{annotation.comment}}
 {%- endif %}
 {%- endfor %}
 
@@ -42,7 +42,7 @@ zotero-link: "{{selectURI}}"
 {%- for annotation in annotations %}
 {%- if annotation.colorCategory == "Yellow" and annotation.annotatedText %}
 
-- <span style="color: #f1c40f;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
+- {{annotation.annotatedText}} ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
 {%- endif %}
 {%- endfor %}
@@ -51,7 +51,7 @@ zotero-link: "{{selectURI}}"
 {%- for annotation in annotations %}
 {%- if annotation.colorCategory == "Red" and annotation.annotatedText %}
 
-- <span style="color: #e74c3c;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
+- {{annotation.annotatedText}} ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
 {%- endif %}
 {%- endfor %}
@@ -60,7 +60,7 @@ zotero-link: "{{selectURI}}"
 {%- for annotation in annotations %}
 {%- if annotation.colorCategory == "Orange" and annotation.annotatedText %}
 
-- <span style="color: #e67e22;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
+- {{annotation.annotatedText}} ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
 {%- endif %}
 {%- endfor %}
@@ -70,10 +70,10 @@ zotero-link: "{{selectURI}}"
 {%- if annotation.annotatedText %}
 
 - {{annotation.annotatedText}} ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
-  {% if annotation.comment %}> 💬 **划线附注**: <span style="color: #2ecc71;">{{annotation.comment}}</span>{% endif %}
+  {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
 {%- elif annotation.imageRelativePath %}
 
 - ![[{{annotation.imageRelativePath}}]] ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
-  {% if annotation.comment %}> 💬 **截图附注**: <span style="color: #2ecc71;">{{annotation.comment}}</span>{% endif %}
+  {% if annotation.comment %}> 💬 **截图附注**: {{annotation.comment}}{% endif %}
 {%- endif %}
 {%- endfor %}

@@ -199,6 +199,19 @@
       "preferredReasoningByModel": {},
       "visibleModels": [],
       "selectedModelsByHost": {}
+    },
+    "deepseek": {
+      "enabled": false,
+      "codeMode": false,
+      "presetPlugins": "",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "environmentVariables": "",
+      "environmentHash": "runtime-input:v1:7bb058eb9b9a526e6d35e7f743bb2ef5035d11adc7be4851aab4adda7adcca74",
+      "visibleModels": [],
+      "modelAliases": {},
+      "preferredReasoningByModel": {},
+      "selectedModels": []
     }
   },
   "settingsProvider": "claude",
@@ -214,7 +227,8 @@
   },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
-    "claude": "acceptEdits"
+    "claude": "acceptEdits",
+    "deepseek": "normal"
   },
   "pendingProviderSessionInvalidations": {},
   "enableAutoScroll": true,

@@ -35,12 +35,13 @@ columns:
   - name: Memo
     color: "#f59e0b"
     type: sticky
+    height: 280.75
   - name: Database
     color: "#6366f1"
     type: folder
     library:
       viewMode: gallery
-      sortBy: "created"
+      sortBy: "name"
       sortDesc: true
       folders:
         - "Eric/公众号图文/镜鉴野望"
@@ -227,7 +228,7 @@ pm2 logs litellm
 设置开机自启
 pm2 startup（复制输出执行）-> pm2 save
 
-### 临时接触MAC内存限制
+### 临时解除MAC内存限制
 id: card-mucmrbcg
 type: generic
 系统内存临时解除限制：
@@ -251,5 +252,10 @@ claude
 id: card-mudme1j8
 type: generic
 根据我们现在配置成功的经验，总结和复盘具体操作中的失误与问题，将全套打通的这个流程制定为一份可供复用的操作指南，要有具体的配置方法和需要注意的地方，以及工具的必要说明，开始你的工作
+
+### Blend视频总结
+id: card-mv8el9e6
+type: generic
+总结这个视频的核心要点及具体详细的操作步骤，并对视频中涉及的一些功能进行简要说明具体的用途
 
 ## Database

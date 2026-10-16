@@ -258,4 +258,19 @@ id: card-mv8el9e6
 type: generic
 总结这个视频的核心要点及具体详细的操作步骤，并对视频中涉及的一些功能进行简要说明具体的用途
 
+### claude code MCP管理
+id: card-mvaml8zv
+type: generic
+在 Claude Code 的交互式会话中，你可以直接使用斜杠命令来管理 MCP：
+禁用指定服务器：输入 /mcp disable <服务器名>，例如 /mcp disable blend-ai。
+启用指定服务器：输入 /mcp enable <服务器名>，例如 /mcp enable blend-ai。
+批量操作：使用 /mcp disable 或 /mcp enable 可以禁用或启用所有非 IDE 的 MCP 服务器。
+交互式面板：直接输入 /mcp 会打开一个管理面板，你可以直观地查看所有服务器的状态，并手动启用或禁用它们。
+注意：通过 /mcp 命令进行的启用/禁用操作仅在当前会话中生效，不会修改你的配置文件，退出会话后设置就会重置。
+💻 在终端中操作（无需进入会话）
+如果你不想进入交互式会话，也可以在终端直接使用 claude mcp 子命令来管理，但需要注意的是，这种方式是永久性修改配置。
+列出所有服务器：claude mcp list 查看所有已配置的服务器及其状态。
+查看指定服务器：claude mcp get <服务器名> 查看某个服务器的详细信息。
+移除服务器：claude mcp remove <服务器名> 会从配置中移除该服务器。你可以用 -s 参数指定作用域（如 -s project 或 -s user）。
+
 ## Database

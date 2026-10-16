@@ -147,7 +147,8 @@
         "Proactive",
         "Explanatory",
         "Learning"
-      ]
+      ],
+      "sessionEnvironmentHash": "runtime-input:v1:aa11c9accb54307ee1588a44276edd0ef35d22fe16ef820969b8726c80fb0a73"
     },
     "codex": {
       "enabled": false,
@@ -164,7 +165,8 @@
       "enableUltraEffort": false,
       "responseStyle": "pragmatic",
       "selectedModels": [],
-      "responseVerbosity": "default"
+      "responseVerbosity": "default",
+      "sessionEnvironmentHash": ""
     },
     "opencode": {
       "cliPath": "",
@@ -186,6 +188,7 @@
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
+      "sessionEnvironmentHash": "",
       "visibleModels": [],
       "selectedModels": []
     },
@@ -219,6 +222,7 @@
     "providerId": "claude",
     "model": "claude-code/gpt-oss-20b-MXFP4-Q8"
   },
+  "inlineEditModel": null,
   "savedProviderModel": {
     "claude": "claude-code/glm-4.7-flash"
   },

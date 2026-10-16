@@ -41,7 +41,7 @@ columns:
     type: folder
     library:
       viewMode: gallery
-      sortBy: "name"
+      sortBy: "created"
       sortDesc: true
       folders:
         - "Eric/公众号图文/镜鉴野望"
@@ -65,7 +65,7 @@ columns:
         property: "created"
         start: ""
         end: ""
-        days: 7
+        days: 30
 ---
 
 ## Memo
@@ -257,5 +257,9 @@ type: generic
 id: card-mv8el9e6
 type: generic
 总结这个视频的核心要点及具体详细的操作步骤，并对视频中涉及的一些功能进行简要说明具体的用途
+
+### 2026-10-16 备忘录
+id: card-mvaml8zv
+type: generic
 
 ## Database

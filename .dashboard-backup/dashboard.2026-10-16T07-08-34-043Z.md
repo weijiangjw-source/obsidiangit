@@ -65,7 +65,7 @@ columns:
         property: "created"
         start: ""
         end: ""
-        days: 7
+        days: 30
 ---
 
 ## Memo
@@ -257,5 +257,15 @@ type: generic
 id: card-mv8el9e6
 type: generic
 总结这个视频的核心要点及具体详细的操作步骤，并对视频中涉及的一些功能进行简要说明具体的用途
+
+### claude code MCP管理
+id: card-mvaml8zv
+type: generic
+在 Claude Code 的交互式会话中，你可以直接使用斜杠命令来管理 MCP：
+禁用指定服务器：输入 /mcp disable <服务器名>，例如 /mcp disable blend-ai。
+启用指定服务器：输入 /mcp enable <服务器名>，例如 /mcp enable blend-ai。
+批量操作：使用 /mcp disable 或 /mcp enable 可以禁用或启用所有非 IDE 的 MCP 服务器。
+交互式面板：直接输入 /mcp 会打开一个管理面板，你可以直观地查看所有服务器的状态，并手动启用或禁用它们。
+注意：通过 /mcp 命令进行的启用/禁用操作仅在当前会话中生效，不会修改你的配置文件，退出会话后设置就会重置。
 
 ## Database

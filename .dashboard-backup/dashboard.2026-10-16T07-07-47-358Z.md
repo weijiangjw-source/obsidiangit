@@ -42,7 +42,7 @@ columns:
     library:
       viewMode: gallery
       sortBy: "created"
-      sortDesc: false
+      sortDesc: true
       folders:
         - "Eric/公众号图文/镜鉴野望"
         - "Eric/公众号图文/品味流溢"
@@ -65,7 +65,7 @@ columns:
         property: "created"
         start: ""
         end: ""
-        days: 7
+        days: 30
 ---
 
 ## Memo

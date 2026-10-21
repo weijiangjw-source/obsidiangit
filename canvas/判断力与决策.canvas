@@ -292,6 +292,46 @@
 			"y":320,
 			"width":130,
 			"height":60
+		},
+		{
+			"id":"8d782d6626fea6e2",
+			"type":"text",
+			"text":"过度拟合，不要想太多",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":440,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e2a97facee55a628",
+			"type":"text",
+			"text":"惩罚复杂性",
+			"styleAttributes":{"textAlign":"center","shape":"circle"},
+			"x":165,
+			"y":500,
+			"width":130,
+			"height":60
+		},
+		{
+			"id":"a747c6ed28ed46ce",
+			"type":"text",
+			"text":"判断标准：交叉验证",
+			"styleAttributes":{"textAlign":"center","shape":"circle"},
+			"x":-525,
+			"y":530,
+			"width":130,
+			"height":60
+		},
+		{
+			"id":"32c4e925d9db32aa",
+			"type":"text",
+			"text":"启发式思想",
+			"styleAttributes":{"textAlign":"center","shape":"circle"},
+			"x":230,
+			"y":410,
+			"width":130,
+			"height":60
 		}
 	],
 	"edges":[
@@ -538,6 +578,42 @@
 			"fromSide":"left",
 			"toNode":"ffbf68eca96271cc",
 			"toSide":"right"
+		},
+		{
+			"id":"1628c357ad6c8ffa",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"dd584152fc5d35b3",
+			"fromSide":"bottom",
+			"toNode":"8d782d6626fea6e2",
+			"toSide":"top"
+		},
+		{
+			"id":"4479f50d8f08515e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8d782d6626fea6e2",
+			"fromSide":"right",
+			"toNode":"e2a97facee55a628",
+			"toSide":"left"
+		},
+		{
+			"id":"a12f68163dd5050c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8d782d6626fea6e2",
+			"fromSide":"left",
+			"toNode":"a747c6ed28ed46ce",
+			"toSide":"right"
+		},
+		{
+			"id":"c50c04af53526672",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8d782d6626fea6e2",
+			"fromSide":"right",
+			"toNode":"32c4e925d9db32aa",
+			"toSide":"left"
 		}
 	],
 	"metadata":{

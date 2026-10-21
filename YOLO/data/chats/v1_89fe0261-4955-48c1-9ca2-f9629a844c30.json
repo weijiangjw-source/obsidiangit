@@ -1,0 +1,256 @@
+{
+  "id": "89fe0261-4955-48c1-9ca2-f9629a844c30",
+  "title": "AI重塑工作核心要点",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "总结下这个内容的核心要点",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            },
+            {
+              "children": [],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "snapshotRef": {
+        "hash": "d4d96f28"
+      },
+      "id": "db874dfc-95cb-4cad-b7fd-098f8ef507b3",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md"
+        }
+      ],
+      "selectedSkills": [],
+      "selectedModelIds": [],
+      "reasoningLevel": "auto",
+      "timeContext": "2026-10-21 01:29 (Wednesday)",
+      "injectedContext": []
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "toolCallRequests": [
+        {
+          "id": "call_00_eUC0AveVBoVvKKIA1F720388",
+          "name": "yolo_local__fs_read",
+          "arguments": {
+            "kind": "complete",
+            "value": {
+              "paths": [
+                "Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md"
+              ]
+            },
+            "rawText": "{\"paths\": [\"Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md\"]}"
+          }
+        }
+      ],
+      "id": "7969f3b2-cac4-4d61-a0f6-872d4c5f4922",
+      "metadata": {
+        "model": {
+          "providerId": "Magpie",
+          "id": "workbuddy-ai/deepseek-v4.1-flash",
+          "model": "workbuddy-ai/deepseek-v4.1-flash",
+          "name": "workbuddy-ai/deepseek-v4.1-flash",
+          "reasoningType": "openai",
+          "maxContextTokens": 1048576,
+          "modalities": [
+            "text",
+            "vision"
+          ],
+          "builtinToolProvider": "none",
+          "builtinTools": {
+            "gpt": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "openrouter": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "grok": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "gemini": {
+              "webSearch": {
+                "enabled": false
+              },
+              "urlContext": {
+                "enabled": false
+              }
+            },
+            "deepseek": {
+              "webSearch": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "usage": {
+          "prompt_tokens": 4480,
+          "completion_tokens": 68,
+          "total_tokens": 4548
+        },
+        "durationMs": 16690,
+        "generationState": "completed",
+        "branchConversationId": "89fe0261-4955-48c1-9ca2-f9629a844c30",
+        "branchModelId": "workbuddy-ai/deepseek-v4.1-flash",
+        "branchLabel": "workbuddy-ai/deepseek-v4.1-flash"
+      }
+    },
+    {
+      "role": "tool",
+      "toolCalls": [
+        {
+          "request": {
+            "id": "call_00_eUC0AveVBoVvKKIA1F720388",
+            "name": "yolo_local__fs_read",
+            "arguments": {
+              "kind": "complete",
+              "value": {
+                "paths": [
+                  "Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md"
+                ]
+              },
+              "rawText": "{\"paths\": [\"Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md\"]}"
+            }
+          },
+          "response": {
+            "status": "success",
+            "data": {
+              "type": "text",
+              "text": "{\n  \"toolCallId\": \"call_00_eUC0AveVBoVvKKIA1F720388\",\n  \"requestedOperation\": {\n    \"type\": \"full\"\n  },\n  \"results\": [\n    {\n      \"path\": \"Eric/公众号图文/镜鉴野望/2026年度/10月/为什么AI还没淘汰你？全凭你的工作太乱.md\",\n      \"ok\": true,\n      \"totalLines\": 102,\n      \"hasMoreBelow\": false,\n      \"nextStartLine\": null,\n      \"content\": \"1|---\\n2|created_at: 2026-10-20 21:29:56\\n3|modified_at: 2026-10-20 21:30:23\\n4|source: https://app.notion.com/p/jiangweii/2d47d11d97dd8012927cf38cd99989de?source=copy_link\\n5|platform: 公众号\\n6|status: 已发布\\n7|type: 图文\\n8|tags: []\\n9|original_link: \\\"\\\"\\n10|---\\n11|\\n12|**用AI代写周报，你正犯下一个中世纪的错**\\n13|**大公司为何变蠢？开会与扯皮已是人类极限**\\n14|\\n15|\\n16|\\n17|## 🚀 我们总是通过后视镜驶向未来：彻底看懂AI重塑工作的底层逻辑\\n18|\\n19| \\n20| \\n21| 💡 **核心引言**：\\n22| \\n23|>  **每个时代都有它的奇迹材料，掌握这种材料的人将定义这个时代。钢铁塑造了工业时代，而AI，就是我们这个时代的无限心智。**\\n24|\\n25| \\n26| 👁️ **关键洞察**：\\n27| \\n28| 很多人以为AI最先淘汰程序员，错！恰恰相反，程序员是最先吃到红利的群体。这并非因AI偏爱代码，而是打工人的工作环境太杂乱，反而成了对抗AI的临时护城河。\\n29|\\n30|***\\n31|\\n32|### 🧱 为什么程序员先开上汽车？\\n33|\\n34|\\n35|阻碍普通知识工作者立刻被AI接管的，其实是两个现实的工作瓶颈。通过下面这个对比，就能一秒看懂：\\n36|\\n37|\\n38|| 核心瓶颈              | 💻 程序员的世界（已爆发）                                           | 🏢 普通白领的世界（大拥堵）                                              |\\n39|| :---------------- | :------------------------------------------------------- | :----------------------------------------------------------- |\\n40|| **找东西难**(信息高度分散)  | **极度集中**：就像在一个设备齐全的现代化厨房做饭。所有的食材（代码库）和厨具（编程工具）都在触手可及的地方。 | **一地鸡毛**：面粉在超市（聊天记录），鸡蛋在农场（各个表格），菜谱在老员工脑子里（隐性经验）。AI巧妇难为无米之炊。 |\\n41|| **评判好坏难**(效果无法验证) | **黑白分明**：就像做数学题。AI写完代码运行一下，报错就是写错了，系统能**自动反馈并自我修正**。     | **主观玄学**：就像写散文。你让AI写个活动方案，好不好全凭老板的心情。**没有标准就没法训练**，只能靠人盯着改。  |\\n42|\\n43|\\n44|**一句话总结**：打工人每天看似在做脑力劳动，其实绝大部分时间，都在充当各个办公软件之间的信息搬运人。只要办公数据不打通，就还得继续踩自行车。\\n45|\\n46|***\\n47|\\n48|### 🐎 我们还在干给马车装发动机的蠢事\\n49|\\n50|\\n51|工业革命初期，蒸汽机刚发明时，很多旧老板是怎么干的？\\n52|\\n53|他们把水边的旧水车拆了，在原地安上蒸汽机，**依然被困在河边**。生产力提升极为有限。\\n54|\\n55|现在的打工人和公司，正在犯一模一样的错误：\\n56|\\n57|---\\n58|\\n59|\\n60|> ❌ **现状：替换水车（局部改良）**\\n61|> \\n62|> 把AI当成打字快一点的实习生。每天还是雷打不动地去公司，按原来的流程审批、开会，只不过写邮件时用AI润色一下，做PPT时让AI排个版。**除了自己省点力气，整个公司的运转效率丝毫未变。**\\n63|\\n64|\\n65|\\n66|\\n67|> ✅ **未来：重新设计工厂（推倒重来）**\\n68|> \\n69|> 真正聪明的工厂主，是意识到**机器不再需要河流**，把工厂直接建到离工人、原料最近的地方。\\n70|> \\n71|> 未来的先进公司，不仅是招一个会用AI的真人，而是**围绕系统重新设计工作流**。比如侦测到新员工入职，后台成百上千个AI助手瞬间自动拉群、开通权限、生成专属培训文档，人类彻底从低效流程中解脱。\\n72|\\n73|***\\n74|\\n75|### 🏙️ 从熟人小镇搬进超级都市\\n76|\\n77|以前盖房子只能用石头和木头，最多盖六七层，再高就塌了。\\n78|\\n79|这就像现在的公司，超过几百人就开始变形：部门推诿、疯狂内耗，只能靠无休止的**开会对齐、周报月报**来维持不散架。这就是人类协作规模的极限。\\n80|\\n81|但钢铁改变了一切，钢筋水泥让几百层的摩天大楼拔地而起。\\n82|\\n83|*   **现在的工作像小镇生活**：靠人盯人、靠会议推动，一旦下班或有时差，整个公司的齿轮就停摆了。\\n84|*   未来的工作像超级都市：只要几十个真人作为决策者，带领成千上万个不需要睡觉的AI助手。工作流全天候跨越时区狂飙，无数任务在后台默默合成。\\n85|\\n86|**告别小镇的温馨，拥抱都市的狂飙**：\\n87|\\n88|在这个过程中，我们可能会失去一些传统的人情味和熟悉的开会节奏，甚至觉得迷失方向。但换来的，是绝对的规模碾压和速度爆炸。\\n89|\\n90|***\\n91|\\n92|### ⚡ 尾声：\\n93|\\n94|\\n95|> **不要用过去的经验来丈量未来的技术。时代换上了新引擎，我们需要重新想象该怎么赶路。**\\n96|\\n97|\\n98|\\n99|我们现在抱怨AI写的东西**没有灵魂**、AI老是**胡说八道**，往往是我们给它的上下文太少，或评价标准本身就很模糊。\\n100|\\n101|\\n102|当有一天，所有办公软件的**数据被打通**，一切行为变得**可量化**时，AI将不再是桌面上那个小小的对话框，而是整个公司运转的地基。\"\n    }\n  ]\n}",
+              "metadata": {
+                "fsReadOperation": {
+                  "type": "full",
+                  "isPdf": false
+                }
+              }
+            }
+          }
+        }
+      ],
+      "id": "b5ee02f8-213d-4e9c-bfce-c3662c34d817",
+      "metadata": {
+        "branchConversationId": "89fe0261-4955-48c1-9ca2-f9629a844c30",
+        "branchModelId": "workbuddy-ai/deepseek-v4.1-flash",
+        "branchLabel": "workbuddy-ai/deepseek-v4.1-flash"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "# 核心要点速览\n\n**一句话主旨**：AI 迟迟没有取代你，不是因为你不可替代，而是因为你的工作“太乱”；真正被取代的关键，在于公司是否愿意重新设计工作流，而不在个人产能。\n\n## 1. 反常现象：程序员最先受益，并未最先被淘汰\nAI 优先冲击的是**信息结构清晰、结果可验证**的领域，与“代码”本身无关。程序员的代码库和工具高度集中，报错也意味着有明确反馈，因此 AI 能自动自我修正，形成正循环。\n\n## 2. 阻碍 AI 接管的两大瓶颈（白领工作的现状）\n| 瓶颈 | 程序员 | 普通白领 |\n|---|---|---|\n| 找东西难（信息分散） | 像现代化厨房，食材炊具伸手可及 | 面粉在聊天记录、鸡蛋在表格、菜谱在老员工脑子里 |\n| 评判好坏难（无法验证） | 像数学题，报错即错，可自动迭代 | 像写散文，好不好全凭老板心情，无标准就没法训练 |\n\n→ 结论：**打工人大部分时间只是在办公软件之间搬运信息**，数据不打通，AI 就无从下手。\n\n## 3. 核心比喻：别再给马车装发动机\n- ❌ **替换水车**：把 AI 当打字快的实习生，回原流程润色邮件、排版 PPT，个人省点力，公司效率没有丝毫改变。\n- ✅ **重新设计工厂**：意识到机器不再需要河流，围着 AI 重构工作流（如新员工入职时，成百上千个 AI 助手自动拉群、开权限、生成培训文档）。\n\n## 4. 核心比喻：从熟人小镇到超级都市\n- 石头木材只能盖六七层，等于公司超过几百人就必然靠开会、周报维持不塌，这是**人类协作规模的极限**。\n- 钢筋水泥可盖几百层，等于**几十个真人决策者、成千上万个不需睡觉的 AI**，工作流全天候跨时区运转。\n- 代价：失去人情味和熟悉的节奏；收益：规模碾压与速度爆炸。\n\n## 5. 收尾判断\n- 不要用过去经验丈量未来技术。\n- 今天抱怨的“AI 没灵魂”“AI 胡说八道”，多半是**上下文给得不够、评价标准本身模糊**。\n- 当办公数据被打通、行为可量化，AI 就不再只是桌面上的对话框，而会成为**公司运转的地基**。\n\n---\n需要我把这份要点整理成笔记末尾的“📌 核心要点”区块并写入原文吗？（会先给 Diff 再确认）",
+      "id": "d509ddab-c288-49ba-87c4-6a9b608d3cd1",
+      "metadata": {
+        "model": {
+          "providerId": "Magpie",
+          "id": "workbuddy-ai/deepseek-v4.1-flash",
+          "model": "workbuddy-ai/deepseek-v4.1-flash",
+          "name": "workbuddy-ai/deepseek-v4.1-flash",
+          "reasoningType": "openai",
+          "maxContextTokens": 1048576,
+          "modalities": [
+            "text",
+            "vision"
+          ],
+          "builtinToolProvider": "none",
+          "builtinTools": {
+            "gpt": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "openrouter": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "grok": {
+              "webSearch": {
+                "enabled": false
+              }
+            },
+            "gemini": {
+              "webSearch": {
+                "enabled": false
+              },
+              "urlContext": {
+                "enabled": false
+              }
+            },
+            "deepseek": {
+              "webSearch": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "usage": {
+          "prompt_tokens": 6139,
+          "completion_tokens": 568,
+          "total_tokens": 6707,
+          "cache_read_input_tokens": 4352
+        },
+        "durationMs": 7588,
+        "generationState": "completed",
+        "branchConversationId": "89fe0261-4955-48c1-9ca2-f9629a844c30",
+        "branchModelId": "workbuddy-ai/deepseek-v4.1-flash",
+        "branchLabel": "workbuddy-ai/deepseek-v4.1-flash"
+      }
+    }
+  ],
+  "createdAt": 1792517344027,
+  "updatedAt": 1792517368373,
+  "schemaVersion": 1,
+  "compaction": [],
+  "origin": "user",
+  "overrides": {
+    "chatMode": "agent",
+    "agentYoloEnabled": false
+  },
+  "conversationModelId": "workbuddy-ai/deepseek-v4.1-flash",
+  "messageModelMap": {
+    "db874dfc-95cb-4cad-b7fd-098f8ef507b3": "workbuddy-ai/deepseek-v4.1-flash"
+  },
+  "assistantGroupBoundaryMessageIds": [],
+  "reasoningLevel": "auto"
+}

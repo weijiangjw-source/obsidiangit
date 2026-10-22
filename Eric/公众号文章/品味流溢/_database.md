@@ -8,9 +8,10 @@ schema:
     width: 200
   - id: 创建时间
     name: 创建时间
-    type: text
+    type: date
     visible: true
     width: 200
+    dateFormat: YYYY-MM-DD HH:mm
   - id: 修改时间
     name: 修改时间
     type: text
@@ -69,7 +70,7 @@ views:
     filters: []
     sorts:
       - columnId: 创建时间
-        direction: desc
+        direction: asc
     hiddenColumns:
       - 标题
       - 标签

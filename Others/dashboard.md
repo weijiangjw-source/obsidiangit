@@ -31,6 +31,7 @@ banner:
       - taskCompletion
       - connectivity
       - avgLinksPerNote
+immersiveBackground: "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg"
 columns:
   - name: Memo
     color: "#f59e0b"
@@ -66,6 +67,7 @@ columns:
         start: ""
         end: ""
         days: 30
+    height: 751.59765625
 ---
 
 ## Memo

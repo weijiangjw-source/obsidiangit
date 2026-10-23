@@ -31,6 +31,7 @@ banner:
       - taskCompletion
       - connectivity
       - avgLinksPerNote
+immersiveBackground: "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg"
 columns:
   - name: Memo
     color: "#f59e0b"
@@ -66,6 +67,17 @@ columns:
         start: ""
         end: ""
         days: 30
+    height: 751.59765625
+  - name: 文件夹
+    color: "#6366f1"
+    type: folder
+    library:
+      viewMode: grid
+      sortBy: "modified"
+      sortDesc: true
+      folders:
+        - "Eric/公众号文章/品味流溢"
+      propertyLimit: 6
 ---
 
 ## Memo
@@ -273,7 +285,7 @@ type: generic
 查看指定服务器：claude mcp get <服务器名> 查看某个服务器的详细信息。
 移除服务器：claude mcp remove <服务器名> 会从配置中移除该服务器。你可以用 -s 参数指定作用域（如 -s project 或 -s user）。
 
-### 2026-10-19 备忘录
+### 降低M芯片安全级别
 id: card-mvf5p2y3
 type: generic
 降低安全级别（仅限M 系列芯片）
@@ -287,3 +299,5 @@ type: generic
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
 ## Database
+
+## 文件夹

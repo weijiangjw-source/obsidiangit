@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "a6bb7c49": {
+      "hash": "a6bb7c49",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Mentioned Vault Files (outline only)\n- `Eric/品味觉醒/理论部分/第1章：品味不是一种审美偏好，而是透视结构的智力权柄.md`\n  - Properties:\n    - `标题`: `品味不是一种审美偏好，而是透视结构的智力权柄`\n    - `创建时间`: `2026-09-01 23:24`\n    - `修改时间`: `2026-09-01 23:24`\n    - `发布渠道`: `公众号`\n    - `是否修改`: `true`\n    - `标签`: `[]`\n    - `参考资料`: `https://app.notion.com/p/jiangweii/1-3177d11d97dd80cbb63af825d457b0f1?source=copy_link`\n    - `发布状态`: `true`\n  - L13 ## 前提与定义\n  - L23 ## 拨开外表，定位最低能耗极限\n  - L47 ## 如何识别承重墙结构\n  - L57 ## 结构透视力\n\nThis section provides only paths and outlines. Use file tools only if you need the full contents or a specific line range.\n\n\n根据这篇内容，提炼核心要点后将其制作为图文形式，结构清晰，通俗易懂，避免说教。要具有很强的视觉冲击力(在文中可以使用emoji图标进行最佳视觉化呈现，但无需滥用)，重新输出给我并以标准的markdown格式输出，文章内不需要图片/图片描述，已经加粗的重点词或句子无需再加引号，也不需要英文。内容封面（大标题前要匹配合适的emoji图标）要加入核心引言（emoji图标用💡）和关键洞察（emoji图标用👁️）。注意：1.禁止使用代码块<code>形式，可以使用文本块或者表格来展示内容。2、隐喻可以有，但不能过于生硬和偏僻，尽量避开过多隐喻表达。\n\n\n"
+        }
+      ],
+      "createdAt": 1792759249699,
+      "updatedAt": 1792759249699
+    }
+  }
+}

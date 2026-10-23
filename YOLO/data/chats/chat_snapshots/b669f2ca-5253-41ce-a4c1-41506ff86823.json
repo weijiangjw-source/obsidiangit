@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "0e2ad98c": {
+      "hash": "0e2ad98c",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Mentioned Vault Files (outline only)\n- `Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md`\n  - Properties:\n    - `title`: `讲理的人，为什么永远吵赢不了没底线的人？`\n    - `created`: `2026-10-15 21:21`\n    - `modified`: `2026-10-15 21:21`\n    - `publish_channel`: `草稿`\n    - `is_modified`: `false`\n    - `tags`: `[]`\n    - `references`: `https://app.notion.com/p/jiangweii/2697d11d97dd80ebbfadccc031657ae1?source=copy_link`\n    - `publish_status`: `false`\n  - L19 ## 一、别逼自己变得强势\n  - L31 ## 二、为什么面对冲突，讲理的人总是吃亏？\n  - L41 ## 三、真正的反击，是建立自己的规则\n  - L53 ## 四、学会推迟答复拿回主动权\n\nThis section provides only paths and outlines. Use file tools only if you need the full contents or a specific line range.\n\n\n给出一个这篇文章最有价值的洞见\n\n"
+        }
+      ],
+      "createdAt": 1792761687311,
+      "updatedAt": 1792761687311
+    }
+  }
+}

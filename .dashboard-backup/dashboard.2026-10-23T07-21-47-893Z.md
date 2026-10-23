@@ -31,6 +31,7 @@ banner:
       - taskCompletion
       - connectivity
       - avgLinksPerNote
+immersiveBackground: "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg"
 columns:
   - name: Memo
     color: "#f59e0b"
@@ -66,6 +67,7 @@ columns:
         start: ""
         end: ""
         days: 30
+    height: 751.59765625
 ---
 
 ## Memo
@@ -272,5 +274,18 @@ type: generic
 列出所有服务器：claude mcp list 查看所有已配置的服务器及其状态。
 查看指定服务器：claude mcp get <服务器名> 查看某个服务器的详细信息。
 移除服务器：claude mcp remove <服务器名> 会从配置中移除该服务器。你可以用 -s 参数指定作用域（如 -s project 或 -s user）。
+
+### 降低M芯片安全级别
+id: card-mvf5p2y3
+type: generic
+降低安全级别（仅限M 系列芯片）
+如果系统死活不让你允许，说明你的Mac 处于最高安全启动模式。
+1.关机。
+2. 长按电源键（Touch ID 键）不松手，直到屏幕出现“正在载入启动选项”。
+3.点击“选项"进入恢复模式，输入密码。
+4. 在顶部菜单栏选择“实用工具” "启动安全性实用工具”。
+5.选中你的 Mac硬盘，点击“安全策略”。
+6.选择“降低安全性”，勾选“允许用户管理来自被认可开发者的内核扩展”，点击好并输入密码。
+7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
 ## Database

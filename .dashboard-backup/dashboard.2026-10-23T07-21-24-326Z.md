@@ -31,6 +31,7 @@ banner:
       - taskCompletion
       - connectivity
       - avgLinksPerNote
+immersiveBackground: "https://images.pexels.com/photos/2307638/pexels-photo-2307638.jpeg"
 columns:
   - name: Memo
     color: "#f59e0b"
@@ -66,6 +67,10 @@ columns:
         start: ""
         end: ""
         days: 30
+    height: 751.59765625
+  - name: 文件夹
+    color: "#6366f1"
+    type: folder
 ---
 
 ## Memo
@@ -287,3 +292,5 @@ type: generic
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
 ## Database
+
+## 文件夹

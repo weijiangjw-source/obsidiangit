@@ -294,16 +294,6 @@
 			"height":60
 		},
 		{
-			"id":"8d782d6626fea6e2",
-			"type":"text",
-			"text":"过度拟合，不要想太多",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-280,
-			"y":440,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"e2a97facee55a628",
 			"type":"text",
 			"text":"惩罚复杂性",
@@ -331,6 +321,26 @@
 			"x":230,
 			"y":410,
 			"width":130,
+			"height":60
+		},
+		{
+			"id":"8d782d6626fea6e2",
+			"type":"text",
+			"text":"过度拟合，不要想太多",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":410,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"94576f0698b1d044",
+			"type":"text",
+			"text":"瞬间决断的力量",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":560,
+			"width":260,
 			"height":60
 		}
 	],
@@ -614,6 +624,15 @@
 			"fromSide":"right",
 			"toNode":"32c4e925d9db32aa",
 			"toSide":"left"
+		},
+		{
+			"id":"4670e319278b70e0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8d782d6626fea6e2",
+			"fromSide":"bottom",
+			"toNode":"94576f0698b1d044",
+			"toSide":"top"
 		}
 	],
 	"metadata":{

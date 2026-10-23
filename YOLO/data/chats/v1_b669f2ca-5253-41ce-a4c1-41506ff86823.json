@@ -1,0 +1,184 @@
+{
+  "id": "b669f2ca-5253-41ce-a4c1-41506ff86823",
+  "title": "讲理吃亏洞见",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "给出一个这篇文章最有价值的洞见",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "snapshotRef": {
+        "hash": "0e2ad98c"
+      },
+      "id": "6f8ae485-151e-46ea-8590-21180e313460",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md"
+        }
+      ],
+      "selectedSkills": [],
+      "selectedModelIds": [],
+      "reasoningLevel": "off",
+      "timeContext": "2026-10-23 21:21 (Friday)",
+      "injectedContext": [
+        {
+          "type": "text",
+          "text": "# Current Context (auto-attached, content NOT included)\nThe user is currently viewing this file. Use an available file-reading tool if you need its content.\n\nFile: Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md\nTotal: 63 lines\nVisible: lines 10-29\nCursor: line 13\n\n"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "toolCallRequests": [
+        {
+          "id": "call_27ffec4b83df48d69738ad54",
+          "name": "yolo_local__fs_read",
+          "arguments": {
+            "kind": "complete",
+            "value": {
+              "paths": [
+                "Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md"
+              ]
+            },
+            "rawText": "{\"paths\": [\"Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md\"]}"
+          }
+        }
+      ],
+      "id": "7f80221e-96e6-405a-913e-d0fa078c91d9",
+      "metadata": {
+        "model": {
+          "providerId": "Agnes",
+          "id": "Agnes/agnes-3.0-flash",
+          "model": "agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "reasoningType": "none",
+          "modalities": [
+            "text"
+          ]
+        },
+        "usage": {
+          "prompt_tokens": 4546,
+          "completion_tokens": 52,
+          "total_tokens": 4598
+        },
+        "durationMs": 5147,
+        "generationState": "completed",
+        "branchConversationId": "b669f2ca-5253-41ce-a4c1-41506ff86823",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    },
+    {
+      "role": "tool",
+      "toolCalls": [
+        {
+          "request": {
+            "id": "call_27ffec4b83df48d69738ad54",
+            "name": "yolo_local__fs_read",
+            "arguments": {
+              "kind": "complete",
+              "value": {
+                "paths": [
+                  "Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md"
+                ]
+              },
+              "rawText": "{\"paths\": [\"Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md\"]}"
+            }
+          },
+          "response": {
+            "status": "success",
+            "data": {
+              "type": "text",
+              "text": "{\n  \"toolCallId\": \"call_27ffec4b83df48d69738ad54\",\n  \"requestedOperation\": {\n    \"type\": \"full\"\n  },\n  \"results\": [\n    {\n      \"path\": \"Eric/公众号文章/品味流溢/讲理的人，为什么永远吵赢不了没底线的人？.md\",\n      \"ok\": true,\n      \"totalLines\": 63,\n      \"hasMoreBelow\": false,\n      \"nextStartLine\": null,\n      \"content\": \"1|---\\n2|title: 讲理的人，为什么永远吵赢不了没底线的人？\\n3|created: 2026-10-15 21:21\\n4|modified: 2026-10-15 21:21\\n5|publish_channel: 草稿\\n6|is_modified: false\\n7|tags: []\\n8|references: https://app.notion.com/p/jiangweii/2697d11d97dd80ebbfadccc031657ae1?source=copy_link\\n9|publish_status: false\\n10|---\\n11|\\n12|\\n13|当今的社会风气，对于那些性格太好、太过被动的人，总是不太友好。市面上也总流行一种坑人的建议：别怕事，你要硬气一点啊！你要敢去争，敢当面怼回去！\\n14|\\n15|听起来简单、很解气，对吧？但这其实是市面上最烂的建议。\\n16|\\n17|今天，我们就来拆解这个问题，你会发现被动的人，根本无需把自己逼成一个强势者，你需要的只是转变下游戏规则，拿回属于自己的主动权。\\n18|\\n19|## 一、别逼自己变得强势\\n20|\\n21|很多性格温和、内向被动的人，在吃亏后也曾痛下决心，想要那样硬气一回。结果呢？大概率是非常糟糕的。\\n22|\\n23|当真到了需要当面撕破脸、或抢功劳的那一刻，真实反应往往是这样：大脑会一片空白，心跳加速，甚至连声音都在发颤，准备了一晚上的狠话一句都说不出来。\\n24|\\n25|再退一步讲，就算你真的鼓起勇气把别人骂退了。你真的会开心吗？基本不可能。你不仅无法享受胜利的喜悦，反而会陷入内疚和自我怀疑：我刚才是不是太刻薄了？是不是太伤他自尊了？正因这些破事，反而会整夜失眠与纠结。\\n26|\\n27|在心理学上，这就叫道德摩擦力。对于一个道德底线和共情能力本来就高，强行做这种攻击别人的事，潜意识里是极度抗拒的。\\n28|\\n29|逼一个天生讲理、道德感强的人主动争抢，无异于一种慢性的心折磨。\\n30|\\n31|## 二、为什么面对冲突，讲理的人总是吃亏？\\n32|\\n33|我们必须弄明白，为什么在当面的冲突或资源争夺中，好人永远赢不了那些激进、圆滑的人？这跟能力无关，纯粹是由大脑机制决定的。\\n34|\\n35|那些喜欢甩锅和抢功劳的人，其最大的特征是毫无心理负担。在冲突发生时，他们是被情绪本能驱动的，不需要分辨对错，只需要把责任甩出去，所以他们的反应极快，攻击性极强。\\n36|\\n37|再反观那些总是慢半拍的人，当对方把黑锅扣过来时，你的内心还在不断拉扯：这到底是不是我的责任？都是同事，直接拒绝是不是让对方很难堪？是否还会影响项目进度？这不仅是在做道德考量，还在顾忌对方情面，更在预判事态后果。\\n38|\\n39|就在你满脑子讲理、权衡的这几秒钟里，对方早就把锅牢牢砸在你手里了，早已错失了为自己正名的最佳机会。在需要即刻做出反应的当面冲突中，有底线、讲逻辑的人，注定会被没有底线、只顾利益的人秒杀。\\n40|\\n41|## 三、真正的反击，是建立自己的规则\\n42|\\n43|既然这方面不是强项，那不如就不要去别人擅长的领域里玩。这就是我要告诉你的核心反击策略：依然保持自己的节奏，无需刻意提高自己的反应速度和攻击性，只需建立起自己客观的系统和规则，把那些激进的家伙拖进他们最讨厌的节奏里。\\n44|\\n45|具体什么意思呢？不知你是否发现，那些喜欢占便宜、咄咄逼人的人，最大的软肋就是缺乏耐心。他们想要的是零成本、马上见效的利益。一旦发现要在你这里耗费过大的精力，他们就会迅速放弃，去找下一个好拿捏的软柿子。\\n46|\\n47|所以，放弃当场爆发的想法，转而学会用流程和时间将劣势转换为优势。\\n48|\\n49|举个简单的例子，遇到别人推过来的工作，主动型的人会当面骂一句凭什么让我干，但不懂拒绝这招你不擅长。你要做的是，顺水推舟制造摩擦：做也不是不可以，但我手头有两件老板交代的急事，为了确保按时交差，我得跟老板汇报下，重新排个优先级，老板同意我就没问题。\\n50|\\n51|你看，没有当面拒绝，也没发脾气，但会让对方立刻感到阻力。为了占你这点便宜，他需要担责任、还要面对老板，这对他来说成本太高了，大概率会内心不爽转身就走了。不需要任何反击和拒绝，冰冷的规则流程自然会帮你完成筛选。\\n52|\\n53|## 四、学会推迟答复拿回主动权\\n54|\\n55|理解了上面的逻辑，针对职场和生活里的大部分人际压迫，有个简单且好用的落地方法：绝不当场接招。\\n56|\\n57|无论任何人，当面气势汹汹地逼你接下一个任务、要你做不合理的承诺、或对你提过分的要求时，只需要像个复读机一样，微笑着说出这句话：\\n58|\\n59|好的，这件事情很重要，但我现在没法立刻定下来。我需要核查下自己的工作排期，今天下午3点，我再给你确切答复。说完这句，不带任何负担立马转身离开就好。\\n60|\\n61|只要能挺过当面这10秒钟，脱离了面对面的高压环境，你就胜利了。回到座位上，这就是被动者最安全的主场。\\n62|\\n63|在这里，你的理智重新上线，可以慢慢思考，用时间化解当面的高压，用规则竖起屏障，这就是一个讲理的聪明人，保护自己善良的最高级方式。  \"\n    }\n  ]\n}",
+              "metadata": {
+                "fsReadOperation": {
+                  "type": "full",
+                  "isPdf": false
+                }
+              }
+            }
+          }
+        }
+      ],
+      "id": "baf08a49-b2af-4b1d-9811-0e4996ea10f5",
+      "metadata": {
+        "branchConversationId": "b669f2ca-5253-41ce-a4c1-41506ff86823",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "这篇文章最有价值的洞见是：\n\n**讲理的人吃亏，不是因为不够强势，而是他们和没底线的人打的是同一场仗——用\"速度\"和\"情绪反应\"来定胜负。而真正的反击策略是改变游戏规则本身。**\n\n具体来说，第三部分的那个转换最值钱：\n\n> 不在对方擅长的领域（当面冲突、即时反应、情绪对抗）里玩，而是用**流程和规则**把\"快\"变成\"慢\"，让那些缺乏耐心、追求零成本占便宜的人自然流失。\n\n核心机制：\n- 没底线的人 = 高反应速度 + 低心理负担 + 缺乏耐心（想要立刻见效）\n- 讲理的人 = 慢反应 + 高道德摩擦力（强制争抢会自我折磨）\n\n所以解法不是\"变得更强硬\"（这是市面烂建议），而是**制造摩擦成本**——让占便宜的行动本身变得麻烦，对方就会自动去找下一个目标。冷冰冰的规则系统替你完成筛选，你不需要任何一次\"豁出去\"。\n\n一句话总结：**别赢那10秒钟，赢那个系统。**",
+      "id": "35b02fe3-6ed8-440f-918f-9579e7e6a8de",
+      "metadata": {
+        "model": {
+          "providerId": "Agnes",
+          "id": "Agnes/agnes-3.0-flash",
+          "model": "agnes-3.0-flash",
+          "name": "agnes-3.0-flash",
+          "reasoningType": "none",
+          "modalities": [
+            "text"
+          ]
+        },
+        "usage": {
+          "prompt_tokens": 6078,
+          "completion_tokens": 235,
+          "total_tokens": 6313
+        },
+        "durationMs": 10359,
+        "generationState": "completed",
+        "branchConversationId": "b669f2ca-5253-41ce-a4c1-41506ff86823",
+        "branchModelId": "Agnes/agnes-3.0-flash",
+        "branchLabel": "agnes-3.0-flash"
+      }
+    }
+  ],
+  "createdAt": 1792761687314,
+  "updatedAt": 1792761702897,
+  "schemaVersion": 1,
+  "compaction": [],
+  "origin": "user",
+  "overrides": {
+    "chatMode": "agent",
+    "agentYoloEnabled": false
+  },
+  "conversationModelId": "Agnes/agnes-3.0-flash",
+  "messageModelMap": {
+    "6f8ae485-151e-46ea-8590-21180e313460": "Agnes/agnes-3.0-flash"
+  },
+  "assistantGroupBoundaryMessageIds": [],
+  "reasoningLevel": "off"
+}

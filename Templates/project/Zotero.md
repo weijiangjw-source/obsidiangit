@@ -32,7 +32,7 @@ zotero-link: "{{selectURI}}"
 
 ## 📄 批注与思考
 {%- for annotation in annotations %}
-{%- if annotation.comment %}
+{%- if annotation.comment and annotation.colorCategory != "Yellow" and annotation.colorCategory != "Red" and annotation.colorCategory != "Orange" %}
 
 - 📌 **个人注释/便签** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): <span style="color: #2ecc71;">{{annotation.comment}}</span>
 {%- endif %}
@@ -40,28 +40,43 @@ zotero-link: "{{selectURI}}"
 
 ## 🟡 质疑与批判
 {%- for annotation in annotations %}
-{%- if annotation.colorCategory == "Yellow" and annotation.annotatedText %}
+{%- if annotation.colorCategory == "Yellow" %}
+{%- if annotation.annotatedText %}
 
 - <span style="color: #f1c40f;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
+{%- elif annotation.comment %}
+
+- 📝 **黄色笔记** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): <span style="color: #f1c40f;">{{annotation.comment}}</span>
+{%- endif %}
 {%- endif %}
 {%- endfor %}
 
 ## 🔴 震撼影响
 {%- for annotation in annotations %}
-{%- if annotation.colorCategory == "Red" and annotation.annotatedText %}
+{%- if annotation.colorCategory == "Red" %}
+{%- if annotation.annotatedText %}
 
 - <span style="color: #e74c3c;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
+{%- elif annotation.comment %}
+
+- 📝 **红色笔记** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): <span style="color: #e74c3c;">{{annotation.comment}}</span>
+{%- endif %}
 {%- endif %}
 {%- endfor %}
 
 ## 🟠 重点引用
 {%- for annotation in annotations %}
-{%- if annotation.colorCategory == "Orange" and annotation.annotatedText %}
+{%- if annotation.colorCategory == "Orange" %}
+{%- if annotation.annotatedText %}
 
 - <span style="color: #e67e22;">{{annotation.annotatedText}}</span> ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}}))
   {% if annotation.comment %}> 💬 **划线附注**: {{annotation.comment}}{% endif %}
+{%- elif annotation.comment %}
+
+- 📝 **橙色笔记** ([P.{{annotation.pageLabel}}]({{annotation.desktopURI}})): <span style="color: #e67e22;">{{annotation.comment}}</span>
+{%- endif %}
 {%- endif %}
 {%- endfor %}
 

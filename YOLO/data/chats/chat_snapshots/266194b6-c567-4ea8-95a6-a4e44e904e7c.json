@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "408e8fd5": {
+      "hash": "408e8fd5",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Mentioned Vault Files (outline only)\n- `Eric/品味觉醒/图文框架/你以为的审美品味，可能正在杀死它.md`\n  - Properties:\n    - `created_at`: `2026-10-23 23:08:19`\n    - `modified_at`: `2026-10-23 23:09:03`\n    - `source`: `[[第1章：品味不是一种审美偏好，而是透视结构的智力权柄]]`\n    - `platform`: `公众号`\n    - `status`: `已发布`\n    - `type`: `图文`\n    - `tags`: `[]`\n  - L13 # 🏛️ 品味的物理学：为什么大多数事情最终会垮塌\n  - L25 ## 一、我们被什么欺骗了\n  - L42 ## 二、品味的第一性原理\n  - L61 ## 三、商业世界的验证\n  - L77 ## 四、如何识别承重墙\n  - L94 ## 五、结构透视力的终极状态\n  - L108 ## 最后的检验\n\nThis section provides only paths and outlines. Use file tools only if you need the full contents or a specific line range.\n\n\n给我制定5个适合于公众号平台的话题标签，并写一个公众号贴图简短的文章介绍，再给我提炼三个金句\n\n"
+        }
+      ],
+      "createdAt": 1792933500616,
+      "updatedAt": 1792933500616
+    },
+    "e5e592f1": {
+      "hash": "e5e592f1",
+      "content": [
+        {
+          "type": "text",
+          "text": "<user_selected_content path=\"Eric/提示词/品味流溢/自由标题提示词.md\" startLine=\"51\" endLine=\"51\">\n```Eric/提示词/品味流溢/自由标题提示词.md\n51|设计一个具体的互动问题\n```\n</user_selected_content>\n\n\n标签横向依次排列给我，不要序号，我直接可以粘贴过去，另外直接给我设计一个具体的互动问题\n\n"
+        }
+      ],
+      "createdAt": 1792933722664,
+      "updatedAt": 1792933722664
+    }
+  }
+}

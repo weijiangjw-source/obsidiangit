@@ -1,7 +1,7 @@
 ---
 title: "眨眼之间 Blink: the power of thinking without thinking"
 created: "2026-09-21 17:12:55"
-updated: "2026-10-24 22:46:14"
+updated: "2026-10-25 18:11:10"
 authors: "(加)马尔科姆·格拉德威尔(Malcolm Gladwell)著 ; 靳婷婷译., (加) 格拉德威尔, 靳婷婷."
 year: 1577808000000
 citekey: JiaMaErKeMu*GeLaDeWeiErmalcolmgladwellZhu;JinTingTingYi.ZhaYanZhiJianBlinkPower2020
@@ -31,11 +31,15 @@ zotero-link: ""
 
 ## 📄 批注与思考
 
+- 📌 **个人注释/便签** ([P.31](zotero://open-pdf/library/items/T85Q8X6W?page=31&annotation=UCVTCTKW)): <span style="color: #2ecc71;">指责是对对方性格的全盘否定，二蔑视是人格的侮辱，是一种居高临下的态度。</span>
+
 - 📌 **个人注释/便签** ([P.45](zotero://open-pdf/library/items/T85Q8X6W?page=45&annotation=FSIMJ37P)): <span style="color: #2ecc71;">你想竭尽心思搞清楚自己的决瞬间决断过程，是徒劳无益的，因为这种决策过程本就十分神秘，到底什么东西指点了你的决策方向是无法搞清楚的。</span>
 
 - 📌 **个人注释/便签** ([P.56](zotero://open-pdf/library/items/T85Q8X6W?page=56&annotation=I5ZCCX7U)): <span style="color: #2ecc71;">潜意识已经决定了一个人到底喜欢怎样的人。但是通过理性的计算后，这种强大的理智会暂时压制潜意识的影响，从而做出不完全符合自己潜意识的决策。这种理智会受到各种因素的影响，可能是来自他人，社会影响、家庭观念、朋友影响等，这就是被一种条条框框束缚下所做的影响。但是随着时间的推移，潜意识的作用渐渐占据上风，就会压制原先的理性筛选，再次回归自己那种感觉。这种感觉指引着你的喜好倾向，就发现原先喜欢的就真没那么喜欢了。有些东西是无从解释的，就算强行解释，也是一种说不清道不明的说辞。</span>
 
 - 📌 **个人注释/便签** ([P.59](zotero://open-pdf/library/items/T85Q8X6W?page=59&annotation=LNENEALP)): <span style="color: #2ecc71;">潜意识做出的行为是无法解释的，如果非要解释一下，那更多都是自己拼凑出的看似言之有理的答案。</span>
+
+- 📌 **个人注释/便签** ([P.62](zotero://open-pdf/library/items/T85Q8X6W?page=62&annotation=H5CA2EQA)): <span style="color: #2ecc71;">直觉也是通过某些环境和经历内化而形成的。要改变直觉，那就要从某种经历和环境中去重新内化这种瞬间的判断能力。</span>
 
 ## 🟡 质疑与批判
 

@@ -342,6 +342,36 @@
 			"y":560,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"8cf4d70e0fece1cf",
+			"type":"text",
+			"text":"效率的平衡",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":720,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c50d6d988731a838",
+			"type":"text",
+			"text":"自我暗示的力量",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":880,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"ba3a97462d2b600e",
+			"type":"text",
+			"text":"意外之喜的获得",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":1040,
+			"width":260,
+			"height":60
 		}
 	],
 	"edges":[
@@ -632,6 +662,33 @@
 			"fromNode":"8d782d6626fea6e2",
 			"fromSide":"bottom",
 			"toNode":"94576f0698b1d044",
+			"toSide":"top"
+		},
+		{
+			"id":"7ea6e2e65f8fd0c6",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"94576f0698b1d044",
+			"fromSide":"bottom",
+			"toNode":"8cf4d70e0fece1cf",
+			"toSide":"top"
+		},
+		{
+			"id":"3d6db83020917a87",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8cf4d70e0fece1cf",
+			"fromSide":"bottom",
+			"toNode":"c50d6d988731a838",
+			"toSide":"top"
+		},
+		{
+			"id":"af4c38b8b55b6df5",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"c50d6d988731a838",
+			"fromSide":"bottom",
+			"toNode":"ba3a97462d2b600e",
 			"toSide":"top"
 		}
 	],

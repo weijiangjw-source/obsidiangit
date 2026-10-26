@@ -6,7 +6,7 @@
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "zh-CN",
-  "titleGenerationModel": "claude-code/gpt-oss-20b-MXFP4-Q8",
+  "titleGenerationModel": "openai-codex/zcode/GLM-5.3-Flash",
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
@@ -75,56 +75,12 @@
       "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
       "environmentHash": "runtime-input:v1:5fc5bae10b85a038d5f87c5c391fe225de2ccefe1e2f43a7d6b5dd4fde65c3f9",
       "modelAliases": {
-        "glm-4.7-flash": "glm4.7",
         "gpt-oss-20b-MXFP4-Q8": "gpt"
       },
       "visibleModels": [
-        "gpt-oss-20b-MXFP4-Q8",
-        "glm-4.7-flash"
+        "gpt-oss-20b-MXFP4-Q8"
       ],
       "selectedModels": [
-        {
-          "value": "opus",
-          "label": "glm-4.7-flash",
-          "description": "Custom Opus model",
-          "resolvedModel": "glm-4.7-flash",
-          "reasoningMetadataResolved": true,
-          "supportedEffortLevels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
-        },
-        {
-          "value": "sonnet",
-          "label": "glm-4.7-flash",
-          "description": "Custom Sonnet model",
-          "resolvedModel": "glm-4.7-flash",
-          "reasoningMetadataResolved": true,
-          "supportedEffortLevels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
-        },
-        {
-          "value": "haiku",
-          "label": "glm-4.7-flash",
-          "description": "Custom Haiku model",
-          "resolvedModel": "glm-4.7-flash",
-          "reasoningMetadataResolved": true,
-          "supportedEffortLevels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
-        },
         {
           "value": "gpt-oss-20b-MXFP4-Q8",
           "label": "gpt-oss-20b-MXFP4-Q8",
@@ -151,22 +107,80 @@
       "sessionEnvironmentHash": "runtime-input:v1:aa11c9accb54307ee1588a44276edd0ef35d22fe16ef820969b8726c80fb0a73"
     },
     "codex": {
-      "enabled": false,
-      "safeMode": "workspace-write",
+      "enabled": true,
+      "safeMode": "read-only",
       "cliPath": "",
       "cliPathsByHost": {},
-      "reasoningSummary": "detailed",
-      "environmentVariables": "",
-      "environmentHash": "",
-      "installationMethodsByHost": {},
-      "wslDistroOverridesByHost": {},
       "modelAliases": {},
-      "visibleModels": [],
+      "visibleModels": [
+        "zcode/GLM-5.3-Flash",
+        "zcode/GLM-5.3"
+      ],
       "enableUltraEffort": false,
       "responseStyle": "pragmatic",
-      "selectedModels": [],
       "responseVerbosity": "default",
-      "sessionEnvironmentHash": ""
+      "reasoningSummary": "concise",
+      "environmentVariables": "",
+      "environmentHash": "runtime-input:v1:ed54f4f5238abeec7f65a5da1e468c9a639e157a7d1c7753b53f54ba1196e8a0",
+      "sessionEnvironmentHash": "runtime-input:v1:cf4a613a63a895356fbc95544817979656506c93b9fb3fe1c76833522e1c19fc",
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
+      "selectedModels": [
+        {
+          "model": "zcode/GLM-5.3-Flash",
+          "displayName": "GLM-5.3-Flash · ZCode",
+          "description": "GLM-5.3-Flash · ZCode via magpie",
+          "supportedReasoningEfforts": [
+            {
+              "value": "low",
+              "description": ""
+            },
+            {
+              "value": "high",
+              "description": ""
+            },
+            {
+              "value": "max",
+              "description": ""
+            }
+          ],
+          "defaultReasoningEffort": "high",
+          "serviceTiers": [],
+          "defaultServiceTier": null,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "isDefault": false
+        },
+        {
+          "model": "zcode/GLM-5.3",
+          "displayName": "GLM-5.3 · ZCode",
+          "description": "GLM-5.3 · ZCode via magpie",
+          "supportedReasoningEfforts": [
+            {
+              "value": "low",
+              "description": ""
+            },
+            {
+              "value": "high",
+              "description": ""
+            },
+            {
+              "value": "max",
+              "description": ""
+            }
+          ],
+          "defaultReasoningEffort": "high",
+          "serviceTiers": [],
+          "defaultServiceTier": null,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "isDefault": false
+        }
+      ]
     },
     "opencode": {
       "cliPath": "",
@@ -219,20 +233,17 @@
   },
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
-    "providerId": "claude",
-    "model": "claude-code/gpt-oss-20b-MXFP4-Q8"
+    "providerId": "codex",
+    "model": "openai-codex/zcode/GLM-5.3-Flash"
   },
   "inlineEditModel": null,
-  "savedProviderModel": {
-    "claude": "claude-code/glm-4.7-flash"
-  },
-  "savedProviderEffort": {
-    "claude": "high"
-  },
+  "savedProviderModel": {},
+  "savedProviderEffort": {},
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
     "claude": "acceptEdits",
-    "deepseek": "normal"
+    "deepseek": "normal",
+    "codex": "auto-review"
   },
   "pendingProviderSessionInvalidations": {},
   "enableAutoScroll": true,

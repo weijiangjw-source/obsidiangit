@@ -68,6 +68,9 @@ columns:
         end: ""
         days: 30
     height: 751.59765625
+  - name: 图片
+    color: "#6366f1"
+    type: images
 ---
 
 ## Memo
@@ -259,6 +262,7 @@ type: generic
 id: card-mv8el9e6
 type: generic
 总结这个视频的核心要点及具体详细的操作步骤，并对视频中涉及的一些功能进行简要说明具体的用途
+再次核查是否还有遗漏的重要内容点，如果有就说明其核心作用与用途
 
 ### claude code MCP管理
 id: card-mvaml8zv
@@ -289,3 +293,5 @@ type: generic
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
 ## Database
+
+## 图片

@@ -372,6 +372,46 @@
 			"y":1040,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"7a34a99fe0ff683f",
+			"type":"text",
+			"text":"无心状态",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":1160,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"5a155fa4b909b6f9",
+			"type":"text",
+			"text":"心流体验",
+			"styleAttributes":{"textAlign":"center","shape":"circle"},
+			"x":100,
+			"y":1070,
+			"width":130,
+			"height":60
+		},
+		{
+			"id":"7fec9aae3e6da993",
+			"type":"text",
+			"text":"强弱关系",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":1320,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"68667e826fd73b02",
+			"type":"text",
+			"text":"记忆的最高境界是无意识",
+			"styleAttributes":{},
+			"x":-280,
+			"y":1460,
+			"width":260,
+			"height":60
 		}
 	],
 	"edges":[
@@ -689,6 +729,42 @@
 			"fromNode":"c50d6d988731a838",
 			"fromSide":"bottom",
 			"toNode":"ba3a97462d2b600e",
+			"toSide":"top"
+		},
+		{
+			"id":"c4c7994469247652",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ba3a97462d2b600e",
+			"fromSide":"bottom",
+			"toNode":"7a34a99fe0ff683f",
+			"toSide":"top"
+		},
+		{
+			"id":"f9fb317ea73d7001",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7a34a99fe0ff683f",
+			"fromSide":"right",
+			"toNode":"5a155fa4b909b6f9",
+			"toSide":"left"
+		},
+		{
+			"id":"a8f0dfb1240f242b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7a34a99fe0ff683f",
+			"fromSide":"bottom",
+			"toNode":"7fec9aae3e6da993",
+			"toSide":"top"
+		},
+		{
+			"id":"52180c789ae5ae6b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7fec9aae3e6da993",
+			"fromSide":"bottom",
+			"toNode":"68667e826fd73b02",
 			"toSide":"top"
 		}
 	],

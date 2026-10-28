@@ -68,9 +68,9 @@ columns:
         end: ""
         days: 30
     height: 751.59765625
-  - name: 图片
+  - name: 数据视图
     color: "#6366f1"
-    type: images
+    type: dataview
 ---
 
 ## Memo
@@ -294,4 +294,4 @@ type: generic
 
 ## Database
 
-## 图片
+## 数据视图

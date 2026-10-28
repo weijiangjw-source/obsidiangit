@@ -3,8 +3,8 @@ name: obsidian-cli
 description: Use the official Obsidian CLI when a task needs Obsidian's running app, index, configured features, command registry, or developer runtime. Use for currently open notes and tabs, workspace state, daily notes, typed properties, tasks, links/backlinks, Bases queries, template resolution, link-aware moves, plugin commands, and plugin/theme debugging; do not use it for ordinary filesystem operations.
 license: MIT
 metadata:
-  copilot-enabled-agents: claude, codex, opencode
-  copilot-builtin-version: "2"
+  copilot-enabled-agents: opencode, claude, codex
+  copilot-builtin-version: "3"
   copilot-upstream-revision: "a1dc48e68138490d522c04cbf5822214c6eb1202"
 ---
 
@@ -89,8 +89,12 @@ meaning beyond raw files:
 - Bases: <code>bases</code>, <code>base:views</code>, and
   <code>base:query</code>. Prefer <code>format=json</code> for structured agent
   consumption.
-- Templates: <code>templates</code> and <code>template:read ... resolve</code>
-  when configured template resolution is required.
+- Templates: <code>create path=&lt;new note&gt; template=&lt;name&gt;</code>
+  creates a note the way Obsidian's template insertion fills it:
+  <code>{{title}}</code> becomes the new note's full file name without
+  extension, and <code>{{date}}</code> and <code>{{time}}</code> become the
+  current date and time. Use <code>templates</code> and
+  <code>template:read ... resolve title=&lt;file name&gt;</code> to preview.
 - Live workspace state: <code>tabs ids</code> lists the currently open tabs and
   their IDs, while <code>workspace ids</code> shows the workspace tree and its
   item IDs.

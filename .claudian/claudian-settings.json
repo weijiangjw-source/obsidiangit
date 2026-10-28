@@ -1,16 +1,16 @@
 {
   "userName": "小伟",
-  "permissionMode": "acceptEdits",
+  "permissionMode": "manual",
   "model": "claude-code/glm-4.7-flash",
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "zh-CN",
-  "titleGenerationModel": "openai-codex/zcode/GLM-5.3-Flash",
+  "titleGenerationModel": "haiku",
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
-  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=8b39eba5a85e47ee958f8d9722b38d06.yvSnbDixvJiovoW2\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7-flash\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7-flash\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nAPI_TIMEOUT_MS=3000000\n",
+  "sharedEnvironmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_AUTH_TOKEN=magpie\nANTHROPIC_DEFAULT_OPUS_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_DEFAULT_SONNET_MODEL=GLM-5.3-Flash\nANTHROPIC_DEFAULT_HAIKU_MODEL=Deepseek-V4.1-Flash",
   "envSnippets": [
     {
       "id": "snippet-1782632128924",
@@ -21,9 +21,9 @@
     },
     {
       "id": "snippet-1785683633904",
-      "name": "omlx1",
+      "name": "magpie1",
       "description": "local",
-      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=magpie",
       "scope": "provider:claude",
       "modelAliases": {
         "gpt-oss-20b-MXFP4-Q8": "gpt"
@@ -31,9 +31,9 @@
     },
     {
       "id": "snippet-1785683669782",
-      "name": "omlx2",
+      "name": "magpie2",
       "description": "local",
-      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gemma-4-12B-it-8bit\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_MODEL=gemma-4-12B-it-8bit\nANTHROPIC_API_KEY=magpie",
       "scope": "provider:claude",
       "modelAliases": {
         "gemma-4-12B-it-8bit": "gm12b8"
@@ -41,9 +41,9 @@
     },
     {
       "id": "snippet-1785683736643",
-      "name": "omlx3",
+      "name": "magpie3",
       "description": "local",
-      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
+      "envVars": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_MODEL=Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit\nANTHROPIC_API_KEY=magpie",
       "scope": "provider:claude",
       "modelAliases": {
         "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit": "claude4.6"
@@ -72,20 +72,48 @@
       "lastModel": "opus",
       "modelEnvironmentType": "opus",
       "titleModelEnvironmentType": "model",
-      "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:8000\nANTHROPIC_MODEL=gpt-oss-20b-MXFP4-Q8\nANTHROPIC_API_KEY=sk-ant-omlx-local-testing-key",
-      "environmentHash": "runtime-input:v1:5fc5bae10b85a038d5f87c5c391fe225de2ccefe1e2f43a7d6b5dd4fde65c3f9",
-      "modelAliases": {
-        "gpt-oss-20b-MXFP4-Q8": "gpt"
-      },
+      "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_AUTH_TOKEN=magpie",
+      "environmentHash": "runtime-input:v1:c15634ac7428309f74bc4bcb70884c5c6ccc0e4a8c7ec99bbb484e40d1bfc500",
+      "modelAliases": {},
       "visibleModels": [
-        "gpt-oss-20b-MXFP4-Q8"
+        "haiku",
+        "sonnet",
+        "opus"
       ],
       "selectedModels": [
         {
-          "value": "gpt-oss-20b-MXFP4-Q8",
+          "value": "opus",
           "label": "gpt-oss-20b-MXFP4-Q8",
-          "description": "Custom model",
+          "description": "Custom Opus model",
           "resolvedModel": "gpt-oss-20b-MXFP4-Q8",
+          "reasoningMetadataResolved": true,
+          "supportedEffortLevels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "value": "sonnet",
+          "label": "GLM-5.3-Flash",
+          "description": "Custom Sonnet model",
+          "resolvedModel": "GLM-5.3-Flash",
+          "reasoningMetadataResolved": true,
+          "supportedEffortLevels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "value": "haiku",
+          "label": "Deepseek-V4.1-Flash",
+          "description": "Custom Haiku model",
+          "resolvedModel": "Deepseek-V4.1-Flash",
           "reasoningMetadataResolved": true,
           "supportedEffortLevels": [
             "low",
@@ -101,10 +129,11 @@
       "discoveredOutputStyles": [
         "default",
         "Proactive",
+        "Concise",
         "Explanatory",
         "Learning"
       ],
-      "sessionEnvironmentHash": "runtime-input:v1:aa11c9accb54307ee1588a44276edd0ef35d22fe16ef820969b8726c80fb0a73"
+      "sessionEnvironmentHash": "runtime-input:v1:a1eae4ec0e56a004c9e347f63e26cb3b3c9e7dcb6639ddae02f2b752508f8f62"
     },
     "codex": {
       "enabled": true,
@@ -114,7 +143,9 @@
       "modelAliases": {},
       "visibleModels": [
         "zcode/GLM-5.3-Flash",
-        "zcode/GLM-5.3"
+        "zcode/GLM-5.3",
+        "workbuddy-ai/deepseek-v4.1-flash",
+        "workbuddy/glm-5.3"
       ],
       "enableUltraEffort": false,
       "responseStyle": "pragmatic",
@@ -126,6 +157,60 @@
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {},
       "selectedModels": [
+        {
+          "model": "workbuddy-ai/deepseek-v4.1-flash",
+          "displayName": "Deepseek-V4.1-Flash · WorkBuddy AI",
+          "description": "Deepseek-V4.1-Flash · WorkBuddy AI via magpie",
+          "supportedReasoningEfforts": [
+            {
+              "value": "low",
+              "description": ""
+            },
+            {
+              "value": "high",
+              "description": ""
+            },
+            {
+              "value": "max",
+              "description": ""
+            }
+          ],
+          "defaultReasoningEffort": "high",
+          "serviceTiers": [],
+          "defaultServiceTier": null,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "isDefault": false
+        },
+        {
+          "model": "workbuddy/glm-5.3",
+          "displayName": "GLM-5.3 · WorkBuddy",
+          "description": "GLM-5.3 · WorkBuddy via magpie",
+          "supportedReasoningEfforts": [
+            {
+              "value": "low",
+              "description": ""
+            },
+            {
+              "value": "high",
+              "description": ""
+            },
+            {
+              "value": "max",
+              "description": ""
+            }
+          ],
+          "defaultReasoningEffort": "high",
+          "serviceTiers": [],
+          "defaultServiceTier": null,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "isDefault": false
+        },
         {
           "model": "zcode/GLM-5.3-Flash",
           "displayName": "GLM-5.3-Flash · ZCode",
@@ -224,7 +309,7 @@
       "cliPath": "",
       "cliPathsByHost": {},
       "environmentVariables": "",
-      "environmentHash": "runtime-input:v1:7bb058eb9b9a526e6d35e7f743bb2ef5035d11adc7be4851aab4adda7adcca74",
+      "environmentHash": "runtime-input:v1:f255473dba5d5234b13833263e53d624a95782a2acca71057e51f5e7c66da864",
       "visibleModels": [],
       "modelAliases": {},
       "preferredReasoningByModel": {},
@@ -233,17 +318,19 @@
   },
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
-    "providerId": "codex",
-    "model": "openai-codex/zcode/GLM-5.3-Flash"
+    "providerId": "claude",
+    "model": "haiku"
   },
   "inlineEditModel": null,
   "savedProviderModel": {},
-  "savedProviderEffort": {},
+  "savedProviderEffort": {
+    "codex": "medium"
+  },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
-    "claude": "acceptEdits",
+    "claude": "manual",
     "deepseek": "normal",
-    "codex": "auto-review"
+    "codex": "normal"
   },
   "pendingProviderSessionInvalidations": {},
   "enableAutoScroll": true,

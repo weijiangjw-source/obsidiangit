@@ -3,8 +3,8 @@ name: copilot-web-fetch
 description: Fetch and read the full contents of a specific web page (URL) as clean Markdown using Copilot Plus. Use when the user shares a link or asks you to open, read, or summarize a particular page — not for an open-ended web search. Requires an active Copilot Plus license; without it, use your own fetch tool instead.
 license: Copilot Plus
 metadata:
-  copilot-enabled-agents: claude, codex, opencode
-  copilot-builtin-version: "6"
+  copilot-enabled-agents: opencode, claude, codex
+  copilot-builtin-version: "10"
 ---
 
 # Copilot web fetch
@@ -14,8 +14,12 @@ Fetch a web page's contents as Markdown through Copilot Plus.
 ## How to run
 
 Find the absolute path to this SKILL.md file on disk, then run the script next
-to it that matches the operating system. No extra runtime is needed — `sh`
-(macOS/Linux) and `cmd`/PowerShell (Windows) are always present.
+to it that matches the operating system. Run it as a shell command with your shell command tool (for example
+`Bash` in Claude Code, `shell` in OpenCode, `exec_command` in Codex). The command
+is shell syntax, not JavaScript or TypeScript: never pass it as the code of a
+code-execution tool.
+No extra runtime is needed — `sh` (macOS/Linux) and `cmd`/PowerShell (Windows)
+are always present.
 
 On macOS or Linux:
 

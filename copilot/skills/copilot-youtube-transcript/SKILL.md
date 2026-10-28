@@ -3,8 +3,8 @@ name: copilot-youtube-transcript
 description: Fetch the transcript of a YouTube video using Copilot Plus. Use when the user shares a YouTube URL and wants its contents, a summary, or quotes. Requires an active Copilot Plus license.
 license: Copilot Plus
 metadata:
-  copilot-enabled-agents: claude, codex, opencode
-  copilot-builtin-version: "6"
+  copilot-enabled-agents: opencode, claude, codex
+  copilot-builtin-version: "10"
 ---
 
 # Copilot YouTube transcript
@@ -14,8 +14,12 @@ Fetch a YouTube video's transcript through Copilot Plus.
 ## How to run
 
 Find the absolute path to this SKILL.md file on disk, then run the script next
-to it that matches the operating system. No extra runtime is needed — `sh`
-(macOS/Linux) and `cmd`/PowerShell (Windows) are always present.
+to it that matches the operating system. Run it as a shell command with your shell command tool (for example
+`Bash` in Claude Code, `shell` in OpenCode, `exec_command` in Codex). The command
+is shell syntax, not JavaScript or TypeScript: never pass it as the code of a
+code-execution tool.
+No extra runtime is needed — `sh` (macOS/Linux) and `cmd`/PowerShell (Windows)
+are always present.
 
 On macOS or Linux:
 

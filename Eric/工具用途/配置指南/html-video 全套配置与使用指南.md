@@ -279,14 +279,14 @@ sudo chmod +x /usr/local/bin/hvs
 
 ### 7.4 PM2 常用管理命令
 
-| 用途 | 命令 |
-| :--- | :--- |
-| 启动/重启服务 | `hvs` |
-| 查看状态 | `pm2 status` |
-| 查看日志 | `pm2 logs html-video-studio` |
-| 停止服务 | `pm2 stop html-video-studio` |
-| 删除服务 | `pm2 delete html-video-studio` |
-| 开机自启 | `pm2 startup && pm2 save` |
+| 用途      | 命令                             |
+| :------ | :----------------------------- |
+| 启动/重启服务 | `hvs`                          |
+| 查看状态    | `pm2 status`                   |
+| 查看日志    | `pm2 logs html-video-studio`   |
+| 停止服务    | `pm2 stop html-video-studio`   |
+| 删除服务    | `pm2 delete html-video-studio` |
+| 开机自启    | `pm2 startup && pm2 save`      |
 
 ### 7.5 ⚠️ 重要提示
 

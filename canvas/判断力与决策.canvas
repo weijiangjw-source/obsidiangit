@@ -407,9 +407,19 @@
 			"id":"68667e826fd73b02",
 			"type":"text",
 			"text":"记忆的最高境界是无意识",
-			"styleAttributes":{},
+			"styleAttributes":{"textAlign":"center"},
 			"x":-280,
 			"y":1460,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7f55d0ac232f87c2",
+			"type":"text",
+			"text":"注意力机制和判断标准",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-280,
+			"y":1640,
 			"width":260,
 			"height":60
 		}
@@ -765,6 +775,15 @@
 			"fromNode":"7fec9aae3e6da993",
 			"fromSide":"bottom",
 			"toNode":"68667e826fd73b02",
+			"toSide":"top"
+		},
+		{
+			"id":"5492c1e423de4bee",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"68667e826fd73b02",
+			"fromSide":"bottom",
+			"toNode":"7f55d0ac232f87c2",
 			"toSide":"top"
 		}
 	],

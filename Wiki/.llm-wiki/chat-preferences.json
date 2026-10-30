@@ -1,6 +1,6 @@
 {
-  "useWebSearch": true,
-  "useAnyTxtSearch": true,
+  "useWebSearch": false,
+  "useAnyTxtSearch": false,
   "agentMode": "standard",
   "retrievalMode": "standard",
   "selectedSkills": [],

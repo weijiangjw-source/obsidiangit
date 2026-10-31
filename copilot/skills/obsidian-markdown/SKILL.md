@@ -4,7 +4,7 @@ description: Create and edit Obsidian-specific Markdown syntax, including wikili
 license: MIT
 metadata:
   copilot-enabled-agents: opencode, claude, codex
-  copilot-builtin-version: "2"
+  copilot-builtin-version: "3"
   copilot-upstream-revision: "a1dc48e68138490d522c04cbf5822214c6eb1202"
 ---
 
@@ -82,6 +82,20 @@ Quote wikilinks used as YAML values. See
 Use <code>#nested/tag</code> for inline tags. Hide content from reading view with
 <code>%%inline comments%%</code> or a matching pair of <code>%%</code> markers on
 separate lines.
+
+## Render-safe math
+
+- In a table, write a pipe inside math as <code>\lvert</code>/<code>\rvert</code>
+  and anywhere else as <code>\|</code>; a bare <code>|</code> starts a new column.
+- When a script inserts <code>$$</code>, use a literal or function replacement
+  (JavaScript <code>replace</code> turns <code>$$</code> into <code>$</code>), then
+  recount the delimiters in every changed file.
+
+~~~markdown
+| Name | Formula |
+| --- | --- |
+| Absolute value | $\lvert x \rvert$ |
+~~~
 
 ## Attribution
 

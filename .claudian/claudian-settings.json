@@ -133,7 +133,9 @@
         "Explanatory",
         "Learning"
       ],
-      "sessionEnvironmentHash": "runtime-input:v1:a1eae4ec0e56a004c9e347f63e26cb3b3c9e7dcb6639ddae02f2b752508f8f62"
+      "sessionEnvironmentHash": "runtime-input:v1:a1eae4ec0e56a004c9e347f63e26cb3b3c9e7dcb6639ddae02f2b752508f8f62",
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
     },
     "codex": {
       "enabled": true,
@@ -277,21 +279,28 @@
       "preferredThinkingByModel": {},
       "thinkingOptionsByModel": {},
       "visibleModels": [],
-      "selectedModels": []
+      "selectedModels": [],
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
     },
     "pi": {
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
-      "environmentHash": "",
+      "environmentHash": "runtime-input:v1:89b818dd68ec991ddc4373aa8d858e63777379a6c51987032ea0912150841209",
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
-      "sessionEnvironmentHash": "",
+      "sessionEnvironmentHash": "runtime-input:v1:bbe5873f25e905769cd9a58ea6d490d9798390c10c7d32d81cb3f54939576ca1",
       "visibleModels": [],
       "selectedModels": []
     },
     "grok": {
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
+      "sessionEnvironmentHash": "",
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
@@ -309,11 +318,13 @@
       "cliPath": "",
       "cliPathsByHost": {},
       "environmentVariables": "",
-      "environmentHash": "runtime-input:v1:f255473dba5d5234b13833263e53d624a95782a2acca71057e51f5e7c66da864",
+      "environmentHash": "runtime-input:v1:e814d3d783eb42c145a1699c0c47db075f74afdaf220b8526edf3df1ee0d4e99",
       "visibleModels": [],
       "modelAliases": {},
       "preferredReasoningByModel": {},
-      "selectedModels": []
+      "selectedModels": [],
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
     }
   },
   "settingsProvider": "claude",

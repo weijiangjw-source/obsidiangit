@@ -160,33 +160,6 @@
       "wslDistroOverridesByHost": {},
       "selectedModels": [
         {
-          "model": "workbuddy-ai/deepseek-v4.1-flash",
-          "displayName": "Deepseek-V4.1-Flash · WorkBuddy AI",
-          "description": "Deepseek-V4.1-Flash · WorkBuddy AI via magpie",
-          "supportedReasoningEfforts": [
-            {
-              "value": "low",
-              "description": ""
-            },
-            {
-              "value": "high",
-              "description": ""
-            },
-            {
-              "value": "max",
-              "description": ""
-            }
-          ],
-          "defaultReasoningEffort": "high",
-          "serviceTiers": [],
-          "defaultServiceTier": null,
-          "inputModalities": [
-            "text",
-            "image"
-          ],
-          "isDefault": false
-        },
-        {
           "model": "workbuddy/glm-5.3",
           "displayName": "GLM-5.3 · WorkBuddy",
           "description": "GLM-5.3 · WorkBuddy via magpie",
@@ -217,33 +190,6 @@
           "model": "zcode/GLM-5.3-Flash",
           "displayName": "GLM-5.3-Flash · ZCode",
           "description": "GLM-5.3-Flash · ZCode via magpie",
-          "supportedReasoningEfforts": [
-            {
-              "value": "low",
-              "description": ""
-            },
-            {
-              "value": "high",
-              "description": ""
-            },
-            {
-              "value": "max",
-              "description": ""
-            }
-          ],
-          "defaultReasoningEffort": "high",
-          "serviceTiers": [],
-          "defaultServiceTier": null,
-          "inputModalities": [
-            "text",
-            "image"
-          ],
-          "isDefault": false
-        },
-        {
-          "model": "zcode/GLM-5.3",
-          "displayName": "GLM-5.3 · ZCode",
-          "description": "GLM-5.3 · ZCode via magpie",
           "supportedReasoningEfforts": [
             {
               "value": "low",
@@ -325,6 +271,18 @@
       "selectedModels": [],
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {}
+    },
+    "antigravity": {
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "enabled": false,
+      "environmentHash": "",
+      "environmentVariables": "",
+      "modelAliases": {},
+      "preferredReasoningByModel": {},
+      "sessionStoreHash": "",
+      "visibleModels": [],
+      "selectedModelsByHost": {}
     }
   },
   "settingsProvider": "claude",

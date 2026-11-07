@@ -217,9 +217,9 @@ curl -s http://127.0.0.1:8188/system_stats   # 服务在跑时从 API 查
   git tag --sort=-v:refname | head -5
   ```
 
-### 5.3 更新流程（标准步骤）
+### <font color="#f79646">5.3 更新流程（标准步骤）</font>
 
-> 核心原则：**备份 → 切 tag → 更新依赖 → 前台验证 → 再交回 PM2**。不要直接 `git pull` 到 master 就完事。
+> <font color="#f79646">核心原则：**备份 → 切 tag → 更新依赖 → 前台验证 → 再交回 PM2**。不要直接 `git pull` 到 master 就完事。</font>
 
 ```bash
 # 1. 停服务

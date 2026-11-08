@@ -289,4 +289,28 @@ type: generic
 6.选择“降低安全性”，勾选“允许用户管理来自被认可开发者的内核扩展”，点击好并输入密码。
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
+### Codex更新方式
+id: card-mw7d9ogb
+type: generic
+
+### ⚠️ Codex CLI：`codex update` 不是原生安装的可靠路径
+id: card-o00few
+type: generic
+Codex CLI 的情况不同。根据 OpenAI 官方的 Codex CLI 文档，对于你使用的 **macOS/Linux 独立安装（原生安装）**，官方指定的**更新方式就是重新运行安装脚本**，文档中“Update”一栏给出的命令与安装命令完全一致。
+文档里**并没有**将 `codex update` 列为原生安装的标准更新方法。社区资料也印证了这一点：`codex update` 被描述为一个“**when the install supports it**”（当安装方式支持时）的自更新命令，并非常规保证。这意味着它的可靠性取决于 Codex 内部是否将当前安装正确识别为可自更新的类型，对于原生安装来说，这并不是一个稳定的约定。
+
+### 💎 给你的操作建议
+id: card-fkln4b
+type: generic
+- **Claude Code**：继续使用 `claude update`，或依赖其后台自动更新，这是正确且省心的方式。
+- **Codex CLI**：最稳妥、最符合官方设计的方式，仍然是**重新运行你之前成功使用过的那条安装脚本**来覆盖升级：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+如果网络再次重置，就继续使用你上次成功过的 GitHub 回退命令：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
+```
+你可以尝试 `codex update`，如果它能成功并更新版本号，那没有问题；但如果它报错或没有反应，重新运行安装脚本就是那个始终有效的保底方案。
+
 ## Database

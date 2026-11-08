@@ -289,4 +289,17 @@ type: generic
 6.选择“降低安全性”，勾选“允许用户管理来自被认可开发者的内核扩展”，点击好并输入密码。
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
 
+### Codex更新方式
+id: card-mw7d9ogb
+type: generic
+- **Claude Code**：继续使用 `claude update`，或依赖其后台自动更新，这是正确且省心的方式。
+- **Codex CLI**：最稳妥、最符合官方设计的方式，仍然是**重新运行你之前成功使用过的那条安装脚本**来覆盖升级：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+如果网络再次重置，就继续使用你上次成功过的 GitHub 回退命令：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
+```
+
 ## Database

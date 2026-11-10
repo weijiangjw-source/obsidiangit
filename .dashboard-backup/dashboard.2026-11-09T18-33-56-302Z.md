@@ -178,6 +178,12 @@ yt-dlp --cookies-from-browser chrome "视频链接"
 7、下载为MP4格式：
 yt-dlp --merge-output-format mp4 "视频链接"
 
+### ComfyUI虚拟环境激活
+id: card-mw96aga7
+type: generic
+激活虚拟环境：
+source /Users/eric/projects/ComfyUI/venv/bin/activate
+
 ### html-video和comfyUI
 id: card-mucmoq75
 type: generic
@@ -276,6 +282,19 @@ type: generic
 查看指定服务器：claude mcp get <服务器名> 查看某个服务器的详细信息。
 移除服务器：claude mcp remove <服务器名> 会从配置中移除该服务器。你可以用 -s 参数指定作用域（如 -s project 或 -s user）。
 
+### Codex和Claude更新方式
+id: card-mw7d9ogb
+type: generic
+- **Claude Code**：继续使用 `claude update`，或依赖其后台自动更新，这是正确且省心的方式。
+- **Codex CLI**：最稳妥、最符合官方设计的方式，仍然是**重新运行你之前成功使用过的那条安装脚本**来覆盖升级：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+如果网络再次重置，就继续使用你上次成功过的 GitHub 回退命令：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
+```
+
 ### 降低M芯片安全级别
 id: card-mvf5p2y3
 type: generic
@@ -288,9 +307,5 @@ type: generic
 5.选中你的 Mac硬盘，点击“安全策略”。
 6.选择“降低安全性”，勾选“允许用户管理来自被认可开发者的内核扩展”，点击好并输入密码。
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
-
-### Codex更新方式
-id: card-mw7d9ogb
-type: generic
 
 ## Database

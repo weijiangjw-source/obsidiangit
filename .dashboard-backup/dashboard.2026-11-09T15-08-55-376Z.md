@@ -236,6 +236,12 @@ type: generic
 系统内存临时解除限制：
 sudo sysctl iogpu.wired_limit_mb=27648
 
+### ComfyUI虚拟环境激活
+id: card-mw96aga7
+type: generic
+激活虚拟环境：
+source /Users/eric/projects/ComfyUI/venv/bin/activate
+
 ### Claude调用gemini命令
 id: card-mucmsmui
 type: generic
@@ -276,6 +282,19 @@ type: generic
 查看指定服务器：claude mcp get <服务器名> 查看某个服务器的详细信息。
 移除服务器：claude mcp remove <服务器名> 会从配置中移除该服务器。你可以用 -s 参数指定作用域（如 -s project 或 -s user）。
 
+### Codex和Claude更新方式
+id: card-mw7d9ogb
+type: generic
+- **Claude Code**：继续使用 `claude update`，或依赖其后台自动更新，这是正确且省心的方式。
+- **Codex CLI**：最稳妥、最符合官方设计的方式，仍然是**重新运行你之前成功使用过的那条安装脚本**来覆盖升级：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+如果网络再次重置，就继续使用你上次成功过的 GitHub 回退命令：
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
+```
+
 ### 降低M芯片安全级别
 id: card-mvf5p2y3
 type: generic
@@ -288,29 +307,5 @@ type: generic
 5.选中你的 Mac硬盘，点击“安全策略”。
 6.选择“降低安全性”，勾选“允许用户管理来自被认可开发者的内核扩展”，点击好并输入密码。
 7. 重启电脑，再次回到”系统设置-隐私与安全性“中点击“允许"。
-
-### Codex更新方式
-id: card-mw7d9ogb
-type: generic
-### ✅ Claude Code：`claude update` 是官方标准路径
-你之前的操作完全正确。Claude Code 的原生安装在设计上就包含了自更新能力：
-- **官方命令**：`claude update` 在官方 CLI 参考中被明确定义为“**Update to latest version**”（更新到最新版本）。
-- **后台自动更新**：原生安装还会在**后台自动检查并下载更新**，新版本会在你下次启动 Claude Code 时生效，通常你甚至不需要手动干预。
-- **手动触发**：`claude update` 的作用是**立即应用**一个已经下载好的更新，而不必等待下一次后台检查或重启。
-所以，你对 Claude Code 使用 `claude update` 是符合官方设计的。
-### ⚠️ Codex CLI：`codex update` 不是原生安装的可靠路径
-Codex CLI 的情况不同。根据 OpenAI 官方的 Codex CLI 文档，对于你使用的 **macOS/Linux 独立安装（原生安装）**，官方指定的**更新方式就是重新运行安装脚本**，文档中“Update”一栏给出的命令与安装命令完全一致。
-文档里**并没有**将 `codex update` 列为原生安装的标准更新方法。社区资料也印证了这一点：`codex update` 被描述为一个“**when the install supports it**”（当安装方式支持时）的自更新命令，并非常规保证。这意味着它的可靠性取决于 Codex 内部是否将当前安装正确识别为可自更新的类型，对于原生安装来说，这并不是一个稳定的约定。
-### 💎 给你的操作建议
-- **Claude Code**：继续使用 `claude update`，或依赖其后台自动更新，这是正确且省心的方式。
-- **Codex CLI**：最稳妥、最符合官方设计的方式，仍然是**重新运行你之前成功使用过的那条安装脚本**来覆盖升级：
-```bash
-curl -fsSL https://chatgpt.com/codex/install.sh | sh
-```
-如果网络再次重置，就继续使用你上次成功过的 GitHub 回退命令：
-```bash
-curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
-```
-你可以尝试 `codex update`，如果它能成功并更新版本号，那没有问题；但如果它报错或没有反应，重新运行安装脚本就是那个始终有效的保底方案。
 
 ## Database

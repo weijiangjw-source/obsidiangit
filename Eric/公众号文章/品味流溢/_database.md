@@ -70,20 +70,22 @@ views:
     filters: []
     sorts:
       - columnId: 创建时间
-        direction: asc
+        direction: desc
     hiddenColumns:
       - 标题
       - 标签
       - 参考资料
       - 修改时间
-      - 发布渠道
-    columnWidths: {}
+    columnWidths:
+      创建时间: 146
+      _title: 272
     pinnedColumnId:
     rowHeight: medium
     includeSubfolders: false
     wrapText: false
     aggregations:
       _title: count
+    activePills: []
 ---
 
 > [!tip] Notion Bases

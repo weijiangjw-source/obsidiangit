@@ -390,8 +390,9 @@
       }
     ],
     "id": "review-191db55f",
-    "resolved": false,
-    "createdAt": 1787558120244
+    "resolved": true,
+    "createdAt": 1787558120244,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -623,8 +624,9 @@
       }
     ],
     "id": "review-84d313d4",
-    "resolved": false,
-    "createdAt": 1787573376272
+    "resolved": true,
+    "createdAt": 1787573376272,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "suggestion",
@@ -2283,8 +2285,9 @@
       }
     ],
     "id": "review-78804a1c",
-    "resolved": false,
-    "createdAt": 1787639090149
+    "resolved": true,
+    "createdAt": 1787639090149,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "suggestion",
@@ -2771,8 +2774,9 @@
       }
     ],
     "id": "review-1544f05a",
-    "resolved": false,
-    "createdAt": 1787728777556
+    "resolved": true,
+    "createdAt": 1787728777556,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -3353,8 +3357,9 @@
       }
     ],
     "id": "review-c62c3fd8",
-    "resolved": false,
-    "createdAt": 1788346370571
+    "resolved": true,
+    "createdAt": 1788346370571,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "missing-page",
@@ -3843,8 +3848,9 @@
       }
     ],
     "id": "review-25eda2f2",
-    "resolved": false,
-    "createdAt": 1788353182746
+    "resolved": true,
+    "createdAt": 1788353182746,
+    "resolvedAction": "llm-judged"
   },
   {
     "type": "suggestion",
@@ -10183,5 +10189,87 @@
     "id": "review-80d79871",
     "resolved": false,
     "createdAt": 1789984504347
+  },
+  {
+    "type": "missing-page",
+    "title": "善意筛选机制",
+    "description": "分析中建议新建 [[concepts/善意筛选机制]]，描述在释放善意前的预判和分层机制。目前已有“关系降级策略”和“回流数据”页面，但“筛选网”作为前置预防措施（Prevention）与“降级”（Correction）有所区别。建议确认是否独立成页，或合并入“关系降级策略”的前置步骤中。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/你混得越好越要懂：别在低回流环境里释放善意.md",
+    "affectedPages": [
+      "wiki/concepts/善意筛选机制.md"
+    ],
+    "searchQueries": [
+      "善意筛选机制 人际关系",
+      "预防性边界设定 社交策略",
+      "资源投放前的风险评估 心理学"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-915152bc",
+    "resolved": false,
+    "createdAt": 1794385868000
+  },
+  {
+    "type": "missing-page",
+    "title": "善意筛选是否会导致人际关系功利化",
+    "description": "分析中提出的 Query：探讨为善良加装“筛选网”是否会削弱真诚的绝对性，以及“不提前暴露底牌”在长期亲密关系（如伴侣、知己）中的适用边界。这一哲学/心理学张力值得独立追踪。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/你混得越好越要懂：别在低回流环境里释放善意.md",
+    "affectedPages": [
+      "wiki/queries/善意筛选是否会导致人际关系功利化.md"
+    ],
+    "searchQueries": [
+      "筛选性善良 道德功利主义",
+      "亲密关系中的策略性真诚",
+      "边界感与真诚度的辩证关系"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-577d78c0",
+    "resolved": false,
+    "createdAt": 1794385868000
+  },
+  {
+    "type": "suggestion",
+    "title": "亲密关系与交易性回流模型的适用边界冲突",
+    "description": "“关系降级策略”和“回流数据”模型基于经济学的“止损”和“资产错配”逻辑，这隐含了关系具有某种交易性质。然而，在伴侣、亲子或手足等长期亲密关系中，社会心理学通常强调“无条件接纳”和“情感账户”的非对称性。当前 Wiki 中缺乏关于**“交易性互惠模型”在亲密关系中的失效边界**的明确界定。如果机械地将“回流数据”应用于所有关系，可能导致亲密关系的异化（Relational Alienation）。建议补充该模型在“高信任度亲密关系”中的局限性说明，或引入“情感依附”与“社会交换”的双轨制分析框架。",
+    "sourcePath": "/Users/eric/Obsidian/Wiki/raw/sources/你混得越好越要懂：别在低回流环境里释放善意.md",
+    "affectedPages": [
+      "wiki/concepts/关系降级策略.md",
+      "wiki/concepts/回流数据.md"
+    ],
+    "searchQueries": [
+      "社会交换理论 vs 亲密关系无条件接纳",
+      "关系商品化与情感异化 心理学",
+      "亲密关系中的边界设定与策略性真诚"
+    ],
+    "options": [
+      {
+        "label": "Create Page",
+        "action": "Create Page"
+      },
+      {
+        "label": "Skip",
+        "action": "Skip"
+      }
+    ],
+    "id": "review-dde06ef4",
+    "resolved": false,
+    "createdAt": 1794385868000
   }
 ]

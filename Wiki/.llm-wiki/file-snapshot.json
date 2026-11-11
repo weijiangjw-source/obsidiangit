@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1789984505079,
+  "updatedAt": 1794385868724,
   "files": {
     "purpose.md": {
       "hash": "77546dadbea32fdcf671400051e18f56",
@@ -208,9 +208,9 @@
       "mtimeMs": 1788972079795
     },
     "raw/sources/你混得越好越要懂：别在低回流环境里释放善意.md": {
-      "hash": "57bc46ad0f968d7c075928f5a216e3dc",
-      "size": 5412,
-      "mtimeMs": 1788332351450
+      "hash": "b16b971ff278f8745d20c4f5eca49a7c",
+      "size": 5422,
+      "mtimeMs": 1794317340203
     },
     "raw/sources/你的深情，在不对等关系里叫舔狗.md": {
       "hash": "db630e14c7b512aede07bfc9a00a8893",
@@ -1097,6 +1097,11 @@
       "size": 1497,
       "mtimeMs": 1789812598234
     },
+    "wiki/concepts/关系降级策略.md": {
+      "hash": "26d81af5b99c029abf12938584c92cb6",
+      "size": 2849,
+      "mtimeMs": 1794385867987
+    },
     "wiki/concepts/具体性是虚无的解药.md": {
       "hash": "17e6d0e047727fa22b68fb03bc1c6826",
       "size": 1414,
@@ -1202,6 +1207,11 @@
       "size": 1209,
       "mtimeMs": 1789889851672
     },
+    "wiki/concepts/原始掠夺逻辑.md": {
+      "hash": "6e9f50f50d82afc4b06f6d97b64648a0",
+      "size": 1811,
+      "mtimeMs": 1794385867990
+    },
     "wiki/concepts/双核生存系统.md": {
       "hash": "3982658288e72c1c86ae36ef3b876fdf",
       "size": 1259,
@@ -1301,6 +1311,11 @@
       "hash": "40c9300d238b44e6a9d4b53f40c358fb",
       "size": 1807,
       "mtimeMs": 1789812598235
+    },
+    "wiki/concepts/回流数据.md": {
+      "hash": "57fc9369983931e7bf58bbf6464621a6",
+      "size": 2190,
+      "mtimeMs": 1794385867988
     },
     "wiki/concepts/圈层闭环.md": {
       "hash": "71fb986a396624f9e261d4962900271b",
@@ -3283,14 +3298,14 @@
       "mtimeMs": 1788353170967
     },
     "wiki/index.md": {
-      "hash": "ece92fe9bf90c2b448149e53f85aded4",
-      "size": 17826,
-      "mtimeMs": 1789984504334
+      "hash": "7a4d2f097da1a6bb88bddc975b5df069",
+      "size": 17845,
+      "mtimeMs": 1794385867993
     },
     "wiki/log.md": {
-      "hash": "98dd52e8dd6882acc2ddbc8c4a3bc283",
-      "size": 68878,
-      "mtimeMs": 1789984504336
+      "hash": "b24631fcb74a440c60157be0becb4e9c",
+      "size": 68971,
+      "mtimeMs": 1794385867998
     },
     "wiki/log.md-append.md": {
       "hash": "53216d4ab64ba98fcdb7addecbb7a8a8",
@@ -3298,9 +3313,9 @@
       "mtimeMs": 1789963943130
     },
     "wiki/overview.md": {
-      "hash": "3a6b8de12b70516be93fe9f2f947b45c",
-      "size": 210,
-      "mtimeMs": 1787502583717
+      "hash": "a6b0d9c1be9e3f7838f62ca3001fc2ab",
+      "size": 596,
+      "mtimeMs": 1794385867996
     },
     "wiki/queries/万相纵横与真诚边界的适用边界-何时是弹性何时是自欺.md": {
       "hash": "a9983233ebd4cf903943e47efca0a395",
@@ -3563,9 +3578,9 @@
       "mtimeMs": 1789984504331
     },
     "wiki/sources/你混得越好越要懂：别在低回流环境里释放善意.md": {
-      "hash": "49360fae393db1ca9f7a164c6566a2c4",
-      "size": 3419,
-      "mtimeMs": 1789966380981
+      "hash": "35f5a963fe1ea924b857dc1c8b6da6bc",
+      "size": 3289,
+      "mtimeMs": 1794385867985
     },
     "wiki/sources/你的深情，在不对等关系里叫舔狗.md": {
       "hash": "e6aee4594e4f538543cc5b962278bf58",

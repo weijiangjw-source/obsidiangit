@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "89175414": {
+      "hash": "89175414",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Mentioned Vault Files (outline only)\n- `Eric/品味觉醒/理论部分/第2章：所谓的审美包容，有时只是逆熵机制停摆后的妥协.md`\n  - Properties:\n    - `标题`: `所谓的审美包容，有时只是逆熵机制停摆后的妥协`\n    - `创建时间`: `2026-09-01 23:27`\n    - `修改时间`: `2026-09-01 23:27`\n    - `发布渠道`: `公众号`\n    - `是否修改`: `true`\n    - `标签`: `[]`\n    - `参考资料`: `https://app.notion.com/p/jiangweii/2-3417d11d97dd8047a299cf1a052f5289?source=copy_link`\n    - `发布状态`: `true`\n  - L14 ## 理解大众选择的熵增本能\n  - L26 ## 做减法为何意味着极度耗能\n  - L48 ## 谁支付代价，谁制定法则\n  - L64 ## 极端克制的真实代价\n\nThis section provides only paths and outlines. Use file tools only if you need the full contents or a specific line range.\n\n\n根据文章内容，提炼核心要点后将其制作为图文形式，结构清晰，通俗易懂，避免说教。要具有很强的视觉冲击力(在文中可以使用emoji图标进行最佳视觉化呈现，但无需滥用)，重新输出给我并以标准的markdown格式输出，文章内不需要图片/图片描述，已经加粗的重点词或句子无需再加引号，也不需要英文。内容封面（大标题前要匹配合适的emoji图标）要加入核心引言（emoji图标用💡）和关键洞察（emoji图标用👁️）。注意：1.禁止使用代码块<code>形式，可以使用文本块或者表格来展示内容。2、隐喻可以有，但不能过于生硬和偏僻，尽量避开过多隐喻表达。\n\n"
+        }
+      ],
+      "createdAt": 1794493746499,
+      "updatedAt": 1794493746499
+    }
+  }
+}

@@ -7,6 +7,8 @@
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "zh-CN",
   "titleGenerationModel": "haiku",
+  "showTabTitlesByDefault": true,
+  "chatFontScale": 100,
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
@@ -50,7 +52,6 @@
       }
     }
   ],
-  "customContextLimits": {},
   "keyboardNavigation": {
     "scrollUpKey": "w",
     "scrollDownKey": "s",
@@ -73,7 +74,7 @@
       "modelEnvironmentType": "opus",
       "titleModelEnvironmentType": "model",
       "environmentVariables": "ANTHROPIC_BASE_URL=http://127.0.0.1:3425\nANTHROPIC_AUTH_TOKEN=magpie",
-      "environmentHash": "runtime-input:v1:c15634ac7428309f74bc4bcb70884c5c6ccc0e4a8c7ec99bbb484e40d1bfc500",
+      "environmentHash": "runtime-input:v1:44ea67541f1b8c99b70ca5d49615b7d8d7a71f601ef15d9aff0ee0cd5cef2434",
       "modelAliases": {},
       "visibleModels": [
         "haiku",
@@ -133,7 +134,6 @@
         "Explanatory",
         "Learning"
       ],
-      "sessionEnvironmentHash": "runtime-input:v1:a1eae4ec0e56a004c9e347f63e26cb3b3c9e7dcb6639ddae02f2b752508f8f62",
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {}
     },
@@ -154,8 +154,7 @@
       "responseVerbosity": "default",
       "reasoningSummary": "concise",
       "environmentVariables": "",
-      "environmentHash": "runtime-input:v1:ed54f4f5238abeec7f65a5da1e468c9a639e157a7d1c7753b53f54ba1196e8a0",
-      "sessionEnvironmentHash": "runtime-input:v1:cf4a613a63a895356fbc95544817979656506c93b9fb3fe1c76833522e1c19fc",
+      "environmentHash": "runtime-input:v1:a689ef657ed7547afc56ce7fd1cbd0aaeb747d7aa0f265622f5f5c4d544223c2",
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {},
       "selectedModels": [
@@ -219,7 +218,7 @@
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
-      "environmentHash": "",
+      "environmentHash": "runtime-input:v1:42a5eb5fccf9178c0579b36c51b39cf1dd5220e0ae262f75c9c4887bd597d838",
       "environmentVariables": "OPENCODE_ENABLE_EXA=1",
       "modelAliases": {},
       "preferredThinkingByModel": {},
@@ -235,18 +234,16 @@
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
-      "environmentHash": "runtime-input:v1:89b818dd68ec991ddc4373aa8d858e63777379a6c51987032ea0912150841209",
+      "environmentHash": "runtime-input:v1:a9e46bd0fa5a8f0179c8d6e79e37d9a1c5b02696134193d352c1258f7dc378ba",
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
-      "sessionEnvironmentHash": "runtime-input:v1:bbe5873f25e905769cd9a58ea6d490d9798390c10c7d32d81cb3f54939576ca1",
       "visibleModels": [],
       "selectedModels": []
     },
     "grok": {
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {},
-      "sessionEnvironmentHash": "",
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
@@ -280,7 +277,6 @@
       "environmentVariables": "",
       "modelAliases": {},
       "preferredReasoningByModel": {},
-      "sessionStoreHash": "",
       "visibleModels": [],
       "selectedModelsByHost": {}
     }
@@ -291,19 +287,20 @@
     "model": "haiku"
   },
   "inlineEditModel": null,
-  "savedProviderModel": {},
+  "savedProviderModel": {
+    "codex": "openai-codex/zcode/GLM-5.3-Flash"
+  },
   "savedProviderEffort": {
-    "codex": "medium"
+    "codex": "high"
   },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
     "claude": "manual",
     "deepseek": "normal",
-    "codex": "normal"
+    "codex": "normal",
+    "opencode": "normal"
   },
-  "pendingProviderSessionInvalidations": {},
   "enableAutoScroll": true,
-  "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,
   "pluginRenderedFenceLanguages": [],
   "expandFileEditsByDefault": false,

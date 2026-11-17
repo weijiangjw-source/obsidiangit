@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "6081dbdf": {
+      "hash": "6081dbdf",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Mentioned Vault Files (outline only)\n- `Eric/公众号文章/品味流溢/为什么越来越不建议你，把每天的日程排得太满？.md`\n  - Properties:\n    - `标题`: `为什么越来越不建议你，把每天的日程排得太满？`\n    - `创建时间`: `2026-09-18 21:58`\n    - `修改时间`: `2026-09-18 21:58`\n    - `发布渠道`: `公众号 小红书`\n    - `是否修改`: `true`\n    - `标签`: `[\"公众号\",\"文章\",\"冗余留白\",\"幂定律\"]`\n    - `参考资料`: `https://app.notion.com/p/jiangweii/3de7d11d97dd807f94f1e74bfd48c471?v=2bb7d11d97dd80d3b44a000c4c4c33b3&source=copy_link`\n    - `发布状态`: `true`\n\nThis section provides only paths and outlines. Use file tools only if you need the full contents or a specific line range.\n\n\n给出这篇文章适合小红书平台的8个话题标签\n\n"
+        }
+      ],
+      "createdAt": 1794745203603,
+      "updatedAt": 1794745203603
+    }
+  }
+}

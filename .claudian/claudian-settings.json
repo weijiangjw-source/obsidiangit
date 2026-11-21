@@ -2,13 +2,13 @@
   "userName": "小伟",
   "permissionMode": "manual",
   "model": "claude-code/glm-4.7-flash",
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "zh-CN",
-  "titleGenerationModel": "haiku",
+  "titleGenerationModel": "sonnet",
   "showTabTitlesByDefault": true,
-  "chatFontScale": 100,
+  "chatFontScale": 80,
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
@@ -275,16 +275,18 @@
       "enabled": false,
       "environmentHash": "",
       "environmentVariables": "",
+      "installationMethodsByHost": {},
       "modelAliases": {},
       "preferredReasoningByModel": {},
       "visibleModels": [],
+      "wslDistroOverridesByHost": {},
       "selectedModelsByHost": {}
     }
   },
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "haiku"
+    "model": "sonnet"
   },
   "inlineEditModel": null,
   "savedProviderModel": {
